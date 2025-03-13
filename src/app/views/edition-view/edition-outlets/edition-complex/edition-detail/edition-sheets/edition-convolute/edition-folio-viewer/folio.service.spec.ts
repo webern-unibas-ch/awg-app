@@ -1031,11 +1031,11 @@ describe('FolioService (DONE)', () => {
                     expectToBe(mockConsole.get(0), 'No segments array in content');
                 });
 
-                it('... content.segments length is greater than sectionPartition in folioCalculation model (with log error)', () => {
+                it('... content.segments length is greater than segmentSplit in folioCalculation model (with log error)', () => {
                     const emptySvgSheetGroup = D3_SELECTION.create('g');
 
                     const segments = expectedReversedFolio.content[0].segments;
-                    const partitionIndex = expectedReversedFolio.content[0].sectionPartition - 1;
+                    const partitionIndex = expectedReversedFolio.content[0].segmentSplit - 1;
                     segments.push(segments[partitionIndex]);
 
                     const emptyFolioSvgData = new FolioSvgData(
@@ -1047,7 +1047,7 @@ describe('FolioService (DONE)', () => {
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
 
                     expectSpyCall(consoleSpy, 1);
-                    expectToBe(mockConsole.get(0), 'Segments array is bigger than sectionPartition');
+                    expectToBe(mockConsole.get(0), 'Segments array is bigger than segmentSplit');
                 });
 
                 it('... number of systems is not given in folioCalculation model (with log error)', () => {
@@ -1850,10 +1850,10 @@ describe('FolioService (DONE)', () => {
                 expectToBe(contentSegmentLink.selectAll('polygon').size(), 1);
             });
 
-            it('... should append one polygon element to the SVG content segment link even if content.sectionPartition is not given in folioCalculation model', () => {
+            it('... should append one polygon element to the SVG content segment link even if content.segmentSplit is not given in folioCalculation model', () => {
                 const altSegmentLink = D3_SELECTION.create('svg:a');
 
-                expectedReversedFolio.content[0].sectionPartition = undefined;
+                expectedReversedFolio.content[0].segmentSplit = undefined;
                 const altFolioSvgData = new FolioSvgData(
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
@@ -1869,10 +1869,10 @@ describe('FolioService (DONE)', () => {
                 expectToBe(altSegmentLink.selectAll('polygon').size(), 1);
             });
 
-            it('... should append one polygon element to the SVG content segment link even if segment.position is not given or less than sectionPartition in folioCalculation model', () => {
+            it('... should append one polygon element to the SVG content segment link even if segment.position is not given or less than segmentSplit in folioCalculation model', () => {
                 const altSegmentLink = D3_SELECTION.create('svg:a');
 
-                expectedReversedFolio.content[0].sectionPartition = 1;
+                expectedReversedFolio.content[0].segmentSplit = 1;
                 expectedReversedFolio.content[0].segments[0].position = undefined;
                 const altFolioSvgData = new FolioSvgData(
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)

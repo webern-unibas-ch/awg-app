@@ -17,7 +17,7 @@
                             "sheetId": "SkRT",
                             "sigle": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
                             "sigleAddendum": "Reihenformen 1–8",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,

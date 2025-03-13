@@ -126,7 +126,7 @@ export const mockEditionData = {
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-                                sectionPartition: 1,
+                                segmentSplit: 1,
                                 segments: [
                                     {
                                         position: 1,
@@ -140,7 +140,7 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk3',
                                 sigle: 'M 212 Sk3',
                                 sigleAddendum: 'T. 3',
-                                sectionPartition: 1,
+                                segmentSplit: 1,
                                 segments: [
                                     {
                                         position: 1,
@@ -155,7 +155,7 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk2',
                                 sigle: 'M 212 Sk2',
                                 sigleAddendum: 'T. 2',
-                                sectionPartition: 1,
+                                segmentSplit: 1,
                                 segments: [
                                     {
                                         position: 1,
@@ -200,7 +200,7 @@ export const mockEditionData = {
                 selectable: undefined,
                 reversed: true,
                 linkTo: undefined,
-                sectionPartition: 1,
+                segmentSplit: 1,
                 segments: [
                     {
                         position: 1,

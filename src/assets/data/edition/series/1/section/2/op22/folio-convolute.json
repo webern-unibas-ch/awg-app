@@ -17,7 +17,7 @@
                             "sheetId": "SkRTa",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 1–16",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
@@ -50,7 +50,7 @@
                             "sheetId": "SkRTb",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 17–32",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
@@ -83,7 +83,7 @@
                             "sheetId": "SkRTc",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 33–48",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,

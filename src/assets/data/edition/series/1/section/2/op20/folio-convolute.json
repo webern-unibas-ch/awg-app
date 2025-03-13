@@ -17,7 +17,7 @@
                             "sheetId": "SkRTa",
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 1–16",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
@@ -42,7 +42,7 @@
                             "sigle": "M 289 Sk1",
                             "sigleAddendum": "(Reihentabelle [Variante])",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
@@ -66,7 +66,7 @@
                             "sheetId": "SkRTb",
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 17–32",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
@@ -99,7 +99,7 @@
                             "sheetId": "SkRTc",
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 33–48",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,

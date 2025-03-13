@@ -240,13 +240,13 @@ export class FolioCalculationContentSegmentVertices {
      *
      * @param {FolioSegment} segment The given segment of the folio content.
      * @param {FolioCalculationSystems} _systems The given calculated systems.
-     * @param {number} _sectionPartition The given section partition.
+     * @param {number} _segmentSplit The given segment split.
      * @param {number} _segmentOffsetCorrection The given segment offset correction.
      */
     constructor(
         segment: FolioSegment,
         private readonly _systems: FolioCalculationSystems,
-        private readonly _sectionPartition: number,
+        private readonly _segmentSplit: number,
         private readonly _segmentOffsetCorrection: number
     ) {
         const { startX, startY, endX, endY } = this._calculateVertices(segment);
@@ -285,9 +285,9 @@ export class FolioCalculationContentSegmentVertices {
      * @returns {number} The calculated the content segment vertices.
      */
     private _calculateX(segment: FolioSegment, isStart: boolean): number {
-        const width = round(this._systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this._sectionPartition, 2);
+        const width = round(this._systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this._segmentSplit, 2);
 
-        const systemIndex = segment.position && segment.position <= this._sectionPartition ? segment.position - 1 : 0;
+        const systemIndex = segment.position && segment.position <= this._segmentSplit ? segment.position - 1 : 0;
         const baseX = this._systems.SYSTEMS_DIMENSIONS.START_X;
         const offset = this._segmentOffsetCorrection / 2;
 
@@ -392,9 +392,9 @@ export class FolioCalculationContentSegment {
     segment: FolioSegment;
 
     /**
-     * The section partition of the content segment.
+     * The segment split of the content segment.
      */
-    sectionPartition: number;
+    segmentSplit: number;
 
     /**
      * The array of label strings for the content segment.
@@ -446,7 +446,7 @@ export class FolioCalculationContentSegment {
         private readonly _systems: FolioCalculationSystems,
         private readonly _segmentOffsetCorrection: number
     ) {
-        this.sectionPartition = content.sectionPartition ?? 1;
+        this.segmentSplit = content.segmentSplit ?? 1;
 
         this._getContentSegments(content);
     }
@@ -464,8 +464,8 @@ export class FolioCalculationContentSegment {
             console.error('No segments array in content', content);
             return;
         }
-        if (content.segments.length > this.sectionPartition) {
-            console.error('Segments array is bigger than sectionPartition');
+        if (content.segments.length > this.segmentSplit) {
+            console.error('Segments array is bigger than segmentSplit');
             return;
         }
         if (this._systems.NUMBER_OF_SYSTEMS === 0) {
@@ -496,7 +496,7 @@ export class FolioCalculationContentSegment {
         this.vertices = new FolioCalculationContentSegmentVertices(
             segment,
             this._systems,
-            this.sectionPartition,
+            this.segmentSplit,
             this._segmentOffsetCorrection
         );
 

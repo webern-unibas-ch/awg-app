@@ -143,9 +143,9 @@ export class FolioContent {
     linkTo?: string;
 
     /**
-     * The folio content's optional sectionPartition.
+     * The folio content's optional segmentSplit.
      */
-    sectionPartition?: number;
+    segmentSplit?: number;
 
     /**
      * The folio content's optional segments array.

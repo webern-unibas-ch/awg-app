@@ -18,7 +18,7 @@
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -32,7 +32,7 @@
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 6–11",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -46,7 +46,7 @@
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -60,7 +60,7 @@
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 17–21",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -84,7 +84,7 @@
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -98,7 +98,7 @@
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 6–9",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -112,7 +112,7 @@
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 10–13",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -126,7 +126,7 @@
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 14",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -156,7 +156,7 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 2,
@@ -170,7 +170,7 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 8–14",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -184,7 +184,7 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 15–21",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 12,
@@ -197,7 +197,7 @@
                             "sheetId": "M_43_Sk1a",
                             "sigle": "M 43 Sk1",
                             "sigleAddendum": "T. 1–7",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 16,
@@ -210,7 +210,7 @@
                             "sheetId": "M_43_Sk1b",
                             "sigle": "M 43 Sk1",
                             "sigleAddendum": "T. {8A}–11",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 17,

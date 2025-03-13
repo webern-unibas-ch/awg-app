@@ -18,7 +18,7 @@
                             "sheetId": "M_34_Sk1a",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 1–7",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -31,7 +31,7 @@
                             "sheetId": "M_34_Sk1b",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 8–14",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -44,7 +44,7 @@
                             "sheetId": "M_34_Sk1c",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 15–16",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -58,7 +58,7 @@
                             "sheetId": "M_34_Sk1_1",
                             "sigle": "M 34 Sk1.1",
                             "sigleAddendum": "",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -72,7 +72,7 @@
                             "sheetId": "M_35_42_Sk1a",
                             "sigle": "M 35/42 Sk1",
                             "sigleAddendum": "T. 1–7",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -85,7 +85,7 @@
                             "sheetId": "M_35_42_Sk1b",
                             "sigle": "M 35/42 Sk1",
                             "sigleAddendum": "T. 8(1–2/4)–9B",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -99,7 +99,7 @@
                             "sheetId": "M_36_Sk1a",
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 1–6",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 16,
@@ -112,7 +112,7 @@
                             "sheetId": "M_36_Sk1c",
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 8–11",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -126,7 +126,7 @@
                             "sheetId": "M_36_Sk1d",
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 12",
-                            "sectionPartition": 7,
+                            "segmentSplit": 7,
                             "segments": [
                                 {
                                     "position": 6,
@@ -140,7 +140,7 @@
                             "sheetId": "M_36_Sk1b",
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 7",
-                            "sectionPartition": 7,
+                            "segmentSplit": 7,
                             "segments": [
                                 {
                                     "position": 6,
@@ -154,7 +154,7 @@
                             "sheetId": "M_36_Sk1e",
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 16",
-                            "sectionPartition": 7,
+                            "segmentSplit": 7,
                             "segments": [
                                 {
                                     "position": 4,
@@ -179,7 +179,7 @@
                             "sigle": "M* 404 Sk1",
                             "sigleAddendum": "T. 1–{5A}",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -193,7 +193,7 @@
                             "sigle": "M* 404 Sk1",
                             "sigleAddendum": "T. 5B–7B",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -207,7 +207,7 @@
                             "sigle": "M* 404 Sk1",
                             "sigleAddendum": "T. 8A–11",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -221,7 +221,7 @@
                             "sigle": "M* 404 Sk1",
                             "sigleAddendum": "T. 12–15",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 13,
@@ -235,7 +235,7 @@
                             "sigle": "M* 404 Sk1",
                             "sigleAddendum": "T. 16",
                             "selectable": false,
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 1,
@@ -250,7 +250,7 @@
                             "sigle": "M* 404 Sk1.1",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 1,
@@ -265,7 +265,7 @@
                             "sigle": "M* 404 Sk1.2",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -280,7 +280,7 @@
                             "sigle": "M* 404 Sk1.3",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -295,7 +295,7 @@
                             "sigle": "M* 404 Sk1.4",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -309,7 +309,7 @@
                             "sheetId": "M_38_Sk3a",
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 1–4",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -323,7 +323,7 @@
                             "sheetId": "M_38_Sk3b",
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 5",
-                            "sectionPartition": 4,
+                            "segmentSplit": 4,
                             "segments": [
                                 {
                                     "position": 4,
@@ -337,7 +337,7 @@
                             "sheetId": "M_38_Sk3c",
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 6–8",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -362,7 +362,7 @@
                             "sheetId": "M_39_Sk1a",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 1–{2A}",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -376,7 +376,7 @@
                             "sheetId": "M_39_Sk1b",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {2B}–5A",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 5,
@@ -389,7 +389,7 @@
                             "sheetId": "M_39_Sk1c",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 5B",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 1,
@@ -403,7 +403,7 @@
                             "sheetId": "M_39_Sk1d",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 6A–{8A}",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -417,7 +417,7 @@
                             "sheetId": "M_39_Sk1e",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 6B–8B",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -431,7 +431,7 @@
                             "sheetId": "M_39_Sk1f",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {9A–13A}",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 16,
@@ -444,7 +444,7 @@
                             "sheetId": "M_39_Sk1g",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {9B}",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -458,7 +458,7 @@
                             "sheetId": "M_39_Sk1h",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 9C–10B",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -472,7 +472,7 @@
                             "sheetId": "M_39_Sk1i",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 11C–12B",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -486,7 +486,7 @@
                             "sheetId": "M_39_Sk1j",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 13B–14",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -500,7 +500,7 @@
                             "sheetId": "M_39_Sk1k",
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 18–19",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -514,7 +514,7 @@
                             "sheetId": "M_39_Sk1_1",
                             "sigle": "M 39 Sk1.1",
                             "sigleAddendum": "",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -528,7 +528,7 @@
                             "sheetId": "M_37_Sk1",
                             "sigle": "M 37 Sk1",
                             "sigleAddendum": "",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 1,
@@ -542,7 +542,7 @@
                             "sheetId": "M_37_Sk2",
                             "sigle": "M 37 Sk2",
                             "sigleAddendum": "",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -556,7 +556,7 @@
                             "sheetId": "M_38_Sk1",
                             "sigle": "M 38 Sk1",
                             "sigleAddendum": "",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 18,
@@ -570,7 +570,7 @@
                             "sheetId": "M_38_Sk2",
                             "sigle": "M 38 Sk2",
                             "sigleAddendum": "",
-                            "sectionPartition": 3,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
@@ -594,7 +594,7 @@
                             "sheetId": "M_38_Sk3d",
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 9–12B",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -607,7 +607,7 @@
                             "sheetId": "M_38_Sk3e",
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 13–17",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -620,7 +620,7 @@
                             "sheetId": "M_37_Sk3a",
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 1–6",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -633,7 +633,7 @@
                             "sheetId": "M_37_Sk3b",
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 7–14",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -646,7 +646,7 @@
                             "sheetId": "M_37_Sk3c",
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 15–21",
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 13,
@@ -676,7 +676,7 @@
                             "sigle": "M 34 Tintenniederschrift",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -690,7 +690,7 @@
                             "sigle": "M 34 Tintenniederschrift",
                             "sigleAddendum": "T. 6–8",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -704,7 +704,7 @@
                             "sigle": "M 35/42 Tintenniederschrift",
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -718,7 +718,7 @@
                             "sigle": "M 35/42 Tintenniederschrift",
                             "sigleAddendum": "T. 8–9",
                             "selectable": false,
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -732,7 +732,7 @@
                             "sheetId": "M_35_42_Sk2",
                             "sigle": "M 35/42 Sk2",
                             "sigleAddendum": "",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -747,7 +747,7 @@
                             "sigle": "M 36 Tintenniederschrift",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 13,
@@ -761,7 +761,7 @@
                             "sigle": "M 36 Tintenniederschrift",
                             "sigleAddendum": "T. 7–13",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 16,
@@ -785,7 +785,7 @@
                             "sigle": "M 36 Tintenniederschrift",
                             "sigleAddendum": "T. 14–16",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -799,7 +799,7 @@
                             "sigle": "M 37 Tintenniederschrift",
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -813,7 +813,7 @@
                             "sigle": "M 37 Tintenniederschrift",
                             "sigleAddendum": "T. 8–15",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -827,7 +827,7 @@
                             "sigle": "M 37 Tintenniederschrift",
                             "sigleAddendum": "T. 16–21",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -841,7 +841,7 @@
                             "sigle": "M 38 Tintenniederschrift",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 13,
@@ -855,7 +855,7 @@
                             "sigle": "M 38 Tintenniederschrift",
                             "sigleAddendum": "T. 7–12",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 15,
@@ -869,7 +869,7 @@
                             "sigle": "M 38 Tintenniederschrift",
                             "sigleAddendum": "T. 13–20",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 17,
@@ -893,7 +893,7 @@
                             "sigle": "M 39 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 1–3",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -907,7 +907,7 @@
                             "sigle": "M 39 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 4–7",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -921,7 +921,7 @@
                             "sigle": "M 39 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 8–12 → T. 8, {9–12}",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -935,7 +935,7 @@
                             "sigle": "M 39 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 13–16 → T. {13–14}, 13–14",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -949,7 +949,7 @@
                             "sigle": "M 39 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 17–19 → T. 15–17",
                             "selectable": false,
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -963,7 +963,7 @@
                             "sheetId": "M_39_Sk2a",
                             "sigle": "M 39 Sk2",
                             "sigleAddendum": "T. 9–10",
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -978,7 +978,7 @@
                             "sigle": "M 39 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 16–17(1–2/4)",
                             "selectable": false,
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -993,7 +993,7 @@
                             "sigle": "M 39 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 17(3–4/4)–19",
                             "selectable": false,
-                            "sectionPartition": 2,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
@@ -1018,7 +1018,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 1,
@@ -1032,7 +1032,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 7–12",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 4,
@@ -1046,7 +1046,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 13–18",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 7,
@@ -1060,7 +1060,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 19–25",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 10,
@@ -1074,7 +1074,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 26–30",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 13,
@@ -1088,7 +1088,7 @@
                             "sigle": "M 41 Tintenniederschrift",
                             "sigleAddendum": "T. 31",
                             "selectable": false,
-                            "sectionPartition": 1,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
                                     "startSystem": 16,
