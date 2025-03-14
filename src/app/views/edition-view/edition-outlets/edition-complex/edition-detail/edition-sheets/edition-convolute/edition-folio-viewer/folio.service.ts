@@ -596,12 +596,12 @@ export class FolioService {
         const { x: x1, y: y1 } = trademarkRectangle.UPPER_LEFT_CORNER;
         const { x: x2, y: y2 } = trademarkRectangle.LOWER_RIGHT_CORNER;
 
-        const symbolPath = `M 10 35 Q 12 33 14 35 T 18 35 Q 20 33 22 35 T 26 35 Q 28 33 30 35 T 34 35 M 10 40 T 34 40 M 12 18 C 17 30 19 28 21 22 C 23 32 25 30 29 29 M 15 22 C 17 20 19 18 21 20 C 23 22 26 20 27 18 M 12 29 C 17 25 20 24 21 25 C 23 27 25 26 29 22 M 15 16 L 17 13 L 19 15 L 21 13 L 23 15 L 25 13 L 27 16 M 11 16 L 17 8 L 19 10 L 21 8 L 23 10 L 25 8 L 31 16 M 15 6 L 17 3 L 19 5 L 21 3 L 23 5 L 25 3 L 27 6`;
+        const symbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
 
         const symbolAttributes = {
             class: 'trademark-symbol',
             d: symbolPath,
-            fill: 'none',
+            fill: this._disabledColor,
             stroke: this._disabledColor,
 
             transform: `translate(${(x1 + x2) / 2 - 10}, ${(y1 + y2) / 2 - 10}) scale(0.5)`,
