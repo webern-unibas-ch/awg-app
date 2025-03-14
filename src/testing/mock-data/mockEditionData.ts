@@ -113,10 +113,11 @@ export const mockEditionData = {
                     {
                         folioId: '1',
                         systems: '12',
-                        format: {
+                        dimensions: {
                             height: 180,
                             width: 267,
                         },
+                        trademarkPosition: 'unten links',
                         content: [
                             {
                                 complexId: 'op12',
@@ -125,8 +126,8 @@ export const mockEditionData = {
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 2,
@@ -139,8 +140,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk3',
                                 sigle: 'M 212 Sk3',
                                 sigleAddendum: 'T. 3',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -154,8 +155,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk2',
                                 sigle: 'M 212 Sk2',
                                 sigleAddendum: 'T. 2',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -186,7 +187,7 @@ export const mockEditionData = {
         folioId: '1',
         systems: '12',
         reversed: true,
-        format: {
+        dimensions: {
             height: 180,
             width: 267,
         },
@@ -199,8 +200,8 @@ export const mockEditionData = {
                 selectable: undefined,
                 reversed: true,
                 linkTo: undefined,
-                sectionPartition: 1,
-                sections: [
+                segmentSplit: 1,
+                segments: [
                     {
                         position: 1,
                         startSystem: 4,

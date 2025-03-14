@@ -248,8 +248,8 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             // Create folio settings for each folio
             const folioSettings = {
                 ...this._folioSettings,
-                formatX: +folio.format.width,
-                formatY: +folio.format.height,
+                formatX: +folio.dimensions.width,
+                formatY: +folio.dimensions.height,
                 numberOfFolios: this.selectedConvolute.folios.length,
             };
 
