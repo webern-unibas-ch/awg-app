@@ -6,6 +6,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 348,
@@ -80,8 +81,8 @@
                         {
                             "complexId": "m41",
                             "sheetId": "M_41_Sk1f",
-                            "sigle": "M 41 Sk1",
-                            "sigleAddendum": "T. 29–31",
+                            "sigle": "M 41 Sk1 T. 29–31",
+                            "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -107,8 +108,8 @@
                         {
                             "complexId": "m41",
                             "sheetId": "M_41_Sk1_1b",
-                            "sigle": "M 41 Sk1.1",
-                            "sigleAddendum": "T. 29",
+                            "sigle": "M 41 Sk1.1 T. 29",
+                            "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -268,6 +269,7 @@
                 },
                 {
                     "folioId": "2r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 348,
@@ -391,6 +393,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 347,

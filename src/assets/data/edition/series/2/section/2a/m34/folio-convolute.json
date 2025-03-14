@@ -6,12 +6,12 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
                         "width": 265
                     },
-                    "trademarkPosition": "unten links",
                     "content": [
                         {
                             "complexId": "m34",
@@ -350,12 +350,12 @@
                 },
                 {
                     "folioId": "2r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
                         "width": 265
                     },
-                    "trademarkPosition": "unten links",
                     "content": [
                         {
                             "complexId": "m39",
@@ -664,6 +664,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
@@ -881,6 +882,7 @@
                 },
                 {
                     "folioId": "2r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,

@@ -6,6 +6,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
@@ -99,6 +100,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,

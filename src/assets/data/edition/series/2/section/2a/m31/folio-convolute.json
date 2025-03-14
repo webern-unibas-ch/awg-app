@@ -140,6 +140,7 @@
                 },
                 {
                     "folioId": "1v",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
@@ -352,6 +353,7 @@
                 },
                 {
                     "folioId": "2v",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 349,
@@ -582,6 +584,7 @@
                 },
                 {
                     "folioId": "1v",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 347,
@@ -664,7 +667,6 @@
                             "sigle": "M* 402 Sk1",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
-                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -676,10 +678,9 @@
                         {
                             "complexId": "mstar402",
                             "sheetId": "Mstar_402_Sk1b",
-                            "sigle": "M* 402 Sk1",
-                            "sigleAddendum": "T. 6–9",
+                            "sigle": "M* 402 Sk1 T. 6–9",
+                            "sigleAddendum": "",
                             "selectable": false,
-                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
                             "segmentSplit": 1,
                             "segments": [
                                 {
