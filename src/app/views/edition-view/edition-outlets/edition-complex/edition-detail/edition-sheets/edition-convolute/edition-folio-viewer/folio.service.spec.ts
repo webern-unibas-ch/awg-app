@@ -4,7 +4,7 @@ import * as D3_SELECTION from 'd3-selection';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import {
@@ -58,6 +58,7 @@ describe('FolioService (DONE)', () => {
     let expectedReversedFolio: Folio;
     let expectedSheetRectangle: FolioCalculationRectangle;
     let expectedTrademarkRectangle: FolioCalculationRectangle;
+    let expectedTradeMarkSymbolPath: string;
 
     let expectedBgColor: string;
     let expectedContentSegmentFillColor: string;
@@ -97,6 +98,8 @@ describe('FolioService (DONE)', () => {
             initialOffsetY: 5,
             numberOfFolios: 0,
         };
+        expectedTradeMarkSymbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
+
         expectedBgColor = '#a3a3a3';
         expectedDisabledColor = 'grey';
         expectedFgColor = 'orange';
@@ -106,8 +109,8 @@ describe('FolioService (DONE)', () => {
         expectedContentSegmentOffsetCorrection = 4;
         expectedContentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
         expectedContentSegmentFontSize = '11px';
-        expectedReversedRotationAngle = 180;
 
+        expectedReversedRotationAngle = 180;
         expectedContentSegmentStrokeWidth = 2;
         expectedSheetStrokeWidth = 1;
         expectedSystemsLineStrokeWidth = 0.7;
@@ -252,8 +255,8 @@ describe('FolioService (DONE)', () => {
             expectToBe((folioService as any)._contentSegmentOffsetCorrection, expectedContentSegmentOffsetCorrection);
         });
 
-        it('... should have `_contentSegmentReversedRotationAngle`', () => {
-            expectToBe((folioService as any)._contentSegmentReversedRotationAngle, expectedReversedRotationAngle);
+        it('... should have `_reversedRotationAngle`', () => {
+            expectToBe((folioService as any)._reversedRotationAngle, expectedReversedRotationAngle);
         });
 
         it('... should have `_contentSegmentStrokeWidth`', () => {
@@ -558,6 +561,56 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
                     expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
                 });
+
+                it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
+
+                it('... should rotate the trademark symbol if systems are reversed', () => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.reversed = true;
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expectToContain(
+                        trademarkSymbolElement.attr('transform'),
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
             });
 
             describe('... with trademark position `unten rechts`', () => {
@@ -613,6 +666,57 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
                     expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
                 });
+
+                it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
+
+                it('... should rotate the trademark symbol if systems are reversed', () => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.reversed = true;
+                    altFolio.trademarkPosition = 'unten rechts';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expectToContain(
+                        trademarkSymbolElement.attr('transform'),
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
             });
 
             describe('... with trademark position `oben links`', () => {
@@ -663,6 +767,57 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
                     expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
                     expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+
+                it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
+
+                it('... should rotate the trademark symbol if systems are reversed', () => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.reversed = true;
+                    altFolio.trademarkPosition = 'oben links';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expectToContain(
+                        trademarkSymbolElement.attr('transform'),
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
                 });
             });
 
@@ -717,6 +872,57 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
                     expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
                 });
+
+                it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
+
+                it('... should rotate the trademark symbol if systems are reversed', () => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.reversed = true;
+                    altFolio.trademarkPosition = 'oben rechts';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expectToContain(
+                        trademarkSymbolElement.attr('transform'),
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
             });
 
             describe('... with any other trademark position', () => {
@@ -764,6 +970,57 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
                     expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
                     expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+
+                it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
+                });
+
+                it('... should rotate the trademark symbol if systems are reversed', () => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.reversed = true;
+                    altFolio.trademarkPosition = 'irgendwo';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+
+                    expect(trademarkSymbolElement).toBeDefined();
+                    expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
+                    expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
+                    expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
+                    expectToContain(
+                        trademarkSymbolElement.attr('transform'),
+                        `rotate(${expectedReversedRotationAngle}`
+                    );
+                    expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke'), expectedDisabledColor);
+                    expectToBe(trademarkSymbolElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+                    expectToBe((trademarkSymbolElement.node() as Element).attributes.length, 6);
                 });
             });
         });
@@ -2296,7 +2553,6 @@ describe('FolioService (DONE)', () => {
             let svgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
             let symbolPathElement: D3_SELECTION.Selection<SVGPathElement, unknown, null, undefined>;
             let trademarkSymbolClass: string;
-            let tradeMarkSymbolPath: string;
             let trademarkSymbolTransform: string;
             let x1: number, x2: number, y1: number, y2: number;
 
@@ -2305,7 +2561,6 @@ describe('FolioService (DONE)', () => {
                 ({ x: x2, y: y2 } = expectedTrademarkRectangle.LOWER_RIGHT_CORNER);
                 trademarkSymbolClass = 'trademark-symbol';
                 trademarkSymbolTransform = `translate(${(x1 + x2) / 2 - 10}, ${(y1 + y2) / 2 - 10}) scale(0.5)`;
-                tradeMarkSymbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
 
                 svgTrademarkGroup = D3_SELECTION.create('g');
 
@@ -2321,7 +2576,7 @@ describe('FolioService (DONE)', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: trademarkSymbolClass,
-                    d: tradeMarkSymbolPath,
+                    d: expectedTradeMarkSymbolPath,
                     fill: expectedDisabledColor,
                     stroke: expectedDisabledColor,
                     transform: trademarkSymbolTransform,
@@ -2341,11 +2596,11 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should set the `d` attribute of the `path` element', () => {
-                expectToBe(symbolPathElement.attr('d'), String(tradeMarkSymbolPath));
+                expectToBe(symbolPathElement.attr('d'), expectedTradeMarkSymbolPath);
             });
 
             it('... should set the `fill` attribute of the `path` element', () => {
-                expectToBe(symbolPathElement.attr('fill'), 'none');
+                expectToBe(symbolPathElement.attr('fill'), expectedDisabledColor);
             });
 
             it('... should set the `stroke` attribute of the `path` element', () => {

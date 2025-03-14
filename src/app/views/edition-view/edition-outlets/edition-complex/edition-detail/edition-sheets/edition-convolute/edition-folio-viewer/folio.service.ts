@@ -83,18 +83,18 @@ export class FolioService {
     private readonly _contentSegmentOffsetCorrection = 4;
 
     /**
-     * Private readonly variable: _contentSegmentRotationAngle.
-     *
-     * It keeps the rotation angle for the reversed content segments.
-     */
-    private readonly _contentSegmentReversedRotationAngle = 180;
-
-    /**
      * Private readonly variable: _contentSegmentStrokeWidth.
      *
      * It keeps the stroke width for the content segments.
      */
     private readonly _contentSegmentStrokeWidth = 2;
+
+    /**
+     * Private readonly variable: _reversedRotationAngle.
+     *
+     * It keeps the rotation angle for a reversed item.
+     */
+    private readonly _reversedRotationAngle = 180;
 
     /**
      * Private readonly variable: _sheetFillColor.
@@ -201,7 +201,12 @@ export class FolioService {
         this._appendSheetGroupSheetRectangle(svgSheetGroup, sheetRectangle);
 
         if (trademarkRectangle) {
-            this._appendSheetGroupTrademark(svgSheetGroup, trademarkRectangle, folioId);
+            this._appendSheetGroupTrademark(
+                svgSheetGroup,
+                trademarkRectangle,
+                folioId,
+                folioSvgData.systems.systemsReversed
+            );
         }
     }
 
@@ -386,7 +391,7 @@ export class FolioService {
         if (contentSegment.segmentReversed) {
             label.attr(
                 'transform',
-                `rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
+                `rotate(${this._reversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
             );
         }
 
@@ -520,17 +525,19 @@ export class FolioService {
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
      * @param {string} folioId The given folio id.
+     * @param {boolean} systemsReversed The given systems reversed flag.
      * @returns {void} Appends a trademark to the sheet group selection.
      */
     private _appendSheetGroupTrademark(
         svgSheetGroup: D3Selection,
         trademarkRectangle: FolioCalculationRectangle,
-        folioId: string
+        folioId: string,
+        systemsReversed: boolean
     ): void {
         const svgTrademarkGroup = this._appendSheetGroupTrademarkGroup(svgSheetGroup, folioId);
 
         this._appendSheetGroupTrademarkRectangle(svgTrademarkGroup, trademarkRectangle);
-        this._appendSheetGroupTrademarkSymbol(svgTrademarkGroup, trademarkRectangle);
+        this._appendSheetGroupTrademarkSymbol(svgTrademarkGroup, trademarkRectangle, systemsReversed);
         this._appendSheetGroupTrademarkTitle(svgTrademarkGroup);
     }
 
@@ -587,14 +594,18 @@ export class FolioService {
      *
      * @param {D3Selection} svgTrademarkGroup The given SVG trademark group selection.
      * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @param {boolean} systemsReversed The given systems reversed flag.
      * @returns {D3Selection} Appends a trademark symbol to the trademark group selection.
      */
     private _appendSheetGroupTrademarkSymbol(
         svgTrademarkGroup: D3Selection,
-        trademarkRectangle: FolioCalculationRectangle
+        trademarkRectangle: FolioCalculationRectangle,
+        systemsReversed: boolean
     ): D3Selection {
         const { x: x1, y: y1 } = trademarkRectangle.UPPER_LEFT_CORNER;
         const { x: x2, y: y2 } = trademarkRectangle.LOWER_RIGHT_CORNER;
+        const centerX = (x1 + x2) / 2;
+        const centerY = (y1 + y2) / 2;
 
         const symbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
 
@@ -603,10 +614,10 @@ export class FolioService {
             d: symbolPath,
             fill: this._disabledColor,
             stroke: this._disabledColor,
-
-            transform: `translate(${(x1 + x2) / 2 - 10}, ${(y1 + y2) / 2 - 10}) scale(0.5)`,
+            transform: `translate(${centerX - 10}, ${centerY - 10}) scale(0.5)${systemsReversed ? ` rotate(${this._reversedRotationAngle}, 20, 20)` : ''}`,
         };
         symbolAttributes['stroke-width'] = this._contentSegmentStrokeWidth;
+
         return this._appendSvgElementWithAttrs(svgTrademarkGroup, 'path', symbolAttributes);
     }
 
