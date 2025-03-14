@@ -116,7 +116,6 @@
                             "sheetId": "M_32_Sk2_2",
                             "sigle": "M 32 Sk2.2",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -176,7 +175,6 @@
                             "sheetId": "M_32_Sk3",
                             "sigle": "M 32 Sk3",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -303,10 +301,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2a",
+                            "sheetId": "M_32_Sk2k",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 61B–62",
-                            "selectable": false,
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -318,10 +315,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2b",
+                            "sheetId": "M_32_Sk2l",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 63–64",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -333,10 +329,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2c",
+                            "sheetId": "M_32_Sk2m",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 65–67",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -574,7 +569,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF1",
-                            "sigle": "M 33 Tintenniederschrift TF 1→2",
+                            "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 1–9 → T. 1–9",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -588,7 +583,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF1",
-                            "sigle": "M 33 Tintenniederschrift TF 1→2",
+                            "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 10–18 → T. 10–18",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -602,7 +597,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF1",
-                            "sigle": "M 33 Tintenniederschrift TF 1→2",
+                            "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 19–27",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -616,7 +611,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF1",
-                            "sigle": "M 33 Tintenniederschrift TF 1→2",
+                            "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 28–32 → T. 28–{33}",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -630,7 +625,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF2",
-                            "sigle": "M 33 Tintenniederschrift TF 2",
+                            "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 7–8",
                             "selectable": false,
                             "sectionPartition": 2,
@@ -645,7 +640,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF2",
-                            "sigle": "M 33 Tintenniederschrift TF 2",
+                            "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 31–32",
                             "selectable": false,
                             "sectionPartition": 2,
@@ -660,7 +655,7 @@
                         {
                             "complexId": "m33",
                             "sheetId": "M_33_TF2",
-                            "sigle": "M 33 Tintenniederschrift TF 2",
+                            "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 13–16",
                             "selectable": false,
                             "sectionPartition": 2,
