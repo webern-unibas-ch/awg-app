@@ -21,6 +21,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 2,
                                     "endSystem": 4
                                 }
@@ -194,6 +195,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 5
                                 }
@@ -207,6 +209,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 10
                                 }
@@ -230,6 +233,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 2,
                                     "endSystem": 4
                                 }
@@ -295,6 +299,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 4
                                 }
@@ -308,6 +313,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 5,
                                     "endSystem": 9
                                 }
@@ -321,6 +327,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 9,
                                     "endSystem": 11
                                 }
@@ -359,6 +366,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 4
                                 }
@@ -372,6 +380,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 8,
                                     "endSystem": 11
                                 }
@@ -451,6 +460,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 6
                                 }
@@ -464,6 +474,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 10
                                 }
@@ -477,6 +488,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 12,
                                     "endSystem": 16
                                 }
@@ -500,6 +512,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 5
                                 }
@@ -513,6 +526,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 13
                                 }
@@ -606,6 +620,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 3
                                 }
@@ -631,6 +646,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 3
                                 }
@@ -645,6 +661,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 8
                                 }
@@ -683,6 +700,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 2,
                                     "endSystem": 4
                                 }
@@ -696,6 +714,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 9
                                 }
@@ -728,6 +747,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 3
                                 }
@@ -741,6 +761,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 4,
                                     "endSystem": 6
                                 }
@@ -774,6 +795,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 3
                                 }
@@ -787,6 +809,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 4,
                                     "endSystem": 6
                                 }

@@ -30,6 +30,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 3
                                 }
@@ -72,6 +73,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 9,
                                     "endSystem": 16
                                 }
@@ -141,6 +143,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 5
                                 }
@@ -184,6 +187,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 4
                                 }
