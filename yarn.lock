@@ -6094,7 +6094,7 @@ __metadata:
     eslint-plugin-jsdoc: "npm:^50.6.6"
     eslint-plugin-prettier: "npm:^5.2.3"
     globals: "npm:^16.0.0"
-    gzipper: "npm:^8.2.0"
+    gzipper: "npm:^8.2.1"
     husky: "npm:^9.1.7"
     jasmine-core: "npm:~5.6.0"
     json2typescript: "npm:^1.5.1"
@@ -9866,16 +9866,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gzipper@npm:^8.2.0":
-  version: 8.2.0
-  resolution: "gzipper@npm:8.2.0"
+"gzipper@npm:^8.2.1":
+  version: 8.2.1
+  resolution: "gzipper@npm:8.2.1"
   dependencies:
     "@gfx/zopfli": "npm:^1.0.15"
     commander: "npm:^12.1.0"
     simple-zstd: "npm:^1.4.2"
   bin:
     gzipper: bin/index.js
-  checksum: 10c0/20c96bcb45d86e96a9a04eb73314ceb9c92451a4a23412464996303126abcd5f0564b508a31a25f8da753db32a4b2c857f8b3a7543456ac3c1e56ab9f8f77868
+  checksum: 10c0/cac8ce027daaa4edcafff3fe15133b6e7c10225fc221ce7d8a07ae6429200bc2456cd54f1bfe705230102f490d8d986b3df3e37870196b7117f613c3dac6923c
   languageName: node
   linkType: hard
 
