@@ -393,7 +393,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "7a–10a",
+                                            "system": "7a–11a",
                                             "measure": "27B",
                                             "linkTo": "M_217_Sk1g"
                                         }
@@ -441,7 +441,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "7b–11",
+                                            "system": "7b–11b",
                                             "measure": "27B(3/4) bis 29",
                                             "linkTo": ""
                                         }
@@ -691,7 +691,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1–4",
+                                            "system": "1–5",
                                             "measure": "{29B–31B}, 29C–31C",
                                             "linkTo": "M_213_Sk1g"
                                         }
@@ -877,7 +877,7 @@
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1)",
-                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3)"
+                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 2–3)"
                 ],
                 "writingMaterials": [
                     {
@@ -944,7 +944,7 @@
                                 }
                             ]
                         },
-                        "folioAddendum": "3"
+                        "folioAddendum": "2–3"
                     }
                 ],
                 "writingInstruments": {
