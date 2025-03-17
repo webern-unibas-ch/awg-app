@@ -256,7 +256,7 @@
                                 {
                                     "position": 1,
                                     "startSystem": 8,
-                                    "endSystem": 12
+                                    "endSystem": 14
                                 }
                             ]
                         },
@@ -265,7 +265,7 @@
                             "sheetId": "M_317_Sk4d",
                             "sigle": "M 317 Sk4",
                             "sigleAddendum": "T. 13–15",
-                            "segmentSplit": 4,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -297,7 +297,7 @@
                             "segments": [
                                 {
                                     "position": 5,
-                                    "startSystem": 15,
+                                    "startSystem": 14,
                                     "endSystem": 16
                                 }
                             ]
