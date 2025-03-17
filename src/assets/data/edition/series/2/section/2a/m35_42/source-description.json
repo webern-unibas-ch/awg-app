@@ -1081,6 +1081,68 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note; Halbe Note G<sub>1</sub> gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Achtelnote gestrichen."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "D/d ersetzt durch {{ref.getGlyph('[b]')}}Es/{{ref.getGlyph('[b]')}}es."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "Taktende",
+                                            "comment": "Einschubzeichen über dem System (vgl. Sk2)."
+                                        }
+                                  ]
+                                }
+                            ]
+                        }
+                    }
                 ]
             }
         },
@@ -1660,6 +1722,29 @@
                                 ]
                             }
                         ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_D_corr",
+                        "label": "Korrekturen in <strong>D</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Notenkopf zu fis<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }
