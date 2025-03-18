@@ -6104,7 +6104,7 @@ __metadata:
     karma-jasmine: "npm:~5.1.0"
     karma-jasmine-html-reporter: "npm:^2.1.0"
     lint-staged: "npm:^15.5.0"
-    n3: "npm:^1.24.0"
+    n3: "npm:^1.24.2"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.5.3"
     rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.17"
@@ -12563,14 +12563,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^1.24.0":
-  version: 1.24.0
-  resolution: "n3@npm:1.24.0"
+"n3@npm:^1.24.2":
+  version: 1.24.2
+  resolution: "n3@npm:1.24.2"
   dependencies:
     buffer: "npm:^6.0.3"
     queue-microtask: "npm:^1.1.2"
     readable-stream: "npm:^4.0.0"
-  checksum: 10c0/f4b51595ecd6e5134c9f08fe551ea3ef9cf0d875c0f495e4f7f64c12de700b275d4f676482d95249171abc1dc541b0af5cc03553ab7f2635f00a1aa53781c2b1
+  checksum: 10c0/67e22e19b32942cd0db9bf0cf2815cc2cf51fe41794529367d62971da11284fc539420eadbe873d1b4f29a6f4d6d574889bc8a3784cb654a0ca9a5e87f4e800c
   languageName: node
   linkType: hard
 

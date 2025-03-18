@@ -2455,7 +2455,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "3–4",
+                                            "system": "3a–4a",
                                             "measure": "14–16",
                                             "linkTo": ""
                                         }
@@ -2595,7 +2595,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "25c–26c",
+                                            "system": "25d–26d",
                                             "measure": "{1A}",
                                             "linkTo": ""
                                         }
@@ -2775,7 +2775,7 @@
                     {
                         "item": "M 24 Sk12.2",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition M 24: Var. IV)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -3009,7 +3009,7 @@
                                     [
                                         {
                                             "system": "1–2",
-                                            "measure": "1–6, {7A–8A, 7B–8B} 7C",
+                                            "measure": "1–6, {7A–8A, 7B–8B}, 7C",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3753,7 +3753,7 @@
                                     [
                                         {
                                             "system": "20–21",
-                                            "measure": "20–21",
+                                            "measure": "12–16",
                                             "linkTo": ""
                                         }
                                     ]
