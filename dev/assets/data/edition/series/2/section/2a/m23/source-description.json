@@ -765,7 +765,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "3–4",
+                                            "system": "3a–4a",
                                             "measure": "14–16",
                                             "linkTo": ""
                                         }
@@ -905,7 +905,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "25c–26c",
+                                            "system": "25d–26d",
                                             "measure": "{1A}",
                                             "linkTo": ""
                                         }
@@ -1085,7 +1085,7 @@
                     {
                         "item": "M 24 Sk12.2",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition M 24: Var. IV)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1319,7 +1319,7 @@
                                     [
                                         {
                                             "system": "1–2",
-                                            "measure": "1–6, {7A–8A, 7B–8B} 7C",
+                                            "measure": "1–6, {7A–8A, 7B–8B}, 7C",
                                             "linkTo": ""
                                         }
                                     ],
@@ -2819,7 +2819,7 @@
                     "2 Bögen (Bl. 1/2, 3/4). Horizontale Knickfalte in Bogen 1. Stockfleck oben rechts auf Bogen 1 und 2. Kleiner Riss unten rechts auf Bl. 4."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 28 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ### oben rechts auf Bl. 1<sup>v</sup>, 2<sup>v</sup>, 3<sup>v</sup> und 4<sup>v</sup>"
+                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ### oben rechts auf Bl. 1<sup>v</sup>, 2<sup>v</sup>, 3<sup>v</sup> und 4<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -3087,7 +3087,7 @@
                     {
                         "item": "M 24",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 24)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 24)",
                         "folios": [
                             {
                                 "folio": "2r",
