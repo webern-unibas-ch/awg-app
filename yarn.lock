@@ -6091,10 +6091,10 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.1"
     eslint-plugin-angular: "npm:^4.1.0"
     eslint-plugin-import: "npm:^2.31.0"
-    eslint-plugin-jsdoc: "npm:^50.6.6"
+    eslint-plugin-jsdoc: "npm:^50.6.7"
     eslint-plugin-prettier: "npm:^5.2.3"
     globals: "npm:^16.0.0"
-    gzipper: "npm:^8.2.0"
+    gzipper: "npm:^8.2.1"
     husky: "npm:^9.1.7"
     jasmine-core: "npm:~5.6.0"
     json2typescript: "npm:^1.5.1"
@@ -6104,7 +6104,7 @@ __metadata:
     karma-jasmine: "npm:~5.1.0"
     karma-jasmine-html-reporter: "npm:^2.1.0"
     lint-staged: "npm:^15.5.0"
-    n3: "npm:^1.24.0"
+    n3: "npm:^1.24.2"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.5.3"
     rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.17"
@@ -8700,9 +8700,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^50.6.6":
-  version: 50.6.6
-  resolution: "eslint-plugin-jsdoc@npm:50.6.6"
+"eslint-plugin-jsdoc@npm:^50.6.7":
+  version: 50.6.7
+  resolution: "eslint-plugin-jsdoc@npm:50.6.7"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.49.0"
     are-docs-informative: "npm:^0.0.2"
@@ -8717,7 +8717,7 @@ __metadata:
     synckit: "npm:^0.9.1"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/0c978b560a6f4d527a09a272ac20f60abc713258a6ea64a39a941b95cdc52428a769b4f6206edeaf73b7f0e4f9d8f96bcf0bffd7ca1b3f17351144f1af10e79b
+  checksum: 10c0/72bbcbe9a66ad03c4bf9c87319b3f8512b1714f8cbdc6c238be2122ddaa8c626b3dec0b8e97845217248b90f600356a53655817ac713bd7d5fef4730c895006a
   languageName: node
   linkType: hard
 
@@ -9866,16 +9866,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gzipper@npm:^8.2.0":
-  version: 8.2.0
-  resolution: "gzipper@npm:8.2.0"
+"gzipper@npm:^8.2.1":
+  version: 8.2.1
+  resolution: "gzipper@npm:8.2.1"
   dependencies:
     "@gfx/zopfli": "npm:^1.0.15"
     commander: "npm:^12.1.0"
     simple-zstd: "npm:^1.4.2"
   bin:
     gzipper: bin/index.js
-  checksum: 10c0/20c96bcb45d86e96a9a04eb73314ceb9c92451a4a23412464996303126abcd5f0564b508a31a25f8da753db32a4b2c857f8b3a7543456ac3c1e56ab9f8f77868
+  checksum: 10c0/cac8ce027daaa4edcafff3fe15133b6e7c10225fc221ce7d8a07ae6429200bc2456cd54f1bfe705230102f490d8d986b3df3e37870196b7117f613c3dac6923c
   languageName: node
   linkType: hard
 
@@ -12563,14 +12563,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^1.24.0":
-  version: 1.24.0
-  resolution: "n3@npm:1.24.0"
+"n3@npm:^1.24.2":
+  version: 1.24.2
+  resolution: "n3@npm:1.24.2"
   dependencies:
     buffer: "npm:^6.0.3"
     queue-microtask: "npm:^1.1.2"
     readable-stream: "npm:^4.0.0"
-  checksum: 10c0/f4b51595ecd6e5134c9f08fe551ea3ef9cf0d875c0f495e4f7f64c12de700b275d4f676482d95249171abc1dc541b0af5cc03553ab7f2635f00a1aa53781c2b1
+  checksum: 10c0/67e22e19b32942cd0db9bf0cf2815cc2cf51fe41794529367d62971da11284fc539420eadbe873d1b4f29a6f4d6d574889bc8a3784cb654a0ca9a5e87f4e800c
   languageName: node
   linkType: hard
 
