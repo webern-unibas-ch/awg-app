@@ -254,7 +254,10 @@
                     },
                     {
                         "item": "M 312 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk1"
+                        },
                         "itemDescription": "(Skizze zu „Herr Jesus mein“ M 312)",
                         "folios": [
                             {
@@ -275,7 +278,10 @@
                     },
                     {
                         "item": "M 312 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk1_1"
+                        },
                         "itemDescription": "(Skizze zu „Herr Jesus mein“ M 312)",
                         "folios": [
                             {
@@ -422,7 +428,10 @@
                     },
                     {
                         "item": "M 312 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk3"
+                        },
                         "itemDescription": "(Skizze zu „Herr Jesus mein“ M 312)",
                         "folios": [
                             {
@@ -1080,7 +1089,10 @@
                     },
                     {
                         "item": "M 314 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "M_314_Sk1"
+                        },
                         "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
                         "folios": [
                             {
@@ -1101,7 +1113,10 @@
                     },
                     {
                         "item": "M 314 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "M_314_Sk2"
+                        },
                         "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
                         "folios": [
                             {
