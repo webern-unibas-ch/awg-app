@@ -2576,7 +2576,7 @@
                 {
                     "folioId": "1r",
                     "trademarkPosition": "oben rechts",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -2703,7 +2703,7 @@
                         {
                             "complexId": "m23",
                             "sheetId": "M_23_Sk14",
-                            "sigle": "M 23 Sk13",
+                            "sigle": "M 23 Sk14",
                             "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
@@ -2731,7 +2731,7 @@
                         {
                             "complexId": "m23",
                             "sheetId": "M_23_Sk15",
-                            "sigle": "M 23 Sk13",
+                            "sigle": "M 23 Sk15",
                             "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
@@ -2746,7 +2746,7 @@
                 },
                 {
                     "folioId": "1v",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -2863,7 +2863,7 @@
                 {
                     "folioId": "2r",
                     "trademarkPosition": "oben rechts",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -2919,7 +2919,7 @@
                 },
                 {
                     "folioId": "2v",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -2991,7 +2991,7 @@
                 {
                     "folioId": "3r",
                     "trademarkPosition": "oben rechts",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -3047,7 +3047,7 @@
                 },
                 {
                     "folioId": "3v",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -3104,7 +3104,7 @@
                 {
                     "folioId": "4r",
                     "trademarkPosition": "oben rechts",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
@@ -3145,7 +3145,7 @@
                 },
                 {
                     "folioId": "4v",
-                    "systems": "28",
+                    "systems": "18",
                     "reversed": true,
                     "dimensions": {
                         "height": 348,
