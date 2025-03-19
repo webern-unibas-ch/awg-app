@@ -7,7 +7,7 @@
                 {
                     "folioId": "1r",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 172,
                         "width": 270
                     },
@@ -17,8 +17,8 @@
                             "sheetId": "SkRTa",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 1–16",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -31,7 +31,7 @@
                 {
                     "folioId": "1v",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 172,
                         "width": 270
                     },
@@ -40,7 +40,7 @@
                 {
                     "folioId": "2r",
                     "systems": "9",
-                    "format": {
+                    "dimensions": {
                         "height": 135,
                         "width": 260
                     },
@@ -50,8 +50,8 @@
                             "sheetId": "SkRTb",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 17–32",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -64,7 +64,7 @@
                 {
                     "folioId": "2v",
                     "systems": "9",
-                    "format": {
+                    "dimensions": {
                         "height": 135,
                         "width": 260
                     },
@@ -73,7 +73,7 @@
                 {
                     "folioId": "3r",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 170,
                         "width": 270
                     },
@@ -83,8 +83,8 @@
                             "sheetId": "SkRTc",
                             "sigle": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
                             "sigleAddendum": "Reihenformen 33–48",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -97,7 +97,7 @@
                 {
                     "folioId": "3v",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 170,
                         "width": 270
                     },
