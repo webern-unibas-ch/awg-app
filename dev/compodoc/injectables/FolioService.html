@@ -173,11 +173,6 @@ and prepares the SVG canvas.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_contentSegmentReversedRotationAngle" >_contentSegmentReversedRotationAngle</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentStrokeWidth" >_contentSegmentStrokeWidth</a>
                             </li>
                             <li>
@@ -189,6 +184,11 @@ and prepares the SVG canvas.</p>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_fgColor" >_fgColor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_reversedRotationAngle" >_reversedRotationAngle</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -270,11 +270,31 @@ and prepares the SVG canvas.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_appendSheetGroupRectangle" >_appendSheetGroupRectangle</a>
+                                <a href="#_appendSheetGroupSheetRectangle" >_appendSheetGroupSheetRectangle</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_appendSheetGroupTitle" >_appendSheetGroupTitle</a>
+                                <a href="#_appendSheetGroupSheetTitle" >_appendSheetGroupSheetTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSheetGroupTrademark" >_appendSheetGroupTrademark</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSheetGroupTrademarkGroup" >_appendSheetGroupTrademarkGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSheetGroupTrademarkRectangle" >_appendSheetGroupTrademarkRectangle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSheetGroupTrademarkSymbol" >_appendSheetGroupTrademarkSymbol</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSheetGroupTrademarkTitle" >_appendSheetGroupTrademarkTitle</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -337,8 +357,8 @@ and prepares the SVG canvas.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="244"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:244</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="254"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:254</a></div>
                         </td>
                     </tr>
 
@@ -432,8 +452,8 @@ folio SVG data to the folio SVG canvas.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:195</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:196</a></div>
                         </td>
                     </tr>
 
@@ -527,8 +547,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="213"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:213</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:223</a></div>
                         </td>
                     </tr>
 
@@ -615,15 +635,15 @@ folio SVG data to the SVG sheet group.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_appendCanvasSheetGroup(svgCanvas: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioSvgData: <a href="../classes/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                    <code>_appendCanvasSheetGroup(svgCanvas: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="273"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:273</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -664,9 +684,9 @@ folio SVG data to the SVG sheet group.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>folioSvgData</td>
+                                                <td>folioId</td>
                                             <td>
-                                                            <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -675,7 +695,7 @@ folio SVG data to the SVG sheet group.</p>
 
 
                                             <td>
-                                                    <p>The given calculated folio SVG data.</p>
+                                                    <p>The given folio id.</p>
 
                                             </td>
                                         </tr>
@@ -716,8 +736,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="289"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:289</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="299"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:299</a></div>
                         </td>
                     </tr>
 
@@ -810,8 +830,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="318"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:318</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="328"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:328</a></div>
                         </td>
                     </tr>
 
@@ -904,8 +924,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="340"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:340</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:350</a></div>
                         </td>
                     </tr>
 
@@ -998,8 +1018,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="355"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:355</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:365</a></div>
                         </td>
                     </tr>
 
@@ -1076,8 +1096,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="368"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:368</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="378"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:378</a></div>
                         </td>
                     </tr>
 
@@ -1170,8 +1190,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="401"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:401</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="411"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:411</a></div>
                         </td>
                     </tr>
 
@@ -1280,8 +1300,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="430"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:430</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="440"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:440</a></div>
                         </td>
                     </tr>
 
@@ -1374,8 +1394,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="458"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:458</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="468"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:468</a></div>
                         </td>
                     </tr>
 
@@ -1450,34 +1470,34 @@ folio SVG data to the SVG sheet group.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_appendSheetGroupRectangle"></a>
+                    <a name="_appendSheetGroupSheetRectangle"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_appendSheetGroupRectangle</b></span>
-                        <a href="#_appendSheetGroupRectangle"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_appendSheetGroupSheetRectangle</b></span>
+                        <a href="#_appendSheetGroupSheetRectangle"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_appendSheetGroupRectangle(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, upperLeftCorner: <a href="../classes/FolioCalculationPoint.html" target="_self">FolioCalculationPoint</a>, lowerRightCorner: <a href="../classes/FolioCalculationPoint.html" target="_self">FolioCalculationPoint</a>)</code>
+                    <code>_appendSheetGroupSheetRectangle(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, sheetRectangle: <a href="../classes/FolioCalculationRectangle.html" target="_self">FolioCalculationRectangle</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="479"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:479</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="488"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:488</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _appendSheetGroupRectangle.</p>
-<p>It appends a rectangle to the sheet group.</p>
+                        <div class="io-description"><p>Private method: _appendSheetGroupSheetRectangle.</p>
+<p>It appends a sheet rectangle to the sheet group.</p>
 </div>
 
                             <div class="io-description">
@@ -1510,9 +1530,9 @@ folio SVG data to the SVG sheet group.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>upperLeftCorner</td>
+                                                <td>sheetRectangle</td>
                                             <td>
-                                                            <code><a href="../classes/FolioCalculationPoint.html" target="_self" >FolioCalculationPoint</a></code>
+                                                            <code><a href="../classes/FolioCalculationRectangle.html" target="_self" >FolioCalculationRectangle</a></code>
                                             </td>
 
                                             <td>
@@ -1521,23 +1541,7 @@ folio SVG data to the SVG sheet group.</p>
 
 
                                             <td>
-                                                    <p>The given upper left corner point.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>lowerRightCorner</td>
-                                            <td>
-                                                            <code><a href="../classes/FolioCalculationPoint.html" target="_self" >FolioCalculationPoint</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given lower right corner point.</p>
+                                                    <p>The given sheet rectangle.</p>
 
                                             </td>
                                         </tr>
@@ -1549,7 +1553,7 @@ folio SVG data to the SVG sheet group.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Appends a rectangle to the sheet group selection.</p>
+                                <p>Appends a sheet rectangle to the sheet group selection.</p>
 
                             </div>
                 </td>
@@ -1560,33 +1564,33 @@ folio SVG data to the SVG sheet group.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_appendSheetGroupTitle"></a>
+                    <a name="_appendSheetGroupSheetTitle"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_appendSheetGroupTitle</b></span>
-                        <a href="#_appendSheetGroupTitle"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_appendSheetGroupSheetTitle</b></span>
+                        <a href="#_appendSheetGroupSheetTitle"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_appendSheetGroupTitle(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_appendSheetGroupSheetTitle(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="508"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:508</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="516"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:516</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _appendSheetGroupTitle.</p>
+                        <div class="io-description"><p>Private method: _appendSheetGroupSheetTitle.</p>
 <p>It appends a title to the sheet group.</p>
 </div>
 
@@ -1654,6 +1658,506 @@ folio SVG data to the SVG sheet group.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_appendSheetGroupTrademark"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSheetGroupTrademark</b></span>
+                        <a href="#_appendSheetGroupTrademark"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSheetGroupTrademark(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, trademarkRectangle: <a href="../classes/FolioCalculationRectangle.html" target="_self">FolioCalculationRectangle</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, systemsReversed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="531"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:531</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSheetGroupTrademark.</p>
+<p>It appends a trademark to the sheet group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgSheetGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given SVG sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>trademarkRectangle</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioCalculationRectangle.html" target="_self" >FolioCalculationRectangle</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given trademark rectangle.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio id.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>systemsReversed</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given systems reversed flag.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Appends a trademark to the sheet group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendSheetGroupTrademarkGroup"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSheetGroupTrademarkGroup</b></span>
+                        <a href="#_appendSheetGroupTrademarkGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSheetGroupTrademarkGroup(svgSheetGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="553"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:553</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSheetGroupTrademarkGroup.</p>
+<p>It appends a trademark group to the sheet group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgSheetGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given SVG sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Appends a trademark group to the sheet group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendSheetGroupTrademarkRectangle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSheetGroupTrademarkRectangle</b></span>
+                        <a href="#_appendSheetGroupTrademarkRectangle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSheetGroupTrademarkRectangle(svgTrademarkGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, trademarkRectangle: <a href="../classes/FolioCalculationRectangle.html" target="_self">FolioCalculationRectangle</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="569"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:569</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSheetGroupTrademarkRectangle.</p>
+<p>It appends a trademark rectangle to the trademark group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgTrademarkGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>trademarkRectangle</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioCalculationRectangle.html" target="_self" >FolioCalculationRectangle</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given trademark rectangle.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Appends a trademark rectangle to the trademark group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendSheetGroupTrademarkSymbol"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSheetGroupTrademarkSymbol</b></span>
+                        <a href="#_appendSheetGroupTrademarkSymbol"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSheetGroupTrademarkSymbol(svgTrademarkGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, trademarkRectangle: <a href="../classes/FolioCalculationRectangle.html" target="_self">FolioCalculationRectangle</a>, systemsReversed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="600"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:600</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSheetGroupTrademarkSymbol.</p>
+<p>It appends a trademark symbol to the trademark group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgTrademarkGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given SVG trademark group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>trademarkRectangle</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioCalculationRectangle.html" target="_self" >FolioCalculationRectangle</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given trademark rectangle.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>systemsReversed</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given systems reversed flag.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Appends a trademark symbol to the trademark group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendSheetGroupTrademarkTitle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSheetGroupTrademarkTitle</b></span>
+                        <a href="#_appendSheetGroupTrademarkTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSheetGroupTrademarkTitle(svgTrademarkGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="632"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:632</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSheetGroupTrademarkTitle.</p>
+<p>It appends a title to the trademark group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgTrademarkGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given SVG trademark group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Appends a title to the trademark group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_appendSvgElementWithAttrs"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -1672,8 +2176,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="575"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:575</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="699"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:699</a></div>
                         </td>
                     </tr>
 
@@ -1782,8 +2286,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="522"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:522</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="646"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:646</a></div>
                         </td>
                     </tr>
 
@@ -1892,8 +2396,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="547"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:547</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="671"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:671</a></div>
                         </td>
                     </tr>
 
@@ -1984,8 +2488,8 @@ folio SVG data to the SVG sheet group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="168"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:168</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:169</a></div>
                         </td>
                     </tr>
 
@@ -2093,8 +2597,8 @@ for a folio&#39;s sheet, systems and content segments to the folio SVG canvas.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="146"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:146</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:147</a></div>
                         </td>
                     </tr>
 
@@ -2185,8 +2689,8 @@ for a folio&#39;s sheet, systems and content segments to the folio SVG canvas.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -2223,7 +2727,7 @@ to render the folio SVG.</p>
 
 
                                             <td>
-                                                    <p>The given folio format settings.</p>
+                                                    <p>The given folio settings.</p>
 
                                             </td>
                                         </tr>
@@ -2290,7 +2794,7 @@ to render the folio SVG.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -2330,7 +2834,7 @@ to render the folio SVG.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -2370,7 +2874,7 @@ to render the folio SVG.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -2410,7 +2914,7 @@ to render the folio SVG.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -2450,7 +2954,7 @@ to render the folio SVG.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -2459,46 +2963,6 @@ to render the folio SVG.</p>
                     <div class="io-description"><p>Private readonly variable: _contentSegmentOffsetCorrection.</p>
 <p>It corrects the offset (in px) to avoid
 border collision between rendered SVG content segments.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_contentSegmentReversedRotationAngle"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_contentSegmentReversedRotationAngle</b></span>
-                        <a href="#_contentSegmentReversedRotationAngle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>180</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:89</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable: _contentSegmentRotationAngle.</p>
-<p>It keeps the rotation angle for the reversed content segments.</p>
 </div>
                 </td>
             </tr>
@@ -2531,7 +2995,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -2571,7 +3035,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -2611,7 +3075,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -2619,6 +3083,46 @@ border collision between rendered SVG content segments.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly variable: _fgColor.</p>
 <p>It keeps the foreground color for the folios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_reversedRotationAngle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_reversedRotationAngle</b></span>
+                        <a href="#_reversedRotationAngle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>180</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:97</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _reversedRotationAngle.</p>
+<p>It keeps the rotation angle for a reversed item.</p>
 </div>
                 </td>
             </tr>
@@ -2651,7 +3155,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:103</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -2691,7 +3195,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -2731,7 +3235,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:117</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -2764,7 +3268,7 @@ border collision between rendered SVG content segments.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -2792,6 +3296,7 @@ import {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationRectangle,
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
@@ -2868,18 +3373,18 @@ export class FolioService {
     private readonly _contentSegmentOffsetCorrection &#x3D; 4;
 
     /**
-     * Private readonly variable: _contentSegmentRotationAngle.
-     *
-     * It keeps the rotation angle for the reversed content segments.
-     */
-    private readonly _contentSegmentReversedRotationAngle &#x3D; 180;
-
-    /**
      * Private readonly variable: _contentSegmentStrokeWidth.
      *
      * It keeps the stroke width for the content segments.
      */
     private readonly _contentSegmentStrokeWidth &#x3D; 2;
+
+    /**
+     * Private readonly variable: _reversedRotationAngle.
+     *
+     * It keeps the rotation angle for a reversed item.
+     */
+    private readonly _reversedRotationAngle &#x3D; 180;
 
     /**
      * Private readonly variable: _sheetFillColor.
@@ -2908,7 +3413,7 @@ export class FolioService {
      * It calculates and provides the folio SVG data
      * to render the folio SVG.
      *
-     * @param {FolioSettings} folioSettings The given folio format settings.
+     * @param {FolioSettings} folioSettings The given folio settings.
      * @param {Folio} folio The given folio.
      * @returns {FolioSvgData} The calculated folio SVG data.
      */
@@ -2956,7 +3461,7 @@ export class FolioService {
         this.ref &#x3D; ref;
 
         // Create the SVG canvas sheet group selection.
-        const svgSheetGroup &#x3D; this._appendCanvasSheetGroup(svgCanvas, folioSvgData);
+        const svgSheetGroup &#x3D; this._appendCanvasSheetGroup(svgCanvas, folioSvgData.sheet.folioId);
 
         // Draw sheet.
         this._addFolioSheetToSvgCanvas(svgSheetGroup, folioSvgData);
@@ -2980,10 +3485,19 @@ export class FolioService {
      */
     private _addFolioSheetToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         const { sheet } &#x3D; folioSvgData;
-        const { upperLeftCorner, lowerRightCorner, folioId } &#x3D; sheet;
+        const { folioId, sheetRectangle, trademarkRectangle } &#x3D; sheet;
 
-        this._appendSheetGroupTitle(svgSheetGroup, folioId);
-        this._appendSheetGroupRectangle(svgSheetGroup, upperLeftCorner, lowerRightCorner);
+        this._appendSheetGroupSheetTitle(svgSheetGroup, folioId);
+        this._appendSheetGroupSheetRectangle(svgSheetGroup, sheetRectangle);
+
+        if (trademarkRectangle) {
+            this._appendSheetGroupTrademark(
+                svgSheetGroup,
+                trademarkRectangle,
+                folioId,
+                folioSvgData.systems.systemsReversed
+            );
+        }
     }
 
     /**
@@ -3053,12 +3567,12 @@ export class FolioService {
      * It appends a sheet group to the SVG canvas.
      *
      * @param {D3Selection} svgCanvas The given SVG canvas selection.
-     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @param {string} folioId The given folio id.
      * @returns {D3Selection} Appends a sheet group to the SVG canvas selection.
      */
-    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioSvgData: FolioSvgData): D3Selection {
+    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioId: string): D3Selection {
         return this._appendSvgElementWithAttrs(svgCanvas, &#x27;g&#x27;, {
-            sheetGroupId: folioSvgData.sheet.folioId,
+            sheetGroupId: folioId,
             class: &#x27;sheet-group&#x27;,
         });
     }
@@ -3167,7 +3681,7 @@ export class FolioService {
         if (contentSegment.segmentReversed) {
             label.attr(
                 &#x27;transform&#x27;,
-                &#x60;rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})&#x60;
+                &#x60;rotate(${this._reversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})&#x60;
             );
         }
 
@@ -3253,22 +3767,20 @@ export class FolioService {
     }
 
     /**
-     * Private method: _appendSheetGroupRectangle.
+     * Private method: _appendSheetGroupSheetRectangle.
      *
-     * It appends a rectangle to the sheet group.
+     * It appends a sheet rectangle to the sheet group.
      *
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
-     * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner point.
-     * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner point.
-     * @returns {D3Selection} Appends a rectangle to the sheet group selection.
+     * @param {FolioCalculationRectangle} sheetRectangle The given sheet rectangle.
+     * @returns {D3Selection} Appends a sheet rectangle to the sheet group selection.
      */
-    private _appendSheetGroupRectangle(
+    private _appendSheetGroupSheetRectangle(
         svgSheetGroup: D3Selection,
-        upperLeftCorner: FolioCalculationPoint,
-        lowerRightCorner: FolioCalculationPoint
+        sheetRectangle: FolioCalculationRectangle
     ): D3Selection {
-        const { x: x1, y: y1 } &#x3D; upperLeftCorner;
-        const { x: x2, y: y2 } &#x3D; lowerRightCorner;
+        const { x: x1, y: y1 } &#x3D; sheetRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } &#x3D; sheetRectangle.LOWER_RIGHT_CORNER;
         const attributes &#x3D; {
             x: x1,
             y: y1,
@@ -3283,7 +3795,7 @@ export class FolioService {
     }
 
     /**
-     * Private method: _appendSheetGroupTitle.
+     * Private method: _appendSheetGroupSheetTitle.
      *
      * It appends a title to the sheet group.
      *
@@ -3291,8 +3803,124 @@ export class FolioService {
      * @param {string} folioId The given folio id.
      * @returns {void} Appends a title to the sheet group selection.
      */
-    private _appendSheetGroupTitle(svgSheetGroup: D3Selection, folioId: string): void {
-        this._appendSvgElementWithAttrs(svgSheetGroup, &#x27;title&#x27;, {}).text(&#x60;Bl. ${folioId}&#x60;);
+    private _appendSheetGroupSheetTitle(svgSheetGroup: D3Selection, folioId: string): void {
+        this._appendSvgElementWithAttrs(svgSheetGroup, &#x27;title&#x27;, { class: &#x27;sheet-group-title&#x27; }).text(&#x60;Bl. ${folioId}&#x60;);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademark.
+     *
+     * It appends a trademark to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @param {string} folioId The given folio id.
+     * @param {boolean} systemsReversed The given systems reversed flag.
+     * @returns {void} Appends a trademark to the sheet group selection.
+     */
+    private _appendSheetGroupTrademark(
+        svgSheetGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle,
+        folioId: string,
+        systemsReversed: boolean
+    ): void {
+        const svgTrademarkGroup &#x3D; this._appendSheetGroupTrademarkGroup(svgSheetGroup, folioId);
+
+        this._appendSheetGroupTrademarkRectangle(svgTrademarkGroup, trademarkRectangle);
+        this._appendSheetGroupTrademarkSymbol(svgTrademarkGroup, trademarkRectangle, systemsReversed);
+        this._appendSheetGroupTrademarkTitle(svgTrademarkGroup);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkGroup.
+     *
+     * It appends a trademark group to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {string} folioId The given folio id.
+     * @returns {D3Selection} Appends a trademark group to the sheet group selection.
+     */
+    private _appendSheetGroupTrademarkGroup(svgSheetGroup: D3Selection, folioId: string): D3Selection {
+        return this._appendSvgElementWithAttrs(svgSheetGroup, &#x27;g&#x27;, {
+            trademarkGroupId: folioId,
+            class: &#x27;trademark-group&#x27;,
+        });
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkRectangle.
+     *
+     * It appends a trademark rectangle to the trademark group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG trademark group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @returns {D3Selection} Appends a trademark rectangle to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkRectangle(
+        svgTrademarkGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle
+    ): D3Selection {
+        const { x: x1, y: y1 } &#x3D; trademarkRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } &#x3D; trademarkRectangle.LOWER_RIGHT_CORNER;
+
+        const attributes &#x3D; {
+            class: &#x27;trademark-rectangle&#x27;,
+            x: x1,
+            y: y1,
+            width: x2 - x1,
+            height: y2 - y1,
+            fill: this._sheetFillColor,
+            stroke: this._bgColor,
+        };
+        attributes[&#x27;stroke-width&#x27;] &#x3D; this._sheetStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgTrademarkGroup, &#x27;rect&#x27;, attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkSymbol.
+     *
+     * It appends a trademark symbol to the trademark group.
+     *
+     * @param {D3Selection} svgTrademarkGroup The given SVG trademark group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @param {boolean} systemsReversed The given systems reversed flag.
+     * @returns {D3Selection} Appends a trademark symbol to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkSymbol(
+        svgTrademarkGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle,
+        systemsReversed: boolean
+    ): D3Selection {
+        const { x: x1, y: y1 } &#x3D; trademarkRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } &#x3D; trademarkRectangle.LOWER_RIGHT_CORNER;
+        const centerX &#x3D; (x1 + x2) / 2;
+        const centerY &#x3D; (y1 + y2) / 2;
+
+        const symbolPath &#x3D; &#x60;M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15&#x60;;
+
+        const symbolAttributes &#x3D; {
+            class: &#x27;trademark-symbol&#x27;,
+            d: symbolPath,
+            fill: this._disabledColor,
+            stroke: this._disabledColor,
+            transform: &#x60;translate(${centerX - 10}, ${centerY - 10}) scale(0.5)${systemsReversed ? &#x60; rotate(${this._reversedRotationAngle}, 20, 20)&#x60; : &#x27;&#x27;}&#x60;,
+        };
+        symbolAttributes[&#x27;stroke-width&#x27;] &#x3D; this._contentSegmentStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgTrademarkGroup, &#x27;path&#x27;, symbolAttributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkTitle.
+     *
+     * It appends a title to the trademark group.
+     *
+     * @param {D3Selection} svgTrademarkGroup The given SVG trademark group selection.
+     * @returns {D3Selection} Appends a title to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkTitle(svgTrademarkGroup: D3Selection): void {
+        this._appendSvgElementWithAttrs(svgTrademarkGroup, &#x27;title&#x27;, { class: &#x27;trademark-title&#x27; }).text(&#x27;Firmenzeichen&#x27;);
     }
 
     /**

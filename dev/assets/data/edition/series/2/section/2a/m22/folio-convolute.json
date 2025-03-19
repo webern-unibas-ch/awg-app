@@ -1,9 +1,2891 @@
 {
     "convolutes": [
         {
-            "convoluteId": "A",
-            "convoluteLabel": "A Skizzen (CH-Bps)",
-            "folios": []
+            "convoluteId": "D",
+            "convoluteLabel": "D Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk29",
+                            "sigle": "M 22 Sk29",
+                            "sigleAddendum": "T. 1–8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar400",
+                            "sheetId": "Mstar_400_Sk1",
+                            "sigle": "M* 400 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk1a",
+                            "sigle": "M 29 Sk1",
+                            "sigleAddendum": "T. 1–10",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk1b",
+                            "sigle": "M 29 Sk1",
+                            "sigleAddendum": "T. 11–19",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk1c",
+                            "sigle": "M 29 Sk1",
+                            "sigleAddendum": "T. 20–24",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk2",
+                            "sigle": "M 29 Sk2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk3a",
+                            "sigle": "M 29 Sk3",
+                            "sigleAddendum": "T. {x+1A} bis x+5",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk28a",
+                            "sigle": "M 22 Sk28",
+                            "sigleAddendum": "T. {1A}–6",
+                            "reversed": true,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk3b",
+                            "sigle": "M 29 Sk3",
+                            "sigleAddendum": "T. {x+6}",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk28b",
+                            "sigle": "M 22 Sk28",
+                            "sigleAddendum": "T. 7–8",
+                            "reversed": true,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar415",
+                            "sheetId": "Mstar_415_Sk1",
+                            "sigle": "M* 415 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "reversed": true,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar416",
+                            "sheetId": "Mstar_416_Sk1",
+                            "sigle": "M* 416 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "reversed": true,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "mstar401",
+                            "sheetId": "Mstar_401_Sk1a",
+                            "sigle": "M* 401 Sk1",
+                            "sigleAddendum": "T. 1–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar401",
+                            "sheetId": "Mstar_401_Sk1b",
+                            "sigle": "M* 401 Sk1",
+                            "sigleAddendum": "T. 12–16",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar401",
+                            "sheetId": "Mstar_401_Sk1_1",
+                            "sigle": "M* 401 Sk1.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar401",
+                            "sheetId": "Mstar_401_Sk1_2",
+                            "sigle": "M* 401 Sk1.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk4a",
+                            "sigle": "M 29 Sk4",
+                            "sigleAddendum": "T. 1–10",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk4b",
+                            "sigle": "M 29 Sk4",
+                            "sigleAddendum": "T. 11–{20A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk4c",
+                            "sigle": "M 29 Sk4",
+                            "sigleAddendum": "T. {21A}–26",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk4d",
+                            "sigle": "M 29 Sk4",
+                            "sigleAddendum": "T. 32–34B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "E",
+            "convoluteLabel": "E Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 342,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk31a",
+                            "sigle": "M 22 Sk31",
+                            "sigleAddendum": "T. 1–7",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk1a",
+                            "sigle": "M 23 Sk1",
+                            "sigleAddendum": "T. 1–10",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk31b",
+                            "sigle": "M 22 Sk31",
+                            "sigleAddendum": "T. 8",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk1b",
+                            "sigle": "M 23 Sk1",
+                            "sigleAddendum": "T. 11–12, nach T. 12 Liedtext",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk28_1",
+                            "sigle": "M 22 Sk28.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk32",
+                            "sigle": "M 22 Sk32",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk32_1",
+                            "sigle": "M 22 Sk32.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk32_1_1",
+                            "sigle": "M 22 Sk32.1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk33",
+                            "sigle": "M 22 Sk33",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar417",
+                            "sheetId": "Mstar_417_Sk1",
+                            "sigle": "M* 417 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar418",
+                            "sheetId": "Mstar_418_Sk1",
+                            "sigle": "M* 418 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar419",
+                            "sheetId": "Mstar_419_Sk1",
+                            "sigle": "M* 419 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk2a",
+                            "sigle": "M 23 Sk2",
+                            "sigleAddendum": "T. 1–3",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk2b",
+                            "sigle": "M 23 Sk2",
+                            "sigleAddendum": "T. 4–9",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk2c",
+                            "sigle": "M 23 Sk2",
+                            "sigleAddendum": "T. 10–11",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar420",
+                            "sheetId": "Mstar_420_Sk1",
+                            "sigle": "M* 420 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 24,
+                                    "endSystem": 25
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar421",
+                            "sheetId": "Mstar_421_Sk1a",
+                            "sigle": "M* 421 Sk1",
+                            "sigleAddendum": "T. {1A}–{1D}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 24,
+                                    "endSystem": 25
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar421",
+                            "sheetId": "Mstar_421_Sk1b",
+                            "sigle": "M* 421 Sk1",
+                            "sigleAddendum": "T. 1E–4",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 26,
+                                    "endSystem": 27
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar422",
+                            "sheetId": "Mstar_422_Sk1",
+                            "sigle": "M* 422 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 26,
+                                    "endSystem": 27
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 342,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk1",
+                            "sigle": "M 24 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar433",
+                            "sheetId": "Mstar_433_Sk1",
+                            "sigle": "M* 433 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar434",
+                            "sheetId": "Mstar_434_Sk1",
+                            "sigle": "M* 434 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar434",
+                            "sheetId": "Mstar_434_Sk1_1",
+                            "sigle": "M* 434 Sk1.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar435",
+                            "sheetId": "Mstar_435_Sk1",
+                            "sigle": "M* 435 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar436",
+                            "sheetId": "Mstar_436_Sk1",
+                            "sigle": "M* 436 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar437",
+                            "sheetId": "Mstar_437_Sk1",
+                            "sigle": "M* 437 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk2a",
+                            "sigle": "M 24 Sk2",
+                            "sigleAddendum": "T. {1A}–6",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk2b",
+                            "sigle": "M 24 Sk2",
+                            "sigleAddendum": "T. 7–12",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk2_1",
+                            "sigle": "M 24 Sk2.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk3",
+                            "sigle": "M 24 Sk3",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1.5,
+                            "segments": [
+                                {
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk4",
+                            "sigle": "M 24 Sk4",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk5",
+                            "sigle": "M 24 Sk5",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk6",
+                            "sigle": "M 24 Sk6",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk7",
+                            "sigle": "M 24 Sk7",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk8a",
+                            "sigle": "M 24 Sk8",
+                            "sigleAddendum": "T. {1A}–{12A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk8b",
+                            "sigle": "M 24 Sk8",
+                            "sigleAddendum": "T. 12B–16",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk9",
+                            "sigle": "M 24 Sk9",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk10a",
+                            "sigle": "M 24 Sk10",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 21,
+                                    "endSystem": 22
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk10b",
+                            "sigle": "M 24 Sk10",
+                            "sigleAddendum": "T. 6–8",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar438",
+                            "sheetId": "Mstar_438_Sk1",
+                            "sigle": "M* 438 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 23,
+                                    "endSystem": 24
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar439",
+                            "sheetId": "Mstar_439_Sk1a",
+                            "sigle": "M* 439 Sk1",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 21,
+                                    "endSystem": 22
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar439",
+                            "sheetId": "Mstar_439_Sk1b",
+                            "sigle": "M* 439 Sk1",
+                            "sigleAddendum": "T. 7–8",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 23,
+                                    "endSystem": 24
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar440",
+                            "sheetId": "Mstar_440_Sk1a",
+                            "sigle": "M* 440 Sk1",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 23,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar440",
+                            "sheetId": "Mstar_440_Sk1b",
+                            "sigle": "M* 440 Sk1",
+                            "sigleAddendum": "T. 7–8",
+                            "selectable": false,
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk1",
+                            "sigle": "M* 441 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk2",
+                            "sigle": "M* 441 Sk2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk3a",
+                            "sigle": "M* 441 Sk3",
+                            "sigleAddendum": "T. {1A}",
+                            "selectable": false,
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk3b",
+                            "sigle": "M* 441 Sk3",
+                            "sigleAddendum": "T. {1B–4}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk4",
+                            "sigle": "M* 441 Sk4",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 342,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk11",
+                            "sigle": "M 24 Sk11",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk10c",
+                            "sigle": "M 24 Sk10",
+                            "sigleAddendum": "T. 9–13",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk10d",
+                            "sigle": "M 24 Sk10",
+                            "sigleAddendum": "T. 14–16",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar441",
+                            "sheetId": "Mstar_441_Sk4_1",
+                            "sigle": "M* 441 Sk4.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar442",
+                            "sheetId": "Mstar_442_Sk1a",
+                            "sigle": "M* 442 Sk1",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar442",
+                            "sheetId": "Mstar_442_Sk1b",
+                            "sigle": "M* 442 Sk1",
+                            "sigleAddendum": "T. 7A–8C",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar443",
+                            "sheetId": "Mstar_443_Sk1",
+                            "sigle": "M* 443 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12a",
+                            "sigle": "M 24 Sk12",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12b",
+                            "sigle": "M 24 Sk12",
+                            "sigleAddendum": "T. 7–8",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12_1",
+                            "sigle": "M 24 Sk12.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12_2",
+                            "sigle": "M 24 Sk12.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 12,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12_3",
+                            "sigle": "M 24 Sk12.3",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar444",
+                            "sheetId": "Mstar_444_Sk1",
+                            "sigle": "M* 444 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk13",
+                            "sigle": "M 24 Sk13",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar445",
+                            "sheetId": "Mstar_445_Sk1",
+                            "sigle": "M* 445 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk12_4",
+                            "sigle": "M 24 Sk12.4",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar446",
+                            "sheetId": "Mstar_446_Sk1a",
+                            "sigle": "M* 446 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar446",
+                            "sheetId": "Mstar_446_Sk1b",
+                            "sigle": "M* 446 Sk1",
+                            "sigleAddendum": "T. 8–10",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 21,
+                                    "endSystem": 22
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk14_1",
+                            "sigle": "M 24 Sk14.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 21,
+                                    "endSystem": 22
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk14a",
+                            "sigle": "M 24 Sk14",
+                            "sigleAddendum": "T. 1–10",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 23,
+                                    "endSystem": 24
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk14b",
+                            "sigle": "M 24 Sk14",
+                            "sigleAddendum": "T. 11–12",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar447",
+                            "sheetId": "Mstar_447_Sk1",
+                            "sigle": "M* 447 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 342,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mstar448",
+                            "sheetId": "Mstar_448_Sk1a",
+                            "sigle": "M* 448 Sk1",
+                            "sigleAddendum": "T. 1–7C",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar448",
+                            "sheetId": "Mstar_448_Sk1b",
+                            "sigle": "M* 448 Sk1",
+                            "sigleAddendum": "T. 8C–10B",
+                            "selectable": false,
+                            "segmentSplit": 1.5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk15_1",
+                            "sigle": "M 24 Sk15.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar449",
+                            "sheetId": "Mstar_449_Sk1",
+                            "sigle": "M* 449 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk15a",
+                            "sigle": "M 24 Sk15",
+                            "sigleAddendum": "T. 1–8",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk15b",
+                            "sigle": "M 24 Sk15",
+                            "sigleAddendum": "T. 9–12",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar450",
+                            "sheetId": "Mstar_450_Sk2_1",
+                            "sigle": "M* 450 Sk2.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar450",
+                            "sheetId": "Mstar_450_Sk1",
+                            "sigle": "M* 450 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar450",
+                            "sheetId": "Mstar_450_Sk2",
+                            "sigle": "M* 450 Sk2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk16",
+                            "sigle": "M 24 Sk16",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar450",
+                            "sheetId": "Mstar_450_Sk2_2",
+                            "sigle": "M* 450 Sk2.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar451",
+                            "sheetId": "Mstar_451_Sk1",
+                            "sigle": "M* 451 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar451",
+                            "sheetId": "Mstar_451_Sk3a",
+                            "sigle": "M* 451 Sk3",
+                            "sigleAddendum": "T. 1–5A",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar451",
+                            "sheetId": "Mstar_451_Sk3b",
+                            "sigle": "M* 451 Sk3",
+                            "sigleAddendum": "T. 5B–12",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar451",
+                            "sheetId": "Mstar_451_Sk2",
+                            "sigle": "M* 451 Sk2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk17a",
+                            "sigle": "M 24 Sk17",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk17b",
+                            "sigle": "M 24 Sk17",
+                            "sigleAddendum": "T. 8",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m24",
+                            "sheetId": "M_24_Sk17_1",
+                            "sigle": "M 24 Sk17.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m65",
+                            "sheetId": "M_65_Sk1",
+                            "sigle": "M 65 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 23,
+                                    "endSystem": 26
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "F",
+            "convoluteLabel": "F Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mstar409",
+                            "sheetId": "Mstar_409_Sk1a",
+                            "sigle": "M* 409 Sk1",
+                            "sigleAddendum": "T. 1–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar409",
+                            "sheetId": "Mstar_409_Sk1b",
+                            "sigle": "M* 409 Sk1",
+                            "sigleAddendum": "T. 12–16",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar409",
+                            "sheetId": "Mstar_409_TF1",
+                            "sigle": "M* 409 TF1",
+                            "sigleAddendum": "T. 2–4",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar409",
+                            "sheetId": "Mstar_409_TF1",
+                            "sigle": "M* 409 TF1",
+                            "sigleAddendum": "T. 6–16",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar410",
+                            "sheetId": "Mstar_410_TF1",
+                            "sigle": "M* 410 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar410",
+                            "sheetId": "Mstar_410_TF1",
+                            "sigle": "M* 410 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 11B",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar410",
+                            "sheetId": "Mstar_410_TF1",
+                            "sigle": "M* 410 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 12–16",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Thema)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Thema)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar412",
+                            "sheetId": "Mstar_412_TF1",
+                            "sigle": "M* 412 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar412",
+                            "sheetId": "Mstar_412_TF1",
+                            "sigle": "M* 412 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 12–16",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. I)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 23,
+                                    "endSystem": 24
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. I)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. II)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. III)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–4 (Var. IV)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. V)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–4 (Var. VI)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. III)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–7 (Var. VII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 8 (Var. VII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. VIII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. VIII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. IX)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. X)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 24,
+                                    "endSystem": 25
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. X)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–4 (Var. XI)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–3 (Var. XII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar413",
+                            "sheetId": "Mstar_413_TF1",
+                            "sigle": "M* 413 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar414",
+                            "sheetId": "Mstar_414_TF1",
+                            "sigle": "M* 414 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–7 (Var. XIII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 8 (Var. XIII)",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–4 (Var. XIV)",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XV)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XVI)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. XVII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. XVII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XVIII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar415",
+                            "sheetId": "Mstar_415_TF1",
+                            "sigle": "M* 415 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar416",
+                            "sheetId": "Mstar_416_TF1",
+                            "sigle": "M* 416 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7B–8B (Var. XIX)",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XIX)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XX)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6 (Var. XXI)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–8 (Var. XXI)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 25
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XXII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_TF1",
+                            "sigle": "M 23 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–10",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_TF1",
+                            "sigle": "M 23 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 11–12",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M_22_TF1",
+                            "sigle": "M 22 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–8 (Var. XXIII)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar420",
+                            "sheetId": "Mstar_420_TF1",
+                            "sigle": "M* 420 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar421",
+                            "sheetId": "Mstar_421_TF1",
+                            "sigle": "M* 421 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar423",
+                            "sheetId": "Mstar_423_TF1",
+                            "sigle": "M* 423 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 21,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar422",
+                            "sheetId": "Mstar_422_TF1",
+                            "sigle": "M* 422 Tintenniederschrift TF1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1.25,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 22
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mstar424",
+                            "sheetId": "Mstar_424_Sk1",
+                            "sigle": "M* 424 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar425",
+                            "sheetId": "Mstar_425_Sk1",
+                            "sigle": "M* 425 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar426",
+                            "sheetId": "Mstar_426_Sk1a",
+                            "sigle": "M* 426 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar427",
+                            "sheetId": "Mstar_427_Sk1",
+                            "sigle": "M* 427 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar426",
+                            "sheetId": "Mstar_426_Sk1b",
+                            "sigle": "M* 426 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar428",
+                            "sheetId": "Mstar_428_Sk1",
+                            "sigle": "M* 428 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk3a",
+                            "sigle": "M 23 Sk3",
+                            "sigleAddendum": "T. 1–6",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk3b",
+                            "sigle": "M 23 Sk3",
+                            "sigleAddendum": "T. 8–9",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk4a",
+                            "sigle": "M 23 Sk4",
+                            "sigleAddendum": "T. {1A}–5",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk4b",
+                            "sigle": "M 23 Sk4",
+                            "sigleAddendum": "T. 6–8",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk5a",
+                            "sigle": "M 23 Sk5",
+                            "sigleAddendum": "T. 1–7B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk5b",
+                            "sigle": "M 23 Sk5",
+                            "sigleAddendum": "T. 8",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar429",
+                            "sheetId": "Mstar_429_Sk1",
+                            "sigle": "M* 429 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk6",
+                            "sigle": "M 23 Sk6",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk7",
+                            "sigle": "M 23 Sk7",
+                            "sigleAddendum": "",
+                            "segmentSplit": 6,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 18,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk8",
+                            "sigle": "M 23 Sk8",
+                            "sigleAddendum": "",
+                            "segmentSplit": 8,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar430",
+                            "sheetId": "Mstar_430_Sk1",
+                            "sigle": "M* 430 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk9",
+                            "sigle": "M 23 Sk9",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar431",
+                            "sheetId": "Mstar_431_Sk2",
+                            "sigle": "M* 431 Sk2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar431",
+                            "sheetId": "Mstar_431_Sk1",
+                            "sigle": "M* 431 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 24,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar432",
+                            "sheetId": "Mstar_432_Sk1a",
+                            "sigle": "M* 432 Sk1",
+                            "sigleAddendum": "T. {1A}–2C",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar432",
+                            "sheetId": "Mstar_432_Sk1b",
+                            "sigle": "M* 432 Sk1",
+                            "sigleAddendum": "T. 3–6",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 24,
+                                    "endSystem": 26
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
