@@ -116,8 +116,8 @@ jobs:
                   retention-days: 1
 
     deploy_dev:
-        # run only on develop
-        if: github.ref == 'refs/heads/develop'
+        # run only on develop from upstream
+        if: github.ref == 'refs/heads/develop' && github.repository_owner == 'webern-unibas-ch'
 
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
@@ -192,7 +192,7 @@ jobs:
 
     deploy:
         # run only on main
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.repository_owner == 'webern-unibas-ch'
 
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
