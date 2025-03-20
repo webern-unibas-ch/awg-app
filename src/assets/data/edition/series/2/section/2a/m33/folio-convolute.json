@@ -8,7 +8,7 @@
                     "folioId": "1r",
                     "systems": "18",
                     "reversed": true,
-                    "format": {
+                    "dimensions": {
                         "height": 347,
                         "width": 266
                     },
@@ -19,8 +19,8 @@
                             "sigle": "M 68 Sk10",
                             "sigleAddendum": "T. 15–24",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 18,
                                     "endSystem": 17
@@ -33,8 +33,8 @@
                             "sigle": "M 68 Sk10",
                             "sigleAddendum": "T. 25–28",
                             "selectable": false,
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 16,
@@ -48,12 +48,12 @@
                             "sigle": "M 68 Sk12",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 5,
+                            "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 4,
                                     "startSystem": 16,
-                                    "endSystem": 14
+                                    "endSystem": 15
                                 }
                             ]
                         },
@@ -62,11 +62,11 @@
                             "sheetId": "M_33_Sk1a",
                             "sigle": "M 33 Sk1",
                             "sigleAddendum": "T. 1–9",
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
-                                    "position": 3,
-                                    "startSystem": 16,
+                                    "position": 1,
+                                    "startSystem": 14,
                                     "endSystem": 13
                                 }
                             ]
@@ -76,8 +76,8 @@
                             "sheetId": "M_33_Sk1b",
                             "sigle": "M 33 Sk1",
                             "sigleAddendum": "T. 10–22",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 12,
                                     "endSystem": 11
@@ -89,8 +89,8 @@
                             "sheetId": "M_33_Sk1c",
                             "sigle": "M 33 Sk1",
                             "sigleAddendum": "T. 23–31",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 9
@@ -102,8 +102,8 @@
                             "sheetId": "M_33_Sk1d",
                             "sigle": "M 33 Sk1",
                             "sigleAddendum": "T. 32–33",
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 3,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 8,
@@ -116,8 +116,8 @@
                             "sheetId": "M_32_Sk2_2",
                             "sigle": "M 32 Sk2.2",
                             "sigleAddendum": "",
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 3,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 8,
@@ -131,8 +131,8 @@
                             "sigle": "M 68 Sk13",
                             "sigleAddendum": "T. {15B}–{21A} (Trio)",
                             "selectable": false,
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 3,
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 8,
@@ -146,8 +146,8 @@
                             "sigle": "M 68 Sk13",
                             "sigleAddendum": "T. 22–21B, 13–14 (Trio)",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 6,
@@ -161,8 +161,8 @@
                             "sigle": "M 68 Sk13",
                             "sigleAddendum": "T. 15A–16A (Trio)",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 4,
@@ -175,8 +175,8 @@
                             "sheetId": "M_32_Sk3",
                             "sigle": "M 32 Sk3",
                             "sigleAddendum": "",
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 6,
@@ -190,8 +190,8 @@
                             "sigle": "M 68 Sk14",
                             "sigleAddendum": "T. {53A}–57",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 4,
@@ -205,8 +205,8 @@
                             "sigle": "M 68 Sk14",
                             "sigleAddendum": "T. 58–60",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 2,
@@ -220,8 +220,8 @@
                             "sigle": "M* 454 Sk1",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 2,
@@ -235,7 +235,7 @@
                     "folioId": "1v",
                     "systems": "18",
                     "reversed": true,
-                    "format": {
+                    "dimensions": {
                         "height": 347,
                         "width": 266
                     },
@@ -246,8 +246,8 @@
                             "sigle": "M 68 Sk6",
                             "sigleAddendum": "T. 1–11 (Trio)",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 18,
                                     "endSystem": 16
@@ -260,8 +260,8 @@
                             "sigle": "M 68 Sk6",
                             "sigleAddendum": "T. 12–17A (Trio)",
                             "selectable": false,
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 3,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 16,
@@ -275,8 +275,8 @@
                             "sigle": "M 68 Sk6",
                             "sigleAddendum": "T. 17B–21 (Trio)",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 14,
@@ -290,8 +290,8 @@
                             "sigle": "M 68 Sk7",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 12,
@@ -304,8 +304,8 @@
                             "sheetId": "M_32_Sk2k",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 61B–62",
-                            "sectionPartition": 3,
-                            "sections": [
+                            "segmentSplit": 3,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 16,
@@ -318,8 +318,8 @@
                             "sheetId": "M_32_Sk2l",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 63–64",
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 14,
@@ -332,8 +332,8 @@
                             "sheetId": "M_32_Sk2m",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 65–67",
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 12,
@@ -348,8 +348,8 @@
                             "sigleAddendum": "T. 1–6",
                             "reversed": true,
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 3,
                                     "endSystem": 1
@@ -363,8 +363,8 @@
                             "sigleAddendum": "T. 7–13",
                             "reversed": true,
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 6,
                                     "endSystem": 4
@@ -378,8 +378,8 @@
                             "sigleAddendum": "T. 14–20",
                             "reversed": true,
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "startSystem": 9,
                                     "endSystem": 7
@@ -396,8 +396,9 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 347,
                         "width": 266
                     },
@@ -408,9 +409,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 1–9",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 2
                                 }
@@ -422,9 +424,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 10–19",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 3,
                                     "endSystem": 4
                                 }
@@ -436,9 +439,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 20–28 → T. 20–{28}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 5,
                                     "endSystem": 6
                                 }
@@ -450,9 +454,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 29–36 → T. {29–36}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 8
                                 }
@@ -464,9 +469,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 37–45 → T. {37–45}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 9,
                                     "endSystem": 10
                                 }
@@ -478,9 +484,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 46–54 → T. {46}–47",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 11,
                                     "endSystem": 12
                                 }
@@ -492,9 +499,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 55–63 → T. 48–56 → T. 48–{56}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 13,
                                     "endSystem": 14
                                 }
@@ -506,9 +514,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 64–70 → T. 57–63 → T. {57–63}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 15,
                                     "endSystem": 16
                                 }
@@ -520,9 +529,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 71–76 → T. 64–69 → T. {64–69}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 17,
                                     "endSystem": 18
                                 }
@@ -533,7 +543,7 @@
                 {
                     "folioId": "1v",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 347,
                         "width": 266
                     },
@@ -544,9 +554,10 @@
                             "sigle": "M 32 Tintenniederschrift TF1→2→3",
                             "sigleAddendum": "T. 77–84 → T. 70–{77} → T. {70–77}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 2
                                 }
@@ -558,9 +569,10 @@
                             "sigle": "M 32 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 76–77",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 3,
                                     "endSystem": 4
                                 }
@@ -572,9 +584,10 @@
                             "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 1–9 → T. 1–9",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 7
                                 }
@@ -586,9 +599,10 @@
                             "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 10–18 → T. 10–18",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 8,
                                     "endSystem": 9
                                 }
@@ -600,9 +614,10 @@
                             "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 19–27",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 11
                                 }
@@ -614,9 +629,10 @@
                             "sigle": "M 33 Tintenniederschrift TF1→2",
                             "sigleAddendum": "T. 28–32 → T. 28–{33}",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 12,
                                     "endSystem": 13
                                 }
@@ -628,8 +644,8 @@
                             "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 7–8",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 4,
@@ -643,8 +659,8 @@
                             "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 31–32",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 14,
@@ -658,8 +674,8 @@
                             "sigle": "M 33 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 13–16",
                             "selectable": false,
-                            "sectionPartition": 2,
-                            "sections": [
+                            "segmentSplit": 2,
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 14,

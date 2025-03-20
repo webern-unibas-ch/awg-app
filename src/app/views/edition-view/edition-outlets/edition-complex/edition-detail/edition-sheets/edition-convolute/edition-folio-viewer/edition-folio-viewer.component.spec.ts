@@ -106,8 +106,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         expectedConvolute.folios.forEach(folio => {
             const folioSettings = {
                 ...expectedFolioSettings,
-                formatX: +folio.format.width,
-                formatY: +folio.format.height,
+                formatX: +folio.dimensions.width,
+                formatY: +folio.dimensions.height,
                 numberOfFolios: expectedConvolute.folios.length,
             };
 

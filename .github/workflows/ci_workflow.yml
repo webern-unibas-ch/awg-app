@@ -57,7 +57,7 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+              uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -65,7 +65,7 @@ jobs:
               run: corepack enable
 
             - name: Get yarn cache ${{ matrix.node-version}}
-              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+              uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
               with:
                   cache: 'yarn'
 
@@ -116,8 +116,8 @@ jobs:
                   retention-days: 1
 
     deploy_dev:
-        # run only on develop
-        if: github.ref == 'refs/heads/develop'
+        # run only on develop from upstream
+        if: github.ref == 'refs/heads/develop' && github.repository_owner == 'webern-unibas-ch'
 
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
@@ -149,7 +149,7 @@ jobs:
                   path: ${{ env.DEV_GH_PAGES_DIR }}
 
             - name: Download build artifacts
-              uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # ratchet:actions/upload-artifact@v4.1.9
+              uses: actions/download-artifact@b14cf4c92620c250e1c074ab0a5800e37df86765 # v4.2.0
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -192,7 +192,7 @@ jobs:
 
     deploy:
         # run only on main
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.repository_owner == 'webern-unibas-ch'
 
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
@@ -215,7 +215,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+              uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
