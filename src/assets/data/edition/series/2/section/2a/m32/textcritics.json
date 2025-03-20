@@ -598,7 +598,30 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-2c",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk2c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-2e",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk2e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-2-1",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk2_1"
+                    }
+                }
+            ]
         },
         {
             "id": "M_32_Sk2_1",
@@ -629,7 +652,34 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-2j",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk2j"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_32_Sk2_2",
+            "label": "M 32 Sk2.2",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1d",
+                    "linkTo": {
+                        "complexId": "m33",
+                        "sheetId": "M_33_Sk1d"
+                    }
+                }
+            ]
         },
         {
             "id": "M_32_Sk3",
@@ -748,7 +798,51 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-4a",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4a"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-4b",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-4c",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-4d",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-4-2",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-5",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk5"
+                    }
+                }
+            ]
         },
         {
             "id": "M_32_Sk4_1",
@@ -838,7 +932,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-4b",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-5",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk5"
+                    }
+                }
+            ]
         },
         {
             "id": "M_32_Sk5",
@@ -876,7 +986,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-4b",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-4-2",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk4_2"
+                    }
+                }
+            ]
         }
     ]
 }
