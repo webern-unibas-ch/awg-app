@@ -64,10 +64,10 @@
   <path id="line49" d="M166.255 281.851h794.942" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="path49" fill="#000" stroke="none" d="M163.521 194.385c-11.708 18.681 5.011 35.528-5.922 43.733h.456c13.205-10.943-3.152-25.052 5.457-43.27z" style="stroke-width:1.33333"/>
   <path id="path50" fill="#000" stroke="none" d="M163.521 281.851c-11.708-18.681 5.011-35.529-5.922-43.733h.456c13.205 10.941-3.152 25.052 5.457 43.268z" style="stroke-width:1.33333"/>
-  <g id="g7" class="tkk">
+  <g id="g-tkk-12" class="tkk">
     <path id="polyline50" d="m151.529 170.821 8.371-9.225" style="fill:none;stroke:#000;stroke-width:.236955" transform="matrix(-2.43172 0 0 3.13127 629.632 -247.835)"/>
   </g>
-  <g id="g8" class="tkk">
+  <g id="g-tkk-13" class="tkk">
     <path id="polyline51" d="m170.321 192.004 9.737-10.25" style="fill:none;stroke:#000;stroke-width:.483" transform="translate(33.382 46.355)scale(1.33333)"/>
   </g>
   <path id="text51" d="M251.3 197.135q0-.459.327-.765.328-.328.81-.328.48 0 .808.328.328.306.328.765 0 .46-.328.788t-.809.328q-.48 0-.809-.328-.328-.328-.328-.788" aria-label="." style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"/>
