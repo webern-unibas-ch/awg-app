@@ -102,7 +102,7 @@
                             "sheetId": "M_33_Sk1d",
                             "sigle": "M 33 Sk1",
                             "sigleAddendum": "T. 32–33",
-                            "segmentSplit": 3,
+                            "segmentSplit": 4,
                             "segments": [
                                 {
                                     "position": 1,
@@ -116,7 +116,7 @@
                             "sheetId": "M_32_Sk2_2",
                             "sigle": "M 32 Sk2.2",
                             "sigleAddendum": "",
-                            "segmentSplit": 3,
+                            "segmentSplit": 4,
                             "segments": [
                                 {
                                     "position": 2,
@@ -129,27 +129,12 @@
                             "complexId": "m68",
                             "sheetId": "M_68_Sk13a",
                             "sigle": "M 68 Sk13",
-                            "sigleAddendum": "T. {15B}–{21A} (Trio)",
+                            "sigleAddendum": "T. 13–14 (Trio)",
                             "selectable": false,
                             "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 3,
-                                    "startSystem": 8,
-                                    "endSystem": 7
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk13b",
-                            "sigle": "M 68 Sk13",
-                            "sigleAddendum": "T. 22–21B, 13–14 (Trio)",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 2,
                                     "startSystem": 6,
                                     "endSystem": 5
                                 }
@@ -157,7 +142,7 @@
                         },
                         {
                             "complexId": "m68",
-                            "sheetId": "M_68_Sk13c",
+                            "sheetId": "M_68_Sk13b",
                             "sigle": "M 68 Sk13",
                             "sigleAddendum": "T. 15A–16A (Trio)",
                             "selectable": false,
@@ -171,11 +156,41 @@
                             ]
                         },
                         {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk13c",
+                            "sigle": "M 68 Sk13",
+                            "sigleAddendum": "T. {15B}–{21A} (Trio)",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk13d",
+                            "sigle": "M 68 Sk13",
+                            "sigleAddendum": "T. 22–21B (Trio)",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
                             "complexId": "m32",
                             "sheetId": "M_32_Sk3",
                             "sigle": "M 32 Sk3",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 1,
@@ -250,7 +265,7 @@
                             "segments": [
                                 {
                                     "startSystem": 18,
-                                    "endSystem": 16
+                                    "endSystem": 17
                                 }
                             ]
                         },
@@ -260,7 +275,7 @@
                             "sigle": "M 68 Sk6",
                             "sigleAddendum": "T. 12–17A (Trio)",
                             "selectable": false,
-                            "segmentSplit": 3,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
@@ -286,6 +301,21 @@
                         },
                         {
                             "complexId": "m68",
+                            "sheetId": "M_68_Sk6_1",
+                            "sigle": "M 68 Sk6.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 16,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m68",
                             "sheetId": "M_68_Sk7",
                             "sigle": "M 68 Sk7",
                             "sigleAddendum": "",
@@ -304,10 +334,10 @@
                             "sheetId": "M_32_Sk2k",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 61B–62",
-                            "segmentSplit": 3,
+                            "segmentSplit": 4,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 3,
                                     "startSystem": 16,
                                     "endSystem": 15
                                 }
