@@ -176,7 +176,7 @@
     </g>
   </g>
   <path id="path7" d="M722.727 238.877c3.572.88 6.036-2.815 9.214-2.564 2.102.167 3.668 2.305 5.75 2.633.39.062.792-.052 1.178-.139 2.944-.663 5.56-2.83 8.577-2.9 3.248-.075 6.122 2.846 9.367 2.693 2.775-.131 7.038-2.915 7.759-3.049 1.09-.202 2.321-.47 3.325 0 .654.306.883 1.146 1.386 1.663 3.067 3.154 6.82-2.105 10.253-1.663 1.528.197 2.921 1.052 4.226 1.87 1.028.645 1.729-.043 2.425-.484 1.665-1.054 3.164-1.823 4.85-1.594.99.135 1.252 1.663 2.494 1.663" style="fill:none;stroke:#000;stroke-width:.64252;stroke-opacity:1"/>
-  <g id="g1" class="link-box">
+  <g id="g1" class="link-box-todo">
     <path id="rect51" d="M169.899 186.111h491.088v116.623H169.899Z" style="fill:#fff;stroke:#777;stroke-width:.910664"/>
     <text xml:space="preserve" id="text1" x="317.485" y="252.053" style="font-weight:700;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.574;stroke-opacity:.866667"><tspan id="tspan1" x="317.485" y="252.053">M 68 Sk6 T. 12–17A</tspan></text>
   </g>
