@@ -666,7 +666,9 @@
         {
             "id": "M_32_Sk2_2",
             "label": "M 32 Sk2.2",
-            "evaluations": [],
+            "evaluations": [
+                "<strong>Sk2.1</strong> enthält <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2n'})\">T. 72</a> aus <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2'})\"><strong>Sk2</strong></a> in einer Version, bei drm die Mittelstimmen in ganzen Noten notiert sind – was in der Tintenniederschrift jedoch keinen Niederschlag fand."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": []
