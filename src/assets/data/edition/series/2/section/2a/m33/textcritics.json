@@ -303,7 +303,16 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m32",
+                        "sheetId": "M_32_Sk2_2"
+                    }
+                }
+            ]
         }
     ]
 }
