@@ -823,7 +823,7 @@
                                     [
                                         {
                                             "system": "17b–18b",
-                                            "measure": "T. 1–4",
+                                            "measure": "1–4",
                                             "linkTo": "M_22_Sk21a"
                                         }
                                     ]
@@ -854,7 +854,10 @@
                     },
                     {
                         "item": "M 32",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_TF2a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
@@ -888,8 +891,11 @@
                         ]
                     },
                     {
-                        "item": "M 32 Sk3",
-                        "itemLinkTo": {},
+                        "item": "M 32 Sk4.1",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
@@ -900,7 +906,7 @@
                                     [
                                         {
                                             "system": "5b–6b",
-                                            "measure": "{30–32}",
+                                            "measure": "30, {31–32}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -910,7 +916,10 @@
                     },
                     {
                         "item": "M 32 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4a"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
@@ -922,28 +931,28 @@
                                         {
                                             "system": "7–8",
                                             "measure": "21–29",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12b–15c",
                                             "measure": "30–33",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk4b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
                                             "measure": "34–39, {40A–41A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk4c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12a–13a",
                                             "measure": "40B–41B",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk4d"
                                         }
                                     ]
                                 ]
@@ -952,7 +961,10 @@
                     },
                     {
                         "item": "M 32 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk5"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
@@ -972,8 +984,11 @@
                         ]
                     },
                     {
-                        "item": "M 32 Sk4.1",
-                        "itemLinkTo": {},
+                        "item": "M 32 Sk4.2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4_2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
