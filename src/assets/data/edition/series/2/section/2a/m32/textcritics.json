@@ -488,7 +488,7 @@
                                 "measure": "54",
                                 "system": "4",
                                 "position": "1–2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>D–A überschreibt gestrichenes <span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>d<sup>1</sup>–a."
+                                "comment": "[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]D–A überschreibt gestrichenes [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]d<sup>1</sup>–a."
                             },
                             {
                                 "svgGroupId": "g-tkk-46",
@@ -746,14 +746,14 @@
                                 "measure": "33",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "a<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>g<sup>1</sup>."
+                                "comment": "a<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
                                 "measure": "38",
                                 "system": "11",
                                 "position": "1. Note",
-                                "comment": "Achtelnote <span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>Des überschreibt Halbe Note <span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>Des/<span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>des."
+                                "comment": "Achtelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]Des überschreibt Halbe Note [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]Des/[<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]des."
                             },
                             {
                                 "svgGroupId": "g-tkk-8",
@@ -788,14 +788,14 @@
                                 "measure": "40B",
                                 "system": "13",
                                 "position": "1–2/8",
-                                "comment": "Achtelnoten <span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>ges–<span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>Ges gestrichen."
+                                "comment": "Achtelnoten [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]ges–[<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]Ges gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-13",
                                 "measure": "40B",
                                 "system": "13",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>B<sub>1</sub> gestrichen."
+                                "comment": "[<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]B<sub>1</sub> gestrichen."
                             }
                         ]
                     }
@@ -863,14 +863,14 @@
                                 "measure": "30",
                                 "system": "5",
                                 "position": "1. Note",
-                                "comment": "Viertelnoten a<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> und a<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>d<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> gestrichen? Entzifferung unsicher."
+                                "comment": "Viertelnoten a<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> und a<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]d<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> gestrichen? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "30",
                                 "system": "5",
                                 "position": "4/8",
-                                "comment": "Achtelnote <span class='glyph'>{{ref.getGlyph('[[b]]')}}</span>b<sup>1</sup>/e<sup>2</sup> gestrichen."
+                                "comment": "Achtelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]b<sup>1</sup>/e<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
@@ -908,21 +908,21 @@
                                 "measure": "32+x",
                                 "system": "15",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>F gestrichen."
+                                "comment": "[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]F gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "32+x",
                                 "system": "15",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>g<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>f<sup>1</sup>."
+                                "comment": "[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]f<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
                                 "measure": "33+x",
                                 "system": "14",
                                 "position": "1–2/8",
-                                "comment": "Unterstimmenschicht: Achtelnoten <span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>d<sup>1</sup> gestrichen."
+                                "comment": "Unterstimmenschicht: Achtelnoten [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]f<sup>1</sup>–[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]d<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
