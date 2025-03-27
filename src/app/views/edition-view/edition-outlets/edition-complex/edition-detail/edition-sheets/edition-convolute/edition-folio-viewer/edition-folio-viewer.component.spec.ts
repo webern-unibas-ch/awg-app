@@ -106,8 +106,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         expectedConvolute.folios.forEach(folio => {
             const folioSettings = {
                 ...expectedFolioSettings,
-                formatX: +folio.format.width,
-                formatY: +folio.format.height,
+                formatX: +folio.dimensions.width,
+                formatY: +folio.dimensions.height,
                 numberOfFolios: expectedConvolute.folios.length,
             };
 
@@ -582,9 +582,9 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             xit('... should trigger on click', fakeAsync(() => {
                 // TODO: update
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-phys-desc', 1, 1);
                 // Find description paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-desc', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-conditions', 1, 1);
 
                 // Find anchors in second description paragraph
                 const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);

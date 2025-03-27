@@ -6,8 +6,10 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Blatt (Bl. 1). Rissspuren am oberen Rand: von Bogen abgetrennt."],
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am oberen Rand: von Bogen abgetrennt."
+                ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: quer 349 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. ## | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
@@ -97,8 +99,10 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 44.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleiner Riss oben links."],
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleiner Riss oben links."
+                ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],

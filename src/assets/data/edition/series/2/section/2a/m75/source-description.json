@@ -1,0 +1,317 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier 75.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 116.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Länglicher Stockfleck oben rechts. Ecke unten rechts abgerissen. Falten an Ecken oben und unten links. Rissspuren am oberen Rand: von Bogen abgetrennt. Schneidspur am linken Rand Mitte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: quer 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 116 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "14A–15A, 16, 14B–15B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1a"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "1–6, {7A}, 7B",
+                                            "linkTo": "M_75_Sk1a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "8–14",
+                                            "linkTo": "M_75_Sk1b"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 75.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Kleinere Flecken am rechten Rand Mitte von Bl. 1<sup>v</sup>. Rissspuren am linken Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 349 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> <em>18 linig </em>unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift"]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 76",
+                        "itemLinkTo": {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "6–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "12–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "17–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "6–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht:Halbe Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Viertelnote überschreibt mit Oberstimmenschicht zusammengehalste punktierte Viertelnote."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Auf Rasur; ausgenommen 2/8 in Klav. o."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Auf Rasur. Ante correcturam: Viertelnote e."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "E rasiert."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav.",
+                                            "position": "2. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span>."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1–13",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
