@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -174,8 +174,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Länglicher Stockfleck oben rechts. Ecke unten rechts abgerissen. Falten an Ecken oben und unten links. Rissspuren am oberen Rand: von Bogen abgetrennt. Schneidspur am linken Rand Mitte."
                 ],
                 "writingMaterialStrings": [
@@ -287,8 +287,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand: von Bogen abgetrennt. Ecke oben links leicht geknickt."
                 ],
                 "writingMaterialStrings": [
@@ -367,8 +367,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
-                        "label": "source_C_corr_1",
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -514,8 +514,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
-                        "label": "source_C_corr_2",
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -546,7 +546,7 @@
                             ]
                         }
                     }
-                ]             
+                ]
             }
         }
     ]
