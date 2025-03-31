@@ -33,7 +33,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -59,7 +59,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -85,7 +85,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Michael Matter',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
