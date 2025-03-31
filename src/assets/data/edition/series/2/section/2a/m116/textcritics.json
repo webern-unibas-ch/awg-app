@@ -202,7 +202,44 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1b",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1c",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-1",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-2",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-3",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_3"
+                    }
+                }
+            ]
         },
         {
             "id": "M_116_Sk1_1",
@@ -247,7 +284,37 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1b",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1c",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-2",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-3",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_3"
+                    }
+                }
+            ]
         },
         {
             "id": "M_116_Sk1_2",
@@ -258,7 +325,37 @@
             "commentary": {
                 "preamble": "",
                 "comments": []
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1b",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1c",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-1",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-3",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_3"
+                    }
+                }
+            ]
         },
         {
             "id": "M_116_Sk1_3",
@@ -269,7 +366,37 @@
             "commentary": {
                 "preamble": "",
                 "comments": []
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1b",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1c",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-1",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-1-2",
+                    "linkTo": {
+                        "complexId": "m116",
+                        "sheetId": "M_116_Sk1_2"
+                    }
+                }
+            ]
         },
         {
             "id": "M_116_Sk2",
