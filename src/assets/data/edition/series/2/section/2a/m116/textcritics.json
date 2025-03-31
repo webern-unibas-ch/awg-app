@@ -4,9 +4,9 @@
             "id": "M_116_TF1",
             "label": "M 116 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 116 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B</strong> enthalten Skizzen.",
-                "<strong>C</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 116 ist <strong>C</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 116 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C'})\"><strong>C</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C'})\"><strong>C</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 116 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C'})\"><strong>C</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -33,7 +33,7 @@
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a: Ligatur zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a in T. 4 Klav. u. ergänzt. <strong>C</strong>: Akkoladenwechsel nach T. 4."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a: Ligatur zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a in T. 4 Klav. u. ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 4."
                             },
                             {
                                 "svgGroupId": "g4770",
@@ -58,7 +58,7 @@
             "id": "M_116_Sk1",
             "label": "M 116 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> entwirft einen ersten Verlauf der Studienkomposition für Klavier M 116, der jedoch bald harmonisch und satztechnisch ausdünnt. Die ersten fünf Takte sind vollständig ausnotiert, wobei mit Blick auf die spätere Tintenniederschrift die um eine Quinte nach oben versetzte Wiederholung des Anfangsthemas noch nicht vorkommt und die nachfolgenden Takte (ab T. 3 in Sk1) dementsprechend eine Quinte tiefer gesetzt sind (die Einfügung der transponierten Wiederholung erfolgt durch Sk1.1). Ab T. 6 ist nur noch das melodisch-rhythmische Grundgerüst skizziert, begleitet von mehreren harmonischen Schemata, die das Ringen mit dem geplanten harmonischen Aufbau widerspiegeln. Die Notation ist stellenweise sehr flüchtig und nicht immer gesichert zu entziffern."
+                "<strong>Sk1</strong> entwirft einen ersten Verlauf der <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_TF1'})\">Studienkomposition für Klavier M 116</a>, der jedoch bald harmonisch und satztechnisch ausdünnt. Die ersten fünf Takte sind vollständig ausnotiert, wobei mit Blick auf die spätere Tintenniederschrift die um eine Quinte nach oben versetzte Wiederholung des Anfangsthemas noch nicht vorkommt und die nachfolgenden Takte (ab T. 3 in <strong>Sk1</strong>) dementsprechend eine Quinte tiefer gesetzt sind (die Einfügung der transponierten Wiederholung erfolgt durch <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1_1'})\"><strong>Sk1.1</strong></a>). Ab T. 6 ist nur noch das melodisch-rhythmische Grundgerüst skizziert, begleitet von mehreren harmonischen Schemata, die das Ringen mit dem geplanten harmonischen Aufbau widerspiegeln. Die Notation ist stellenweise sehr flüchtig und nicht immer gesichert zu entziffern."
             ],
             "commentary": {
                 "preamble": "",
@@ -133,7 +133,7 @@
                                 "svgGroupId": "g4",
                                 "measure": "6",
                                 "system": "4",
-                                "position": "Zweitletzte Note",
+                                "position": "zweitletzte Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>2</sup>."
                             },
                             {
@@ -208,7 +208,7 @@
             "id": "M_116_Sk1_1",
             "label": "M 116 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> enthält einen Einschub zu Sk1, der das Anfangsthema um eine Quinte nach oben versetzt wiederholt."
+                "<strong>Sk1.1</strong> enthält einen Einschub zu <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1'})\"><strong>Sk1</strong></a>, der das Anfangsthema um eine Quinte nach oben versetzt wiederholt."
             ],
             "commentary": {
                 "preamble": "",
@@ -253,7 +253,7 @@
             "id": "M_116_Sk1_2",
             "label": "M 116 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <strong>Sk1</strong> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist der sehr ähnliche Melodieverlauf am Anfang von T. 5 (mit den überschriebenen f<sup>1</sup> auf 1/8)."
+                "<strong>Sk1.2</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1'})\"><strong>Sk1</strong></a> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist der sehr ähnliche Melodieverlauf am Anfang von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1a'})\">T. 5</a> (mit den überschriebenen f<sup>1</sup> auf 1/8)."
             ],
             "commentary": {
                 "preamble": "",
@@ -261,10 +261,10 @@
             }
         },
         {
-            "id": "M_116_Sk1.3",
+            "id": "M_116_Sk1_3",
             "label": "M 116 Sk1.3",
             "evaluations": [
-                "<strong>Sk1.3</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <strong>Sk1</strong> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist T. 7, wo ein ähnlicher melodischer Abstieg skizziert und e-Moll als harmonischer Zielpunkt angemerkt ist. Die implizite H-Dur Harmonik mit dem <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> in <strong>Sk1.3</strong> lässt diesen Anknüpfungspunkt plausibel erscheinen (vgl. auch die endgültige Formulierung von T. 9 in der Textedition)."
+                "<strong>Sk1.3</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1'})\"><strong>Sk1</strong></a> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1b'})\">T. 7</a>, wo ein ähnlicher melodischer Abstieg skizziert und e-Moll als harmonischer Zielpunkt angemerkt ist. Die implizite H-Dur Harmonik mit dem <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> in <strong>Sk1.3</strong> lässt diesen Anknüpfungspunkt plausibel erscheinen (vgl. auch die endgültige Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_TF1a'})\">T. 9</a> in der Textedition)."
             ],
             "commentary": {
                 "preamble": "",
@@ -275,7 +275,7 @@
             "id": "M_116_Sk2",
             "label": "M 116 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die ausgearbeitete Verlaufsskizze ab T. 3 zur Studienkomposition für Klavier M 116."
+                "<strong>Sk2</strong> ist die ausgearbeitete Verlaufsskizze ab T. 3 zur <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_TF1'})\">Studienkomposition für Klavier M 116</a>."
             ],
             "commentary": {
                 "preamble": "",
