@@ -107,7 +107,7 @@
         "d3-force": "^3.0.0",
         "d3-selection": "^3.0.0",
         "d3-zoom": "^3.0.0",
-        "json2typescript": "^1.5.1",
+        "json2typescript": "^1.6.1",
         "n3": "^1.24.2",
         "ngx-json-viewer": "^3.2.1",
         "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.17",
