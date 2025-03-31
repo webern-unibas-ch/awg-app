@@ -6099,7 +6099,7 @@ __metadata:
     gzipper: "npm:^8.2.1"
     husky: "npm:^9.1.7"
     jasmine-core: "npm:~5.6.0"
-    json2typescript: "npm:^1.5.1"
+    json2typescript: "npm:^1.6.1"
     karma: "npm:~6.4.4"
     karma-chrome-launcher: "npm:~3.2.0"
     karma-coverage: "npm:^2.2.1"
@@ -11227,10 +11227,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json2typescript@npm:^1.5.1":
-  version: 1.5.1
-  resolution: "json2typescript@npm:1.5.1"
-  checksum: 10c0/57aa2fd86bbb76293002317a7f60b4bbf764b9616a5d3d44ddcc1e239ee4a60a5c414de901555917248557330b5e23d2a2b8520569ffd9f2d8fbf0d8c188c6b7
+"json2typescript@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "json2typescript@npm:1.6.1"
+  checksum: 10c0/be3a360d512d7a56d3ed7fb8f4925b85e7e4cd8101e2119a0b71ad6776def32b801efa6355778df4e809b1f12af32e3311a04ae213ae836efa320d794d087464
   languageName: node
   linkType: hard
 
