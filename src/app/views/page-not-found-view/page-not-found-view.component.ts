@@ -42,7 +42,7 @@ export class PageNotFoundViewComponent {
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    private readonly _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'index.php?id=41';
+    private readonly _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'de/info/kontakt.html';
 
     /**
      * Getter for the path to the image of the page not found section.
@@ -55,7 +55,7 @@ export class PageNotFoundViewComponent {
 
     /**
      * Getter for the URL of the contact page of the AWG project website
-     * ({@link https://anton-webern.ch/index.php?id=41}).
+     * ({@link https://anton-webern.ch/de/info/kontakt.html}).
      *
      * @returns {string} The url of the contact page of the AWG project website.
      */
