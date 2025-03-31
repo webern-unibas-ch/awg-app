@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionTkaEvaluations component.
@@ -53,12 +55,32 @@ export class EditionTkaEvaluationsComponent {
     ref: EditionTkaEvaluationsComponent;
 
     /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
      * Constructor of the EditionTkaEvaluationsComponent.
      *
      * It initializes the self-referring ref variable needed for CompileHtml library.
      */
     constructor() {
         this.ref = this;
+    }
+
+    /**
+     * Public method: getGlyph.
+     *
+     * It returns the hex value string for a glyph referenced by the given glyph string
+     * via the EditionGlyphService.
+     *
+     * @param {string} glyphString The given glyph string.
+     * @returns {string} The hex value string of the given glyph string or empty string.
+     */
+    getGlyph(glyphString: string): string {
+        return this._editionGlyphService.getGlyph(glyphString);
     }
 
     /**
