@@ -4,9 +4,9 @@
             "id": "M_46_TF1",
             "label": "M 46 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 46 Textfassung 1 ist <strong>B<sup>a</sup></strong> relevante Quelle. <strong>B<sup>b</sup></strong> enthält Skizzen.",
-                "<strong>B<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 2. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Die T. 13–20 in <strong>B<sup>a</sup></strong> sind mit Taktstrichen vorgezeichnet, aber leergeblieben bzw. zu einem großen Teil mit Skizzen zu Textfassung 2 ausgefüllt.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 46 Textfassung 1 ist <strong>B<sup>a</sup></strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 46 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfassung 2</a>. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Die T. 13–20 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> sind mit Taktstrichen vorgezeichnet, aber leergeblieben bzw. zu einem großen Teil mit Skizzen zu Textfassung 2 ausgefüllt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 46 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -52,16 +52,15 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_46_TF2",
             "label": "M 46 Textfassung 2",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 46 Textfassung 2 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B<sup>b</sup></strong> enthalten Skizzen, <strong>B<sup>a</sup></strong> bezieht sich auf Textfassung 1.",
-                "<strong>C</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 46 Textfassung 2 ist <strong>C</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 46 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C'})\"><strong>C</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> bezieht sich auf Textfassung 1.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C'})\"><strong>C</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a> mit Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 46 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C'})\"><strong>C</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -95,7 +94,7 @@
                                 "measure": "15",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> korrigiert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> analog fis in T. 1 und gis<sup>1</sup> in T. 17 sowie mit Blick auf <strong>Sk4</strong> in <strong>A</strong> (dort jedoch fis<sup>1</sup> statt ges<sup>1</sup>)."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> korrigiert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> analog fis in T. 1 und gis<sup>1</sup> in T. 17 sowie mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk4'})\"><strong>Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_A'})\"><strong>A</strong></a> (dort jedoch fis<sup>1</sup> statt ges<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g4061",
@@ -128,14 +127,13 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_46_Sk1",
             "label": "M 46 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> hält erstmals den melodischen Verlauf des Hauptthemas von M 46 fest, mit kleineren Abweichungen zu Textfassung 1 (u.a. endet die Melodie auf dem Grundton), und skizziert anschliessend den kurzen Zwischenteil mitsamt harmonischer Unterlegung."
+                "<strong>Sk1</strong> hält erstmals den melodischen Verlauf des Hauptthemas von M 46 fest, mit kleineren Abweichungen zu <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF1'})\">Textfassung 1</a> (u.a. endet die Melodie auf dem Grundton), und skizziert anschliessend den kurzen Zwischenteil mitsamt harmonischer Unterlegung."
             ],
             "commentary": {
                 "preamble": "",
@@ -344,7 +342,7 @@
             "id": "M_46_Sk3",
             "label": "M 46 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition M 46 Textfassung 1, die den Abschluss der ersten Phrase in C-Dur zunächst beibehält."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition M 46 <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF1'})\">Textfassung 1</a>, die den Abschluss der ersten Phrase in C-Dur zunächst beibehält."
             ],
             "commentary": {
                 "preamble": "",
@@ -557,7 +555,7 @@
             "id": "M_46_Sk3_1",
             "label": "M 46 Sk3.1",
             "evaluations": [
-                "<strong>Sk3.1</strong> vollzieht die schon in Sk3 indizierte Schlusswendung nach G-Dur anstelle von C-Dur am Ende der ersten Phrase."
+                "<strong>Sk3.1</strong> vollzieht die schon in <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk3a'})\"><strong>Sk3</strong></a> indizierte Schlusswendung nach G-Dur anstelle von C-Dur am Ende der ersten Phrase."
             ],
             "commentary": {
                 "preamble": "",
@@ -581,7 +579,7 @@
             "id": "M_46_Sk4",
             "label": "M 46 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> enthält die in Textfassung 1 schon mitgedachte, nun für Textfassung 2 explizit ausformulierte Wiederholung des Themas in der oberen Oktave im A-Teil."
+                "<strong>Sk4</strong> enthält die in <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF1'})\">Textfassung 1</a> schon mitgedachte, nun für <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfassung 2</a> explizit ausformulierte Wiederholung des Themas in der oberen Oktave im A-Teil."
             ],
             "commentary": {
                 "preamble": "",
@@ -724,7 +722,7 @@
             "id": "M_46_Sk5",
             "label": "M 46 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> enhält – anfänglich noch um eine Oktave nach unten versetzt – den mittleren Abschnitt vom A-Teil für Textfassung 2."
+                "<strong>Sk5</strong> enhält – anfänglich noch um eine Oktave nach unten versetzt – den mittleren Abschnitt vom A-Teil für <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -818,7 +816,7 @@
             "id": "M_46_Sk6",
             "label": "M 46 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> formuliert für Textfassung 2 eine harmonisch und motivisch neue Progression ab dem fünften Takt des B-Teils."
+                "<strong>Sk6</strong> formuliert für <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfassung 2</a> eine harmonisch und motivisch neue Progression ab dem fünften Takt des B-Teils."
             ],
             "commentary": {
                 "preamble": "",
@@ -898,7 +896,7 @@
             "id": "M_46_Sk6_1",
             "label": "M 46 Sk6.1",
             "evaluations": [
-                "<strong>Sk6.1</strong> überarbeitet die T. 29–31 aus Sk6 in harmonischer Hinsicht, indem statt Cis-Dur nun cis-Moll etabliert wird."
+                "<strong>Sk6.1</strong> überarbeitet die T. 29–31 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk6'})\"><strong>Sk6</strong></a> in harmonischer Hinsicht, indem statt Cis-Dur nun cis-Moll etabliert wird."
             ],
             "commentary": {
                 "preamble": "",
@@ -922,7 +920,7 @@
             "id": "M_46_Sk7",
             "label": "M 46 Sk7",
             "evaluations": [
-                "<strong>Sk7</strong> versetzt die in Sk5 schon skizzierten T. 9–12 um eine Oktave nach oben und nimmt kleinere melodische Anpassungen vor."
+                "<strong>Sk7</strong> versetzt die in <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk5'})\"><strong>Sk5</strong></a> schon skizzierten T. 9–12 um eine Oktave nach oben und nimmt kleinere melodische Anpassungen vor."
             ],
             "commentary": {
                 "preamble": "",
@@ -967,7 +965,7 @@
             "id": "M_46_Sk8",
             "label": "M 46 Sk8",
             "evaluations": [
-                "<strong>Sk8</strong> formuliert für Textfasung 2 die Mittelstimme und Basslinie von T. 1–4 neu."
+                "<strong>Sk8</strong> formuliert für <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfasung 2</a> die Mittelstimme und Basslinie von T. 1–4 neu."
             ],
             "commentary": {
                 "preamble": "",
@@ -1012,7 +1010,7 @@
             "id": "M_46_Sk9",
             "label": "M 46 Sk9",
             "evaluations": [
-                "<strong>Sk9</strong> skizziert für Textfassung 2 erstmals die in Sk4 noch nicht vorhandene Übergangslinie im Bass zum B-Teil. Dessen ersten beiden Takte (T. 23–24) sind gegenüber Textfassung 1 leicht überarbeitet und greifen die in Sk8 neu eingeführten Liegetöne im Bass auf."
+                "<strong>Sk9</strong> skizziert für <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF2'})\">Textfassung 2</a> erstmals die in <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk4'})\"><strong>Sk4</strong></a> noch nicht vorhandene Übergangslinie im Bass zum B-Teil. Dessen ersten beiden Takte (T. 23–24) sind gegenüber <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_TF1'})\">Textfassung 1</a> leicht überarbeitet und greifen die in <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk8'})\"><strong>Sk8</strong></a> neu eingeführten Liegetöne im Bass auf."
             ],
             "commentary": {
                 "preamble": "",
