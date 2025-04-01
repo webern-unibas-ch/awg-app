@@ -209,7 +209,7 @@ describe('HomeViewCardComponent (DONE)', () => {
             describe('... with href', () => {
                 beforeEach(() => {
                     component.cardData.linkRouter = undefined;
-                    component.cardData.linkHref = 'https://www.anton-webern.ch/';
+                    component.cardData.linkHref = 'https://anton-webern.ch/';
 
                     detectChangesOnPush(fixture);
                 });

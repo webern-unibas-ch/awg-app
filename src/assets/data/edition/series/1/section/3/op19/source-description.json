@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Reihentabelle und Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Abriss an der oberen rechten Ecke. Zwei Risse am rechten Rand. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> unten links oder rechts. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -15,13 +15,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -30,19 +30,11 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "255"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -173,8 +165,8 @@
             "siglumAddendum": "",
             "type": "",
             "location": "",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C-D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.]</small>"
                 ]
             }

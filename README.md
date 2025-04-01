@@ -13,7 +13,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg)](https://doi.org/10.5281/zenodo.4717678)
 
-A web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
+A web application for the online edition of the [Anton Webern Gesamtausgabe](https://anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 **Project Status**: This project is actively maintained.
 
@@ -21,17 +21,17 @@ A web application for the online edition of the [Anton Webern Gesamtausgabe](htt
 
 ## Table of Contents
 
--   [Description](#description)
--   [Prerequisites](#prerequisites)
--   [Getting Started](#getting-started)
--   [Usage](#usage)
--   [Building](#building)
--   [Releases](#releases)
--   [Testing](#testing)
--   [Contributing](#contributing)
--   [Contributors ✨](#contributors-✨)
--   [License](#license)
--   [Contact and Issue Reporting](#contact-and-issue-reporting)
+- [Description](#description)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Building](#building)
+- [Releases](#releases)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [Contributors ✨](#contributors-✨)
+- [License](#license)
+- [Contact and Issue Reporting](#contact-and-issue-reporting)
 
 ## Description
 
@@ -41,10 +41,10 @@ This repository houses the source code for the web application that powers the o
 
 To run the code base yourself, there are only a few prerequisites to take care of. We use (modern) [Yarn](https://yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
 
--   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/) or use a Node version manager like `nvm` ([Posix](https://github.com/nvm-sh/nvm)/[Windows](https://github.com/coreybutler/nvm-windows)).
--   To activate Yarn, follow the instructions [here](https://yarnpkg.com/getting-started/install):
-    -   Run `corepack enable` in the terminal (may need admin privileges to access node folder).
-    -   Check that Yarn was installed by running `yarn -v` in your terminal.
+- You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/) or use a Node version manager like `nvm` ([Posix](https://github.com/nvm-sh/nvm)/[Windows](https://github.com/coreybutler/nvm-windows)).
+- To activate Yarn, follow the instructions [here](https://yarnpkg.com/getting-started/install):
+    - Run `corepack enable` in the terminal (may need admin privileges to access node folder).
+    - Check that Yarn was installed by running `yarn -v` in your terminal.
 
 > [!NOTE]
 > While it's likely that the project can be run with [classic Yarn](https://classic.yarnpkg.com/en/), please be aware that this is no longer actively tested.
@@ -62,31 +62,31 @@ To get started with this project, follow these steps:
 
 In the project directory, you can run the following command to serve the app in development mode:
 
--   `yarn start` or `ng s`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+- `yarn start` or `ng s`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
 
 During the development process, you'll also find the following commands useful for maintaining code quality and understanding the codebase:
 
--   `yarn lint`: Scans for linting errors using ESLint.
+- `yarn lint`: Scans for linting errors using ESLint.
 
--   `yarn lint:fix`: Lints the project and automatically fixes any fixable issues.
+- `yarn lint:fix`: Lints the project and automatically fixes any fixable issues.
 
--   `yarn doc:serve`: Generates documentation for the project using Compodoc and serves it at a local server. Open the URL provided in the terminal to view it in your web browser.
+- `yarn doc:serve`: Generates documentation for the project using Compodoc and serves it at a local server. Open the URL provided in the terminal to view it in your web browser.
 
 ## Building
 
 To build the app, use the following commands:
 
--   `yarn build:prod`: Builds the app for production to the `dist` folder.
+- `yarn build:prod`: Builds the app for production to the `dist` folder.
 
--   `yarn build:gh`: Same as `yarn build:prod`, but additionally prepares the build for deployment on GitHub Pages (includes base-href setting).
+- `yarn build:gh`: Same as `yarn build:prod`, but additionally prepares the build for deployment on GitHub Pages (includes base-href setting).
 
 ## Releases
 
 Releases for this project are automatically managed via Continuous Integration (CI). The following commands are involved in the release process:
 
--   `yarn pre-release`: Updates the app version and creates a changelog from the commit history.
+- `yarn pre-release`: Updates the app version and creates a changelog from the commit history.
 
--   `yarn deploy:ci`: Runs `angular-cli-ghpages` to deploy the app on GitHub Pages. To be used only from CI.
+- `yarn deploy:ci`: Runs `angular-cli-ghpages` to deploy the app on GitHub Pages. To be used only from CI.
 
 ## Testing
 
@@ -96,11 +96,11 @@ We encourage contributors to uphold these standards. As such, new contributions 
 
 To assist with this, the following commands are provided:
 
--   `yarn test`: Launches the test runner.
+- `yarn test`: Launches the test runner.
 
--   `yarn test:cov`: Runs the tests and generates a coverage report.
+- `yarn test:cov`: Runs the tests and generates a coverage report.
 
--   `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
+- `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
 
 ## Contributing
 

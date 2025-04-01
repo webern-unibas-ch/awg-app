@@ -15,7 +15,9 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionTkaEvaluationsComponent } from './edition-tka-evaluations.component';
 
 describe('EditionTkaEvaluationsComponent (DONE)', () => {
@@ -25,12 +27,16 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
 
     let mockDocument: Document;
 
+    let getGlyphSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
+
+    let mockEditionGlyphService: Partial<EditionGlyphService>;
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
@@ -41,8 +47,22 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     let expectedEvaluations: string[];
 
     beforeEach(waitForAsync(() => {
+        mockEditionGlyphService = {
+            getGlyph: (glyphString: string): string => {
+                switch (glyphString) {
+                    case '[a]':
+                        return '\u266E';
+                    case '[b]':
+                        return '\u266D';
+                    default:
+                        return 'glyphString';
+                }
+            },
+        };
+
         TestBed.configureTestingModule({
             declarations: [EditionTkaEvaluationsComponent, CompileHtmlComponent],
+            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
     }));
 
@@ -52,6 +72,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
+        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
         expectedComplexId = 'testComplex1';
@@ -63,6 +84,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         expectedEvaluations = mockEditionData.mockTextcriticsData.textcritics.at(1).evaluations;
 
         // Spies on functions
+        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
@@ -72,6 +94,8 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+
+        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
     });
 
     it('... should create', () => {
@@ -137,14 +161,48 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                     expectedEvaluations.length
                 );
                 pDes.forEach((pDe, index) => {
-                    const spanDes = getAndExpectDebugElementByCss(pDe, 'span', 1, 1);
+                    const spanDes = getAndExpectDebugElementByCss(pDe, 'p > span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     const htmlEvaluationEntry = mockDocument.createElement('span');
                     htmlEvaluationEntry.innerHTML = expectedEvaluations[index];
 
+                    const glyphSpan = "{{ref.getGlyph('[b]')}}";
+                    const glyphString = mockEditionGlyphService.getGlyph('[b]');
+                    if (htmlEvaluationEntry.innerHTML.includes(glyphSpan)) {
+                        htmlEvaluationEntry.innerHTML = htmlEvaluationEntry.innerHTML.replace(glyphSpan, glyphString);
+                    }
+
                     expectToBe(spanEl.textContent.trim(), htmlEvaluationEntry.textContent.trim());
                 });
+            });
+        });
+
+        describe('#getGlyph()', () => {
+            it('... should have a method `getGlyph`', () => {
+                expect(component.getGlyph).toBeDefined();
+            });
+
+            it('... should trigger on change detection', () => {
+                expectSpyCall(getGlyphSpy, 1);
+
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(getGlyphSpy, 2);
+            });
+
+            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 1);
+
+                component.getGlyph('[bb]');
+
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2, '[bb]');
+            });
+
+            it('... should return the glyph string from EditionGlyphService', () => {
+                const result = component.getGlyph('[bb]');
+
+                expectToBe(result, 'glyphString');
             });
         });
 

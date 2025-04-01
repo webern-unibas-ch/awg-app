@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Schnittspuren am rechten Rand von Bl. 1: von Bogen abgeschnitten. Riss unten Mitte sowie Ecke oben links abgetrennt auf Bl. 1. Rissspuren am rechten Rand von Bl. 2: von Bogen abgetrennt. Kleiner Risse am linken Rand von Bl. 2."
                 ],
                 "writingMaterialStrings": [
@@ -15,13 +15,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 18,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -30,19 +30,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "[J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em>",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1v", "2v"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     }
                 ],
@@ -488,20 +490,20 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
+            "physDesc": {
+                "conditions": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M31.B[0].route\" [title]=\"ref.FIRM_SIGNS.M31.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M31.B[0].short\" /> <br /> unten links auf Bl. 1<sup>v</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: ##JE_5_18## unten links auf Bl. 1<sup>v</sup>"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 18,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -510,19 +512,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_B",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M30_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1v"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
