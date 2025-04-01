@@ -570,8 +570,10 @@
   </g>
   <path id="path875" d="M522.712 192.094v-12.418" style="fill:none;stroke:#000;stroke-width:.66000003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path877" d="m503.45 180.754 19.56-2.34v2.34l-19.56 2.34" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
-  <g id="g881" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
-    <use xlink:href="#glyph1-1" id="use879" width="100%" height="100%" x="546.961" y="162.597"/>
+  <g id="g-tkk-1" class="tkk">
+    <g id="g881" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
+      <use xlink:href="#glyph1-1" id="use879" width="100%" height="100%" x="546.961" y="162.597"/>
+    </g>
   </g>
   <path id="path883" d="M195.95 204.575c17.34-2.942 52.262-2.942 69.602 0l-.062.18c-17.278-1.919-52.2-1.919-69.54 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
   <path id="path885" d="M421.732 200.676c19.32-2.941 57.539-2.941 76.86 0l-.06.18c-19.261-1.922-57.48-1.922-76.741 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
@@ -1013,12 +1015,12 @@
   <g id="g1547" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
     <use xlink:href="#glyph0-11" id="use1545" width="100%" height="100%" x="51.881" y="533.279"/>
   </g>
-  <g id="g3031" class="tkk">
+  <g id="g-tkk-2" class="tkk">
     <g id="g1551" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
       <use xlink:href="#glyph1-1" id="use1549" width="100%" height="100%" x="56.58" y="482.999"/>
     </g>
   </g>
-  <g id="g3035" class="tkk">
+  <g id="g-tkk-3" class="tkk">
     <g id="g1555" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
       <use xlink:href="#glyph1-1" id="use1553" width="100%" height="100%" x="96.54" y="482.999"/>
     </g>
@@ -1162,7 +1164,7 @@
     <use xlink:href="#glyph0-7" id="use1751" width="100%" height="100%" x="441.661" y="568.799"/>
   </g>
   <path id="path1755" d="M104.693 515.97c52.437-22.2 380.637-41.7 463.078 5.1l-.059.18c-82.382-45.84-410.582-26.34-462.96-5.101l-.06-.18" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:.06;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g1082" class="tkk">
+  <g id="g-tkk-4" class="tkk">
     <path id="path1757" d="M66.83 698.309v75.3" style="fill:none;stroke:#000;stroke-width:.89999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
     <g id="g1761" style="fill:#000;fill-opacity:1" transform="translate(38.931 21.872)">
       <use xlink:href="#glyph0-1" id="use1759" width="100%" height="100%" x="33.18" y="690.479"/>
