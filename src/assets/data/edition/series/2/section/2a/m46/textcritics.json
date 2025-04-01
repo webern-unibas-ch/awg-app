@@ -140,7 +140,7 @@
             "commentary": {
                 "preamble": "",
                 "comments": [
-                {
+                    {
                         "blockHeader": "",
                         "blockComments": [
                             {
@@ -148,7 +148,7 @@
                                 "measure": "1",
                                 "system": "17",
                                 "position": "6/8",
-                                "comment": "[a] zu f überschreibt e."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f überschreibt e."
                             },
                             {
                                 "svgGroupId": "g3",
@@ -169,7 +169,7 @@
                                 "measure": "3",
                                 "system": "17",
                                 "position": "3. Note",
-                                "comment": "[#]gis überschreibt [b]as."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as."
                             },
                             {
                                 "svgGroupId": "g4",
@@ -204,7 +204,7 @@
                                 "measure": "10",
                                 "system": "16",
                                 "position": "3/4",
-                                "comment": "Viertelnote [[b]]as<sup>1</sup> überschreibt Achtelnote g<sup>1</sup>."
+                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> überschreibt Achtelnote g<sup>1</sup>."
                             }
                         ]
                     }
@@ -220,7 +220,7 @@
             "commentary": {
                 "preamble": "",
                 "comments": [
-                {
+                    {
                         "blockHeader": "",
                         "blockComments": [
                             {
@@ -263,7 +263,7 @@
                                 "measure": "25",
                                 "system": "14",
                                 "position": "5–6/8",
-                                "comment": "[#]gis<sup>2</sup>–[[#]]fis<sup>2</sup> überschreibt [#]fis<sup>3</sup>–e<sup>3</sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]fis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>–e<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -349,7 +349,7 @@
             "commentary": {
                 "preamble": "",
                 "comments": [
-                   {
+                    {
                         "blockHeader": "",
                         "blockComments": [
                             {
@@ -371,14 +371,14 @@
                                 "measure": "2",
                                 "system": "8",
                                 "position": "3–4/8",
-                                "comment": "Unterstimmenschicht: Achtelnote A<sub>1</sub>/[a]F [sic. Lies: F<sub>1</sub>/[a]F] auf 4/8 und Achtelbalken zu 3/8 radiert."
+                                "comment": "Unterstimmenschicht: Achtelnote A<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>F [sic. Lies: F<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>F] auf 4/8 und Achtelbalken zu 3/8 radiert."
                             },
                             {
                                 "svgGroupId": "g19",
                                 "measure": "2",
                                 "system": "8",
                                 "position": "3/8, 5/8",
-                                "comment": "Unterstimmenschicht: sic. Lies: [#]Fis<sub>1</sub>/Fis und [a]F<sub>1</sub>/F."
+                                "comment": "Unterstimmenschicht: sic. Lies: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/Fis und <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>/F."
                             },
                             {
                                 "svgGroupId": "g16",
@@ -392,14 +392,14 @@
                                 "measure": "2",
                                 "system": "9–8",
                                 "position": "5/8",
-                                "comment": "Oberstimmenschicht: [#]gis/e<sup>1</sup> radiert."
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis/e<sup>1</sup> radiert."
                             },
                             {
                                 "svgGroupId": "g17",
                                 "measure": "2",
                                 "system": "8",
                                 "position": "5/8",
-                                "comment": "Unterstimmenschicht: [a]F überschreibt E."
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F überschreibt E."
                             },
                             {
                                 "svgGroupId": "g20",
@@ -420,7 +420,7 @@
                                 "measure": "4",
                                 "system": "8",
                                 "position": "3/8",
-                                "comment": "Unterstimmenschicht: Achtelnote [b]As radiert."
+                                "comment": "Unterstimmenschicht: Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>As radiert."
                             },
                             {
                                 "svgGroupId": "g23",
@@ -504,7 +504,7 @@
                                 "measure": "24",
                                 "system": "4",
                                 "position": "1/8",
-                                "comment": "Unterstimmenschicht: d<sup>1</sup> überschreibt [[#]]fis<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: d<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]fis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g5",
@@ -576,7 +576,7 @@
                     }
                 ]
             }
-        }, 
+        },
         {
             "id": "M_46_Sk4",
             "label": "M 46 Sk4",
@@ -615,7 +615,7 @@
                                 "measure": "36B",
                                 "system": "17",
                                 "position": "5–6/8",
-                                "comment": "Oberstimmenschicht: Achtelnote [n]f–e überschreibt Viertelnote [n]f."
+                                "comment": "Oberstimmenschicht: Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreibt Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
                             },
                             {
                                 "svgGroupId": "g22",
@@ -717,7 +717,7 @@
                             }
                         ]
                     }
-                ]  
+                ]
             }
         },
         {
@@ -726,12 +726,12 @@
             "evaluations": [
                 "<strong>Sk5</strong> enhält – anfänglich noch um eine Oktave nach unten versetzt – den mittleren Abschnitt vom A-Teil für Textfassung 2."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
-                        {
-                            "blockHeader": "",
-                            "blockComments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
                             {
                                 "svgGroupId": "g1",
                                 "measure": "9",
@@ -820,9 +820,9 @@
             "evaluations": [
                 "<strong>Sk6</strong> formuliert für Textfassung 2 eine harmonisch und motivisch neue Progression ab dem fünften Takt des B-Teils."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                     {
                         "blockHeader": "",
                         "blockComments": [
@@ -831,7 +831,7 @@
                                 "measure": "27",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "[#]fis gestrichen."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis gestrichen."
                             },
                             {
                                 "svgGroupId": "g5",
@@ -845,14 +845,14 @@
                                 "measure": "28",
                                 "system": "13",
                                 "position": "5/8",
-                                "comment": "[#]gis<sup>1</sup> überschreibt h<sup>1</sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "29",
                                 "system": "14",
                                 "position": "1. Note",
-                                "comment": "g: [a] überschreibt [#]."
+                                "comment": "g: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -878,31 +878,31 @@
                             {
                                 "svgGroupId": "g12",
                                 "measure": "38",
-                                    "system": "16",
-                                    "position": "1. Note",
-                                    "comment": " Oberstimmenschicht: h gestrichen."
-                                },
-                                {
-                                    "svgGroupId": "g13",
-                                    "measure": "38",
-                                    "system": "16",
-                                    "position": "2. Note",
-                                    "comment": "Oberstimmenschicht: Viertelnote g/e<sup>1</sup> gestrichen? Entzifferung nicht eindeutig."
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": " Oberstimmenschicht: h gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g13",
+                                "measure": "38",
+                                "system": "16",
+                                "position": "2. Note",
+                                "comment": "Oberstimmenschicht: Viertelnote g/e<sup>1</sup> gestrichen? Entzifferung nicht eindeutig."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
         {
             "id": "M_46_Sk6_1",
             "label": "M 46 Sk6.1",
             "evaluations": [
                 "<strong>Sk6.1</strong> überarbeitet die T. 29–31 aus Sk6 in harmonischer Hinsicht, indem statt Cis-Dur nun cis-Moll etabliert wird."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                     {
                         "blockHeader": "",
                         "blockComments": [
@@ -911,7 +911,7 @@
                                 "measure": "31",
                                 "system": "18",
                                 "position": "1. Note",
-                                "comment": "[#]cis: Halbe überschreibt Viertelnote."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis: Halbe überschreibt Viertelnote."
                             }
                         ]
                     }
@@ -924,9 +924,9 @@
             "evaluations": [
                 "<strong>Sk7</strong> versetzt die in Sk5 schon skizzierten T. 9–12 um eine Oktave nach oben und nimmt kleinere melodische Anpassungen vor."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                     {
                         "blockHeader": "",
                         "blockComments": [
@@ -969,9 +969,9 @@
             "evaluations": [
                 "<strong>Sk8</strong> formuliert für Textfasung 2 die Mittelstimme und Basslinie von T. 1–4 neu."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                     {
                         "blockHeader": "",
                         "blockComments": [
@@ -1001,7 +1001,7 @@
                                 "measure": "3",
                                 "system": "15",
                                 "position": "2. Note",
-                                "comment": "Oberstimmenschicht: Achtelfähnchen zu [#]gis gestrichen."
+                                "comment": "Oberstimmenschicht: Achtelfähnchen zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis gestrichen."
                             }
                         ]
                     }
@@ -1014,9 +1014,9 @@
             "evaluations": [
                 "<strong>Sk9</strong> skizziert für Textfassung 2 erstmals die in Sk4 noch nicht vorhandene Übergangslinie im Bass zum B-Teil. Dessen ersten beiden Takte (T. 23–24) sind gegenüber Textfassung 1 leicht überarbeitet und greifen die in Sk8 neu eingeführten Liegetöne im Bass auf."
             ],
-                "commentary": {
-                    "preamble": "",
-                    "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                     {
                         "blockHeader": "",
                         "blockComments": [
@@ -1029,8 +1029,8 @@
                             }
                         ]
                     }
-                ]  
-            }  
+                ]
+            }
         }
     ]
 }

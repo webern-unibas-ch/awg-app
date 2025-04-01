@@ -6,10 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> unbeschrieben. Horizontale Knickfalte."
-                ],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> unbeschrieben. Horizontale Knickfalte."],
                 "writingMaterialStrings": [
                     "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 348 × 265 mm, Firmenzeichen [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
                 ],
@@ -532,8 +530,8 @@
             "siglumAddendum": "",
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -541,9 +539,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -717,8 +713,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
-                        "label": "source_B_corr_1",
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -774,8 +770,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
-                        "label": "source_B_corr_2",
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -818,7 +814,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         },
         {
@@ -827,8 +823,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschrieben. Bogen oben in der Falte eingerissen. Horizontale und vertikale Knickfalte."
                 ],
                 "writingMaterialStrings": [
@@ -836,9 +832,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1016,8 +1010,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>C</strong> (mit Bleistift und Tinte)",
-                        "label": "source_C_corr_1",
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Bleistift und Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1121,8 +1115,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B</strong> (mit Bleistift und braunem Buntstift)",
-                        "label": "source_C_corr_2",
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1171,7 +1165,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         }
     ]
