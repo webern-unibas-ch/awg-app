@@ -65,7 +65,7 @@
   <path id="line43" d="M166.937 261.68h793.804" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="path43" fill="#000" stroke="none" d="M164.204 174.213c-11.708 18.682 5.012 35.53-5.921 43.734h.454c13.207-10.942-3.152-25.052 5.458-43.268z" style="stroke-width:1.33333"/>
   <path id="path44" fill="#000" stroke="none" d="M164.204 261.68c-11.708-18.681 5.012-35.53-5.921-43.733h.454c13.207 10.94-3.152 25.052 5.458 43.268z" style="stroke-width:1.33333"/>
-  <g id="g5" class="tkk">
+  <g id="g-tkk-1" class="tkk">
     <path id="polyline44" d="m182.279 167.917 9.054-8.371" style="fill:none;stroke:#000;stroke-width:.243825" transform="matrix(2.57264 -.51448 .55424 2.58837 -287.157 -84.261)"/>
   </g>
   <path id="polyline45" d="M421.788 107.612v66.625" style="fill:none;stroke:#000;stroke-width:.483" transform="translate(34.6 30.047)scale(1.33333)"/>

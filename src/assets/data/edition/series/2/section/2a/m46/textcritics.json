@@ -564,7 +564,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "6",
                                 "system": "11",
                                 "position": "1. Note",
@@ -588,126 +588,119 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g18",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{36A}",
                                 "system": "18–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g19",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "36B",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g20",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "36B",
                                 "system": "17",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g21",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "36B",
                                 "system": "17",
                                 "position": "5–6/8",
                                 "comment": "Oberstimmenschicht: Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreibt Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
                             },
                             {
-                                "svgGroupId": "g22",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "36B",
                                 "system": "18",
                                 "position": "6/8",
                                 "comment": "g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g23",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "38",
                                 "system": "18",
                                 "position": "1/8",
                                 "comment": "Achtelnote f<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g24",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "38",
                                 "system": "17",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g25",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "38",
                                 "system": "18",
                                 "position": "6/8",
                                 "comment": "Nach oben gehalste Achtelnote a<sup>1</sup>/f<sup>2</sup> überschreibt nach unten gehalste Achtelnote f<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g26",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "40",
                                 "system": "18",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Nicht eindeutig entzifferbar. Möglicherweise Halbe Note g<sup>1</sup> und punktierte Viertelnote a<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> gestrichen (bei e<sup>2</sup> jedoch kein Augmentationspunkt erkennbar)."
                             },
                             {
-                                "svgGroupId": "g30",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "40",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "Achtelnote aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste punktierte Viertelnote."
                             },
                             {
-                                "svgGroupId": "g31",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "40",
                                 "system": "15",
                                 "position": "1–2/8",
                                 "comment": "Oberstimmenschicht: Achtelnote e<sup>1</sup>–f<sup>1</sup> überschreibt Viertelnote e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g32",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "40",
                                 "system": "16",
                                 "position": "2/8",
                                 "comment": "Unterstimmenschicht: Mit 1/8 zusammengebalkte Achtelnote g<sup>1</sup> gestrichen und ersetzt durch d<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g33",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "40",
                                 "system": "16",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Viertelnote g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g34",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "40",
                                 "system": "15",
                                 "position": "3. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g28",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "40",
                                 "system": "18",
                                 "position": "4/8",
                                 "comment": "Balkierung überschreibt Achtelfähnchen."
                             },
                             {
-                                "svgGroupId": "g27",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "40",
                                 "system": "17",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: h<sup>1</sup>–a<sup>1</sup>–g<sup>1</sup> überschreibt g<sup>1</sup>–f<sup>1</sup>–e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g34",
-                                "measure": "40",
-                                "system": "15",
-                                "position": "3. Note",
-                                "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
-                            },
-                            {
-                                "svgGroupId": "g29",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "41",
                                 "system": "18",
                                 "position": "2–3/8",
@@ -731,77 +724,77 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "9",
                                 "system": "4",
                                 "position": "1/4",
                                 "comment": "e<sup>1</sup> überschreibt d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "10",
                                 "system": "5",
                                 "position": "1/4",
                                 "comment": "d überschreibt c."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "11",
                                 "system": "4",
                                 "position": "1/4",
                                 "comment": "g<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "11",
                                 "system": "4",
                                 "position": "6/8",
                                 "comment": "h<sup>1</sup> überschreibt c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g11",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "13",
                                 "system": "7",
                                 "position": "1/4",
                                 "comment": "d<sup>1</sup>/g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g12",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "13",
                                 "system": "7",
                                 "position": "2/4",
                                 "comment": "c<sup>1</sup>/f<sup>1</sup>/a<sup>1</sup>/f<sup>2</sup>/h<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g13",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "13",
                                 "system": "7",
                                 "position": "3/4",
                                 "comment": "a<sup>2</sup> überschreibt e<sup>2</sup>/g<sup>2</sup>? Entzifferung nicht eindeutig."
                             },
                             {
-                                "svgGroupId": "g14",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "14",
                                 "system": "7",
                                 "position": "1/4",
                                 "comment": "a<sup>1</sup>/f<sup>2</sup> überschreibt h<sup>1</sup>/g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g15",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "14",
                                 "system": "7",
                                 "position": "1–2/4",
                                 "comment": "d<sup>1</sup>–f<sup>1</sup> gestrichen? Entzifferung nicht eindeutig."
                             },
                             {
-                                "svgGroupId": "g16",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "14",
                                 "system": "7",
                                 "position": "2/4",
                                 "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt d<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g17",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "14",
                                 "system": "8",
                                 "position": "1. Note",
@@ -825,63 +818,63 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "27",
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis gestrichen."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "28",
                                 "system": "13",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "28",
                                 "system": "13",
                                 "position": "5/8",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "29",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "g: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "31A",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g10",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "35",
                                 "system": "15",
                                 "position": "letzte Note",
                                 "comment": "g<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g11",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "38",
                                 "system": "15",
                                 "position": "1/4",
                                 "comment": "Viertelnote f/d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g12",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "38",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": " Oberstimmenschicht: h gestrichen."
                             },
                             {
-                                "svgGroupId": "g13",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "38",
                                 "system": "16",
                                 "position": "2. Note",
@@ -905,7 +898,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "31",
                                 "system": "18",
                                 "position": "1. Note",
@@ -929,28 +922,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "9",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g10",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "9",
                                 "system": "18",
                                 "position": "(2–3/4)",
                                 "comment": "Oberstimmenschicht: Viertelnote h überschreibt Augmentationspunkt von c<sup>1</sup> und ersetzt gestrichene Achtelnote h."
                             },
                             {
-                                "svgGroupId": "g11",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "10",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: D gestrichen."
                             },
                             {
-                                "svgGroupId": "g12",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "11",
                                 "system": "18",
                                 "position": "1. Note",
@@ -974,28 +967,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "15",
                                 "position": "1/8",
                                 "comment": "g gestrichen."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote a gestrichen."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "3",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "Mittelstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "3",
                                 "system": "15",
                                 "position": "2. Note",
@@ -1019,7 +1012,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "23",
                                 "system": "13",
                                 "position": "1. Note",
