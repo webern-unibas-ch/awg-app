@@ -5,7 +5,7 @@
         }
         @for (detail of details; track $index; let lastDetail = $last) {
             <span [compile-html]="detail" [compile-html-ref]="ref"></span>
-            @if (detailsClass !== 'desc') {
+            @if (detailsClass !== 'conditions') {
                 @if (!lastDetail) {
                     <span>;</span><br />
                 } @else {

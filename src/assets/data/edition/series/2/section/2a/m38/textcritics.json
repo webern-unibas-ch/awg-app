@@ -51,7 +51,7 @@
             "id": "M_38_Sk1",
             "label": "M 38 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -103,7 +103,7 @@
             "id": "M_38_Sk2",
             "label": "M 38 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -143,7 +143,7 @@
             "id": "M_38_Sk3",
             "label": "M 38 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
