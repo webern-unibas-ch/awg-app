@@ -167,7 +167,7 @@
       <path id="path7" d="m148.163 112.76.752-3.595h.541l-.152.735q.278-.417.542-.616.267-.2.545-.2.182 0 .45.132l-.25.569q-.16-.116-.35-.116-.32 0-.66.36-.338.358-.531 1.29l-.305 1.441z" style="font-size:65%;baseline-shift:super"/>
     </g>
   </g>
-  <g id="g1" class="link-box">
+  <g id="g1" class="link-box-todo">
     <path id="rect112" d="M525.823 196.998h386.31v122.317h-386.31Z" style="fill:#fff;stroke-width:1.33333"/>
     <path id="rect113" d="M525.823 196.998h386.31v122.317h-386.31Z" style="fill:none;stroke:#777;stroke-width:.910664;stroke-opacity:.866667"/>
     <g id="text114" aria-label="Tintenniederschrift Textfassung 1 T. 21–24" style="font-weight:700;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:1.33333">
