@@ -6,10 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
-                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Kleine Risse am linken Rand."
-                ],
+            "physDesc": {
+                "conditions": ["1 Blatt (Bl. 1). Horizontale Knickfalte. Kleine Risse am linken Rand."],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 343 × 263 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>v</sup>"
                 ],
@@ -430,8 +428,8 @@
             "siglumAddendum": "",
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschrieben. Horizontale und vertikale Knickfalte. Bogen unten in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
@@ -439,9 +437,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -578,8 +574,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
-                        "label": "source_B_corr_1",
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -693,7 +689,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "3/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span><sup> </sup>zu f<sup>2</sup> rasiert."
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> rasiert."
                                         },
                                         {
                                             "measure": "21",
@@ -759,7 +755,7 @@
                                             "measure": "nach 32",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {33A} pauschal gestrichen:  <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen:  <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "33",
@@ -809,8 +805,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B</strong> (mit Tinte und Bleistift im Hinblick auf Textfassung 2)",
-                        "label": "source_B_corr_2",
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte und Bleistift im Hinblick auf Textfassung 2)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -991,7 +987,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         },
         {
@@ -1000,18 +996,14 @@
             "siglumAddendum": "",
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> und 2<sup>v</sup> unbeschrieben."
-                ],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> und 2<sup>v</sup> unbeschrieben."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1113,8 +1105,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
-                        "label": "source_C_corr_1",
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1150,7 +1142,7 @@
                                             "measure": "nach 13",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {14A} pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "14",
@@ -1254,8 +1246,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>C</strong> (mit Tinte)",
-                        "label": "source_C_corr_2",
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1298,7 +1290,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         }
     ]
