@@ -877,7 +877,7 @@
                                 "measure": "29",
                                 "system": "14",
                                 "position": "1. Note",
-                                "comment": "g: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
