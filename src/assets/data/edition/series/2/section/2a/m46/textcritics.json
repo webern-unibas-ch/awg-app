@@ -156,13 +156,6 @@
                                 "comment": "Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g1798",
-                                "measure": "4",
-                                "system": "1",
-                                "position": "",
-                                "comment": "Oberstimmenschicht: Halbe Note c<sup>3</sup> und Viertelnote a<sup>1</sup>/f<sup>2</sup> überschreiben punktierte Viertelnote a<sup>2</sup>/c<sup>3</sup> und Achtelnoten f<sup>2</sup>/a<sup>2</sup>–f<sup>2</sup>–e<sup>2</sup>."
-                            },
-                            {
                                 "svgGroupId": "g-tkk-3",
                                 "measure": "3",
                                 "system": "17",
@@ -518,7 +511,7 @@
                                 "measure": "24",
                                 "system": "4",
                                 "position": "5–6/8",
-                                "comment": "Unterstimmenschicht: a<sup>1</sup>–e<sup>1</sup> überschreibt cis<sup>2</sup>–a<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: a<sup>1</sup>–e<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]cis<sup>2</sup>–a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-24",
@@ -614,119 +607,119 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g-tkk-1",
-                                "measure": "{36A}",
+                                "measure": "{16A}",
                                 "system": "18–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
-                                "measure": "36B",
+                                "measure": "16B",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
-                                "measure": "36B",
+                                "measure": "16B",
                                 "system": "17",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
-                                "measure": "36B",
+                                "measure": "16B",
                                 "system": "17",
                                 "position": "5–6/8",
                                 "comment": "Oberstimmenschicht: Achtelnoten <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreiben Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
-                                "measure": "36B",
+                                "measure": "16B",
                                 "system": "18",
                                 "position": "6/8",
                                 "comment": "g<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
-                                "measure": "38",
+                                "measure": "18",
                                 "system": "18",
                                 "position": "1/8",
                                 "comment": "Achtelnote f<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
-                                "measure": "38",
+                                "measure": "18",
                                 "system": "17",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-8",
-                                "measure": "38",
+                                "measure": "18",
                                 "system": "18",
                                 "position": "6/8",
                                 "comment": "Nach oben gehalste Achtelnote a<sup>1</sup>/f<sup>2</sup> überschreibt nach unten gehalste Achtelnote f<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-9",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "18",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Nicht eindeutig entzifferbar. Möglicherweise Halbe Note g<sup>1</sup> und punktierte Viertelnote a<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> gestrichen (bei e<sup>2</sup> jedoch kein Augmentationspunkt erkennbar)."
                             },
                             {
                                 "svgGroupId": "g-tkk-10",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "Achtelnote aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste punktierte Viertelnote."
                             },
                             {
                                 "svgGroupId": "g-tkk-11",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "15",
                                 "position": "1–2/8",
                                 "comment": "Oberstimmenschicht: Achtelnote e<sup>1</sup>–f<sup>1</sup> überschreibt Viertelnote e<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-12",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "16",
                                 "position": "2/8",
                                 "comment": "Unterstimmenschicht: Mit 1/8 zusammengebalkte Achtelnote g<sup>1</sup> gestrichen und ersetzt durch d<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-13",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "16",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Viertelnote g<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-14",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "15",
                                 "position": "3. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
                                 "svgGroupId": "g-tkk-15",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "18",
                                 "position": "4/8",
                                 "comment": "Balkierung überschreibt Achtelfähnchen."
                             },
                             {
                                 "svgGroupId": "g-tkk-16",
-                                "measure": "40",
+                                "measure": "20",
                                 "system": "17",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: h<sup>1</sup>–a<sup>1</sup>–g<sup>1</sup> überschreibt g<sup>1</sup>–f<sup>1</sup>–e<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-17",
-                                "measure": "41",
+                                "measure": "21",
                                 "system": "18",
                                 "position": "2–3/8",
                                 "comment": "Unterstimmenschicht: Balken zwischen 2/8 und 3/8 gestrichen."
