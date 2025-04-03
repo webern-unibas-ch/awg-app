@@ -936,7 +936,7 @@
                                 "measure": "31",
                                 "system": "18",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis: Halbe überschreibt Viertelnote."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis: Halbe Note überschreibt Viertelnote."
                             }
                         ]
                     }
