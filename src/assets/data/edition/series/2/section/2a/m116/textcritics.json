@@ -475,7 +475,7 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-10",
-                                "measure": "11",
+                                "measure": "11B",
                                 "system": "1",
                                 "position": "7/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
