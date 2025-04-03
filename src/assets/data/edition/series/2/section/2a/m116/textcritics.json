@@ -76,9 +76,9 @@
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "1",
-                                "system": "17",
-                                "position": "3/8",
-                                "comment": "Augmentationspunkt gestrichen."
+                                "system": "1",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis überschreibt es."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
@@ -139,7 +139,7 @@
                             {
                                 "svgGroupId": "g-tkk-11",
                                 "measure": "7",
-                                "system": "2",
+                                "system": "4",
                                 "position": "1. Note",
                                 "comment": "f<sup>3</sup> gestrichen."
                             },
@@ -320,7 +320,7 @@
             "id": "M_116_Sk1_2",
             "label": "M 116 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1'})\"><strong>Sk1</strong></a> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist der sehr ähnliche Melodieverlauf am Anfang von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1a'})\">T. 5</a> (mit den überschriebenen f<sup>1</sup> auf 1/8)."
+                "<strong>Sk1.2</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1'})\"><strong>Sk1</strong></a> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist der sehr ähnliche Melodieverlauf am Anfang von <a (click)=\"ref.selectSvgSheet({complexId: 'm116', sheetId: 'M_116_Sk1a'})\">T. 5</a> (mit dem überschriebenen f<sup>1</sup> auf 1/8)."
             ],
             "commentary": {
                 "preamble": "",
@@ -450,7 +450,7 @@
                                 "measure": "8",
                                 "system": "17",
                                 "position": "9–11/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>c<sup>3</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>a<sup>2</sup>–[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]a<sup>2</sup>–b<sup>2</sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>–c<sup>3</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>a<sup>2</sup>–[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]a<sup>2</sup>–b<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -534,14 +534,14 @@
                                 "measure": "14A",
                                 "system": "5",
                                 "position": "1/2",
-                                "comment": "[g]Ges überschreibt As."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>Ges überschreibt As."
                             },
                             {
                                 "svgGroupId": "g-tkk-19",
                                 "measure": "15A",
                                 "system": "5",
                                 "position": "2/4",
-                                "comment": "[n]f überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es? Entzifferung unsicher."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g-tkk-20",
