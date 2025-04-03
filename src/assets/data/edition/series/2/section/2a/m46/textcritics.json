@@ -638,7 +638,7 @@
                                 "measure": "36B",
                                 "system": "17",
                                 "position": "5–6/8",
-                                "comment": "Oberstimmenschicht: Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreibt Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
+                                "comment": "Oberstimmenschicht: Achtelnoten <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreiben Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
