@@ -683,8 +683,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_B_corr_1",
-                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "id": "source_Ba_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
