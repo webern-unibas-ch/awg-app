@@ -528,28 +528,35 @@
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-25",
+                                "measure": "27",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Halbte Note überschreibt punktierte Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "28",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbte Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "30",
                                 "system": "2",
                                 "position": "2. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "32",
                                 "system": "2",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: d<sup>1</sup> überschreibt c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "34",
                                 "system": "1",
                                 "position": "1. Note",

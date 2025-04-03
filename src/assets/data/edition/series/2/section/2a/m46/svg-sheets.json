@@ -81,33 +81,27 @@
                 "label": "M 46 Sk3",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-1von5-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-1von4-final.svg",
                         "image": "",
                         "partial": "a",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-2von5-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-2von4-final.svg",
                         "image": "",
                         "partial": "b",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-3von5-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-3von4-final.svg",
                         "image": "",
                         "partial": "c",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-4von5-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-4von4-final.svg",
                         "image": "",
                         "partial": "d",
-                        "convolute": "A"
-                    },
-                    {
-                        "svg": "assets/img/edition/series/2/section/2a/m46/M46_Sk3-5von5-final.svg",
-                        "image": "",
-                        "partial": "e",
                         "convolute": "A"
                     }
                 ]
