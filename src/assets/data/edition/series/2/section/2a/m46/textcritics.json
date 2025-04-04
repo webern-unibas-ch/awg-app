@@ -525,7 +525,7 @@
                                 "measure": "27",
                                 "system": "2",
                                 "position": "1. Note",
-                                "comment": "Halbte Note überschreibt punktierte Halbe Note."
+                                "comment": "Halbe Note überschreibt punktierte Halbe Note."
                             },
                             {
                                 "svgGroupId": "g-tkk-26",
