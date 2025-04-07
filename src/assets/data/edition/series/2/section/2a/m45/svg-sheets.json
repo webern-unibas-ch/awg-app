@@ -10,13 +10,13 @@
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung1-1von2-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung1-2von2-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "B"
                     }
                 ]
             },
@@ -28,25 +28,25 @@
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung2-1von4-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "C"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung2-2von4-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "C"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung2-3von4-final.svg",
                         "image": "",
                         "partial": "c",
-                        "convolute": ""
+                        "convolute": "C"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Textfassung2-4von4-final.svg",
                         "image": "",
                         "partial": "d",
-                        "convolute": ""
+                        "convolute": "C"
                     }
                 ]
             }
@@ -57,7 +57,7 @@
                 "label": "M 45 Sk1",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m45/45_Sk1-1von11-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m45/M45_Sk1-1von11-final.svg",
                         "image": "",
                         "partial": "a",
                         "convolute": "A"
@@ -125,8 +125,8 @@
                 ]
             },
             {
-                "id": "M_45_Sk1.1",
-                "label": "M 45 Sk1_1",
+                "id": "M_45_Sk1_1",
+                "label": "M 45 Sk1.1",
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Sk1_1-1von1-final.svg",
@@ -137,8 +137,8 @@
                 ]
             },
             {
-                "id": "M_45_Sk1.2",
-                "label": "M 45 Sk1_2",
+                "id": "M_45_Sk1_2",
+                "label": "M 45 Sk1.2",
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Sk1_2-1von1-final.svg",
@@ -149,8 +149,8 @@
                 ]
             },
             {
-                "id": "M_45_Sk1.3",
-                "label": "M 45 Sk1_3",
+                "id": "M_45_Sk1_3",
+                "label": "M 45 Sk1.3",
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Sk1_3-1von1-final.svg",
@@ -173,8 +173,8 @@
                 ]
             },
             {
-                "id": "M_45_Sk2.1",
-                "label": "M 45 Sk2_1",
+                "id": "M_45_Sk2_1",
+                "label": "M 45 Sk2.1",
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m45/M45_Sk2_1-1von1-final.svg",

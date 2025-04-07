@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 1 und 2.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 26.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Blatt (Bl. 1). Horizontale Knickfalte. Kleine Risse am linken Rand."],
@@ -39,35 +39,35 @@
                                         {
                                             "system": "1–2",
                                             "measure": "7–9, 10A, 10B(2–3/4), 10C(2–3/4), {11A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–5",
                                             "measure": "11B, 12–13, {14A}, 14B, 15A",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk5b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–7",
                                             "measure": "15B, 16A, {17A–18A}, 16B(3/4); 17A, 17B(2–3/4)",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk5c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5",
                                             "measure": "18B(1/4)",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk5d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9a",
                                             "measure": "18C",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk5e"
                                         }
                                     ]
                                 ]
@@ -91,21 +91,21 @@
                                         {
                                             "system": "9b–10",
                                             "measure": "{27A}, 27B, 28–31",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk6a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11a–12a",
                                             "measure": "32",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk6b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "34–37",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk6c"
                                         }
                                     ]
                                 ]
@@ -138,10 +138,7 @@
                     },
                     {
                         "item": "M 26 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m26",
-                            "sheetId": "M_26_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 26)",
                         "folios": [
                             {
@@ -191,77 +188,77 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–8",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–4",
                                             "measure": "9A–12A, 9B–11B",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5a–6a",
                                             "measure": "12B, 13A–14A, 10C–12C, 13B",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "9C, 10D–11D, {12D, 13B}, 11D(3/4), 12E, {13C}",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11b",
                                             "measure": "{13E}, 13F, 14B, 15A–19A",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–13",
                                             "measure": "13G, 14C, 13H, 14D, 15B–18B",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "19B, 20A–23A, 20B–23B",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–17",
                                             "measure": "24–26, 27A–32A",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18b–19b",
                                             "measure": "{27B}, 27C, {28B}, 29B",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20–21",
                                             "measure": "30B–32B, 33–36",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18a–19a",
                                             "measure": "37–38",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk1k"
                                         }
                                     ]
                                 ]
@@ -405,14 +402,14 @@
                                         {
                                             "system": "26–27",
                                             "measure": "12A, 12B, 13, {14A}, 14B, {15A}, 15B, 16",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "24b–25b",
                                             "measure": "17–18",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk3b"
                                         }
                                     ]
                                 ]
@@ -426,7 +423,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 1→2.<br />Enthält auch Tintenniederschrift von Studienkomposition für Streichquartett M 26.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -450,7 +447,7 @@
                         "item": "M 45",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45"
+                            "sheetId": "M_45_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 1→2)",
                         "folios": [
@@ -521,10 +518,7 @@
                     },
                     {
                         "item": "M 26 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m26",
-                            "sheetId": "M_26_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 26)",
                         "folios": [
                             {
@@ -994,7 +988,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 2 (<strong>C<sup>a</sup></strong>).<br />Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 (<strong>C<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> und 2<sup>v</sup> unbeschrieben."],
@@ -1016,7 +1010,7 @@
                         "item": "M 45",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45"
+                            "sheetId": "M_45_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 2)",
                         "folios": [
@@ -1088,14 +1082,14 @@
                                         {
                                             "system": "1–2 (Tinte)",
                                             "measure": "1–8",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5 (Tinte)",
                                             "measure": "9",
-                                            "linkTo": ""
+                                            "linkTo": "M_45_Sk4b"
                                         }
                                     ]
                                 ]
