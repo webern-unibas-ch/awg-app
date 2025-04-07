@@ -6081,7 +6081,7 @@ __metadata:
     "@types/node": "npm:^22.14.0"
     angular-cli-ghpages: "npm:^2.0.3"
     angular-eslint: "npm:^19.3.0"
-    bootstrap: "npm:^5.3.3"
+    bootstrap: "npm:^5.3.4"
     codemirror: "npm:^6.0.1"
     commit-and-tag-version: "npm:^12.5.0"
     conventional-recommended-bump: "npm:^11.0.0"
@@ -6110,7 +6110,7 @@ __metadata:
     n3: "npm:^1.24.2"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.5.3"
-    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.17"
+    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.18"
     rxjs: "npm:~7.8.2"
     source-map-explorer: "npm:^2.5.3"
     stream: "npm:^0.0.3"
@@ -6332,12 +6332,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "bootstrap@npm:5.3.3"
+"bootstrap@npm:^5.3.4":
+  version: 5.3.4
+  resolution: "bootstrap@npm:5.3.4"
   peerDependencies:
     "@popperjs/core": ^2.11.8
-  checksum: 10c0/bb68ca7b763977b9cce40cb5b8c676ae19a716d2f5d15009fa7bdbcec9dea426968e3cb748fbed7592fbf10edd7c749aea841c2920996a7c1aa5e0a6e2d4c2ad
+  checksum: 10c0/47000ac406d2b4d2d7e2f3e52d1b927f3a5fa82910bd86cada78ae8e0e0fd85c6d21a9161bf4c8f7e528b0f7d7c8b3cde1790ae04c6702a6b63c77671ad67227
   languageName: node
   linkType: hard
 
@@ -14101,9 +14101,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.17":
-  version: 0.9.18-alpha.17
-  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=f77455fdb77b8406d26657c3dd87adbdfc77f84a"
+"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.18":
+  version: 0.9.18-alpha.18
+  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=9f59e4a3f35d4a93aeea3960ff680e9c5769c816"
   dependencies:
     indexeddb-js: "npm:0.0.14"
     jsonld: "npm:^8.3.2"
@@ -14114,7 +14114,7 @@ __metadata:
       optional: true
     sqlite3:
       optional: true
-  checksum: 10c0/867d9208d796508a4b820e16759a83f997185d64d9e932e23c5abc4a8a030ba1c5d7972eb682c879aae87fee3ffb7c84889f37ee27e063052f8ed2ffc103b28a
+  checksum: 10c0/89b90ed2ad6234f98baee4f18c079a885b0d3c2096f9c31ceb7831ca93f752fcb01ec99547374c3f61c43a763572adeb770c3c58a218b842baac59408480b04a
   languageName: node
   linkType: hard
 
