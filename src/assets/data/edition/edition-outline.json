@@ -115,7 +115,7 @@
                                 { "complex": "M31", "disabled": false },
                                 { "complex": "M29", "disabled": false },
                                 { "complex": "M45", "disabled": false },
-                                { "complex": "M46", "disabled": true },
+                                { "complex": "M46", "disabled": false },
                                 { "complex": "M32", "disabled": false },
                                 { "complex": "M33", "disabled": false },
                                 { "complex": "M_STAR409", "disabled": true },
