@@ -540,15 +540,29 @@
                                     ],
                                     [
                                         {
-                                            "system": "4–5",
-                                            "measure": "8–16",
+                                            "system": "4a–5a",
+                                            "measure": "8–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4b–5b",
+                                            "measure": "13–16 (leere Takte)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a–8a",
+                                            "measure": "17–20 (leere Takte)",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7b–8b",
-                                            "measure": "17–24",
+                                            "measure": "21–24",
                                             "linkTo": ""
                                         }
                                     ],
