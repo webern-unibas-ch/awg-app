@@ -8,8 +8,7 @@ import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/mo
  * The SourceEvaluation component.
  *
  * It contains the source evaluation section
- * of the critical report
- * of the edition view of the app.
+ * of the critical report of the edition view of the app.
  */
 @Component({
     selector: 'awg-source-evaluation',

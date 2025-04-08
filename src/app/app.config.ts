@@ -51,7 +51,7 @@ export class AppConfig {
      * @returns {string}
      */
     public static get AWG_PROJECT_URL(): string {
-        return 'https://www.anton-webern.ch/';
+        return 'https://anton-webern.ch/';
     }
 
     /**

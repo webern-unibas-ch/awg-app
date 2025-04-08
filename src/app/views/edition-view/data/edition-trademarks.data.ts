@@ -390,7 +390,7 @@ export const EDITION_TRADEMARKS_DATA = {
      */
     JE_NO12_LIN12_OP3_G1: {
         route: 'assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op3_G1.png',
-        short: '[JE] | No. 12.',
+        short: '[JE] | No. 12',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12',
     },
 
@@ -408,7 +408,7 @@ export const EDITION_TRADEMARKS_DATA = {
      */
     JE_NO12_LIN12_OP4_H2: {
         route: 'assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op4_H2.png',
-        short: '[JE] | No. 12.',
+        short: '[JE] | No. 12',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12',
     },
 
@@ -426,7 +426,7 @@ export const EDITION_TRADEMARKS_DATA = {
      */
     JE_NO12_LIN12_OP12_D: {
         route: 'assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op12_D.png',
-        short: '[JE] | No. 12.',
+        short: '[JE] | No. 12',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12',
     },
 

@@ -197,7 +197,7 @@
                                 "system": "7",
                                 "position": "(4/4)",
                                 "comment": "Oberstimmenschicht: Notenkopf e<sup>1</sup> und c<sup>1</sup> gestrichen? Entzifferung unsicher."
-                            },  
+                            },
                             {
                                 "svgGroupId": "g9b",
                                 "measure": "nach 12",
@@ -479,7 +479,7 @@
                                 "measure": "5",
                                 "system": "7",
                                 "position": "2. Note",
-                                "comment": "{{ref.getGlyph('[#]')}}dis/fis überschreibt e/{{ref.getGlyph('[[#]]')}}gis; e<sup>1</sup>: sic. Vermutlich stehen geblieben vom zunächst angedachten E-Dur."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis/fis überschreibt e/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis; e<sup>1</sup>: sic. Vermutlich stehen geblieben vom zunächst angedachten E-Dur."
                             },
                             {
                                 "svgGroupId": "g14",
@@ -709,14 +709,14 @@
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk8"
+                        "sheetId": "M_23_Sk7"
                     }
                 },
                 {
-                    "svgGroupId": "g10",
+                    "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk9"
+                        "sheetId": "M_23_Sk8"
                     }
                 }
             ]
@@ -746,17 +746,17 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5",
+                    "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk7"
+                        "sheetId": "M_23_Sk6"
                     }
                 },
                 {
-                    "svgGroupId": "g7",
+                    "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk9"
+                        "sheetId": "M_23_Sk8"
                     }
                 }
             ]
@@ -789,14 +789,14 @@
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk7"
+                        "sheetId": "M_23_Sk6"
                     }
                 },
                 {
-                    "svgGroupId": "g8",
+                    "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk8"
+                        "sheetId": "M_23_Sk7"
                     }
                 }
             ]

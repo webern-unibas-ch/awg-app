@@ -33,7 +33,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -59,7 +59,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -85,7 +85,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Michael Matter',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -113,10 +113,11 @@ export const mockEditionData = {
                     {
                         folioId: '1',
                         systems: '12',
-                        format: {
+                        dimensions: {
                             height: 180,
                             width: 267,
                         },
+                        trademarkPosition: 'unten links',
                         content: [
                             {
                                 complexId: 'op12',
@@ -125,8 +126,8 @@ export const mockEditionData = {
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 2,
@@ -139,8 +140,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk3',
                                 sigle: 'M 212 Sk3',
                                 sigleAddendum: 'T. 3',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -154,8 +155,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk2',
                                 sigle: 'M 212 Sk2',
                                 sigleAddendum: 'T. 2',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -185,7 +186,8 @@ export const mockEditionData = {
     mockReversedFolio: {
         folioId: '1',
         systems: '12',
-        format: {
+        reversed: true,
+        dimensions: {
             height: 180,
             width: 267,
         },
@@ -198,12 +200,12 @@ export const mockEditionData = {
                 selectable: undefined,
                 reversed: true,
                 linkTo: undefined,
-                sectionPartition: 1,
-                sections: [
+                segmentSplit: 1,
+                segments: [
                     {
                         position: 1,
-                        startSystem: 2,
-                        endSystem: 4,
+                        startSystem: 4,
+                        endSystem: 2,
                     },
                 ],
             },
@@ -1285,7 +1287,7 @@ export const mockEditionData = {
                 label: 'test2',
                 evaluations: [
                     'test evaluation 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
+                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
                 ],
                 rowtable: true,
                 commentary: {
