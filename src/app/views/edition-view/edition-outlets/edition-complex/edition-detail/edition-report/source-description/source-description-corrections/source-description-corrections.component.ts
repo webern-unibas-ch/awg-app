@@ -6,8 +6,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
  * The SourceDescriptionCorrections component.
  *
  * It contains the source description corrections section
- * of the critical report
- * of the edition view of the app.
+ * of the critical report of the edition view of the app.
  */
 @Component({
     selector: 'awg-source-description-corrections',

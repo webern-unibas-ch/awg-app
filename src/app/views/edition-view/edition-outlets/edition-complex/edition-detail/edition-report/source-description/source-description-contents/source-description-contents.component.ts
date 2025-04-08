@@ -3,6 +3,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 import { UtilityService } from '@awg-core/services';
 import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 
+/**
+ * The SourceDescriptionContents component.
+ *
+ * It contains the source description contents section
+ * of the critical report of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description-contents',
     templateUrl: './source-description-contents.component.html',

@@ -10,6 +10,12 @@ import {
     SourceDescriptionWritingMaterialSystems,
 } from '@awg-views/edition-view/models';
 
+/**
+ * The SourceDescriptionWritingMaterials component.
+ *
+ * It contains the source description writingmaterial section
+ * of the critical report of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description-writing-materials',
     templateUrl: './source-description-writing-materials.component.html',

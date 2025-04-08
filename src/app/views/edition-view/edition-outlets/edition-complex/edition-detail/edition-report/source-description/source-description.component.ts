@@ -7,8 +7,7 @@ import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg
  * The SourceDescription component.
  *
  * It contains the source description section
- * of the critical report
- * of the edition view of the app.
+ * of the critical report of the edition view of the app.
  */
 @Component({
     selector: 'awg-source-description',
