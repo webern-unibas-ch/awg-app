@@ -1,16 +1,18 @@
+import { DOCUMENT } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { DOCUMENT } from '@angular/common';
-import { EDITION_TRADEMARKS_DATA } from '@awg-app/views/edition-view/data';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
+
+import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
 import {
     SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimensions,
     SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
-} from '@awg-app/views/edition-view/models';
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
-import { mockEditionData } from '@testing/mock-data';
+} from '@awg-views/edition-view/models';
+
 import { SourceDescriptionWritingMaterialsComponent } from './source-description-writing-materials.component';
 
 describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {

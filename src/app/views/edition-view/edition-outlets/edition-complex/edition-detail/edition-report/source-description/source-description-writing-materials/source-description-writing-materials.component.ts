@@ -1,15 +1,21 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
-import { UtilityService } from '@awg-app/core/services';
-import { EDITION_TRADEMARKS_DATA } from '@awg-app/views/edition-view/data';
+import { UtilityService } from '@awg-core/services';
+import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
 import {
     SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
     SourceDescriptionWritingMaterialDimensions,
     SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
-} from '@awg-app/views/edition-view/models';
+} from '@awg-views/edition-view/models';
 
+/**
+ * The SourceDescriptionWritingMaterials component.
+ *
+ * It contains the source description writing materials section
+ * of the critical report of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description-writing-materials',
     templateUrl: './source-description-writing-materials.component.html',

@@ -4,8 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
  * The SourceDescriptionDetails component.
  *
  * It contains the source description details section
- * of the critical report
- * of the edition view of the app.
+ * of the critical report of the edition view of the app.
  */
 @Component({
     selector: 'awg-source-description-details',
