@@ -417,7 +417,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "6–8b",
+                                            "system": "6–8c",
                                             "measure": "11–12",
                                             "linkTo": ""
                                         }
@@ -877,7 +877,7 @@
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1)",
-                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3)"
+                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 2–3)"
                 ],
                 "writingMaterials": [
                     {
@@ -944,7 +944,7 @@
                                 }
                             ]
                         },
-                        "folioAddendum": "3"
+                        "folioAddendum": "2–3"
                     }
                 ],
                 "writingInstruments": {

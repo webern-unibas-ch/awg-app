@@ -6,8 +6,9 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 349,
                         "width": 266
                     },
@@ -18,9 +19,10 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 2,
                                     "endSystem": 5
                                 }
@@ -32,9 +34,10 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 8–14",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 10
                                 }
@@ -46,9 +49,10 @@
                             "sigle": "M 76 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 15–21",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 12,
                                     "endSystem": 15
                                 }
@@ -57,11 +61,12 @@
                         {
                             "complexId": "m43",
                             "sheetId": "M_43_Sk1a",
-                            "sigle": "M 43 Sk1",
-                            "sigleAddendum": "T. 1–7",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "sigle": "M 43 Sk1 T. 1–7",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 16,
                                     "endSystem": 16
                                 }
@@ -70,11 +75,12 @@
                         {
                             "complexId": "m43",
                             "sheetId": "M_43_Sk1b",
-                            "sigle": "M 43 Sk1",
-                            "sigleAddendum": "T. {8A}–11",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "sigle": "M 43 Sk1 T. {8A}–11",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 17,
                                     "endSystem": 17
                                 }
@@ -85,7 +91,7 @@
                 {
                     "folioId": "1v",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 349,
                         "width": 266
                     },
@@ -99,8 +105,9 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 349,
                         "width": 267
                     },
@@ -111,9 +118,10 @@
                             "sigle": "M 43 Tintenniederschrift",
                             "sigleAddendum": "T. 1–3",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 2
                                 }
@@ -125,9 +133,10 @@
                             "sigle": "M 43 Tintenniederschrift",
                             "sigleAddendum": "T. 4–6",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 4,
                                     "endSystem": 5
                                 }
@@ -139,9 +148,10 @@
                             "sigle": "M 43 Tintenniederschrift",
                             "sigleAddendum": "T. 7–9",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 8
                                 }
@@ -153,9 +163,10 @@
                             "sigle": "M 43 Tintenniederschrift",
                             "sigleAddendum": "T. 10–11",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 11
                                 }
@@ -167,9 +178,10 @@
                             "sigle": "M 44 Tintenniederschrift",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 14,
                                     "endSystem": 15
                                 }
@@ -181,9 +193,10 @@
                             "sigle": "M 44 Tintenniederschrift",
                             "sigleAddendum": "T. 7–11",
                             "selectable": false,
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 17,
                                     "endSystem": 18
                                 }
@@ -194,7 +207,7 @@
                 {
                     "folioId": "1v",
                     "systems": "18",
-                    "format": {
+                    "dimensions": {
                         "height": 349,
                         "width": 267
                     },

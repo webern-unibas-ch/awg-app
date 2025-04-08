@@ -1081,6 +1081,68 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note; Halbe Note G<sub>1</sub> gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Achtelnote gestrichen."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "D/d ersetzt durch <span class='glyph'>{{ref.getGlyph('[b]')}}</span>Es/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "Taktende",
+                                            "comment": "Einschubzeichen über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M_35_42_Sk2'})\"><strong>Sk2</strong></a>)."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
                 ]
             }
         },
@@ -1093,7 +1155,7 @@
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>."
+                    "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
                 "writingMaterials": [
                     {
@@ -1492,7 +1554,7 @@
             "physDesc": {
                 "conditions": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>."
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingMaterials": [
                     {
@@ -1613,6 +1675,20 @@
                                         }
                                     ]
                                 ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "24–29",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
                             }
                         ]
                     },
@@ -1646,6 +1722,29 @@
                                 ]
                             }
                         ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_D_corr",
+                        "label": "Korrekturen in <strong>D</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Notenkopf zu fis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }

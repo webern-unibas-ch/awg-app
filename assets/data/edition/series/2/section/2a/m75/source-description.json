@@ -26,7 +26,10 @@
                 "contents": [
                     {
                         "item": "M 116 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
                         "folios": [
                             {
@@ -37,15 +40,15 @@
                                     [
                                         {
                                             "system": "1–2",
-                                            "measure": "11–13",
-                                            "linkTo": ""
+                                            "measure": "11B, 12–13",
+                                            "linkTo": "M_116_Sk2c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "14A–15A, 16, 14B–15B",
-                                            "linkTo": ""
+                                            "linkTo": "M_116_Sk2d"
                                         }
                                     ]
                                 ]

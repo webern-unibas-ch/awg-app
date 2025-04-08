@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.3.0&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.4.0&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;08. März 2025&#x27;</code>
+                        <i>Default value : </i><code>&#x27;08. April 2025&#x27;</code>
                     </td>
                 </tr>
 
@@ -2340,7 +2340,7 @@ to store graph images data.</p>
      */
     JE_NO12_LIN12_OP3_G1: {
         route: &#x27;assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op3_G1.png&#x27;,
-        short: &#x27;[JE] | No. 12.&#x27;,
+        short: &#x27;[JE] | No. 12&#x27;,
         full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12&#x27;,
     },
 
@@ -2358,7 +2358,7 @@ to store graph images data.</p>
      */
     JE_NO12_LIN12_OP4_H2: {
         route: &#x27;assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op4_H2.png&#x27;,
-        short: &#x27;[JE] | No. 12.&#x27;,
+        short: &#x27;[JE] | No. 12&#x27;,
         full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12&#x27;,
     },
 
@@ -2376,7 +2376,7 @@ to store graph images data.</p>
      */
     JE_NO12_LIN12_OP12_D: {
         route: &#x27;assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op12_D.png&#x27;,
-        short: &#x27;[JE] | No. 12.&#x27;,
+        short: &#x27;[JE] | No. 12&#x27;,
         full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12&#x27;,
     },
 
@@ -2922,7 +2922,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         id: &#x27;awglogo&#x27;,
         src: &#x27;assets/img/logos/awg.png&#x27;,
         alt: &#x27;Logo AWG&#x27;,
-        href: &#x27;https://www.anton-webern.ch/&#x27;,
+        href: &#x27;https://anton-webern.ch/&#x27;,
     },
     bootstrap: {
         id: &#x27;bootstraplogo&#x27;,
@@ -3137,7 +3137,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     authors: [
         {
             name: &#x27;Stefan Münnich&#x27;,
-            homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+            homepage: AppConfig.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
         },
     ],
     lastModified: &#x27;29. Januar 2016&#x27;,
@@ -3430,7 +3430,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 editors: [
                     {
                         name: &#x27;Thomas Ahrend&#x27;,
-                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                        homepage: &#x27;https://anton-webern.ch/de/projekt/mitarbeitende.html&#x27;,
                     },
                 ],
                 lastModified: &#x27;7. August 2024&#x27;,
@@ -3456,7 +3456,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 editors: [
                     {
                         name: &#x27;Thomas Ahrend&#x27;,
-                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                        homepage: &#x27;https://anton-webern.ch/de/projekt/mitarbeitende.html&#x27;,
                     },
                 ],
                 lastModified: &#x27;7. August 2024&#x27;,
@@ -3482,7 +3482,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 editors: [
                     {
                         name: &#x27;Michael Matter&#x27;,
-                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                        homepage: &#x27;https://anton-webern.ch/de/projekt/mitarbeitende.html&#x27;,
                     },
                 ],
                 lastModified: &#x27;7. August 2024&#x27;,
@@ -3510,10 +3510,11 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     {
                         folioId: &#x27;1&#x27;,
                         systems: &#x27;12&#x27;,
-                        format: {
+                        dimensions: {
                             height: 180,
                             width: 267,
                         },
+                        trademarkPosition: &#x27;unten links&#x27;,
                         content: [
                             {
                                 complexId: &#x27;op12&#x27;,
@@ -3522,8 +3523,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 sigleAddendum: &#x27;T. 1–2, [3–6]&#x27;,
                                 selectable: true,
                                 linkTo: &#x27;OP12_SOURCE_NOT_AVAILABLE&#x27;,
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 2,
@@ -3536,8 +3537,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 sheetId: &#x27;M_212_Sk3&#x27;,
                                 sigle: &#x27;M 212 Sk3&#x27;,
                                 sigleAddendum: &#x27;T. 3&#x27;,
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -3551,8 +3552,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 sheetId: &#x27;M_212_Sk2&#x27;,
                                 sigle: &#x27;M 212 Sk2&#x27;,
                                 sigleAddendum: &#x27;T. 2&#x27;,
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -3582,7 +3583,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     mockReversedFolio: {
         folioId: &#x27;1&#x27;,
         systems: &#x27;12&#x27;,
-        format: {
+        reversed: true,
+        dimensions: {
             height: 180,
             width: 267,
         },
@@ -3595,12 +3597,12 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 selectable: undefined,
                 reversed: true,
                 linkTo: undefined,
-                sectionPartition: 1,
-                sections: [
+                segmentSplit: 1,
+                segments: [
                     {
                         position: 1,
-                        startSystem: 2,
-                        endSystem: 4,
+                        startSystem: 4,
+                        endSystem: 2,
                     },
                 ],
             },
@@ -4682,7 +4684,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 label: &#x27;test2&#x27;,
                 evaluations: [
                     &#x27;test evaluation 1&#x27;,
-                    &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
+                    &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht. Vgl. die implizite Harmonik mit dem &lt;span class&#x3D;&#x27;glyph&#x27;&gt;{{ref.getGlyph(&#x27;[b]&#x27;)}}&lt;/span&gt;des&lt;sup&gt;2&lt;/sup&gt; in &lt;strong&gt;Sk1.3&lt;/strong&gt;.&quot;,
                 ],
                 rowtable: true,
                 commentary: {

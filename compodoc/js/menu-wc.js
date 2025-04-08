@@ -1219,6 +1219,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioCalculationPoint.html" data-type="entity-link" >FolioCalculationPoint</a>
                             </li>
                             <li class="link">
+                                <a href="classes/FolioCalculationRectangle.html" data-type="entity-link" >FolioCalculationRectangle</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/FolioCalculationSheet.html" data-type="entity-link" >FolioCalculationSheet</a>
                             </li>
                             <li class="link">
@@ -1246,10 +1249,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioConvoluteList.html" data-type="entity-link" >FolioConvoluteList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioFormat.html" data-type="entity-link" >FolioFormat</a>
+                                <a href="classes/FolioDimensions.html" data-type="entity-link" >FolioDimensions</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSection.html" data-type="entity-link" >FolioSection</a>
+                                <a href="classes/FolioSegment.html" data-type="entity-link" >FolioSegment</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioSettings.html" data-type="entity-link" >FolioSettings</a>

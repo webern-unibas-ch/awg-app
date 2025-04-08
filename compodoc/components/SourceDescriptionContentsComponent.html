@@ -121,6 +121,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The SourceDescriptionContents component.</p>
+<p>It contains the source description contents section
+of the critical report of the edition view of the app.</p>
+
+    </p>
 
 
 
@@ -260,7 +269,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -293,7 +302,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -324,7 +333,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:34</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -364,8 +373,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -446,7 +455,7 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -478,7 +487,7 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-description/source-description-contents/source-description-contents.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -500,9 +509,15 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from &#x27;@angular/core&#x27;;
 
-import { UtilityService } from &#x27;@awg-app/core/services&#x27;;
-import { SourceDescriptionContent } from &#x27;@awg-app/views/edition-view/models&#x27;;
+import { UtilityService } from &#x27;@awg-core/services&#x27;;
+import { SourceDescriptionContent } from &#x27;@awg-views/edition-view/models&#x27;;
 
+/**
+ * The SourceDescriptionContents component.
+ *
+ * It contains the source description contents section
+ * of the critical report of the edition view of the app.
+ */
 @Component({
     selector: &#x27;awg-source-description-contents&#x27;,
     templateUrl: &#x27;./source-description-contents.component.html&#x27;,
