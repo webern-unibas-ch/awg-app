@@ -7,10 +7,10 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
-import { AbbrDirective } from '@awg-app/shared/abbr/abbr.directive';
-import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
-import { SourceDescriptionContent } from '@awg-app/views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionContentsComponent } from './source-description-contents.component';
 
