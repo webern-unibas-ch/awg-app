@@ -13,7 +13,7 @@ import {
 /**
  * The SourceDescriptionWritingMaterials component.
  *
- * It contains the source description writingmaterial section
+ * It contains the source description writing materials section
  * of the critical report of the edition view of the app.
  */
 @Component({
