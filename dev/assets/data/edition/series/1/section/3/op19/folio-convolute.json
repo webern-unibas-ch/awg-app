@@ -1,0 +1,49 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 163,
+                        "width": 255
+                    },
+                    "content": [
+                        {
+                            "complexId": "op19",
+                            "sheetId": "SkRT",
+                            "sigle": "M 286 / M 287 RT (Reihentabelle op. 19)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 163,
+                        "width": 255
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-D",
+            "convoluteLabel": "A, C-D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP19_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}

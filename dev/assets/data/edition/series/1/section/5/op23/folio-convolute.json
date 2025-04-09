@@ -1,0 +1,216 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "26v",
+                    "systems": "16",
+                    "dimensions": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "27r",
+                    "trademarkPosition": "unten links",
+                    "systems": "16",
+                    "dimensions": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk1",
+                            "sigle": "M 312 Sk1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk1_1",
+                            "sigle": "M 312 Sk1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk2",
+                            "sigle": "M 312 Sk2 (Reihentabelle)",
+                            "sigleAddendum": "Reihenformen 1–10",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 4,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk3",
+                            "sigle": "M 312 Sk3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk3_1",
+                            "sigle": "M 312 Sk3.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk3_2",
+                            "sigle": "M 312 Sk3.2",
+                            "selectable": false,
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_312_Sk3_3",
+                            "sigle": "M 312 Sk3.3",
+                            "selectable": false,
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "34r",
+                    "trademarkPosition": "unten links",
+                    "systems": "16",
+                    "dimensions": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_314_Sk2",
+                            "sigle": "M 314 Sk2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op23",
+                            "sheetId": "M_314_Sk1",
+                            "sigle": "M 314 Sk1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "4",
+                    "dimensions": {
+                        "height": 74,
+                        "width": 270
+                    },
+                    "content": [
+                        {
+                            "complexId": "op23",
+                            "sheetId": "SkRT",
+                            "sigle": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "4",
+                    "dimensions": {
+                        "height": 74,
+                        "width": 270
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "C-D",
+            "convoluteLabel": "C–D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP23_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}
