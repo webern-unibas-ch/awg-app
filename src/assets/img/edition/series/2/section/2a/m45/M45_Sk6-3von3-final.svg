@@ -64,10 +64,10 @@
   <path id="line98" d="M168.877 250.966h831.387" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="line100" d="M168.877 256.433h831.387" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="line102" d="M168.877 261.9h831.387" style="fill:none;stroke:#000;stroke-width:.483"/>
-  <g id="g7" class="tkk" transform="translate(37.677)">
+  <g id="g-tkk-3" class="tkk" transform="translate(37.677)">
     <path id="polyline108" d="m212.175 115.129 8.713-7.687" style="fill:none;stroke:#000;stroke-width:.362251" transform="matrix(1.5641 0 0 1.43023 -38.319 19.956)"/>
   </g>
-  <g id="g8" class="tkk" transform="translate(37.677)">
+  <g id="g-tkk-4" class="tkk" transform="translate(37.677)">
     <path id="polyline112" d="m426.4 144.342 29.213-9.225" style="fill:none;stroke:#000;stroke-width:.362251" transform="matrix(1.10392 -.01906 .01892 1.1119 103.924 69.334)"/>
   </g>
   <path id="text114" d="M211.496 193.588q.218-.59.656-1.093.459-.503 1.05-.875.59-.393 1.268-.59.677-.219 1.377-.219t1.225.24q.524.22.83.613.307.372.372.896.088.503-.13 1.094-.22.59-.679 1.093-.459.525-1.05.897-.59.393-1.29.59-.677.219-1.355.219-.7 0-1.225-.24-.503-.22-.83-.613-.307-.394-.372-.919-.066-.502.153-1.093" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002"/>
