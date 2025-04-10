@@ -6083,7 +6083,7 @@ __metadata:
     angular-eslint: "npm:^19.3.0"
     bootstrap: "npm:^5.3.5"
     codemirror: "npm:^6.0.1"
-    commit-and-tag-version: "npm:^12.5.0"
+    commit-and-tag-version: "npm:^12.5.1"
     conventional-recommended-bump: "npm:^11.0.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
@@ -6925,29 +6925,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commit-and-tag-version@npm:^12.5.0":
-  version: 12.5.0
-  resolution: "commit-and-tag-version@npm:12.5.0"
+"commit-and-tag-version@npm:^12.5.1":
+  version: 12.5.1
+  resolution: "commit-and-tag-version@npm:12.5.1"
   dependencies:
     chalk: "npm:^2.4.2"
     conventional-changelog: "npm:4.0.0"
     conventional-changelog-config-spec: "npm:2.1.0"
     conventional-changelog-conventionalcommits: "npm:6.1.0"
     conventional-recommended-bump: "npm:7.0.1"
-    detect-indent: "npm:^6.0.0"
+    detect-indent: "npm:^6.1.0"
     detect-newline: "npm:^3.1.0"
     dotgitignore: "npm:^2.1.0"
-    figures: "npm:^3.1.0"
+    figures: "npm:^3.2.0"
     find-up: "npm:^5.0.0"
-    git-semver-tags: "npm:^5.0.0"
-    jsdom: "npm:^25.0.0"
+    git-semver-tags: "npm:^5.0.1"
+    jsdom: "npm:^25.0.1"
     semver: "npm:^7.6.3"
     w3c-xmlserializer: "npm:^5.0.0"
-    yaml: "npm:^2.4.1"
+    yaml: "npm:^2.6.0"
     yargs: "npm:^17.7.2"
   bin:
     commit-and-tag-version: bin/cli.js
-  checksum: 10c0/47b0e99a64e9a92913e58bfa39b83db0f810278dd8e9a26fa823d7a75d1b030cdf5587d9f6ba8f8bcd709302f7a1c0443aafa0555168471b77798e39156bad57
+  checksum: 10c0/2b15b967f5cce53f64a4c1bfe79190fbd67111330db898b1b62cba0639764a9ab4482f8eb12898bdb1647b4ca8d7fb9c9d68df60a703848293d347512f0127c3
   languageName: node
   linkType: hard
 
@@ -7931,7 +7931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-indent@npm:^6.0.0":
+"detect-indent@npm:^6.1.0":
   version: 6.1.0
   resolution: "detect-indent@npm:6.1.0"
   checksum: 10c0/dd83cdeda9af219cf77f5e9a0dc31d828c045337386cfb55ce04fad94ba872ee7957336834154f7647b89b899c3c7acc977c57a79b7c776b506240993f97acc7
@@ -9153,7 +9153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"figures@npm:^3.1.0":
+"figures@npm:^3.2.0":
   version: 3.2.0
   resolution: "figures@npm:3.2.0"
   dependencies:
@@ -9671,7 +9671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-semver-tags@npm:^5.0.0":
+"git-semver-tags@npm:^5.0.0, git-semver-tags@npm:^5.0.1":
   version: 5.0.1
   resolution: "git-semver-tags@npm:5.0.1"
   dependencies:
@@ -11129,7 +11129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:^25.0.0":
+"jsdom@npm:^25.0.1":
   version: 25.0.1
   resolution: "jsdom@npm:25.0.1"
   dependencies:
@@ -17107,12 +17107,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.4.1":
-  version: 2.6.1
-  resolution: "yaml@npm:2.6.1"
+"yaml@npm:^2.6.0":
+  version: 2.7.1
+  resolution: "yaml@npm:2.7.1"
   bin:
     yaml: bin.mjs
-  checksum: 10c0/aebf07f61c72b38c74d2b60c3a3ccf89ee4da45bcd94b2bfb7899ba07a5257625a7c9f717c65a6fc511563d48001e01deb1d9e55f0133f3e2edf86039c8c1be7
+  checksum: 10c0/ee2126398ab7d1fdde566b4013b68e36930b9e6d8e68b6db356875c99614c10d678b6f45597a145ff6d63814961221fc305bf9242af8bf7450177f8a68537590
   languageName: node
   linkType: hard
 
