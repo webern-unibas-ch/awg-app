@@ -4,9 +4,9 @@
             "id": "M_45_TF1",
             "label": "M 45 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 45 Textfassung 1 ist <strong>B</strong> relevante Quelle.",
-                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte und Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 2. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 45 Textfassung 1 ist <strong>B</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 45 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Tinte und Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 2. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 45 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -47,7 +47,7 @@
                                 "measure": "17",
                                 "system": "Klav.",
                                 "position": "2–3/4",
-                                "comment": "Noten der Ober- und Unterstimmenschicht (mit Ausnahme von h<sup>1</sup> auf 2/4) rekonstruiert nach Schreibschicht ante correcturam und mit Blick auf <strong>Sk3</strong> (vgl. auch Korrekturen 2)."
+                                "comment": "Noten der Ober- und Unterstimmenschicht (mit Ausnahme von h<sup>1</sup> auf 2/4) rekonstruiert nach Schreibschicht ante correcturam und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk3'})\"><strong>Sk3</strong></a> (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a>)."
                             },
                             {
                                 "svgGroupId": "g4866",
@@ -61,7 +61,7 @@
                                 "measure": "26",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Auch Fis<sub>1</sub>/Fis denkbar. Mit Bleistift hinzugefügtes <span class='glyph'>{{ref.getGlyph('[#]')}}</span> als Teil von Korrekturen 2 hier nicht berücksichtigt (vgl. Korrekturen 2 sowie Textfassung 2)."
+                                "comment": "Auch Fis<sub>1</sub>/Fis denkbar. Mit Bleistift hinzugefügtes <span class='glyph'>{{ref.getGlyph('[#]')}}</span> als Teil von <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> hier nicht berücksichtigt (vgl. Korrekturen 2 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF2b'})\">Textfassung 2</a>)."
                             },
                             {
                                 "svgGroupId": "g4878",
@@ -89,21 +89,20 @@
                                 "measure": "39 <br /> bis 40",
                                 "system": "Klav. o.",
                                 "position": "letzte Note <br /> 1. Note",
-                                "comment": "a in T. 40 versetzt aus Klav. u.; Ligaturbogen in T. 39 und Legatobogen in T. 40 ergänzt. <strong>B</strong>: Seitenwechsel."
+                                "comment": "a in T. 40 versetzt aus Klav. u.; Ligaturbogen in T. 39 und Legatobogen in T. 40 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a>: Seitenwechsel."
                             }
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_45_TF2",
             "label": "M 45 Textfassung 2",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <strong>B</strong> und <strong>C<sup>a</sup></strong> relevante Quellen. <strong>A</strong> und <strong>C<sup>b</sup></strong> enthalten Skizzen.",
-                "<strong>B</strong> und <strong>C<sup>a</sup></strong> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>B</strong> betreffen auf Textfassung 2. Der Zustand post correcturam in <strong>B</strong> und nach Korrekturen 1 in <strong>C<sup>a</sup></strong> konstituiert eine kohärente Textfassung. <strong>C<sup>a</sup></strong> enthält T. 7–18 (Bl. 1r System 1–2/4–5/7a–8a) und T. 27–47 (Bl. 1r System 7b–8b/10–11/16–14) für Textfassung 2, die T. 7–18 bzw. T. 27–32 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <strong>B</strong> (Streichungen, Einschubzeichen, Verweiszeichen) mit Bleistift und Tinte eingetragen. T. 44–46 in <strong>C<sup>a</sup></strong> sind nur durch den Hinweis „usw.“ stellvertreten, der implizit auf T. 8–10 in <strong>C<sup>a</sup></strong> als einzig denkbare Anschlussstelle verweist.",
-                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <strong>B</strong> post correcturam und <strong>C<sup>a</sup></strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> enthalten Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2 in <strong>B</strong></a> betreffen auf Textfassung 2. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und nach <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_1'})\">Korrekturen 1 in <strong>C<sup>a</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> enthält T. 7–18 (Bl. 1r System 1–2/4–5/7a–8a) und T. 27–47 (Bl. 1r System 7b–8b/10–11/16–14) für Textfassung 2, die T. 7–18 bzw. T. 27–32 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> (Streichungen, Einschubzeichen, Verweiszeichen) mit Bleistift und Tinte eingetragen. T. 44–46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> sind nur durch den Hinweis „usw.“ stellvertreten, der implizit auf T. 8–10 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> als einzig denkbare Anschlussstelle verweist.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> post correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -212,15 +211,14 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
 
         {
             "id": "M_45_Sk1",
             "label": "M 45 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 45 Textfassung 1, die in sich noch mehrere Verwerfungen und Verweise aufweist. Der Abschluss der ersten Phrase (T. 9–11) erfährt genauso etliche Überarbeitungen (u.a. Umstellung auf 4/4-Takt) wie der Übergang zur Reprise, der hier im Vergleich zu der Textfassung kürzer ist. Insbesondere aber weicht das zweite Thema trotz der Skizzierung zweier unterschiedlicher Versionen in der Verlaufsskizze noch erheblich von der endgültigen Version ab."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 45 <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>, die in sich noch mehrere Verwerfungen und Verweise aufweist. Der Abschluss der ersten Phrase (T. 9–11) erfährt genauso etliche Überarbeitungen (u.a. Umstellung auf 4/4-Takt) wie der Übergang zur Reprise, der hier im Vergleich zu der Textfassung kürzer ist. Insbesondere aber weicht das zweite Thema trotz der Skizzierung zweier unterschiedlicher Versionen in der Verlaufsskizze noch erheblich von der endgültigen Version ab."
             ],
             "commentary": {
                 "preamble": "",
@@ -590,7 +588,7 @@
                                 "measure": "22A",
                                 "system": "15",
                                 "position": "2–3/4",
-                                "comment": "Viertelnoten a<sup>1>/sup>–g<sup>1</sup> überschreiben Achtelnoten b<sup>1>/sup>–a<sup>1</sup> und Viertelnote g<sup>1</sup>."
+                                "comment": "Viertelnoten a<sup>1</sup>–g<sup>1</sup> überschreiben Achtelnoten b<sup>1</sup>–a<sup>1</sup> und Viertelnote g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1279",
@@ -755,7 +753,7 @@
             "id": "M_45_Sk1_1",
             "label": "M 45 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> skizziert einen einzelnen Takt, der in Bezug auf die Verlaufsskizze nicht genau zugeordnet werden kann."
+                "<strong>Sk1.1</strong> skizziert einen einzelnen Takt, der in Bezug auf die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk1'})\"><strong>Sk1</strong></a> nicht genau zugeordnet werden kann."
             ],
             "commentary": {
                 "preamble": "",
@@ -779,7 +777,7 @@
             "id": "M_45_Sk1_2",
             "label": "M 45 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> skizziert die Melodieführung der letzten beiden Takte vor, die dann in der letzten Akkolade von Sk1 T. 37–38 vollständig ausgeführt sind."
+                "<strong>Sk1.2</strong> skizziert die Melodieführung der letzten beiden Takte vor, die dann in der letzten Akkolade von <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk1k'})\"><strong>Sk1</strong> T. 37–38</a> vollständig ausgeführt sind."
             ],
             "commentary": {
                 "preamble": "",
@@ -790,7 +788,7 @@
             "id": "M_45_Sk1_3",
             "label": "M 45 Sk1.3",
             "evaluations": [
-                "<strong>Sk1.3</strong>präsentiert eine neue Version für T. 28 und verlängert die Überleitung zum zweiten Thema, indem nach T. 28 zwei zusätzliche Takte eingeschoben werden."
+                "<strong>Sk1.3</strong> präsentiert eine neue Version für <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk1i'})\"><strong>Sk1</strong> T. 28</a> und verlängert die Überleitung zum zweiten Thema, indem nach T. 28 zwei zusätzliche Takte eingeschoben werden."
             ],
             "commentary": {
                 "preamble": "",
@@ -863,7 +861,7 @@
             "id": "M_45_Sk2",
             "label": "M 45 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> formuliert einen erweiterten Schluss zu M 45, der in der Tintenniederschrift mit Ausnahme der ersten beiden Takte jedoch keine Verwendung findet."
+                "<strong>Sk2</strong> formuliert einen erweiterten Schluss zu M 45, der in der <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Tintenniederschrift</a> mit Ausnahme der ersten beiden Takte jedoch keine Verwendung findet."
             ],
             "commentary": {
                 "preamble": "",
@@ -901,7 +899,7 @@
             "id": "M_45_Sk2_1",
             "label": "M 45 Sk2.1",
             "evaluations": [
-                "<strong>Sk2.1</strong> knüpft an die in Sk2 entworfene Schlusswendung an und verkürzt diese um drei Takte."
+                "<strong>Sk2.1</strong> knüpft an die in <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk2'})\"><strong>Sk2</strong></a> entworfene Schlusswendung an und verkürzt diese um drei Takte."
             ],
             "commentary": {
                 "preamble": "",
@@ -1069,7 +1067,7 @@
             "id": "M_45_Sk5",
             "label": "M 45 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> enthält für Textfassung 2 eine neue, ausgedehntere Überleitung im Anschluss an das Hauptthema, die wegen des in Textfassung 2 vorgezogenen Mittelteils neu auf A-Dur endet."
+                "<strong>Sk5</strong> enthält für <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF2'})\">Textfassung 2</a> eine neue, ausgedehntere Überleitung im Anschluss an das Hauptthema, die wegen des in Textfassung 2 vorgezogenen Mittelteils neu auf A-Dur endet."
             ],
             "commentary": {
                 "preamble": "",
@@ -1268,7 +1266,7 @@
             "id": "M_45_Sk6",
             "label": "M 45 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> beinhaltet für Textfassung 2 eine erweiterte Überleitung im Anschluss an das d-Moll Thema des Mittelteils, die nun in das variierte Hauptthema in A-Dur mündet. T. 33, der an der Schnittstelle zwischen den beiden mit einem Verweiszeichen verbundenen Akkoladen von Sk6 steht, wurde wohl ausgelassen, weil er mit T. 30 aus TF1 identisch ist und daher keiner nochmaligen Skizierung bedurfte."
+                "<strong>Sk6</strong> beinhaltet für <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF2'})\">Textfassung 2</a> eine erweiterte Überleitung im Anschluss an das d-Moll Thema des Mittelteils, die nun in das variierte Hauptthema in A-Dur mündet. T. 33, der an der Schnittstelle zwischen den beiden mit einem Verweiszeichen verbundenen Akkoladen von <strong>Sk6</strong> steht, wurde wohl ausgelassen, weil er mit T. 30 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a> identisch ist und daher keiner nochmaligen Skizierung bedurfte."
             ],
             "commentary": {
                 "preamble": "",
@@ -1313,7 +1311,7 @@
             "id": "M_45_Sk7",
             "label": "M 45 Sk7",
             "evaluations": [
-                "<strong>Sk7</strong> formuliert für Textfassung 2 eine neue Überleitung im Anschluss an das variierte Hauptthema hin zur Reprise. Die nicht skizzierten T. 44–46 in der Lücke zwischen T. 43 und T. 47 entsprechen dabei den bereits bestehenden T. 8–10 aus dem ersten A-Teil."
+                "<strong>Sk7</strong> formuliert für <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF2'})\">Textfassung 2</a> eine neue Überleitung im Anschluss an das variierte Hauptthema hin zur Reprise. Die nicht skizzierten T. 44–46 in der Lücke zwischen T. 43 und T. 47 entsprechen dabei den bereits bestehenden T. 8–10 aus dem ersten A-Teil."
             ],
             "commentary": {
                 "preamble": "",
@@ -1326,7 +1324,7 @@
                                 "measure": "41",
                                 "system": "12",
                                 "position": "3/4",
-                                "comment": "cis<sup>1<sup> gestrichen."
+                                "comment": "cis<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g6",
