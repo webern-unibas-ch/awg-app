@@ -30,7 +30,7 @@
                         "item": "M 267",
                         "itemLinkTo": {
                             "complexId": "m267",
-                            "sheetId": "M_267"
+                            "sheetId": "M_267_TF1"
                         },
                         "itemDescription": "(Kinderstück für Klavier M 267)",
                         "folios": [
@@ -136,7 +136,7 @@
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. Korrekturen 2)"
+                                            "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "8 <br /> bis 9",
@@ -223,7 +223,7 @@
                                             "measure": "nach 7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für T. 8 (vgl. Korrekturen 1): <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "8",
@@ -235,7 +235,7 @@
                                             "measure": "8 bis 9",
                                             "system": "Klav. o.",
                                             "position": "6/8 <br /> 2/4",
-                                            "comment": "Alternative Skizze über dem System:  <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze über dem System: <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "9",
