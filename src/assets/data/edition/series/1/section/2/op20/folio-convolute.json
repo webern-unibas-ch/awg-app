@@ -1,0 +1,131 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle und Skizze (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "9",
+                    "dimensions": {
+                        "height": 147,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "op20",
+                            "sheetId": "SkRTa",
+                            "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
+                            "sigleAddendum": "Reihenformen 1–16",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "9",
+                    "dimensions": {
+                        "height": 147,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "op20",
+                            "sheetId": "M_289_Sk1",
+                            "sigle": "M 289 Sk1",
+                            "sigleAddendum": "(Reihentabelle [Variante])",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "9",
+                    "dimensions": {
+                        "height": 147,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "op20",
+                            "sheetId": "SkRTb",
+                            "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
+                            "sigleAddendum": "Reihenformen 17–32",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "9",
+                    "dimensions": {
+                        "height": 147,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "3r",
+                    "systems": "11",
+                    "dimensions": {
+                        "height": 165,
+                        "width": 255
+                    },
+                    "content": [
+                        {
+                            "complexId": "op20",
+                            "sheetId": "SkRTc",
+                            "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
+                            "sigleAddendum": "Reihenformen 33–48",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3v",
+                    "systems": "11",
+                    "dimensions": {
+                        "height": 165,
+                        "width": 255
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-G",
+            "convoluteLabel": "A, C–G (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP20_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}

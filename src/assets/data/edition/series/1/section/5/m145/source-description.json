@@ -6,10 +6,47 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Trauer I</em> („So wart bis ich dies dir noch künde“) M 145: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["2 aufeinander gelegte Bögen (Bl. 1/2, 3/4). Bl. 4<sup>r</sup>–4<sup>v</sup> unbeschriftet."],
+            "physDesc": {
+                "conditions": [
+                    "2 aufeinander gelegte Bögen (Bl. 1/2, 3/4). Bl. 4<sup>r</sup>–4<sup>v</sup> unbeschriftet."
+                ],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "343"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_M145_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r", "2r", "3r", "4r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1/2, 3/4"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",

@@ -32,7 +32,7 @@ const META_STRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
-            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+            homepage: AppConfig.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
         },
     ],
     lastModified: '29. Januar 2016',
