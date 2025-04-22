@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Bl. 2<sup>r</sup> und Bl. 2<sup>v</sup> unbeschrieben. Ecke oben rechts von Bl. 2 geknickt."
                 ],
                 "writingMaterialStrings": [
@@ -15,10 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift",
-                        "grüner Buntstift"
-                    ]
+                    "secondary": ["Bleistift", "grüner Buntstift"]
                 },
                 "titles": [],
                 "dates": [
@@ -275,7 +272,7 @@
                             ]
                         }
                     }
-                ]                
+                ]
             }
         }
     ]
