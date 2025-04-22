@@ -15,21 +15,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g533",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1 <br /> bis 2",
                                 "system": "Klav.",
                                 "position": "5/8 <br /> 1. Note",
                                 "comment": "Decrescendogabel versetzt von unter den Systemen."
                             },
                             {
-                                "svgGroupId": "g534",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "5",
                                 "system": "Klav.",
                                 "position": "2–3/8",
                                 "comment": "Decrescendogabel versetzt von unter den Systemen."
                             },
                             {
-                                "svgGroupId": "g535",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "4/8",
@@ -38,8 +38,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         }
     ]
 }
