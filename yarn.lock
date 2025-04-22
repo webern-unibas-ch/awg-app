@@ -6114,7 +6114,7 @@ __metadata:
     karma-jasmine: "npm:~5.1.0"
     karma-jasmine-html-reporter: "npm:^2.1.0"
     lint-staged: "npm:^15.5.0"
-    n3: "npm:^1.24.2"
+    n3: "npm:^1.25.2"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.5.3"
     rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.18"
@@ -12591,14 +12591,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^1.24.2":
-  version: 1.24.2
-  resolution: "n3@npm:1.24.2"
+"n3@npm:^1.25.2":
+  version: 1.25.2
+  resolution: "n3@npm:1.25.2"
   dependencies:
     buffer: "npm:^6.0.3"
-    queue-microtask: "npm:^1.1.2"
     readable-stream: "npm:^4.0.0"
-  checksum: 10c0/67e22e19b32942cd0db9bf0cf2815cc2cf51fe41794529367d62971da11284fc539420eadbe873d1b4f29a6f4d6d574889bc8a3784cb654a0ca9a5e87f4e800c
+  checksum: 10c0/47cb03555ddceb98be9c5ed10d67c9a045afe13d1a4225fe2ace9a63dcf8e1b6afe6019d72cb03e320c2c1d2fb6942c18ec92cdf3673e792a2084d5b1b5e089f
   languageName: node
   linkType: hard
 
@@ -14061,7 +14060,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"queue-microtask@npm:^1.1.2, queue-microtask@npm:^1.2.2":
+"queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10c0/900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
