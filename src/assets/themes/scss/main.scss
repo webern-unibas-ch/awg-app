@@ -393,30 +393,6 @@ span.facet-badge {
 .tab {
     @include tab(25px);
 }
-.singletab {
-    @include tab(50px);
-}
-.doubletab {
-    @include tab(60px);
-}
-.doubletab_extended {
-    @include tab(70px);
-}
-.tab75 {
-    @include tab(75px);
-}
-.tab100 {
-    @include tab(100px);
-}
-.tab150 {
-    @include tab(150px);
-}
-.tab200 {
-    @include tab(200px);
-}
-.tab250 {
-    @include tab(250px);
-}
 
 .indent {
     text-indent: 25px;
@@ -454,4 +430,16 @@ span.facet-badge {
 .ng-invalid:not(form),
 .ng-invalid:not(form):focus {
     border-start: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
+}
+
+/****** GLYPHS ******/
+@font-face {
+    font-family: 'Bravura';
+    src: url('../fonts/bravura-1.380/woff/Bravura.woff2') format('woff2');
+}
+
+.glyph {
+    font-family: 'Bravura';
+    font-size: 24px;
+    line-height: 1;
 }
