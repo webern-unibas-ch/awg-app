@@ -189,7 +189,7 @@ to calculate all the values needed for the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="1046" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1046</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="1051" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1051</a></div>
                             </td>
                         </tr>
 
@@ -293,7 +293,7 @@ to calculate all the values needed for the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="1046" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1046</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="1051" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1051</a></div>
                         </td>
                     </tr>
 
@@ -327,7 +327,7 @@ to calculate all the values needed for the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="1036" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1036</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="1041" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1041</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +361,7 @@ to calculate all the values needed for the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="1041" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1041</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="1046" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:1046</a></div>
                         </td>
                     </tr>
 
@@ -881,11 +881,16 @@ export class FolioCalculationContentSegment {
 
         const label &#x3D; new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
 
+        // Dynamically adjust the segmentOffsetCorrection based on the number of systems (reference: 18 systems)
+        const defaultNumberOfSystems &#x3D; 18;
+        const adjustedOffsetCorrection &#x3D;
+            this._segmentOffsetCorrection * (defaultNumberOfSystems / this._systems.NUMBER_OF_SYSTEMS);
+
         this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
             segment,
             this._systems,
             this.segmentSplit,
-            this._segmentOffsetCorrection
+            adjustedOffsetCorrection
         );
 
         const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(
