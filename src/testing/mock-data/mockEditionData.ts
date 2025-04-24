@@ -112,7 +112,7 @@ export const mockEditionData = {
                 folios: [
                     {
                         folioId: '1',
-                        systems: '12',
+                        systems: '18',
                         dimensions: {
                             height: 180,
                             width: 267,
@@ -185,7 +185,7 @@ export const mockEditionData = {
      */
     mockReversedFolio: {
         folioId: '1',
-        systems: '12',
+        systems: '18',
         reversed: true,
         dimensions: {
             height: 180,

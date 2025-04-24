@@ -90,6 +90,13 @@ export class FolioService {
     private readonly _contentSegmentStrokeWidth = 2;
 
     /**
+     * Private readonly variable: _defaultNumberOfSystems.
+     *
+     * It keeps the default number of systems.
+     */
+    private readonly _defaultNumberOfSystems = 18;
+
+    /**
      * Private readonly variable: _reversedRotationAngle.
      *
      * It keeps the rotation angle for a reversed item.
@@ -264,7 +271,11 @@ export class FolioService {
             const svgContentSegmentLink = this._appendContentSegmentLink(svgContentSegmentGroup);
 
             // Draw content segment polygon.
-            this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.segmentVertices);
+            this._appendContentSegmentLinkPolygon(
+                svgContentSegmentLink,
+                contentSegment.segmentVertices,
+                folioSvgData.systems.systemsLines.length
+            );
 
             // Draw content segment link label.
             this._appendContentSegmentLinkLabel(svgContentSegmentLink, contentSegment);
@@ -465,13 +476,20 @@ export class FolioService {
      * @param {string} segmentVertices The given segment vertices.
      * @returns {D3Selection} Appends a polygon shape to the content segment link selection.
      */
-    private _appendContentSegmentLinkPolygon(svgContentSegmentLink: D3Selection, segmentVertices: string): D3Selection {
+    private _appendContentSegmentLinkPolygon(
+        svgContentSegmentLink: D3Selection,
+        segmentVertices: string,
+        numberOfSystems: number = this._defaultNumberOfSystems
+    ): D3Selection {
+        // Dynamically adjust the strokeWidth based on the number of systems (reference: 18 systems)
+        const adjustedStrokeWidth = this._contentSegmentStrokeWidth * (this._defaultNumberOfSystems / numberOfSystems);
+
         const attributes = {
             class: 'content-segment-shape',
             points: segmentVertices,
             fill: this._contentSegmentFillColor,
         };
-        attributes['stroke-width'] = this._contentSegmentStrokeWidth;
+        attributes['stroke-width'] = adjustedStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'polygon', attributes);
     }
