@@ -1300,7 +1300,7 @@
                                 "measure": "vor 1",
                                 "system": "",
                                 "position": "Anfang",
-                                "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span> <em>=  )</em>."
+                                "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span>&ngsp;<em>=  )</em>."
                             },
                             {
                                 "svgGroupId": "g514",
@@ -1356,7 +1356,7 @@
                                 "measure": "13",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span> <em>=  )</em>."
+                                "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>=  )</em>."
                             },
                             {
                                 "svgGroupId": "g490",

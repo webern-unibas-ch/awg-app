@@ -3975,7 +3975,7 @@
                                             "measure": "13",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>ruhig (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span> <em>= ca 72)</em> auf Rasur."
+                                            "comment": "<em>ruhig (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>= ca 72)</em> auf Rasur."
                                         },
                                         {
                                             "measure": "12 <br /> und 14",
@@ -4004,7 +4004,7 @@
                                             "measure": "vor 1",
                                             "system": "",
                                             "position": "",
-                                            "comment": "<em>Langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span> <em>= ca 48)</em> teilweise auf Rasur und geändert. Ante correcturam: vermutlich <em>Sehr langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "<em>Langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span>&ngsp;<em>= ca 48)</em> teilweise auf Rasur und geändert. Ante correcturam: vermutlich <em>Sehr langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "2",
@@ -4642,7 +4642,7 @@
                                             "measure": "1",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>Ruhevoll (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span> <em>= ca <s>58</s></em> &lt;<em>58</em>&gt;<em>)</em>, <em><s>58</s></em> gestrichen mit Bleistift, &lt;<em>58</em>&gt; hinzugefügt mit schwarzer Tinte (Hs. Webern?)."
+                                            "comment": "<em>Ruhevoll (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>= ca <s>58</s></em> &lt;<em>58</em>&gt;<em>)</em>, <em><s>58</s></em> gestrichen mit Bleistift, &lt;<em>58</em>&gt; hinzugefügt mit schwarzer Tinte (Hs. Webern?)."
                                         },
                                         {
                                             "measure": "1–13",
