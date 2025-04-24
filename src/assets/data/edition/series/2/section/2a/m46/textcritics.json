@@ -94,7 +94,7 @@
                                 "measure": "15",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> korrigiert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> analog fis in T. 1 und gis<sup>1</sup> in T. 17 sowie mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk4'})\"><strong>Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_A'})\"><strong>A</strong></a> (dort jedoch fis<sup>1</sup> statt ges<sup>1</sup>)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> korrigiert zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> analog fis in T. 1 und gis<sup>1</sup> in T. 17 sowie mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M_46_Sk4'})\"><strong>Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_A'})\"><strong>A</strong></a> (dort jedoch fis<sup>1</sup> statt ges<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -146,7 +146,7 @@
                                 "measure": "1",
                                 "system": "17",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f überschreibt e."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f überschreibt e."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
@@ -160,7 +160,7 @@
                                 "measure": "3",
                                 "system": "17",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -195,7 +195,7 @@
                                 "measure": "10",
                                 "system": "16",
                                 "position": "3/4",
-                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> überschreibt Achtelnote g<sup>1</sup>."
+                                "comment": "Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> überschreibt Achtelnote g<sup>1</sup>."
                             }
                         ]
                     }
@@ -254,7 +254,7 @@
                                 "measure": "25",
                                 "system": "14",
                                 "position": "5–6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]fis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>–e<sup>3</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]fis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>–e<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -371,14 +371,14 @@
                                 "measure": "2",
                                 "system": "8",
                                 "position": "3–4/8",
-                                "comment": "Unterstimmenschicht: Achtelnote A<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>F [sic. Lies: F<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>F] auf 4/8 und Achtelbalken zu 3/8 radiert."
+                                "comment": "Unterstimmenschicht: Achtelnote A<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F [sic. Lies: F<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F] auf 4/8 und Achtelbalken zu 3/8 radiert."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
                                 "measure": "2",
                                 "system": "8",
                                 "position": "3/8, 5/8",
-                                "comment": "Unterstimmenschicht: sic. Lies: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/Fis und <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>/F."
+                                "comment": "Unterstimmenschicht: sic. Lies: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/Fis und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>/F."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -392,14 +392,14 @@
                                 "measure": "2",
                                 "system": "9–8",
                                 "position": "5/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis/e<sup>1</sup> radiert."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis/e<sup>1</sup> radiert."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
                                 "measure": "2",
                                 "system": "8",
                                 "position": "5/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F überschreibt E."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F überschreibt E."
                             },
                             {
                                 "svgGroupId": "g-tkk-8",
@@ -420,7 +420,7 @@
                                 "measure": "4",
                                 "system": "8",
                                 "position": "3/8",
-                                "comment": "Unterstimmenschicht: Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>As radiert."
+                                "comment": "Unterstimmenschicht: Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As radiert."
                             },
                             {
                                 "svgGroupId": "g-tkk-11",
@@ -504,14 +504,14 @@
                                 "measure": "24",
                                 "system": "4",
                                 "position": "1/8",
-                                "comment": "Unterstimmenschicht: d<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]fis<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: d<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]fis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-23",
                                 "measure": "24",
                                 "system": "4",
                                 "position": "5–6/8",
-                                "comment": "Unterstimmenschicht: a<sup>1</sup>–e<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]cis<sup>2</sup>–a<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: a<sup>1</sup>–e<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis<sup>2</sup>–a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-24",
@@ -631,7 +631,7 @@
                                 "measure": "16B",
                                 "system": "17",
                                 "position": "5–6/8",
-                                "comment": "Oberstimmenschicht: Achtelnoten <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f–e überschreiben Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
+                                "comment": "Oberstimmenschicht: Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f–e überschreiben Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -849,7 +849,7 @@
                                 "measure": "27",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
@@ -863,14 +863,14 @@
                                 "measure": "28",
                                 "system": "13",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt h<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
                                 "measure": "29",
                                 "system": "14",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -929,7 +929,7 @@
                                 "measure": "31",
                                 "system": "18",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis: Halbe Note überschreibt Viertelnote."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis: Halbe Note überschreibt Viertelnote."
                             }
                         ]
                     }
@@ -1037,7 +1037,7 @@
                                 "measure": "3",
                                 "system": "15",
                                 "position": "2. Note",
-                                "comment": "Oberstimmenschicht: Achtelfähnchen zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis gestrichen."
+                                "comment": "Oberstimmenschicht: Achtelfähnchen zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis gestrichen."
                             }
                         ]
                     }

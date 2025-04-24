@@ -19,7 +19,7 @@
                                 "measure": "1",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -94,7 +94,7 @@
                                 "measure": "7",
                                 "system": "Klav.",
                                 "position": "1/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -108,14 +108,14 @@
                                 "measure": "10",
                                 "system": "Klav. u.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
                             },
                             {
                                 "svgGroupId": "TODO",
                                 "measure": "12",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -157,14 +157,14 @@
                                 "measure": "23",
                                 "system": "Klav. u.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a als redundant weggelassen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a als redundant weggelassen."
                             },
                             {
                                 "svgGroupId": "TODO",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
                             }
                         ]
                     },
@@ -218,7 +218,7 @@
                                 "measure": "13",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -239,7 +239,7 @@
                                 "measure": "17",
                                 "system": "Klav. o.",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -274,7 +274,7 @@
                                 "measure": "27",
                                 "system": "Klav. o.",
                                 "position": "1/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -309,7 +309,7 @@
                                 "measure": "36",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -323,14 +323,14 @@
                                 "measure": "38",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>1</sup> und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
                             },
                             {
                                 "svgGroupId": "TODO",
                                 "measure": "38",
                                 "system": "Klav. u.",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
                             }
                         ]
                     },
@@ -356,7 +356,7 @@
                                 "measure": "16",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -417,7 +417,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "text748",
@@ -466,7 +466,7 @@
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "1/8",
-                                "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
+                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
                             },
                             {
                                 "svgGroupId": "g6096",
@@ -494,7 +494,7 @@
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "1/8",
-                                "comment": "(<span class='glyph'>{{ref.getGlyph('[#]')}}</span>) zu Gis<sub>1</sub>/Cis und (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu H/g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
+                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>) zu Gis<sub>1</sub>/Cis und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                             }
                         ]
                     }
@@ -619,21 +619,21 @@
                                 "measure": "1",
                                 "system": "3",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>?)."
                             },
                             {
                                 "svgGroupId": "g1153",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "g1320",
                                 "measure": "8",
                                 "system": "6",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> gestrichen und geändert zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> gestrichen und geändert zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1389",
@@ -668,7 +668,7 @@
                                 "measure": "13",
                                 "system": "11",
                                 "position": "2.–3. Note",
-                                "comment": "Zwei triolische Achtelnoten <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen und geändert zu Achtelpause."
+                                "comment": "Zwei triolische Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen und geändert zu Achtelpause."
                             },
                             {
                                 "svgGroupId": "g5850",
@@ -689,42 +689,42 @@
                                 "measure": "15",
                                 "system": "11",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>3</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>3</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
                             },
                             {
                                 "svgGroupId": "g911",
                                 "measure": "16",
                                 "system": "10",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> ersetzt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> ersetzt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g5891",
                                 "measure": "16",
                                 "system": "11",
                                 "position": "3–4/16",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> nach <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> nach <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
                             },
                             {
                                 "svgGroupId": "g5905",
                                 "measure": "16",
                                 "system": "10",
                                 "position": "3.–4. Note",
-                                "comment": "Zwei Achtelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
+                                "comment": "Zwei Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
                             },
                             {
                                 "svgGroupId": "g1256",
                                 "measure": "20",
                                 "system": "8",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g1276",
                                 "measure": "21",
                                 "system": "6",
                                 "position": "3. Note",
-                                "comment": "d<sup>1</sup> gestrichen und geändert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
+                                "comment": "d<sup>1</sup> gestrichen und geändert zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1194",
@@ -745,21 +745,21 @@
                                 "measure": "23",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
+                                "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
                             },
                             {
                                 "svgGroupId": "g1094",
                                 "measure": "23",
                                 "system": "13",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
                             },
                             {
                                 "svgGroupId": "g1104",
                                 "measure": "24",
                                 "system": "14",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>h durch Einkreisung getilgt."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h durch Einkreisung getilgt."
                             }
                         ]
                     }
@@ -791,14 +791,14 @@
                                 "measure": "10",
                                 "system": "12",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                             },
                             {
                                 "svgGroupId": "g1006",
                                 "measure": "11",
                                 "system": "14",
                                 "position": "(1/4)",
-                                "comment": "Punktierte Achtelpause, Sechzehntelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b radiert."
+                                "comment": "Punktierte Achtelpause, Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b radiert."
                             },
                             {
                                 "svgGroupId": "g1405",
@@ -838,7 +838,7 @@
                                 "measure": "10",
                                 "system": "9",
                                 "position": "2/4",
-                                "comment": "c gestrichen; <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es (?)."
+                                "comment": "c gestrichen; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?)."
                             },
                             {
                                 "svgGroupId": "g1543",
@@ -932,7 +932,7 @@
                                 "measure": "10",
                                 "system": "9",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>. (Oder: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>h?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>. (Oder: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h?)."
                             },
                             {
                                 "svgGroupId": "g1434",
@@ -993,7 +993,7 @@
                                 "measure": "6",
                                 "system": "1",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (?) gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (?) gestrichen und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g4b",
@@ -1014,7 +1014,7 @@
                                 "measure": "15",
                                 "system": "13",
                                 "position": "3/8",
-                                "comment": "Unklare Überschreibung: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (undeutlich) zu h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
+                                "comment": "Unklare Überschreibung: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (undeutlich) zu h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g6c",
@@ -1042,7 +1042,7 @@
                                 "measure": "20B",
                                 "system": "1",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu dis<sup>2</sup>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu dis<sup>2</sup>?)."
                             },
                             {
                                 "svgGroupId": "g4d",
@@ -1063,7 +1063,7 @@
                                 "measure": "22B",
                                 "system": "1",
                                 "position": "6/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu gis<sup>1</sup>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu gis<sup>1</sup>?)."
                             },
                             {
                                 "svgGroupId": "g4e",
@@ -1077,7 +1077,7 @@
                                 "measure": "23",
                                 "system": "7",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> (?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> (?)."
                             },
                             {
                                 "svgGroupId": "g6e",
@@ -1091,7 +1091,7 @@
                                 "measure": "24",
                                 "system": "9",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> (?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> (?)."
                             },
                             {
                                 "svgGroupId": "g8e",
@@ -1306,14 +1306,14 @@
                                 "measure": "19C",
                                 "system": "1",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "19C",
                                 "system": "2",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> gestrichen und geändert zu d<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> gestrichen und geändert zu d<sup>1</sup>."
                             }
                         ]
                     }
@@ -1338,14 +1338,14 @@
                                 "measure": "24",
                                 "system": "14",
                                 "position": "1. Note",
-                                "comment": "Sechzehntelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt Ansatz zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> oder <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
+                                "comment": "Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt Ansatz zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> oder <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "25",
                                 "system": "14",
                                 "position": "1–2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g6",
@@ -1487,7 +1487,7 @@
                                 "measure": "",
                                 "system": "12",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> (siehe auch Tonbuchstabe <em>c</em>) überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> (siehe auch Tonbuchstabe <em>c</em>) überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b."
                             }
                         ]
                     }
@@ -1534,7 +1534,7 @@
                                 "measure": "",
                                 "system": "12",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g6",
@@ -1649,7 +1649,7 @@
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g1b",
@@ -1684,7 +1684,7 @@
                                 "measure": "8",
                                 "system": "8",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu G), <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu gis)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu G), <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu gis)."
                             },
                             {
                                 "svgGroupId": "g9b",
@@ -1698,7 +1698,7 @@
                                 "measure": "9",
                                 "system": "7",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g11b",
@@ -1733,14 +1733,14 @@
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3.–5. Note",
-                                "comment": "f<sup>1</sup>–f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt e<sup>1</sup>–e<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup> (?)."
+                                "comment": "f<sup>1</sup>–f<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt e<sup>1</sup>–e<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup> (?)."
                             },
                             {
                                 "svgGroupId": "g33d",
                                 "measure": "14B",
                                 "system": "4",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> (zu b<sup>1</sup>)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> (zu b<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g1e",
@@ -1754,14 +1754,14 @@
                                 "measure": "18",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> (siehe Textfassung 1) fehlt."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> (siehe Textfassung 1) fehlt."
                             },
                             {
                                 "svgGroupId": "g33e",
                                 "measure": "18",
                                 "system": "3",
                                 "position": "5–6/8",
-                                "comment": "Zunächst: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>G überschreibt G–E. Dann 5/8: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu e)."
+                                "comment": "Zunächst: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>G überschreibt G–E. Dann 5/8: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu e)."
                             },
                             {
                                 "svgGroupId": "g44e",
@@ -1782,7 +1782,7 @@
                                 "measure": "19",
                                 "system": "2",
                                 "position": "letzte Note",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> (siehe Textfassung 1) fehlt."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> (siehe Textfassung 1) fehlt."
                             },
                             {
                                 "svgGroupId": "g1f",
@@ -1796,7 +1796,7 @@
                                 "measure": "21",
                                 "system": "6",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es gestrichen."
                             }
                         ]
                     }
@@ -1842,7 +1842,7 @@
                                 "measure": "5",
                                 "system": "3",
                                 "position": "4/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g5b",
@@ -1863,14 +1863,14 @@
                                 "measure": "7",
                                 "system": "7",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g7b",
                                 "measure": "8",
                                 "system": "7",
                                 "position": "1/4",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
                             },
                             {
                                 "svgGroupId": "g8b",
@@ -1898,14 +1898,14 @@
                                 "measure": "16",
                                 "system": "6",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Halbe Note a/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt Viertelnote a/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: Halbe Note a/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt Viertelnote a/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g5d",
                                 "measure": "19",
                                 "system": "6",
                                 "position": "1/4",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
                             },
                             {
                                 "svgGroupId": "g5e",
