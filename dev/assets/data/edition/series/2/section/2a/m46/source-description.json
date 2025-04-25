@@ -728,7 +728,7 @@
                                             "measure": "25",
                                             "system": "Klav. o.",
                                             "position": "6/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> rasiert; Ansatz zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> rasiert; Ansatz zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup>."
                                         },
                                         {
                                             "measure": "7",
@@ -1052,7 +1052,7 @@
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "3/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> rasiert."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> rasiert."
                                         },
                                         {
                                             "measure": "29",
@@ -1064,7 +1064,7 @@
                                             "measure": "31",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Mit Bleistift vorskizziertes <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Cis/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis ersetzt cis/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup>; cis<sup>1</sup> mit Bleistift gestrichen."
+                                            "comment": "Mit Bleistift vorskizziertes <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Cis/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis ersetzt cis/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup>; cis<sup>1</sup> mit Bleistift gestrichen."
                                         },
                                         {
                                             "measure": "31",
@@ -1115,7 +1115,7 @@
                                             "measure": "27",
                                             "system": "Klav. o.",
                                             "position": "4/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup> überschreibt e<sup>1</sup>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup> überschreibt e<sup>1</sup>."
                                         },
                                         {
                                             "measure": "27 <br /> bis 28",

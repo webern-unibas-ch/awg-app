@@ -1207,7 +1207,7 @@
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gestrichen."
                                         },
                                         {
                                             "measure": "23",
@@ -1246,7 +1246,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu virtuellem cis) hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu virtuellem cis) hinzugefügt."
                                         },
                                         {
                                             "measure": "11",
@@ -1258,13 +1258,13 @@
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>."
                                         },
                                         {
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "4/8",
-                                            "comment": "Es ersetzt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>."
+                                            "comment": "Es ersetzt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>."
                                         }
                                     ]
                                 }
@@ -1878,7 +1878,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -1890,7 +1890,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu F/e gestrichen mit blauer Tinte."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu F/e gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "13",
@@ -1926,7 +1926,7 @@
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "Auf Rasur. <br /> (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
+                                            "comment": "Auf Rasur. <br /> (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "14 <br /> bis 15",
@@ -1998,7 +1998,7 @@
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup> und (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup> und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
                                             "measure": "22",
@@ -2010,7 +2010,7 @@
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
                                             "measure": "22",
@@ -3248,7 +3248,7 @@
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> verändert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> verändert zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
                                         },
                                         {
                                             "measure": "21",
@@ -3881,7 +3881,7 @@
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> hinzugefügt mit Bleistift."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> hinzugefügt mit Bleistift."
                                         },
                                         {
                                             "measure": "19",

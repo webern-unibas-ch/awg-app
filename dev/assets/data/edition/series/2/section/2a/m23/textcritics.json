@@ -479,7 +479,7 @@
                                 "measure": "5",
                                 "system": "7",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis/fis überschreibt e/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis; e<sup>1</sup>: sic. Vermutlich stehen geblieben vom zunächst angedachten E-Dur."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis/fis überschreibt e/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]gis; e<sup>1</sup>: sic. Vermutlich stehen geblieben vom zunächst angedachten E-Dur."
                             },
                             {
                                 "svgGroupId": "g14",
