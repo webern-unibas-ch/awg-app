@@ -28,13 +28,13 @@
 <title>cluster_EditionTkaModule_declarations</title>
 <polygon fill="none" stroke="black" points="138,-78 138,-130 752,-130 752,-78 138,-78"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_EditionTkaModule_exports</title>
-<polygon fill="none" stroke="black" points="71,-208 71,-260 697,-260 697,-208 71,-208"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_EditionTkaModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 130,-130 130,-78 16,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_EditionTkaModule_exports</title>
+<polygon fill="none" stroke="black" points="71,-208 71,-260 697,-260 697,-208 71,-208"/>
 </g>
 <!-- EditionTkaEvaluationsComponent -->
 <g id="node1" class="node">
