@@ -80,7 +80,7 @@
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g3099",
@@ -300,7 +300,7 @@
                                 "measure": "{11A}",
                                 "system": "16",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt a<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g970",
@@ -335,7 +335,7 @@
                                 "measure": "11C",
                                 "system": "14",
                                 "position": "4/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> für cis gestrichen? Entzifferung unklar."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für cis gestrichen? Entzifferung unklar."
                             },
                             {
                                 "svgGroupId": "g1103",

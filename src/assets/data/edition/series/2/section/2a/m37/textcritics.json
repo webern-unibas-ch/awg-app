@@ -19,7 +19,7 @@
                                 "measure": "6",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "Notenhals und nur im Ansatz vorhandenes <span class='glyph'>{{ref.getGlyph('[#]')}}</span> ergänzt."
+                                "comment": "Notenhals und nur im Ansatz vorhandenes <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> ergänzt."
                             },
                             {
                                 "svgGroupId": "g4643",
@@ -98,7 +98,7 @@
                                 "measure": "4",
                                 "system": "18",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: a überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis."
+                                "comment": "Oberstimmenschicht: a überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis."
                             }
                         ]
                     }
@@ -199,7 +199,7 @@
                                 "measure": "12",
                                 "system": "10",
                                 "position": "1. Note",
-                                "comment": "Viertelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt Halbe Note <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
+                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt Halbe Note <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g10298",
@@ -213,7 +213,7 @@
                                 "measure": "13",
                                 "system": "10",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g11767",
@@ -234,14 +234,14 @@
                                 "measure": "18",
                                 "system": "13",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g21427",
                                 "measure": "19",
                                 "system": "13",
                                 "position": "1. Note",
-                                "comment": "Punktierte Viertelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> der Oberstimmenschicht überschreibt Halbe Note <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> der Unterstimmenschicht."
+                                "comment": "Punktierte Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> der Oberstimmenschicht überschreibt Halbe Note <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> der Unterstimmenschicht."
                             },
                             {
                                 "svgGroupId": "g22161",
