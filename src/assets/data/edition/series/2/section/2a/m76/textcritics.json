@@ -26,14 +26,14 @@
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g4",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
                             },
                             {
                                 "svgGroupId": "g3",
@@ -47,7 +47,7 @@
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>/c<sup>2</sup> ergänzt mit Blick auf Textfassung 2."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>/c<sup>2</sup> ergänzt mit Blick auf Textfassung 2."
                             },
                             {
                                 "svgGroupId": "g2646",

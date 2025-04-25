@@ -240,7 +240,7 @@
                                 "measure": "2",
                                 "system": "8",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu möglichem des gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu möglichem des gestrichen."
                             },
                             {
                                 "svgGroupId": "g1525",
@@ -296,7 +296,7 @@
                                 "measure": "7",
                                 "system": "7",
                                 "position": "8/16",
-                                "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu überschriebenem gis<sup>2</sup> gestrichen."
+                                "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu überschriebenem gis<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1586",
@@ -509,7 +509,7 @@
                                 "measure": "2",
                                 "system": "10",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g1122",
