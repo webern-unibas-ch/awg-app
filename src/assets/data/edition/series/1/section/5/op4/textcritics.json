@@ -727,7 +727,7 @@
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: <em>weiß</em>. <strong>George_DJdS</strong>: <em>Weiss</em> (am Zeilenanfang)."
+                                "comment": "Text sic: <em>weiß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>Weiss</em> (am Zeilenanfang)."
                             },
                             {
                                 "svgGroupId": "TODO",
