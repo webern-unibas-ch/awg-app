@@ -138,7 +138,7 @@
                                 { "complex": "M113", "disabled": true },
                                 { "complex": "M114", "disabled": true },
                                 { "complex": "M112", "disabled": true },
-                                { "complex": "M267", "disabled": true }
+                                { "complex": "M267", "disabled": false }
                             ]
                         }
                     }
