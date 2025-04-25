@@ -261,7 +261,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> vorskizziert."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> vorskizziert."
                                         },
                                         {
                                             "measure": "15 bis nach 15",
@@ -273,7 +273,7 @@
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "2–3/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>–cis<sup>1</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>–cis<sup>1</sup> gestrichen."
                                         },
                                         {
                                             "measure": "nach 17",
