@@ -2510,8 +2510,6 @@ describe('FolioService (DONE)', () => {
                 };
                 attributes['stroke-width'] = expectedSheetStrokeWidth;
 
-                console.log('attributes', attributes);
-
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [svgTrademarkGroup, 'rect', attributes]);
             });
 
