@@ -97,7 +97,23 @@
                         "height": 341,
                         "width": 271
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–17",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2r",
