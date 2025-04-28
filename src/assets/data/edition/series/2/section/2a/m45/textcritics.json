@@ -129,7 +129,7 @@
                                 "measure": "7",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "Ende der Decrescendogabel ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>. (Textfassung 2: Einschub zwischen T. 6 und 7, Ende der Decrescendogabel fehlt, vgl. auch Quellenbewertung.)"
+                                "comment": "Ende der Decrescendogabel ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>. (C<sup>a</sup>: Einschub zwischen T. 6 und 7, Ende der Decrescendogabel fehlt, vgl. auch Quellenbewertung.)"
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -1056,14 +1056,14 @@
                             {
                                 "svgGroupId": "g-tkk-5",
                                 "measure": "{14A}",
-                                "system": "26–27",
+                                "system": "27",
                                 "position": "",
                                 "comment": "Noten und Schlüssel pauschal gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
                                 "measure": "{15A}",
-                                "system": "26–27",
+                                "system": "26",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
@@ -1331,15 +1331,8 @@
                                 "svgGroupId": "g-tkk-23",
                                 "measure": "17A",
                                 "system": "6",
-                                "position": "4/8",
-                                "comment": "cis<sup>1</sup>/cis<sup>2</sup> überschreibt fis<sup>1</sup>/fis<sup>2</sup>."
-                            },
-                            {
-                                "svgGroupId": "g-tkk-24",
-                                "measure": "17A",
-                                "system": "6",
                                 "position": "(2–3/4)",
-                                "comment": "Noten pauschal gestrichen; Entzifferung unsicher."
+                                "comment": "cis<sup>1</sup>/cis<sup>2</sup> auf 5/8 überschreibt fis<sup>1</sup>/fis<sup>2</sup> auf 4/8; Noten von 2/4–6/8 pauschal gestrichen; Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g-tkk-25",
