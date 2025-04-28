@@ -1199,7 +1199,7 @@
                                 "measure": "9",
                                 "system": "1",
                                 "position": "(3/4)",
-                                "comment": "Achteltriole [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]<sup>2</sup>–fis<sup>1</sup>/fis<sup>2</sup>–e<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/e<sup>2</sup> überschreibt Achtelnoten h<sup>1</sup>–e<sup>2</sup>."
+                                "comment": "Achteltriole [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>2</sup>–fis<sup>1</sup>/fis<sup>2</sup>–e<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/e<sup>2</sup> überschreibt Achtelnoten h<sup>1</sup>–e<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -1287,14 +1287,14 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-17",
-                                "measure": "{15A}",
+                                "measure": "15A",
                                 "system": "3–4",
                                 "position": "(1/4)",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-18",
-                                "measure": "{15A}",
+                                "measure": "15A",
                                 "system": "4",
                                 "position": "",
                                 "comment": "Metrisch ungenau positionierte Viertelnote Gis<sub>1</sub>/E(?) gestrichen. Entzifferung unsicher."
@@ -1308,7 +1308,7 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-20",
-                                "measure": "{15A}",
+                                "measure": "16A",
                                 "system": "6",
                                 "position": "(3/4)",
                                 "comment": "Noten pauschal gestrichen."
