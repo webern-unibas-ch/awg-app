@@ -830,7 +830,7 @@
             "id": "M_45_Sk1_2",
             "label": "M 45 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> skizziert die Melodieführung der letzten beiden Takte vor, die dann in der letzten Akkolade von <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk1k'})\"><strong>Sk1</strong> T. 37–38</a> vollständig ausgeführt sind."
+                "<strong>Sk1.2</strong> skizziert die Melodieführung der letzten beiden Takte, die dann in der letzten Akkolade von <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk1k'})\"><strong>Sk1</strong> T. 37–38</a> vollständig ausgeführt sind."
             ],
             "commentary": {
                 "preamble": "",
