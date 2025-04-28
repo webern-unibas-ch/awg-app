@@ -1980,7 +1980,7 @@
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "8/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
                                             "measure": "22",
@@ -1992,7 +1992,7 @@
                                             "measure": "30",
                                             "system": "Klav. o.",
                                             "position": "6/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "nach 31",
@@ -2028,7 +2028,7 @@
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für d."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für d."
                                         },
                                         {
                                             "measure": "{42}",
@@ -2040,25 +2040,25 @@
                                             "measure": "{42}",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Oberstimmenschicht: Notenkopf cis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                            "comment": "Oberstimmenschicht: Notenkopf cis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
                                             "measure": "{42}",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "42",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>."
+                                            "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>."
                                         },
                                         {
                                             "measure": "45",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für f überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für a."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für f überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für a."
                                         },
                                         {
                                             "measure": "50",
@@ -2094,7 +2094,7 @@
                                             "measure": "54",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
                                         },
                                         {
                                             "measure": "54  <br /> bis 56",
@@ -2136,7 +2136,7 @@
                                             "measure": "vor 70",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "gis<sup>2</sup> und <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b<sup>2 </sup>gestrichen (vgl. TkA)."
+                                            "comment": "gis<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b<sup>2 </sup>gestrichen (vgl. TkA)."
                                         },
                                         {
                                             "measure": "72",
@@ -2160,7 +2160,7 @@
                                             "measure": "78",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> ür b überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für g."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> ür b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für g."
                                         },
                                         {
                                             "measure": "78",
@@ -2172,7 +2172,7 @@
                                             "measure": "80",
                                             "system": "Klav. o.",
                                             "position": "1.­–2. Note",
-                                            "comment": "Zwei zusammengebalkte Achtelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>/d<sup>2</sup>–b<sup>2</sup> geändert zu Achtelnote und Viertelnote."
+                                            "comment": "Zwei zusammengebalkte Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>/d<sup>2</sup>–b<sup>2</sup> geändert zu Achtelnote und Viertelnote."
                                         },
                                         {
                                             "measure": "80",
@@ -2277,13 +2277,13 @@
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "9/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
                                         },
                                         {
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "10–12/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis–H–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Dis überschreibt a–fis–H."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis–H–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Dis überschreibt a–fis–H."
                                         },
                                         {
                                             "measure": "24",
