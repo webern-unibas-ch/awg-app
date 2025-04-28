@@ -1199,7 +1199,7 @@
                                 "measure": "9",
                                 "system": "1",
                                 "position": "(3/4)",
-                                "comment": "Achteltriole [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]<sup>2</sup>–fis<sup>1</sup>/fis<sup>2</sup>–e<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/e<sup>2</sup> überschreibt Achtelnoten h<sup>1</sup>–e<sup>2</sup>."
+                                "comment": "Achteltriole [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>2</sup>–fis<sup>1</sup>/fis<sup>2</sup>–e<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/e<sup>2</sup> überschreibt Achtelnoten h<sup>1</sup>–e<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
