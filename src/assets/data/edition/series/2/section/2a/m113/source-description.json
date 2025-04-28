@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale und vertikale Knickfalte in Bl. 1 und 4, horizontale Knickfalte in Bl. 2/3. Bl. 1 in der Knickfalte links, rechts und unten eingerissen. Tintenflecken auf Bl. 1<sup>v</sup> und 4<sup>r</sup>. Rissspuren am rechten Rand von Bl. 4: von Bogen abgerissen. Archivalische Paginierung <em>p. 4</em> auf Bl. 4<sup>v</sup> und <em>p. 10 </em>auf Bl. 3<sup>v</sup> mit Bleistift unten links. Archivalische Eintragung <em>Langsamer Satz </em>mit Bleistift unten rechts auf Bl. 1<sup>v</sup>."
                 ],
                 "writingMaterialStrings": [
@@ -15,9 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -28,10 +26,7 @@
                 "contents": [
                     {
                         "item": "M 26 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m26",
-                            "sheetId": "M_26_Sk2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 26)",
                         "folios": [
                             {
@@ -59,10 +54,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -90,10 +82,7 @@
                     },
                     {
                         "item": "M* 452 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "mstar452",
-                            "sheetId": "Mstar_452_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 452)",
                         "folios": [
                             {
@@ -121,10 +110,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -152,10 +138,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -211,10 +194,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -263,10 +243,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -287,10 +264,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -311,10 +285,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -342,10 +313,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -366,10 +334,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -390,10 +355,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -442,10 +404,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -466,10 +425,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -490,10 +446,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -514,10 +467,7 @@
                     },
                     {
                         "item": "M 66 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
                         "folios": [
                             {
@@ -559,10 +509,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -597,10 +544,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -628,10 +572,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -659,10 +600,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -711,10 +649,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -749,10 +684,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -780,10 +712,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -825,10 +754,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1008,10 +934,7 @@
                     },
                     {
                         "item": "M 78 Sk##",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk##"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1126,8 +1049,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Horizontale Knickfalte. Der Bogen ist unten und in der Falte rechts eingerissen. Kleiner Riss unten rechts. Tintenflecken auf Bl. 2<sup>v</sup> unten."
                 ],
                 "writingMaterialStrings": [
@@ -1135,9 +1058,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1148,10 +1069,7 @@
                 "contents": [
                     {
                         "item": "M 78",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 1)",
                         "folios": [
                             {
@@ -1193,10 +1111,7 @@
                     },
                     {
                         "item": "M 78 Sk###",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk###"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1222,10 +1137,7 @@
                     },
                     {
                         "item": "M 78 Sk###",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk###"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1253,10 +1165,7 @@
                     },
                     {
                         "item": "M 78 Sk###",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk###"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1277,10 +1186,7 @@
                     },
                     {
                         "item": "M 78 Sk###",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78_Sk###"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
                         "folios": [
                             {
@@ -1436,10 +1342,7 @@
                     },
                     {
                         "item": "M 66",
-                        "itemLinkTo": {
-                            "complexId": "m66",
-                            "sheetId": "M_66"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 4)",
                         "folios": [
                             {
@@ -1488,10 +1391,7 @@
                     },
                     {
                         "item": "M 78",
-                        "itemLinkTo": {
-                            "complexId": "m78",
-                            "sheetId": "M_78"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 3)",
                         "folios": [
                             {
@@ -1547,8 +1447,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Zweifache horizontale Knickfalte (auf halber und viertel Höhe). Stockflecken und rötliche Verfärbung in der Ecke oben rechts."
                 ],
                 "writingMaterialStrings": [
@@ -1556,9 +1456,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1571,7 +1469,7 @@
                         "item": "M 113",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113"
+                            "sheetId": "M_113_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1623,93 +1521,7 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113_Sk2"
-                        },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11 (Bleistift)",
-                                            "measure": "16A",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
                             },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "10b–6 (Bleistift)",
-                                            "measure": "",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "5a–3a (Bleistift)",
-                                            "measure": "16C, 17B",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113 Sk5",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113_Sk5"
-                        },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "3b–2a",
-                                            "measure": "39–41A",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
-                        "folios": [
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
@@ -1846,11 +1658,84 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk9",
+                        "item": "M 113 Sk2",
                         "itemLinkTo": {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk9"
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2"
                         },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11 (Bleistift)",
+                                            "measure": "16A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–6 (Bleistift)",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a–3a (Bleistift)",
+                                            "measure": "16C, 17B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–2a",
+                                            "measure": "39–41A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 114 Sk9",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 3)",
                         "folios": [
                             {
@@ -1899,10 +1784,7 @@
                     },
                     {
                         "item": "M 114 Sk10",
-                        "itemLinkTo": {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {
@@ -1979,10 +1861,7 @@
                     },
                     {
                         "item": "M 114 Sk10.1",
-                        "itemLinkTo": {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10_1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {
@@ -2005,7 +1884,7 @@
                 "corrections": [
                     {
                         "id": "source_C_corr_1",
-                        "label": "Korrekturen 1 in <strong>C</strong>> (mit Tinte)",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2209,7 +2088,7 @@
                                             "measure": "53",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {51–52} und Korrekturen 2)."
+                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und Korrekturen 2)."
                                         },
                                         {
                                             "measure": "54",
@@ -2314,7 +2193,7 @@
                     },
                     {
                         "id": "source_C_corr_2",
-                        "label": "Korrekturen 2 in <strong>C</strong>> (mit Bleistift)",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
