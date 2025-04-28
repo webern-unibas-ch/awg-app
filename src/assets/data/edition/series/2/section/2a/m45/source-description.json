@@ -517,9 +517,12 @@
                         ]
                     },
                     {
-                        "item": "M 26 Sk1",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 26)",
+                        "item": "M 26",
+                        "itemLinkTo": {
+                            "complexId": "m26",
+                            "sheetId": "M_26_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 26)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -528,7 +531,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1–4 (Bleistift)",
+                                            "system": "1–4",
                                             "measure": "1–5",
                                             "linkTo": ""
                                         }
@@ -542,7 +545,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "6–9 (Bleistift)",
+                                            "system": "6–9",
                                             "measure": "6–11",
                                             "linkTo": ""
                                         }
@@ -556,7 +559,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "11–14 (Bleistift)",
+                                            "system": "11–14",
                                             "measure": "12–14",
                                             "linkTo": ""
                                         }
