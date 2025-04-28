@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 26, M 66 Textfassung 1–4, M 78 Textfassung 1–4 sowie Skizze zu M* 452.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1047,7 +1047,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 78 Textfassung 2 und Tintenniederschrift von Studienkomposition für Streichquartett M 66 Textfassung 4 und M 78 Textfassung 1 und 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1445,7 +1445,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113 (<strong>C<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113 (<strong>C<sup>b</sup></strong>).<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 114 Textfassung 3 und 4.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1956,7 +1956,7 @@
                                             "measure": "{16–17}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {16–17} unvollständig und ersetzt durch T. 16–17:  <br /> ##Abbildung##"
+                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17:  <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "{16}",
