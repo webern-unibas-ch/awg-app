@@ -68,12 +68,6 @@ describe('EditionSvgDrawingService (DONE)', () => {
             },
         ];
 
-        expectedSuppliedClassNames = ['supplied class-1', 'supplied class-2'];
-        expectedSuppliedClassMap = new Map([
-            [expectedSuppliedClassNames[0].split(' ')[1], true],
-            [expectedSuppliedClassNames[1].split(' ')[1], true],
-        ]);
-
         expectedSuppliedClassesLabelLookup = new Map([
             ['foliation', 'Blattangabe'],
             ['staffN', 'Systemangabe'],
@@ -84,6 +78,15 @@ describe('EditionSvgDrawingService (DONE)', () => {
             ['accid', 'Akzidenzien'],
             ['hyphen', 'Silbentrennung'],
         ]);
+
+        expectedSuppliedClassNames = ['supplied foliation', 'supplied clef_key', 'supplied unknown-class'];
+        expectedSuppliedClassMap = new Map(
+            expectedSuppliedClassNames.map(name => {
+                const key = name.split(' ')[1];
+                const value = expectedSuppliedClassesLabelLookup.get(key) || key;
+                return [value, true];
+            })
+        );
 
         expectedOverlayFillColor = 'tomato';
         expectedOverlayHoverFillColor = 'orange';

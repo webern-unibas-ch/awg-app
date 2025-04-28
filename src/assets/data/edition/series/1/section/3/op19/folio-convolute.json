@@ -7,7 +7,7 @@
                 {
                     "folioId": "1r",
                     "systems": "12",
-                    "format": {
+                    "dimensions": {
                         "height": 163,
                         "width": 255
                     },
@@ -17,8 +17,8 @@
                             "sheetId": "SkRT",
                             "sigle": "M 286 / M 287 RT (Reihentabelle op. 19)",
                             "sigleAddendum": "Reihenformen 1–8",
-                            "sectionPartition": 1,
-                            "sections": [
+                            "segmentSplit": 1,
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -31,7 +31,7 @@
                 {
                     "folioId": "1v",
                     "systems": "12",
-                    "format": {
+                    "dimensions": {
                         "height": 163,
                         "width": 255
                     },

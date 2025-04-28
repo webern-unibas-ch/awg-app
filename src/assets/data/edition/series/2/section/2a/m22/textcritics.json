@@ -3,7 +3,11 @@
         {
             "id": "M_22_TF1",
             "label": "M 22 einzige Textfassung",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> relevante Quelle.  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_A'})\"><strong>A</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_B'})\"><strong>B</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_C'})\"><strong>C</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_D'})\"><strong>D</strong></a> und  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_E'})\"><strong>E</strong></a> enthalten Skizzen.",
+                " <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Eine nur geringfügig abweichende Variante für Var. XIX T. 7–8, notiert in separaten Systemen, wurde nicht berücksichtigt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> nach Korrekturen 1. Die letzten drei Variationen (Var. XXI–XXIII) in Besetzung für Streichquartett wurden aufgrund der durchgehenden Nummerierung in die Edition miteinbezogen (vgl. Einleitung)."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -447,7 +451,7 @@
                                 "measure": "8",
                                 "system": "19",
                                 "position": "(2/4)",
-                                "comment": "Sechzehntelnoten <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis–e–a–gis überschreiben Achtelnoten gis–E."
+                                "comment": "Sechzehntelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis–e–a–gis überschreiben Achtelnoten gis–E."
                             }
                         ]
                     }
@@ -631,7 +635,7 @@
                                 "measure": "{2A}",
                                 "system": "10",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu a<sup>1</sup> gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1305",
@@ -673,14 +677,14 @@
                                 "measure": "6",
                                 "system": "7",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu g<sup>2</sup> gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu g<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1178",
                                 "measure": "6",
                                 "system": "7",
                                 "position": "4. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu f<sup>2</sup> gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu f<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1191",
@@ -1167,7 +1171,7 @@
                                 "measure": "5",
                                 "system": "14",
                                 "position": "1.–2. Note",
-                                "comment": "E–E/e überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Gis<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Gis–Gis/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis. "
+                                "comment": "E–E/e überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis–Gis/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]gis. "
                             }
                         ]
                     }
@@ -1350,7 +1354,7 @@
                                 "measure": "2",
                                 "system": "18",
                                 "position": "1–2/8",
-                                "comment": "E–[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Gis–h."
+                                "comment": "E–[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis–h."
                             },
                             {
                                 "svgGroupId": "g1115",
@@ -2083,7 +2087,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk3b"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk1c"
+                    }
+                }
+            ]
         },
         {
             "id": "M_22_Sk28_1",
@@ -2121,6 +2141,13 @@
                     "linkTo": {
                         "complexId": "m22",
                         "sheetId": "M_22_Sk31b"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m23",
+                        "sheetId": "M_23_Sk1a"
                     }
                 }
             ]
@@ -2317,6 +2344,13 @@
                         "complexId": "m22",
                         "sheetId": "M_22_Sk28_1"
                     }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m23",
+                        "sheetId": "M_23_Sk1a"
+                    }
                 }
             ]
         },
@@ -2456,6 +2490,13 @@
                         "complexId": "m22",
                         "sheetId": "M_22_Sk32_1_1"
                     }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m23",
+                        "sheetId": "M_23_Sk2c"
+                    }
                 }
             ]
         },
@@ -2475,6 +2516,13 @@
                     "linkTo": {
                         "complexId": "m22",
                         "sheetId": "M_22_Sk32_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m23",
+                        "sheetId": "M_23_Sk2c"
                     }
                 }
             ]
@@ -2550,7 +2598,7 @@
                                 "measure": "6",
                                 "system": "14",
                                 "position": "3/4",
-                                "comment": "Mittelstimmenschicht: f<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
+                                "comment": "Mittelstimmenschicht: f<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1290",

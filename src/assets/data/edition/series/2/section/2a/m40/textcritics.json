@@ -33,7 +33,7 @@
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
                                 "svgGroupId": "g3404",
@@ -51,7 +51,7 @@
             "id": "M_40_Sk1",
             "label": "M 40 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_TF1'})\" >Studienkomposition für Klavier M 40</a>, die vor der Reprise abbricht."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_TF1'})\">Studienkomposition für Klavier M 40</a>, die vor der Reprise abbricht."
             ],
             "commentary": {
                 "preamble": "",
@@ -134,7 +134,7 @@
                                 "measure": "8B",
                                 "system": "1",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup> überschreibt f<sub>1</sub>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup> überschreibt f<sub>1</sub>."
                             },
                             {
                                 "svgGroupId": "g1274",
@@ -162,14 +162,14 @@
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "1/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup> überschreibt h<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1456",
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
                             },
                             {
                                 "svgGroupId": "g1496",
@@ -183,7 +183,7 @@
                                 "measure": "14",
                                 "system": "4",
                                 "position": "1. Note",
-                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
+                                "comment": "Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1502",
@@ -211,14 +211,14 @@
                                 "measure": "16A",
                                 "system": "8",
                                 "position": "1/2",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Ais."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Ais."
                             },
                             {
                                 "svgGroupId": "g1206",
                                 "measure": "16A",
                                 "system": "7",
                                 "position": "2/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1212",
@@ -232,7 +232,7 @@
                                 "measure": "16A",
                                 "system": "8",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g überschreibt f."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g überschreibt f."
                             },
                             {
                                 "svgGroupId": "g1224",
@@ -253,7 +253,7 @@
                                 "measure": "16B",
                                 "system": "8",
                                 "position": "(2. Note)",
-                                "comment": "Halbe Note [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]H gestrichen."
+                                "comment": "Halbe Note [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H gestrichen."
                             },
                             {
                                 "svgGroupId": "g1248",
@@ -287,7 +287,7 @@
             "id": "M_40_Sk1_1",
             "label": "M 40 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_Sk1'})\" ><strong>Sk1</strong></a>."
+                "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_Sk1'})\"><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",

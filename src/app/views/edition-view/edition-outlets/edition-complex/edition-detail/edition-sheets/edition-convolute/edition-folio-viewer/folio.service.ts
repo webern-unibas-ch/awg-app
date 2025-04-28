@@ -6,6 +6,7 @@ import {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationRectangle,
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
@@ -82,18 +83,25 @@ export class FolioService {
     private readonly _contentSegmentOffsetCorrection = 4;
 
     /**
-     * Private readonly variable: _contentSegmentRotationAngle.
-     *
-     * It keeps the rotation angle for the reversed content segments.
-     */
-    private readonly _contentSegmentReversedRotationAngle = 180;
-
-    /**
      * Private readonly variable: _contentSegmentStrokeWidth.
      *
      * It keeps the stroke width for the content segments.
      */
     private readonly _contentSegmentStrokeWidth = 2;
+
+    /**
+     * Private readonly variable: _defaultNumberOfSystems.
+     *
+     * It keeps the default number of systems.
+     */
+    private readonly _defaultNumberOfSystems = 18;
+
+    /**
+     * Private readonly variable: _reversedRotationAngle.
+     *
+     * It keeps the rotation angle for a reversed item.
+     */
+    private readonly _reversedRotationAngle = 180;
 
     /**
      * Private readonly variable: _sheetFillColor.
@@ -122,7 +130,7 @@ export class FolioService {
      * It calculates and provides the folio SVG data
      * to render the folio SVG.
      *
-     * @param {FolioSettings} folioSettings The given folio format settings.
+     * @param {FolioSettings} folioSettings The given folio settings.
      * @param {Folio} folio The given folio.
      * @returns {FolioSvgData} The calculated folio SVG data.
      */
@@ -170,7 +178,7 @@ export class FolioService {
         this.ref = ref;
 
         // Create the SVG canvas sheet group selection.
-        const svgSheetGroup = this._appendCanvasSheetGroup(svgCanvas, folioSvgData);
+        const svgSheetGroup = this._appendCanvasSheetGroup(svgCanvas, folioSvgData.sheet.folioId);
 
         // Draw sheet.
         this._addFolioSheetToSvgCanvas(svgSheetGroup, folioSvgData);
@@ -194,10 +202,19 @@ export class FolioService {
      */
     private _addFolioSheetToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         const { sheet } = folioSvgData;
-        const { upperLeftCorner, lowerRightCorner, folioId } = sheet;
+        const { folioId, sheetRectangle, trademarkRectangle } = sheet;
 
-        this._appendSheetGroupTitle(svgSheetGroup, folioId);
-        this._appendSheetGroupRectangle(svgSheetGroup, upperLeftCorner, lowerRightCorner);
+        this._appendSheetGroupSheetTitle(svgSheetGroup, folioId);
+        this._appendSheetGroupSheetRectangle(svgSheetGroup, sheetRectangle);
+
+        if (trademarkRectangle) {
+            this._appendSheetGroupTrademark(
+                svgSheetGroup,
+                trademarkRectangle,
+                folioId,
+                folioSvgData.systems.systemsReversed
+            );
+        }
     }
 
     /**
@@ -212,16 +229,21 @@ export class FolioService {
      */
     private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         folioSvgData.systems.systemsLines.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
+            const labelIndex = folioSvgData.systems.systemsReversed
+                ? folioSvgData.systems.systemsLines.length - systemIndex
+                : systemIndex + 1;
+            const labelPosition: FolioCalculationPoint = folioSvgData.systems.systemsLabelPositions[systemIndex];
+
             const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
-                systemsGroupId: systemIndex + 1,
+                systemsGroupId: labelIndex,
                 class: 'systems-group',
             });
             const svgSystemLineGroup = this._appendSvgElementWithAttrs(svgSystemsGroup, 'g', {
-                systemLineGroupId: systemIndex + 1,
+                systemLineGroupId: labelIndex,
                 class: 'system-line-group',
             });
 
-            this._appendSystemsGroupLabel(svgSystemsGroup, folioSvgData, systemIndex);
+            this._appendSystemsGroupLabel(svgSystemsGroup, labelPosition, labelIndex);
             this._appendSystemsGroupLines(svgSystemLineGroup, systemArray);
         });
     }
@@ -249,7 +271,11 @@ export class FolioService {
             const svgContentSegmentLink = this._appendContentSegmentLink(svgContentSegmentGroup);
 
             // Draw content segment polygon.
-            this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.segmentVertices);
+            this._appendContentSegmentLinkPolygon(
+                svgContentSegmentLink,
+                contentSegment.segmentVertices,
+                folioSvgData.systems.systemsLines.length
+            );
 
             // Draw content segment link label.
             this._appendContentSegmentLinkLabel(svgContentSegmentLink, contentSegment);
@@ -262,12 +288,12 @@ export class FolioService {
      * It appends a sheet group to the SVG canvas.
      *
      * @param {D3Selection} svgCanvas The given SVG canvas selection.
-     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @param {string} folioId The given folio id.
      * @returns {D3Selection} Appends a sheet group to the SVG canvas selection.
      */
-    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioSvgData: FolioSvgData): D3Selection {
+    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioId: string): D3Selection {
         return this._appendSvgElementWithAttrs(svgCanvas, 'g', {
-            sheetGroupId: folioSvgData.sheet.folioId,
+            sheetGroupId: folioId,
             class: 'sheet-group',
         });
     }
@@ -373,10 +399,10 @@ export class FolioService {
         this._appendContentSegmentLinkLabelTspanElements(label, contentSegment);
 
         // Rotate the label 180 degrees around its center when reversed
-        if (contentSegment.reversed) {
+        if (contentSegment.segmentReversed) {
             label.attr(
                 'transform',
-                `rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
+                `rotate(${this._reversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
             );
         }
 
@@ -450,34 +476,39 @@ export class FolioService {
      * @param {string} segmentVertices The given segment vertices.
      * @returns {D3Selection} Appends a polygon shape to the content segment link selection.
      */
-    private _appendContentSegmentLinkPolygon(svgContentSegmentLink: D3Selection, segmentVertices: string): D3Selection {
+    private _appendContentSegmentLinkPolygon(
+        svgContentSegmentLink: D3Selection,
+        segmentVertices: string,
+        numberOfSystems: number = this._defaultNumberOfSystems
+    ): D3Selection {
+        // Dynamically adjust the strokeWidth based on the number of systems (reference: 18 systems)
+        const adjustedStrokeWidth = this._contentSegmentStrokeWidth * (this._defaultNumberOfSystems / numberOfSystems);
+
         const attributes = {
             class: 'content-segment-shape',
             points: segmentVertices,
             fill: this._contentSegmentFillColor,
         };
-        attributes['stroke-width'] = this._contentSegmentStrokeWidth;
+        attributes['stroke-width'] = adjustedStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'polygon', attributes);
     }
 
     /**
-     * Private method: _appendSheetGroupRectangle.
+     * Private method: _appendSheetGroupSheetRectangle.
      *
-     * It appends a rectangle to the sheet group.
+     * It appends a sheet rectangle to the sheet group.
      *
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
-     * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner point.
-     * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner point.
-     * @returns {D3Selection} Appends a rectangle to the sheet group selection.
+     * @param {FolioCalculationRectangle} sheetRectangle The given sheet rectangle.
+     * @returns {D3Selection} Appends a sheet rectangle to the sheet group selection.
      */
-    private _appendSheetGroupRectangle(
+    private _appendSheetGroupSheetRectangle(
         svgSheetGroup: D3Selection,
-        upperLeftCorner: FolioCalculationPoint,
-        lowerRightCorner: FolioCalculationPoint
+        sheetRectangle: FolioCalculationRectangle
     ): D3Selection {
-        const { x: x1, y: y1 } = upperLeftCorner;
-        const { x: x2, y: y2 } = lowerRightCorner;
+        const { x: x1, y: y1 } = sheetRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } = sheetRectangle.LOWER_RIGHT_CORNER;
         const attributes = {
             x: x1,
             y: y1,
@@ -492,7 +523,7 @@ export class FolioService {
     }
 
     /**
-     * Private method: _appendSheetGroupTitle.
+     * Private method: _appendSheetGroupSheetTitle.
      *
      * It appends a title to the sheet group.
      *
@@ -500,8 +531,124 @@ export class FolioService {
      * @param {string} folioId The given folio id.
      * @returns {void} Appends a title to the sheet group selection.
      */
-    private _appendSheetGroupTitle(svgSheetGroup: D3Selection, folioId: string): void {
-        this._appendSvgElementWithAttrs(svgSheetGroup, 'title', {}).text(`Bl. ${folioId}`);
+    private _appendSheetGroupSheetTitle(svgSheetGroup: D3Selection, folioId: string): void {
+        this._appendSvgElementWithAttrs(svgSheetGroup, 'title', { class: 'sheet-group-title' }).text(`Bl. ${folioId}`);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademark.
+     *
+     * It appends a trademark to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @param {string} folioId The given folio id.
+     * @param {boolean} systemsReversed The given systems reversed flag.
+     * @returns {void} Appends a trademark to the sheet group selection.
+     */
+    private _appendSheetGroupTrademark(
+        svgSheetGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle,
+        folioId: string,
+        systemsReversed: boolean
+    ): void {
+        const svgTrademarkGroup = this._appendSheetGroupTrademarkGroup(svgSheetGroup, folioId);
+
+        this._appendSheetGroupTrademarkRectangle(svgTrademarkGroup, trademarkRectangle);
+        this._appendSheetGroupTrademarkSymbol(svgTrademarkGroup, trademarkRectangle, systemsReversed);
+        this._appendSheetGroupTrademarkTitle(svgTrademarkGroup);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkGroup.
+     *
+     * It appends a trademark group to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {string} folioId The given folio id.
+     * @returns {D3Selection} Appends a trademark group to the sheet group selection.
+     */
+    private _appendSheetGroupTrademarkGroup(svgSheetGroup: D3Selection, folioId: string): D3Selection {
+        return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
+            trademarkGroupId: folioId,
+            class: 'trademark-group',
+        });
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkRectangle.
+     *
+     * It appends a trademark rectangle to the trademark group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG trademark group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @returns {D3Selection} Appends a trademark rectangle to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkRectangle(
+        svgTrademarkGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle
+    ): D3Selection {
+        const { x: x1, y: y1 } = trademarkRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } = trademarkRectangle.LOWER_RIGHT_CORNER;
+
+        const attributes = {
+            class: 'trademark-rectangle',
+            x: x1,
+            y: y1,
+            width: x2 - x1,
+            height: y2 - y1,
+            fill: this._sheetFillColor,
+            stroke: this._bgColor,
+        };
+        attributes['stroke-width'] = this._sheetStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgTrademarkGroup, 'rect', attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkSymbol.
+     *
+     * It appends a trademark symbol to the trademark group.
+     *
+     * @param {D3Selection} svgTrademarkGroup The given SVG trademark group selection.
+     * @param {FolioCalculationRectangle} trademarkRectangle The given trademark rectangle.
+     * @param {boolean} systemsReversed The given systems reversed flag.
+     * @returns {D3Selection} Appends a trademark symbol to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkSymbol(
+        svgTrademarkGroup: D3Selection,
+        trademarkRectangle: FolioCalculationRectangle,
+        systemsReversed: boolean
+    ): D3Selection {
+        const { x: x1, y: y1 } = trademarkRectangle.UPPER_LEFT_CORNER;
+        const { x: x2, y: y2 } = trademarkRectangle.LOWER_RIGHT_CORNER;
+        const centerX = (x1 + x2) / 2;
+        const centerY = (y1 + y2) / 2;
+
+        const symbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
+
+        const symbolAttributes = {
+            class: 'trademark-symbol',
+            d: symbolPath,
+            fill: this._disabledColor,
+            stroke: this._disabledColor,
+            transform: `translate(${centerX - 10}, ${centerY - 10}) scale(0.5)${systemsReversed ? ` rotate(${this._reversedRotationAngle}, 20, 20)` : ''}`,
+        };
+        symbolAttributes['stroke-width'] = this._contentSegmentStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgTrademarkGroup, 'path', symbolAttributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTrademarkTitle.
+     *
+     * It appends a title to the trademark group.
+     *
+     * @param {D3Selection} svgTrademarkGroup The given SVG trademark group selection.
+     * @returns {D3Selection} Appends a title to the trademark group selection.
+     */
+    private _appendSheetGroupTrademarkTitle(svgTrademarkGroup: D3Selection): void {
+        this._appendSvgElementWithAttrs(svgTrademarkGroup, 'title', { class: 'trademark-title' }).text('Firmenzeichen');
     }
 
     /**
@@ -510,26 +657,24 @@ export class FolioService {
      * It appends a label to the systems group.
      *
      * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
-     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
-     * @param {number} systemIndex The given system index.
+     * @param {FolioCalculationPoint} labelPosition The given calculated label position.
+     * @param {number} labelIndex The given label index.
      * @returns {void} Appends a label to the systems group selection.
      */
     private _appendSystemsGroupLabel(
         svgSystemsGroup: D3Selection,
-        folioSvgData: FolioSvgData,
-        systemIndex: number
+        labelPosition: FolioCalculationPoint,
+        labelIndex: number
     ): void {
-        const { x, y } = folioSvgData.systems.systemsLabelPositions[systemIndex];
-        const systemLabel = systemIndex + 1;
         const attributes = {
             class: 'system-label',
-            x: x,
-            y: y,
+            x: labelPosition.x,
+            y: labelPosition.y,
             fill: this._bgColor,
         };
         attributes['dominant-baseline'] = 'hanging';
 
-        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(systemLabel);
+        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(labelIndex);
     }
 
     /**

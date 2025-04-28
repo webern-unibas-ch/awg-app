@@ -33,7 +33,7 @@
                                         [labelType]="'evaluation'"></awg-edition-tka-label
                                     >:
                                 </p>
-                                @if (utils.isNotEmptyArray(textcritics.evaluations)) {
+                                @if (UTILS.isNotEmptyArray(textcritics.evaluations)) {
                                     <awg-edition-tka-evaluations
                                         [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -51,13 +51,13 @@
                                     >:
                                 </p>
                                 @if (
-                                    utils.isNotEmptyObject(textcritics.commentary) &&
-                                    utils.isNotEmptyArray(textcritics.commentary.comments)
+                                    UTILS.isNotEmptyObject(textcritics.commentary) &&
+                                    UTILS.isNotEmptyArray(textcritics.commentary.comments)
                                 ) {
                                     <awg-edition-tka-table
                                         [commentary]="textcritics.commentary"
                                         [isRowTable]="textcritics.rowtable"
-                                        [isSketchId]="utils.isSketchId(textcritics.id)"
+                                        [isSketchId]="UTILS.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)">

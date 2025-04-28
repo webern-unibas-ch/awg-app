@@ -10,47 +10,47 @@ export const EDITION_GLYPHS_DATA = {
     /** ***********************************/
     /**
      * The glyph of a music double flat sign.
-     * Cf. https://graphemica.com/%F0%9D%84%AB
+     * Cf. https://w3c.github.io/smufl/latest/tables/standard-accidentals-12-edo.html
      */
     DOUBLE_FLAT: {
         alt: '[bb]',
-        hex: '\uD834\uDD2B',
+        hex: '\uE264',
     },
 
     /**
      * The glyph of a music double sharp sign.
-     * Cf. https://graphemica.com/%F0%9D%84%AA
+     * Cf. https://w3c.github.io/smufl/latest/tables/standard-accidentals-12-edo.html
      */
     DOUBLE_SHARP: {
         alt: '[x]',
-        hex: '\uD834\uDD2A',
+        hex: '\uE263',
     },
 
     /**
      * The glyph of a music flat sign.
-     * Cf. https://graphemica.com/%E2%99%AD
+     * Cf. https://w3c.github.io/smufl/latest/tables/standard-accidentals-12-edo.html
      */
     FLAT: {
         alt: '[b]',
-        hex: '\u266D',
+        hex: '\uE260',
     },
 
     /**
      * The glyph of a music natural sign.
-     * Cf. https://graphemica.com/%E2%99%AE
+     * Cf. https://w3c.github.io/smufl/latest/tables/standard-accidentals-12-edo.html
      */
     NATURAL: {
         alt: '[a]',
-        hex: '\u266E',
+        hex: '\uE261',
     },
 
     /**
      * The glyph of a music sharp sign.
-     * Cf. https://graphemica.com/%E2%99%AF
+     * Cf. https://w3c.github.io/smufl/latest/tables/standard-accidentals-12-edo.html
      */
     SHARP: {
         alt: '[#]',
-        hex: '\u266F',
+        hex: '\uE262',
     },
 
     /** ********************************/
@@ -58,119 +58,119 @@ export const EDITION_GLYPHS_DATA = {
     /** ********************************/
     /**
      * The glyph of a musical forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%91
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     FORTE: {
         alt: '[f]',
-        hex: '\uD834\uDD91',
+        hex: '\uE522',
     },
 
     /**
      * The glyph of a musical fortissimo (double forte) symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%91
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     FORTISSIMO: {
         alt: '[ff]',
-        hex: '\uD834\uDD91\uD834\uDD91',
+        hex: '\uE52F',
     },
 
     /**
      * The glyph of a musical triple forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%91
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     FORTISSIMO3: {
         alt: '[fff]',
-        hex: '\uD834\uDD91\uD834\uDD91\uD834\uDD91',
+        hex: '\uE530',
     },
 
     /**
      * The glyph of a musical quadruple forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%91
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     FORTISSIMO4: {
         alt: '[ffff]',
-        hex: '\uD834\uDD91\uD834\uDD91\uD834\uDD91\uD834\uDD91',
+        hex: '\uE531',
     },
 
     /**
      * The glyph of a musical mezzo forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%90
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     MEZZOFORTE: {
         alt: '[mf]',
-        hex: '\uD834\uDD90\uD834\uDD91',
+        hex: '\uE52D',
     },
 
     /**
      * The glyph of a musical mezzo piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%90
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     MEZZOPIANO: {
         alt: '[mp]',
-        hex: '\uD834\uDD90\uD834\uDD8F',
+        hex: '\uE52C',
     },
 
     /**
      * The glyph of a musical pianissimo (double piano) symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     PIANISSIMO: {
         alt: '[pp]',
-        hex: '\uD834\uDD8F\uD834\uDD8F',
+        hex: '\uE52B',
     },
 
     /**
      * The glyph of a musical triple piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     PIANISSIMO3: {
         alt: '[ppp]',
-        hex: '\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F',
+        hex: '\uE52A',
     },
 
     /**
      * The glyph of a musical quadruple piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     PIANISSIMO4: {
         alt: '[pppp]',
-        hex: '\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F',
+        hex: '\uE529',
     },
 
     /**
      * The glyph of a musical piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     PIANO: {
         alt: '[p]',
-        hex: '\uD834\uDD8F',
+        hex: '\uE520',
     },
 
     /**
      * The glyph of a musical subito forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     SUBITO_FORTE: {
         alt: '[sf]',
-        hex: '\uD834\uDD8D\uD834\uDD91',
+        hex: '\uE536',
     },
 
     /**
      * The glyph of a musical sforzando symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     SFORZANDO: {
         alt: '[sfz]',
-        hex: '\uD834\uDD8D\uD834\uDD91\uD834\uDD8E',
+        hex: '\uE539',
     },
 
     /**
      * The glyph of a musical subito piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
+     * Cf. https://w3c.github.io/smufl/latest/tables/dynamics.html
      */
     SUBITO_PIANO: {
         alt: '[sp]',
-        hex: '\uD834\uDD8D\uD834\uDD8F',
+        hex: '\uE524\uE520',
     },
 
     /** ***********************************/
@@ -178,47 +178,47 @@ export const EDITION_GLYPHS_DATA = {
     /** ***********************************/
     /**
      * The glyph of a musical eighth note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%A0
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */
     NOTE_EIGHTH: {
         alt: '[Achtelnote]',
-        hex: '\uD834\uDD60',
+        hex: '\uE1D7',
     },
 
     /**
      * The glyph of a musical half note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9E
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */
     NOTE_HALF: {
         alt: '[Halbe Note]',
-        hex: '\uD834\uDD5E',
+        hex: '\uE1D3',
     },
 
     /**
      * The glyph of a musical quarter note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9F
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */
     NOTE_QUARTER: {
         alt: '[Viertelnote]',
-        hex: '\uD834\uDD5F',
+        hex: '\uE1D5',
     },
 
     /**
      * The glyph of a musical sixteenth note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%A1
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */
     NOTE_SIXTEENTH: {
         alt: '[Sechzehntelnote]',
-        hex: '\uD834\uDD61',
+        hex: '\uE1D9',
     },
 
     /**
      * The glyph of a musical whole note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9D
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */
     NOTE_WHOLE: {
         alt: '[Ganze Note]',
-        hex: '\uD834\uDD5D',
+        hex: '\uE1D2',
     },
 
     /** ***********************************/
@@ -226,10 +226,10 @@ export const EDITION_GLYPHS_DATA = {
     /** ***********************************/
     /**
      * The glyph of a musical pedal symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%AE
+     * Cf. https://w3c.github.io/smufl/latest/tables/keyboard-techniques.html
      */
     PEDAL: {
         alt: '[ped]',
-        hex: '\uD834\uDDAE',
+        hex: '\uE650',
     },
 } as const;

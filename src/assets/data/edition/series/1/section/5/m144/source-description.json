@@ -6,10 +6,45 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
                 "writingMaterialStrings": [
                     "Notenpapier, 22 Systeme, Format hoch 344 × 265 mm, Firmenzeichen [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1<sup>v</sup>, 2<sup>v</sup> unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 22,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "344"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO7_LIN22_M144_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1v", "2v"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Tinte",
@@ -121,7 +156,7 @@
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b."
                                         },
                                         {
                                             "measure": "5 <br /> bis 9",
@@ -133,7 +168,7 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "5/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
                                         },
                                         {
                                             "measure": "7",
@@ -151,7 +186,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                                         },
                                         {
                                             "measure": "10",
@@ -163,7 +198,7 @@
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "6/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
                                         },
                                         {
                                             "measure": "12",
@@ -202,13 +237,13 @@
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "2/8",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "2/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "12",

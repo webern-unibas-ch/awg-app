@@ -33,7 +33,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -59,7 +59,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Thomas Ahrend',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -85,7 +85,7 @@ export const mockEditionData = {
                 editors: [
                     {
                         name: 'Michael Matter',
-                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
                     },
                 ],
                 lastModified: '7. August 2024',
@@ -112,11 +112,12 @@ export const mockEditionData = {
                 folios: [
                     {
                         folioId: '1',
-                        systems: '12',
-                        format: {
+                        systems: '18',
+                        dimensions: {
                             height: 180,
                             width: 267,
                         },
+                        trademarkPosition: 'unten links',
                         content: [
                             {
                                 complexId: 'op12',
@@ -125,8 +126,8 @@ export const mockEditionData = {
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 2,
@@ -139,8 +140,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk3',
                                 sigle: 'M 212 Sk3',
                                 sigleAddendum: 'T. 3',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -154,8 +155,8 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk2',
                                 sigle: 'M 212 Sk2',
                                 sigleAddendum: 'T. 2',
-                                sectionPartition: 1,
-                                sections: [
+                                segmentSplit: 1,
+                                segments: [
                                     {
                                         position: 1,
                                         startSystem: 5,
@@ -184,8 +185,9 @@ export const mockEditionData = {
      */
     mockReversedFolio: {
         folioId: '1',
-        systems: '12',
-        format: {
+        systems: '18',
+        reversed: true,
+        dimensions: {
             height: 180,
             width: 267,
         },
@@ -198,12 +200,12 @@ export const mockEditionData = {
                 selectable: undefined,
                 reversed: true,
                 linkTo: undefined,
-                sectionPartition: 1,
-                sections: [
+                segmentSplit: 1,
+                segments: [
                     {
                         position: 1,
-                        startSystem: 2,
-                        endSystem: 4,
+                        startSystem: 4,
+                        endSystem: 2,
                     },
                 ],
             },
@@ -434,7 +436,7 @@ export const mockEditionData = {
                 siglumAddendum: '',
                 type: 'Skizzen',
                 location: 'CH-Bps, Sammlung Anton Webern.',
-                description: {},
+                physDesc: {},
             },
             {
                 id: 'source_Aa',
@@ -442,13 +444,13 @@ export const mockEditionData = {
                 siglumAddendum: 'a',
                 type: '',
                 location: 'Wien, Testcentre.',
-                description: {
-                    desc: [
-                        '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')" ><strong>Textfassung 2</strong></a>',
+                physDesc: {
+                    conditions: [
+                        '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Textfassung 2</strong></a>',
                     ],
                     writingMaterialStrings: [
-                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
-                        'Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)',
+                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
                     ],
                     writingInstruments: {
                         main: 'Bleistift',
@@ -770,9 +772,71 @@ export const mockEditionData = {
                 missing: true,
                 type: 'Handexemplar von <strong>G</strong>.',
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
-                description: {
-                    desc: [
+                physDesc: {
+                    conditions: [
                         "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
+                    ],
+                    writingMaterialStrings: [
+                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
+                    ],
+                    writingMaterials: [
+                        {
+                            materialType: 'Notenpapier',
+                            systems: {
+                                totalSystems: 14,
+                                totalSystemsAddendum: 'unten beschnitten',
+                                additionalInfo: '',
+                            },
+                            dimensions: {
+                                orientation: 'quer',
+                                height: {
+                                    uncertainty: 'ca.',
+                                    value: '160–180',
+                                },
+                                width: {
+                                    uncertainty: '',
+                                    value: '267',
+                                },
+                                unit: 'mm',
+                            },
+                            trademark: {
+                                variant: 'JE_NO2_LIN12_OP3_J',
+                                alt: '',
+                                locus: [
+                                    {
+                                        preFolioInfo: 'auf dem Kopf stehend',
+                                        folios: ['1r'],
+                                        position: 'unten links',
+                                    },
+                                ],
+                            },
+                            watermark: {},
+                            folioAddendum: '1',
+                        },
+                        {
+                            materialType: 'Notenpapier',
+                            systems: {
+                                totalSystems: 16,
+                                totalSystemsAddendum: '',
+                                additionalInfo: '',
+                            },
+                            dimensions: {
+                                orientation: 'hoch',
+                                height: {
+                                    uncertainty: '',
+                                    value: '270',
+                                },
+                                width: {
+                                    uncertainty: '',
+                                    value: '175',
+                                },
+                                unit: 'mm',
+                            },
+                            trademark: {},
+                            watermark: {},
+                            folioAddendum: '2',
+                        },
                     ],
                 },
             },
@@ -1222,8 +1286,8 @@ export const mockEditionData = {
                 id: 'test-2',
                 label: 'test2',
                 evaluations: [
-                    'test description 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
+                    'test evaluation 1',
+                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
                 ],
                 rowtable: true,
                 commentary: {

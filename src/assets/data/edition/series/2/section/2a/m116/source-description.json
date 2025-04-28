@@ -1,0 +1,553 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: quer 347 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 116 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": "M_116_Sk1a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4b–7c",
+                                            "measure": "6–7, 8A",
+                                            "linkTo": "M_116_Sk1b"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–12",
+                                            "measure": "8B, 9, 10A, 10B, 11",
+                                            "linkTo": "M_116_Sk1c"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 116 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–7b",
+                                            "measure": "1+1, 1+2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 116 Sk1.2",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk1_2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a",
+                                            "measure": "x+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 116 Sk1.3",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk1_3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a",
+                                            "measure": "x+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 116 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk2a"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "3–7",
+                                            "linkTo": "M_116_Sk2a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "8–10, 11A",
+                                            "linkTo": "M_116_Sk2b"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 75.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Länglicher Stockfleck oben rechts. Ecke unten rechts abgerissen. Falten an Ecken oben und unten links. Rissspuren am oberen Rand: von Bogen abgetrennt. Schneidspur am linken Rand Mitte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: quer 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig. </em>unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 116 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "11B, 12–13",
+                                            "linkTo": "M_116_Sk2c"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "14A–15A, 16, 14B–15B",
+                                            "linkTo": "M_116_Sk2d"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1a"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "1–6, {7A}, 7B",
+                                            "linkTo": "M_75_Sk1a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "8–14",
+                                            "linkTo": "M_75_Sk1b"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand: von Bogen abgetrennt. Ecke oben links leicht geknickt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 349 × 266, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig. </em>unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 116",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Oberstimmenschicht: c überschreibt es."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für des."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "7/16",
+                                            "comment": "cis<sup>2</sup> überschreibt dis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "Auf Rasur. Ante correcturam: f<sup>1</sup>/f<sup>2 </sup>mit Ligatur zu T. 10."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "8/8",
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "1. Pause",
+                                            "comment": "Auf Rasur. Ante correcturam: Achtelnote f<sup>1</sup>/f<sup>2</sup> zusammengebalkt mit d<sup>3</sup>–c<sup>3</sup>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav.",
+                                            "position": "(2/8)",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> zwischen den Systemen rasiert."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "F<sub>1</sub> überschreibt E<sub>1</sub>."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "1–4/8",
+                                            "comment": "Unterhalb von <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub> angesetzter Achtelbalken rasiert."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "2/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "Es sowie <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem Ges gestrichen."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note",
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu C überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "c<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu potenziellem g."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "8/8",
+                                            "comment": "Unterstimmenschicht: Ges überschrieben zu Fis."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstrich eingekreist; <em>V</em> (römische 5) davor."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav.",
+                                            "position": "1/8",
+                                            "comment": "Achtelpause auf 1/8 eingefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

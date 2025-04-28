@@ -30,7 +30,7 @@
             "id": "M_36_Sk1",
             "label": "M 36 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm36', sheetId: 'M_36_TF1'})\" ><strong>Studienkomposition für Klavier M 36</strong></a>, bei der die Reprise mit Ausnahme des neuen Schlussakkords (T. 16) nicht ausnotiert ist."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm36', sheetId: 'M_36_TF1'})\"><strong>Studienkomposition für Klavier M 36</strong></a>, bei der die Reprise mit Ausnahme des neuen Schlussakkords (T. 16) nicht ausnotiert ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -64,7 +64,7 @@
                                 "measure": "7",
                                 "system": "14",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt d<sub>1</sub>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt d<sub>1</sub>."
                             },
                             {
                                 "svgGroupId": "g13",

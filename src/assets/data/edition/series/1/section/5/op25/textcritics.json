@@ -5,7 +5,7 @@
             "label": "<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 (Werkedition)",
             "evaluations": [
                 "Für die Edition der in den <em>Drei Liedern nach Gedichten von Hildegard Jone</em> op. 25 versammelten Textfassungen (I: „Wie bin ich froh!“ M 317 Textfassung 2, II: „Des Herzens Purpurvogel“ M 322, III: „Sterne, Ihr silbernen Bienen“ M 321) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_D'})\"><strong>D</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>).",
-                "Die Niederschrift von „Wie bin ich froh!“ M 317 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> wurde in zwei Korrekturschichten überarbeitet (siehe „Korrekturen in E“). <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1</a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\" >Textfassung 1</a>: Diese Überarbeitung dürfte vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2</a> etablieren Textfassung 2. „Des Herzens Purpurvogel“ M 322 und „Sterne, Ihr silbernen Bienen“ M 321 liegen nur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor. In welchem Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> die verschollenen Fotokopien [<strong>E<sup>F1–F2</sup></strong>] angefertigt wurden (siehe <span class='link-todo'>Einleitung</span>) ist nicht bekannt.",
+                "Die Niederschrift von „Wie bin ich froh!“ M 317 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> wurde in zwei Korrekturschichten überarbeitet (siehe „Korrekturen in E“). <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1</a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>: Diese Überarbeitung dürfte vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2</a> etablieren Textfassung 2. „Des Herzens Purpurvogel“ M 322 und „Sterne, Ihr silbernen Bienen“ M 321 liegen nur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor. In welchem Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> die verschollenen Fotokopien [<strong>E<sup>F1–F2</sup></strong>] angefertigt wurden (siehe <span class='link-todo'>Einleitung</span>) ist nicht bekannt.",
                 "Hauptquelle für die Werkedition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 ist das Autograph <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>. Referenzquelle für „Wie bin ich froh!“ M 317 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>, ohne dabei durch <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> ausgeschlossene Varianten zu berücksichtigen."
             ],
             "commentary": {
@@ -19,7 +19,7 @@
                                 "measure": "1",
                                 "system": "",
                                 "position": "4/8",
-                                "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4–5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_317_Sk4'})\" ><strong>M 317 Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                                "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4–5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_317_Sk4'})\"><strong>M 317 Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -185,7 +185,7 @@
                                 "measure": "36",
                                 "system": "Ges.",
                                 "position": "1/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -253,7 +253,7 @@
                                 "measure": "31",
                                 "system": "",
                                 "position": "2/4",
-                                "comment": "Eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
+                                "comment": "Eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>&ngsp;<em>= ca 96</em> geändert zu runden Klammern."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -295,7 +295,7 @@
                                 "measure": "57",
                                 "system": "Ges.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -323,7 +323,7 @@
                                 "measure": "76",
                                 "system": "",
                                 "position": "2/4",
-                                "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>&ngsp;<em>= ca 96</em> geändert zu runden Klammern."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -494,14 +494,14 @@
                                 "measure": "A",
                                 "system": "1",
                                 "position": "2. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>?)."
                             },
                             {
                                 "svgGroupId": "g1065",
                                 "measure": "B",
                                 "system": "1",
                                 "position": "4. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             }
                         ]
                     }
@@ -597,7 +597,7 @@
                                 "measure": "1",
                                 "system": "1",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
                             },
                             {
                                 "svgGroupId": "g1254",
@@ -611,7 +611,7 @@
                                 "measure": "2",
                                 "system": "1",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>?)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>?)."
                             },
                             {
                                 "svgGroupId": "text338",
@@ -639,7 +639,7 @@
                                 "measure": "3",
                                 "system": "2",
                                 "position": "4/8",
-                                "comment": "Punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> überschreibt radierte Achtelpause."
+                                "comment": "Punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> überschreibt radierte Achtelpause."
                             }
                         ]
                     }
@@ -1479,14 +1479,14 @@
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "G<sub>g</sub> (1): 7. Reihenton",
-                                "comment": "sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                "comment": "sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g1554",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g570",
@@ -1500,7 +1500,7 @@
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
                             },
                             {
                                 "svgGroupId": "g318",
@@ -1514,7 +1514,7 @@
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g566",
@@ -1528,7 +1528,7 @@
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "KU<sub>fis</sub> (4): 2.–3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
                             },
                             {
                                 "svgGroupId": "g1613",
@@ -1865,7 +1865,7 @@
                                 "measure": "9",
                                 "system": "11",
                                 "position": "3. Note",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                             },
                             {
                                 "svgGroupId": "g1247",
@@ -2090,6 +2090,13 @@
                     }
                 },
                 {
+                    "svgGroupId": "g1367-9",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_3"
+                    }
+                },
+                {
                     "svgGroupId": "g809",
                     "linkTo": {
                         "complexId": "op25",
@@ -2218,7 +2225,7 @@
                                 "measure": "13",
                                 "system": "16",
                                 "position": "letzte Note",
-                                "comment": "Entzifferung von <span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais unsicher: möglicherweise auch <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b."
+                                "comment": "Entzifferung von <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais unsicher: möglicherweise auch <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b."
                             }
                         ]
                     }
@@ -2483,7 +2490,7 @@
                                 "measure": "2",
                                 "system": "2",
                                 "position": "1. Note",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> fehlt."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> fehlt."
                             }
                         ]
                     }
