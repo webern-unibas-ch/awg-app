@@ -1,8 +1,8 @@
 {
     "textcritics": [
         {
-            "id": "",
-            "label": "",
+            "id": "M_113_TF1",
+            "label": "M 113 einzige Textfassung",
             "evaluations": [],
             "commentary": {
                 "preamble": "",
@@ -265,8 +265,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_113_Sk1",
