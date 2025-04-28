@@ -129,7 +129,7 @@
                                 "measure": "7",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "Ende der Decrescendogabel gesetzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>. (Textfassung 2: Einschub zwischen T. 6 und 7, Ende der Decrescendogabel fehlt, vgl. auch Quellenbewertung.)"
+                                "comment": "Ende der Decrescendogabel ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>. (Textfassung 2: Einschub zwischen T. 6 und 7, Ende der Decrescendogabel fehlt, vgl. auch Quellenbewertung.)"
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
