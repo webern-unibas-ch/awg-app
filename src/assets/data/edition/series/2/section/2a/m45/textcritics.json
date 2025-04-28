@@ -218,7 +218,7 @@
             "id": "M_45_Sk1",
             "label": "M 45 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 45 <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>, die in sich noch mehrere Verwerfungen und Verweise aufweist. Der Abschluss der ersten Phrase (T. 9–11) erfährt genauso etliche Überarbeitungen (u.a. Umstellung auf 4/4-Takt) wie der Übergang zur Reprise, der hier im Vergleich zu der Textfassung kürzer ist. Insbesondere aber weicht das zweite Thema trotz der Skizzierung zweier unterschiedlicher Versionen in der Verlaufsskizze noch erheblich von der endgültigen Version ab."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 45 <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_TF1'})\">Textfassung 1</a>, die in sich noch mehrere Verwerfungen und Verweise aufweist. Der Abschluss der ersten Phrase (T. 9–11) erfährt genauso etliche Überarbeitungen (u.a. Umstellung auf 4/4-Takt, wobei die Aufteilung nicht immer klar ist) wie der Übergang zur Reprise, der hier im Vergleich zu der Textfassung kürzer ist. Insbesondere aber weicht das zweite Thema trotz der Skizzierung zweier unterschiedlicher Versionen in der Verlaufsskizze noch erheblich von der endgültigen Version ab."
             ],
             "commentary": {
                 "preamble": "",
@@ -375,30 +375,30 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-22",
-                                "measure": "10C",
+                                "measure": "10C(3–4/4)",
                                 "system": "5",
-                                "position": "1. Note",
+                                "position": "2/2",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
                                 "svgGroupId": "g-tkk-23",
-                                "measure": "10C",
+                                "measure": "11C",
                                 "system": "5",
-                                "position": "1.–2. Note",
+                                "position": "2/2",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-24",
                                 "measure": "11C",
                                 "system": "5",
-                                "position": "1. Note",
+                                "position": "5/8",
                                 "comment": "Unterstimmenschicht: Achtelnote überschreibt Halbe Note."
                             },
                             {
                                 "svgGroupId": "g-tkk-25",
                                 "measure": "11C",
                                 "system": "6",
-                                "position": "1. Note",
+                                "position": "1–2/2",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
