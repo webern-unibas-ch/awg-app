@@ -445,7 +445,7 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-32",
-                                "measure": "101",
+                                "measure": "11D",
                                 "system": "7",
                                 "position": "5–6/8",
                                 "comment": "Achtelnoten cis<sup>2</sup>–a<sup>1</sup> gestrichen."
@@ -553,7 +553,7 @@
                                 "measure": "17B",
                                 "system": "13",
                                 "position": "(1/4)",
-                                "comment": "Entzifferung unklar. Unter der gültigen Schicht sind überschriebene Triolenachteln (?) auf der Höhe von gis, e und cis erkennbar."
+                                "comment": "Entzifferung unklar. Unter der gültigen Schicht sind überschriebene Triolenachtel (?) auf der Höhe von gis, e und cis erkennbar."
                             },
                             {
                                 "svgGroupId": "g-tkk-48",
@@ -586,28 +586,28 @@
                             {
                                 "svgGroupId": "g-tkk-52",
                                 "measure": "22A",
-                                "system": "15",
+                                "system": "14",
                                 "position": "2–3/4",
                                 "comment": "Viertelnoten a<sup>1</sup>–g<sup>1</sup> überschreiben Achtelnoten b<sup>1</sup>–a<sup>1</sup> und Viertelnote g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-53",
                                 "measure": "21B",
-                                "system": "16",
+                                "system": "15",
                                 "position": "1. Note",
                                 "comment": "d<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                             },
                             {
                                 "svgGroupId": "g-tkk-54",
                                 "measure": "22B",
-                                "system": "15",
+                                "system": "14",
                                 "position": "2/4",
                                 "comment": "a<sup>2</sup>: Viertelnote überschreibt Halbe Note."
                             },
                             {
                                 "svgGroupId": "g-tkk-55",
                                 "measure": "22B",
-                                "system": "16",
+                                "system": "15",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
@@ -956,7 +956,7 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
-                                "measure": "40",
+                                "measure": "45",
                                 "system": "25",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
@@ -990,14 +990,14 @@
                             {
                                 "svgGroupId": "g-tkk-1",
                                 "measure": "40",
-                                "system": "2",
+                                "system": "23",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "40",
-                                "system": "22",
+                                "system": "23",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             }
