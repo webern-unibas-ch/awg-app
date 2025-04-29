@@ -4016,7 +4016,7 @@
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "3. Note",
-                                            "comment": "<em>wo</em> überschreibt <em>Wo</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>wo</em> überschreibt <em>Wo</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "2",
@@ -4040,7 +4040,7 @@
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<em>vom</em> überschreibt <em>Vom</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>vom</em> überschreibt <em>Vom</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "5",
@@ -4070,7 +4070,7 @@
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "8",
@@ -4082,7 +4082,7 @@
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "8/16",
-                                            "comment": "<em>mit</em> überschreibt <em>Mit</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>mit</em> überschreibt <em>Mit</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "9",
@@ -4118,7 +4118,7 @@
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -4154,7 +4154,7 @@
                                             "measure": "12",
                                             "system": "Ges.",
                                             "position": "letzte Note",
-                                            "comment": "<em>der</em> überschreibt <em>Der</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>der</em> überschreibt <em>Der</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "13",
@@ -4178,7 +4178,7 @@
                                             "measure": "15",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<em>es</em> überschreibt <em>Es</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>es</em> überschreibt <em>Es</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         }
                                     ]
                                 }
