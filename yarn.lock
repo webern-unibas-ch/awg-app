@@ -5045,12 +5045,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.14.1":
-  version: 22.14.1
-  resolution: "@types/node@npm:22.14.1"
+"@types/node@npm:^22.15.3":
+  version: 22.15.3
+  resolution: "@types/node@npm:22.15.3"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/d49c4d00403b1c2348cf0701b505fd636d80aabe18102105998dc62fdd36dcaf911e73c7a868c48c21c1022b825c67b475b65b1222d84b704d8244d152bb7f86
+  checksum: 10c0/2879f012d1aeba0bfdb5fed80d165f4f2cb3d1f2e1f98a24b18d4a211b4ace7d64bf2622784c78355982ffc1081ba79d0934efc2fb8353913e5871a63609661f
   languageName: node
   linkType: hard
 
@@ -6071,7 +6071,7 @@ __metadata:
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/jasmine": "npm:~5.1.7"
-    "@types/node": "npm:^22.14.1"
+    "@types/node": "npm:^22.15.3"
     angular-cli-ghpages: "npm:^2.0.3"
     angular-eslint: "npm:^19.3.0"
     bootstrap: "npm:^5.3.5"
@@ -6087,12 +6087,12 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.2"
     eslint-plugin-angular: "npm:^4.1.0"
     eslint-plugin-import: "npm:^2.31.0"
-    eslint-plugin-jsdoc: "npm:^50.6.10"
+    eslint-plugin-jsdoc: "npm:^50.6.11"
     eslint-plugin-prettier: "npm:^5.2.6"
     globals: "npm:^16.0.0"
     gzipper: "npm:^8.2.1"
     husky: "npm:^9.1.7"
-    jasmine-core: "npm:~5.6.0"
+    jasmine-core: "npm:~5.7.0"
     json2typescript: "npm:^1.6.1"
     karma: "npm:~6.4.4"
     karma-chrome-launcher: "npm:~3.2.0"
@@ -8714,9 +8714,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^50.6.10":
-  version: 50.6.10
-  resolution: "eslint-plugin-jsdoc@npm:50.6.10"
+"eslint-plugin-jsdoc@npm:^50.6.11":
+  version: 50.6.11
+  resolution: "eslint-plugin-jsdoc@npm:50.6.11"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.49.0"
     are-docs-informative: "npm:^0.0.2"
@@ -8730,7 +8730,7 @@ __metadata:
     spdx-expression-parse: "npm:^4.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/b85106e2ac32bb91eae578d65c704e97306a75eb9e53720b30ee9bd4eeb0bd116398e63fa884c7c350f673c8a8b7f0bf4560b4cbb5959456fb8d7747425953d5
+  checksum: 10c0/d877156519f7e3a5b575889fd957a035ff60156f3ba312852470d0424864ad23f517c590cc86551589bc40cdbac3202181f071d0eb213a902f0d454c2578000a
   languageName: node
   linkType: hard
 
@@ -11071,10 +11071,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jasmine-core@npm:~5.6.0":
-  version: 5.6.0
-  resolution: "jasmine-core@npm:5.6.0"
-  checksum: 10c0/30abee5c22a1fab5b1973cefdc21ba874a8b93fcf5d7641d9c62dfc4dbf22c9dc745d928fa33a63d4343698263fa715b5caf3404b392b6814b018d6d5c055e06
+"jasmine-core@npm:~5.7.0":
+  version: 5.7.0
+  resolution: "jasmine-core@npm:5.7.0"
+  checksum: 10c0/33d030ccc4141734e49f4e14b7e8910ceab0219396876292acfef94167d13ad2e819a9297b57cad5c9d2df1331a80e1a6e9b6e0fade4316d1edc404a6c09d6b7
   languageName: node
   linkType: hard
 
