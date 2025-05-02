@@ -295,7 +295,7 @@
                                 "measure": "35",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "Zeilenfall bei <em>sehr ruhig | (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>= ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
+                                "comment": "Zeilenfall bei <em>sehr ruhig | (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span><em> = ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -581,7 +581,7 @@
                                 "measure": "1",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "<em>Sehr fließend und leicht (</em><span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>. <em>= circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
+                                "comment": "<em>Sehr fließend und leicht (</em><span class='glyph note'>{{ref.getGlyph('[Punktierte Halbe Note]')}}</span><em> = circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
                             },
                             {
                                 "svgGroupId": "g435",

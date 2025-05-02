@@ -253,7 +253,7 @@
                                 "measure": "31",
                                 "system": "",
                                 "position": "2/4",
-                                "comment": "Eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>&ngsp;<em>= ca 96</em> geändert zu runden Klammern."
+                                "comment": "Eckige Klammern um <span class='glyph note'>{{ref.getGlyph('[Halbe Note]')}}</span><em> = ca 96</em> geändert zu runden Klammern."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -323,7 +323,7 @@
                                 "measure": "76",
                                 "system": "",
                                 "position": "2/4",
-                                "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>&ngsp;<em>= ca 96</em> geändert zu runden Klammern."
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph note'>{{ref.getGlyph('[Halbe Note]')}}</span><em> = ca 96</em> geändert zu runden Klammern."
                             },
                             {
                                 "svgGroupId": "TODO",
