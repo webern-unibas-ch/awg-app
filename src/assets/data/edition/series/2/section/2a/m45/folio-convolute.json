@@ -591,8 +591,8 @@
                     "content": [
                         {
                             "complexId": "m26",
-                            "sheetId": "M_26_Sk1a",
-                            "sigle": "M 26 Sk1",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
                             "segmentSplit": 1,
@@ -606,8 +606,8 @@
                         },
                         {
                             "complexId": "m26",
-                            "sheetId": "M_26_Sk1b",
-                            "sigle": "M 26 Sk1",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
                             "sigleAddendum": "T. 6–11",
                             "selectable": false,
                             "segmentSplit": 1,
@@ -621,8 +621,8 @@
                         },
                         {
                             "complexId": "m26",
-                            "sheetId": "M_26_Sk1c",
-                            "sigle": "M 26 Sk1",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
                             "sigleAddendum": "T. 12–14",
                             "selectable": false,
                             "segmentSplit": 1,
