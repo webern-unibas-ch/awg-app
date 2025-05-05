@@ -275,7 +275,7 @@
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "4. Note",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu C<sub>1</sub>/C hinzugefügt."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu C<sub>1</sub>/C hinzugefügt."
                                         },
                                         {
                                             "measure": "7 <br /> bis 8",
@@ -287,19 +287,19 @@
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "4/16",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu E hinzugefügt."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu E hinzugefügt."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "3/8",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "6/32",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "20 <br /> bis 21",

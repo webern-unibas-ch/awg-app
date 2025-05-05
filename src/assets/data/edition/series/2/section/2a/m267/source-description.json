@@ -1,0 +1,293 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Kinderstück für Klavier M 267.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Bogen (Bl. 1/2). Bl. 2<sup>r</sup> und Bl. 2<sup>v</sup> unbeschrieben. Ecke oben rechts von Bl. 2 geknickt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 14 Systeme, Format: hoch 341 × 271 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 3 | 14 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift", "grüner Buntstift"]
+                },
+                "titles": [],
+                "dates": [
+                    "<em>Kinderstücke | (Herbst 1924) </em>mit grünem Buntstift auf Bl. 1<sup>r</sup> oben rechts"
+                ],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 267",
+                        "itemLinkTo": {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1"
+                        },
+                        "itemDescription": "(Kinderstück für Klavier M 267)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "16–17",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1  <br /> bis 2",
+                                            "system": "Klav.",
+                                            "position": "6/8–1/4",
+                                            "comment": "Rasuren im oberen System und zwischen den Systemen. Ante correcturam: Legatobogen von T. 1 5/8 zu rasierter, nicht entzifferbarer Note in T. 2 1/4 und Crescendogabel von T. 1 5/8 bis T. 2 1/4."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1/8–2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "Rasur im System vor Bassschlüssel."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "Achtelfähnchen rasiert und überschrieben zu Achtelbalken."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Viertelpause überschreibt Achtelpause."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "4/8–3/4",
+                                            "comment": "Rasur oberhalb des Systems."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>)."
+                                        },
+                                        {
+                                            "measure": "8 <br /> bis 9",
+                                            "system": "Klav. o.",
+                                            "position": "7/16 <br /> 1/4",
+                                            "comment": "Rasur über dem System."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "Achtelfähnchen rasiert und überschrieben zu Achtelbalken."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "Akzidenzien und Vorschlagsnote auf Rasur."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. o.",
+                                            "position": "3–4/8",
+                                            "comment": "Legatobogen rasiert."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "Rasur über der Note."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. u.",
+                                            "position": "3/16",
+                                            "comment": "Sechzehntelnote a rasiert."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. o.",
+                                            "position": "4/16–3/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav.",
+                                            "position": "2–3/16",
+                                            "comment": "Balken jeweils auf Rasur. Ante correcturam: Sechzehntelfähnchen zu 2/16."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Viertelpause überschreibt Achtelpause."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav.",
+                                            "position": "(3/8)",
+                                            "comment": "Achtelpause in Klav. o. und u. rasiert."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. o.",
+                                            "position": "3/16",
+                                            "comment": "Auf Rasur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_A_corr_2",
+                        "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "nach 7",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav.",
+                                            "position": "1–3/8",
+                                            "comment": "Diverse Eintragungen und Streichungen in beiden Systemen: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "8 bis 9",
+                                            "system": "Klav. o.",
+                                            "position": "6/8 <br /> 2/4",
+                                            "comment": "Alternative Skizze über dem System: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/4",
+                                            "comment": "Decrescendogabel vorskizziert."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> vorskizziert."
+                                        },
+                                        {
+                                            "measure": "15 bis nach 15",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Alternative Skizze über und nach der Akkolade: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. o.",
+                                            "position": "2–3/16",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>–cis<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "nach 17",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Alternative Skizze zu T. 16 3/4 bis T. 19 in Systemen 4–5: <br /> ##Abbildung##"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

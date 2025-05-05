@@ -19,7 +19,7 @@
                                 "measure": "1",
                                 "system": "Klav. u.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f ergänzt mit Blick auf Motivik vor T. 1 Klav. o."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f ergänzt mit Blick auf Motivik vor T. 1 Klav. o."
                             },
                             {
                                 "svgGroupId": "g485",
@@ -103,7 +103,7 @@
                                 "measure": "9",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e ergänzt mit Blick auf T. 10 2/16 und 3/8."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e ergänzt mit Blick auf T. 10 2/16 und 3/8."
                             },
                             {
                                 "svgGroupId": "g726",
