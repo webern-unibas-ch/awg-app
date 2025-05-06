@@ -1,0 +1,46 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_409_TF1",
+            "label": "M* 409 Textfassung 1",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 1 ist <strong>A<sup>a</sup></strong> relevante Quelle. <strong>A<sup>b</sup></strong> bezieht sich auf Textfassung 2.", 
+                "<strong>A<sup>a</sup></strong> weist Korrekturen mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand post correcturam in <strong>A<sup>a</sup></strong> konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 1 ist <strong>A<sup>a</sup></strong> post correcturam."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M*_409_TF2",
+            "label": "M* 409 Textfassung 2",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 2 sind <strong>A<sup>a</sup></strong> und <strong>A<sup>b</sup></strong> relevante Quellen.", 
+                "<strong>A<sup>a</sup></strong> und <strong>A<sup>b</sup></strong> weisen Korrekturen mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand post correcturam in <strong>A<sup>a</sup></strong> und <strong>A<sup>b</sup></strong> konstituiert eine kohärente Textfassung. <strong>A<sup>b</sup></strong> enthält T. 2–4 (Bl. 1r System 5b–6b) und T. 6–8/14–16 (Bl. 1r System 5c–6c) für Textfassung 2, die T. 2–4 und T. 6–8/14–16 aus Textfassung 1 ersetzen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 2 sind <strong>A<sup>a</sup></strong> und <strong>A<sup>b</sup></strong> post correcturam."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        }
+    ]
+}
