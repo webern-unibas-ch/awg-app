@@ -2070,7 +2070,7 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und Korrekturen 2)."
+                                            "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "{51}",
@@ -2088,7 +2088,7 @@
                                             "measure": "53",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und Korrekturen 2)."
+                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "54",
@@ -2355,7 +2355,7 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte pauschal gestrichen (vgl. Korrekturen 1) <br /> ##Abbildung##"
+                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "51 <br /> bis 52",

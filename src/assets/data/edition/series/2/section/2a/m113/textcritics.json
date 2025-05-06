@@ -71,7 +71,7 @@
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "d<sup>3</sup> korrigiert zu f<sup>3</sup> analog T. 1, 34, 37, 65 und 69 sowie mit Blick auf <strong>Sk1</strong> T. 14C in <strong>A</strong>."
+                                "comment": "d<sup>3</sup> korrigiert zu f<sup>3</sup> analog T. 1, 34, 37, 65 und 69 sowie mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk1f'})\"><strong>Sk1</strong> T. 14C</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "g4916",
@@ -141,7 +141,7 @@
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <strong>Sk5.1</strong> in <strong>A</strong>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5_1'})\"><strong>Sk5.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "g4886",
@@ -190,7 +190,7 @@
                                 "measure": "64",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "Oberstimmenschicht: Viertelnote undeutlich und sowohl als cis<sup>2</sup> als auch h<sup>1</sup> lesbar. Hier cis<sup>2</sup> gesetzt mit Blick auf harmonischen und motivischen Kontext. Vgl. auch <strong>Sk5</strong> T. 62 in <strong>B</strong>: dort h<sup>1</sup>, aber mit anderer harmonischer Unterlegung."
+                                "comment": "Oberstimmenschicht: Viertelnote undeutlich und sowohl als cis<sup>2</sup> als auch h<sup>1</sup> lesbar. Hier cis<sup>2</sup> gesetzt mit Blick auf harmonischen und motivischen Kontext. Vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5g'})\"><strong>Sk5</strong> T. 62</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_B'})\"><strong>B</strong></a>: dort h<sup>1</sup>, aber mit anderer harmonischer Unterlegung."
                             },
                             {
                                 "svgGroupId": "g4860",
@@ -271,7 +271,7 @@
             "id": "M_113_Sk1",
             "label": "M 113 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> entwirft das Hauptthema der Studienkomposition für Klavier M 113, auf deren Vorlage ein erster Teil der Tintenniederschrift basiert, deren Fortsetzung von weiteren Skizzen unterbrochen wird."
+                "<strong>Sk1</strong> entwirft das Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a>, auf deren Vorlage ein erster Teil der Tintenniederschrift basiert, deren Fortsetzung von weiteren Skizzen unterbrochen wird."
             ],
             "commentary": {
                 "preamble": "",
@@ -557,7 +557,7 @@
             "id": "M_113_Sk3",
             "label": "M 113 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> enthält die Überleitung und den B-Teil des Rondos. Die letzten Noten und das hinzugefügte <em>usw.</em> verweisen auf das wiederkehrende Hauptthema, das in diesem Moment nicht weiter ausgeführt wird (vgl. <strong>Sk6</strong>)."
+                "<strong>Sk3</strong> enthält die Überleitung und den B-Teil des Rondos. Die letzten Noten und das hinzugefügte <em>usw.</em> verweisen auf das wiederkehrende Hauptthema, das in diesem Moment nicht weiter ausgeführt wird (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk6'})\"><strong>Sk6</strong></a>)."
             ],
             "commentary": {
                 "preamble": "",
@@ -700,7 +700,7 @@
             "id": "M_113_Sk4",
             "label": "M 113 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> skizziert Sk2 die definitive Version des Abschlusses vom ersten Hauptthema (vgl. <strong>Sk2</strong>)."
+                "<strong>Sk4</strong> skizziert Sk2 die definitive Version des Abschlusses vom ersten Hauptthema (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk2'})\"><strong>Sk2</strong></a>)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1077,7 +1077,7 @@
             "id": "M_113_Sk5_1",
             "label": "M 113 Sk5.1",
             "evaluations": [
-                "<strong>Sk5.1</strong> enthält einen Einschub zu <strong>Sk5</strong>, bei dem zunächst T. 44 aus <strong>Sk5</strong> ausformuliert wird und dann drei zusätzliche Takte hinzugefügt werden, wobei der Anschluss an <strong>Sk5</strong> durch Einfügen der letzten Takthälfte in den Verlauf von <strong>Sk5</strong> mittels Einschubzeichen bewerkstelligt wird. Der letzte Takt aus <strong>Sk5.1</strong> (T. 44+3), der eine weitere Sequenzierung analog zu den vorangehenden Takten bringt und dessen zweite Takthälfte identisch ist mit jener des Nachfolgetaktes, entfällt in der Tintenniederschrift."
+                "<strong>Sk5.1</strong> enthält einen Einschub zu <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a>, bei dem zunächst <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5c'})\">T. 44 aus <strong>Sk5</strong></a> ausformuliert wird und dann drei zusätzliche Takte hinzugefügt werden, wobei der Anschluss an <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a> durch Einfügen der letzten Takthälfte in den Verlauf von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a> mittels Einschubzeichen bewerkstelligt wird. Der letzte Takt aus <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5_1'})\"><strong>Sk5.1</strong></a> (T. 44+3), der eine weitere Sequenzierung analog zu den vorangehenden Takten bringt und dessen zweite Takthälfte identisch ist mit jener des Nachfolgetaktes, entfällt in der Tintenniederschrift."
             ],
             "commentary": {
                 "preamble": "",
@@ -1133,7 +1133,7 @@
             "id": "M_113_Sk6",
             "label": "M 113 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> führt nachträglich, womöglich begleitend zur Skizzierung von <strong>Sk5</strong>, das am Ende von <strong>Sk3</strong> noch ausgeklammerte, zum zweiten Mal wiederkehrende Hauptthema aus."
+                "<strong>Sk6</strong> führt nachträglich, womöglich begleitend zur Skizzierung von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a>, das am Ende von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk3'})\"><strong>Sk3</strong></a> noch ausgeklammerte, zum zweiten Mal wiederkehrende Hauptthema aus."
             ],
             "commentary": {
                 "preamble": "",
