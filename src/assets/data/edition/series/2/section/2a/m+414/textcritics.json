@@ -1,0 +1,105 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_414_TF1",
+            "label": "M* 414 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 414 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 414 ist <strong>B</strong> nach Korrekturen 1."   
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },   
+        {
+            "id": "M*_414_Sk1",
+            "label": "M* 414 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der Studienkomposition für Klavier M* 416, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g140",
+                                "measure": "1",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "C/c gestrichen und ersetzt durch A."
+                            },
+                            {
+                                "svgGroupId": "g141",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "(1/4)",
+                                "comment": "Achtel- und Sechzehntelbalken gestrichen und ersetzt durch Achtelfähnchen zu 2. Note."
+                            },
+                            {
+                                "svgGroupId": "g142",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "4/4",
+                                "comment": "Nicht entzifferbare Schicht unter dem System."
+                            },
+                            {
+                                "svgGroupId": "g143",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "4/4",
+                                "comment": "d gestrichen; {{ref.getGlyph('[#]')}}Gis überschreibt D."
+                            },
+                            {
+                                "svgGroupId": "g144",
+                                "measure": "3",
+                                "system": "2",
+                                "position": "1/4",
+                                "comment": "D/fis gestrichen und ersetzt durch D/A/d."
+                            },
+                            {
+                                "svgGroupId": "g145",
+                                "measure": "3",
+                                "system": "1",
+                                "position": "4/8",
+                                "comment": "Oberstimmenschicht: h<sup>1</sup> überschreibt g<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g118",
+                                "measure": "6",
+                                "system": "4",
+                                "position": "(4/4)",
+                                "comment": "Unterstimmenschicht: Halbe Note E gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g119",
+                                "measure": "7",
+                                "system": "3",
+                                "position": "1/4",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g120",
+                                "measure": "7",
+                                "system": "3",
+                                "position": "2. Note",
+                                "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
