@@ -1,0 +1,160 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_465_TF1",
+            "label": "M* 465 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition M* 465 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition M* 465 ist <strong>B</strong> nach Korrekturen 1."
+                            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M*_465_Sk1",
+            "label": "M* 465 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition M* 465."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "1",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "1",
+                                "system": "6",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht: a überschreibt g."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "1 bis 2",
+                                "system": "7",
+                                "position": "letzte Note bis 1. Note",
+                                "comment": "Unterstimmenschicht: Ligatur gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g19",
+                                "measure": "1 bis 2",
+                                "system": "5",
+                                "position": "letzte Note bis 1. Note",
+                                "comment": "Unterstimmenschicht: Ligatur gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "2",
+                                "system": "7",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: d<sup>1</sup> überschreibt f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "3",
+                                "system": "7",
+                                "position": "1–3/8",
+                                "comment": "Achtelnote g<sup>1</sup> und Viertelnote f<sup></sup> radiert."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "3",
+                                "system": "6",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "4",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Notenhals gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "4",
+                                "system": "7",
+                                "position": "2/2",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "5",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "5",
+                                "system": "6",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g13",
+                                "measure": "5",
+                                "system": "6",
+                                "position": "4/4",
+                                "comment": "Oberstimmenschicht: [#]gis überschreibt h."
+                            },
+                            {
+                                "svgGroupId": "g14",
+                                "measure": "6",
+                                "system": "6",
+                                "position": "3–4/4",
+                                "comment": "Unterstimmenschicht: Viertelnoten F–G radiert und ersetzt durch f–g."
+                            },
+                            {
+                                "svgGroupId": "g15",
+                                "measure": "8",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: Halbe Note d<sup>2</sup> überschreibt Viertelnote e<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g16",
+                                "measure": "8",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "Ganze Note g radiert."
+                            },
+                            {
+                                "svgGroupId": "g17",
+                                "measure": "8",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: c überschreibt d."
+                            },
+                            {
+                                "svgGroupId": "g18",
+                                "measure": "8",
+                                "system": "6",
+                                "position": "2/2",
+                                "comment": "Oberstimmenschicht: Halbe Note c<sup>2</sup> überschreibt Viertelnote d<sup>2</sup>."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
