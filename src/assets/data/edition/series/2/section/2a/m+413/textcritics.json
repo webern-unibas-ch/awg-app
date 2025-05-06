@@ -1,0 +1,77 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_413_TF1",
+            "label": "M* 413 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 413 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 413 ist <strong>B</strong> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M*_413_Sk1",
+            "label": "M* 413 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 413."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g212",
+                                "measure": "1",
+                                "system": "9",
+                                "position": "3–4/4",
+                                "comment": "{{ref.getGlyph('[#]')}}dis<sup>1</sup>–e<sup>1</sup> überschreibt e<sup>1</sup>–fis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g214",
+                                "measure": "5",
+                                "system": "9",
+                                "position": "2. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g215",
+                                "measure": "{7A}",
+                                "system": "9",
+                                "position": "",
+                                "comment": "Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g216",
+                                "measure": "{7B}",
+                                "system": "9–10",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g217",
+                                "measure": "{7B}",
+                                "system": "10",
+                                "position": "1/4",
+                                "comment": "a überschreibt g."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
