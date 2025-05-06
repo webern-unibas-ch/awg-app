@@ -2571,7 +2571,7 @@
                                             "measure": "vor 1",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>Sehr</em> hinzugefügt vor <em>Langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> mit schwarzer Tinte."
+                                            "comment": "<em>Sehr</em> hinzugefügt vor <em>Langsam (</em><span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "vor 1",
@@ -3975,7 +3975,7 @@
                                             "measure": "13",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>ruhig (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>= ca 72)</em> auf Rasur."
+                                            "comment": "<em>ruhig (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span<em> = ca 72)</em> auf Rasur."
                                         },
                                         {
                                             "measure": "12 <br /> und 14",
@@ -4004,7 +4004,7 @@
                                             "measure": "vor 1",
                                             "system": "",
                                             "position": "",
-                                            "comment": "<em>Langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span>&ngsp;<em>= ca 48)</em> teilweise auf Rasur und geändert. Ante correcturam: vermutlich <em>Sehr langsam (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "<em>Langsam (</em><span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = ca 48)</em> teilweise auf Rasur und geändert. Ante correcturam: vermutlich <em>Sehr langsam (</em><span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em>)</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "2",
@@ -4016,7 +4016,7 @@
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "3. Note",
-                                            "comment": "<em>wo</em> überschreibt <em>Wo</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>wo</em> überschreibt <em>Wo</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "2",
@@ -4040,7 +4040,7 @@
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<em>vom</em> überschreibt <em>Vom</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>vom</em> überschreibt <em>Vom</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "5",
@@ -4070,7 +4070,7 @@
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "8",
@@ -4082,7 +4082,7 @@
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "8/16",
-                                            "comment": "<em>mit</em> überschreibt <em>Mit</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>mit</em> überschreibt <em>Mit</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "9",
@@ -4106,7 +4106,7 @@
                                             "measure": "10",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>poco rit.</em> | <span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = ca 66</em> auf Rasur. Ante correcturam: vermutlich <em>rit.</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "<em>poco rit.</em> | <span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = ca 66</em> auf Rasur. Ante correcturam: vermutlich <em>rit.</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "10",
@@ -4118,7 +4118,7 @@
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -4154,13 +4154,13 @@
                                             "measure": "12",
                                             "system": "Ges.",
                                             "position": "letzte Note",
-                                            "comment": "<em>der</em> überschreibt <em>Der</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>der</em> überschreibt <em>Der</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "13",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>tempo I. (</em><span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = ca 48)</em> auf Rasur. Ante correcturam: vermutlich <em>sehr ruhig</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "<em>tempo I. (</em><span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = ca 48)</em> auf Rasur. Ante correcturam: vermutlich <em>sehr ruhig</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "13",
@@ -4178,7 +4178,7 @@
                                             "measure": "15",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<em>es</em> überschreibt <em>Es</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                            "comment": "<em>es</em> überschreibt <em>Es</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         }
                                     ]
                                 }
@@ -4642,7 +4642,7 @@
                                             "measure": "1",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>Ruhevoll (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span>&ngsp;<em>= ca <s>58</s></em> &lt;<em>58</em>&gt;<em>)</em>, <em><s>58</s></em> gestrichen mit Bleistift, &lt;<em>58</em>&gt; hinzugefügt mit schwarzer Tinte (Hs. Webern?)."
+                                            "comment": "<em>Ruhevoll (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span><em> = ca <s>58</s></em> &lt;<em>58</em>&gt;<em>)</em>, <em><s>58</s></em> gestrichen mit Bleistift, &lt;<em>58</em>&gt; hinzugefügt mit schwarzer Tinte (Hs. Webern?)."
                                         },
                                         {
                                             "measure": "1–13",

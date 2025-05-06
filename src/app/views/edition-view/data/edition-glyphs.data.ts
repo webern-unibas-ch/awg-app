@@ -195,6 +195,15 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
+     * The glyph of a musical half note with dot symbol.
+     * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
+     */
+    NOTE_HALF_DOTTED: {
+        alt: '[Punktierte Halbe Note]',
+        hex: '\uE1D3 \uE1E7',
+    },
+
+    /**
      * The glyph of a musical quarter note symbol.
      * Cf. https://w3c.github.io/smufl/latest/tables/individual-notes.html
      */

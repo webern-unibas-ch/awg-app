@@ -727,7 +727,7 @@
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: <em>weiß</em>. <strong>George_DJdS</strong>: <em>Weiss</em> (am Zeilenanfang)."
+                                "comment": "Text sic: <em>weiß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>Weiss</em> (am Zeilenanfang)."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -942,7 +942,7 @@
                                 "measure": "15",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "Klammern zu <span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span>&ngsp;<em>= 80</em> ergänzt analog T. 1, 10 und 13."
+                                "comment": "Klammern zu <span class='glyph note'>{{ref.getGlyph('[Viertelnote]')}}</span><em> = 80</em> ergänzt analog T. 1, 10 und 13."
                             },
                             {
                                 "svgGroupId": "TODO",
