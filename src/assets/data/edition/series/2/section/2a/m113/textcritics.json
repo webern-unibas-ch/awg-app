@@ -11,252 +11,252 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g184",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "Klav. u.",
                                 "position": "nach 5/8",
-                                "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note d<sup>1</sup> weggelassen mit Blick auf metrischen Kontext und Korrekturen 2."
+                                "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note d<sup>1</sup> weggelassen mit Blick auf metrischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g528",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "8",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
                                 "comment": "Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext; <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "7. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "10",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4904",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "3/16",
                                 "comment": "Unterstimmenschicht: Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4908",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "8/16",
                                 "comment": "Unterstimmenschicht: Achtelpause korrigiert zu Sechzehntelpause mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4933",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "d<sup>3</sup> korrigiert zu f<sup>3</sup> analog T. 1, 34, 37, 65 und 69 sowie mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk1f'})\"><strong>Sk1</strong> T. 14C</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
-                                "svgGroupId": "g4916",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "15",
                                 "system": "Klav. o.",
                                 "position": "10/16",
                                 "comment": "Unterstimmenschicht: Viertelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g182",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "22",
                                 "system": "Klav.",
                                 "position": "10–12/16",
                                 "comment": "Oberstimmenschicht: Achtelnote gis<sup>1</sup> auf 6/8 inkl. Ligatur zu 10/16 ergänzt; Unterstimmenschicht: Sechzehntelnoten d<sup>1</sup>–e versetzt von 10–11/16 analog 1. TH und T. 77."
                             },
                             {
-                                "svgGroupId": "g210",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g100",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "7/16, 9/16, 11/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt analog T. 79."
                             },
                             {
-                                "svgGroupId": "g323",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "25",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g347",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "26",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von zwischen 1/8 und 2/8."
                             },
                             {
-                                "svgGroupId": "g4550",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "37",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5230",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "40",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5234",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "42",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von (2/8)."
                             },
                             {
-                                "svgGroupId": "g5244",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5_1'})\"><strong>Sk5.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
-                                "svgGroupId": "g4886",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "52",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und nachfolgendes <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> (4/8). Mit Blick auf den harmonischen Kontext ist auch <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu e<sup>1</sup> (1. Note) nicht auszuschließen."
                             },
                             {
-                                "svgGroupId": "g4890",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "58",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Notenhals zu g<sup>2</sup>/h<sup>2</sup> ergänzt."
                             },
                             {
-                                "svgGroupId": "g4894",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Notenhals zu fis<sup>2</sup>/ais<sup>2</sup> ergänzt; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>3</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> in Unterstimmenschicht ergänzt mit Blick auf T. 58."
                             },
                             {
-                                "svgGroupId": "g4898",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4444",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4849",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "63",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von zwischen 1. und 2. Note der Oberstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g4853",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "64",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote undeutlich und sowohl als cis<sup>2</sup> als auch h<sup>1</sup> lesbar. Hier cis<sup>2</sup> gesetzt mit Blick auf harmonischen und motivischen Kontext. Vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5g'})\"><strong>Sk5</strong> T. 62</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_B'})\"><strong>B</strong></a>: dort h<sup>1</sup>, aber mit anderer harmonischer Unterlegung."
                             },
                             {
-                                "svgGroupId": "g4860",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "64 <br /> bis 66",
                                 "system": "Klav. o.",
                                 "position": "letzte Note <br /> 3/8",
                                 "comment": "Legatobogen ergänzt analog T. 1–2 (vgl. TkA zu T. 64 bis 69)."
                             },
                             {
-                                "svgGroupId": "g4857",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "64 <br /> bis 69",
                                 "system": "Klav.",
                                 "position": "letzte Note <br /> letzte Note",
                                 "comment": "Mit Ausnahme des oberen Systems von T. 65, das den melodischen Beginn des A-Teils enthält, hat Webern die T. 65–69 nicht ausnotiert, sondern mit einem „usw<em>.</em>“<em> </em>und anschließender Geltungsstrichelung gekennzeichnet. Weberns Notation setzt erst in T. 70 wieder ein, wo die metrische Verschiebung gegenüber der Exposition vollzogen wird. In T. 65–69 werden hier folglich T. 1–5 eingefügt sowie der Legatobogen aus T. 64 6/8 ergänzt analog T. 1–2 (vgl. Quellenbewertung)."
                             },
                             {
-                                "svgGroupId": "g4861",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "72",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Zusätzlichen Notenhals mit zwei Fähnchen nach oben weggelassen."
                             },
                             {
-                                "svgGroupId": "g4865",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "72",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3997",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Ende des Legatobogens versetzt von (12/16) analog T. 77."
                             },
                             {
-                                "svgGroupId": "g4005",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "77",
                                 "system": "Klav.",
                                 "position": "7/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 8/16."
                             },
                             {
-                                "svgGroupId": "g4009",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "78",
                                 "system": "Klav. u.",
                                 "position": "1. Pause",
                                 "comment": "Achtelpause korrigiert zu Sechzehntelpause mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4013",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "78",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: c<sup>1</sup> korrigiert zu a mit Blick auf motivischen Kontext und die Höhe des Notenkopfs (unterhalb des vorangehenden b)."
                             },
                             {
-                                "svgGroupId": "g4031",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "79",
                                 "system": "Klav. o.",
                                 "position": "8/16, 10/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>3</sup> und g<sup>2</sup> ergänzt analog T. 24."
                             },
                             {
-                                "svgGroupId": "g2222",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "83",
                                 "system": "Klav. o.",
                                 "position": "2. Note",

@@ -786,7 +786,7 @@
   <g id="g1257" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
     <use xlink:href="#glyph0-7" id="use1255" width="100%" height="100%" x="267.721" y="349.618"/>
   </g>
-  <g id="g4908" class="tkk">
+  <g id="g-tkk-8" class="tkk">
     <g id="g1261" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
       <use xlink:href="#glyph5-1" id="use1259" width="100%" height="100%" x="197.16" y="264.777"/>
     </g>
@@ -803,12 +803,12 @@
   <path id="path1281" d="M305.51 297.926v-7.02" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path1283" d="M303.95 290.907h1.56" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path1285" d="M303.95 297.926h1.56" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g4912" class="tkk">
+  <g id="g-tkk-9" class="tkk">
     <g id="g1289" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
       <use xlink:href="#glyph5-1" id="use1287" width="100%" height="100%" x="275.161" y="257.157"/>
     </g>
   </g>
-  <g id="g4904" class="tkk">
+  <g id="g-tkk-7" class="tkk">
     <g id="g1293" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
       <use xlink:href="#glyph5-1" id="use1291" width="100%" height="100%" x="106.68" y="267.897"/>
     </g>
@@ -1032,7 +1032,7 @@
   <path id="path1615" d="M460.373 328.344v-10.14" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path1617" d="M458.81 318.203h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path1619" d="M458.81 328.344h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g4916" class="tkk">
+  <g id="g-tkk-10" class="tkk">
     <g id="g1623" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
       <use xlink:href="#glyph5-1" id="use1621" width="100%" height="100%" x="483.001" y="255.237"/>
     </g>
@@ -1702,12 +1702,4 @@
   <path id="path2689" d="M374.752 639.387c39-21.062 174.539 11.7 216.238 52.258l-.117.121c-41.883-39.54-177.422-72.3-216-52.2l-.121-.179" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:.06;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path4898" d="M62.572 269.383c-12.903 18.723 5.039 31.383-5.88 37.621h1.56c12.12-9-5.461-21.238 4.32-37.078" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
   <path id="path4900" d="M62.572 344.625c-12.903-18.722 5.039-31.379-5.88-37.62h1.56c12.12 8.94-5.461 21.241 4.32 37.019" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
-  <g id="g2" class="tkk">
-    <g id="g1" style="fill:#000;fill-opacity:1" transform="translate(38.931 -14.254)">
-      <use xlink:href="#glyph5-1" id="use1" width="100%" height="100%" x="275.161" y="257.157"/>
-    </g>
-  </g>
-  <g id="g4933" class="tkk">
-    <use xlink:href="#g2" id="use2" x="0" y="0"/>
-  </g>
 </svg>
