@@ -36,7 +36,7 @@
                                 {
                                     "position": 1,
                                     "startSystem": 3,
-                                    "endSystem": 5
+                                    "endSystem": 4
                                 }
                             ]
                         },
@@ -44,7 +44,7 @@
                             "complexId": "m45",
                             "sheetId": "M_45_Sk5c",
                             "sigle": "M 45 Sk5",
-                            "sigleAddendum": "T. 15B–17B(2–3/4)",
+                            "sigleAddendum": "T. 15B–17C(2–3/4)",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -226,7 +226,7 @@
                             "complexId": "m45",
                             "sheetId": "M_45_Sk1c",
                             "sigle": "M 45 Sk1",
-                            "sigleAddendum": "T. 12B–13B",
+                            "sigleAddendum": "T. 12B–12C",
                             "segmentSplit": 2,
                             "segments": [
                                 {
