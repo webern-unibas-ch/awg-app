@@ -52,9 +52,6 @@
   <path id="line82" d="M168.229 268.32h790.616" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="line84" d="M168.229 273.787h790.616" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="line86" d="M168.229 279.253h790.616" style="fill:none;stroke:#000;stroke-width:.483"/>
-  <g id="g6" class="tkk" style="stroke-width:.69921258;stroke-dasharray:none">
-    <path id="polyline92" d="m265.646 121.962 31.262-16.912" style="fill:none;stroke:#000;stroke-width:.5143509;stroke-dasharray:none" transform="matrix(1.2619 0 0 1.46444 49.772 32.08)"/>
-  </g>
   <text id="text94" x="204.99" y="194.52" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:.750002">œ</text>
   <text id="text96" x="199.246" y="194.52" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:.750002">b</text>
   <path id="line98" d="M211.334 193.61v-27.79" style="fill:none;stroke:#000;stroke-width:.483"/>
@@ -284,8 +281,11 @@
       <path id="path1579-1-8-22" d="M40.735 40.408H39.46V27.144h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g7" class="tkk">
+  <g id="g-tkk-12" class="tkk">
     <text id="text180" x="327.257" y="172.654" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:.750002">œ</text>
     <path id="path6" d="M395.196 265.985c21.662-29.81 88.654-85.192 132.047-74.375 31.367 7.82 47.141 55.53 71.854 46.012 11.69-6.479 24.19-22.375 31.83-29.624 14.32-15.828 40.47 28.82 52.206 28 24.01-1.678 14.828-40.77 32.884-39.345 23.911 1.886 28.976 34.744 50.109 18.593 3.774-2.47 7.924-6.303 11.975-6.303" style="fill:none;stroke:#000;stroke-width:.699213"/>
+  </g>
+  <g id="g-tkk-11" class="tkk" style="stroke-width:.69921258;stroke-dasharray:none">
+    <path id="polyline92" d="m265.646 121.962 31.262-16.912" style="fill:none;stroke:#000;stroke-width:.5143509;stroke-dasharray:none" transform="matrix(1.2619 0 0 1.46444 49.772 32.08)"/>
   </g>
 </svg>
