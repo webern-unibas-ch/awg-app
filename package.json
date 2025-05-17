@@ -129,7 +129,7 @@
         "@types/jasmine": "~5.1.8",
         "@types/node": "^22.15.18",
         "angular-cli-ghpages": "^2.0.3",
-        "angular-eslint": "^19.3.0",
+        "angular-eslint": "^19.4.0",
         "commit-and-tag-version": "^12.5.1",
         "conventional-recommended-bump": "^11.0.0",
         "eslint": "^9.26.0",
