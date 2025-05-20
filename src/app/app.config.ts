@@ -115,7 +115,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the URL of the Deep Wiki
+     * Getter for the URL of the DeepWiki
      * ({@link https://deepwiki.com/webern-unibas-ch/awg-app}).
      *
      * @returns {string}

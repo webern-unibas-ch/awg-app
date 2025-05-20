@@ -74,7 +74,7 @@ export class MetaPage {
     daschUrl: string;
 
     /**
-     * The url to the DEEP Wiki.
+     * The url to the DeepWiki.
      */
     deepWikiUrl: string;
 
