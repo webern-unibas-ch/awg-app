@@ -74,6 +74,11 @@ export class MetaPage {
     daschUrl: string;
 
     /**
+     * The url to the DEEP Wiki.
+     */
+    deepWikiUrl: string;
+
+    /**
      * The url to the DHLab Basel.
      */
     dhlabUrl: string;
