@@ -115,6 +115,16 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the URL of the DeepWiki
+     * ({@link https://deepwiki.com/webern-unibas-ch/awg-app}).
+     *
+     * @returns {string}
+     */
+    public static get DEEP_WIKI_URL(): string {
+        return 'https://deepwiki.com/webern-unibas-ch/awg-app';
+    }
+
+    /**
      * Getter for the URL of the DHLAB Basel
      * ({@link https://dhlab.philhist.unibas.ch}).
      *
