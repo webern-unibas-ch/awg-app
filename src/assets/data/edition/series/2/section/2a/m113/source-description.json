@@ -1674,7 +1674,7 @@
                                         {
                                             "system": "11 (Bleistift)",
                                             "measure": "16A",
-                                            "linkTo": ""
+                                            "linkTo": "M_113_Sk2a"
                                         }
                                     ]
                                 ]
@@ -1687,8 +1687,8 @@
                                     [
                                         {
                                             "system": "10b–6 (Bleistift)",
-                                            "measure": "",
-                                            "linkTo": ""
+                                            "measure": "16B, 17A",
+                                            "linkTo": "M_113_Sk2b"
                                         }
                                     ]
                                 ]
@@ -1702,7 +1702,7 @@
                                         {
                                             "system": "5a–3a (Bleistift)",
                                             "measure": "16C, 17B",
-                                            "linkTo": ""
+                                            "linkTo": "M_113_Sk2c"
                                         }
                                     ]
                                 ]

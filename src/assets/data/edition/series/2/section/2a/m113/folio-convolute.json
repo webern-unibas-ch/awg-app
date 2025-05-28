@@ -1751,70 +1751,156 @@
             "folios": [
                 {
                     "folioId": "1r",
-                    "trademarkPosition": "unten links",
-                    "systems": "18",
+                    "systems": "22",
+                    "reversed": true,
                     "dimensions": {
-                        "height": 349,
-                        "width": 264
+                        "height": 345,
+                        "width": 266
                     },
                     "content": [
                         {
-                            "complexId": "m76",
-                            "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. 1–5",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5(1–3/8)",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 1,
-                                    "endSystem": 2
+                                    "startSystem": 22,
+                                    "endSystem": 21
                                 }
                             ]
                         },
                         {
-                            "complexId": "m76",
-                            "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. 6–11",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 5(4–6/8)–9",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 4,
-                                    "endSystem": 5
+                                    "startSystem": 19,
+                                    "endSystem": 18
                                 }
                             ]
                         },
                         {
-                            "complexId": "m76",
-                            "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. 12–16",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 10–13",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 7,
-                                    "endSystem": 8
+                                    "startSystem": 16,
+                                    "endSystem": 15
                                 }
                             ]
                         },
                         {
-                            "complexId": "m76",
-                            "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. 17–21",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {14}–15",
                             "selectable": false,
                             "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2a",
+                            "sigle": "M 113 Sk2 T. 16A",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2b",
+                            "sigle": "M 113 Sk2",
+                            "sigleAddendum": "T. 16B–17A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {16}",
+                            "selectable": false,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 10,
-                                    "endSystem": 11
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–17",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2c",
+                            "sigle": "M 113 Sk2",
+                            "sigleAddendum": "T. 16C–17B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5a",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 39–41A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 2
                                 }
                             ]
                         }
@@ -1822,69 +1908,409 @@
                 },
                 {
                     "folioId": "1v",
-                    "systems": "18",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "22",
+                    "reversed": true,
                     "dimensions": {
-                        "height": 349,
-                        "width": 264
+                        "height": 345,
+                        "width": 266
                     },
                     "content": [
                         {
-                            "complexId": "m75",
-                            "sheetId": "M_75_TF1",
-                            "sigle": "M 75 Tintenniederschrift",
-                            "sigleAddendum": "T. 1–5",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 18–21",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 1,
-                                    "endSystem": 2
+                                    "startSystem": 22,
+                                    "endSystem": 21
                                 }
                             ]
                         },
                         {
-                            "complexId": "m75",
-                            "sheetId": "M_75_TF1",
-                            "sigle": "M 75 Tintenniederschrift",
-                            "sigleAddendum": "T. 6–9",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 22–26",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 4,
-                                    "endSystem": 5
+                                    "startSystem": 19,
+                                    "endSystem": 18
                                 }
                             ]
                         },
                         {
-                            "complexId": "m75",
-                            "sheetId": "M_75_TF1",
-                            "sigle": "M 75 Tintenniederschrift",
-                            "sigleAddendum": "T. 10–13",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 27–31",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 7,
-                                    "endSystem": 8
+                                    "startSystem": 16,
+                                    "endSystem": 15
                                 }
                             ]
                         },
                         {
-                            "complexId": "m75",
-                            "sheetId": "M_75_TF1",
-                            "sigle": "M 75 Tintenniederschrift",
-                            "sigleAddendum": "T. 14",
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 32–35",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 36–39",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 10,
-                                    "endSystem": 11
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 40–44",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 45–50",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {51–52}, 53–56",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 51–52",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 57–60",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 61–64",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 65–71",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 72–74",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 75–77",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 78–81",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 82–84",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9a",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 44–49",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9b",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 50–56(1–2/4)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9c",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 56(2–3/4)–58",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10a",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 60–64",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10b",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 65–{70A}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10e",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 77–78",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10c",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 67B–70B",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10_1",
+                            "sigle": "M 114 Sk10.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10d",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 71–76",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
                                 }
                             ]
                         }
