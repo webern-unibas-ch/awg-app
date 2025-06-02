@@ -809,7 +809,7 @@
             "id": "M_113_Sk5",
             "label": "M 113 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> enthält ist eine Verlaufsskizze, die mit der Überleitung zum C-Teil von M113 einsetzt und vor der vermutlich letzten Wiederkehr des Hauptthemas endet – an derselben Stelle, an der auch die Tintenniederschrift abbricht. Die Lücke zwischen T. 63 und 68 erklärt sich aus Gründen der Arbeitsökonomie aufgrund sich wiederholender Takte im Hauptthema."
+                "<strong>Sk5</strong> enthält ist eine Verlaufsskizze, die mit der Überleitung zum C-Teil der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> einsetzt und vor der vermutlich letzten Wiederkehr des Hauptthemas endet – an derselben Stelle, an der auch die Tintenniederschrift abbricht. Die Lücke zwischen T. 63 und 68 erklärt sich aus Gründen der Arbeitsökonomie aufgrund sich wiederholender Takte im Hauptthema."
             ],
             "commentary": {
                 "preamble": "",
