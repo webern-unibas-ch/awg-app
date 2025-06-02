@@ -570,7 +570,7 @@
             "id": "M_113_Sk2",
             "label": "M 113 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> erprobt verschiedene Varianten für den Abschluss des erstrn Hauptthemas von M 113."
+                "<strong>Sk2</strong> erprobt verschiedene Varianten für den Abschluss des ersten Hauptthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a>."
             ],
             "commentary": {
                 "preamble": "",
