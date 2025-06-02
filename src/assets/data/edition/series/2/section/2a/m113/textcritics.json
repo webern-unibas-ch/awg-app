@@ -3,7 +3,12 @@
         {
             "id": "M_113_TF1",
             "label": "M 113 einzige Textfassung",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 111 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B</strong> enthalten Skizzen.",
+                "<strong>C</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Den Beginn des dritten A-Teils ab T. 65 hat Webern nicht ausnotiert, sondern in T. 66 mit dem Hinweis <em>usw.</em> markiert (vgl. Korrekturen 1 und TkA). Die dementsprechend fehlenden T. 66–69 wurden analog T. 2–5 ergänzt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 113 ist <strong>C</strong> nach Korrekturen 1."
+
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -762,7 +767,7 @@
             "id": "M_113_Sk4",
             "label": "M 113 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> skizziert Sk2 die definitive Version des Abschlusses vom ersten Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk2'})\"><strong>Sk2</strong></a>)."
+                "<strong>Sk4</strong> skizziert die definitive Version des Abschlusses vom ersten Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk2'})\"><strong>Sk2</strong></a>)."
             ],
             "commentary": {
                 "preamble": "",
@@ -809,7 +814,7 @@
             "id": "M_113_Sk5",
             "label": "M 113 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> enthält ist eine Verlaufsskizze, die mit der Überleitung zum C-Teil der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> einsetzt und vor der vermutlich letzten Wiederkehr des Hauptthemas endet – an derselben Stelle, an der auch die Tintenniederschrift abbricht. Die Lücke zwischen T. 63 und 68 erklärt sich aus Gründen der Arbeitsökonomie aufgrund sich wiederholender Takte im Hauptthema."
+                "<strong>Sk5</strong> ist eine Verlaufsskizze, die mit der Überleitung zum C-Teil der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> einsetzt und vor der vermutlich letzten Wiederkehr des Hauptthemas endet – an derselben Stelle, an der auch die Tintenniederschrift abbricht. Die Lücke zwischen T. 63 und 68 erklärt sich aus Gründen der Arbeitsökonomie aufgrund sich wiederholender Takte im Hauptthema."
             ],
             "commentary": {
                 "preamble": "",
