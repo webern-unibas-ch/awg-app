@@ -1306,7 +1306,7 @@
             "id": "M_113_Sk6",
             "label": "M 113 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> führt nachträglich, womöglich begleitend zur Skizzierung von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a>, das am Ende von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk3'})\"><strong>Sk3</strong></a> noch ausgeklammerte, zum zweiten Mal wiederkehrende Hauptthema aus."
+                "<strong>Sk6</strong> führt nachträglich, womöglich begleitend zur Skizzierung von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk5'})\"><strong>Sk5</strong></a>, das am Ende von <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk3'})\"><strong>Sk3</strong></a> noch ausgeklammerte, zum zweiten Mal wiederkehrende Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> aus."
             ],
             "commentary": {
                 "preamble": "",
