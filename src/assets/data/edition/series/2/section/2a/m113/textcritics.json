@@ -762,7 +762,7 @@
             "id": "M_113_Sk4",
             "label": "M 113 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> skizziert Sk2 die definitive Version des Abschlusses vom ersten Hauptthema (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk2'})\"><strong>Sk2</strong></a>)."
+                "<strong>Sk4</strong> skizziert Sk2 die definitive Version des Abschlusses vom ersten Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_TF1'})\">Studienkomposition für Klavier M 113</a> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M_113_Sk2'})\"><strong>Sk2</strong></a>)."
             ],
             "commentary": {
                 "preamble": "",
