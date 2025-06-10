@@ -7,10 +7,10 @@
                 {
                     "folioId": "1r",
                     "trademarkPosition": "unten links",
-                    "systems": "18",
+                    "systems": "28",
                     "dimensions": {
-                        "height": 347,
-                        "width": 266
+                        "height": 343,
+                        "width": 263
                     },
                     "content": [
                         {
@@ -99,7 +99,22 @@
                                 {
                                     "position": 1,
                                     "startSystem": 18,
-                                    "endSystem": 18
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXa",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 25
                                 }
                             ]
                         },
@@ -114,7 +129,7 @@
                                 {
                                     "position": 2,
                                     "startSystem": 18,
-                                    "endSystem": 18
+                                    "endSystem": 21
                                 }
                             ]
                         }
@@ -122,10 +137,10 @@
                 },
                 {
                     "folioId": "1v",
-                    "systems": "18",
+                    "systems": "28",
                     "dimensions": {
-                        "height": 347,
-                        "width": 266
+                        "height": 343,
+                        "width": 263
                     },
                     "content": [
                         {
@@ -232,6 +247,66 @@
                                     "endSystem": 18
                                 }
                             ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2b",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2c",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2d",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2e",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
                         }
                     ]
                 },
@@ -306,7 +381,7 @@
                         },
                         {
                             "complexId": "m66",
-                            "sheetId": "M_66_SkXXb",
+                            "sheetId": "M_66_SkXX",
                             "sigle": "M 66 Sk##",
                             "sigleAddendum": "T. ###",
                             "selectable": false,
@@ -321,7 +396,7 @@
                         },
                         {
                             "complexId": "m66",
-                            "sheetId": "M_66_SkXXb",
+                            "sheetId": "M_66_SkXX",
                             "sigle": "M 66 Sk##",
                             "sigleAddendum": "T. ###",
                             "selectable": false,
@@ -932,7 +1007,7 @@
                             "complexId": "m113",
                             "sheetId": "M_113_Sk3e",
                             "sigle": "M 113 Sk3",
-                            "sigleAddendum": "T. 29–31A",
+                            "sigleAddendum": "T. 29–{31A}",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -1243,7 +1318,7 @@
                     "content": [
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1",
+                            "sheetId": "M_78_TF1a",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
@@ -1258,7 +1333,7 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1",
+                            "sheetId": "M_78_TF1b",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 7–11",
                             "selectable": false,
@@ -1273,9 +1348,9 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1",
+                            "sheetId": "M_78_TF1c",
                             "sigle": "M 78 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. ###",
+                            "sigleAddendum": "T. 12–17",
                             "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
@@ -1288,9 +1363,9 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1",
+                            "sheetId": "M_78_TF1d",
                             "sigle": "M 78 Tintenniederschrift TF1",
-                            "sigleAddendum": "T. ###",
+                            "sigleAddendum": "T. 18–20",
                             "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
@@ -1305,22 +1380,7 @@
                             "complexId": "m78",
                             "sheetId": "M_78_SkXX",
                             "sigle": "M 78 Sk##",
-                            "sigleAddendum": "T. ###",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 2,
-                                    "startSystem": 17,
-                                    "endSystem": 20
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m78",
-                            "sheetId": "M_78_SkXX",
-                            "sigle": "M 78 Sk##",
-                            "sigleAddendum": "T. ###",
+                            "sigleAddendum": "Harmonisches Schema",
                             "selectable": false,
                             "segmentSplit": 2,
                             "segments": [

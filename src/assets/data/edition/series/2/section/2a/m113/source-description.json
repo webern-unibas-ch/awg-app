@@ -11,7 +11,8 @@
                     "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale und vertikale Knickfalte in Bl. 1 und 4, horizontale Knickfalte in Bl. 2/3. Bl. 1 in der Knickfalte links, rechts und unten eingerissen. Tintenflecken auf Bl. 1<sup>v</sup> und 4<sup>r</sup>. Rissspuren am rechten Rand von Bl. 4: von Bogen abgerissen. Archivalische Paginierung <em>p. 4</em> auf Bl. 4<sup>v</sup> und <em>p. 10 </em>auf Bl. 3<sup>v</sup> mit Bleistift unten links. Archivalische Eintragung <em>Langsamer Satz </em>mit Bleistift unten rechts auf Bl. 1<sup>v</sup>."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier (Bl. 1), 28 Systeme, Format: hoch 343 × 263 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>; Notenpapier (Bl. 2–4, Bl. 4 auf dem Kopf stehend), 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 2<sup>r</sup> und 3<sup>r</sup> sowie oben rechts auf Bl. 4<sup>v</sup>."
+                    "Notenpapier (Bl. 1), 28 Systeme, Format: hoch 343 × 263 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>",
+                    "Notenpapier (Bl. 2–4, Bl. 4 auf dem Kopf stehend), 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 2<sup>r</sup> und 3<sup>r</sup> sowie oben rechts auf Bl. 4<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1122,7 +1123,8 @@
                                     [
                                         {
                                             "system": "17b–20b",
-                                            "measure": "Harmonisches Schema.",
+                                            "systemDescription": "Harmonisches Schema",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
