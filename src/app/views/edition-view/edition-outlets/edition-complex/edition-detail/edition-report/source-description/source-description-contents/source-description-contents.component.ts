@@ -12,7 +12,7 @@ import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-description-contents',
     templateUrl: './source-description-contents.component.html',
-    styleUrl: './source-description-contents.component.scss',
+    styleUrls: ['./source-description-contents.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
@@ -34,7 +34,7 @@ export class SourceDescriptionContentsComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Input variable: openAllContentDetails.
+     * Public variable: openAllContentDetails.
      *
      * It keeps the boolean value to set the open state of all details in the source description contents.
      */

@@ -7,7 +7,7 @@
                 class="awg-source-description-corrections-toggle-text"
                 (click)="toggleAllCorrectionDetails(!openAllCorrectionDetails)"
                 (keyup.enter)="toggleAllCorrectionDetails(!openAllCorrectionDetails)"
-                role="link"
+                [attr.aria-expanded]="openAllCorrectionDetails"
                 tabindex="0"
                 >Alles {{ openAllCorrectionDetails ? 'ein' : 'aus' }}klappen</span
             >

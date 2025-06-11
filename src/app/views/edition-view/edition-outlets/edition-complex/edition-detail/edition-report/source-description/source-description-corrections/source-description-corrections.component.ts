@@ -11,7 +11,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-description-corrections',
     templateUrl: './source-description-corrections.component.html',
-    styleUrl: './source-description-corrections.component.scss',
+    styleUrls: ['./source-description-corrections.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
@@ -50,7 +50,7 @@ export class SourceDescriptionCorrectionsComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Input variable: openAllCorrectionDetails.
+     * Public variable: openAllCorrectionDetails.
      *
      * It keeps the boolean value to set the open state of all details in the source description corrections.
      */

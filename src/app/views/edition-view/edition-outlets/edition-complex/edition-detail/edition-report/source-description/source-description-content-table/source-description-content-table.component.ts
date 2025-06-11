@@ -12,7 +12,7 @@ import { SourceDescriptionContent } from '@awg-app/views/edition-view/models';
 @Component({
     selector: 'awg-source-description-content-table',
     templateUrl: './source-description-content-table.component.html',
-    styleUrl: './source-description-content-table.component.scss',
+    styleUrls: ['./source-description-content-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })

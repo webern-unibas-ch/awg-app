@@ -7,7 +7,7 @@
                 class="awg-source-description-contents-toggle-text"
                 (click)="toggleAllContentDetails(!openAllContentDetails)"
                 (keyup.enter)="toggleAllContentDetails(!openAllContentDetails)"
-                role="link"
+                [attr.aria-expanded]="openAllContentDetails"
                 tabindex="0"
                 >Alles {{ openAllContentDetails ? 'ein' : 'aus' }}klappen</span
             >
