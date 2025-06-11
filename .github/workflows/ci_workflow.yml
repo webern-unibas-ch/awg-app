@@ -36,7 +36,7 @@ jobs:
 
         steps:
             - name: Common setup
-              uses: ./.github/actions/common-setup/setup.yml
+              uses: ./.github/actions/common-setup
               with:
                   node-version: ${{ matrix.node-version }}
                   fetch-depth: 2
@@ -65,7 +65,7 @@ jobs:
 
         steps:
             - name: Common setup
-              uses: ./.github/actions/common-setup/setup.yml
+              uses: ./.github/actions/common-setup
               with:
                   node-version: ${{ matrix.node-version }}
                   fetch-depth: 2
@@ -85,7 +85,7 @@ jobs:
 
         steps:
             - name: Common setup
-              uses: ./.github/actions/common-setup/setup.yml
+              uses: ./.github/actions/common-setup
               with:
                   node-version: ${{ matrix.node-version }}
                   fetch-depth: 2
@@ -112,7 +112,7 @@ jobs:
 
         steps:
             - name: Common setup
-              uses: ./.github/actions/common-setup/setup.yml
+              uses: ./.github/actions/common-setup
               with:
                   node-version: ${{ matrix.node-version }}
                   fetch-depth: 2
