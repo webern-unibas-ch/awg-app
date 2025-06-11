@@ -50,6 +50,13 @@ export class SourceDescriptionCorrectionsComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Input variable: openAllCorrectionDetails.
+     *
+     * It keeps the boolean value to set the open state of all details in the source description corrections.
+     */
+    openAllCorrectionDetails = false;
+
+    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: SourceDescriptionCorrectionsComponent;
@@ -109,5 +116,17 @@ export class SourceDescriptionCorrectionsComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleAllCorrectionDetails.
+     *
+     * It toggles the open state of all details in the source description corrections.
+     *
+     * @param {boolean} open The boolean value to set the open state.
+     * @returns {void} Sets the open state.
+     */
+    toggleAllCorrectionDetails(open: boolean): void {
+        this.openAllCorrectionDetails = open;
     }
 }
