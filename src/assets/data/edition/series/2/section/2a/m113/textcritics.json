@@ -4,9 +4,9 @@
             "id": "M_113_TF1",
             "label": "M 113 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 111 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B</strong> enthalten Skizzen.",
-                "<strong>C</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Den Beginn des dritten A-Teils ab T. 65 hat Webern nicht ausnotiert, sondern in T. 66 mit dem Hinweis <em>usw.</em> markiert (vgl. Korrekturen 1 und TkA). Die dementsprechend fehlenden T. 66–69 wurden analog T. 2–5 ergänzt.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 113 ist <strong>C</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 113 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C'})\"><strong>C</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C'})\"><strong>C</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Den Beginn des dritten A-Teils ab T. 65 hat Webern nicht ausnotiert, sondern in T. 66 mit dem Hinweis <em>usw.</em> markiert (vgl. Korrekturen 1 und TkA). Die dementsprechend fehlenden T. 66–69 wurden analog T. 2–5 ergänzt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 113 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C'})\"><strong>C</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
