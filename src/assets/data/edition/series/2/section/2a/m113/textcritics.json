@@ -7,7 +7,6 @@
                 "Für die Textedition der Studienkomposition für Klavier M 111 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B</strong> enthalten Skizzen.",
                 "<strong>C</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Den Beginn des dritten A-Teils ab T. 65 hat Webern nicht ausnotiert, sondern in T. 66 mit dem Hinweis <em>usw.</em> markiert (vgl. Korrekturen 1 und TkA). Die dementsprechend fehlenden T. 66–69 wurden analog T. 2–5 ergänzt.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M 113 ist <strong>C</strong> nach Korrekturen 1."
-
             ],
             "commentary": {
                 "preamble": "",
@@ -645,112 +644,112 @@
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3a",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "25",
                                 "system": "12",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Balken überschreibt Achtelfähnchen."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "{26(4–6/8)A}",
                                 "system": "12–11",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "{26(4–6/8)A}",
                                 "system": "12",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: f<sup>1</sup> überschreibt e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "{26(4–6/8)A}",
                                 "system": "12",
                                 "position": "6/8",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "nach {26(4–6/8)A}",
                                 "system": "12–11",
                                 "position": "",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "27",
                                 "system": "12",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "28",
                                 "system": "11",
                                 "position": "1/8",
                                 "comment": "Achtelpause überschreibt Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Cis."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "28",
                                 "system": "11",
                                 "position": "2–3/8",
                                 "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Cis–[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis überschreibt gestrichenes [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis–[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "{30A}",
                                 "system": "10",
                                 "position": "5–6/16",
                                 "comment": "Sechzehntelnoten a<sup>2</sup>–f<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "{30A–31A}",
                                 "system": "10–9",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-13",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "30B",
                                 "system": "8",
                                 "position": "7–8/16",
                                 "comment": "Balken gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-14",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "31C",
                                 "system": "7",
                                 "position": "5. Note",
                                 "comment": "Viertelnote C<sub>1</sub> radiert? Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-15",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "31C",
                                 "system": "7",
                                 "position": "5/8",
                                 "comment": "Achtelpause überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Des."
                             },
                             {
-                                "svgGroupId": "g-tkk-16",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "32",
                                 "system": "8",
                                 "position": "4/8",
                                 "comment": "Achtelpause überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-17",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "32",
                                 "system": "7",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-18",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "32",
                                 "system": "7",
                                 "position": "6/8",
