@@ -3,6 +3,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 import { UtilityService } from '@awg-app/core/services';
 import { SourceDescriptionContent } from '@awg-app/views/edition-view/models';
 
+/**
+ * The SourceDescriptionContentTable component.
+ *
+ * It contains the source description content table
+ * of the critical report of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description-content-table',
     templateUrl: './source-description-content-table.component.html',
@@ -40,7 +46,7 @@ export class SourceDescriptionContentTableComponent {
     readonly UTILS = inject(UtilityService);
 
     /**
-     * Constructor of the SourceDescriptionContentComponent.
+     * Constructor of the SourceDescriptionContentTableComponent.
      *
      * It initializes the self-referring variable needed for CompileHtml library.
      */
