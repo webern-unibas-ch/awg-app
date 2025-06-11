@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services';
-import { SourceDescriptionContent } from '@awg-views/edition-view/models';
+import { UtilityService } from '@awg-app/core/services';
+import { SourceDescriptionContent } from '@awg-app/views/edition-view/models';
 
 /**
- * The SourceDescriptionContents component.
+ * The SourceDescriptionContentTable component.
  *
- * It contains the source description contents section
+ * It contains the source description content table
  * of the critical report of the edition view of the app.
  */
 @Component({
-    selector: 'awg-source-description-contents',
-    templateUrl: './source-description-contents.component.html',
-    styleUrls: ['./source-description-contents.component.scss'],
+    selector: 'awg-source-description-content-table',
+    templateUrl: './source-description-content-table.component.html',
+    styleUrls: ['./source-description-content-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class SourceDescriptionContentsComponent {
+export class SourceDescriptionContentTableComponent {
     /**
      * Input variable: contents.
      *
      * It keeps the folio contents array.
      */
     @Input()
-    contents: SourceDescriptionContent[];
+    content: SourceDescriptionContent;
 
     /**
      * Output variable: selectSvgSheetRequest.
@@ -34,16 +34,9 @@ export class SourceDescriptionContentsComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Public variable: openAllContentDetails.
-     *
-     * It keeps the boolean value to set the open state of all details in the source description contents.
-     */
-    openAllContentDetails = true;
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: SourceDescriptionContentsComponent;
+    ref: SourceDescriptionContentTableComponent;
 
     /**
      * Public readonly injection variable: UTILS.
@@ -53,7 +46,7 @@ export class SourceDescriptionContentsComponent {
     readonly UTILS = inject(UtilityService);
 
     /**
-     * Constructor of the SourceDescriptionContentComponent.
+     * Constructor of the SourceDescriptionContentTableComponent.
      *
      * It initializes the self-referring variable needed for CompileHtml library.
      */
@@ -75,17 +68,5 @@ export class SourceDescriptionContentsComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
-    }
-
-    /**
-     * Public method: toggleAllContentDetails.
-     *
-     * It toggles the open state of all details in the source description contents.
-     *
-     * @param {boolean} open The boolean value to set the open state.
-     * @returns {void} Sets the open state.
-     */
-    toggleAllContentDetails(open: boolean): void {
-        this.openAllContentDetails = open;
     }
 }
