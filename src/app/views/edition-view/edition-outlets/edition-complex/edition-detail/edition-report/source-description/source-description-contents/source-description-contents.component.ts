@@ -34,6 +34,13 @@ export class SourceDescriptionContentsComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Input variable: openAllContentDetails.
+     *
+     * It keeps the boolean value to set the open state of all details in the source description contents.
+     */
+    openAllContentDetails = true;
+
+    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: SourceDescriptionContentsComponent;
@@ -68,5 +75,17 @@ export class SourceDescriptionContentsComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleAllContentDetails.
+     *
+     * It toggles the open state of all details in the source description contents.
+     *
+     * @param {boolean} open The boolean value to set the open state.
+     * @returns {void} Sets the open state.
+     */
+    toggleAllContentDetails(open: boolean): void {
+        this.openAllContentDetails = open;
     }
 }

@@ -1,10 +1,15 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
@@ -12,28 +17,42 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { SourceDescriptionContentsComponent } from './source-description-contents.component';
+
+// Mock components
+@Component({ selector: 'awg-source-description-content-table', template: '', standalone: false })
+class SourceDescriptionContentTableStubComponent {
+    @Input()
+    content: SourceDescriptionContent;
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 
 describe('SourceDescriptionContentsComponent', () => {
     let component: SourceDescriptionContentsComponent;
     let fixture: ComponentFixture<SourceDescriptionContentsComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-
     let expectedContents: SourceDescriptionContent[];
+    let expectedOpenAllContentDetails: boolean;
     let expectedComplexId: string;
-    let expectedFolioId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
     let expectedNextSheetId: string;
 
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let toggleAllContentDetailsSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [SourceDescriptionContentsComponent, CompileHtmlComponent, AbbrDirective],
+            declarations: [
+                SourceDescriptionContentsComponent,
+                SourceDescriptionContentTableStubComponent,
+                CompileHtmlComponent,
+                AbbrDirective,
+            ],
             providers: [UtilityService],
         }).compileComponents();
     }));
@@ -43,21 +62,20 @@ describe('SourceDescriptionContentsComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         expectedContents = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.physDesc?.contents)
         );
+        expectedOpenAllContentDetails = true;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedFolioId = 'test_folio_id_1';
 
         // Spies
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        toggleAllContentDetailsSpy = spyOn(component, 'toggleAllContentDetails').and.callThrough();
     });
 
     it('should create', () => {
@@ -71,6 +89,10 @@ describe('SourceDescriptionContentsComponent', () => {
 
         it('... should have `ref`', () => {
             expectToEqual(component.ref, component);
+        });
+
+        it('... should have `openAllContentDetails`', () => {
+            expectToEqual(component.openAllContentDetails, expectedOpenAllContentDetails);
         });
 
         describe('VIEW', () => {
@@ -92,9 +114,49 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain no other p.no-para-margin nor table', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.no-para-margin', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'table', 0, 0);
+            it('... should contain a toggle span in the label paragraph', () => {
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
+                const toggleSpanDes = getAndExpectDebugElementByCss(
+                    pDes[0],
+                    'span.awg-source-description-contents-toggle',
+                    1,
+                    1
+                );
+                getAndExpectDebugElementByCss(
+                    toggleSpanDes[0],
+                    'span.awg-source-description-contents-toggle-text',
+                    1,
+                    1
+                );
+            });
+
+            it('... should not display a text in the toggle span yet', () => {
+                const expectedToggleText = '';
+
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
+
+                const toggleSpanDes = getAndExpectDebugElementByCss(
+                    pDes[0],
+                    'span.awg-source-description-contents-toggle',
+                    1,
+                    1
+                );
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    toggleSpanDes[0],
+                    'span.awg-source-description-contents-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
+            });
+
+            it('... should contain no contents details or SourceDescriptionContentTableComponent (yet)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-contents', 1, 1);
+
+                getAndExpectDebugElementByCss(divDes[0], 'details.awg-source-description-contents-details', 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], SourceDescriptionContentTableStubComponent, 0, 0);
             });
         });
     });
@@ -113,7 +175,38 @@ describe('SourceDescriptionContentsComponent', () => {
         });
 
         describe('VIEW', () => {
-            describe('... the content item paragraphs (p.awg-source-description-content-item-para)', () => {
+            it('... should display a text in the toggle span', () => {
+                const expectedToggleText = 'Alles einklappen';
+
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-contents-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
+            });
+
+            it('... should toggle the text in the toggle span on click', fakeAsync(() => {
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-contents-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
+            }));
+
+            describe('... the content details', () => {
                 let expectedContentsWithItems: SourceDescriptionContent[];
                 let expectedContentsWithItemsLength: number;
 
@@ -123,51 +216,117 @@ describe('SourceDescriptionContentsComponent', () => {
                     );
                     expectedContentsWithItemsLength = expectedContentsWithItems.length;
                 });
-                it('... should contain as many item paragraphs (awg-source-description-content-item-para) in description-contents div as given content items', () => {
-                    const pDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-source-description-contents > p.awg-source-description-content-item-para',
+
+                it('... should contain only as many content details (with half-para-margin) in div as given content items', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-contents', 1, 1);
+
+                    const detailDes = getAndExpectDebugElementByCss(
+                        divDes[0],
+                        'details.awg-source-description-content-details',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
 
-                    pDes.forEach(pDe => {
-                        const pEl = pDe.nativeElement;
+                    detailDes.forEach(detailDe => {
+                        const detailEl = detailDe.nativeElement;
 
-                        expect(pEl).toHaveClass('no-para-margin');
+                        expect(detailEl).toHaveClass('half-para-margin');
+                    });
+                });
+
+                it('... should have an id for each content detail', () => {
+                    const detailsDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+
+                    detailsDes.forEach((detailsDe, index) => {
+                        const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                        expect(detailsEl).toBeTruthy();
+                        expectToBe(detailsEl.id, index.toString());
+                    });
+                });
+
+                it('... should open or close all details when toggled', () => {
+                    // Close all details
+                    component.toggleAllContentDetails(false);
+
+                    detectChangesOnPush(fixture);
+
+                    const detailsDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+                    detailsDes.forEach(detailsDe => {
+                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                    });
+
+                    // Open all details
+                    component.toggleAllContentDetails(true);
+
+                    detectChangesOnPush(fixture);
+
+                    const detailsDesClosed = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+                    detailsDesClosed.forEach(detailsDe => {
+                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                    });
+                });
+
+                it('... should contain as many summary elements (with no-para-margin) in details as given content items', () => {
+                    const summaryDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+
+                    summaryDes.forEach(summaryDe => {
+                        const summaryEl = summaryDe.nativeElement;
+
+                        expect(summaryEl).toHaveClass('no-para-margin');
                     });
                 });
 
                 it('... should contain the content items', () => {
-                    const pDes = getAndExpectDebugElementByCss(
+                    const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-contents > p.awg-source-description-content-item-para',
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
 
-                    pDes.forEach((pDe, index) => {
+                    summaryDes.forEach((summaryDe, index) => {
                         // Skip first paragraph (global contents label)
                         if (index === 0) {
                             return;
                         }
                         if (expectedContents[index - 1].item || expectedContents[index - 1].itemDescription) {
-                            getAndExpectDebugElementByCss(pDe, 'span.awg-source-description-content-item', 1, 1);
+                            getAndExpectDebugElementByCss(summaryDe, 'span.awg-source-description-content-item', 1, 1);
                         }
                     });
                 });
 
                 it('... should display the content-item label (strong) with anchor link and description if given', () => {
-                    const pDes = getAndExpectDebugElementByCss(
+                    const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-contents > p.awg-source-description-content-item-para',
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
-                    const firstContentItemParagraph = pDes[0];
+                    const firstContentItemSummary = summaryDes[0];
 
                     const contentItemDes = getAndExpectDebugElementByCss(
-                        firstContentItemParagraph,
+                        firstContentItemSummary,
                         'span.awg-source-description-content-item',
                         1,
                         1
@@ -177,7 +336,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                     const contentItemDescriptionDes = getAndExpectDebugElementByCss(
-                        firstContentItemParagraph,
+                        firstContentItemSummary,
                         'span.awg-source-description-content-item-description',
                         1,
                         1
@@ -189,16 +348,16 @@ describe('SourceDescriptionContentsComponent', () => {
                 });
 
                 it('... should display the content-item label (strong) without anchor link if not given', () => {
-                    const pDes = getAndExpectDebugElementByCss(
+                    const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-contents > p.awg-source-description-content-item-para',
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
-                    const secondContentItemParagraph = pDes[1];
+                    const secondContentItemSummary = summaryDes[1];
 
                     const contentItemDes = getAndExpectDebugElementByCss(
-                        secondContentItemParagraph,
+                        secondContentItemSummary,
                         'span.awg-source-description-content-item',
                         1,
                         1
@@ -208,7 +367,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                     const contentItemDescriptionDes = getAndExpectDebugElementByCss(
-                        secondContentItemParagraph,
+                        secondContentItemSummary,
                         'span.awg-source-description-content-item-description',
                         1,
                         1
@@ -220,16 +379,16 @@ describe('SourceDescriptionContentsComponent', () => {
                 });
 
                 it('... should display the content-item label (strong) without description if not given', () => {
-                    const pDes = getAndExpectDebugElementByCss(
+                    const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-contents > p.awg-source-description-content-item-para',
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
-                    const thirdContentItemParagraph = pDes[2];
+                    const thirdContentItemSummary = summaryDes[2];
 
                     const contentItemDes = getAndExpectDebugElementByCss(
-                        thirdContentItemParagraph,
+                        thirdContentItemSummary,
                         'span.awg-source-description-content-item',
                         1,
                         1
@@ -239,7 +398,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                     getAndExpectDebugElementByCss(
-                        thirdContentItemParagraph,
+                        thirdContentItemSummary,
                         'span.awg-source-description-content-item-description',
                         0,
                         0
@@ -249,7 +408,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 });
             });
 
-            describe('... the content item folios (table.awg-source-description-content-table)', () => {
+            describe('... the content tables', () => {
                 let expectedContentsWithFolios: SourceDescriptionContent[];
                 let expectedContentsWithFoliosLength: number;
 
@@ -258,235 +417,28 @@ describe('SourceDescriptionContentsComponent', () => {
                     expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
                 });
 
-                it('... should contain as many item folio tables in description-contents div as given content items with folios', () => {
-                    getAndExpectDebugElementByCss(
+                it('... should contain as many SourceDescriptionContentTableComponents in description-contents div as given content items with folios', () => {
+                    getAndExpectDebugElementByDirective(
                         compDe,
-                        'table.awg-source-description-content-table',
+                        SourceDescriptionContentTableStubComponent,
                         expectedContentsWithFoliosLength,
                         expectedContentsWithFoliosLength
                     );
                 });
 
-                it('... should contain as many table rows in each table as folio systemgroups in a given content item', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
+                it('... should pass the content with folios to SourceDescriptionContentTableComponent', () => {
+                    const tableDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        'table.awg-source-description-content-table',
+                        SourceDescriptionContentTableStubComponent,
                         expectedContentsWithFoliosLength,
                         expectedContentsWithFoliosLength
                     );
 
                     tableDes.forEach((tableDe, index) => {
-                        let expectedTrLength = 0;
+                        const tableComponent: SourceDescriptionContentTableStubComponent = tableDe.componentInstance;
 
-                        // Get number of systemgroups of each folio
-                        expectedContentsWithFolios[index].folios.forEach(folio => {
-                            const folioTrLength = folio.systemGroups.length > 0 ? folio.systemGroups.length : 1;
-                            expectedTrLength += folioTrLength;
-                        });
-
-                        getAndExpectDebugElementByCss(
-                            tableDe,
-                            'tr.awg-source-description-content-table-row',
-                            expectedTrLength,
-                            expectedTrLength
-                        );
+                        expectToEqual(tableComponent.content, expectedContentsWithFolios[index]);
                     });
-                });
-
-                it('... should contain as many td in each tr as given systems in a systemgroup (plus 1 for the folio label)', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    tableDes.forEach((tableDe, index) => {
-                        let expectedTdLength = 0;
-
-                        expectedContentsWithFolios[index].folios.forEach(folio => {
-                            // Get number of systems per systemgroup of each folio
-                            let systemGroupTdLength = folio.systemGroups.reduce(
-                                (totalLength, systemGroup) => totalLength + systemGroup.length + 1,
-                                0
-                            );
-
-                            if (folio.systemGroups.length === 0) {
-                                systemGroupTdLength += 1;
-                            }
-
-                            expectedTdLength += systemGroupTdLength;
-                        });
-
-                        getAndExpectDebugElementByCss(
-                            tableDe,
-                            'td.awg-source-description-content-table-datacell',
-                            expectedTdLength,
-                            expectedTdLength
-                        );
-                    });
-                });
-
-                it('... should contain only one tr and td with colspan=2 attribute in table if no content.item is given', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    // Get last table which has no content.item
-                    const lastTableDe = tableDes[expectedContentsWithFoliosLength - 1];
-                    const lastTableTrDes = getAndExpectDebugElementByCss(
-                        lastTableDe,
-                        'tr.awg-source-description-content-table-row',
-                        1,
-                        1
-                    );
-                    const lastTableTdDes = getAndExpectDebugElementByCss(
-                        lastTableTrDes[0],
-                        'td.awg-source-description-content-table-datacell',
-                        1,
-                        1
-                    );
-                    const lastTableTdEl: HTMLTableCellElement = lastTableTdDes[0].nativeElement;
-
-                    expectToBe(lastTableTdEl.colSpan, 2);
-                });
-
-                it('... should contain as many folio spans (content-item-folio) in item tables as given content item folios', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    tableDes.forEach((tableDe, index) => {
-                        getAndExpectDebugElementByCss(
-                            tableDe,
-                            'tr > td span.awg-source-description-content-item-folio',
-                            expectedContentsWithFolios[index].folios.length,
-                            expectedContentsWithFolios[index].folios.length
-                        );
-                    });
-                });
-
-                it('... should display the content-item-folio with anchor link if given', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    // Get folios of first table
-                    const tableIndex = 0;
-                    const folioDes = getAndExpectDebugElementByCss(
-                        tableDes[tableIndex],
-                        'tr > td[colspan]',
-                        expectedContentsWithFolios[tableIndex].folios.length,
-                        expectedContentsWithFolios[tableIndex].folios.length
-                    );
-
-                    // Get anchor of first folio
-                    const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
-                    const anchorEl0: HTMLAnchorElement = anchorDes[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('a');
-                    expectedHtmlTextContent.innerHTML =
-                        '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">1<sup class="awg-source-description-content-item-folio-side">r</sup></span></span>';
-
-                    expectToBe(anchorEl0.textContent.trim(), expectedHtmlTextContent.textContent.trim());
-                });
-
-                it('... should display the content-item-folio without anchor link if not given', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    // Get folios of first table
-                    const tableIndex = 0;
-                    const folioDes = getAndExpectDebugElementByCss(
-                        tableDes[tableIndex],
-                        'tr > td[colspan]',
-                        expectedContentsWithFolios[tableIndex].folios.length,
-                        expectedContentsWithFolios[tableIndex].folios.length
-                    );
-
-                    // Check second folio for anchor link
-                    getAndExpectDebugElementByCss(folioDes[1], 'a', 0, 0);
-
-                    // Get td of second folio
-                    const folioEl1: HTMLTableCellElement = folioDes[1].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('a');
-                    expectedHtmlTextContent.innerHTML =
-                        '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">29<sup class="awg-source-description-content-item-folio-side">v</sup></span></span>';
-
-                    expectToBe(folioEl1.textContent.trim(), expectedHtmlTextContent.textContent.trim());
-                });
-
-                it('... should display the content-item-folio as pages if given', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    // Get folios of first table
-                    const tableIndex = 0;
-                    const folioDes = getAndExpectDebugElementByCss(
-                        tableDes[tableIndex],
-                        'tr > td[colspan]',
-                        expectedContentsWithFolios[tableIndex].folios.length,
-                        expectedContentsWithFolios[tableIndex].folios.length
-                    );
-
-                    // Get anchor of third folio
-                    const anchorDes = getAndExpectDebugElementByCss(folioDes[2], 'a', 1, 1);
-                    const anchorEl2: HTMLAnchorElement = anchorDes[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('a');
-                    expectedHtmlTextContent.innerHTML =
-                        '<span>S.&nbsp;<span class="awg-source-description-content-item-folio-number">2</span></span>';
-
-                    expectToBe(anchorEl2.textContent.trim(), expectedHtmlTextContent.textContent.trim());
-                });
-
-                it('... should display the content-item-folio only with description if no item is given', () => {
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
-
-                    // Get folios of last table
-                    const tableIndex = expectedContentsWithFoliosLength - 1;
-                    const folioDes = getAndExpectDebugElementByCss(
-                        tableDes[tableIndex],
-                        'tr > td[colspan]',
-                        expectedContentsWithFolios[tableIndex].folios.length,
-                        expectedContentsWithFolios[tableIndex].folios.length
-                    );
-
-                    // Get td of first folio
-                    const folioEl: HTMLSpanElement = folioDes[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('a');
-                    expectedHtmlTextContent.innerHTML =
-                        '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;&nbsp;Test item 4 without item</span>';
-
-                    expectToBe(folioEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
             });
         });
@@ -496,8 +448,8 @@ describe('SourceDescriptionContentsComponent', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            describe('... should trigger on click', () => {
-                it('... on content item', fakeAsync(() => {
+            describe('... should trigger', () => {
+                it('... on click on content item', fakeAsync(() => {
                     // Get content item spans
                     const spanDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -515,35 +467,49 @@ describe('SourceDescriptionContentsComponent', () => {
                     expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
                 }));
 
-                it('... on content folio', fakeAsync(() => {
-                    const expectedContentsWithFolios = component.contents.filter(content => content.folios.length > 0);
-                    const expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    let expectedContentsWithFolios: SourceDescriptionContent[];
+                    let expectedContentsWithFoliosLength: number;
 
-                    // Get content folio colspans
-                    const tableDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'table.awg-source-description-content-table',
-                        expectedContentsWithFoliosLength,
-                        expectedContentsWithFoliosLength
-                    );
+                    beforeEach(() => {
+                        expectedContentsWithFolios = component.contents.filter(content => content.folios.length > 0);
+                        expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
+                    });
 
-                    // Get folios of first table
-                    const tableIndex = 0;
-                    const folioDes = getAndExpectDebugElementByCss(
-                        tableDes[tableIndex],
-                        'tr > td[colspan]',
-                        expectedContentsWithFolios[tableIndex].folios.length,
-                        expectedContentsWithFolios[tableIndex].folios.length
-                    );
+                    it('... sheet id is undefined', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionContentTableStubComponent,
+                            expectedContentsWithFoliosLength,
+                            expectedContentsWithFoliosLength
+                        );
+                        const tableCmp = tableDes[0].injector.get(
+                            SourceDescriptionContentTableStubComponent
+                        ) as SourceDescriptionContentTableStubComponent;
 
-                    // Get anchor of first folio
-                    const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
+                        tableCmp.selectSvgSheetRequest.emit(undefined);
 
-                    // CLick on anchor (with selectSvgSheet call)
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
 
-                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedFolioId });
-                }));
+                    it('... sheet id is given', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionContentTableStubComponent,
+                            expectedContentsWithFoliosLength,
+                            expectedContentsWithFoliosLength
+                        );
+                        const tableCmp = tableDes[0].injector.get(
+                            SourceDescriptionContentTableStubComponent
+                        ) as SourceDescriptionContentTableStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+                });
             });
 
             it('... should not emit anything if no id is provided', () => {
@@ -580,6 +546,41 @@ describe('SourceDescriptionContentsComponent', () => {
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+        });
+
+        describe('#toggleAllContentDetails()', () => {
+            it('... should have a method `toggleAllContentDetails`', () => {
+                expect(component.toggleAllContentDetails).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-contents-toggle-text',
+                    1,
+                    1
+                );
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectSpyCall(toggleAllContentDetailsSpy, 1);
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectSpyCall(toggleAllContentDetailsSpy, 2);
+            }));
+
+            it('... should toggle the openAllContentDetails flag', () => {
+                component.toggleAllContentDetails(true);
+
+                expectToEqual(component.openAllContentDetails, true);
+
+                component.toggleAllContentDetails(false);
+
+                expectToEqual(component.openAllContentDetails, false);
             });
         });
     });
