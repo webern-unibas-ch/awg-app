@@ -639,10 +639,17 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
-                                "measure": "{23A–24A}",
-                                "system": "16",
-                                "position": "",
-                                "comment": "Noten pauschal gestrichen."
+                                "measure": "24B",
+                                "system": "12–11",
+                                "position": "nach 3/8",
+                                "comment": "Taktstrich gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-3a",
+                                "measure": "25",
+                                "system": "12",
+                                "position": "4/8",
+                                "comment": "Oberstimmenschicht: Balken überschreibt Achtelfähnchen."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -716,14 +723,14 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-14",
-                                "measure": "13C",
+                                "measure": "31C",
                                 "system": "7",
                                 "position": "5. Note",
                                 "comment": "Viertelnote C<sub>1</sub> radiert? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g-tkk-15",
-                                "measure": "13C",
+                                "measure": "31C",
                                 "system": "7",
                                 "position": "5/8",
                                 "comment": "Achtelpause überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Des."
@@ -954,6 +961,13 @@
                                 "system": "2–1",
                                 "position": "1/8",
                                 "comment": "<em>a</em> zwischen den Systemen radiert."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-19a",
+                                "measure": "52",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Achtelfähnchen radiert."
                             },
                             {
                                 "svgGroupId": "g-tkk-20",
