@@ -191,12 +191,10 @@ jobs:
                   yarn run build:gh
 
             - name: Get git sha
-              if: github.ref == 'refs/heads/develop'
               id: get-sha
               run: echo "SHA=$(git describe)" >> $GITHUB_OUTPUT
 
             - name: Verify git sha
-              if: github.ref != 'refs/heads/develop'
               run: |
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
