@@ -223,7 +223,7 @@ jobs:
 
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        needs: test
+        needs: build
 
         permissions:
             contents: write
@@ -298,7 +298,7 @@ jobs:
 
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        needs: test
+        needs: build
 
         permissions:
             contents: write
@@ -339,7 +339,7 @@ jobs:
 
         name: Create Release from tag
         runs-on: ${{ matrix.os }}
-        needs: test
+        needs: build
 
         permissions:
             contents: write
