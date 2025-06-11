@@ -107,6 +107,10 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -161,6 +165,10 @@ of the edition view of the app.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edition-tka-evaluations.component.scss</code></td>
+            </tr>
 
 
 
@@ -171,10 +179,6 @@ of the edition view of the app.</p>
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./edition-tka-evaluations.component.scss</code></td>
-            </tr>
 
 
 
@@ -825,7 +829,7 @@ import { EditionGlyphService } from &#x27;@awg-views/edition-view/services&#x27;
 @Component({
     selector: &#x27;awg-edition-tka-evaluations&#x27;,
     templateUrl: &#x27;./edition-tka-evaluations.component.html&#x27;,
-    styleUrl: &#x27;./edition-tka-evaluations.component.scss&#x27;,
+    styleUrls: [&#x27;./edition-tka-evaluations.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
@@ -957,6 +961,12 @@ export class EditionTkaEvaluationsComponent {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./edition-tka-evaluations.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
