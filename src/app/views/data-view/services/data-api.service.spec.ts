@@ -97,20 +97,20 @@ describe('DataApiService (DONE)', () => {
 
         // Convert json objects
         jsonConvert = new JsonConvert();
-        expectedResourceFullResponseJson = jsonConvert.deserializeObject(
+        expectedResourceFullResponseJson = jsonConvert.deserialize(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
-        expectedResourceContextResponseJson = jsonConvert.deserializeObject(
+        expectedResourceContextResponseJson = jsonConvert.deserialize(
             mockResourceContextResponseJson,
             ResourceContextResponseJson
         );
-        expectedSearchResponseJson = jsonConvert.deserializeObject(mockSearchResponseJson, SearchResponseJson);
-        expectedResourceTypesInVocabularyResponseJson = jsonConvert.deserializeObject(
+        expectedSearchResponseJson = jsonConvert.deserialize(mockSearchResponseJson, SearchResponseJson);
+        expectedResourceTypesInVocabularyResponseJson = jsonConvert.deserialize(
             mockResourceTypesInVocabularyResponseJson,
             ResourceTypesInVocabularyResponseJson
         );
-        expectedPropertyTypesInResourceClassResponseJson = jsonConvert.deserializeObject(
+        expectedPropertyTypesInResourceClassResponseJson = jsonConvert.deserialize(
             mockPropertyTypesInResourceClassResponseJson,
             PropertyTypesInResourceClassResponseJson
         );
