@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 @Component({
     selector: 'awg-source-description-details',
     templateUrl: './source-description-details.component.html',
-    styleUrl: './source-description-details.component.scss',
+    styleUrls: ['./source-description-details.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
