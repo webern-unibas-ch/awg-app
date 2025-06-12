@@ -126,7 +126,6 @@ jobs:
 
     build:
         name: Building (Node v${{ matrix.node-version }}, ${{ matrix.os }})
-        needs: [test, sonar, lint]
         runs-on: ${{ matrix.os }}
 
         strategy:
@@ -146,7 +145,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
               with:
-                  fetch-depth: 2
+                  fetch-depth: 0 # fetch all history, needed for git sha
 
             - name: Common Node setup
               uses: ./.github/actions/common-node-setup
@@ -189,13 +188,13 @@ jobs:
 
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        needs: build
+        needs: [test, build]
 
         permissions:
             contents: write
 
         env:
-            SHA: ${{ needs.test.outputs.sha }}
+            SHA: ${{ needs.build.outputs.sha }}
 
         strategy:
             matrix:
@@ -264,7 +263,7 @@ jobs:
 
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        needs: build
+        needs: [test, build]
 
         permissions:
             contents: write
@@ -283,15 +282,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-            - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+            - name: Common Node setup
+              uses: ./.github/actions/common-node-setup
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'yarn'
-
-            - name: yarn install dependencies
-              run: |
-                  yarn install
 
             - name: Build app for GH Pages
               run: |
@@ -309,7 +303,7 @@ jobs:
 
         name: Create Release from tag
         runs-on: ${{ matrix.os }}
-        needs: build
+        needs: [test, build]
 
         permissions:
             contents: write
