@@ -938,7 +938,7 @@
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> und <span <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>gefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
                                             "measure": "6",
@@ -3262,7 +3262,7 @@
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> und <span <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>gefügt."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
                                             "measure": "6",
