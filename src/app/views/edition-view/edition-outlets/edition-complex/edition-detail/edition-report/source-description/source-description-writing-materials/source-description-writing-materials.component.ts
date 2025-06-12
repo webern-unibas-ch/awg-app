@@ -19,7 +19,7 @@ import {
 @Component({
     selector: 'awg-source-description-writing-materials',
     templateUrl: './source-description-writing-materials.component.html',
-    styleUrl: './source-description-writing-materials.component.scss',
+    styleUrls: ['./source-description-writing-materials.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
