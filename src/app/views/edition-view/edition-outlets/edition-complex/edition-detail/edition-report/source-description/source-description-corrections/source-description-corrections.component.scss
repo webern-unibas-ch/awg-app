@@ -2,6 +2,14 @@
     margin-left: 1em;
     cursor: pointer;
 }
+.awg-source-description-corrections-toggle.text-muted {
+    transition: color 0.2s;
+}
+
+.awg-source-description-corrections-toggle:hover,
+.awg-source-description-corrections-toggle:focus {
+    color: inherit !important;
+}
 .awg-source-description-corrections-toggle-text {
     text-decoration: underline;
 }

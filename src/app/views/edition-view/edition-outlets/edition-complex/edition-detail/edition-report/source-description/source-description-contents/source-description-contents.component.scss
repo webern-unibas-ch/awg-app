@@ -6,6 +6,14 @@
     margin-left: 1em;
     cursor: pointer;
 }
+.awg-source-description-contents-toggle.text-muted {
+    transition: color 0.2s;
+}
+
+.awg-source-description-contents-toggle:hover,
+.awg-source-description-contents-toggle:focus {
+    color: inherit !important;
+}
 .awg-source-description-contents-toggle-text {
     text-decoration: underline;
 }
