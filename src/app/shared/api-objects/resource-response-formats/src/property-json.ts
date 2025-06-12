@@ -203,7 +203,7 @@ export class PropertyJson {
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
             const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
+            return jsonConvert.deserialize(this.values, PropertyJsonValue);
         } catch (e) {
             console.error('PropertyJson: error in getValuesAsPropertyJsonValues', e);
             return [];
