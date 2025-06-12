@@ -2073,10 +2073,10 @@
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "physDesc": {
                 "conditions": [
-                    "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
+                    "1 Blatt (Bl. 1). Archivalische Foliierung <em>1</em> recto oben rechts mit Bleistift. Horizontale Knickfalte bei System 5/6: am linken (recto) Rand ca. 40mm, am rechten (recto) Rand ca. 45mm eingerissen; Knickfalten an allen Ecken außer oben rechts; Rissspuren am linken (recto) Rand: von Bogen abgetrennt. Kleiner Stockfleck bei System 10 (recto: rechts). Ecken unten abgerissen."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
+                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme) vorgedruckten Akkoladen, Format: hoch 343 × 264 mm, Firmenzeichen: ##JE_12## recto unten links"
                 ],
                 "writingMaterials": [
                     {
@@ -2090,11 +2090,11 @@
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
-                                "value": "##"
+                                "value": "343"
                             },
                             "width": {
                                 "uncertainty": "",
-                                "value": "##"
+                                "value": "264"
                             },
                             "unit": "mm"
                         },
@@ -2115,15 +2115,15 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["evt. weitere"]
+                    "secondary": ["Bleistift (archivalische Paginierung)"]
                 },
                 "titles": [
-                    "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] recto oben"
+                    "<em>Gleich und</em> [<em>g</em>→]<em>Gleich | Goethe</em> [Mitte] | <em>Anton Webern op. 12</em> [rechts] recto oben"
                 ],
                 "dates": [],
                 "paginations": [],
                 "measureNumbers": [],
-                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3."],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3"],
                 "annotations": [],
                 "contents": [
                     {
@@ -2188,6 +2188,113 @@
                                 ]
                             }
                         ]
+                    }
+                ], 
+                 "corrections": [
+                    {
+                        "id": "source_D_corr",
+                        "label": "Korrekturen in <strong>D</strong> (mit Tinte auf Rasur)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>.",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "<em>circa</em> auf Rasur. Ante correcturam vermutlich: Metronomzahl."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "",
+                                            "position": "5/8",
+                                            "comment": "<em>t</em>[empo] auf Rasur. Ante correcturam vermutlich: <em>Tempo</em>."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Ligaturbogen auf Rasur."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "6/8",
+                                            "comment": "Text: [i]<em>n</em> auf Rasur. Ante correcturam vermutlich: <em>im</em>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Ges.",
+                                            "position": "nach 3/4",
+                                            "comment": "Rasur: Vermutlich Position des Taktstrichs korrigiert."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Ende des Legatobogens (nach Akkoladenwechsel) auf Rasur."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Ges.",
+                                            "position": "2/8",
+                                            "comment": "Text: <em>d</em>[a] auf Rasur. Ante correcturam vermutlich: <em>Da</em>."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Legatobogen auf Rasur."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "",
+                                            "position": "Taktanfang bis (3/8)",
+                                            "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>tempo</em> [...] auf Rasur."
+                                        },
+                                        {
+                                            "measure": "18 <br /> bis 20",
+                                            "system": "Ges.",
+                                            "position": "3. Note <br /> 1/8",
+                                            "comment": "Legatobogen zunächst nur bis T. 19 1. Note (rasiert)."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "4/16",
+                                            "comment": "Fermate auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <strong>D</strong>: <em>rit. - - - tempo</em> über Klav."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "5/8",
+                                            "comment": "Staccatopunkt auf Rasur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }
