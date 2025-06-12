@@ -2283,7 +2283,7 @@
                                             "measure": "20",
                                             "system": "",
                                             "position": "2/4",
-                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <strong>D</strong>: <em>rit. - - - tempo</em> über Klav."
+                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: <em>rit. - - - tempo</em> über Klav."
                                         },
                                         {
                                             "measure": "20",
