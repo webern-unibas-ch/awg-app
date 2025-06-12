@@ -1,0 +1,23 @@
+name: 'Common Setup'
+description: 'Common setup for Node, Yarn, repository checkout, and dependencies.'
+runs:
+    using: 'composite'
+    steps:
+        - name: Set up corepack (for getting yarn)
+          run: corepack enable
+          shell: bash
+
+        - name: Set up node and yarn cache
+          uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+          with:
+              node-version: ${{ inputs.node-version }}
+              cache: 'yarn'
+
+        - name: yarn install dependencies
+          run: yarn install --immutable
+          shell: bash
+
+inputs:
+    node-version:
+        description: 'Node.js version to use'
+        required: true
