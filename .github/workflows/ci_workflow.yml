@@ -194,7 +194,7 @@ jobs:
             contents: write
 
         env:
-            SHA: ${{ needs.test.outputs.sha }}
+            SHA: ${{ needs.build.outputs.sha }}
 
         strategy:
             matrix:
