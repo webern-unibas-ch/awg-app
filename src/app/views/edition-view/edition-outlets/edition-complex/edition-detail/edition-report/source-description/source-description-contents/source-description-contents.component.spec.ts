@@ -114,7 +114,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain a toggle span in the label paragraph', () => {
+            it('... should contain a small muted toggle span in the label paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
                 const toggleSpanDes = getAndExpectDebugElementByCss(
                     pDes[0],
@@ -122,12 +122,10 @@ describe('SourceDescriptionContentsComponent', () => {
                     1,
                     1
                 );
-                getAndExpectDebugElementByCss(
-                    toggleSpanDes[0],
-                    'span.awg-source-description-contents-toggle-text',
-                    1,
-                    1
-                );
+                const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
+
+                expect(toggleSpanEl).toHaveClass('small');
+                expect(toggleSpanEl).toHaveClass('text-muted');
             });
 
             it('... should not display a text in the toggle span yet', () => {

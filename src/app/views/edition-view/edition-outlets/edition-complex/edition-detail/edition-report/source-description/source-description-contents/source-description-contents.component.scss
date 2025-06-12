@@ -5,7 +5,17 @@
 .awg-source-description-contents-toggle {
     margin-left: 1em;
     cursor: pointer;
+
+    &.text-muted {
+        transition: color 0.2s;
+    }
+
+    &:hover,
+    &:focus {
+        color: inherit !important;
+    }
 }
+
 .awg-source-description-contents-toggle-text {
     text-decoration: underline;
 }
