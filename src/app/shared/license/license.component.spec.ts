@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LicenseComponent } from './license.component';
 
@@ -10,10 +10,9 @@ describe('LicenseComponent', () => {
     let fixture: ComponentFixture<LicenseComponent>;
     let compDe: DebugElement;
 
+    let expectedLicenseIcons: Array<{ src: string; alt: string }>;
     let expectedLicenseLink: string;
     let expectedLicenseText: string;
-    let expectedLicenseImageLink: string;
-    let expectedLicenseImageText: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -25,11 +24,14 @@ describe('LicenseComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedLicenseIcons = [
+            { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'License: CC icon' },
+            { src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg', alt: 'License: CC Attribution icon' },
+            { src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg', alt: 'License: CC ShareAlike icon' },
+        ];
         expectedLicenseLink = 'https://creativecommons.org/licenses/by-sa/4.0/';
         expectedLicenseText =
             'Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz';
-        expectedLicenseImageLink = 'https://i.creativecommons.org/l/by-sa/4.0/80x15.png';
-        expectedLicenseImageText = 'Creative Commons Attribution-ShareAlike BY-SA 4.0 International License';
     });
 
     it('... should create', () => {
@@ -46,43 +48,43 @@ describe('LicenseComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
             });
 
-            it('... should have small and text-center class on paragraph', () => {
+            it('... should contain one paragraph with small and text-center classes', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.small.text-center', 1, 1);
             });
 
-            it('... should contain two links to the license', () => {
+            it('... should contain one anchor with correct href and rel attributes', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
-                getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
+                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
+
+                expectToBe(aEl.href, expectedLicenseLink);
+                expectToBe(aEl.rel, 'license');
             });
 
-            it('... should contain CC BY-SA 4.0 license links', () => {
+            it('... should contain license text in anchor', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
+                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
 
-                aDes.forEach(aDe => {
-                    const aEl: HTMLAnchorElement = aDe.nativeElement as HTMLAnchorElement;
+                expectToContain(aEl.textContent, expectedLicenseText);
+            });
 
-                    expectToBe(aEl.href, expectedLicenseLink);
+            it('... should contain license icon span in anchor', () => {
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
+
+                getAndExpectDebugElementByCss(aDes[0], 'span.awg-license-icon', 1, 1);
+            });
+
+            it('... should contain 3 license icons in icon span', () => {
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-license-icon', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(spanDes[0], 'img', 3, 3);
+
+                imgDes.forEach((imgDe, index) => {
+                    const imgEl: HTMLImageElement = imgDe.nativeElement as HTMLImageElement;
+                    expectToBe(imgEl.src, expectedLicenseIcons[index].src);
+                    expectToBe(imgEl.alt, expectedLicenseIcons[index].alt);
                 });
-            });
-
-            it('... should contain license image in first link', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
-
-                const imgDes = getAndExpectDebugElementByCss(aDes[0], 'img', 1, 1);
-                const imgEl: HTMLImageElement = imgDes[0].nativeElement as HTMLImageElement;
-
-                expectToBe(imgEl.src, expectedLicenseImageLink);
-                expectToBe(imgEl.alt, expectedLicenseImageText);
-            });
-
-            it('... should contain license text in second link', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
-                const aEl: HTMLAnchorElement = aDes[1].nativeElement as HTMLAnchorElement;
-
-                expectToBe(aEl.textContent, expectedLicenseText);
             });
         });
     });

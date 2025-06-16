@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -46,6 +47,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     let mockDocument: Document;
 
     let expectedCorrections: Textcritics[];
+    let expectedOpenAllCorrectionDetails: boolean;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedReportFragment: string;
@@ -59,6 +61,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let toggleAllCorrectionDetailsSpy: Spy;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -76,6 +79,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             JSON.stringify(mockEditionData.mockSourceDescriptionListData)
         );
         expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
+        expectedOpenAllCorrectionDetails = false;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -95,6 +99,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        toggleAllCorrectionDetailsSpy = spyOn(component, 'toggleAllCorrectionDetails').and.callThrough();
     });
 
     it('should create', () => {
@@ -110,22 +115,63 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             expectToEqual(component.ref, component);
         });
 
+        it('... should have `openAllCorrectionDetails`', () => {
+            expectToEqual(component.openAllCorrectionDetails, expectedOpenAllCorrectionDetails);
+        });
+
         describe('VIEW', () => {
             it('... should contain one div.awg-source-description-corrections', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
             });
 
-            it('... should contain one paragraph (no-para-margin) displaying the label "Korrekturen:" in corrections div', () => {
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-source-description-corrections > p.no-para-margin',
+            it('... should contain one paragraph (no-para-margin) in div displaying the corrections label in smallcaps', () => {
+                const expectedLabel = 'Korrekturen:';
+
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const pEl = pDes[0].nativeElement;
+
+                expect(pEl).toHaveClass('no-para-margin');
+
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
+                expectToBe(spanEl.textContent.trim(), expectedLabel);
+            });
+
+            it('... should contain a small muted toggle span in the label paragraph', () => {
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const toggleSpanDes = getAndExpectDebugElementByCss(
+                    pDes[0],
+                    'span.awg-source-description-corrections-toggle',
                     1,
                     1
                 );
-                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
+                const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('no-para-margin');
-                expectToBe(pEl.textContent.trim(), 'Korrekturen:');
+                expect(toggleSpanEl).toHaveClass('small');
+                expect(toggleSpanEl).toHaveClass('text-muted');
+            });
+
+            it('... should not display a text in the toggle span yet', () => {
+                const expectedToggleText = '';
+
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+
+                const toggleSpanDes = getAndExpectDebugElementByCss(
+                    pDes[0],
+                    'span.awg-source-description-corrections-toggle',
+                    1,
+                    1
+                );
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    toggleSpanDes[0],
+                    'span.awg-source-description-corrections-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
             });
 
             it('... should contain no corrections details (yet)', () => {
@@ -150,6 +196,37 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should display a text in the toggle span', () => {
+                const expectedToggleText = 'Alles ausklappen';
+
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-corrections-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
+            });
+
+            it('... should toggle the text in the toggle span on click', fakeAsync(() => {
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-corrections-toggle-text',
+                    1,
+                    1
+                );
+                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
+            }));
+
             it('... should contain as many correction details as items in `corrections` data', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
 
@@ -174,6 +251,38 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
                     expect(detailsEl).toBeTruthy();
                     expectToBe(detailsEl.id, expectedCorrections[index].id);
+                });
+            });
+
+            it('... should open or close all details when toggled', () => {
+                // Open all details
+                component.toggleAllCorrectionDetails(true);
+
+                detectChangesOnPush(fixture);
+
+                const detailsDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'details.awg-source-description-correction-details',
+                    expectedCorrections.length,
+                    expectedCorrections.length
+                );
+                detailsDes.forEach(detailsDe => {
+                    expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                });
+
+                // Close all details
+                component.toggleAllCorrectionDetails(false);
+
+                detectChangesOnPush(fixture);
+
+                const detailsDesClosed = getAndExpectDebugElementByCss(
+                    compDe,
+                    'details.awg-source-description-correction-details',
+                    expectedCorrections.length,
+                    expectedCorrections.length
+                );
+                detailsDesClosed.forEach(detailsDe => {
+                    expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
                 });
             });
 
@@ -553,6 +662,41 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+        });
+
+        describe('#toggleAllCorrectionDetails()', () => {
+            it('... should have a method `toggleAllCorrectionDetails`', () => {
+                expect(component.toggleAllCorrectionDetails).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                const toggleTextSpanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-corrections-toggle-text',
+                    1,
+                    1
+                );
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectSpyCall(toggleAllCorrectionDetailsSpy, 1);
+
+                // Trigger click with click helper & wait for changes
+                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+
+                expectSpyCall(toggleAllCorrectionDetailsSpy, 2);
+            }));
+
+            it('... should toggle the openAllCorrectionDetails flag', () => {
+                component.toggleAllCorrectionDetails(true);
+
+                expectToEqual(component.openAllCorrectionDetails, true);
+
+                component.toggleAllCorrectionDetails(false);
+
+                expectToEqual(component.openAllCorrectionDetails, false);
             });
         });
     });

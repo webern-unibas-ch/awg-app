@@ -1,3 +1,21 @@
-.awg-source-description-content-table {
-    margin-left: 25px;
+.awg-source-description-contents {
+    margin-bottom: 1rem;
+}
+
+.awg-source-description-contents-toggle {
+    margin-left: 1em;
+    cursor: pointer;
+
+    &.text-muted {
+        transition: color 0.2s;
+    }
+
+    &:hover,
+    &:focus {
+        color: inherit !important;
+    }
+}
+
+.awg-source-description-contents-toggle-text {
+    text-decoration: underline;
 }

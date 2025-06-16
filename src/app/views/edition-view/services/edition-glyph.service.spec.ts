@@ -28,13 +28,13 @@ describe('EditionGlyphService', () => {
         });
 
         it('... should return the correct hex value for a valid glyph alt value', () => {
-            expectToBe(editionGlyphService.getGlyph('[bb]'), '\uD834\uDD2B'); // DOUBLE_FLAT
-            expectToBe(editionGlyphService.getGlyph('[x]'), '\uD834\uDD2A'); // DOUBLE_SHARP
-            expectToBe(editionGlyphService.getGlyph('[b]'), '\u266D'); // FLAT
-            expectToBe(editionGlyphService.getGlyph('[#]'), '\u266F'); // SHARP
-            expectToBe(editionGlyphService.getGlyph('[a]'), '\u266E'); // NATURAL
-            expectToBe(editionGlyphService.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
-            expectToBe(editionGlyphService.getGlyph('[ped]'), '\uD834\uDDAE'); // PEDAL
+            expectToBe(editionGlyphService.getGlyph('[bb]'), '\uE264'); // DOUBLE_FLAT
+            expectToBe(editionGlyphService.getGlyph('[x]'), '\uE263'); // DOUBLE_SHARP
+            expectToBe(editionGlyphService.getGlyph('[b]'), '\uE260'); // FLAT
+            expectToBe(editionGlyphService.getGlyph('[#]'), '\uE262'); // SHARP
+            expectToBe(editionGlyphService.getGlyph('[a]'), '\uE261'); // NATURAL
+            expectToBe(editionGlyphService.getGlyph('[f]'), '\uE522'); // FORTE
+            expectToBe(editionGlyphService.getGlyph('[ped]'), '\uE650'); // PEDAL
         });
 
         it('... should return an empty string for an invalid glyph alt value', () => {

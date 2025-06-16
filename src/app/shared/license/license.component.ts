@@ -12,4 +12,6 @@ import { Component } from '@angular/core';
     styleUrls: ['./license.component.scss'],
     standalone: false,
 })
-export class LicenseComponent {}
+export class LicenseComponent {
+    // Intentionally left empty
+}

@@ -242,7 +242,7 @@
                                 "measure": "25",
                                 "system": "10",
                                 "position": "1/8–6/8",
-                                "comment": "Unterstimmenschicht: Achtelpause, zwei Viertelnoten und Achtelnote h/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup> radiert."
+                                "comment": "Unterstimmenschicht: Achtelpause, zwei Viertelnoten und Achtelnote h/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup> radiert."
                             },
                             {
                                 "svgGroupId": "g43",

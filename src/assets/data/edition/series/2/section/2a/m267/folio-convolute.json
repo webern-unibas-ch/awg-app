@@ -1,0 +1,139 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "14",
+                    "dimensions": {
+                        "height": 341,
+                        "width": 271
+                    },
+                    "content": [
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–4",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 5–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 8–10",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 11–13",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 14–15",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "14",
+                    "dimensions": {
+                        "height": 341,
+                        "width": 271
+                    },
+                    "content": [
+                        {
+                            "complexId": "m267",
+                            "sheetId": "M_267_TF1",
+                            "sigle": "M 267 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–17",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "14",
+                    "dimensions": {
+                        "height": 341,
+                        "width": 271
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "14",
+                    "dimensions": {
+                        "height": 341,
+                        "width": 271
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}

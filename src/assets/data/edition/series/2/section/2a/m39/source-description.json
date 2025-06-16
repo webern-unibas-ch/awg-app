@@ -1127,7 +1127,7 @@
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "4/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>As überschreibt G<sub>1</sub>/G."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As überschreibt G<sub>1</sub>/G."
                                         },
                                         {
                                             "measure": "7",
@@ -1145,7 +1145,7 @@
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>? Entzifferung unsicher."
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>? Entzifferung unsicher."
                                         },
                                         {
                                             "measure": "11",
@@ -1208,7 +1208,7 @@
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "[<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]e<sup>1</sup>/g<sup>1</sup> hinzugefügt."
+                                            "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]e<sup>1</sup>/g<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "10",
@@ -1220,25 +1220,25 @@
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a überschrieben zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "8/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B hinzugefügt."
                                         },
                                         {
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "6/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> überschrieben zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "13 <br /> bis 14",
@@ -1262,7 +1262,7 @@
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: h<sup>1</sup>/h<sup>2</sup> und <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: h<sup>1</sup>/h<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "18",
@@ -1328,7 +1328,7 @@
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Halbe Note überschreibt Viertelnote. Viertelnote [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis<sup>1</sup> gestrichen."
+                                            "comment": "Halbe Note überschreibt Viertelnote. Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]gis<sup>1</sup> gestrichen."
                                         },
                                         {
                                             "measure": "16",
@@ -1340,7 +1340,7 @@
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "Viertelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Cis/A/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis in Tinte überschreibt Viertelnote cis/a in Bleistift."
+                                            "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Cis/A/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis in Tinte überschreibt Viertelnote cis/a in Bleistift."
                                         },
                                         {
                                             "measure": "17",
@@ -1935,7 +1935,7 @@
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> auf Rasur."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> auf Rasur."
                                         },
                                         {
                                             "measure": "11",

@@ -69,8 +69,9 @@ describe('FolioService (DONE)', () => {
     let expectedContentSegmentFontFamily: string;
     let expectedContentSegmentFontSize: string;
     let expectedContentSegmentOffsetCorrection: number;
-    let expectedReversedRotationAngle: number;
     let expectedContentSegmentStrokeWidth: number;
+    let expectedDefaultNumberOfSystems: number;
+    let expectedReversedRotationAngle: number;
     let expectedSheetStrokeWidth: number;
     let expectedSystemsLineStrokeWidth: number;
 
@@ -106,12 +107,13 @@ describe('FolioService (DONE)', () => {
         expectedContentSegmentFillColor = '#eeeeee';
         expectedSheetFillColor = 'white';
 
-        expectedContentSegmentOffsetCorrection = 4;
         expectedContentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
         expectedContentSegmentFontSize = '11px';
-
-        expectedReversedRotationAngle = 180;
+        expectedContentSegmentOffsetCorrection = 4;
         expectedContentSegmentStrokeWidth = 2;
+
+        expectedDefaultNumberOfSystems = 18;
+        expectedReversedRotationAngle = 180;
         expectedSheetStrokeWidth = 1;
         expectedSystemsLineStrokeWidth = 0.7;
 
@@ -255,12 +257,16 @@ describe('FolioService (DONE)', () => {
             expectToBe((folioService as any)._contentSegmentOffsetCorrection, expectedContentSegmentOffsetCorrection);
         });
 
-        it('... should have `_reversedRotationAngle`', () => {
-            expectToBe((folioService as any)._reversedRotationAngle, expectedReversedRotationAngle);
-        });
-
         it('... should have `_contentSegmentStrokeWidth`', () => {
             expectToBe((folioService as any)._contentSegmentStrokeWidth, expectedContentSegmentStrokeWidth);
+        });
+
+        it('... should have `_defaultNumberOfSystems`', () => {
+            expectToBe((folioService as any)._defaultNumberOfSystems, expectedDefaultNumberOfSystems);
+        });
+
+        it('... should have `_reversedRotationAngle`', () => {
+            expectToBe((folioService as any)._reversedRotationAngle, expectedReversedRotationAngle);
         });
 
         it('... should have `_sheetStrokeWidth`', () => {
@@ -1371,6 +1377,7 @@ describe('FolioService (DONE)', () => {
                     expectToEqual(callArgs, [
                         contentSegmentLink,
                         expectedFolioSvgData.contentSegments[i].segmentVertices,
+                        expectedFolioSvgData.systems.systemsLines.length,
                     ]);
                 });
             });
@@ -2071,17 +2078,22 @@ describe('FolioService (DONE)', () => {
         describe('... when called', () => {
             let contentSegmentLink: D3_SELECTION.Selection<SVGAElement, unknown, null, undefined>;
             let expectedContentSegment: FolioSvgContentSegment;
+            let expectedAdjustedStrokeWidth: number;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const contentSegmentGroup = D3_SELECTION.create('g');
                 contentSegmentLink = contentSegmentGroup.append('svg:a');
 
+                const systemsLength = expectedFolioSvgData.systems.systemsLines.length;
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
+                expectedAdjustedStrokeWidth =
+                    expectedContentSegmentStrokeWidth * (expectedDefaultNumberOfSystems / systemsLength);
 
                 (folioService as any)._appendContentSegmentLinkPolygon(
                     contentSegmentLink,
-                    expectedContentSegment.segmentVertices
+                    expectedContentSegment.segmentVertices,
+                    systemsLength
                 );
             });
 
@@ -2095,7 +2107,7 @@ describe('FolioService (DONE)', () => {
                     points: expectedContentSegment.segmentVertices,
                     fill: expectedContentSegmentFillColor,
                 };
-                attributes['stroke-width'] = expectedContentSegmentStrokeWidth;
+                attributes['stroke-width'] = expectedAdjustedStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [contentSegmentLink, 'polygon', attributes]);
             });
@@ -2117,7 +2129,8 @@ describe('FolioService (DONE)', () => {
 
                 (folioService as any)._appendContentSegmentLinkPolygon(
                     altSegmentLink,
-                    altFolioSvgData.contentSegments[0].segmentVertices
+                    altFolioSvgData.contentSegments[0].segmentVertices,
+                    altFolioSvgData.systems.systemsLines.length
                 );
 
                 const polygonElement = altSegmentLink.select('polygon');
@@ -2137,7 +2150,8 @@ describe('FolioService (DONE)', () => {
 
                 (folioService as any)._appendContentSegmentLinkPolygon(
                     altSegmentLink,
-                    altFolioSvgData.contentSegments[0].segmentVertices
+                    altFolioSvgData.contentSegments[0].segmentVertices,
+                    altFolioSvgData.systems.systemsLines.length
                 );
 
                 const polygonElement = altSegmentLink.select('polygon');
@@ -2164,10 +2178,27 @@ describe('FolioService (DONE)', () => {
                 expectToBe(polygonElement.attr('fill'), expectedContentSegmentFillColor);
             });
 
-            it('... should set the `stroke-width` attribute of the polygon element', () => {
-                const polygonElement = contentSegmentLink.select('polygon');
+            it('... should set the `stroke-width` attribute of the polygon element to default value if no number of systems is given', () => {
+                const altSegmentLink = D3_SELECTION.create('svg:a');
+
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                (folioService as any)._appendContentSegmentLinkPolygon(
+                    altSegmentLink,
+                    altFolioSvgData.contentSegments[0].segmentVertices
+                );
+
+                const polygonElement = altSegmentLink.select('polygon');
 
                 expectToBe(polygonElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+            });
+
+            it('... should adjust the `stroke-width` attribute of the polygon element based on the number of systems if given', () => {
+                const polygonElement = contentSegmentLink.select('polygon');
+
+                expectToBe(polygonElement.attr('stroke-width'), String(expectedAdjustedStrokeWidth));
             });
 
             it('... should only have specified attributes', () => {
@@ -2478,8 +2509,6 @@ describe('FolioService (DONE)', () => {
                     stroke: expectedBgColor,
                 };
                 attributes['stroke-width'] = expectedSheetStrokeWidth;
-
-                console.log('attributes', attributes);
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [svgTrademarkGroup, 'rect', attributes]);
             });

@@ -92,21 +92,21 @@
                                 "measure": "2",
                                 "system": "8",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>/d<sup>2</sup> überschreibt e<sup>1</sup>/c<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>/d<sup>2</sup> überschreibt e<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "2",
                                 "system": "9",
                                 "position": "6/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis überschreibt f."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis überschreibt f."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "4",
                                 "system": "8",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g9",
@@ -127,7 +127,7 @@
                                 "measure": "6",
                                 "system": "9",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e überschreibt f."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e überschreibt f."
                             },
                             {
                                 "svgGroupId": "g13",
@@ -148,7 +148,7 @@
                                 "measure": "{7A}",
                                 "system": "8",
                                 "position": "1–2/8",
-                                "comment": "Achtelnoten <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup>–d<sup>3</sup> radiert."
+                                "comment": "Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup>–d<sup>3</sup> radiert."
                             },
                             {
                                 "svgGroupId": "g16",
@@ -176,7 +176,7 @@
                                 "measure": "12",
                                 "system": "11",
                                 "position": "5.–6. Note",
-                                "comment": "h–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b überschreibt g–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis."
+                                "comment": "h–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b überschreibt g–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis."
                             },
                             {
                                 "svgGroupId": "g210",
@@ -207,7 +207,7 @@
                                 "measure": "5",
                                 "system": "15",
                                 "position": "1/8",
-                                "comment": "Achtelpause überschreibt Viertelnote d; Notenkopf zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b radiert."
+                                "comment": "Achtelpause überschreibt Viertelnote d; Notenkopf zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b radiert."
                             }
                         ]
                     }

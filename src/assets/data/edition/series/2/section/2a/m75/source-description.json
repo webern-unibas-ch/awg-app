@@ -279,7 +279,7 @@
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
                                             "measure": "10",

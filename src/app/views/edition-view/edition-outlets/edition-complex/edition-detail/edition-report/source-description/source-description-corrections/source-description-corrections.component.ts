@@ -11,7 +11,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-description-corrections',
     templateUrl: './source-description-corrections.component.html',
-    styleUrl: './source-description-corrections.component.scss',
+    styleUrls: ['./source-description-corrections.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
@@ -48,6 +48,13 @@ export class SourceDescriptionCorrectionsComponent {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+
+    /**
+     * Public variable: openAllCorrectionDetails.
+     *
+     * It keeps the boolean value to set the open state of all details in the source description corrections.
+     */
+    openAllCorrectionDetails = false;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -109,5 +116,17 @@ export class SourceDescriptionCorrectionsComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleAllCorrectionDetails.
+     *
+     * It toggles the open state of all details in the source description corrections.
+     *
+     * @param {boolean} open The boolean value to set the open state.
+     * @returns {void} Sets the open state.
+     */
+    toggleAllCorrectionDetails(open: boolean): void {
+        this.openAllCorrectionDetails = open;
     }
 }

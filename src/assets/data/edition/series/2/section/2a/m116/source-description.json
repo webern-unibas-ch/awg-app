@@ -386,7 +386,7 @@
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für des."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für des."
                                         },
                                         {
                                             "measure": "8",
@@ -410,7 +410,7 @@
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "8/8",
-                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
                                         },
                                         {
                                             "measure": "10",
@@ -428,7 +428,7 @@
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
-                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis."
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis."
                                         },
                                         {
                                             "measure": "11",
@@ -440,7 +440,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1–4/8",
-                                            "comment": "Unterhalb von <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub> angesetzter Achtelbalken rasiert."
+                                            "comment": "Unterhalb von <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub> angesetzter Achtelbalken rasiert."
                                         },
                                         {
                                             "measure": "12",
@@ -452,31 +452,31 @@
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "2/8",
-                                            "comment": "Es sowie <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem Ges gestrichen."
+                                            "comment": "Es sowie <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem Ges gestrichen."
                                         },
                                         {
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b."
                                         },
                                         {
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "6/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
                                         },
                                         {
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "6/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es."
                                         },
                                         {
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
-                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>."
+                                            "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>."
                                         },
                                         {
                                             "measure": "14",
@@ -488,7 +488,7 @@
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu C überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu C überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "15",
@@ -500,13 +500,13 @@
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "3/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu potenziellem g."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu potenziellem g."
                                         }
                                     ]
                                 }

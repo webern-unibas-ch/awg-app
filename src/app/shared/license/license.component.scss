@@ -1,0 +1,18 @@
+.awg-license-link {
+    border-bottom: none !important;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &.awg-license-icon:hover {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    & .awg-license-icon > img {
+        height: 16px !important;
+        margin-left: 3px;
+        vertical-align: text-bottom;
+    }
+}

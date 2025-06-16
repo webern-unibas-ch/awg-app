@@ -156,7 +156,7 @@
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b."
                                         },
                                         {
                                             "measure": "5 <br /> bis 9",
@@ -168,7 +168,7 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "5/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
                                         },
                                         {
                                             "measure": "7",
@@ -186,7 +186,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                                         },
                                         {
                                             "measure": "10",
@@ -198,7 +198,7 @@
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "6/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
                                         },
                                         {
                                             "measure": "12",
@@ -237,13 +237,13 @@
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "2/8",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "2/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "12",

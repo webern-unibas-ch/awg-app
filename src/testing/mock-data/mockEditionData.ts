@@ -112,7 +112,7 @@ export const mockEditionData = {
                 folios: [
                     {
                         folioId: '1',
-                        systems: '12',
+                        systems: '18',
                         dimensions: {
                             height: 180,
                             width: 267,
@@ -185,7 +185,7 @@ export const mockEditionData = {
      */
     mockReversedFolio: {
         folioId: '1',
-        systems: '12',
+        systems: '18',
         reversed: true,
         dimensions: {
             height: 180,
@@ -1287,7 +1287,7 @@ export const mockEditionData = {
                 label: 'test2',
                 evaluations: [
                     'test evaluation 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
+                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
                 ],
                 rowtable: true,
                 commentary: {

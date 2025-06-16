@@ -99,14 +99,14 @@
                                 "measure": "6",
                                 "system": "1",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g1182",
                                 "measure": "6",
                                 "system": "2",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: Achtelpause überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
+                                "comment": "Oberstimmenschicht: Achtelpause überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b."
                             },
                             {
                                 "svgGroupId": "g1058",
@@ -162,7 +162,7 @@
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder as<sup>1</sup>?)."
+                                "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder as<sup>1</sup>?)."
                             },
                             {
                                 "svgGroupId": "g1137",
@@ -183,7 +183,7 @@
                                 "measure": "9C",
                                 "system": "10",
                                 "position": "(1/4)",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1157",
@@ -197,7 +197,7 @@
                                 "measure": "9D",
                                 "system": "13",
                                 "position": "",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–f<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–f<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g2571",
@@ -323,7 +323,7 @@
                                 "measure": "19",
                                 "system": "1",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g1172",
@@ -344,7 +344,7 @@
                                 "measure": "21",
                                 "system": "2",
                                 "position": "1/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B ersetzt durch B<sub>1</sub>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B ersetzt durch B<sub>1</sub>."
                             },
                             {
                                 "svgGroupId": "g1160",
@@ -358,7 +358,7 @@
                                 "measure": "22",
                                 "system": "5",
                                 "position": "4. Note",
-                                "comment": "Viertelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>des gestrichen."
+                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des gestrichen."
                             },
                             {
                                 "svgGroupId": "g1129",
@@ -463,7 +463,7 @@
                                 "measure": "{28A}",
                                 "system": "7",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[bb]')}}</span> gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1125",

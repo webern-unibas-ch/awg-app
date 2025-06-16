@@ -169,7 +169,7 @@
                                 "measure": "11",
                                 "system": "5",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>G/e überschreibt H/g."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>G/e überschreibt H/g."
                             },
                             {
                                 "svgGroupId": "g1188",
@@ -183,14 +183,14 @@
                                 "measure": "18",
                                 "system": "10",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>ges<sup>3</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>3</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g1569",
                                 "measure": "14",
                                 "system": "4",
                                 "position": "1. Note",
-                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
+                                "comment": "Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1209",
@@ -218,7 +218,7 @@
                                 "measure": "24A",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "Viertelnote G<sub>1</sub> überschreibt Halbe Note <span class='glyph'>{{ref.getGlyph('[b]')}}</span>As."
+                                "comment": "Viertelnote G<sub>1</sub> überschreibt Halbe Note <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As."
                             },
                             {
                                 "svgGroupId": "g990",

@@ -44,7 +44,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
 
         // Convert json object
         jsonConvert = new JsonConvert();
-        context = jsonConvert.deserializeObject(mockContextJson, ContextJson);
+        context = jsonConvert.deserialize(mockContextJson, ContextJson);
 
         // Test data
         expectedGalleryOptions = [

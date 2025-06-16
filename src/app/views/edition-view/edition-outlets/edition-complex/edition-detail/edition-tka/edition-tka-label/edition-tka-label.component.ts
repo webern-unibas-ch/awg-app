@@ -11,7 +11,7 @@ import { UtilityService } from '@awg-core/services';
 @Component({
     selector: 'awg-edition-tka-label',
     templateUrl: './edition-tka-label.component.html',
-    styleUrl: './edition-tka-label.component.scss',
+    styleUrls: ['./edition-tka-label.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })

@@ -103,7 +103,7 @@
                                 "measure": "9",
                                 "system": "Klav. u.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b ergänzt mit Blick auf 6/8 sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> hinzugefügt."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b ergänzt mit Blick auf 6/8 sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> hinzugefügt."
                             },
                             {
                                 "svgGroupId": "g595",

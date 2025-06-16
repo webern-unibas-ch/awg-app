@@ -12,7 +12,7 @@ import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-description-contents',
     templateUrl: './source-description-contents.component.html',
-    styleUrl: './source-description-contents.component.scss',
+    styleUrls: ['./source-description-contents.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
@@ -32,6 +32,13 @@ export class SourceDescriptionContentsComponent {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+
+    /**
+     * Public variable: openAllContentDetails.
+     *
+     * It keeps the boolean value to set the open state of all details in the source description contents.
+     */
+    openAllContentDetails = true;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -68,5 +75,17 @@ export class SourceDescriptionContentsComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleAllContentDetails.
+     *
+     * It toggles the open state of all details in the source description contents.
+     *
+     * @param {boolean} open The boolean value to set the open state.
+     * @returns {void} Sets the open state.
+     */
+    toggleAllContentDetails(open: boolean): void {
+        this.openAllContentDetails = open;
     }
 }

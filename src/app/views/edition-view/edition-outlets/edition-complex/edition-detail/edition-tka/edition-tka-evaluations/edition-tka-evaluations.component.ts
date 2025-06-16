@@ -11,7 +11,7 @@ import { EditionGlyphService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-tka-evaluations',
     templateUrl: './edition-tka-evaluations.component.html',
-    styleUrl: './edition-tka-evaluations.component.scss',
+    styleUrls: ['./edition-tka-evaluations.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })

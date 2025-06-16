@@ -247,7 +247,7 @@
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>."
                                         },
                                         {
                                             "measure": "15",
@@ -310,7 +310,7 @@
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "3/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>."
                                         },
                                         {
                                             "measure": "8",
