@@ -154,6 +154,9 @@
         "typescript-eslint": "^8.34.0",
         "webpack-bundle-analyzer": "^4.10.2"
     },
+    "resolutions": {
+        "sqlite3/node-gyp": "^10.1.0"
+    },
     "engines": {
         "node": ">= 20.13.1",
         "npm": ">= 10.5.2",
