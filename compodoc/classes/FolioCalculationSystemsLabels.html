@@ -205,7 +205,7 @@ to calculate the labels of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="869" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:869</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="874" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:874</a></div>
                             </td>
                         </tr>
 
@@ -332,7 +332,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="859" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:859</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="864" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:864</a></div>
                         </td>
                     </tr>
 
@@ -372,7 +372,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="864" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:864</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="869" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:869</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +406,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="869" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:869</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="874" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:874</a></div>
                         </td>
                     </tr>
 
@@ -448,8 +448,8 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="898"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:898</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="903"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:903</a></div>
                         </td>
                     </tr>
 
@@ -977,11 +977,16 @@ export class FolioCalculationContentSegment {
 
         const label &#x3D; new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
 
+        // Dynamically adjust the segmentOffsetCorrection based on the number of systems (reference: 18 systems)
+        const defaultNumberOfSystems &#x3D; 18;
+        const adjustedOffsetCorrection &#x3D;
+            this._segmentOffsetCorrection * (defaultNumberOfSystems / this._systems.NUMBER_OF_SYSTEMS);
+
         this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
             segment,
             this._systems,
             this.segmentSplit,
-            this._segmentOffsetCorrection
+            adjustedOffsetCorrection
         );
 
         const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(

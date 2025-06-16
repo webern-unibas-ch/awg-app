@@ -904,15 +904,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SourceDescriptionModule.html" data-type="entity-link" >SourceDescriptionModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' }>
+                                            'data-bs-target="#components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' :
-                                            'id="xs-components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' :
+                                            'id="xs-components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' }>
                                             <li class="link">
                                                 <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SourceDescriptionContentTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionContentTableComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/SourceDescriptionContentsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionContentsComponent</a>
@@ -1051,6 +1054,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/SourceDescriptionContentsComponent.html" data-type="entity-link" >SourceDescriptionContentsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescriptionContentTableComponent.html" data-type="entity-link" >SourceDescriptionContentTableComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SourceDescriptionCorrectionsComponent.html" data-type="entity-link" >SourceDescriptionCorrectionsComponent</a>

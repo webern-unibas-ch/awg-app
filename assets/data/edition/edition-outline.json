@@ -114,7 +114,7 @@
                                 { "complex": "M30", "disabled": false },
                                 { "complex": "M31", "disabled": false },
                                 { "complex": "M29", "disabled": false },
-                                { "complex": "M45", "disabled": true },
+                                { "complex": "M45", "disabled": false },
                                 { "complex": "M46", "disabled": false },
                                 { "complex": "M32", "disabled": false },
                                 { "complex": "M33", "disabled": false },
@@ -135,10 +135,10 @@
                                 { "complex": "M76", "disabled": false },
                                 { "complex": "M43", "disabled": false },
                                 { "complex": "M44", "disabled": true },
-                                { "complex": "M113", "disabled": true },
+                                { "complex": "M113", "disabled": false },
                                 { "complex": "M114", "disabled": true },
                                 { "complex": "M112", "disabled": true },
-                                { "complex": "M267", "disabled": true }
+                                { "complex": "M267", "disabled": false }
                             ]
                         }
                     }

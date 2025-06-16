@@ -203,7 +203,7 @@ to calculate the dimensions of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
                             </td>
                         </tr>
 
@@ -292,7 +292,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="739" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:739</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="744" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:744</a></div>
                         </td>
                     </tr>
 
@@ -326,7 +326,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="744" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:744</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="749" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:749</a></div>
                         </td>
                     </tr>
 
@@ -360,7 +360,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="749" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:749</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="754" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:754</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +394,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="754" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:754</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="759" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:759</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +428,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
                         </td>
                     </tr>
 
@@ -462,7 +462,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="759" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:759</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
                         </td>
                     </tr>
 
@@ -982,11 +982,16 @@ export class FolioCalculationContentSegment {
 
         const label &#x3D; new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
 
+        // Dynamically adjust the segmentOffsetCorrection based on the number of systems (reference: 18 systems)
+        const defaultNumberOfSystems &#x3D; 18;
+        const adjustedOffsetCorrection &#x3D;
+            this._segmentOffsetCorrection * (defaultNumberOfSystems / this._systems.NUMBER_OF_SYSTEMS);
+
         this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
             segment,
             this._systems,
             this.segmentSplit,
-            this._segmentOffsetCorrection
+            adjustedOffsetCorrection
         );
 
         const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(

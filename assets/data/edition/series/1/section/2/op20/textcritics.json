@@ -214,7 +214,7 @@
                                 "measure": "Bl. 2<sup>r</sup>",
                                 "system": "2a",
                                 "position": "U<sub>g</sub>: 2. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu gis<sup>1</sup>)."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu gis<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "text1534b",

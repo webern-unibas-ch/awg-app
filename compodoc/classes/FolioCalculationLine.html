@@ -826,11 +826,16 @@ export class FolioCalculationContentSegment {
 
         const label &#x3D; new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
 
+        // Dynamically adjust the segmentOffsetCorrection based on the number of systems (reference: 18 systems)
+        const defaultNumberOfSystems &#x3D; 18;
+        const adjustedOffsetCorrection &#x3D;
+            this._segmentOffsetCorrection * (defaultNumberOfSystems / this._systems.NUMBER_OF_SYSTEMS);
+
         this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
             segment,
             this._systems,
             this.segmentSplit,
-            this._segmentOffsetCorrection
+            adjustedOffsetCorrection
         );
 
         const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(
