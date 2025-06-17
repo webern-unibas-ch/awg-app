@@ -1,0 +1,355 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "38v",
+                    "systems": "16",
+                    "dimensions": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2",
+                            "sigle": "M 317 Sk2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk1",
+                            "sigle": "M 317 Sk1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1",
+                            "sigle": "M 317 Sk2.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_1",
+                            "sigle": "M 317 Sk2.1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2",
+                            "sigle": "M 317 Sk2.1.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 2,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2_1",
+                            "sigle": "M 317 Sk2.1.2.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 8,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 4,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_3",
+                            "sigle": "M 317 Sk2.1.3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 12,
+                            "segments": [
+                                {
+                                    "position": 11,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3",
+                            "sigle": "M 317 Sk3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1",
+                            "sigle": "M 317 Sk3.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 6,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 3,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_1",
+                            "sigle": "M 317 Sk3.1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 10,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_2",
+                            "sigle": "M 317 Sk3.1.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3",
+                            "sigle": "M 317 Sk3.1.3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3_1",
+                            "sigle": "M 317 Sk3.1.3.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 6,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4a",
+                            "sigle": "M 317 Sk4",
+                            "sigleAddendum": "T. {1A}–3A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_1",
+                            "sigle": "M 317 Sk4.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 13,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "39r",
+                    "systems": "16",
+                    "dimensions": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4b",
+                            "sigle": "M 317 Sk4",
+                            "sigleAddendum": "T. 3B–6",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4c",
+                            "sigle": "M 317 Sk4",
+                            "sigleAddendum": "T. 7–12",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4d",
+                            "sigle": "M 317 Sk4",
+                            "sigleAddendum": "T. 13–15",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_2",
+                            "sigle": "M 317 Sk4.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_3",
+                            "sigle": "M 317 Sk4.3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 7,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 14,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Reihentabelle (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "7",
+                    "dimensions": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "complexId": "op25",
+                            "sheetId": "SkRT",
+                            "sigle": "M 317 / M 321 / M322 RT (Reihentabelle op. 25)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "7",
+                    "dimensions": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "D-E",
+            "convoluteLabel": "D–E (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP25_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Erwachen aus dem tiefsten Traumesschoße“ M 143: einzige Textfassung.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_George_DJdS",
+            "siglum": "George_DJdS",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Das Jahr der Seele</em>, Berlin: Bondi, <sup>3</sup>1904, S. 70.",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1040."
+        }
+    ]
+}

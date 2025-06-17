@@ -1,0 +1,20 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 412.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 22 und M* 411 sowie Tintenniederschrift von Studienkomposition für Streichquartett M* 408.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 412.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 1→2, M* 410 und M 22.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        }
+    ]
+}

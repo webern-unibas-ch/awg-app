@@ -1,0 +1,2726 @@
+{
+    "textcritics": [
+        {
+            "id": "op25_WE",
+            "label": "<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 (Werkedition)",
+            "evaluations": [
+                "Für die Edition der in den <em>Drei Liedern nach Gedichten von Hildegard Jone</em> op. 25 versammelten Textfassungen (I: „Wie bin ich froh!“ M 317 Textfassung 2, II: „Des Herzens Purpurvogel“ M 322, III: „Sterne, Ihr silbernen Bienen“ M 321) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_D'})\"><strong>D</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>).",
+                "Die Niederschrift von „Wie bin ich froh!“ M 317 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> wurde in zwei Korrekturschichten überarbeitet (siehe „Korrekturen in E“). <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1</a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>: Diese Überarbeitung dürfte vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2</a> etablieren Textfassung 2. „Des Herzens Purpurvogel“ M 322 und „Sterne, Ihr silbernen Bienen“ M 321 liegen nur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor. In welchem Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> die verschollenen Fotokopien [<strong>E<sup>F1–F2</sup></strong>] angefertigt wurden (siehe <span class='link-todo'>Einleitung</span>) ist nicht bekannt.",
+                "Hauptquelle für die Werkedition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 ist das Autograph <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>. Referenzquelle für „Wie bin ich froh!“ M 317 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>, ohne dabei durch <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> ausgeschlossene Varianten zu berücksichtigen."
+            ],
+            "commentary": {
+                "preamble": "Bei den Titelnummerierungen wurde der Punkt nach den Ziffern weggelassen.",
+                "comments": [
+                    {
+                        "blockHeader": "<strong>I</strong> („Wie bin ich froh!“ M 317: Textfassung 2)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "1",
+                                "system": "",
+                                "position": "4/8",
+                                "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4–5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_317_Sk4'})\"><strong>M 317 Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "8/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 7/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "5",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "5",
+                                "system": "Klav.",
+                                "position": "8/8",
+                                "comment": "Anfang der Decrescendogabel versetzt von Anfang T. 6 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Akkoladenwechsel nach T. 5."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Klav. o.",
+                                "position": "vor 1. Note",
+                                "comment": "Bassschlüssel versetzt von Taktanfang analog Klav. u. und gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Klav. u.",
+                                "position": "2. Note",
+                                "comment": "Tenuto-Strich ergänzt analog Klav. o. und gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7",
+                                "system": "Klav. u.",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[sf]')}}</span> versetzt von innerhalb des Systems."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8",
+                                "system": "Klav. u.",
+                                "position": "1/4",
+                                "comment": "Tenuto-Strich ergänzt analog Klav. o."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8",
+                                "system": "Ges.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9",
+                                "system": "Klav. o., u.",
+                                "position": "1. Note",
+                                "comment": "Tenuto-Strich ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "12",
+                                "system": "",
+                                "position": "Taktanfang",
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "12",
+                                "system": "Klav. u.",
+                                "position": "vor 2. Note",
+                                "comment": "Bassschlüssel versetzt von vor 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            }
+                        ]
+                    },
+                    {
+                        "blockHeader": "<strong>II</strong> („Des Herzens Purpurvogel“ M 322: einzige Textfassung)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "1",
+                                "system": "",
+                                "position": "Taktanfang",
+                                "comment": "Komma nach <em>Fließend</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "6/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8",
+                                "system": "Ges.",
+                                "position": "1–2/8",
+                                "comment": "Silbenbogen ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "29",
+                                "system": "Ges.",
+                                "position": "2/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1/16."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "30",
+                                "system": "Ges.",
+                                "position": "6/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "32",
+                                "system": "Ges.",
+                                "position": "6/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "33",
+                                "system": "",
+                                "position": "Taktanfang",
+                                "comment": "Komma nach <em>langsamer</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "33",
+                                "system": "Ges.",
+                                "position": "1.–2. Note",
+                                "comment": "Text sic: Silbentrennung <em>ra-stet</em>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "33",
+                                "system": "Klav. u.",
+                                "position": "2/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/16."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "35",
+                                "system": "Klav. u.",
+                                "position": "4/16",
+                                "comment": "Artikulationszeichen nicht eindeutig zu entziffern: &gt; oder Tenutostrich?"
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "36",
+                                "system": "Ges.",
+                                "position": "1/16",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "37",
+                                "system": "Klav.",
+                                "position": "1/16",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 36. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Akkoladenwechsel nach T. 36."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "38",
+                                "system": "",
+                                "position": "3/16",
+                                "comment": "Komma nach <em>immer langsamer</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "41",
+                                "system": "Klav. u.",
+                                "position": "vor 1. Note",
+                                "comment": "Bassschlüssel versetzt von vor T. 41."
+                            }
+                        ]
+                    },
+                    {
+                        "blockHeader": "<strong>III</strong> („Sterne, Ihr silbenern Bienen“ M 321: einzige Textfassung)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9",
+                                "system": "Ges.",
+                                "position": "2/4",
+                                "comment": "Text sic: Großschreibung <em>Ihr</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "20",
+                                "system": "Klav. o.",
+                                "position": "1.–2. Note",
+                                "comment": "Bogen der Vorschlagsnote zu 2. Note ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "25",
+                                "system": "",
+                                "position": "Taktanfang",
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "25",
+                                "system": "Klav. u.",
+                                "position": "vor 2/4",
+                                "comment": "Violinschlüssel ergänzt mit Blick auf Tonhöhen gemäß Reihenverlauf bis Ende T. 28 (K<sub>gis</sub>: 10.–12., KU<sub>fis</sub>: 1.–5. Reihenton). Siehe auch TkA zu T. 26 Klav. o. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Bassschlüssel wieder explizit vor T. 29 (nach Akkoladenwechsel)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "26",
+                                "system": "Klav. o.",
+                                "position": "vor 2/4",
+                                "comment": "Violinschlüssel ergänzt mit Blick auf Tonhöhen gemäß Reihenverlauf bis Ende T. 28 (K<sub>gis</sub>: 11.–12., KU<sub>fis</sub>: 1.–5. Reihenton). Siehe auch TkA zu T. 25 Klav. u. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Violinschlüssel erst explizit vor T. 29 (nach Akkoladenwechsel)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "31",
+                                "system": "",
+                                "position": "2/4",
+                                "comment": "Eckige Klammern um <span class='glyph note'>{{ref.getGlyph('[Halbe Note]')}}</span><em> = ca 96</em> geändert zu runden Klammern."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "34",
+                                "system": "Ges.",
+                                "position": "1.–2. Note",
+                                "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Silben zusammengeschrieben."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "37",
+                                "system": "",
+                                "position": "2/4",
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "40",
+                                "system": "Ges",
+                                "position": "1.–2. Note",
+                                "comment": "Text: Silbentrennung <em>tro-pfen</em> korrigiert zu <em>trop-fen</em>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "47 <br /> bis 48",
+                                "system": "Ges.",
+                                "position": "letzte Note <br /> 1. Note",
+                                "comment": "Längenstrich ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "56",
+                                "system": "Ges.",
+                                "position": "2/4",
+                                "comment": "Anfang des Legatobogens versetzt von T. 57 1/4."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "57",
+                                "system": "Ges.",
+                                "position": "1/4",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 58",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Basschlüssel versetzt von rechts vom Taktstrich."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "59",
+                                "system": "Ges.",
+                                "position": "1.–2. Note",
+                                "comment": "Text: Silbentrennung <em>tro-pfet</em> korrigiert zu <em>trop-fet</em>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "73 <br /> bis 74",
+                                "system": "Ges.",
+                                "position": "2/4",
+                                "comment": "Text sic: Silbentrennung <em>Sü-ße</em>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "76",
+                                "system": "",
+                                "position": "2/4",
+                                "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph note'>{{ref.getGlyph('[Halbe Note]')}}</span><em> = ca 96</em> geändert zu runden Klammern."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "78",
+                                "system": "Ges., Klav. o.",
+                                "position": "",
+                                "comment": "Fermaten ergänzt analog Klav. u."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M_317_TF1",
+            "label": "M 317 Textfassung 1",
+            "evaluations": [
+                "Für die Edition von „Wie bin ich froh!“ M 317 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen.",
+                "Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1 in <strong>E</strong></a> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben dürfte. Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> betrifft <span class='link-todo'>Textfassung 2</span>. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor Korrekturen 2 lässt sich nicht immer eindeutig entziffern.",
+                "Hauptquelle für die Textedition von „Wie bin ich froh!“ M 317 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1145",
+                                "measure": "1",
+                                "system": "",
+                                "position": "4/8",
+                                "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4/8 und 5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>M 317 Sk4</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g1198",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause."
+                            },
+                            {
+                                "svgGroupId": "g1204",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 3/8."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M_317_Sk1",
+            "label": "M 317 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt.",
+                "Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup> und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39<sup>r</sup> System 1–4, die ebenfalls als Präparierung der Verlaufsskizze zu op. 24/1 fungieren [<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>].)",
+                "Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> notiert worden.",
+                "Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>Sk4</strong></a>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6494",
+                                "measure": "1–2",
+                                "system": "1",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6407",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g6443",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g6490",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g6454",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g6468",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g6479",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g6414",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g6434",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g6425",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2",
+            "label": "M 317 Sk2",
+            "evaluations": [
+                "<strong>Sk2</strong> entwirft eine Zwölftonreihe in zwei Anläufen. Reihe A umfasst lediglich fünf Töne, Reihe B ergänzt nach einer Permutation des 3.–4. Reihentons die Reihe zur vollständigen Zwölftönigkeit. Die ersten fünf Töne beider Reihen ergänzen den ungeordneten Tonvorrat von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> um den Anfangston cis. Die Niederschrift von Reihe B erfolgt dann im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_1'})\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2_1'})\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_3'})\"><strong>Sk2.1.3</strong></a>."
+            ],
+            "rowtable": true,
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1055",
+                                "measure": "A",
+                                "system": "1",
+                                "position": "1.–5. Reihenton",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "text74",
+                                "measure": "A",
+                                "system": "1",
+                                "position": "2. Reihenton",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>?)."
+                            },
+                            {
+                                "svgGroupId": "g1065",
+                                "measure": "B",
+                                "system": "1",
+                                "position": "4. Reihenton",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g536",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g572",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g608",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g583",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g597",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g619",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g554",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g563",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g547",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2_1",
+            "label": "M 317 Sk2.1",
+            "evaluations": [
+                "<strong>Sk2.1</strong> entwirft auf der Grundlage der rhythmischen Kontur von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> eine Melodielinie mit Text, die in ihrer ausführlichsten und vermutlich letzten Schicht (T. 1 bis T. 2 1. TH: System 1; T. 2 2. TH bis T. 4: System 2) Reihe B aus <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> artikuliert. Die Niederschrift erfolgt im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_1'})\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2_1'})\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_3'})\"><strong>Sk2.1.3</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1245",
+                                "measure": "1–3",
+                                "system": "1",
+                                "position": "",
+                                "comment": "Text in Kurrentschrift."
+                            },
+                            {
+                                "svgGroupId": "text164",
+                                "measure": "1",
+                                "system": "1",
+                                "position": "6/8",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
+                            },
+                            {
+                                "svgGroupId": "g1254",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "text194",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "3/8",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>?)."
+                            },
+                            {
+                                "svgGroupId": "text338",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "letzte Note",
+                                "comment": "Punkt unter der Note: Fleck oder Ansatz zu Notenkopf f?"
+                            },
+                            {
+                                "svgGroupId": "g1281",
+                                "measure": "2 <br /> bis 3",
+                                "system": "3",
+                                "position": "letzte Note <br /> 3. Note",
+                                "comment": "Durch Einklammerung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g242",
+                                "measure": "3",
+                                "system": "1",
+                                "position": "3. Note",
+                                "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_1'})\"><strong>Sk2.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g1295",
+                                "measure": "3",
+                                "system": "2",
+                                "position": "4/8",
+                                "comment": "Punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> überschreibt radierte Achtelpause."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1210",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1203",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1221",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1232",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1273",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1284",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1239",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1259",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1250",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2_1_1",
+            "label": "M 317 Sk2.1.1",
+            "evaluations": [
+                "<strong>Sk2.1.1</strong> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1022",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1015",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1031",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1042",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1083",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1094",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1049",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1069",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1060",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2_1_2",
+            "label": "M 317 Sk2.1.2",
+            "evaluations": [
+                "<strong>Sk2.1.2</strong> ist vermutlich eine inhaltliche Fortsetzung von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_1'})\"><strong>Sk2.1.1</strong></a> (als T. 3): Hierfür spricht der Anfangston b<sup>1</sup> an entsprechender Stelle von Varianten in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> (System 1 und 2) sowie die dort ebenfalls anzutreffende Ligatur über den Taktstrich (System 1 und 3). Allerdings artikuliert <strong>Sk2.1.2</strong> einen anderen Reihenverlauf als Reihe B in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1105",
+                                "measure": "3",
+                                "system": "2",
+                                "position": "",
+                                "comment": "Durch Einklammerung getilgt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1029",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1022",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1038",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1049",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1090",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1101",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1056",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1076",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1067",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2_1_2_1",
+            "label": "M 317 Sk2.1.2.1",
+            "evaluations": [
+                "<strong>Sk2.1.2.1</strong> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1009",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1002",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1018",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1029",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1040",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1078",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1047",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1067",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1058",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk2_1_3",
+            "label": "M 317 Sk2.1.3",
+            "evaluations": [
+                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g988",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g981",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g997",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1008",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1019",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1060",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1026",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g1046",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1037",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3",
+            "label": "M 317 Sk3",
+            "evaluations": [
+                "<strong>Sk3</strong> stellt gegenüber <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> und deren begleitenden Skizzeneinheiten einen inhaltlichen Neuansatz dar, insofern die in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> notierte vollständige Zwölftonreihe (Reihe B) nicht mehr verwendet wird. Stattdessen formuliert <strong>Sk3</strong> auf der Grundlage des permutierten Tonvorrats von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> einen neuen zwölftönigen Verlauf. Im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a> wird dieser Verlauf weiter verändert und als rhythmisch abstrahierte Zwölftonreihe in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3_1'})\"><strong>Sk3.1.3.1</strong></a> notiert."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1114",
+                                "measure": "1 <br /> bis 2",
+                                "system": "3",
+                                "position": "1. Note <br /> 1. Note",
+                                "comment": "Text in Kurrentschrift."
+                            },
+                            {
+                                "svgGroupId": "g1119",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Punktierung durch Einkreisung getilgt?"
+                            },
+                            {
+                                "svgGroupId": "g3069",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Pfeil zur Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g588",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g581",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g628",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g653",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g619",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g664",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g608",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g599",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3_1",
+            "label": "M 317 Sk3.1",
+            "evaluations": [
+                "<strong>Sk3.1</strong> führt den Anfang von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {{ '{' }}6{{ '}' }}."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1203",
+                                "measure": "vor 3 <br /> bis 3",
+                                "system": "4",
+                                "position": "1. Note <br /> 1. Note",
+                                "comment": "Text in Kurrentschrift."
+                            },
+                            {
+                                "svgGroupId": "g1209",
+                                "measure": "3",
+                                "system": "4",
+                                "position": "Taktanfang",
+                                "comment": "Asterisk verweist auf Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g1213",
+                                "measure": "{5–6}",
+                                "system": "4",
+                                "position": "",
+                                "comment": "Durch Einklammerung getilgt. (Die Variante in System 3 wird allerdings nicht von der Einklammerung eingeschlossen.)"
+                            },
+                            {
+                                "svgGroupId": "g1218",
+                                "measure": "{5}",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Ligaturbogen gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1206",
+                                "measure": "{5}",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_1'})\"><strong>Sk3.1.1</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "text228",
+                                "measure": "{5}",
+                                "system": "4",
+                                "position": "6/8",
+                                "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
+                            },
+                            {
+                                "svgGroupId": "g1241",
+                                "measure": "{5} <br /> bis {6}",
+                                "system": "4",
+                                "position": "6/8 <br /> 3. Note",
+                                "comment": "Text in Kurrentschrift."
+                            },
+                            {
+                                "svgGroupId": "g1225",
+                                "measure": "{6}",
+                                "system": "4",
+                                "position": "1–2/8",
+                                "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1214",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g698",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g725",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g761",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g736",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g750",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g772",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g705",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g716",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g691",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g680",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_3"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3_1_1",
+            "label": "M 317 Sk3.1.1",
+            "evaluations": [
+                "<strong>Sk3.1.1</strong> formuliert Varianten von T. 4–5 in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g312",
+                                "measure": "5",
+                                "system": "6",
+                                "position": "",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g441",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g432",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g454",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_3_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3_1_2",
+            "label": "M 317 Sk3.1.2",
+            "evaluations": [
+                "<strong>Sk3.1.2</strong> formuliert eine Variante von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> ab T. 3. Zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> T. 1–2 1. Note und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</em>) der Zwölftonreihe in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3_1'})\"><strong>Sk3.1.3.1</strong></a> entspricht."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g798",
+                                "measure": "3 <br /> bis 5",
+                                "system": "4",
+                                "position": "1. Note <br /> 1. Note",
+                                "comment": "Text in Kurrentschrift."
+                            },
+                            {
+                                "svgGroupId": "g804",
+                                "measure": "3",
+                                "system": "4",
+                                "position": "Taktanfang",
+                                "comment": "Asterisk verweist auf Anschluss von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g809",
+                                "measure": "3",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Punktierung durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g929",
+                                "measure": "5",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1958",
+                                "measure": "5",
+                                "system": "4",
+                                "position": "nach 1. Note",
+                                "comment": "Durch Einklammerung abgegrenzt von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1091",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g559",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g584",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g595",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g609",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_2_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g620",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk2_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g566",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3"
+                    }
+                },
+                {
+                    "svgGroupId": "g575",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3_1_3",
+            "label": "M 317 Sk3.1.3",
+            "evaluations": [
+                "<strong>Sk3.1.3</strong> notiert die vier in M 317 verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4_1'})\"><strong>Sk4.1</strong></a> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a> vollzogen. "
+            ],
+            "rowtable": true,
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4504",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "5",
+                                "position": "",
+                                "comment": "Strich mit unklarer Bedeutung."
+                            },
+                            {
+                                "svgGroupId": "g310",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6",
+                                "position": "G<sub>g</sub> (1): vor 1. Reihenton",
+                                "comment": "<em>1</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g104",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6",
+                                "position": "G<sub>g</sub> (1): 7. Reihenton",
+                                "comment": "sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
+                            },
+                            {
+                                "svgGroupId": "g1554",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6",
+                                "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g570",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6",
+                                "position": "K<sub>gis</sub> (2): vor 1. Reihenton",
+                                "comment": "<em>2</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1572",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6",
+                                "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
+                            },
+                            {
+                                "svgGroupId": "g318",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "7",
+                                "position": "U<sub>g</sub> (3): vor 1. Reihenton",
+                                "comment": "<em>3</em> mit schwarzem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1591",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "7",
+                                "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g566",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "7",
+                                "position": "KU<sub>fis</sub> (4): vor 1. Reihenton",
+                                "comment": "<em>4</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1608",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "7",
+                                "position": "KU<sub>fis</sub> (4): 2.–3. Note",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
+                            },
+                            {
+                                "svgGroupId": "g1613",
+                                "measure": "Bl. 38<sup>v</sup>",
+                                "system": "6–7",
+                                "position": "nach letzter Note",
+                                "comment": "Klammer rechts mit rotem Buntstift."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g655",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_3_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk3_1_3_1",
+            "label": "M 317 Sk3.1.3.1",
+            "evaluations": [
+                "<strong>Sk3.1.3.1</strong> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g410",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g421",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk3_1_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk4",
+            "label": "M 317 Sk4",
+            "evaluations": [
+                "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a> und <span class='link-todo'>Textfassung 2</span> nicht zwölf, sondern 15 gültige Takte.",
+                "Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>.",
+                "(Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufsskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>].)",
+                "<strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g678",
+                                "measure": "{1A}",
+                                "system": "10–12",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g683",
+                                "measure": "{1B}",
+                                "system": "10–12",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "text334",
+                                "measure": "vor 1C",
+                                "system": "11",
+                                "position": "1. Note",
+                                "comment": "<em>4</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g687",
+                                "measure": "1C",
+                                "system": "11",
+                                "position": "6/8",
+                                "comment": "sic: Winkel markiert hier nicht das Ende, sondern den 11. Reihenton von KU<sub>fis</sub> (<em>4</em>). 12. Reihenton von KU<sub>fis</sub> (<em>g</em>) ist zugleich 1. Reihenton von G<sub>g</sub> (<em>1</em>): siehe T. 2 System 10–11 jeweils 1. Note."
+                            },
+                            {
+                                "svgGroupId": "line20",
+                                "measure": "nach 1C",
+                                "system": "11–12",
+                                "position": "",
+                                "comment": "Taktstrich nachgezogen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text580",
+                                "measure": "2",
+                                "system": "10",
+                                "position": "1. Note",
+                                "comment": "<em>1</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1865",
+                                "measure": "3B",
+                                "system": "2",
+                                "position": "1/8",
+                                "comment": "<em>zart</em> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1869",
+                                "measure": "3B",
+                                "system": "3",
+                                "position": "3. Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1144",
+                                "measure": "3B",
+                                "system": "4",
+                                "position": "2/8",
+                                "comment": "<em>3</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g7843",
+                                "measure": "3B",
+                                "system": "3–4",
+                                "position": "4.–6. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "text430",
+                                "measure": "3B",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "<em>4</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g8572",
+                                "measure": "3B",
+                                "system": "2",
+                                "position": "5/8",
+                                "comment": "Durch Einkreisung getilgt. Siehe Variante in System 1."
+                            },
+                            {
+                                "svgGroupId": "g1889",
+                                "measure": "4",
+                                "system": "2–4",
+                                "position": "Taktanfang",
+                                "comment": "Taktvorzeichnung 2/4 überschreibt 4/4."
+                            },
+                            {
+                                "svgGroupId": "g1899",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1903",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g9301",
+                                "measure": "5",
+                                "system": "3–4",
+                                "position": "(1–2/4)",
+                                "comment": "Durch Einkreisung mit rotem Buntstift getilgt."
+                            },
+                            {
+                                "svgGroupId": "g1909",
+                                "measure": "5",
+                                "system": "5–6",
+                                "position": "",
+                                "comment": "Durch Streichung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g1917",
+                                "measure": "5",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "<em>u. 1</em> und Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1925",
+                                "measure": "5",
+                                "system": "5",
+                                "position": "1. Note",
+                                "comment": "Beide Winkel und <em>1</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1929",
+                                "measure": "5",
+                                "system": "8",
+                                "position": "3. Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text806",
+                                "measure": "5",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "<em>1</em> nachgezogen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1945",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "5/8",
+                                "comment": "<em>1</em> über dem System mit rotem Buntstift und radiert. <em>1</em> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
+                            },
+                            {
+                                "svgGroupId": "g2067",
+                                "measure": "6",
+                                "system": "2",
+                                "position": "1.–2. Note",
+                                "comment": "<em>leuchtet</em> zusammengeschrieben."
+                            },
+                            {
+                                "svgGroupId": "g10030",
+                                "measure": "6",
+                                "system": "3–4",
+                                "position": "1. Pause bis <br /> 1. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g10759",
+                                "measure": "6",
+                                "system": "5",
+                                "position": "1. Note",
+                                "comment": "fis<sup>1</sup> durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "text1070",
+                                "measure": "6",
+                                "system": "4",
+                                "position": "2. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g11488",
+                                "measure": "6",
+                                "system": "5–6",
+                                "position": "2.–6. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "text888",
+                                "measure": "6",
+                                "system": "3",
+                                "position": "2.–4. Note",
+                                "comment": "Triolenziffer nachgezogen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1871",
+                                "measure": "6",
+                                "system": "3",
+                                "position": "letzte Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1078",
+                                "measure": "6",
+                                "system": "4",
+                                "position": "8/8",
+                                "comment": "<em>3</em> nachgezogen mit schwarzem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1165",
+                                "measure": "7",
+                                "system": "10–11",
+                                "position": "Taktanfang",
+                                "comment": "<em>4/4</em> überschreibt <em>3/4</em>."
+                            },
+                            {
+                                "svgGroupId": "text1148",
+                                "measure": "7",
+                                "system": "10",
+                                "position": "3/8",
+                                "comment": "<em>3</em> nachgezogen mit schwarzem Buntstift. (Ziffer bezieht sich auf 1. Note.)"
+                            },
+                            {
+                                "svgGroupId": "g1228",
+                                "measure": "7",
+                                "system": "11",
+                                "position": "8/8",
+                                "comment": "Winkel nachgezogen mit schwarzem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1233",
+                                "measure": "vor 8",
+                                "system": "12",
+                                "position": "",
+                                "comment": "Bassschlüssel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "text1150",
+                                "measure": "8",
+                                "system": "11",
+                                "position": "1. Note",
+                                "comment": "<em>2</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1236",
+                                "measure": "9",
+                                "system": "11",
+                                "position": "(2/4)",
+                                "comment": "Viertelpause über dem System durch Einkreisung getilgt?"
+                            },
+                            {
+                                "svgGroupId": "text1212",
+                                "measure": "9",
+                                "system": "11",
+                                "position": "3. Note",
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                            },
+                            {
+                                "svgGroupId": "g1247",
+                                "measure": "9",
+                                "system": "12",
+                                "position": "2. Note",
+                                "comment": "8–┐ nachgezogen mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1152",
+                                "measure": "9",
+                                "system": "13",
+                                "position": "1. Note",
+                                "comment": "<em>2</em> nachgezogen mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1250",
+                                "measure": "9",
+                                "system": "11",
+                                "position": "4.–5. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g1254",
+                                "measure": "9",
+                                "system": "9",
+                                "position": "letzte Note",
+                                "comment": "Winkel mit schwarzem Buntstift und radiert."
+                            },
+                            {
+                                "svgGroupId": "g1445",
+                                "measure": "9 <br /> bis 10",
+                                "system": "9",
+                                "position": "letzte Note <br /> 1. Note",
+                                "comment": "<em>einmal</em> zusammengeschrieben."
+                            },
+                            {
+                                "svgGroupId": "g1264",
+                                "measure": "10",
+                                "system": "9",
+                                "position": "1. Note",
+                                "comment": "Winkel mit schwarzem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1178",
+                                "measure": "10",
+                                "system": "9",
+                                "position": "2. Note",
+                                "comment": "<em>1</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g9931",
+                                "measure": "10",
+                                "system": "11–12",
+                                "position": "1. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g12115",
+                                "measure": "12",
+                                "system": "13–14",
+                                "position": "Taktanfang",
+                                "comment": "<em>3/4</em> nachgezogen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1216",
+                                "measure": "12",
+                                "system": "8",
+                                "position": "(1. Note)",
+                                "comment": "<em>molto</em> [xx] radiert."
+                            },
+                            {
+                                "svgGroupId": "g1461",
+                                "measure": "12",
+                                "system": "9",
+                                "position": "1/8",
+                                "comment": "Text: Kleinschreibung <em>wer</em>[-den] überschrieben zu Großschreibung <em>Wer</em>[-den]."
+                            },
+                            {
+                                "svgGroupId": "g20105",
+                                "measure": "12",
+                                "system": "11",
+                                "position": "1. Note",
+                                "comment": "Winkel mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1478",
+                                "measure": "12",
+                                "system": "9",
+                                "position": "3.–5. Note",
+                                "comment": "<em>hingestellt</em> zusammengeschrieben."
+                            },
+                            {
+                                "svgGroupId": "text1058",
+                                "measure": "12",
+                                "system": "13",
+                                "position": "2. Note",
+                                "comment": "<em>4</em> nachgezogen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text476",
+                                "measure": "13",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": "<em>gilt</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g12150",
+                                "measure": "13",
+                                "system": "15, 16",
+                                "position": "1. Pause",
+                                "comment": "Viertelpause überschreibt Achtelpause."
+                            },
+                            {
+                                "svgGroupId": "g12880",
+                                "measure": "13",
+                                "system": "14",
+                                "position": "2. Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g13611",
+                                "measure": "13",
+                                "system": "15",
+                                "position": "(5/8)",
+                                "comment": "Achtelpause gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g14343",
+                                "measure": "13",
+                                "system": "14",
+                                "position": "letzte Note",
+                                "comment": "<em>u. 4</em> gestrichen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g15072",
+                                "measure": "13",
+                                "system": "14–15",
+                                "position": "letzte Note",
+                                "comment": "Pfeil mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g15803",
+                                "measure": "13",
+                                "system": "15",
+                                "position": "letzte Note",
+                                "comment": "Winkel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "text474",
+                                "measure": "14",
+                                "system": "15–16",
+                                "position": "Taktanfang",
+                                "comment": "<em>3</em> mit schwarzem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g17374",
+                                "measure": "14",
+                                "system": "15, 16",
+                                "position": "1. Note",
+                                "comment": "Achtelnote überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g21745",
+                                "measure": "14",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": "<em>u.</em> von <em>u. 3</em> sowie Winkel mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g18830",
+                                "measure": "14",
+                                "system": "13",
+                                "position": "2. Note",
+                                "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g19559",
+                                "measure": "14",
+                                "system": "16",
+                                "position": "letzte Note",
+                                "comment": "Durch Einkreisung getilgt. Siehe Korrektur in T. 15."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g802",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1363",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g1344",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g1367",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g1353",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1367-9",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g809",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g796",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g818",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4_3"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk4_1",
+            "label": "M 317 Sk4.1",
+            "evaluations": [
+                "<strong>Sk4.1</strong> formuliert eine rhythmisch-metrische Variante von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>Sk4</strong></a> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <strong>Sk4.1</strong> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {{ '{' }}3{{ '}' }}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong></a> T. 3B weiter ausgearbeitet.",
+                "Vor der Niederschrift von <strong>Sk4.1</strong> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>Sk4</strong></a> nach T. {{ '{' }}1A{{ '}' }}–3A dient. Nach der Niederschrift von <strong>Sk4.1</strong> erfolgt die Fortsetzung von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>Sk4</strong></a> jedoch auf Bl. 39<sup>r</sup> (<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g25236",
+                                "measure": "2",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Beide Winkel und <em>1</em> (G<sub>g</sub>) mit rotem Buntstift. "
+                            },
+                            {
+                                "svgGroupId": "g1225",
+                                "measure": "2",
+                                "system": "13",
+                                "position": "6/8–4/4",
+                                "comment": "Decrescendogabel zu 4/4 überschrieben zu Decrescendogabel von 6/8–4/4."
+                            },
+                            {
+                                "svgGroupId": "g30323",
+                                "measure": "{3}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g31053",
+                                "measure": "{3}",
+                                "system": "14",
+                                "position": "letzte Note",
+                                "comment": "Winkel mit rotem Buntstift."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g604",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4a"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk4_2",
+            "label": "M 317 Sk4.2",
+            "evaluations": [
+                "<strong>Sk4.2</strong> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g371",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g388",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4c"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_317_Sk4_3",
+            "label": "M 317 Sk4.3",
+            "evaluations": [
+                "<strong>Sk4.3</strong> formuliert eine fragmentarische Variante von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g35106",
+                                "measure": "13",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": "sic: Verweisstrich führt zu <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 14. Inhaltlich bezieht sich <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4_3'})\"><strong>Sk4.3</strong></a> jedoch auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13. "
+                            },
+                            {
+                                "svgGroupId": "g36576",
+                                "measure": "13",
+                                "system": "16",
+                                "position": "letzte Note",
+                                "comment": "Entzifferung von <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais unsicher: möglicherweise auch <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g453",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g466",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_317_Sk4c"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "SkRT",
+            "label": "M 317 / M 321 / M 322 RT (Reihentabelle op. 25)",
+            "evaluations": [
+                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
+            ],
+            "rowtable": true,
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "text440",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1",
+                                "position": "G<sub>g</sub>",
+                                "comment": "Reihennummerierung <em>1</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text682",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1",
+                                "position": "K<sub>gis</sub>",
+                                "comment": "Reihennummerierung <em>2</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text444",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2",
+                                "position": "U<sub>g</sub>",
+                                "comment": "Reihennummerierung <em>3</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text686",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2",
+                                "position": "KU<sub>fis</sub>",
+                                "comment": "Reihennummerierung <em>4</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text450",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3",
+                                "position": "G<sub>c</sub>",
+                                "comment": "Reihennummerierung <em>5</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text688",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3",
+                                "position": "K<sub>cis</sub>",
+                                "comment": "Reihennummerierung <em>6</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text458",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4",
+                                "position": "U<sub>c</sub>",
+                                "comment": "Reihennummerierung <em>7</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text690",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4",
+                                "position": "KU<sub>h</sub>",
+                                "comment": "Reihennummerierung <em>8</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g3291",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3–4",
+                                "position": "",
+                                "comment": "<em>2. Lied</em> mit blauem Buntstift. Akkoladenstrich mit blauem Buntstift nachgezogen."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M_321_Sk1",
+            "label": "M 321 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> skizziert alternative Anfänge der Singstimme von „Sterne, Ihr silbernen Bienen“ M 321. Auf derselben Seite des Skizzenbuchs finden sich daneben Skizzen zum dritten Satz des Konzerts op. 24, dessen erste (M 320 Sk1) oben links mit <em>22. VIII. 34</em> datiert ist.",
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g249",
+                                "measure": "{1A}",
+                                "system": "8",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g251",
+                                "measure": "{2A}",
+                                "system": "8",
+                                "position": "",
+                                "comment": "Durch Einklammerung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g253",
+                                "measure": "3",
+                                "system": "7",
+                                "position": "1.–2. Note",
+                                "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 6."
+                            },
+                            {
+                                "svgGroupId": "g252",
+                                "measure": "3",
+                                "system": "8",
+                                "position": "1. Note",
+                                "comment": "Durch Einkreisung getilgt. Siehe Korrekturen in System 6–7."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g248",
+                    "linkTo": {
+                        "complexId": "op24",
+                        "sheetId": "M_320_Sk1_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_321_Sk2",
+            "label": "M 321 Sk2",
+            "evaluations": [
+                "<strong>Sk2</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322 in zwei metrischen Varianten. Die Transkription zählt die Taktzahlen der Variante in System 1 (Alla-breve-Takt) mit dem Suffix x, die der Variante in System 2 (3/2-Takt) mit dem Suffix y.",
+                "Die Ziffer <em>1</em> (G<sub>g</sub>) in T. 1x und T. 3y bezeichnet den Anfang der betreffenden Reihenform gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren deren Ende (┐, ┘) oder Anfang (┌, └)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g2060",
+                                "measure": "vor 1y <br /> bis 1y",
+                                "system": "2",
+                                "position": "1. Note <br /> nach 4/4",
+                                "comment": "Taktstrich nach T. 1y 2/4 gestrichen, Viertelnote überschreibt Halbe Note vor T. 1y 1. Note und in T. 1y 2/4. Taktstriche am Taktanfang von T. 1y und in T. 1y nach 4/4 hinzugefügt.  <br /> Ante correcturam: vermutlich zunächst voller 3/2-Takt mit Viertelpause, Halbe Note g<sup>2</sup> mit Ligatur zu Viertelnote, Halbe Note e<sup>2</sup>.  <br /> Dann voller 3/2-Takt mit Viertelpause, Ligatur aus zwei Viertelnoten g<sup>2</sup>, Viertelnote e<sup>2</sup>, Viertelpause, Viertelnote dis<sup>2</sup>. <br /> Dann Auftakt zu T. 1y mit Viertelpause, Viertelnote g<sup>2</sup> mit Ligatur zu vollem 3/2-Takt T. 1y. Dabei Taktstrich nach T. 1y 4/4 redundant, aber nicht getilgt."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "4x <br /> 3y",
+                                "system": "1 <br /> 2",
+                                "position": "5/8 <br /> 1/8",
+                                "comment": "Achtelpause hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "4x <br /> bis 5x",
+                                "system": "1",
+                                "position": "4/8 <br /> 1/8",
+                                "comment": "Balken überschreibt Achtelfähnchen in T. 4x 4/8."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_322_Sk1",
+            "label": "M 322 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322.",
+                "Die Ziffer <em>5</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (G<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g159",
+                                "measure": "3",
+                                "system": "2",
+                                "position": "letzte Note",
+                                "comment": "sic: <em>Nach</em> statt <em>Nacht</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "g158",
+                                "measure": "nach 3",
+                                "system": "2",
+                                "position": "",
+                                "comment": "T. 1–3 durch Einklammerung rechts pauschal getilgt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g157",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_322_Sk2",
+            "label": "M 322 Sk2",
+            "evaluations": [
+                "<strong>Sk2</strong> skizziert alternative Anfänge der Singstimme von „Des Herzens Purpurvogel“ M 322.",
+                "Die Ziffer <em>7</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (U<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g229",
+                                "measure": "1",
+                                "system": "3",
+                                "position": "",
+                                "comment": "<em>7</em> mit grünem Buntstift nachgezogen."
+                            },
+                            {
+                                "svgGroupId": "g1344",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> fehlt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g228",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_322_Sk3",
+            "label": "M 322 Sk3",
+            "evaluations": [
+                "<strong>Sk3</strong> ist der lediglich elf gültige Takte umfassende Ansatz einer Verlaufsskizze des Liedes „Des Herzens Purpurvogel“ M 322.",
+                "Die Ziffern <em>5</em> (G<sub>c</sub>), <em>7</em> (U<sub>c</sub>) und <em>8</em> (KU<sub>h</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "{1A}",
+                                "system": "7–8",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "{1B}",
+                                "system": "7–8",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "{1C–2A}",
+                                "system": "7–8",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "1D",
+                                "system": "7–8",
+                                "position": "1/8",
+                                "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "2B",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Winkel mit grünem Buntstift nachgezogen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "2B",
+                                "system": "5",
+                                "position": "3/8",
+                                "comment": "<em>7</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "2B",
+                                "system": "7–8",
+                                "position": "",
+                                "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 9–10."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "2B",
+                                "system": "9–10",
+                                "position": "4/8",
+                                "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
+                            },
+                            {
+                                "svgGroupId": "g21b",
+                                "measure": "{3A}",
+                                "system": "13–14",
+                                "position": "1–2/8",
+                                "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 15–16."
+                            },
+                            {
+                                "svgGroupId": "g22b",
+                                "measure": "{3A}",
+                                "system": "12–16",
+                                "position": "1–3/8",
+                                "comment": "Achtelbalken von T. 2B in System 16 gestrichen und ersetzt durch Achtelpause. Achtelpausen in System 13 und 16 gestrichen sowie Verweislinie zu System 11 3/8 hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g23b",
+                                "measure": "{3A–4A}",
+                                "system": "11–14",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g24b",
+                                "measure": "{3B}",
+                                "system": "11",
+                                "position": "",
+                                "comment": "Taktzahl <em>3</em> überschreibt <em>5</em>."
+                            },
+                            {
+                                "svgGroupId": "g25b",
+                                "measure": "{3B}",
+                                "system": "11–14",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            },
+                            {
+                                "svgGroupId": "g28b",
+                                "measure": "3C",
+                                "system": "13",
+                                "position": "6/8",
+                                "comment": "Winkel mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g212b",
+                                "measure": "4B",
+                                "system": "13–14",
+                                "position": "",
+                                "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
+                            },
+                            {
+                                "svgGroupId": "text337b",
+                                "measure": "4B",
+                                "system": "16",
+                                "position": "1/8",
+                                "comment": "<em>8</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g27b",
+                                "measure": "4B",
+                                "system": "16",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1210b",
+                                "measure": "4B",
+                                "system": "15",
+                                "position": "6/8",
+                                "comment": "e gestrichen. Dann <em>bleibt</em> hinzugefügt, dann <em>bleibt</em> getilgt durch Einkreisung. <br /> <em>8va</em> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g213b",
+                                "measure": "5",
+                                "system": "13–14",
+                                "position": "",
+                                "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
+                            },
+                            {
+                                "svgGroupId": "g211b",
+                                "measure": "5",
+                                "system": "16",
+                                "position": "6/8",
+                                "comment": "B/a gestrichen und durch Einkreisung getilgt, ersetzt durch A/b."
+                            },
+                            {
+                                "svgGroupId": "g1281",
+                                "measure": "7",
+                                "system": "1",
+                                "position": "2. Pause",
+                                "comment": "Gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1301",
+                                "measure": "8",
+                                "system": "1",
+                                "position": "1.–2. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g1305",
+                                "measure": "10",
+                                "system": "4",
+                                "position": "5–6/8",
+                                "comment": "<em>schaukeln</em> zusammengeschrieben."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g802",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk3b"
+                    }
+                },
+                {
+                    "svgGroupId": "g802b",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk3a"
+                    }
+                },
+                {
+                    "svgGroupId": "g1287",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1292",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1297",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_3"
+                    }
+                }
+            ]
+        }
+    ]
+}
