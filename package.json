@@ -151,7 +151,7 @@
         "prettier": "^3.6.2",
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.6.3",
-        "typescript-eslint": "^8.35.1",
+        "typescript-eslint": "^8.36.0",
         "webpack-bundle-analyzer": "^4.10.2"
     },
     "resolutions": {
