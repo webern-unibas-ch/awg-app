@@ -1,5 +1,12 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, DebugElement, TemplateRef, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+    DOCUMENT,
+    TemplateRef,
+    ViewChild,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';

@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 

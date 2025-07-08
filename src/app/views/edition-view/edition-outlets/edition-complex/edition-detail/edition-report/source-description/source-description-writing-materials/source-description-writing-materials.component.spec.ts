@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';

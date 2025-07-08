@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
