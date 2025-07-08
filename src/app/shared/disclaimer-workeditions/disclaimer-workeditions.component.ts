@@ -32,15 +32,22 @@ export class DisclaimerWorkeditionsComponent {
     faCalendarXmark = faCalendarXmark;
 
     /**
+     * Public injection variable: config.
+     *
+     * It injects the NgbPopoverConfig service to configure the popover.
+     */
+    config: NgbPopoverConfig = inject(NgbPopoverConfig);
+
+    /**
      * Constructor of the DisclaimerWorkeditionsComponent.
      *
-     * It declares an instance of the NgbPopoverConfig.
+     * It initializes the popover configuration for the disclaimer.
+     * The popover is placed at the top of the page, inside the body,
+     * and is triggered by mouse enter and leave events.
      */
     constructor() {
-        const config = inject(NgbPopoverConfig);
-
-        config.placement = 'top';
-        config.container = 'body';
-        config.triggers = 'mouseenter:mouseleave';
+        this.config.placement = 'top';
+        this.config.container = 'body';
+        this.config.triggers = 'mouseenter:mouseleave';
     }
 }
