@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -35,10 +35,10 @@ export class DisclaimerWorkeditionsComponent {
      * Constructor of the DisclaimerWorkeditionsComponent.
      *
      * It declares an instance of the NgbPopoverConfig.
-     *
-     * @param {NgbPopoverConfig} config Instance of the NgbPopoverConfig.
      */
-    constructor(public config: NgbPopoverConfig) {
+    constructor() {
+        const config = inject(NgbPopoverConfig);
+
         config.placement = 'top';
         config.container = 'body';
         config.triggers = 'mouseenter:mouseleave';

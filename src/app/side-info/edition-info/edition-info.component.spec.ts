@@ -1,4 +1,4 @@
-import { DebugElement, NgModule, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -111,7 +111,9 @@ describe('EditionInfoComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
     class NgbAccordionWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

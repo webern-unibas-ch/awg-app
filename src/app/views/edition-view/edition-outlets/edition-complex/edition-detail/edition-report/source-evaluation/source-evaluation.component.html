@@ -1,7 +1,7 @@
 @if (sourceEvaluationListData) {
     <div class="awg-source-evaluation-list card">
         <div class="card-body">
-            @if (utils.isNotEmptyArray(sourceEvaluationListData.sources?.[0]?.content)) {
+            @if (UTILS.isNotEmptyArray(sourceEvaluationListData.sources?.[0]?.content)) {
                 @for (evaluation of sourceEvaluationListData.sources?.[0]?.content; track evaluation) {
                     <p class="awg-source-evaluation-entry" [compile-html]="evaluation" [compile-html-ref]="this"></p>
                 }

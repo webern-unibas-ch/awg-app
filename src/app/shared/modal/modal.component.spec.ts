@@ -4,6 +4,7 @@ import {
     Component,
     DebugElement,
     DOCUMENT,
+    inject,
     TemplateRef,
     ViewChild,
 } from '@angular/core';
@@ -32,10 +33,11 @@ import { ModalComponent } from './modal.component';
 class WrapperComponent implements AfterViewInit {
     @ViewChild(ModalComponent) modalComponentRef: ModalComponent;
     modal: TemplateRef<any>;
-    constructor(private cdr: ChangeDetectorRef) {}
+    private _cdr = inject(ChangeDetectorRef);
+
     ngAfterViewInit() {
         this.modal = this.modalComponentRef.modalTemplate;
-        this.cdr.detectChanges();
+        this._cdr.detectChanges();
     }
 }
 

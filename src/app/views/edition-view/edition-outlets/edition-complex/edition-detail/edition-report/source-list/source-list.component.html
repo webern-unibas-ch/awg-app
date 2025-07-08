@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        @if (utils.isNotEmptyArray(sourceListData.sources)) {
+        @if (UTILS.isNotEmptyArray(sourceListData.sources)) {
             <table aria-label="Table for list of sources" class="table table-hover borderless awg-source-list-sources">
                 <tbody>
                     @for (source of sourceListData.sources; track $index; let sourceIndex = $index) {
@@ -47,7 +47,7 @@
                 </tbody>
             </table>
         }
-        @if (utils.isNotEmptyArray(sourceListData.textSources)) {
+        @if (UTILS.isNotEmptyArray(sourceListData.textSources)) {
             <table
                 aria-label="Table for list of text sources"
                 class="table table-hover borderless awg-source-list-text-sources">

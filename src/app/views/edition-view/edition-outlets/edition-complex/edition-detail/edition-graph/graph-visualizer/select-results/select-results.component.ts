@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -52,13 +52,11 @@ export class SelectResultsComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Constructor of the SelectResultsComponent.
+     * Private readonly injection variable: _utils.
      *
-     * It declares a public instance of the UtilityService.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected UtilityService.
      */
-    constructor(public utils: UtilityService) {}
+    private readonly _utils = inject(UtilityService);
 
     /**
      * Public method: isAccordionItemDisabled.
@@ -83,7 +81,7 @@ export class SelectResultsComponent {
      */
     isQueryResultNotEmpty(queryResult: QueryResult): boolean {
         const { head, body } = queryResult;
-        return this.utils.isNotEmptyArray(head?.vars) && this.utils.isNotEmptyArray(body?.bindings);
+        return this._utils.isNotEmptyArray(head?.vars) && this._utils.isNotEmptyArray(body?.bindings);
     }
 
     /**

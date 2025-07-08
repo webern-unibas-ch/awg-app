@@ -1,4 +1,4 @@
-import { DOCUMENT, DebugElement, NgModule } from '@angular/core';
+import { DOCUMENT, DebugElement, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
@@ -33,7 +33,9 @@ describe('TablePaginationComponent (DONE)', () => {
     // global NgbConfigModule
     @NgModule({ imports: [NgbPaginationModule], exports: [NgbPaginationModule] })
     class NgbConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

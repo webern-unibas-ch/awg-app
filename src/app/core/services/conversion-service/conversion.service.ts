@@ -64,6 +64,13 @@ declare const dateConverter: any;
 })
 export class ConversionService extends ApiService {
     /**
+     * Override variable: http.
+     *
+     * It keeps the instance of the overridden HttpClient.
+     */
+    override http: HttpClient;
+
+    /**
      * Public variable: filteredOut.
      *
      * It keeps the number of filtered duplicates of a search response list.
@@ -80,13 +87,15 @@ export class ConversionService extends ApiService {
     /**
      * Constructor of the ConversionService.
      *
-     * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService).
-     *
-     * @param {HttpClient} http Instance of the HttpClient.
+     * It injects a public {@link HttpClient} instance
+     * to handle http requests.
      */
-    constructor(public override http: HttpClient) {
-        super(http);
+    constructor() {
+        const http = inject(HttpClient);
+
+        super();
+
+        this.http = http;
     }
 
     /**
