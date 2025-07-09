@@ -33,15 +33,15 @@
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.scss"
                         ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/assets/themes/scss"]
+                        },
                         "scripts": [
                             "node_modules/rdfstore/dist/rdfstore_min.js",
                             "src/assets/js/dateConverter.js",
                             "src/assets/js/htmlConverter.js"
                         ],
-                        "browser": "src/main.ts",
-                        "stylePreprocessorOptions": {
-                            "includePaths": ["."]
-                        }
+                        "browser": "src/main.ts"
                     },
                     "configurations": {
                         "production": {
@@ -124,6 +124,9 @@
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.scss"
                         ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/assets/themes/scss"]
+                        },
                         "scripts": [
                             "node_modules/rdfstore/dist/rdfstore_min.js",
                             "src/assets/js/dateConverter.js",
