@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -64,13 +63,6 @@ declare const dateConverter: any;
 })
 export class ConversionService extends ApiService {
     /**
-     * Override variable: http.
-     *
-     * It keeps the instance of the overridden HttpClient.
-     */
-    override http: HttpClient;
-
-    /**
      * Public variable: filteredOut.
      *
      * It keeps the number of filtered duplicates of a search response list.
@@ -87,15 +79,10 @@ export class ConversionService extends ApiService {
     /**
      * Constructor of the ConversionService.
      *
-     * It injects a public {@link HttpClient} instance
-     * to handle http requests.
+     * It extends the ApiService.
      */
     constructor() {
-        const http = inject(HttpClient);
-
         super();
-
-        this.http = http;
     }
 
     /**
