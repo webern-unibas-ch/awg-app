@@ -1,6 +1,6 @@
 import { ResourceDetail } from './resource-detail.model';
 
-import { ResourceContextResponseJson, ResourceFullResponseJson } from '@awg-shared/api-objects/index';
+import { ResourceContextResponseJson, ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 /**
  * The IResourceDataResponse interface.

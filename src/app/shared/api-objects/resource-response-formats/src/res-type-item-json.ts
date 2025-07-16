@@ -13,7 +13,8 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
+
+import { KnoraIRI } from '@awg-shared/api-objects';
 import { PropItemForResTypeJson } from './prop-item-for-res-type-json';
 
 /**
