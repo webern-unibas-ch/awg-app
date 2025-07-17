@@ -34,7 +34,7 @@
                             "src/styles.scss"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src/assets/themes/scss"]
+                            "includePaths": ["."]
                         },
                         "scripts": [
                             "node_modules/rdfstore/dist/rdfstore_min.js",
@@ -125,7 +125,7 @@
                             "src/styles.scss"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src/assets/themes/scss"]
+                            "includePaths": ["."]
                         },
                         "scripts": [
                             "node_modules/rdfstore/dist/rdfstore_min.js",
