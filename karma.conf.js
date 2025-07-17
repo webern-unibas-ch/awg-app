@@ -12,11 +12,9 @@ module.exports = function (config) {
             require('karma-coverage'),
             require('@angular-devkit/build-angular/plugins/karma'),
         ],
-        files: [
-            { pattern: 'src/testing/mock-data/mockSvgHeader.svg', included: false, watched: false, served: true }
-        ],
+        files: [{ pattern: 'src/testing/mock-data/mockSvgHeader.svg', included: false, watched: false, served: true }],
         mime: {
-            'image/svg+xml': ['svg']
+            'image/svg+xml': ['svg'],
         },
         client: {
             jasmine: {

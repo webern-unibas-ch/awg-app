@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -26,7 +26,9 @@ describe('AlertInfoComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAlertModule], exports: [NgbAlertModule] })
     class NgbAnimationConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

@@ -3,13 +3,10 @@
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": "./src",
-        "outDir": "./dist/out-tsc",
         "declaration": false,
-        "esModuleInterop": true,
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
-        "moduleResolution": "bundler",
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
@@ -20,8 +17,8 @@
         "strict": false,
         "useDefineForClassFields": false,
         "lib": ["ES2022", "dom"],
-        "module": "ES2022",
         "target": "ES2022",
+        "module": "preserve",
         "typeRoots": ["node_modules/@types"],
         "paths": {
             "@awg-app/*": ["app/*"],
@@ -37,6 +34,14 @@
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
-        "strictTemplates": true
-    }
+        "strictTemplates": true,
+        "typeCheckHostBindings": true
+    },
+    "files": [],
+    "references": [
+        { "path": "./tsconfig.app.json" },
+        { "path": "./tsconfig.doc.json" },
+        { "path": "./tsconfig.eslint.json" },
+        { "path": "./tsconfig.spec.json" }
+    ]
 }

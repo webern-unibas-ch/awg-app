@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
@@ -132,7 +132,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
     class NgbAccordionWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

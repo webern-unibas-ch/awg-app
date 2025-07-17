@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -35,14 +35,18 @@ export class ApiService {
     httpGetUrl = '';
 
     /**
-     * Constructor of the ApiService.
+     * Public injection variable: _http.
      *
-     * It declares a public {@link HttpClient} instance
-     * to handle http requests.
-     *
-     * @param {HttpClient} http Instance of the HttpClient.
+     * It keeps the instance of the injected HttpClient.
      */
-    constructor(public http: HttpClient) {}
+    http = inject(HttpClient);
+
+    /**
+     * Constructor of the ApiService.
+     **/
+    constructor() {
+        // Intentionally left empty.
+    }
 
     /**
      * Public method: getApiResponse.

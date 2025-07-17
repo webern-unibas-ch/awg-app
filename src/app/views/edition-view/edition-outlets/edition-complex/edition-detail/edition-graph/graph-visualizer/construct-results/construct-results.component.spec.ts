@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
@@ -65,7 +65,9 @@ describe('ConstructResultsComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
     class NgbAccordionWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

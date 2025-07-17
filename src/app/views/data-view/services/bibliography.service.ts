@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -58,13 +58,11 @@ export class BibliographyService extends ApiService {
     /**
      * Constructor of the DataApiService.
      *
-     * It declares a public {@link HttpClient} instance
-     * to handle http requests.
-     *
-     * @param {HttpClient} http Instance of the HttpClient.
+     * It extends the ApiService and sets the serviceName.
      */
-    constructor(http: HttpClient) {
-        super(http);
+    constructor() {
+        super();
+
         this.serviceName = 'BibliographyService';
     }
 

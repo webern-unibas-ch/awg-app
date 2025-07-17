@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
@@ -67,7 +67,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
     class NgbConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

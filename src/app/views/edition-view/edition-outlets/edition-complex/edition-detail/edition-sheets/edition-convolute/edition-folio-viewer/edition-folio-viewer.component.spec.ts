@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement, SimpleChange } from '@angular/core';
+import { DOCUMENT, DebugElement, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 
 import * as D3_SELECTION from 'd3-selection';

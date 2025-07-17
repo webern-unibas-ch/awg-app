@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, inject as inject_1, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
@@ -168,7 +168,9 @@ describe('EditionReportComponent', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
     class NgbAccordionWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject_1(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -80,13 +79,10 @@ export class ConversionService extends ApiService {
     /**
      * Constructor of the ConversionService.
      *
-     * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService).
-     *
-     * @param {HttpClient} http Instance of the HttpClient.
+     * It extends the ApiService.
      */
-    constructor(public override http: HttpClient) {
-        super(http);
+    constructor() {
+        super();
     }
 
     /**

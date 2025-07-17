@@ -232,24 +232,24 @@ describe('FooterLogoComponent (DONE)', () => {
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
                 const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
-                expectToBe(imageDes[0].attributes['ng-reflect-ng-class'], cssClassMarginY2 + ' ' + cssClassFloatEnd);
-                expectToBe(imageEl.attributes['ng-reflect-ng-class'].value, cssClassMarginY2 + ' ' + cssClassFloatEnd);
+                expectToBe(imageDes[0].attributes['class'], cssClassMarginY2 + ' ' + cssClassFloatEnd);
+                expectToBe(imageEl.attributes['class'].value, cssClassMarginY2 + ' ' + cssClassFloatEnd);
 
                 // Left main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedLeftMainFooterLogo;
                 detectChangesOnPush(fixture);
 
-                expectToBe(imageDes[0].attributes['ng-reflect-ng-class'], cssClassMarginY2);
-                expectToBe(imageEl.attributes['ng-reflect-ng-class'].value, cssClassMarginY2);
+                expectToBe(imageDes[0].attributes['class'], cssClassMarginY2);
+                expectToBe(imageEl.attributes['class'].value, cssClassMarginY2);
 
                 // Not main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedNonMainFooterLogo;
                 detectChangesOnPush(fixture);
 
-                expect(imageDes[0].attributes['ng-reflect-ng-class']).not.toBeTruthy();
-                expect(imageEl.attributes['ng-reflect-ng-class'].value).not.toBeTruthy();
+                expect(imageDes[0].attributes['class']).not.toBeTruthy();
+                expect(imageEl.attributes['class'].value).not.toBeTruthy();
             });
         });
 

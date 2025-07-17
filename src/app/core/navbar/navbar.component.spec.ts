@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { IsActiveMatchOptions, Router } from '@angular/router';
 
@@ -92,7 +92,9 @@ describe('NavbarComponent (DONE)', () => {
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
     class NgbConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

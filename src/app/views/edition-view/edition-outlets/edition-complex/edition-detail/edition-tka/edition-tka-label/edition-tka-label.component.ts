@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 
@@ -31,11 +31,9 @@ export class EditionTkaLabelComponent {
     @Input() labelType: 'evaluation' | 'commentary';
 
     /**
-     * Constructor of the EditionTkaLabelComponent.
+     * Readonly injection variable: UTILS.
      *
-     * It declares a public instance of the UtilityService.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected UtilityService.
      */
-    constructor(public utils: UtilityService) {}
+    readonly UTILS = inject(UtilityService);
 }

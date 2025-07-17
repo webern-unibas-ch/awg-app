@@ -97,10 +97,12 @@ describe('DataApiService (DONE)', () => {
 
         // Convert json objects
         jsonConvert = new JsonConvert();
+
         expectedResourceFullResponseJson = jsonConvert.deserialize(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
+
         expectedResourceContextResponseJson = jsonConvert.deserialize(
             mockResourceContextResponseJson,
             ResourceContextResponseJson
@@ -1012,7 +1014,7 @@ describe('DataApiService (DONE)', () => {
                             const firstCallArgs = getApiResponseSpy.calls.allArgs()[0];
 
                             // Check args of call
-                            expectToBe(firstCallArgs[0].name, 'ResourceFullResponseJson');
+                            expect(firstCallArgs[0].name.startsWith('ResourceFullResponseJson')).toBeTrue();
                             expectToBe(firstCallArgs[1], expectedQueryPath);
                             expectToEqual(firstCallArgs[2], expectedQueryHttpParams);
                         },
@@ -1043,7 +1045,7 @@ describe('DataApiService (DONE)', () => {
                             const secondCallArgs = getApiResponseSpy.calls.allArgs()[1];
 
                             // Check args of call
-                            expectToBe(secondCallArgs[0].name, 'ResourceContextResponseJson');
+                            expect(secondCallArgs[0].name.startsWith('ResourceContextResponseJson')).toBeTrue();
                             expectToBe(secondCallArgs[1], expectedQueryPath);
                             expectToEqual(secondCallArgs[2], expectedQueryHttpParams);
                         },

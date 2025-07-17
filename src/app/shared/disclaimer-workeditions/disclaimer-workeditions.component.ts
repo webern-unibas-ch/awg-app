@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -32,15 +32,22 @@ export class DisclaimerWorkeditionsComponent {
     faCalendarXmark = faCalendarXmark;
 
     /**
+     * Public injection variable: config.
+     *
+     * It injects the NgbPopoverConfig service to configure the popover.
+     */
+    config: NgbPopoverConfig = inject(NgbPopoverConfig);
+
+    /**
      * Constructor of the DisclaimerWorkeditionsComponent.
      *
-     * It declares an instance of the NgbPopoverConfig.
-     *
-     * @param {NgbPopoverConfig} config Instance of the NgbPopoverConfig.
+     * It initializes the popover configuration for the disclaimer.
+     * The popover is placed at the top of the page, inside the body,
+     * and is triggered by mouse enter and leave events.
      */
-    constructor(public config: NgbPopoverConfig) {
-        config.placement = 'top';
-        config.container = 'body';
-        config.triggers = 'mouseenter:mouseleave';
+    constructor() {
+        this.config.placement = 'top';
+        this.config.container = 'body';
+        this.config.triggers = 'mouseenter:mouseleave';
     }
 }
