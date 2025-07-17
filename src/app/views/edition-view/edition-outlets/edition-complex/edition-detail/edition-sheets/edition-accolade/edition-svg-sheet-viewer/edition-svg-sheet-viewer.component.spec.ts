@@ -431,7 +431,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                     const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedCompressIcon);
+                    expectToEqual(faIconIns(), expectedCompressIcon);
                 });
             });
 

@@ -1,9 +1,9 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
+import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { click } from '@testing/click-helper';
@@ -63,6 +63,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedFolioLegends: IFolioLegend[];
     let expectedFragment: string;
+    let expectedSquareIcon: IconDefinition;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
@@ -94,6 +95,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
+        expectedSquareIcon = faSquare;
 
         expectedFolioLegends = [
             {
@@ -132,8 +134,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should have faSquare', () => {
-            expectToEqual(component.faSquare, faSquare);
+        it('... should have faSquare icon', () => {
+            expectToEqual(component.faSquare, expectedSquareIcon);
         });
 
         it('... should have folioLegends', () => {
@@ -240,7 +242,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
             it('... should contain one link with convolute label in the convolute label div', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-
                 const divDes = getAndExpectDebugElementByCss(
                     itemDes[0],
                     'div.accordion-body > div.awg-convolute-label',
@@ -256,27 +257,38 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
             it('... should contain three legend labels in the folio legend div', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-
                 const legendDes = getAndExpectDebugElementByCss(
                     itemDes[0],
                     'div.accordion-body > div.awg-convolute-legend',
                     1,
                     1
                 );
-
                 const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
-                const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
-                const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
-                const spanEl2: HTMLSpanElement = spanDes[2].nativeElement;
 
-                expectToBe(spanEl0.className, expectedFolioLegends[0].color);
-                expectToBe(spanEl0.textContent.trim(), expectedFolioLegends[0].label);
+                spanDes.forEach((spanDe, index) => {
+                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                expectToBe(spanEl1.className, expectedFolioLegends[1].color);
-                expectToBe(spanEl1.textContent.trim(), expectedFolioLegends[1].label);
+                    expectToBe(spanEl.className, expectedFolioLegends[index].color);
+                    expectToBe(spanEl.textContent.trim(), expectedFolioLegends[index].label);
+                });
+            });
 
-                expectToBe(spanEl2.className, expectedFolioLegends[2].color);
-                expectToBe(spanEl2.textContent.trim(), expectedFolioLegends[2].label);
+            it('... should display square icon with the legend labels', () => {
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                const legendDes = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    'div.accordion-body > div.awg-convolute-legend',
+                    1,
+                    1
+                );
+                const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
+
+                spanDes.forEach(spanDe => {
+                    const faIconDes = getAndExpectDebugElementByCss(spanDe, 'fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
+
+                    expectToBe(faIconIns(), expectedSquareIcon);
+                });
             });
         });
 

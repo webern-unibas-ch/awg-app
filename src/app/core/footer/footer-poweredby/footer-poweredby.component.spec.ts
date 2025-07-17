@@ -136,7 +136,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 const faIconDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedScrewdriverWrenchIcon);
+                expectToEqual(faIconIns(), expectedScrewdriverWrenchIcon);
             });
 
             it('... should render link to devPreview', () => {

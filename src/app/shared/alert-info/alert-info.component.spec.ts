@@ -106,7 +106,7 @@ describe('AlertInfoComponent (DONE)', () => {
                 const faIconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedFaCircleInfo);
+                expectToEqual(faIconIns(), expectedFaCircleInfo);
             });
 
             it('... should display an error message in alert paragraph', () => {

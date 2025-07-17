@@ -189,7 +189,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 const faIconDes = getAndExpectDebugElementByCss(inputGroupTextDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedSearchIcon);
+                expectToEqual(faIconIns(), expectedSearchIcon);
             });
 
             it('... should have a title for input.form-control', () => {

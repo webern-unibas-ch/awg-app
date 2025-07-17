@@ -94,7 +94,7 @@ describe('ScrollToTopComponent (DONE)', () => {
                 const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedArrowIcon);
+                expectToEqual(faIconIns(), expectedArrowIcon);
             });
 
             it('... should trigger `scrollToTop` method on button click', fakeAsync(() => {
