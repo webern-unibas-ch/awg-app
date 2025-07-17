@@ -4068,15 +4068,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/angular-fontawesome@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@fortawesome/angular-fontawesome@npm:1.0.0"
+"@fortawesome/angular-fontawesome@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@fortawesome/angular-fontawesome@npm:2.0.1"
   dependencies:
-    "@fortawesome/fontawesome-svg-core": "npm:^6.7.1"
+    "@fortawesome/fontawesome-svg-core": "npm:^6.7.2"
     tslib: "npm:^2.8.1"
   peerDependencies:
-    "@angular/core": ^19.0.0
-  checksum: 10c0/3231ce35848373654719266988b1591a8ae64551fc931f1e2c217b8e644b9af4c5224fead5ebe09d5836b31516f1f2ad5f8a65486d17e6a190d6efd9801da724
+    "@angular/core": ^20.0.0
+  checksum: 10c0/af1e848373e943069e88e639896e27e8b2b5d6bd9b79ce4f5e3a46ae810bcc0705ad856d5de27babd2b8bafe9194a1e21e1bbdbd55ab3462f3240badc93671ca
   languageName: node
   linkType: hard
 
@@ -4087,7 +4087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^6.7.1":
+"@fortawesome/fontawesome-svg-core@npm:^6.7.2":
   version: 6.7.2
   resolution: "@fortawesome/fontawesome-svg-core@npm:6.7.2"
   dependencies:
@@ -7267,7 +7267,7 @@ __metadata:
     "@compodoc/compodoc": "npm:^1.1.26"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.31.0"
-    "@fortawesome/angular-fontawesome": "npm:^1.0.0"
+    "@fortawesome/angular-fontawesome": "npm:^2.0.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
     "@kolkov/ngx-gallery": "npm:2.0.1"
     "@ng-bootstrap/ng-bootstrap": "npm:^19.0.1"
