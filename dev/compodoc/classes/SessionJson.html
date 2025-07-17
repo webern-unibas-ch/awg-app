@@ -286,7 +286,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+
+import { BasicResponseJson } from &#x27;@awg-shared/api-objects&#x27;;
 
 /**
  * Represents the knora session
@@ -294,7 +295,6 @@ import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-co
  * HTTP GET to http://host/v1/session
  *
  */
-
 @JsonObject(&#x27;SessionJson&#x27;)
 export class SessionJson extends BasicResponseJson {
     /**

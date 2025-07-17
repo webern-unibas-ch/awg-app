@@ -314,7 +314,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule, Optional, SkipSelf } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule, inject } from &#x27;@angular/core&#x27;;
 import { Title } from &#x27;@angular/platform-browser&#x27;;
 
 import { SharedModule } from &#x27;@awg-shared/shared.module&#x27;;
@@ -332,11 +332,9 @@ import { httpInterceptorProviders } from &#x27;./interceptors&#x27;;
     providers: [httpInterceptorProviders, Title],
 })
 export class CoreModule {
-    constructor(
-        @Optional()
-        @SkipSelf()
-        parentModule: CoreModule
-    ) {
+    constructor() {
+        const parentModule &#x3D; inject(CoreModule, { optional: true, skipSelf: true });
+
         if (parentModule) {
             throw new Error(&#x27;CoreModule is already loaded. Import it in the AppModule only&#x27;);
         }

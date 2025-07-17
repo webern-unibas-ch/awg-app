@@ -196,7 +196,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#config" >config</a>
                             </li>
                             <li>
@@ -224,51 +223,22 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(config: NgbPopoverConfig)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/disclaimer-workeditions/disclaimer-workeditions.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/disclaimer-workeditions/disclaimer-workeditions.component.ts:39</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the DisclaimerWorkeditionsComponent.</p>
-<p>It declares an instance of the NgbPopoverConfig.</p>
+<p>It initializes the popover configuration for the disclaimer.
+The popover is placed at the top of the page, inside the body,
+and is triggered by mouse enter and leave events.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>config</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgbPopoverConfig</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the NgbPopoverConfig.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -291,7 +261,6 @@
                 <td class="col-md-4">
                     <a name="config"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
                         <span ><b>config</b></span>
                         <a href="#config"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -303,15 +272,22 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NgbPopoverConfig)</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/disclaimer-workeditions/disclaimer-workeditions.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/disclaimer-workeditions/disclaimer-workeditions.component.ts:39</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">Instance of the NgbPopoverConfig.</div>
+                    <div class="io-description"><p>Public injection variable: config.</p>
+<p>It injects the NgbPopoverConfig service to configure the popover.</p>
+</div>
                 </td>
             </tr>
 
@@ -393,7 +369,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject } from &#x27;@angular/core&#x27;;
 
 import { faCalendarXmark } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 import { NgbPopoverConfig } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
@@ -427,16 +403,23 @@ export class DisclaimerWorkeditionsComponent {
     faCalendarXmark &#x3D; faCalendarXmark;
 
     /**
+     * Public injection variable: config.
+     *
+     * It injects the NgbPopoverConfig service to configure the popover.
+     */
+    config: NgbPopoverConfig &#x3D; inject(NgbPopoverConfig);
+
+    /**
      * Constructor of the DisclaimerWorkeditionsComponent.
      *
-     * It declares an instance of the NgbPopoverConfig.
-     *
-     * @param {NgbPopoverConfig} config Instance of the NgbPopoverConfig.
+     * It initializes the popover configuration for the disclaimer.
+     * The popover is placed at the top of the page, inside the body,
+     * and is triggered by mouse enter and leave events.
      */
-    constructor(public config: NgbPopoverConfig) {
-        config.placement &#x3D; &#x27;top&#x27;;
-        config.container &#x3D; &#x27;body&#x27;;
-        config.triggers &#x3D; &#x27;mouseenter:mouseleave&#x27;;
+    constructor() {
+        this.config.placement &#x3D; &#x27;top&#x27;;
+        this.config.container &#x3D; &#x27;body&#x27;;
+        this.config.triggers &#x3D; &#x27;mouseenter:mouseleave&#x27;;
     }
 }
 </code></pre>
