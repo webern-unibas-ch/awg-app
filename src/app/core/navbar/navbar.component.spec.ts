@@ -407,7 +407,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['home']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['home']);
                 });
             });
 
@@ -434,7 +434,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['edition']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['edition']);
                 });
 
                 it('... should have a dropdown menu', () => {
@@ -594,7 +594,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['structure']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['structure']);
                 });
             });
 
@@ -612,7 +612,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['contact']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['contact']);
                 });
             });
         });

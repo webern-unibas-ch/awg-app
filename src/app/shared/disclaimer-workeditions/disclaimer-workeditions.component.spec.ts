@@ -88,7 +88,7 @@ describe('DisclaimerWorkeditionsComponent', () => {
                 const faIconDes = getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedFaCalendarXmark);
+                expectToEqual(faIconIns(), expectedFaCalendarXmark);
             });
         });
     });
