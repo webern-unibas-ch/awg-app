@@ -5,7 +5,7 @@
             "label": "M 44 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 44 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A'})\"><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift.  Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A'})\"><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M 44 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
@@ -75,7 +75,7 @@
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "sic. <strong>A</strong>: kein Schlussstrich vorhanden."
+                                "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm44', fragmentId: 'source_A'})\"><strong>A</strong></a>: kein Schlussstrich vorhanden."
                             }
                         ]
                     }
