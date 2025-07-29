@@ -196,8 +196,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B</strong> (mit schwarzer Tinte)",
-                        "label": "source_B_corr_1",
+                        "id": "source_B_corr",
+                        "label": "Korrekturen in <strong>B</strong> (mit schwarzer Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -221,19 +221,19 @@
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "7/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> gestrichen."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "8/8",
-                                            "comment": "cis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
+                                            "comment": "cis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
                                             "measure": "8",
@@ -257,7 +257,7 @@
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "4/4",
-                                            "comment": "d: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>; <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu D und Ende der Geltungsstrichelung auf Rasur."
+                                            "comment": "d: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu D und Ende der Geltungsstrichelung auf Rasur."
                                         },
                                         {
                                             "measure": "8",
@@ -277,7 +277,7 @@
                                             "position": "(3/8)–4/8",
                                             "comment": "Rasur im System auf 3/8; Achtelfähnchen auf 4/8 auf Rasur, möglicherweise Balken zu 3/8 rasiert."
                                         },
-                                        { 
+                                        {
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "(4/8)",
@@ -305,14 +305,14 @@
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "5. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Klav. o",
                                             "position": "6. Note",
-                                            "comment": "[fff] auf Rasur."
-                                        },                                      
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[fff]')}}</span> auf Rasur."
+                                        },
                                         {
                                             "measure": "10",
                                             "system": "Klav. u.",
@@ -330,7 +330,7 @@
                                             "system": "Klav. o",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur."
-                                        }                                             
+                                        }
                                     ]
                                 }
                             ]
