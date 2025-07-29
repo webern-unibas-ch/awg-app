@@ -5,7 +5,7 @@
             "label": "M 43 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 43 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> weist Korrekturen mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand nach den Korrekturen konstituiert eine kohärente Textfassung.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> weist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B_corr'})\">Korrekturen</a> mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand nach den Korrekturen konstituiert eine kohärente Textfassung.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M 43 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> post correcturam."
             ],
             "commentary": {
