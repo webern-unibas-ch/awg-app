@@ -7277,7 +7277,7 @@ __metadata:
     angular-eslint: "npm:^20.1.1"
     bootstrap: "npm:^5.3.7"
     codemirror: "npm:^6.0.2"
-    commit-and-tag-version: "npm:^12.5.1"
+    commit-and-tag-version: "npm:^12.5.2"
     conventional-recommended-bump: "npm:^11.2.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
@@ -8152,9 +8152,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commit-and-tag-version@npm:^12.5.1":
-  version: 12.5.1
-  resolution: "commit-and-tag-version@npm:12.5.1"
+"commit-and-tag-version@npm:^12.5.2":
+  version: 12.5.2
+  resolution: "commit-and-tag-version@npm:12.5.2"
   dependencies:
     chalk: "npm:^2.4.2"
     conventional-changelog: "npm:4.0.0"
@@ -8168,13 +8168,13 @@ __metadata:
     find-up: "npm:^5.0.0"
     git-semver-tags: "npm:^5.0.1"
     jsdom: "npm:^25.0.1"
-    semver: "npm:^7.6.3"
+    semver: "npm:^7.7.2"
     w3c-xmlserializer: "npm:^5.0.0"
     yaml: "npm:^2.6.0"
     yargs: "npm:^17.7.2"
   bin:
     commit-and-tag-version: bin/cli.js
-  checksum: 10c0/2b15b967f5cce53f64a4c1bfe79190fbd67111330db898b1b62cba0639764a9ab4482f8eb12898bdb1647b4ca8d7fb9c9d68df60a703848293d347512f0127c3
+  checksum: 10c0/df1a4e577bc9029df0479c6c68ceaa2a5e806fccac2e0869f8acba7aabc1b6cc46a5e15f0e8f65e3aa168880df37d44b6edd6160d319063af5627ed34e1b494a
   languageName: node
   linkType: hard
 
