@@ -33,20 +33,22 @@
             "linkTo": "source_D"
         },
         {
-            "siglum": "[E]",
+            "siglum": "E",
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "Verschollen.",
-            "hasDescription": true,
+            "missing": true,
+            "hasDescription": false,
             "linkTo": ""
         },
         {
-            "siglum": "[F]",
+            "siglum": "F",
             "siglumAddendum": "",
             "type": "Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "Verschollen.",
-            "hasDescription": true,
-            "linkTo": "source_F"
+            "missing": true,
+            "hasDescription": false,
+            "linkTo": ""
         },
         {
             "siglum": "F",
@@ -54,7 +56,7 @@
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "source_F_R1"
+            "linkTo": "source_FR1"
         },
         {
             "siglum": "F",
@@ -62,7 +64,7 @@
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "source_F_R2"
+            "linkTo": "source_FR2"
         }
     ]
 }
