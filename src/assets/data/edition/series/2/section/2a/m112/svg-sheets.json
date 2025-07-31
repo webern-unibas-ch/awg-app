@@ -65,7 +65,7 @@
                         "image": "",
                         "partial": "e",
                         "convolute": ""
-                    },                  
+                    },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-6von10-final.svg",
                         "image": "",
@@ -171,7 +171,7 @@
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_S19-12von18-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-12von18-final.svg",
                         "image": "",
                         "partial": "l",
                         "convolute": "A"
@@ -195,7 +195,7 @@
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_S19-16von18-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-16von18-final.svg",
                         "image": "",
                         "partial": "p",
                         "convolute": "A"
@@ -255,43 +255,43 @@
                 "label": "M 112 Sk2",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-1vo7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-1von7-final.svg",
                         "image": "",
                         "partial": "a",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-2von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-2von7-final.svg",
                         "image": "",
                         "partial": "b",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-3von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-3von7-final.svg",
                         "image": "",
                         "partial": "c",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-4von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-4von7-final.svg",
                         "image": "",
                         "partial": "d",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-5von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-5von7-final.svg",
                         "image": "",
                         "partial": "e",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-6von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-6von7-final.svg",
                         "image": "",
                         "partial": "f",
                         "convolute": "A"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk1-7von7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk2-7von7-final.svg",
                         "image": "",
                         "partial": "g",
                         "convolute": "A"
@@ -315,7 +315,7 @@
                 "label": "M 112 Sk4",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk4-1vo7-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m112/M112_Sk4-1von7-final.svg",
                         "image": "",
                         "partial": "a",
                         "convolute": "B"
