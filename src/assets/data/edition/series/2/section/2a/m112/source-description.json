@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 1–3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte."],
                 "writingMaterialStrings": [
                     "Notenpapier, 22 Systeme, Format: hoch 349 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 7 | 22 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
@@ -385,8 +385,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 1 (<strong>B<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2 (<strong>B<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Kleinere Risse am oberen und unteren Rand. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -617,8 +617,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_B<sup>a</sup>_corr_1",
-                        "label": "Korrekturen 1 in B<sup>a</sup> (mit Tinte)",
+                        "id": "source_Ba_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -668,8 +668,8 @@
                         }
                     },
                     {
-                        "id": "source_B<sup>a</sup>_corr_2",
-                        "label": "Korrekturen 2 in B<sup>a</sup> (mit Bleistift)",
+                        "id": "source_Ba_corr_2",
+                        "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -859,8 +859,8 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2–3.<br />Enthält auch nicht identifizierte Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand von Bl. 1–2: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -1082,8 +1082,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2 (<strong>D<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3 (<strong>D<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Bl. 2<sup>r</sup> und Bl. 2<sup>v</sup> unbeschrieben. Bogen in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
@@ -1214,8 +1214,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_D<sup>a</sup>_corr_1",
-                        "label": "Korrekturen 1 in D<sup>a</sup> (mit Tinte)",
+                        "id": "source_Da_corr_1",
+                        "label": "Korrekturen 1 in <strong>D<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1319,8 +1319,8 @@
                         }
                     },
                     {
-                        "id": "source_D<sup>a</sup>_corr_2",
-                        "label": "Korrekturen 2 in D<sup>a</sup> (mit Bleistift)",
+                        "id": "source_Da_corr_2",
+                        "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1582,8 +1582,8 @@
             "siglumAddendum": "R1",
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["7 Blätter (Bl. 1–7). Versoseiten unbeschrieben."],
+            "physDesc": {
+                "conditions": ["7 Blätter (Bl. 1–7). Versoseiten unbeschrieben."],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format: hoch 307 × 217 mm, Firmenzeichen: »Sünova« Nr. 4 – 12 zeilig unten links auf Bl. 1<sup>r</sup>, 3<sup>r</sup>, 5<sup>r</sup> und 7<sup>r</sup>"
                 ],
@@ -1704,8 +1704,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_F<sup>R1</sup>_corr_1",
-                        "label": "Korrekturen 1 in F<sup>R1</sup> (mit Tinte)",
+                        "id": "source_FR1_corr_1",
+                        "label": "Korrekturen 1 in <strong>F<sup>R1</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1919,8 +1919,8 @@
             "siglumAddendum": "R2",
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "7 Blätter (Bl. 1–7). Versoseiten unbeschrieben. Sämtliche Blätter stark gewellt und zerknittert, mit kleineren Rissen und geknickter Ecke oben links."
                 ],
                 "writingMaterialStrings": [
@@ -2043,8 +2043,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_F<sup>R2</sup>_corr_1",
-                        "label": "Korrekturen 1 in F<sup>R2</sup> (mit Tinte)",
+                        "id": "source_FR2_corr_1",
+                        "label": "Korrekturen 1 in <strong>F<sup>R2</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2250,8 +2250,8 @@
                         }
                     },
                     {
-                        "id": "source_F<sup>R2</sup>_corr_2",
-                        "label": "Korrekturen 2 in F<sup>R2</sup> (mit Kugelschreiber)",
+                        "id": "source_FR2_corr_2",
+                        "label": "Korrekturen 2 in <strong>F<sup>R2</sup></strong> (mit Kugelschreiber)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2385,8 +2385,8 @@
                         }
                     },
                     {
-                        "id": "source_F<sup>R2</sup>_corr_3",
-                        "label": "Korrekturen 3 in F<sup>R2</sup> (mit Bleistift)",
+                        "id": "source_FR2_corr_3",
+                        "label": "Korrekturen 3 in <strong>F<sup>R2</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
