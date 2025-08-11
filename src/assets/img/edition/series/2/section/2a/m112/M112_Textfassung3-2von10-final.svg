@@ -908,7 +908,7 @@
   <path id="path253" stroke-miterlimit="10" d="M144.47 282.264v-10.14" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path254" stroke-miterlimit="10" d="M142.912 272.124h1.558" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path255" stroke-miterlimit="10" d="M142.912 282.264h1.558" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g696" class="tkk" transform="translate(38.931 -23.673)">
+  <g id="g-tkk-6" class="tkk" transform="translate(38.931 -23.673)">
     <g id="g246" style="fill:#000;fill-opacity:1">
       <g id="use246" transform="translate(117.18 357.419)">
         <path id="path915" d="M3.375 6.875h-.562V2.953L0 4.093V-6.843h.563v3.89l2.812-1.14Zm-.562-5.812v-3.047l-2.25.922v3.046zm0 0"/>
@@ -2073,7 +2073,7 @@
   </g>
   <path id="path574" stroke-miterlimit="10" d="M278.572 716.307v-24.48" style="fill:none;stroke:#000;stroke-width:.66000003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path575" d="m206.63 679.288 72.243 11.277v2.34l-72.243-11.277" style="fill:#000;fill-opacity:1;fill-rule:evenodd"/>
-  <g id="g697" class="tkk" transform="translate(38.931 -23.673)">
+  <g id="g-tkk-7" class="tkk" transform="translate(38.931 -23.673)">
     <g id="g544" style="fill:#000;fill-opacity:1">
       <g id="use544" transform="translate(152.52 674.459)">
         <path id="path733" d="M3.375 6.875h-.562V2.953L0 4.093V-6.843h.563v3.89l2.812-1.14Zm-.562-5.812v-3.047l-2.25.922v3.046zm0 0"/>

@@ -4,9 +4,9 @@
             "id": "M_112_TF1",
             "label": "M 112 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <strong>B<sup>a</sup></strong> relevante Quelle. <strong>B<sup>b</sup></strong> enthält Skizzen, <strong>F<sup>R1</sup></strong> bezieht sich auf Textfassung 3.",
-                "<strong>B<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.", 
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <strong>B<sup>a</sup></strong> nach Korrekturen 1. Referenzquelle bei unklaren Stellen ist <strong>F<sup>R1</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthält Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquelle bei unklaren Stellen ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -15,28 +15,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1141",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "4",
                                 "system": "Klav.",
                                 "position": "4/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[fff]')}}</span> versetzt von zwischen 3/4 und 4/4; Ende der Crescendogabel versetzt von zwischen 7/8 und 8/8."
                             },
                             {
-                                "svgGroupId": "g1142",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "11",
                                 "system": "Klav. o.",
                                 "position": "4/4",
                                 "comment": "Unterstimmenschicht: Notenhals ergänzt."
                             },
                             {
-                                "svgGroupId": "g1143",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "13",
                                 "system": "Klav. o.",
                                 "position": "9. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> ergänzt analog Textfassung 3 T. 10."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> ergänzt analog Textfassung 3 T. 10."
                             },
                             {
-                                "svgGroupId": "g1144",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "4/4",
@@ -45,16 +45,15 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_112_TF2",
             "label": "M 112 Textfassung 2",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <strong>D<sup>a</sup></strong> relevante Quelle. <strong>A</strong>, <strong>C</strong> und <strong>D<sup>b</sup></strongDb enthalten Skizzen, <strong>F<sup>R1</sup></strong bezieht sich auf Textfassung 3.",
-                "<strong>D<sup>a</sup></strong weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.", 
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <strong>D<sup>a</sup></strong nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>A</strong>, <strong>B</strong> und <strong>F<sup>R1</sup></strong."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_2'})\">Korrekturen 2</a> mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -63,116 +62,115 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1066",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog Textfassung 3 in <strong>F<sup>R1</sup></strong>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog Textfassung 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
                             },
                             {
-                                "svgGroupId": "g1068",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Augmentationspunkte zu b<sup>1</sup> und g<sup>2</sup> weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g1069",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt mit Blick auf T. 69 und die Sequenzierung des Themenmaterials ab T. 68–71. Mit Blick auf den direkten harmonischen Kontext ist auch des<sup>2</sup> denkbar."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt mit Blick auf T. 69 und die Sequenzierung des Themenmaterials ab T. 68–71. Mit Blick auf den direkten harmonischen Kontext ist auch des<sup>2</sup> denkbar."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "61",
                                 "system": "Klav. u.",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g1070",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "62",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g1071",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{66A} in <strong>B<sup>b</sup></strong> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}} in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
-                                "svgGroupId": "g1072",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "66",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt analog T. 57."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt analog T. 57."
                             },
                             {
-                                "svgGroupId": "g1073",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "68",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e versetzt von zwischen den Notenköpfen von es und e."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e versetzt von zwischen den Notenköpfen von es und e."
                             },
                             {
-                                "svgGroupId": "g945",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "74",
                                 "system": "Klav. u.",
                                 "position": "",
-                                "comment": "Stimmführung: sic (vgl. Korrekturen 1)."
+                                "comment": "Stimmführung: sic (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_1'})\">Korrekturen 1</a>)."
                             },
                             {
-                                "svgGroupId": "g947",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<strong>Sk5</strong> T. 76 in <strong>B<sup>b</sup></strong> hat <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
+                                "comment": "<strong>Sk5</strong> T. 76 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> hat <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
                             },
                             {
-                                "svgGroupId": "g946",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht: Deutung unsicher, auch cis<sup>1</sup> möglich. c<sup>1</sup> gesetzt mit Blick auf T. 74 (Halbe Note), T. 79–80 (Ligatur mit enharmonischer Verwechslung) sowie mit Blick darauf, dass in der Tintenniederschrift Bögen weitgehend als Ligatur zu lesen sind (Ausnahme: T. 54–58)."
                             },
                             {
-                                "svgGroupId": "g948",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "79",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <strong>Sk5</strong> T. {79B} und 79C sowie Textfassung 3, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
+                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <strong>Sk5</strong> T. {{'{'}}79B{{'}'}} und 79C sowie Textfassung 3, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
                             },
                             {
-                                "svgGroupId": "g949",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <strong>B<sup>b</sup></strong>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
-                                "svgGroupId": "g950",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "82",
                                 "system": "Klav.",
                                 "position": "1/4",
-                                "comment": "<strong>D<sup>a</sup></strong>: Drei Notenhälse vorhanden mit unklarer Zuordnung: zwei nach oben (horizontal versetzt), einer nach unten. Alle drei Notenhälse zu einem zusammengefasst."
+                                "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>: Drei Notenhälse vorhanden mit unklarer Zuordnung: zwei nach oben (horizontal versetzt), einer nach unten. Alle drei Notenhälse zu einem zusammengefasst."
                             }
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_112_TF3",
             "label": "M 112 Textfassung 3 (Abschrift Friedrich Wildgans)",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <strong>F<sup>R1</sup></strong> und <strong>F<sup>R2</sup></strong> relevante Quellen. <strong>A</strong>, <strong>B<sup>b</sup></strong>, <strong>C</strong> und <strong>D<sup>b</sup></strong> enthalten Skizzen, <strong>B<sup>a</sup></strong> und <strong>D<sup>a</sup></strong> beziehen sich auf Textfassung 1 bzw. Textafssung 2. <strong>[E]</strong> und <strong>[F]</strong> sind verschollen.", 
-                "<strong>F<sup>R1</sup></strong> und <strong>F<sup>R2</sup></strong> sind im Notentext bildidentisch und basieren auf der verschollenen Abschrift <strong>[F]</strong> von Friedrichh Wildgans. <strong>[F]</strong> geht mutmaßlich zurück auf die ebenfalls verschollene Tintenniederschrift <strong>[E]</strong>. Wie genau <strong>[E]</strong> und <strong>[F]</strong> im Notentext übereinstimmten, ist nicht dokumentiert. <strong>F<sup>R1</sup></strong> weist Korrekturen mit Tinte auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie Nachzeichnungen mit Kugelschreiber aus der Hand von Else Stock-Hug. <strong>F<sup>R2</sup></strong> weist Korrekturen mit Tinte auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie Nachzeichnungen mit Kugelschreiber aus der Hand von Else Stock-Hug und Eintragungen mit Bleistift aus der Hand von Hans Moldenhauer. Der Zustand vor den Korrekturen mit Tinte ist nicht immer zu entziffern. Der Zustand nach den Korrekturen in <strong>F<sup>R1</sup></strong> und <strong>F<sup>R2</sup></strong> konstituiert eine kohärente Textfassung.", 
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <strong>F<sup>R1</sup></strong> und <strong>F<sup>R2</sup></strong> nach den Korrekturen. Referenzquellen bei unklaren Stellen sind <strong>A</strong> und <strong>B<sup>b</sup></strong> sowie <strong>B<sup>a</sup></strong> und <strong>D<sup>a</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> beziehen sich auf Textfassung 1 bzw. Textafssung 2. <strong>[E]</strong> und <strong>[F]</strong> sind verschollen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> sind im Notentext bildidentisch und basieren auf der verschollenen Abschrift <strong>[F]</strong> von Friedrichh Wildgans. <strong>[F]</strong> geht mutmaßlich zurück auf die ebenfalls verschollene Tintenniederschrift <strong>[E]</strong>. Wie genau <strong>[E]</strong> und <strong>[F]</strong> im Notentext übereinstimmten, ist nicht dokumentiert. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> weist Korrekturen mit Tinte auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie Nachzeichnungen mit Kugelschreiber aus der Hand von Else Stock-Hug. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> weist Korrekturen mit Tinte auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie Nachzeichnungen mit Kugelschreiber aus der Hand von Else Stock-Hug und Eintragungen mit Bleistift aus der Hand von Hans Moldenhauer. Der Zustand vor den Korrekturen mit Tinte ist nicht immer zu entziffern. Der Zustand nach den Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> nach den Korrekturen. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -181,304 +179,303 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g910",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1–2/8",
-                                "comment": "sic. Vgl. T. 94 sowie Textfassung 1 T. 2: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
+                                "comment": "sic. Vgl. T. 94 sowie Textfassung 1 T. 2: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g911",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <strong>C</strong>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
+                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
                             },
                             {
-                                "svgGroupId": "g913",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "6–8/8",
                                 "comment": "sic (vgl. Oktavierung in Textfassung 1 T. 6.)"
                             },
                             {
-                                "svgGroupId": "g914",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "5",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Ende des Legatobogens versetzt von 2/4 in Oberstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g915",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3–4/4",
                                 "comment": "sic: Unterstimmenschicht c<sup>1</sup>–h nicht vorhanden (vgl. T. 97 sowie Textfassung 1 T. 5)."
                             },
                             {
-                                "svgGroupId": "g696",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "21",
                                 "system": "Klav. u.",
                                 "position": "6/8, 8/8",
                                 "comment": "sic: d. Mit Blick auf den harmonischen Kontext wäre auch dis denkbar."
                             },
                             {
-                                "svgGroupId": "g697",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "29",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup>/c<sup>3</sup> ergänzt mit Blick auf T. 28 3/4."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup>/c<sup>3</sup> ergänzt mit Blick auf T. 28 3/4."
                             },
                             {
-                                "svgGroupId": "g512",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "38–39",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <strong>Sk1</strong> T. 38 in <strong>A;</strong> dort zudem am Ende der Vierteltriole jeweils <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <strong>Sk1</strong> T. 38 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>; dort zudem am Ende der Vierteltriole jeweils <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
                             },
                             {
-                                "svgGroupId": "g514",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Ligaturbögen zu T. 44 als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "g513",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "43",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht sic: Ligatur zu T. 44 1. Note."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "49",
                                 "system": "Klav.",
                                 "position": "Taktanfang",
                                 "comment": "<em>Ped. </em>versetzt von T. 48 (4/4), <em>kaum hörbar </em>versetzt von zwischen den Taktstrichen."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "53",
                                 "system": "Klav. u.",
                                 "position": "4/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von zwischen T. 53 4/4 und T. 54 1/4."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt mit Blick auf T. 69 und die sequenzierte Wiederholung des Themenmaterials ab T. 68–71. Mit Blick auf den harmonischen Kontext wäre auch des<sup>2</sup> denkbar."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt mit Blick auf T. 69 und die sequenzierte Wiederholung des Themenmaterials ab T. 68–71. Mit Blick auf den harmonischen Kontext wäre auch des<sup>2</sup> denkbar."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "7/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 60 in <strong>A</strong>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 60 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "4/4",
                                 "comment": "Unterstimmenschicht: sic (vgl. Viertelnote g<sup>2</sup>/b<sup>2</sup> in Textfassung 2)."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "61",
                                 "system": "Klav. o.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 61 in <strong>A</strong>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 61 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
-                                "svgGroupId": "g945",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "63",
                                 "system": "Klav.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> und Anfang der Decrescendogabel versetzt von 4. Note in Klav. o."
                             },
                             {
-                                "svgGroupId": "g946",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "63",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog Textfassung 2."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog Textfassung 2."
                             },
                             {
-                                "svgGroupId": "g947",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "63",
                                 "system": "Klav. o.",
                                 "position": "4/4",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>. <strong>D<sup>a</sup></strong>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g948",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{66A} in <strong>B<sup>b</sup> </strong>und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}} in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
-                                "svgGroupId": "g409",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "66",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "d<sup>1 </sup>korrigiert zu cis<sup>1</sup> mit Blick auf Textfassung 2 sowie motivischen und harmonischen Kontext (vgl. auch T. 57)."
                             },
                             {
-                                "svgGroupId": "g950",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "69",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk5</strong> T. 69 in <strong>B<sup>b</sup></strong>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk5</strong> T. 69 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
-                                "svgGroupId": "g952",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "75",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1/4."
                             },
                             {
-                                "svgGroupId": "g1091",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht: Deutung unsicher, auch cis<sup>1</sup> möglich. Hier c<sup>1</sup> gesetzt mit Blick auf T. 74 (Halbe Note), T. 79–80 (Ligatur mit enharmonischer Verwechslung) sowie mit Blick darauf, dass in der Tintenniederschrift Bögen weitgehend als Ligatur zu lesen sind (mit Ausnahme von T. 54–58)."
                             },
                             {
-                                "svgGroupId": "g1092",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <strong>B<sup>b</sup></strong>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
-                                "svgGroupId": "g1093",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Deutung der obersten Note unsicher: In <strong>F<sup>R1</sup></strong> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. Korrekturen 1). In <strong>Sk6 </strong>in <strong>D<sup>b</sup></strong> dagegen steht e<sup>2</sup> (T. 89B) bzw. e<sup>3</sup> (T. 90D)."
+                                "comment": "Deutung der obersten Note unsicher: In <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. Korrekturen 1). In <strong>Sk6</strong> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> dagegen steht e<sup>2</sup> (T. 89B) bzw. e<sup>3</sup> (T. 90D)."
                             },
                             {
-                                "svgGroupId": "g1094",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <strong>Sk6</strong> T. 90B und 90D in <strong>C</strong>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <strong>Sk6</strong> T. 90B und 90D in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "g884",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "92",
                                 "system": "Klav. u.",
                                 "position": "2/4",
                                 "comment": "Mit Blick auf den chromatischen Kontext ist auch Fis/fis denkbar."
                             },
                             {
-                                "svgGroupId": "g885",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "95",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <strong>C</strong>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
+                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
                             },
                             {
-                                "svgGroupId": "g886",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "98",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu g weggelassen mit Blick auf harmonischen Kontext und T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu g weggelassen mit Blick auf harmonischen Kontext und T. 6."
                             },
                             {
-                                "svgGroupId": "g887",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "99",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen 3. und 4. Note."
                             },
                             {
-                                "svgGroupId": "g872",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "106",
                                 "system": "Klav. u.",
                                 "position": "7/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <strong>Sk10</strong> T. 109B in <strong>C</strong>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <strong>Sk10</strong> T. 109B in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "g874",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "112–113",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <strong>Sk10</strong> T. 116B in <strong>C</strong>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <strong>Sk10</strong> T. 116B in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
-                                "svgGroupId": "g873",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "113",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
-                                "comment": "Oberstimmenschicht: as versetzt aus dem oberen System mit Blick auf Ligatur zu T. 114. <strong>F<sup>R1</sup></strong>: Akkoladenwechsel nach T. 113."
+                                "comment": "Oberstimmenschicht: as versetzt aus dem oberen System mit Blick auf Ligatur zu T. 114. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>: Akkoladenwechsel nach T. 113."
                             },
                             {
-                                "svgGroupId": "g912-3",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "119",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf<strong> Sk10</strong> T. 123B."
+                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf <strong>Sk10</strong> T. 123B."
                             },
                             {
-                                "svgGroupId": "g912",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "122",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Ende der Crescendogabel versetzt von zwischen zweitletzter und letzter Note."
                             },
                             {
-                                "svgGroupId": "g780",
+                                "svgGroupId": "g-tkk-37",
                                 "measure": "135",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Beginn der Decrescendogabel versetzt von zwischen 1/4 und 2/4."
                             },
                             {
-                                "svgGroupId": "g781",
+                                "svgGroupId": "g-tkk-38",
                                 "measure": "136–141",
                                 "system": "Klav. u.",
                                 "position": "1. Note <br /> letzte Note",
                                 "comment": "Oktavierung: sic."
                             },
                             {
-                                "svgGroupId": "g782",
+                                "svgGroupId": "g-tkk-39",
                                 "measure": "137",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "sic: Ligatur von C<sub>1</sub> zu T. 138."
                             },
                             {
-                                "svgGroupId": "g783",
+                                "svgGroupId": "g-tkk-40",
                                 "measure": "138",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "sic: Ligatur von C<sub>1</sub> zu T. 139."
                             },
                             {
-                                "svgGroupId": "g784",
+                                "svgGroupId": "g-tkk-41",
                                 "measure": "146",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis ergänzt analog T. 145 und mit Blick auf T. 142."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis ergänzt analog T. 145 und mit Blick auf T. 142."
                             },
                             {
-                                "svgGroupId": "g785",
+                                "svgGroupId": "g-tkk-42",
                                 "measure": "148",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Schlussstrich ergänzt. <strong>F<sup>R1</sup></strong>: Kein Taktstrich vorhanden."
+                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>: Kein Taktstrich vorhanden."
                             }
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_112_Sk1",
@@ -586,7 +583,7 @@
                             {
                                 "svgGroupId": "g9",
                                 "measure": "7",
-                                "system": "4", 
+                                "system": "4",
                                 "position": "4/4",
                                 "comment": "{{ref.getGlyph('[#]')}} überschreibt {{ref.getGlyph('[a]')}}."
                             },
@@ -879,7 +876,7 @@
                             },
                             {
                                 "svgGroupId": "g11",
-                                "measure": "31", 
+                                "measure": "31",
                                 "system": "3",
                                 "position": "6/8",
                                 "comment": "Oberstimmenschicht: {{ref.getGlyph('[[a]]')}}c überschreibt {{ref.getGlyph('[b]')}}es."
@@ -1198,29 +1195,27 @@
             ],
             "commentary": {
                 "preamble": "",
-                "comments": [
-            ] 
-        }
+                "comments": []
+            }
         },
         {
             "id": "M_112_Sk1_2",
             "label": "M 112 Sk1.2",
-            "evaluations": [
-                "<strong>Sk1.2</strong> ersetzt T. 8 aus <strong>Sk1</strong>."
-            ],
+            "evaluations": ["<strong>Sk1.2</strong> ersetzt T. 8 aus <strong>Sk1</strong>."],
             "commentary": {
                 "preamble": "",
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [  
+                        "blockComments": [
                             {
                                 "svgGroupId": "g1",
                                 "measure": "8",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: f<sup>1</sup> überschreibt e<sup>1</sup>."
-                            },                {
+                            },
+                            {
                                 "svgGroupId": "g2",
                                 "measure": "8",
                                 "system": "11",
@@ -1230,7 +1225,7 @@
                         ]
                     }
                 ]
-            } 
+            }
         },
         {
             "id": "M_112_Sk1_3",
@@ -1240,9 +1235,8 @@
             ],
             "commentary": {
                 "preamble": "",
-                "comments": [
-            ] 
-        }
+                "comments": []
+            }
         },
         {
             "id": "M_112_Sk2",
@@ -1577,7 +1571,7 @@
                                 "system": "5",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: {{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
-                            },                
+                            },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "77",
@@ -1629,8 +1623,8 @@
                             }
                         ]
                     }
-                ]  
-            }   
+                ]
+            }
         },
         {
             "id": "M_112_Sk3",
@@ -1640,9 +1634,8 @@
             ],
             "commentary": {
                 "preamble": "",
-                "comments": [
-              ]   
-            }  
+                "comments": []
+            }
         },
         {
             "id": "M_112_Sk4",
@@ -1938,7 +1931,7 @@
                             }
                         ]
                     }
-                ]     
+                ]
             }
         },
         {
@@ -1952,7 +1945,7 @@
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [ 
+                        "blockComments": [
                             {
                                 "svgGroupId": "g1",
                                 "measure": "66",
@@ -1983,7 +1976,7 @@
                             }
                         ]
                     }
-                ] 
+                ]
             }
         },
         {
@@ -2336,8 +2329,8 @@
                             }
                         ]
                     }
-                ]   
-            }  
+                ]
+            }
         },
         {
             "id": "M_112_Sk6",
@@ -2563,8 +2556,8 @@
                             }
                         ]
                     }
-                ]  
-            }  
+                ]
+            }
         },
         {
             "id": "M_112_Sk7",
@@ -2601,8 +2594,8 @@
                             }
                         ]
                     }
-                ]  
-            }   
+                ]
+            }
         },
         {
             "id": "M_112_Sk8",
@@ -2653,7 +2646,7 @@
                             }
                         ]
                     }
-                ]    
+                ]
             }
         },
         {
@@ -2684,8 +2677,8 @@
                             }
                         ]
                     }
-                ]    
-            } 
+                ]
+            }
         },
         {
             "id": "M_112_Sk10",
@@ -2936,7 +2929,7 @@
                                 "system": "7",
                                 "position": "(4. Note)",
                                 "comment": "Unterstimmenschicht: Viertelnote e<sup>2</sup> radiert."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "119A",
@@ -2950,7 +2943,7 @@
                                 "system": "10",
                                 "position": "1. Pause",
                                 "comment": "Viertelpause überschreibt Viertelnote a<sup>2</sup>."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "124",
@@ -2964,7 +2957,7 @@
                                 "system": "11",
                                 "position": "4. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote c/{{ref.getGlyph('[b]')}}es gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "125",
@@ -2978,7 +2971,7 @@
                                 "system": "11",
                                 "position": "3. Note",
                                 "comment": "{{ref.getGlyph('[b]')}}b überschreibt {{ref.getGlyph('[#]')}}ais."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "118B",
@@ -2992,7 +2985,7 @@
                                 "system": "14",
                                 "position": "4. Note",
                                 "comment": "f überschreibt {{ref.getGlyph('[#]')}}cis."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "120B",
@@ -3006,7 +2999,7 @@
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "Viertelnote C gestrichen? Die Linie befindet sich neben der Note."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "120B",
@@ -3020,7 +3013,7 @@
                                 "system": "13",
                                 "position": "1. Pause",
                                 "comment": "Viertelpause überschreibt Achtelpause."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "127",
@@ -3034,7 +3027,7 @@
                                 "system": "16",
                                 "position": "5–8/8",
                                 "comment": "Achtelnoten es<sup>3</sup>/c<sup>3</sup>/g<sup>2</sup>/es<sup>2</sup> gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "127",
@@ -3048,7 +3041,7 @@
                                 "system": "17",
                                 "position": "7/8",
                                 "comment": "Oberstimmenschicht: c<sup>1</sup> überschreibt g."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "128",
@@ -3062,7 +3055,7 @@
                                 "system": "17",
                                 "position": "5/8",
                                 "comment": "Oberstimmenschicht: Achtelnote überschreibt Halbe Note."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "128",
@@ -3083,7 +3076,7 @@
                                 "system": "16",
                                 "position": "5/8",
                                 "comment": "Achtelnote überschreibt Halbe Note; {{ref.getGlyph('[b]')}}b<sup>2</sup> gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g14",
                                 "measure": "130",
@@ -3104,7 +3097,7 @@
                                 "system": "19–20",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "{133A}",
@@ -3125,7 +3118,7 @@
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "d<sup>1</sup>: Halbe Note überschreibt Viertelnote? Entzifferung unsicher."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "129",
@@ -3139,7 +3132,7 @@
                                 "system": "3",
                                 "position": "7/8",
                                 "comment": "c überschreibt h."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "131",
@@ -3153,7 +3146,7 @@
                                 "system": "2",
                                 "position": "2/4",
                                 "comment": "Viertelnote d<sup>1</sup> gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g12",
                                 "measure": "131",
@@ -3174,7 +3167,7 @@
                                 "system": "5",
                                 "position": "1. Note",
                                 "comment": "d<sup>1</sup>: Viertelnote überschreibt Halbe Note; Halbe Note h gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "134",
@@ -3188,7 +3181,7 @@
                                 "system": "5",
                                 "position": "1. Note",
                                 "comment": "Notenhals gestrichen."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "136",
@@ -3202,7 +3195,7 @@
                                 "system": "10",
                                 "position": "1/2",
                                 "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}des überschreibt {{ref.getGlyph('[#]')}}cis."
-                            },        
+                            },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "144",
@@ -3212,8 +3205,8 @@
                             }
                         ]
                     }
-                ]    
-            }    
+                ]
+            }
         },
         {
             "id": "M_112_Sk10_1",
@@ -3278,8 +3271,8 @@
                             }
                         ]
                     }
-                ]    
-            } 
+                ]
+            }
         }
     ]
 }
