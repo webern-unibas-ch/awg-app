@@ -118,7 +118,7 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^20.1.5",
-        "@angular/build": "^20.1.5",
+        "@angular/build": "^20.1.6",
         "@angular/cli": "^20.1.5",
         "@angular/compiler-cli": "^20.1.6",
         "@commitlint/cli": "^19.8.1",
