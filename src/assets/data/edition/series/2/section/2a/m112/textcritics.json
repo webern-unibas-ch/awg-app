@@ -481,7 +481,7 @@
             "id": "M_112_Sk1",
             "label": "M 112 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_1'})\"><strong>Sk1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_2'})\"><strong>Sk1.2</strong></a> jene Version der Exposition, auf der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1</a> beruht. Der Durchführungsteil von <strong>Sk1</strong> entspricht den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> nur in den ersten fünf Takten."
+                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_1'})\"><strong>Sk1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_2'})\"><strong>Sk1.2</strong></a> jene Version der Exposition, auf der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1</a> beruht. Der Durchführungsteil von <strong>Sk1</strong> entspricht den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> nur in den ersten fünf Takten."
             ],
             "commentary": {
                 "preamble": "",
@@ -1191,7 +1191,7 @@
             "id": "M_112_Sk1_1",
             "label": "M 112 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> fügt einen zusätzlichen Takt nach T. 3 in <strong>Sk1</strong> ein."
+                "<strong>Sk1.1</strong> fügt einen zusätzlichen Takt nach T. 3 in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a> ein."
             ],
             "commentary": {
                 "preamble": "",
@@ -1201,7 +1201,9 @@
         {
             "id": "M_112_Sk1_2",
             "label": "M 112 Sk1.2",
-            "evaluations": ["<strong>Sk1.2</strong> ersetzt T. 8 aus <strong>Sk1</strong>."],
+            "evaluations": [
+                "<strong>Sk1.2</strong> ersetzt T. 8 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -1242,7 +1244,7 @@
             "id": "M_112_Sk2",
             "label": "M 112 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist der zweite Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk1</strong>, <strong>Sk4</strong>, <strong>Sk5</strong>, <strong>Sk6</strong> und <strong>Sk10</strong>). <strong>Sk2</strong> setzt nach dem fünften Takt der Durchführung von <strong>Sk1</strong> neu an und elaboriert eine vollständige Durchführung bis zur Reprise, die besonders auf dem zweiten Thema des Seitensatzes aufbaut und zwischenzeitlilch kurz nach E-Dur moduliert. Damit weicht <strong>Sk2</strong> deutlich von den Durchführungen in den Textfassungen 2 und 3 ab, die nur mit den ersten sechs Takten von <strong>Sk2</strong> übereinstimmen."
+                "<strong>Sk2</strong> ist der zweite Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk2</strong> setzt nach dem fünften Takt der Durchführung von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a> neu an und elaboriert eine vollständige Durchführung bis zur Reprise, die besonders auf dem zweiten Thema des Seitensatzes aufbaut und zwischenzeitlilch kurz nach E-Dur moduliert. Damit weicht <strong>Sk2</strong> deutlich von den Durchführungen in den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> ab, die nur mit den ersten sechs Takten von <strong>Sk2</strong> übereinstimmen."
             ],
             "commentary": {
                 "preamble": "",
@@ -1630,7 +1632,7 @@
             "id": "M_112_Sk3",
             "label": "M 112 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist eine fragmentarische Skizze, die sich im Umfeld der Skizzen zu der Studienkomposition für Klavier M 112 befindet, deren Verlauf aber nicht eindeutig zugeordnet werden kann. Möglicherweise ist <strong>Sk3</strong> auch in einem anderen kompositorischen Zusammenhang entstanden."
+                "<strong>Sk3</strong> ist eine fragmentarische Skizze, die sich im Umfeld der Skizzen zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> befindet, deren Verlauf aber nicht eindeutig zugeordnet werden kann. Möglicherweise ist <strong>Sk3</strong> auch in einem anderen kompositorischen Zusammenhang entstanden."
             ],
             "commentary": {
                 "preamble": "",
@@ -1641,7 +1643,7 @@
             "id": "M_112_Sk4",
             "label": "M 112 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> ist der dritte Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk1</strong>, <strong>Sk2</strong>, <strong>Sk5</strong>, <strong>Sk6</strong> und <strong>Sk10</strong>). <strong>Sk4</strong> setzt nach dem sechsten Takt von <strong>Sk2</strong> neu an und bietet eine weitere Variante zur Durchführung, die vorwiegend mit dem ersten Seitenthema in Begleitung durchgehender Vierteltriolen operiert, bevor sie zuletzt die zwischenzeitlich in <strong>Sk4.1</strong> präsentierte Verquickung von Hauptthema und erstem Seitenthema aufgreift. <strong>Sk4</strong> weicht damit wie <strong>Sk2</strong> wesentlich von der Durchführung in den Textfassungen 2 und 3 ab, nur die ersten vier Takte stimmen genau überein, während die letzten paar Takte von <strong>Sk4</strong> noch eine transponierte Version von T. 73f in Textfassungen 2 und 3 enhalten (die Idee des variierten ersten Seitenthemas mit Vierteltriolen wird in TF 1 und 2 außerdem in der Reprise aufgegriffen)."
+                "<strong>Sk4</strong> ist der dritte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk4</strong> setzt nach dem sechsten Takt von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a> neu an und bietet eine weitere Variante zur Durchführung, die vorwiegend mit dem ersten Seitenthema in Begleitung durchgehender Vierteltriolen operiert, bevor sie zuletzt die zwischenzeitlich in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4_1'})\"><strong>Sk4.1</strong></a> präsentierte Verquickung von Hauptthema und erstem Seitenthema aufgreift. <strong>Sk4</strong> weicht damit wie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a> wesentlich von der Durchführung in den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> ab, nur die ersten vier Takte stimmen genau überein, während die letzten paar Takte von <strong>Sk4</strong> noch eine transponierte Version von T. 73f in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> enhalten (die Idee des variierten ersten Seitenthemas mit Vierteltriolen wird in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassungen 1</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">2</a> außerdem in der Reprise aufgegriffen)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1938,7 +1940,7 @@
             "id": "M_112_Sk4_1",
             "label": "M 112 Sk4.1",
             "evaluations": [
-                "<strong>Sk4.1</strong> bezieht sich auf die Durchführung in <strong>Sk4</strong> und präsentiert erstmals die kontrapunktische Idee, das Hauptthema mit dem ersten Thema aus dem Seitensatz zu kombinieren."
+                "<strong>Sk4.1</strong> bezieht sich auf die Durchführung in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a> und präsentiert erstmals die kontrapunktische Idee, das Hauptthema mit dem ersten Thema aus dem Seitensatz zu kombinieren."
             ],
             "commentary": {
                 "preamble": "",
@@ -1983,7 +1985,7 @@
             "id": "M_112_Sk5",
             "label": "M 112 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> ist der vierte Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk1</strong>, <strong>Sk2</strong>, <strong>Sk4</strong>, <strong>Sk6</strong> und <strong>Sk10</strong>). <strong>Sk5</strong> setzt nach dem vierten Takt von <strong>Sk4</strong> neu an und beinhaltet die zweite Hälfte der Durchführung mitsamt Überleitung zur Reprise. Während der Durchführungsabschnitt in grundsätzlicher Übereinstimmung mit den Textfassungen 2 und 3 steht, ist der Überleitungsabschnitt verhältnismäßig flüchtig und teils lückenhaft notiert und in der Schlusskadenzierung nur verbal ausformuliert."
+                "<strong>Sk5</strong> ist der vierte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk5</strong> setzt nach dem vierten Takt von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a> neu an und beinhaltet die zweite Hälfte der Durchführung mitsamt Überleitung zur Reprise. Während der Durchführungsabschnitt in grundsätzlicher Übereinstimmung mit den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> steht, ist der Überleitungsabschnitt verhältnismäßig flüchtig und teils lückenhaft notiert und in der Schlusskadenzierung nur verbal ausformuliert."
             ],
             "commentary": {
                 "preamble": "",
@@ -2336,7 +2338,7 @@
             "id": "M_112_Sk6",
             "label": "M 112 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> ist der fünfte Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk1</strong>, <strong>Sk2</strong>, <strong>S4</strong>, <strong>Sk5</strong> und <strong>Sk10</strong>). <strong>Sk6</strong>, enstanden nach der Niederschrift von Textfassung 2, setzt nochmals beim Überleitungsabschnitt zur Reprise an und formuliert diesen nun – übere kleinere Umwege – in weitgehender Übereinstimmung mit Textfassung 3 vollständig aus."
+                "<strong>Sk6</strong> ist der fünfte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk6</strong>, enstanden nach der Niederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassung 2</a>, setzt nochmals beim Überleitungsabschnitt zur Reprise an und formuliert diesen nun – übere kleinere Umwege – in weitgehender Übereinstimmung mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a> vollständig aus."
             ],
             "commentary": {
                 "preamble": "",
@@ -2563,7 +2565,7 @@
             "id": "M_112_Sk7",
             "label": "M 112 Sk7",
             "evaluations": [
-                "<strong>Sk7</strong> enthält einen kurzen Ausschnitt aus dem Hauptthema, der eine neue Variante für T. 3–4 von Textfassung 3 vorsieht. Die Bass- und Melodielinine sind gegenüber <strong>Sk1</strong> und Textfassung 1 leicht verändert. (Die Divergenz zwischen <strong>Sk7</strong> und TF3 hinsichtlich der 3.–4. Note in der Melodielinie liegt wohl entweder in einer nochmaligen Veränderung in der verschollenen vollständigen Tintenniederschrit oder in einer fehlerhaften Abschrift durch Wildgans begründet.)"
+                "<strong>Sk7</strong> enthält einen kurzen Ausschnitt aus dem Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a>, der eine neue Variante für T. 3–4 von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a> vorsieht. Die Bass- und Melodielinine sind gegenüber <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1</a> leicht verändert. (Die Divergenz zwischen <strong>Sk7</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a> hinsichtlich der 3.–4. Note in der Melodielinie liegt wohl entweder in einer nochmaligen Veränderung in der verschollenen vollständigen Tintenniederschrift oder in einer fehlerhaften Abschrift durch Wildgans begründet.)"
             ],
             "commentary": {
                 "preamble": "",
@@ -2653,7 +2655,7 @@
             "id": "M_112_Sk9",
             "label": "M 112 Sk9",
             "evaluations": [
-                "<strong>Sk9</strong> skizziert unter der Prämisse, dass der Formaufbau der Reprise mit jenem aus der Exposition grundsätzlich identisch sein werde, eine zu <strong>Sk8</strong> analoge Überleitung, die nun jedoch um eine Quinte nach unten versetzt wird, um das Seitenthema auf der Tonika einzuleiten."
+                "<strong>Sk9</strong> skizziert unter der Prämisse, dass der Formaufbau der Reprise mit jenem aus der Exposition grundsätzlich identisch sein werde, eine zu <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk8'})\"><strong>Sk8</strong></a> analoge Überleitung, die nun jedoch um eine Quinte nach unten versetzt wird, um das Seitenthema auf der Tonika einzuleiten."
             ],
             "commentary": {
                 "preamble": "",
@@ -2684,7 +2686,7 @@
             "id": "M_112_Sk10",
             "label": "M 112 Sk10",
             "evaluations": [
-                "<strong>Sk10</strong> ist der sechste und letzte Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk1</strong>, <strong>Sk2</strong>, <strong>Sk4</strong>, <strong>Sk5</strong> und <strong>Sk6</strong>). <strong>Sk10</strong> verwirft die unter <strong>Sk9</strong> noch geltende Prämisse weitgehend und setzt in der Reprise nach den ersten zehn Takten des Hauptthemas (die implizit analog zur Exposition beibehalten werden) neu an, um von da an die Überleitung, das Seitenthema (beide gegenüber der Exposition stark variiert) und die Coda auszuformulieren. Die Lücke von T. 137–143 erklärt sich aus der Gründen der Arbeitsökonomie: Die entsprechenden Takte aus der Exposition sind hier um eine Quinte nach unten transponiert einzufüllen."
+                "<strong>Sk10</strong> ist der sechste und letzte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a>). <strong>Sk10</strong> verwirft die unter <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk9'})\"><strong>Sk9</strong></a> noch geltende Prämisse weitgehend und setzt in der Reprise nach den ersten zehn Takten des Hauptthemas (die implizit analog zur Exposition beibehalten werden) neu an, um von da an die Überleitung, das Seitenthema (beide gegenüber der Exposition stark variiert) und die Coda auszuformulieren. Die Lücke von T. 137–143 erklärt sich aus der Gründen der Arbeitsökonomie: Die entsprechenden Takte aus der Exposition sind hier um eine Quinte nach unten transponiert einzufüllen."
             ],
             "commentary": {
                 "preamble": "",
@@ -3212,7 +3214,7 @@
             "id": "M_112_Sk10_1",
             "label": "M 112 Sk10.1",
             "evaluations": [
-                "<strong>Sk10.1</strong> überarbeitet die ersten Takte von <strong>Sk10</strong>, indem die überleitende Sequenzierung gestrafft wird."
+                "<strong>Sk10.1</strong> überarbeitet die ersten Takte von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>, indem die überleitende Sequenzierung gestrafft wird."
             ],
             "commentary": {
                 "preamble": "",
