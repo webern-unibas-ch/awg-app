@@ -22,12 +22,14 @@ updates:
           angular-cli/devkit:
               patterns:
                   - '@angular/cli'
+                  - '@angular/build'
                   - '@angular-devkit/*'
           angular:
               patterns:
                   - '@angular/*'
               exclude-patterns:
                   - '@angular/cli'
+                  - '@angular/build'
           angular-eslint:
               patterns:
                   - '@angular-eslint/*'
