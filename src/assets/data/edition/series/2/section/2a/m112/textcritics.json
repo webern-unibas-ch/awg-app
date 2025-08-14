@@ -66,7 +66,7 @@
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog Textfassung 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
@@ -87,21 +87,21 @@
                                 "measure": "61",
                                 "system": "Klav. u.",
                                 "position": "6/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
                                 "measure": "62",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}} in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4a'})\"><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -129,7 +129,7 @@
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<strong>Sk5</strong> T. 76 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> hat <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
+                                "comment": "<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5c'})\"><strong>Sk5</strong> T. 76</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> hat <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
                             },
                             {
                                 "svgGroupId": "g-tkk-11",
@@ -143,14 +143,14 @@
                                 "measure": "79",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <strong>Sk5</strong> T. {{'{'}}79B{{'}'}} und 79C sowie Textfassung 3, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
+                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5c'})\"><strong>Sk5</strong> T. {{'{'}}79B{{'}'}}</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5d'})\">79C</a> sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">Textfassung 3</a>, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
                             },
                             {
                                 "svgGroupId": "g-tkk-13",
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5d'})\"><strong>Sk5</strong> T. 80</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-14",
@@ -183,21 +183,21 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1–2/8",
-                                "comment": "sic. Vgl. T. 94 sowie Textfassung 1 T. 2: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
+                                "comment": "sic. Vgl. T. 94 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1 T. 2</a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
+                                "comment": "Oberstimmenschicht: sic (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk7'})\"><strong>Sk7</strong> T. 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "6–8/8",
-                                "comment": "sic (vgl. Oktavierung in Textfassung 1 T. 6.)"
+                                "comment": "sic (vgl. Oktavierung in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1 T. 6</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -211,7 +211,7 @@
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3–4/4",
-                                "comment": "sic: Unterstimmenschicht c<sup>1</sup>–h nicht vorhanden (vgl. T. 97 sowie Textfassung 1 T. 5)."
+                                "comment": "sic: Unterstimmenschicht c<sup>1</sup>–h nicht vorhanden (vgl. T. 97 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1 T. 5</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
@@ -232,7 +232,7 @@
                                 "measure": "38–39",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <strong>Sk1</strong> T. 38 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>; dort zudem am Ende der Vierteltriole jeweils <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1k'})\"><strong>Sk1</strong> T. 38</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>; dort zudem am Ende der Vierteltriole jeweils <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-9",
@@ -274,7 +274,7 @@
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "7/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 60 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2a'})\"><strong>Sk2</strong> T. 60</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-15",
@@ -288,7 +288,7 @@
                                 "measure": "61",
                                 "system": "Klav. o.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk2</strong> T. 61 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2b'})\"><strong>Sk2</strong> T. 61</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-17",
@@ -302,7 +302,7 @@
                                 "measure": "63",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog Textfassung 2."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassung 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-19",
@@ -316,21 +316,21 @@
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}} in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4a'})\"><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "g-tkk-21",
                                 "measure": "66",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "d<sup>1 </sup>korrigiert zu cis<sup>1</sup> mit Blick auf Textfassung 2 sowie motivischen und harmonischen Kontext (vgl. auch T. 57)."
+                                "comment": "d<sup>1 </sup>korrigiert zu cis<sup>1</sup> mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassung 2</a> sowie motivischen und harmonischen Kontext (vgl. auch T. 57)."
                             },
                             {
                                 "svgGroupId": "g-tkk-22",
                                 "measure": "69",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <strong>Sk5</strong> T. 69 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassung 2</a> und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5a'})\"><strong>Sk5</strong> T. 69</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-23",
@@ -351,21 +351,21 @@
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <strong>Sk5</strong> T. 80 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5d'})\"><strong>Sk5</strong> T. 80</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-26",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Deutung der obersten Note unsicher: In <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. Korrekturen 1). In <strong>Sk6</strong> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> dagegen steht e<sup>2</sup> (T. 89B) bzw. e<sup>3</sup> (T. 90D)."
+                                "comment": "Deutung der obersten Note unsicher: In <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1_corr_1'})\">Korrekturen 1</a>). In <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6a'})\"><strong>Sk6</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> dagegen steht e<sup>2</sup> (<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6c'})\">T. 89B</a>) bzw. e<sup>3</sup> (<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6d'})\">T. 90D</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-27",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <strong>Sk6</strong> T. 90B und 90D in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6c'})\"><strong>Sk6</strong> T. 90B</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6d'})\">90D</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-28",
@@ -379,7 +379,7 @@
                                 "measure": "95",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <strong>Sk7</strong> T. 3 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
+                                "comment": "Oberstimmenschicht: sic (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk7'})\"><strong>Sk7</strong> T. 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
                             },
                             {
                                 "svgGroupId": "g-tkk-30",
@@ -400,14 +400,14 @@
                                 "measure": "106",
                                 "system": "Klav. u.",
                                 "position": "7/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <strong>Sk10</strong> T. 109B in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10e'})\"><strong>Sk10</strong> T. 109B</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-33",
                                 "measure": "112–113",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <strong>Sk10</strong> T. 116B in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10f'})\"><strong>Sk10</strong> T. 116B</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-34",
@@ -421,7 +421,7 @@
                                 "measure": "119",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf <strong>Sk10</strong> T. 123B."
+                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10j'})\"><strong>Sk10</strong> T. 123B</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-36",
@@ -481,7 +481,7 @@
             "id": "M_112_Sk1",
             "label": "M 112 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der Studienkomposition für Klavier M 112 (zusammen mit <strong>Sk2</strong>, <strong>Sk4</strong>, <strong>Sk5</strong>, <strong>Sk6</strong> und <strong>Sk10</strong>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <strong>Sk1.1</strong> und <strong>Sk1.2</strong> jene Version der Exposition, auf der Textfassung 1 beruht. Der Durchführungsteil von Sk1 entspricht den Textfassungen 2 und 3 nur in den ersten fünf Takten."
+                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk10'})\"><strong>Sk10</strong></a>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_1'})\"><strong>Sk1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk1_2'})\"><strong>Sk1.2</strong></a> jene Version der Exposition, auf der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF1'})\">Textfassung 1</a> beruht. Der Durchführungsteil von <strong>Sk1</strong> entspricht den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_TF3'})\">3</a> nur in den ersten fünf Takten."
             ],
             "commentary": {
                 "preamble": "",
