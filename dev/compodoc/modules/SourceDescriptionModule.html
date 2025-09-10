@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content module">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -118,13 +136,13 @@
 <title>cluster_SourceDescriptionModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1834,-268 1834,-70 8,-70"/>
 </g>
-<g id="clust9" class="cluster">
-<title>cluster_SourceDescriptionModule_imports</title>
-<polygon fill="none" stroke="black" points="1572,-78 1572,-130 1826,-130 1826,-78 1572,-78"/>
-</g>
 <g id="clust10" class="cluster">
 <title>cluster_SourceDescriptionModule_exports</title>
 <polygon fill="none" stroke="black" points="984,-208 984,-260 1190,-260 1190,-208 984,-208"/>
+</g>
+<g id="clust9" class="cluster">
+<title>cluster_SourceDescriptionModule_imports</title>
+<polygon fill="none" stroke="black" points="1572,-78 1572,-130 1826,-130 1826,-78 1572,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_SourceDescriptionModule_declarations</title>
