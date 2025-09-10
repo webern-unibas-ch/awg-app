@@ -127,7 +127,7 @@
         "@eslint/eslintrc": "^3.3.1",
         "@eslint/js": "^9.35.0",
         "@types/d3": "^7.4.3",
-        "@types/jasmine": "~5.1.8",
+        "@types/jasmine": "~5.1.9",
         "@types/node": "^24.3.1",
         "angular-cli-ghpages": "^2.0.3",
         "angular-eslint": "^20.2.0",
