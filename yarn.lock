@@ -6642,7 +6642,7 @@ __metadata:
     d3-zoom: "npm:^3.0.0"
     eslint: "npm:^9.35.0"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-angular: "npm:^4.1.0"
+    eslint-plugin-angular: "npm:^5.0.0"
     eslint-plugin-import: "npm:^2.32.0"
     eslint-plugin-jsdoc: "npm:^55.2.0"
     eslint-plugin-prettier: "npm:^5.5.4"
@@ -9430,10 +9430,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-angular@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "eslint-plugin-angular@npm:4.1.0"
-  checksum: 10c0/2f50ef3ef4fefdbec0ae0d8b33acc161b244ee4b86a660f07266a45a8f10638fd9d976cb0249674441823b3135a019d89eafe3de56554eb34d5772b600cb9df3
+"eslint-plugin-angular@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "eslint-plugin-angular@npm:5.0.0"
+  peerDependencies:
+    eslint: ^9.32.0
+  checksum: 10c0/2eb5dd536c49acbad13ef27380265ee402d161a755041a142466e6750bddb10726b8d303719f5754a12149221a26f4f443e5b1bc6af56b2647c1e8610fd6a0ab
   languageName: node
   linkType: hard
 
