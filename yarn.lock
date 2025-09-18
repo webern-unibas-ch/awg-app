@@ -6683,7 +6683,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-angular: "npm:^5.0.0"
     eslint-plugin-import: "npm:^2.32.0"
-    eslint-plugin-jsdoc: "npm:^58.1.1"
+    eslint-plugin-jsdoc: "npm:^59.0.1"
     eslint-plugin-prettier: "npm:^5.5.4"
     globals: "npm:^16.4.0"
     gzipper: "npm:^8.2.1"
@@ -9519,9 +9519,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^58.1.1":
-  version: 58.1.1
-  resolution: "eslint-plugin-jsdoc@npm:58.1.1"
+"eslint-plugin-jsdoc@npm:^59.0.1":
+  version: 59.0.1
+  resolution: "eslint-plugin-jsdoc@npm:59.0.1"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.58.0"
     are-docs-informative: "npm:^0.0.2"
@@ -9536,7 +9536,7 @@ __metadata:
     spdx-expression-parse: "npm:^4.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/73a0bf35c583f9e3373aeebb9f8c72f08131042dc043049e3229d0925e06cc1afe505de1785aaef97b2600eadfce2398999008699b3827f34d8a20a13c2110fe
+  checksum: 10c0/f4fac276b1f065a5818010bf31fab8e5bd97329ce7ae9eee4fa2dcd0a8738dcb232dfaee977b360e05e61f50e55dcf9df60648bbf2066ac993b1782a70fdcd49
   languageName: node
   linkType: hard
 
