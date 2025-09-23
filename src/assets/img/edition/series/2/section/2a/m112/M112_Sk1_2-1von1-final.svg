@@ -75,7 +75,7 @@
   <text id="text148" x="832.502" y="212.091" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:1.33333">œ</text>
   <path id="line150" d="M838.846 211.18v-19.589" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="path152" d="M809.37 190.224h29.8v2.733h-29.8z" style="fill:#000;fill-rule:nonzero;stroke:none;stroke-width:1.33333"/>
-  <g id="g1" class="tkk">
+  <g id="g-tkk-1" class="tkk">
     <text id="text138" x="803.269" y="217.557" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:1.33333">œ</text>
     <text id="text140" x="796.348" y="220.291" font-size="12.3" style="font-size:16.4px;font-family:Maestro;fill:#7d7d7d;fill-opacity:1;stroke-width:1.33333">œ</text>
     <path id="line142" d="M809.69 217.647v-26.056" style="fill:none;stroke:#000;stroke-width:.62359"/>
@@ -185,7 +185,7 @@
       <path id="path1260-9" d="M343.305 40.894h2.597V21.017h-2.597" style="fill:none;stroke:#777;stroke-width:.653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g2" class="tkk">
+  <g id="g-tkk-2" class="tkk">
     <text id="text210" x="803.348" y="225.757" font-size="16.4" style="font-size:21.8666px;font-family:Maestro;fill:#000;stroke-width:1.33333">œ</text>
     <path id="line212" d="M794.981 231.224h7.972" style="fill:none;stroke:#7d7d7d;stroke-width:.903998;stroke-opacity:1"/>
     <path id="line214" d="M801.981 225.757h7.972" style="fill:none;stroke:#000;stroke-width:.903998"/>
