@@ -24,119 +24,119 @@
 <title>cluster_ResourceDetailModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 2311,-268 2311,-70 8,-70"/>
 </g>
+<g id="clust11" class="cluster">
+<title>cluster_ResourceDetailModule_imports</title>
+<polygon fill="none" stroke="black" points="2189,-78 2189,-130 2303,-130 2303,-78 2189,-78"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_ResourceDetailModule_declarations</title>
-<polygon fill="none" stroke="black" points="138,-78 138,-130 2303,-130 2303,-78 138,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 2181,-130 2181,-78 16,-78"/>
 </g>
 <g id="clust12" class="cluster">
 <title>cluster_ResourceDetailModule_exports</title>
 <polygon fill="none" stroke="black" points="63,-208 63,-260 2256,-260 2256,-208 63,-208"/>
 </g>
-<g id="clust11" class="cluster">
-<title>cluster_ResourceDetailModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 130,-130 130,-78 16,-78"/>
-</g>
 <!-- ResourceDetailHeaderComponent -->
 <g id="node1" class="node">
 <title>ResourceDetailHeaderComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="2295.04,-122 2086.96,-122 2086.96,-86 2295.04,-86 2295.04,-122"/>
-<text text-anchor="middle" x="2191" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHeaderComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="2173.04,-122 1964.96,-122 1964.96,-86 2173.04,-86 2173.04,-122"/>
+<text text-anchor="middle" x="2069" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHeaderComponent</text>
 </g>
 <!-- ResourceDetailModule -->
 <g id="node9" class="node">
 <title>ResourceDetailModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1174.84,-187 1171.84,-191 1150.84,-191 1147.84,-187 1029.16,-187 1029.16,-151 1174.84,-151 1174.84,-187"/>
-<text text-anchor="middle" x="1102" y="-164.8" font-family="Times,serif" font-size="14.00">ResourceDetailModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1388.84,-187 1385.84,-191 1364.84,-191 1361.84,-187 1243.16,-187 1243.16,-151 1388.84,-151 1388.84,-187"/>
+<text text-anchor="middle" x="1316" y="-164.8" font-family="Times,serif" font-size="14.00">ResourceDetailModule</text>
 </g>
 <!-- ResourceDetailHeaderComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge1" class="edge">
 <title>ResourceDetailHeaderComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M2167.38,-122.22C2167.38,-140.83 2167.38,-167 2167.38,-167 2167.38,-167 1185.23,-167 1185.23,-167"/>
-<polygon fill="black" stroke="black" points="1185.23,-163.5 1175.23,-167 1185.23,-170.5 1185.23,-163.5"/>
+<path fill="none" stroke="black" d="M1991.47,-122.3C1991.47,-140.27 1991.47,-165 1991.47,-165 1991.47,-165 1398.93,-165 1398.93,-165"/>
+<polygon fill="black" stroke="black" points="1398.93,-161.5 1388.93,-165 1398.93,-168.5 1398.93,-161.5"/>
 </g>
 <!-- ResourceDetailHtmlComponent -->
 <g id="node2" class="node">
 <title>ResourceDetailHtmlComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="2069.4,-122 1872.6,-122 1872.6,-86 2069.4,-86 2069.4,-122"/>
-<text text-anchor="middle" x="1971" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1947.4,-122 1750.6,-122 1750.6,-86 1947.4,-86 1947.4,-122"/>
+<text text-anchor="middle" x="1849" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlComponent</text>
 </g>
 <!-- ResourceDetailHtmlComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge2" class="edge">
 <title>ResourceDetailHtmlComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M1945.38,-122.02C1945.38,-139.37 1945.38,-163 1945.38,-163 1945.38,-163 1185,-163 1185,-163"/>
-<polygon fill="black" stroke="black" points="1185,-159.5 1175,-163 1185,-166.5 1185,-159.5"/>
+<path fill="none" stroke="black" d="M1775.46,-122.03C1775.46,-138.4 1775.46,-160 1775.46,-160 1775.46,-160 1399.06,-160 1399.06,-160"/>
+<polygon fill="black" stroke="black" points="1399.06,-156.5 1389.06,-160 1399.06,-163.5 1399.06,-156.5"/>
 </g>
 <!-- ResourceDetailHtmlContentComponent -->
 <g id="node3" class="node">
 <title>ResourceDetailHtmlContentComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1854.24,-122 1613.76,-122 1613.76,-86 1854.24,-86 1854.24,-122"/>
-<text text-anchor="middle" x="1734" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1732.24,-122 1491.76,-122 1491.76,-86 1732.24,-86 1732.24,-122"/>
+<text text-anchor="middle" x="1612" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentComponent</text>
 </g>
 <!-- ResourceDetailHtmlContentComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge3" class="edge">
 <title>ResourceDetailHtmlContentComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M1706.88,-122.01C1706.88,-138.05 1706.88,-159 1706.88,-159 1706.88,-159 1184.96,-159 1184.96,-159"/>
-<polygon fill="black" stroke="black" points="1184.96,-155.5 1174.96,-159 1184.96,-162.5 1184.96,-155.5"/>
+<path fill="none" stroke="black" d="M1514.53,-122.19C1514.53,-137.18 1514.53,-156 1514.53,-156 1514.53,-156 1399.08,-156 1399.08,-156"/>
+<polygon fill="black" stroke="black" points="1399.08,-152.5 1389.08,-156 1399.08,-159.5 1399.08,-152.5"/>
 </g>
 <!-- ResourceDetailHtmlContentImageobjectsComponent -->
 <g id="node4" class="node">
 <title>ResourceDetailHtmlContentImageobjectsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1595.87,-122 1280.13,-122 1280.13,-86 1595.87,-86 1595.87,-122"/>
-<text text-anchor="middle" x="1438" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentImageobjectsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1473.87,-122 1158.13,-122 1158.13,-86 1473.87,-86 1473.87,-122"/>
+<text text-anchor="middle" x="1316" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentImageobjectsComponent</text>
 </g>
 <!-- ResourceDetailHtmlContentImageobjectsComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge4" class="edge">
 <title>ResourceDetailHtmlContentImageobjectsComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M1408.88,-122.12C1408.88,-136.78 1408.88,-155 1408.88,-155 1408.88,-155 1185.11,-155 1185.11,-155"/>
-<polygon fill="black" stroke="black" points="1185.11,-151.5 1175.11,-155 1185.11,-158.5 1185.11,-151.5"/>
+<path fill="none" stroke="black" d="M1316,-122.11C1316,-122.11 1316,-140.99 1316,-140.99"/>
+<polygon fill="black" stroke="black" points="1312.5,-140.99 1316,-150.99 1319.5,-140.99 1312.5,-140.99"/>
 </g>
 <!-- ResourceDetailHtmlContentLinkedobjectsComponent -->
 <g id="node5" class="node">
 <title>ResourceDetailHtmlContentLinkedobjectsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1262.05,-122 941.95,-122 941.95,-86 1262.05,-86 1262.05,-122"/>
-<text text-anchor="middle" x="1102" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentLinkedobjectsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1140.05,-122 819.95,-122 819.95,-86 1140.05,-86 1140.05,-122"/>
+<text text-anchor="middle" x="980" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentLinkedobjectsComponent</text>
 </g>
 <!-- ResourceDetailHtmlContentLinkedobjectsComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge5" class="edge">
 <title>ResourceDetailHtmlContentLinkedobjectsComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M1102,-122.11C1102,-122.11 1102,-140.99 1102,-140.99"/>
-<polygon fill="black" stroke="black" points="1098.5,-140.99 1102,-150.99 1105.5,-140.99 1098.5,-140.99"/>
+<path fill="none" stroke="black" d="M1008.62,-122.12C1008.62,-136.78 1008.62,-155 1008.62,-155 1008.62,-155 1233.16,-155 1233.16,-155"/>
+<polygon fill="black" stroke="black" points="1233.16,-158.5 1243.16,-155 1233.16,-151.5 1233.16,-158.5"/>
 </g>
 <!-- ResourceDetailHtmlContentPropsComponent -->
 <g id="node6" class="node">
 <title>ResourceDetailHtmlContentPropsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="924.12,-122 651.88,-122 651.88,-86 924.12,-86 924.12,-122"/>
-<text text-anchor="middle" x="788" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentPropsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="802.12,-122 529.88,-122 529.88,-86 802.12,-86 802.12,-122"/>
+<text text-anchor="middle" x="666" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailHtmlContentPropsComponent</text>
 </g>
 <!-- ResourceDetailHtmlContentPropsComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge6" class="edge">
 <title>ResourceDetailHtmlContentPropsComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M900.77,-122.19C900.77,-137.18 900.77,-156 900.77,-156 900.77,-156 1019.07,-156 1019.07,-156"/>
-<polygon fill="black" stroke="black" points="1019.07,-159.5 1029.07,-156 1019.07,-152.5 1019.07,-159.5"/>
+<path fill="none" stroke="black" d="M692.62,-122.01C692.62,-138.05 692.62,-159 692.62,-159 692.62,-159 1232.96,-159 1232.96,-159"/>
+<polygon fill="black" stroke="black" points="1232.96,-162.5 1242.96,-159 1232.96,-155.5 1232.96,-162.5"/>
 </g>
 <!-- ResourceDetailJsonConvertedComponent -->
 <g id="node7" class="node">
 <title>ResourceDetailJsonConvertedComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="633.33,-122 382.67,-122 382.67,-86 633.33,-86 633.33,-122"/>
-<text text-anchor="middle" x="508" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailJsonConvertedComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="511.33,-122 260.67,-122 260.67,-86 511.33,-86 511.33,-122"/>
+<text text-anchor="middle" x="386" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailJsonConvertedComponent</text>
 </g>
 <!-- ResourceDetailJsonConvertedComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge7" class="edge">
 <title>ResourceDetailJsonConvertedComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M608.18,-122.03C608.18,-138.4 608.18,-160 608.18,-160 608.18,-160 1019.13,-160 1019.13,-160"/>
-<polygon fill="black" stroke="black" points="1019.13,-163.5 1029.13,-160 1019.13,-156.5 1019.13,-163.5"/>
+<path fill="none" stroke="black" d="M411.12,-122.02C411.12,-139.37 411.12,-163 411.12,-163 411.12,-163 1233.1,-163 1233.1,-163"/>
+<polygon fill="black" stroke="black" points="1233.1,-166.5 1243.1,-163 1233.1,-159.5 1233.1,-166.5"/>
 </g>
 <!-- ResourceDetailJsonRawComponent -->
 <g id="node8" class="node">
 <title>ResourceDetailJsonRawComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="364.17,-122 145.83,-122 145.83,-86 364.17,-86 364.17,-122"/>
-<text text-anchor="middle" x="255" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailJsonRawComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="242.17,-122 23.83,-122 23.83,-86 242.17,-86 242.17,-122"/>
+<text text-anchor="middle" x="133" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceDetailJsonRawComponent</text>
 </g>
 <!-- ResourceDetailJsonRawComponent&#45;&gt;ResourceDetailModule -->
 <g id="edge8" class="edge">
 <title>ResourceDetailJsonRawComponent&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M337.46,-122.3C337.46,-140.27 337.46,-165 337.46,-165 337.46,-165 1019.04,-165 1019.04,-165"/>
-<polygon fill="black" stroke="black" points="1019.04,-168.5 1029.04,-165 1019.04,-161.5 1019.04,-168.5"/>
+<path fill="none" stroke="black" d="M156.62,-122.22C156.62,-140.83 156.62,-167 156.62,-167 156.62,-167 1233.04,-167 1233.04,-167"/>
+<polygon fill="black" stroke="black" points="1233.04,-170.5 1243.04,-167 1233.04,-163.5 1233.04,-170.5"/>
 </g>
 <!-- ResourceDetailHeaderComponent  -->
 <g id="node11" class="node">
@@ -147,8 +147,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHeaderComponent  -->
 <g id="edge10" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHeaderComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1175.02,-171C1397.64,-171 2052.72,-171 2052.72,-171 2052.72,-171 2052.72,-205.78 2052.72,-205.78"/>
-<polygon fill="black" stroke="black" points="2049.22,-205.78 2052.72,-215.78 2056.22,-205.78 2049.22,-205.78"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1389.13,-174C1584.63,-174 2104.62,-174 2104.62,-174 2104.62,-174 2104.62,-206 2104.62,-206"/>
+<polygon fill="black" stroke="black" points="2101.13,-206 2104.62,-216 2108.13,-206 2101.13,-206"/>
 </g>
 <!-- ResourceDetailHtmlComponent  -->
 <g id="node12" class="node">
@@ -159,8 +159,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHtmlComponent  -->
 <g id="edge11" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHtmlComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1175.08,-175C1360.79,-175 1836.21,-175 1836.21,-175 1836.21,-175 1836.21,-205.98 1836.21,-205.98"/>
-<polygon fill="black" stroke="black" points="1832.71,-205.98 1836.21,-215.98 1839.71,-205.98 1832.71,-205.98"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1388.92,-178C1541.95,-178 1882.62,-178 1882.62,-178 1882.62,-178 1882.62,-205.97 1882.62,-205.97"/>
+<polygon fill="black" stroke="black" points="1879.13,-205.97 1882.62,-215.97 1886.13,-205.97 1879.13,-205.97"/>
 </g>
 <!-- ResourceDetailHtmlContentComponent  -->
 <g id="node13" class="node">
@@ -171,8 +171,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentComponent  -->
 <g id="edge12" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1174.99,-179C1307.89,-179 1575.78,-179 1575.78,-179 1575.78,-179 1575.78,-205.99 1575.78,-205.99"/>
-<polygon fill="black" stroke="black" points="1572.28,-205.99 1575.78,-215.99 1579.28,-205.99 1572.28,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1389.23,-183C1485.94,-183 1644.12,-183 1644.12,-183 1644.12,-183 1644.12,-205.88 1644.12,-205.88"/>
+<polygon fill="black" stroke="black" points="1640.63,-205.88 1644.12,-215.88 1647.63,-205.88 1640.63,-205.88"/>
 </g>
 <!-- ResourceDetailHtmlContentImageobjectsComponent  -->
 <g id="node14" class="node">
@@ -183,8 +183,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentImageobjectsComponent  -->
 <g id="edge13" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentImageobjectsComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1175.2,-183C1208.37,-183 1240.29,-183 1240.29,-183 1240.29,-183 1240.29,-205.88 1240.29,-205.88"/>
-<polygon fill="black" stroke="black" points="1236.79,-205.88 1240.29,-215.88 1243.79,-205.88 1236.79,-205.88"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1316,-187.11C1316,-187.11 1316,-205.99 1316,-205.99"/>
+<polygon fill="black" stroke="black" points="1312.5,-205.99 1316,-215.99 1319.5,-205.99 1312.5,-205.99"/>
 </g>
 <!-- ResourceDetailHtmlContentLinkedobjectsComponent  -->
 <g id="node15" class="node">
@@ -195,8 +195,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentLinkedobjectsComponent  -->
 <g id="edge14" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentLinkedobjectsComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1102,-187.11C1102,-187.11 1102,-205.99 1102,-205.99"/>
-<polygon fill="black" stroke="black" points="1098.5,-205.99 1102,-215.99 1105.5,-205.99 1098.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1242.98,-183C1210.54,-183 1179.54,-183 1179.54,-183 1179.54,-183 1179.54,-205.88 1179.54,-205.88"/>
+<polygon fill="black" stroke="black" points="1176.04,-205.88 1179.54,-215.88 1183.04,-205.88 1176.04,-205.88"/>
 </g>
 <!-- ResourceDetailHtmlContentPropsComponent  -->
 <g id="node16" class="node">
@@ -207,8 +207,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentPropsComponent  -->
 <g id="edge15" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailHtmlContentPropsComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1028.91,-183C927.22,-183 755.38,-183 755.38,-183 755.38,-183 755.38,-205.88 755.38,-205.88"/>
-<polygon fill="black" stroke="black" points="751.88,-205.88 755.38,-215.88 758.88,-205.88 751.88,-205.88"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1243.11,-179C1109.64,-179 839.52,-179 839.52,-179 839.52,-179 839.52,-205.99 839.52,-205.99"/>
+<polygon fill="black" stroke="black" points="836.02,-205.99 839.52,-215.99 843.02,-205.99 836.02,-205.99"/>
 </g>
 <!-- ResourceDetailJsonConvertedComponent  -->
 <g id="node17" class="node">
@@ -219,8 +219,8 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailJsonConvertedComponent  -->
 <g id="edge16" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailJsonConvertedComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1029.02,-178C863.51,-178 473.88,-178 473.88,-178 473.88,-178 473.88,-205.97 473.88,-205.97"/>
-<polygon fill="black" stroke="black" points="470.38,-205.97 473.88,-215.97 477.38,-205.97 470.38,-205.97"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1243,-175C1051.15,-175 547.43,-175 547.43,-175 547.43,-175 547.43,-205.98 547.43,-205.98"/>
+<polygon fill="black" stroke="black" points="543.93,-205.98 547.43,-215.98 550.93,-205.98 543.93,-205.98"/>
 </g>
 <!-- ResourceDetailJsonRawComponent  -->
 <g id="node18" class="node">
@@ -231,20 +231,20 @@
 <!-- ResourceDetailModule&#45;&gt;ResourceDetailJsonRawComponent  -->
 <g id="edge17" class="edge">
 <title>ResourceDetailModule&#45;&gt;ResourceDetailJsonRawComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1029.02,-174C817.55,-174 219.38,-174 219.38,-174 219.38,-174 219.38,-206 219.38,-206"/>
-<polygon fill="black" stroke="black" points="215.88,-206 219.38,-216 222.88,-206 215.88,-206"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1242.92,-171C1006.35,-171 276.71,-171 276.71,-171 276.71,-171 276.71,-205.78 276.71,-205.78"/>
+<polygon fill="black" stroke="black" points="273.21,-205.78 276.71,-215.78 280.21,-205.78 273.21,-205.78"/>
 </g>
 <!-- SharedModule -->
 <g id="node10" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
-<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="2295.42,-122 2292.42,-126 2271.42,-126 2268.42,-122 2196.58,-122 2196.58,-86 2295.42,-86 2295.42,-122"/>
+<text text-anchor="middle" x="2246" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;ResourceDetailModule -->
 <g id="edge9" class="edge">
 <title>SharedModule&#45;&gt;ResourceDetailModule</title>
-<path fill="none" stroke="black" d="M96.69,-122.11C96.69,-141.34 96.69,-169 96.69,-169 96.69,-169 1018.89,-169 1018.89,-169"/>
-<polygon fill="black" stroke="black" points="1018.89,-172.5 1028.89,-169 1018.89,-165.5 1018.89,-172.5"/>
+<path fill="none" stroke="black" d="M2222.28,-122.11C2222.28,-141.34 2222.28,-169 2222.28,-169 2222.28,-169 1399.01,-169 1399.01,-169"/>
+<polygon fill="black" stroke="black" points="1399.01,-165.5 1389.01,-169 1399.01,-172.5 1399.01,-165.5"/>
 </g>
 </g>
 </svg>
