@@ -28,13 +28,13 @@
 <title>cluster_SourceDescriptionModule_imports</title>
 <polygon fill="none" stroke="black" points="1572,-78 1572,-130 1826,-130 1826,-78 1572,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_SourceDescriptionModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 1564,-130 1564,-78 16,-78"/>
-</g>
 <g id="clust10" class="cluster">
 <title>cluster_SourceDescriptionModule_exports</title>
 <polygon fill="none" stroke="black" points="984,-208 984,-260 1190,-260 1190,-208 984,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SourceDescriptionModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 1564,-130 1564,-78 16,-78"/>
 </g>
 <!-- SourceDescriptionComponent -->
 <g id="node1" class="node">
