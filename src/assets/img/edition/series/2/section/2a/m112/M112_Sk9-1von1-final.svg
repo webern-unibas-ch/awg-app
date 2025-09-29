@@ -64,7 +64,7 @@
   <path id="line110" d="M165.671 284.752h792.665" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="line112" d="M165.671 290.218h792.665" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="line114" d="M165.671 295.685h792.665" style="fill:none;stroke:#000;stroke-width:.643998"/>
-  <g id="g8" class="tkk">
+  <g id="g-tkk-2" class="tkk">
     <path id="polyline120" d="m499.346 165.525 14.692-7.175" style="fill:none;stroke:#000;stroke-width:.483" transform="translate(34.016 .047)scale(1.33333)"/>
   </g>
   <g id="g3" class="supplied staffN">
@@ -193,7 +193,7 @@
     </g>
   </g>
   <path id="text1141" d="M113.386 87.239V75.786h3.46l2.079 7.812 2.055-7.812h3.468v11.453H122.3v-9.016l-2.274 9.016H117.8l-2.266-9.016v9.016zm22.937 0h-2.195v-8.273a7.6 7.6 0 0 1-2.836 1.664v-1.993q.86-.28 1.867-1.062 1.008-.789 1.383-1.836h1.781zm8.016 0h-2.195v-8.273a7.6 7.6 0 0 1-2.836 1.664v-1.993q.86-.28 1.867-1.062 1.008-.789 1.383-1.836h1.781zm10.695-2.04v2.04h-7.695q.124-1.156.75-2.188.626-1.038 2.469-2.75 1.485-1.382 1.82-1.875.453-.679.453-1.343 0-.735-.398-1.125-.39-.399-1.086-.399-.688 0-1.094.414t-.469 1.375l-2.187-.218q.195-1.813 1.226-2.602 1.032-.789 2.578-.789 1.696 0 2.665.914.968.915.968 2.273 0 .774-.281 1.477-.273.695-.875 1.461-.399.509-1.437 1.46-1.04.954-1.32 1.267-.275.312-.446.609z" aria-label="M 112 Sk10" style="font-weight:700;font-size:16px;line-height:1.25;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;letter-spacing:0;word-spacing:0"/>
-  <g id="g7" class="tkk">
+  <g id="g-tkk-1" class="tkk">
     <path id="text158" d="M606.603 238.304q0-.46.328-.765.328-.328.809-.328t.809.327q.328.307.328.766t-.328.787-.81.328q-.48 0-.808-.328t-.328-.787" aria-label="." style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"/>
     <path id="line160" d="M597.82 236.462v14.58" style="fill:none;stroke:#000;stroke-width:.643998"/>
     <path id="line162" d="M596.132 235.552h9.338" style="fill:none;stroke:#000;stroke-width:.903998"/>
