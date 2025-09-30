@@ -121,7 +121,7 @@
         "@angular/build": "^20.3.3",
         "@angular/cli": "^20.3.3",
         "@angular/compiler-cli": "^20.3.2",
-        "@commitlint/cli": "^20.0.0",
+        "@commitlint/cli": "^20.1.0",
         "@commitlint/config-angular": "^20.0.0",
         "@compodoc/compodoc": "^1.1.30",
         "@eslint/eslintrc": "^3.3.1",
