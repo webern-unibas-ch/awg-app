@@ -10,7 +10,7 @@
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung1-1von1-final.svg",
                         "image": "",
                         "partial": "",
-                        "convolute": ""
+                        "convolute": "B"
                     }
                 ]
             },
@@ -28,7 +28,7 @@
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung2-2von2-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "D"
                     }
                 ]
             },
@@ -40,61 +40,61 @@
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-1von10-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-2von10-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-3von10-final.svg",
                         "image": "",
                         "partial": "c",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-4von10-final.svg",
                         "image": "",
                         "partial": "d",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-5von10-final.svg",
                         "image": "",
                         "partial": "e",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-6von10-final.svg",
                         "image": "",
                         "partial": "f",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-7von10-final.svg",
                         "image": "",
                         "partial": "g",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-8von10-final.svg",
                         "image": "",
                         "partial": "h",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-9von10-final.svg",
                         "image": "",
                         "partial": "i",
-                        "convolute": ""
+                        "convolute": "FR1"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m112/M112_Textfassung3-10von10-final.svg",
                         "image": "",
                         "partial": "j",
-                        "convolute": ""
+                        "convolute": "FR1"
                     }
                 ]
             }

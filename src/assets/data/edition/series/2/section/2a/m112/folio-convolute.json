@@ -1,0 +1,759 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "22",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1a",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 1–5",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "22",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "22",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "22",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Tintenniederschrift und Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 348,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF1",
+                            "sigle": "M 112 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 21,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF1",
+                            "sigle": "M 112 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 6–9",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF1",
+                            "sigle": "M 112 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 10–13",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF1",
+                            "sigle": "M 112 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 14–16",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4_1",
+                            "sigle": "M 112 Sk4.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk3",
+                            "sigle": "M 112 Sk3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 13,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4a",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. 62–65",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4b",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. {66A}–69",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4c",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. 70–76",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 346,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4d",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. 77–{82A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 21,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4e",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. {83A}–84B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4f",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. {85A}–85B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4g",
+                            "sigle": "M 112 Sk4",
+                            "sigleAddendum": "T. 81C–82C",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5a",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 66–70",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5a",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 66–70",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5b",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 71–75",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5c",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 76–{79B}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5d",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 78C–80",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "20",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5e",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 81–85A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar496",
+                            "sheetId": "Mstar_496_Sk1",
+                            "sigle": "M* 496 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk7",
+                            "sigle": "M 112 Sk7",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk8a",
+                            "sigle": "M 112 Sk8",
+                            "sigleAddendum": "T. 16–18",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk8b",
+                            "sigle": "M 112 Sk8",
+                            "sigleAddendum": "T. 19–20",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk9",
+                            "sigle": "M 112 Sk9",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10a",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 103–106",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10b",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 107–110A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10c",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 111A–115A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10d",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 116A",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "20",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "20",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "20",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10_1",
+                            "sigle": "M 112 Sk10.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "D",
+            "convoluteLabel": "D Tintenniederschrift und Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "20",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 51–57",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 58–62",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 63–66",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 67–70",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 71–74",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF2",
+                            "sigle": "M 112 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 75–79",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "20",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6a",
+                            "sigle": "M 112 Sk6",
+                            "sigleAddendum": "T. 81–86",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6b",
+                            "sigle": "M 112 Sk6",
+                            "sigleAddendum": "T. 87–{90A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6c",
+                            "sigle": "M 112 Sk6",
+                            "sigleAddendum": "T. {91A}–91B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6d",
+                            "sigle": "M 112 Sk6",
+                            "sigleAddendum": "T. {89C}–91C(1–3/4)",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6e",
+                            "sigle": "M 112 Sk6",
+                            "sigleAddendum": "T. 91C(2–4/4)–93",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "20",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "20",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
