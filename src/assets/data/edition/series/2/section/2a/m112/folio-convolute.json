@@ -26,6 +26,132 @@
                                     "endSystem": 2
                                 }
                             ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1b",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 6–{9A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1c",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. {10A}–11",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1d",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 12–13A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_1",
+                            "sigle": "M 112 Sk1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_2",
+                            "sigle": "M 112 Sk1.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1e",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 13B–19",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1f",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 20",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1g",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. {21A}–25",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1h",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 25–28",
+                            "segmentSplit": 1.5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
                         }
                     ]
                 },
@@ -36,7 +162,120 @@
                         "height": 349,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_3",
+                            "sigle": "M 112 Sk1.3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1i",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 29–33",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1j",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 34–37",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1k",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 38–43",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1l",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 44–50",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1m",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 51–57",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1n",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 58–62",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1o",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 63–67A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 21
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2r",
@@ -46,7 +285,106 @@
                         "height": 349,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1p",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 68A–{69A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1q",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 67B–{72}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1r",
+                            "sigle": "M 112 Sk1",
+                            "sigleAddendum": "T. 66B–70B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2a",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 56–60",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2b",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 61–64",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2c",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 65–{69A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2d",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 68B–71",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
@@ -55,7 +393,120 @@
                         "height": 349,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2e",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 72–{75A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2f",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 75B–78",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2g",
+                            "sigle": "M 112 Sk2",
+                            "sigleAddendum": "T. 79–82",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5f",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 82B–85B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5g",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 82C–87",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5h",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 88–90",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5i",
+                            "sigle": "M 112 Sk5",
+                            "sigleAddendum": "T. 91–92",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5j",
+                            "sigle": "M 112 Sk5 T. 93+x",
+                            "sigleAddendum": "",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 12,
+                                    "endSystem": 12
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
