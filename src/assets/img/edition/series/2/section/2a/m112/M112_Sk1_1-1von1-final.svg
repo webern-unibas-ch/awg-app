@@ -55,7 +55,7 @@
   <path id="line100" d="M185.843 274.957h793.804" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="line102" d="M185.843 280.424h793.804" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="line104" d="M185.843 285.89h793.804" style="fill:none;stroke:#000;stroke-width:.643998"/>
-  <g id="g4" class="staffN">
+  <g id="g4" class="supplied staffN">
     <path id="text110" d="m114.959 214.824 1.208-5.766q-.781.615-2.198.985l.177-.854q.703-.282 1.386-.735.687-.453 1.03-.792.21-.208.397-.505h.547l-1.6 7.667zm5.14 0 1.209-5.766q-.782.615-2.198.985l.177-.854q.703-.282 1.385-.735.688-.453 1.032-.792.208-.208.395-.505h.547l-1.599 7.667z" aria-label="11" style="font-style:italic;font-size:10.6667px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#777;fill-opacity:.866667;stroke-width:1.33333"/>
     <path id="text112" d="m114.959 280.424 1.208-5.766q-.781.615-2.198.985l.177-.855q.703-.28 1.386-.734.687-.453 1.03-.792.21-.208.397-.505h.547l-1.6 7.667zm3.99 0q.145-.682.4-1.14.26-.464.688-.876.427-.416 1.646-1.39.74-.589 1.01-.87.39-.407.568-.797.12-.266.12-.578 0-.526-.375-.89-.37-.37-.912-.37-.536 0-.937.374-.401.37-.573 1.193l-.922-.135q.135-1.016.786-1.6.657-.588 1.63-.588.652 0 1.178.27.53.272.797.761.265.49.265 1.01 0 .761-.542 1.464-.333.438-1.958 1.724-.698.552-1.042.907-.338.354-.51.666h3.417l-.183.865z" aria-label="12" style="font-style:italic;font-size:10.6667px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#777;fill-opacity:.866667;stroke-width:1.33333"/>
   </g>
