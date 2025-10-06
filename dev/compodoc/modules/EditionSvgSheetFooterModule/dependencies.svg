@@ -24,6 +24,10 @@
 <title>cluster_EditionSvgSheetFooterModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 514,-268 514,-70 8,-70"/>
 </g>
+<g id="clust5" class="cluster">
+<title>cluster_EditionSvgSheetFooterModule_exports</title>
+<polygon fill="none" stroke="black" points="85,-208 85,-260 317,-260 317,-208 85,-208"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionSvgSheetFooterModule_declarations</title>
 <polygon fill="none" stroke="black" points="278,-78 278,-130 506,-130 506,-78 278,-78"/>
@@ -31,10 +35,6 @@
 <g id="clust4" class="cluster">
 <title>cluster_EditionSvgSheetFooterModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 270,-130 270,-78 16,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionSvgSheetFooterModule_exports</title>
-<polygon fill="none" stroke="black" points="85,-208 85,-260 317,-260 317,-208 85,-208"/>
 </g>
 <!-- EditionSvgSheetFooterComponent -->
 <g id="node1" class="node">
