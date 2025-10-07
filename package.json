@@ -123,7 +123,7 @@
         "@angular/compiler-cli": "^20.3.3",
         "@commitlint/cli": "^20.1.0",
         "@commitlint/config-angular": "^20.0.0",
-        "@compodoc/compodoc": "^1.1.30",
+        "@compodoc/compodoc": "^1.1.31",
         "@eslint/eslintrc": "^3.3.1",
         "@eslint/js": "^9.35.0",
         "@types/d3": "^7.4.3",
