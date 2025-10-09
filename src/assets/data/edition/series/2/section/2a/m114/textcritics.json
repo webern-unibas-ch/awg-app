@@ -73,21 +73,21 @@
                                 "measure": "23",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5437",
                                 "measure": "23",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5456",
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk4'})\"><strong>Sk4</strong></a> (dort <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk4'})\"><strong>Sk4</strong></a> (dort <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g5460",
@@ -122,7 +122,7 @@
                                 "measure": "37",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b ergänzt analog Textfassungen 3–6 T. 37 bzw. 38."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b ergänzt analog Textfassungen 3–6 T. 37 bzw. 38."
                             }
                         ]
                     }
@@ -159,14 +159,14 @@
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassungen 4–6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassungen 4–6."
                             },
                             {
                                 "svgGroupId": "g2",
                                 "measure": "25",
                                 "system": "Klav.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>2</sup> sowie <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>2</sup> sowie <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g3",
@@ -180,28 +180,28 @@
                                 "measure": "31",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "33",
                                 "system": "Klav. o.",
                                 "position": "4. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "34",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog Textfassungen 2 und 4–6."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "36",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
                             },
                             {
                                 "svgGroupId": "g7132",
@@ -215,7 +215,7 @@
                                 "measure": "41",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g7154",
@@ -229,7 +229,7 @@
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "5. Note, 8. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> und es<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> und es<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g7176",
@@ -243,7 +243,7 @@
                                 "measure": "45",
                                 "system": "Klav. o.",
                                 "position": "2–3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> und h<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> und h<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
                                 "svgGroupId": "g7198",
@@ -257,14 +257,14 @@
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g7218",
                                 "measure": "49",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
                                 "svgGroupId": "g7222",
@@ -278,7 +278,7 @@
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> ergänzt analog Textfassungen 4–6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> ergänzt analog Textfassungen 4–6."
                             },
                             {
                                 "svgGroupId": "g7236",
@@ -308,7 +308,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
                                 "svgGroupId": "g4055",
@@ -336,7 +336,7 @@
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
                                 "svgGroupId": "g4199",
@@ -350,28 +350,28 @@
                                 "measure": "31",
                                 "system": "Klav.",
                                 "position": "1/4",
-                                "comment": "<em>pp </em>versetzt von 2/8.<em> </em>"
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
                                 "svgGroupId": "g5309",
                                 "measure": "33",
                                 "system": "Klav. u.",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog Textfassungen 2–3 (<a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog Textfassungen 2–3 (<a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g5318",
                                 "measure": "36",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
                             },
                             {
                                 "svgGroupId": "g5334",
                                 "measure": "39",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
                                 "svgGroupId": "g5336",
@@ -385,14 +385,14 @@
                                 "measure": "41",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5378",
                                 "measure": "42",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5360",
@@ -406,28 +406,28 @@
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassung 3."
                             },
                             {
                                 "svgGroupId": "g5644",
                                 "measure": "43",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5662",
                                 "measure": "43",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5680",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5684",
@@ -448,21 +448,21 @@
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g5708",
                                 "measure": "49",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
                                 "svgGroupId": "g5717",
                                 "measure": "53",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3."
                             },
                             {
                                 "svgGroupId": "g6595",
@@ -476,28 +476,28 @@
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g6623",
                                 "measure": "64",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 73."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 73."
                             },
                             {
                                 "svgGroupId": "g6649",
                                 "measure": "68",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und Korrekturen 2."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und Korrekturen 2."
                             },
                             {
                                 "svgGroupId": "g6671",
                                 "measure": "74",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g5728",
@@ -539,7 +539,7 @@
                                 "measure": "89",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
                                 "svgGroupId": "g5755",
@@ -553,7 +553,7 @@
                                 "measure": "93",
                                 "system": "Klav. o.",
                                 "position": "8/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/f<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/f<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             }
                         ]
                     }
@@ -576,7 +576,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
                                 "svgGroupId": "g631",
@@ -604,7 +604,7 @@
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
                                 "svgGroupId": "g638",
@@ -618,14 +618,14 @@
                                 "measure": "32",
                                 "system": "Klav.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span><em> </em>versetzt von 2/8.<em> </em>"
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
                                 "svgGroupId": "g752",
                                 "measure": "40",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
                                 "svgGroupId": "g754",
@@ -639,14 +639,14 @@
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g908",
                                 "measure": "43",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g907",
@@ -660,28 +660,28 @@
                                 "measure": "44",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g910",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g911",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g912",
                                 "measure": "44",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g913",
@@ -702,7 +702,7 @@
                                 "measure": "47",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g916",
@@ -716,14 +716,14 @@
                                 "measure": "50",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
                                 "svgGroupId": "g918",
                                 "measure": "54",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
                             },
                             {
                                 "svgGroupId": "g167",
@@ -751,21 +751,21 @@
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g876",
                                 "measure": "65",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
                             },
                             {
                                 "svgGroupId": "g732",
                                 "measure": "75",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g733",
@@ -807,7 +807,7 @@
                                 "measure": "90",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
                                 "svgGroupId": "g894",
@@ -821,49 +821,49 @@
                                 "measure": "94",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
+                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
                             },
                             {
                                 "svgGroupId": "g896",
                                 "measure": "98",
                                 "system": "Klav. u.",
                                 "position": "4/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g897",
                                 "measure": "99",
                                 "system": "Klav. u.",
                                 "position": "8/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g1127",
                                 "measure": "101",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
                             },
                             {
                                 "svgGroupId": "g1128",
                                 "measure": "101",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
                             },
                             {
                                 "svgGroupId": "g1129",
                                 "measure": "102",
                                 "system": "Klav. u.",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
                             },
                             {
                                 "svgGroupId": "g1130",
                                 "measure": "102",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
                             },
                             {
                                 "svgGroupId": "g1131",
@@ -877,7 +877,7 @@
                                 "measure": "115",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
                             },
                             {
                                 "svgGroupId": "577",
@@ -898,28 +898,28 @@
                                 "measure": "126",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> ergänzt analog T. 12."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> ergänzt analog T. 12."
                             },
                             {
                                 "svgGroupId": "g640",
                                 "measure": "134",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
                             },
                             {
                                 "svgGroupId": "g641",
                                 "measure": "136",
                                 "system": "Klav.",
                                 "position": "2–3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
                             },
                             {
                                 "svgGroupId": "g642",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
                             },
                             {
                                 "svgGroupId": "g643",
@@ -954,7 +954,7 @@
                                 "measure": "147",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g503",
@@ -1026,7 +1026,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
                                 "svgGroupId": "g631",
@@ -1054,7 +1054,7 @@
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
                                 "svgGroupId": "g637",
@@ -1068,14 +1068,14 @@
                                 "measure": "32",
                                 "system": "Klav.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span><em> </em>versetzt von 2/8.<em> </em>"
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
                                 "svgGroupId": "g751",
                                 "measure": "40",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
                                 "svgGroupId": "g752",
@@ -1089,14 +1089,14 @@
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g906",
                                 "measure": "43",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g907",
@@ -1110,28 +1110,28 @@
                                 "measure": "44",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g909",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g910",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g911",
                                 "measure": "44",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g914",
@@ -1152,7 +1152,7 @@
                                 "measure": "47",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g915",
@@ -1166,14 +1166,14 @@
                                 "measure": "50",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
                                 "svgGroupId": "g917",
                                 "measure": "54",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
                             },
                             {
                                 "svgGroupId": "g871",
@@ -1201,21 +1201,21 @@
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g874",
                                 "measure": "65",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
                             },
                             {
                                 "svgGroupId": "g731",
                                 "measure": "75",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g732",
@@ -1257,7 +1257,7 @@
                                 "measure": "90",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
                                 "svgGroupId": "g922",
@@ -1271,49 +1271,49 @@
                                 "measure": "94",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph'>{{ref.getGlyph('[b]')}}</span> ergänzt mit Blick auf T. 96 und harmonischen Kontext; <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
+                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> ergänzt mit Blick auf T. 96 und harmonischen Kontext; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
                             },
                             {
                                 "svgGroupId": "g924",
                                 "measure": "98",
                                 "system": "Klav. u.",
                                 "position": "4/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g925",
                                 "measure": "99",
                                 "system": "Klav. u.",
                                 "position": "8/16",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g1044",
                                 "measure": "101",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
                             },
                             {
                                 "svgGroupId": "g1045",
                                 "measure": "101",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
                             },
                             {
                                 "svgGroupId": "g1046",
                                 "measure": "102",
                                 "system": "Klav. u.",
                                 "position": "5/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
                             },
                             {
                                 "svgGroupId": "g1047",
                                 "measure": "102",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
                             },
                             {
                                 "svgGroupId": "g1048",
@@ -1334,7 +1334,7 @@
                                 "measure": "121",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
                             },
                             {
                                 "svgGroupId": "g601",
@@ -1355,21 +1355,21 @@
                                 "measure": "134",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
                             },
                             {
                                 "svgGroupId": "g663",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
                             },
                             {
                                 "svgGroupId": "g662",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
                             },
                             {
                                 "svgGroupId": "g787",
@@ -1383,7 +1383,7 @@
                                 "measure": "147",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g463",
@@ -1436,7 +1436,7 @@
                                 "measure": "2",
                                 "system": "1",
                                 "position": "1. Note",
-                                "comment": "d<sup>1</sup> gestrichen; {{ref.getGlyph('[a]')}}h/f<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                                "comment": "d<sup>1</sup> gestrichen; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h/f<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                             },
                             {
                                 "svgGroupId": "g7",
@@ -1450,7 +1450,7 @@
                                 "measure": "2",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[a]')}}e überschreibt f."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e überschreibt f."
                             },
                             {
                                 "svgGroupId": "g9",
@@ -1475,21 +1475,21 @@
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [  
+                        "blockComments": [
                             {
                                 "svgGroupId": "g6",
                                 "measure": "2",
                                 "system": "4",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}es<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}des<sup>1</sup>; {{ref.getGlyph('[b]')}}es<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
-                            }, 
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "4",
                                 "system": "4",
                                 "position": "1/4",
-                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[#]')}}."
-                            },                  
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+                            },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "8",
@@ -1502,14 +1502,14 @@
                                 "measure": "9",
                                 "system": "7",
                                 "position": "3/4",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}; {{ref.getGlyph('[a]')}}a<sup>1</sup> gestrichen."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "9",
                                 "system": "8",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[b]')}}ces gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces gestrichen."
                             },
                             {
                                 "svgGroupId": "g7",
@@ -1551,7 +1551,7 @@
                                 "measure": "11B",
                                 "system": "7",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: Punktierte Achtelnote {{ref.getGlyph('[a]')}}a<sup>2</sup> und Sechzehntelnote b<sup>2</sup> gestrichen."
+                                "comment": "Oberstimmenschicht: Punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup> und Sechzehntelnote b<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g13",
@@ -1593,7 +1593,7 @@
                                 "measure": "16",
                                 "system": "10",
                                 "position": "2/4",
-                                "comment": "{{ref.getGlyph('[b]')}}ges überschreibt f."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges überschreibt f."
                             },
                             {
                                 "svgGroupId": "g11",
@@ -1609,9 +1609,9 @@
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             }
-                        ] 
-                    }   
-                ] 
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -1625,14 +1625,14 @@
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [  
+                        "blockComments": [
                             {
                                 "svgGroupId": "g6",
                                 "measure": "26",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
-                            },               
+                            },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "26",
@@ -1673,11 +1673,11 @@
                                 "measure": "34",
                                 "system": "16",
                                 "position": "6/8",
-                                "comment": "Notenkopf überschreibt {{ref.getGlyph('[#]')}}? Entzifferung unsicher."
+                                "comment": "Notenkopf überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
                             }
                         ]
                     }
-                ] 
+                ]
             }
         },
         {
@@ -1697,14 +1697,14 @@
                                 "measure": "20",
                                 "system": "16",
                                 "position": "1/4",
-                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu g<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "20",
                                 "system": "16",
                                 "position": "(3/4)",
-                                "comment": "Unterstimmenschicht: Punktierte Achtelnote c<sup>2</sup> überschreibt Viertelnote {{ref.getGlyph('[a]')}}c<sup>1</sup>/e<sup>1</sup>/{{ref.getGlyph('[#]')}}gis<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: Punktierte Achtelnote c<sup>2</sup> überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>/e<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g10",
@@ -1718,7 +1718,7 @@
                                 "measure": "23",
                                 "system": "18",
                                 "position": "1/4",
-                                "comment": "{{ref.getGlyph('[[#]]')}}fis<sup>2</sup> überschreibt e<sup>2</sup>."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]fis<sup>2</sup> überschreibt e<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -1728,8 +1728,8 @@
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             }
                         ]
-                    }  
-                ] 
+                    }
+                ]
             }
         },
         {
@@ -1756,14 +1756,14 @@
                                 "measure": "32",
                                 "system": "21",
                                 "position": "6/8",
-                                "comment": "{{ref.getGlyph('[b]')}}es<sup>1</sup> überschreibt d<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt d<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "34",
                                 "system": "21",
                                 "position": "3–5/8",
-                                "comment": "Oberstimmenschicht: Metrisch falsch platzierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>2</sup> auf 3/8 gestrichen und versetzt nach 4/8; Achtelfähnchen auf 4/8 überschreibt Balken von 4–5/8."
+                                "comment": "Oberstimmenschicht: Metrisch falsch platzierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> auf 3/8 gestrichen und versetzt nach 4/8; Achtelfähnchen auf 4/8 überschreibt Balken von 4–5/8."
                             },
                             {
                                 "svgGroupId": "g1",
@@ -1781,8 +1781,8 @@
                             }
                         ]
                     }
-                ]    
-            } 
+                ]
+            }
         },
         {
             "id": "M_114_Sk6",
@@ -1801,11 +1801,11 @@
                                 "measure": "19",
                                 "system": "13",
                                 "position": "1/4",
-                                "comment": "Viertelpause überschreibt Viertelnoten d<sup>1</sup> und {{ref.getGlyph('[b]')}}as<sup>1</sup>/c<sup>2</sup>."
+                                "comment": "Viertelpause überschreibt Viertelnoten d<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>/c<sup>2</sup>."
                             }
                         ]
                     }
-                ]     
+                ]
             }
         },
         {
@@ -1832,7 +1832,7 @@
                                 "measure": "24",
                                 "system": "13",
                                 "position": "1/8",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[#]')}}cis<sup>2</sup> überschreibt a<sup>2</sup>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt a<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g11",
@@ -1872,7 +1872,7 @@
                         ]
                     }
                 ]
-            }     
+            }
         },
         {
             "id": "M_114_Sk8",
@@ -1885,7 +1885,7 @@
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [ 
+                        "blockComments": [
                             {
                                 "svgGroupId": "g1",
                                 "measure": "35",
@@ -1899,49 +1899,57 @@
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Viertelnote d radiert."
-                            },                        {
+                            },
+                            {
                                 "svgGroupId": "g9",
                                 "measure": "38",
                                 "system": "5",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
-                            },                        {
+                            },
+                            {
                                 "svgGroupId": "g10",
                                 "measure": "38",
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "g überschreibt a."
-                            },                        {
+                            },
+                            {
                                 "svgGroupId": "g1",
                                 "measure": "39",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
-                            },                        {
+                            },
+                            {
                                 "svgGroupId": "g2",
                                 "measure": "39",
                                 "system": "1",
                                 "position": "4/16",
                                 "comment": "Sechzehntelbalken gestrichen."
-                            },                        {
+                            },
+                            {
                                 "svgGroupId": "g5",
                                 "measure": "39",
                                 "system": "2",
                                 "position": "2/4",
-                                "comment": "Viertelnote {{ref.getGlyph('[#]')}}fis gestrichen."
-                            },                        {
+                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis gestrichen."
+                            },
+                            {
                                 "svgGroupId": "g6",
                                 "measure": "39",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "g überschreibt {{ref.getGlyph('[a]')}}F."
-                            },                        {
+                                "comment": "g überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F."
+                            },
+                            {
                                 "svgGroupId": "g7",
                                 "measure": "40",
                                 "system": "2",
                                 "position": "1. Note",
-                                "comment": "As: {{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[#]')}}."
-                            },                        {
+                                "comment": "As: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+                            },
+                            {
                                 "svgGroupId": "g15",
                                 "measure": "41",
                                 "system": "2",
@@ -1974,14 +1982,14 @@
                                 "measure": "46",
                                 "system": "16",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[a]')}}e<sup>1</sup> überschreibt f<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g5",
                                 "measure": "48",
                                 "system": "16",
                                 "position": "1. Note",
-                                "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>: Halbe Note überschreibt Viertelnote? a<sup>2</sup>: Viertelnote überschreibt Halbe Note? Entzifferung unsicher."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>: Halbe Note überschreibt Viertelnote? a<sup>2</sup>: Viertelnote überschreibt Halbe Note? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g6",
@@ -2002,7 +2010,7 @@
                                 "measure": "52",
                                 "system": "12",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>1</sup> durch Einkreisung getilgt."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "g7",
@@ -2016,7 +2024,7 @@
                                 "measure": "54",
                                 "system": "13",
                                 "position": "(2/4)",
-                                "comment": "Halbe Note b<sup>1</sup> überschreibt Viertelnote as<sup>1</sup>/{{ref.getGlyph('[[b]]')}}ces<sup>2</sup>? Entzifferung unsicher."
+                                "comment": "Halbe Note b<sup>1</sup> überschreibt Viertelnote as<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces<sup>2</sup>? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g10",
@@ -2034,7 +2042,7 @@
                             }
                         ]
                     }
-                ] 
+                ]
             }
         },
         {
@@ -2089,7 +2097,7 @@
                                 "measure": "67B",
                                 "system": "5",
                                 "position": "5/8",
-                                "comment": "{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt c<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> überschreibt c<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g10",
@@ -2103,7 +2111,7 @@
                                 "measure": "73",
                                 "system": "2",
                                 "position": "1. Note",
-                                "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup>/{{ref.getGlyph('[[a]]')}}<sup>2</sup>: Viertelnote überschreibt Halbe Note."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]<sup>2</sup>: Viertelnote überschreibt Halbe Note."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2138,7 +2146,7 @@
                                 "measure": "{80A}",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "Viertelpause überschreibt {{ref.getGlyph('[b]')}} zu des<sup>3</sup>."
+                                "comment": "Viertelpause überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g9",
@@ -2173,28 +2181,28 @@
                                 "measure": "88",
                                 "system": "2",
                                 "position": "(3/4)",
-                                "comment": "Oberstimmenschicht: c/c<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des/{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt {{ref.getGlyph('[[a]]')}}H/{{ref.getGlyph('[a]')}}h–c/c<sup>1</sup>."
+                                "comment": "Oberstimmenschicht: c/c<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–c/c<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "88",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu Des gestrichen."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Des gestrichen."
                             },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "89",
                                 "system": "2",
                                 "position": "(1/4)",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[[b]]')}}ces/{{ref.getGlyph('[b]')}}ces<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des/{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt {{ref.getGlyph('[[a]]')}}H/{{ref.getGlyph('[a]')}}h–c/c<sup>1</sup>; {{ref.getGlyph('[b]')}}des<sup>1</sup> auf 4/16 gestrichen und ersetzt durch f<sup>1</sup>."
+                                "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–c/c<sup>1</sup>; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> auf 4/16 gestrichen und ersetzt durch f<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "89",
                                 "system": "1",
                                 "position": "(2–3/4}",
-                                "comment": "f<sup>1</sup>–g<sup>1</sup>–b<sup>1</sup>–{{ref.getGlyph('[b]')}}des<sup>2</sup> gestrichen und ersetzt durch g<sup>1</sup>–{{ref.getGlyph('[[a]]')}}h<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des<sup>2</sup>–f<sup>2</sup>."
+                                "comment": "f<sup>1</sup>–g<sup>1</sup>–b<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> gestrichen und ersetzt durch g<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>2</sup>–f<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g1",
@@ -2208,7 +2216,7 @@
                                 "measure": "{91}",
                                 "system": "4",
                                 "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[b]')}}des<sup>1</sup>/{{ref.getGlyph('[b]')}}des<sup>2</sup> überschreibt f<sup>1</sup>/f<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt f<sup>1</sup>/f<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2229,21 +2237,21 @@
                                 "measure": "94A",
                                 "system": "4",
                                 "position": "4. Note",
-                                "comment": "{{ref.getGlyph('[b]')}}b<sup>1</sup>/{{ref.getGlyph('[b]')}}b<sup>2</sup> radiert."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> radiert."
                             },
                             {
                                 "svgGroupId": "g12",
                                 "measure": "94A",
                                 "system": "4",
                                 "position": "5. Note",
-                                "comment": "{{ref.getGlyph('[a]')}}a<sup>2</sup> überschreibt c<sup>3</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup> überschreibt c<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g13",
                                 "measure": "94A",
                                 "system": "5",
                                 "position": "5. Note",
-                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}es<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g14",
@@ -2257,40 +2265,40 @@
                                 "measure": "95A",
                                 "system": "4",
                                 "position": "",
-                                "comment":"Noten pauschal gestrichen."
+                                "comment": "Noten pauschal gestrichen."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "95B",
                                 "system": "7",
                                 "position": "(5–6/8)",
-                                "comment": "Achtelnoten {{ref.getGlyph('[b]')}}es<sup>2</sup>–{{ref.getGlyph('[a]')}}d<sup>2</sup> gestrichen und Achtelbalken gestrichen."
+                                "comment": "Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> gestrichen und Achtelbalken gestrichen."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "95C",
                                 "system": "8",
                                 "position": "1.–2. Note",
-                                "comment": "{{ref.getGlyph('[[#]]')}}Fis–G gestrichen."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Fis–G gestrichen."
                             },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "95C",
                                 "system": "7",
                                 "position": "5. Note",
-                                "comment": "zusätzliches {{ref.getGlyph('[#]')}} zu fis<sup>2</sup> gestrichen? Entzifferung unsicher."
+                                "comment": "zusätzliches <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> gestrichen? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g12",
                                 "measure": "95C",
                                 "system": "8",
                                 "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[[#]]')}}Fis<sub>1</sub>/{{ref.getGlyph('[[#]]')}}Fis überschreibt A<sub>1</sub>/A."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Fis<sub>1</sub>/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Fis überschreibt A<sub>1</sub>/A."
                             }
                         ]
                     }
-                ]    
-            } 
+                ]
+            }
         },
         {
             "id": "M_114_Sk9_1",
@@ -2310,18 +2318,16 @@
                                 "system": "4",
                                 "position": "3/4",
                                 "comment": "Viertelnote D/d gestrichen."
-                            }  
+                            }
                         ]
                     }
-                ]   
-            }  
+                ]
+            }
         },
         {
             "id": "M_114_Sk9_2",
             "label": "M 114 Sk9.2",
-            "evaluations": [
-                "<strong>Sk9.2</strong> formuliert den in <strong>Sk9</strong> gestrichenen T. 91 neu."
-            ],
+            "evaluations": ["<strong>Sk9.2</strong> formuliert den in <strong>Sk9</strong> gestrichenen T. 91 neu."],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -2333,14 +2339,14 @@
                                 "measure": "95",
                                 "system": "7",
                                 "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "95",
                                 "system": "7",
                                 "position": "4. Note",
-                                "comment": "{{ref.getGlyph('[#]')}}gis<sup>2</sup> überschreibt a<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt a<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g9",
@@ -2351,7 +2357,7 @@
                             }
                         ]
                     }
-                ]     
+                ]
             }
         },
         {
@@ -2371,7 +2377,7 @@
                                 "measure": "97",
                                 "system": "2",
                                 "position": "4. Note",
-                                "comment": "{{ref.getGlyph('[b]')}}B überschreibt G."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B überschreibt G."
                             },
                             {
                                 "svgGroupId": "g7",
@@ -2413,7 +2419,7 @@
                                 "measure": "100A",
                                 "system": "6",
                                 "position": "8/16",
-                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g6",
@@ -2448,28 +2454,28 @@
                                 "measure": "106",
                                 "system": "14",
                                 "position": "(1/4)",
-                                "comment": "Punktierte Achtelnote as<sup>2</sup>/d<sup>3</sup>/f<sup>3</sup> und Sechzehntelnote {{ref.getGlyph('[b]')}}des<sup>2</sup> gestrichen."
+                                "comment": "Punktierte Achtelnote as<sup>2</sup>/d<sup>3</sup>/f<sup>3</sup> und Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "105B",
                                 "system": "15",
                                 "position": "4/16",
-                                "comment": "{{ref.getGlyph('[[a]]')}}H überschreibt G."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H überschreibt G."
                             },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "105B",
                                 "system": "14",
                                 "position": "4.–6 Note",
-                                "comment": "g<sup>2</sup>–f<sup>2</sup>–{{ref.getGlyph('[b]')}}es<sup>2</sup> überschreibt f<sup>2</sup>–{{ref.getGlyph('[#]')}}cis<sup>2</sup>–{{ref.getGlyph('[a]')}}h<sup>1</sup>."
+                                "comment": "g<sup>2</sup>–f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> überschreibt f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "105B",
                                 "system": "15",
                                 "position": "5.–6. Note",
-                                "comment": "{{ref.getGlyph('[a]')}}h–{{ref.getGlyph('[#]')}}cis<sup>1</sup> überschreibt g–h."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt g–h."
                             },
                             {
                                 "svgGroupId": "g6",
@@ -2501,19 +2507,17 @@
                             }
                         ]
                     }
-                ]   
-            }  
+                ]
+            }
         },
         {
             "id": "M_114_Sk10_1",
             "label": "M 114 Sk10.1",
-            "evaluations": [
-                "<strong>Sk10.1</strong> fügt einen zusätzlichen Takt in <strong>Sk10</strong> ein."
-            ],
+            "evaluations": ["<strong>Sk10.1</strong> fügt einen zusätzlichen Takt in <strong>Sk10</strong> ein."],
             "commentary": {
                 "preamble": "",
-                "comments": [] 
-            }    
+                "comments": []
+            }
         },
         {
             "id": "M_114_Sk11",
@@ -2539,35 +2543,35 @@
                                 "measure": "135",
                                 "system": "10",
                                 "position": "2/8",
-                                "comment": "{{ref.getGlyph('[[b]]')}}ces<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}a<sup>1</sup>."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "135",
                                 "system": "10",
                                 "position": "3/8",
-                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>2</sup> gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "135",
                                 "system": "11",
                                 "position": "6/8",
-                                "comment": "{{ref.getGlyph('[[a]]')}}A überschreibt F."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]A überschreibt F."
                             },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "136",
                                 "system": "10",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Viertelnote {{ref.getGlyph('[a]')}}g<sup>1</sup>/b<sup>1</sup> gestrichen."
+                                "comment": "Unterstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>/b<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "137",
                                 "system": "11",
                                 "position": "6/8",
-                                "comment": "{{ref.getGlyph('[[a]]')}}H überschreibt G."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H überschreibt G."
                             },
                             {
                                 "svgGroupId": "g10",
@@ -2609,14 +2613,14 @@
                                 "measure": "141A",
                                 "system": "15",
                                 "position": "3/8",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[[a]]')}}a<sup>2</sup> überschreibt c<sup>3</sup>."
+                                "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]a<sup>2</sup> überschreibt c<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g3",
                                 "measure": "140C",
                                 "system": "17",
                                 "position": "1/8",
-                                "comment": "{{ref.getGlyph('[b]')}}b<sup>2</sup> überschreibt f<sup>3</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt f<sup>3</sup>."
                             },
                             {
                                 "svgGroupId": "g5",
@@ -2630,12 +2634,12 @@
                                 "measure": "152",
                                 "system": "17",
                                 "position": "",
-                                "comment": "{{ref.getGlyph('[a]')}}e<sup>1</sup>/{{ref.getGlyph('[b]')}}as<sup>1</sup> überschreibt d<sup>1</sup>/g<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup> überschreibt d<sup>1</sup>/g<sup>1</sup>."
                             }
                         ]
                     }
                 ]
-            }        
+            }
         },
         {
             "id": "M_114_Sk12",
@@ -2658,8 +2662,8 @@
                             }
                         ]
                     }
-                ]  
-            }     
+                ]
+            }
         },
         {
             "id": "M_114_Sk13",
@@ -2685,49 +2689,49 @@
                                 "measure": "144",
                                 "system": "8",
                                 "position": "4–5/8",
-                                "comment": "es–{{ref.getGlyph('[b]')}}ces überschreibt c–As."
+                                "comment": "es–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces überschreibt c–As."
                             },
                             {
                                 "svgGroupId": "g8",
                                 "measure": "145",
                                 "system": "8",
                                 "position": "1/8",
-                                "comment": "es gestrichen und ersetzt durch {{ref.getGlyph('[[a]]')}}A."
+                                "comment": "es gestrichen und ersetzt durch [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]A."
                             },
                             {
                                 "svgGroupId": "g9",
                                 "measure": "146",
                                 "system": "7",
                                 "position": "1/8",
-                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "146",
                                 "system": "8",
                                 "position": "(1/4)",
-                                "comment": "Viertelnote {{ref.getGlyph('[b]')}}as/{{ref.getGlyph('[a]')}}c<sup>1</sup>."
+                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "147",
                                 "system": "8",
                                 "position": "5–6/8",
-                                "comment": "{{ref.getGlyph('[b]')}}as–c<sup>1</sup> überschreibt c<sup>1</sup>–{{ref.getGlyph('[[a]]')}}e<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as–c<sup>1</sup> überschreibt c<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]e<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g6",
                                 "measure": "149",
                                 "system": "10",
                                 "position": "2/8",
-                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g7",
                                 "measure": "149",
                                 "system": "11",
                                 "position": "3/8",
-                                "comment": "{{ref.getGlyph('[[b]]')}}ces<sup>1</sup> überschreibt b."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces<sup>1</sup> überschreibt b."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2741,21 +2745,21 @@
                                 "measure": "151",
                                 "system": "11",
                                 "position": "4–5/8",
-                                "comment": "{{ref.getGlyph('[#]')}}cis–{{ref.getGlyph('[a]')}}c überschreibt {{ref.getGlyph('[#]')}}His–{{ref.getGlyph('[#]')}}cis."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>His–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis."
                             },
                             {
                                 "svgGroupId": "g10",
                                 "measure": "152",
                                 "system": "11",
                                 "position": "2/8",
-                                "comment": "{{ref.getGlyph('[b]')}}fes gestrichen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes gestrichen."
                             },
                             {
                                 "svgGroupId": "g11",
                                 "measure": "152",
                                 "system": "11",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[a]')}}."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g1",
@@ -2795,7 +2799,7 @@
                         ]
                     }
                 ]
-            }     
+            }
         },
         {
             "id": "M_114_Sk14",
@@ -2828,7 +2832,7 @@
                                 "measure": "108",
                                 "system": "3",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}B gestrichen und ersetzt durch f."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B gestrichen und ersetzt durch f."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2863,7 +2867,7 @@
                                 "measure": "113",
                                 "system": "5",
                                 "position": "3/4",
-                                "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}es<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2891,7 +2895,7 @@
                                 "measure": "118",
                                 "system": "8",
                                 "position": "1/8",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt as<sup>2</sup>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt as<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g8",
@@ -2902,8 +2906,8 @@
                             }
                         ]
                     }
-                ]     
-            }   
+                ]
+            }
         }
     ]
 }

@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleinere Risse am rechten Rand. Stockflecken in der Ecke unten rechts."
                 ],
                 "writingMaterialStrings": [
@@ -15,9 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -363,8 +361,8 @@
             "siglumAddendum": "",
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Zweifache horizontale Knickfalte (auf halber und viertel Höhe). Stockflecken und rötliche Verfärbung in der Ecke oben rechts."
                 ],
                 "writingMaterialStrings": [
@@ -372,9 +370,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -749,8 +745,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift und Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Horizontale Knickfalte. Rötliche Verfärbung oben links. Risse oben und unten in der Mitte. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -758,9 +754,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1024,7 +1018,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_C<sup>a</sup>_corr_1",
+                        "id": "source_Ca_corr_1",
                         "label": "Korrekturen 1 in C<sup>a</sup> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
@@ -1043,13 +1037,13 @@
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "2/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "5",
@@ -1061,7 +1055,7 @@
                                             "measure": "5",
                                             "system": "Klav.",
                                             "position": "2/4",
-                                            "comment": "Ansatz zu Notenkopf <span class='glyph'>{{ref.getGlyph('[#]')}}</span>f<sup>2</sup>."
+                                            "comment": "Ansatz zu Notenkopf <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>f<sup>2</sup>."
                                         },
                                         {
                                             "measure": "6",
@@ -1117,7 +1111,7 @@
                         }
                     },
                     {
-                        "id": "source_C<sup>a</sup>_corr_2",
+                        "id": "source_Ca_corr_2",
                         "label": "Korrekturen 2 in C<sup>a</sup> (mit Tinte, Bleistift und braunem Buntstift im Hinblick auf Textfassungen 2 und 3)",
                         "evaluations": [],
                         "commentary": {
@@ -1130,7 +1124,7 @@
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "3/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2 </sup>hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2 </sup>hinzugefügt."
                                         },
                                         {
                                             "measure": "4",
@@ -1166,7 +1160,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Oberstimmenschicht: h<sup>3</sup> ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>3</sup>."
+                                            "comment": "Oberstimmenschicht: h<sup>3</sup> ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>3</sup>."
                                         },
                                         {
                                             "measure": "11",
@@ -1202,414 +1196,415 @@
                                 }
                             ]
                         }
-                    }
-                ]
-            }
-        },
-        {
-            "id": "source_C<sup>b</sup>_corr_1",
-            "label": "Korrekturen 1 in C<sup>b</sup> (mit Tinte und Bleistift)",
-            "evaluations": [],
-            "commentary": {
-                "preamble": "",
-                "comments": [
+                    },
+
                     {
-                        "blockHeader": "",
-                        "blockComments": [
-                            {
-                                "measure": "19",
-                                "system": "Klav. o.",
-                                "position": "2/4",
-                                "comment": "Auf Rasur."
-                            },
-                            {
-                                "measure": "20",
-                                "system": "Klav. o.",
-                                "position": "1–2/4",
-                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote, Viertelpause auf 2/4 gestrichen."
-                            },
-                            {
-                                "measure": "21",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
-                            },
-                            {
-                                "measure": "21",
-                                "system": "Klav. o.",
-                                "position": "2. Note",
-                                "comment": "Unterstimmenschicht: eis<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]f<sup>1</sup>."
-                            },
-                            {
-                                "measure": "22",
-                                "system": "Klav. o.",
-                                "position": "letzte Note",
-                                "comment": "Unterstimmenschicht: his<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
-                            },
-                            {
-                                "measure": "23",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
-                            },
-                            {
-                                "measure": "26",
-                                "system": "Klav. o.",
-                                "position": "1/8",
-                                "comment": "cis<sup>1</sup> mit Bleistift vorskizziert."
-                            },
-                            {
-                                "measure": "27–28",
-                                "system": "Klav. u.",
-                                "position": "1. Note–1. Note",
-                                "comment": "Ligatur gestrichen."
-                            },
-                            {
-                                "measure": "28",
-                                "system": "Klav. u.",
-                                "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[x]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
-                            },
-                            {
-                                "measure": "29",
-                                "system": "Klav. o.",
-                                "position": "2. Note",
-                                "comment": "Auf Rasur. Ante correcturam: e<sup>1</sup>."
-                            },
-                            {
-                                "measure": "30",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Notenhals nach oben ersetzt Notenhals nach unten."
-                            },
-                            {
-                                "measure": "30",
-                                "system": "Klav. o.",
-                                "position": "2/4",
-                                "comment": "Unterstimmenschicht: a mit Bleistift vorskizziert."
-                            },
-                            {
-                                "measure": "30",
-                                "system": "Klav. u.",
-                                "position": "2/4",
-                                "comment": "Oberstimmenschicht: f überschreibt mit Bleistift vorskizziertes e; Unterstimmenschicht: d überschreibt mit Bleistift vorskizziertes H."
-                            },
-                            {
-                                "measure": "30",
-                                "system": "Klav. o.",
-                                "position": "5. Note",
-                                "comment": "Oberstimmenschicht: Rasur unter der Note."
-                            },
-                            {
-                                "measure": "32",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Punktierte Halbe Note mit Bleistift vorskizziert."
-                            },
-                            {
-                                "measure": "34",
-                                "system": "Klav. o.",
-                                "position": "Taktanfang",
-                                "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
-                            },
-                            {
-                                "measure": "34",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
-                            },
-                            {
-                                "measure": "34",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Oberstimmenschicht: Rasur neben Note."
-                            },
-                            {
-                                "measure": "34",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote? Entzifferung unsicher."
-                            },
-                            {
-                                "measure": "34",
-                                "system": "Klav. o.",
-                                "position": "2. Note",
-                                "comment": "Unterstimmenschicht: Tintenfleck vor g<sup>1</sup>. Entzifferung unsicher."
-                            },
-                            {
-                                "measure": "35",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: auf Rasur."
-                            },
-                            {
-                                "measure": "36–39",
-                                "system": "",
-                                "position": "",
-                                "comment": "Takte pauschal gestrichen."
-                            },
-                            {
-                                "measure": "37",
-                                "system": "Klav. u.",
-                                "position": "2/4",
-                                "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen."
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "id": "source_C<sup>b</sup>_corr_2",
-            "label": "Korrekturen 2 in C<sup>b</sup> (mit Bleistift)",
-            "evaluations": [],
-            "commentary": {
-                "preamble": "",
-                "comments": [
+                        "id": "source_Cb_corr_1",
+                        "label": "Korrekturen 1 in C<sup>b</sup> (mit Tinte und Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/4",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote, Viertelpause auf 2/4 gestrichen."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: eis<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]f<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note",
+                                            "comment": "Unterstimmenschicht: his<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "23",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "26",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "cis<sup>1</sup> mit Bleistift vorskizziert."
+                                        },
+                                        {
+                                            "measure": "27–28",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note–1. Note",
+                                            "comment": "Ligatur gestrichen."
+                                        },
+                                        {
+                                            "measure": "28",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[x]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Auf Rasur. Ante correcturam: e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Notenhals nach oben ersetzt Notenhals nach unten."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Unterstimmenschicht: a mit Bleistift vorskizziert."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: f überschreibt mit Bleistift vorskizziertes e; Unterstimmenschicht: d überschreibt mit Bleistift vorskizziertes H."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "Oberstimmenschicht: Rasur unter der Note."
+                                        },
+                                        {
+                                            "measure": "32",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Punktierte Halbe Note mit Bleistift vorskizziert."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Rasur neben Note."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: Tintenfleck vor g<sup>1</sup>. Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: auf Rasur."
+                                        },
+                                        {
+                                            "measure": "36–39",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
                     {
-                        "blockHeader": "",
-                        "blockComments": [
-                            {
-                                "measure": "19",
-                                "system": "Klav. o.",
-                                "position": "Taktanfang",
-                                "comment": "Verweiszeichen über dem System: Verweis Auf Einschubstelle T. 19 in Textfassung 1."
-                            },
-                            {
-                                "measure": "19–25",
-                                "system": "Klav.",
-                                "position": "",
-                                "comment": "Takte pauschal mit braunem Buntstift gestrichen."
-                            },
-                            {
-                                "measure": "29–30",
-                                "system": "Klav. o.",
-                                "position": "",
-                                "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. Textfassung 3 T. 29–30). <br /> ##Abbildung##"
-                            },
-                            {
-                                "measure": "32",
-                                "system": "Klav. u.",
-                                "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g mit braunem Buntstift hinzugefügt."
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "id": "source_C<sup>c</sup>_corr_1",
-            "label": "Korrekturen 1 in C<sup>c</sup> (mit Tinte)",
-            "evaluations": [],
-            "commentary": {
-                "preamble": "",
-                "comments": [
+                        "id": "source_Cb_corr_2",
+                        "label": "Korrekturen 2 in C<sup>b</sup> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Verweiszeichen über dem System: Verweis Auf Einschubstelle T. 19 in Textfassung 1."
+                                        },
+                                        {
+                                            "measure": "19–25",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal mit braunem Buntstift gestrichen."
+                                        },
+                                        {
+                                            "measure": "29–30",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. Textfassung 3 T. 29–30). <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "32",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g mit braunem Buntstift hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
                     {
-                        "blockHeader": "",
-                        "blockComments": [
-                            {
-                                "measure": "22",
-                                "system": "Klav. o.",
-                                "position": "1/4",
-                                "comment": "Unter dem System: diastematisch undefinierter Notenkopf gestrichen."
-                            },
-                            {
-                                "measure": "nach 25",
-                                "system": "Klav.",
-                                "position": "",
-                                "comment": "Tonartwechsel: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
-                            },
-                            {
-                                "measure": "27–28",
-                                "system": "Klav. u.",
-                                "position": "1. Note <br /> 1. Note",
-                                "comment": "Ligatur gestrichen."
-                            },
-                            {
-                                "measure": "29",
-                                "system": "Klav. o.",
-                                "position": "4/8",
-                                "comment": "g<sup>1</sup>/g<sup>2</sup> überschreibt f<sup>1</sup>/f<sup>2</sup>."
-                            },
-                            {
-                                "measure": "29",
-                                "system": "Klav. o.",
-                                "position": "5/8",
-                                "comment": "f<sup>2</sup> überschreibt g<sup>2</sup>."
-                            },
-                            {
-                                "measure": "35",
-                                "system": "Klav. o.",
-                                "position": "1–4/8",
-                                "comment": "Oberstimmenschicht: Augmentationspunkte zu es<sup>2</sup> und b<sup>1</sup> sowie Sechzehntelbalken zu g<sup>2</sup> und c<sup>2</sup> rasiert; es<sup>2</sup>–g<sup>2</sup>–h<sup>1</sup>–c<sup>2</sup> zu Achtelnoten zusammengebalkt."
-                            },
-                            {
-                                "measure": "36",
-                                "system": "Klav. o.",
-                                "position": "1–2/8",
-                                "comment": "Oberstimmenschicht: Augmentationspunkt zu f<sup>2</sup> und Sechzehntelbalken zu e<sup>2</sup> rasiert."
-                            },
-                            {
-                                "measure": "37",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
-                            },
-                            {
-                                "measure": "41",
-                                "system": "Klav. o.",
-                                "position": "3–4/8",
-                                "comment": "Augmentationspunkt zu a<sup>1</sup>/a<sup>2</sup> und Sechzehntelbalken zu c<sup>2</sup>/c<sup>3</sup> gestrichen."
-                            },
-                            {
-                                "measure": "45",
-                                "system": "Klav. u.",
-                                "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b gestrichen."
-                            },
-                            {
-                                "measure": "46",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Punktierte Halbe Note überschreibt Viertelnote."
-                            },
-                            {
-                                "measure": "46",
-                                "system": "Klav. o.",
-                                "position": "3/4",
-                                "comment": "e<sup>1</sup> auf Rasur. Ante correcturam: Halsung nach unten."
-                            },
-                            {
-                                "measure": "48",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup>."
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "id": "source_C<sup>c</sup>_corr_2",
-            "label": "Korrekturen 2 in C<sup>c</sup> (mit Bleistift)",
-            "evaluations": [],
-            "commentary": {
-                "preamble": "",
-                "comments": [
+                        "id": "source_Cc_corr_1",
+                        "label": "Korrekturen 1 in C<sup>c</sup> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Unter dem System: diastematisch undefinierter Notenkopf gestrichen."
+                                        },
+                                        {
+                                            "measure": "nach 25",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Tonartwechsel: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
+                                        },
+                                        {
+                                            "measure": "27–28",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note <br /> 1. Note",
+                                            "comment": "Ligatur gestrichen."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "g<sup>1</sup>/g<sup>2</sup> überschreibt f<sup>1</sup>/f<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "5/8",
+                                            "comment": "f<sup>2</sup> überschreibt g<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Klav. o.",
+                                            "position": "1–4/8",
+                                            "comment": "Oberstimmenschicht: Augmentationspunkte zu es<sup>2</sup> und b<sup>1</sup> sowie Sechzehntelbalken zu g<sup>2</sup> und c<sup>2</sup> rasiert; es<sup>2</sup>–g<sup>2</sup>–h<sup>1</sup>–c<sup>2</sup> zu Achtelnoten zusammengebalkt."
+                                        },
+                                        {
+                                            "measure": "36",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/8",
+                                            "comment": "Oberstimmenschicht: Augmentationspunkt zu f<sup>2</sup> und Sechzehntelbalken zu e<sup>2</sup> rasiert."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Klav. o.",
+                                            "position": "3–4/8",
+                                            "comment": "Augmentationspunkt zu a<sup>1</sup>/a<sup>2</sup> und Sechzehntelbalken zu c<sup>2</sup>/c<sup>3</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b gestrichen."
+                                        },
+                                        {
+                                            "measure": "46",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Punktierte Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "46",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "e<sup>1</sup> auf Rasur. Ante correcturam: Halsung nach unten."
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup>."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
                     {
-                        "blockHeader": "",
-                        "blockComments": [
-                            {
-                                "measure": "24 <br /> bis 25",
-                                "system": "Klav. o.",
-                                "position": "2/4 <br /> 3/4",
-                                "comment": "Skizze über dem System: diastematisch undefinierte punktierte Achtelnote und Sechzehntelnote in T. 24 2/4, anschließend Geltungsstrichelung bis T. 25 3/4."
-                            },
-                            {
-                                "measure": "29–30",
-                                "system": "Klav.",
-                                "position": "",
-                                "comment": "Takte pauschal gestrichen."
-                            },
-                            {
-                                "measure": "29",
-                                "system": "Klav. u.",
-                                "position": "2–3/4",
-                                "comment": "Viertelpausen hinzugefügt."
-                            },
-                            {
-                                "measure": "35",
-                                "system": "Klav.",
-                                "position": "Taktanfang",
-                                "comment": "Taktartangabe 3/4 zwischen den Systemen hinzugefügt."
-                            },
-                            {
-                                "measure": "36",
-                                "system": "Klav. o.",
-                                "position": "1.–2. Note",
-                                "comment": "Unterstimmenschicht: Viertelnote d<sup>1</sup> überschrieben zu Achtelnote cis<sup>1</sup> und mit c<sup>1</sup> auf 1/8 zusammengebalkt; Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> auf 3/8 hinzugefügt und mit e<sup>1</sup> auf 4/8 zusammengebalkt."
-                            },
-                            {
-                                "measure": "37",
-                                "system": "Klav. o.",
-                                "position": "2/4",
-                                "comment": "Unterstimmenschicht: Viertelnote gis<sup>1</sup> überschrieben zu Achtelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span><span class='glyph'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>? Entzifferung unsicher."
-                            },
-                            {
-                                "measure": "38, 40, 41",
-                                "system": "Klav. o.",
-                                "position": "",
-                                "comment": "Takt jeweils über dem System eingeklammert."
-                            },
-                            {
-                                "measure": "39",
-                                "system": "Klav. u.",
-                                "position": "3–4/8",
-                                "comment": "f auf 4/8 überschrieben zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es und zusammengebalkt mit hinzugefügter Achtelnote f auf 3/8."
-                            },
-                            {
-                                "measure": "39",
-                                "system": "Klav. o.",
-                                "position": "(3/4)",
-                                "comment": "Achteltriole ersetzt durch zwei Achtelnoten c<sup>2</sup>/c<sup>3</sup>–b<sup>1</sup>/b<sup>2</sup>. Noten über dem System eingeklammert; Klammer wieder gestrichen? Entzifferung unsicher."
-                            },
-                            {
-                                "measure": "39",
-                                "system": "Klav. u.",
-                                "position": "3/4",
-                                "comment": "G nach unten gehalst."
-                            },
-                            {
-                                "measure": "41",
-                                "system": "Klav. o.",
-                                "position": "6. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> hinzugefügt."
-                            },
-                            {
-                                "measure": "42",
-                                "system": "Klav. u.",
-                                "position": "Taktanfang",
-                                "comment": "Nicht entzifferbare Anmerkung unter dem System."
-                            },
-                            {
-                                "measure": "42",
-                                "system": "Klav.",
-                                "position": "7. –8. Note",
-                                "comment": "Augmentationspunkt zu F/f bzw. f<sup>1</sup>/f<sup>2</sup> und Sechzehntelbalken zu G/g bzw. g<sup>1</sup>/g<sup>2</sup> hinzugefügt."
-                            },
-                            {
-                                "measure": "43",
-                                "system": "Klav. o.",
-                                "position": "Taktanfang",
-                                "comment": "Kreuz über dem System."
-                            },
-                            {
-                                "measure": "43",
-                                "system": "Klav.",
-                                "position": "",
-                                "comment": "Takt überarbeitet: <br /> ##Abbildung##"
-                            },
-                            {
-                                "measure": "44",
-                                "system": "Klav. o.",
-                                "position": "Taktanfang",
-                                "comment": "Einschubzeichen über dem System."
-                            },
-                            {
-                                "measure": "44",
-                                "system": "Klav. u.",
-                                "position": "1. Note",
-                                "comment": "Punktierte Halbe Note C eingekreist und ersetzt durch Viertelpause auf 1/4 und anschließende Halbe Note c<sup>1</sup>."
-                            },
-                            {
-                                "measure": "47",
-                                "system": "Klav. o.",
-                                "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> hinzugefügt."
-                            }
-                        ]
+                        "id": "source_Cc_corr_2",
+                        "label": "Korrekturen 2 in C<sup>c</sup> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "24 <br /> bis 25",
+                                            "system": "Klav. o.",
+                                            "position": "2/4 <br /> 3/4",
+                                            "comment": "Skizze über dem System: diastematisch undefinierte punktierte Achtelnote und Sechzehntelnote in T. 24 2/4, anschließend Geltungsstrichelung bis T. 25 3/4."
+                                        },
+                                        {
+                                            "measure": "29–30",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. u.",
+                                            "position": "2–3/4",
+                                            "comment": "Viertelpausen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "Taktartangabe 3/4 zwischen den Systemen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "36",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Unterstimmenschicht: Viertelnote d<sup>1</sup> überschrieben zu Achtelnote cis<sup>1</sup> und mit c<sup>1</sup> auf 1/8 zusammengebalkt; Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> auf 3/8 hinzugefügt und mit e<sup>1</sup> auf 4/8 zusammengebalkt."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Unterstimmenschicht: Viertelnote gis<sup>1</sup> überschrieben zu Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span><span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "38, 40, 41",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Takt jeweils über dem System eingeklammert."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Klav. u.",
+                                            "position": "3–4/8",
+                                            "comment": "f auf 4/8 überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es und zusammengebalkt mit hinzugefügter Achtelnote f auf 3/8."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Klav. o.",
+                                            "position": "(3/4)",
+                                            "comment": "Achteltriole ersetzt durch zwei Achtelnoten c<sup>2</sup>/c<sup>3</sup>–b<sup>1</sup>/b<sup>2</sup>. Noten über dem System eingeklammert; Klammer wieder gestrichen? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "G nach unten gehalst."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Klav. o.",
+                                            "position": "6. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "42",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Nicht entzifferbare Anmerkung unter dem System."
+                                        },
+                                        {
+                                            "measure": "42",
+                                            "system": "Klav.",
+                                            "position": "7. –8. Note",
+                                            "comment": "Augmentationspunkt zu F/f bzw. f<sup>1</sup>/f<sup>2</sup> und Sechzehntelbalken zu G/g bzw. g<sup>1</sup>/g<sup>2</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "43",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "43",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt überarbeitet: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "44",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Einschubzeichen über dem System."
+                                        },
+                                        {
+                                            "measure": "44",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Punktierte Halbe Note C eingekreist und ersetzt durch Viertelpause auf 1/4 und anschließende Halbe Note c<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "47",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -1620,8 +1615,8 @@
             "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Rötliche Verfärbung oben links auf Bl. 1 und oben rechts auf Bl. 2. Risse oben und unten in der Mitte. Rissspuren am linken Rand von Bl. 1 und 2: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -1629,9 +1624,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1995,8 +1988,8 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Bögen und 1 Blatt: Ein Bogen (Bl. 1/5), der einen Bogen (Bl. 2/3) und ein Blatt (Bl. 4) umschließt. Bl. 1<sup>v</sup> und 4<sup>v</sup> unbeschrieben. Riss oben in der Mitte auf beiden Bögen und dem Blatt. Rötliche Verfärbung oben rechts auf Bogen 2 und dem Blatt. Bogen 1 in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
@@ -2004,9 +1997,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [
                     "[<em><s>Sonatensatz</s></em>→] <em>Rondo für Klavier</em> auf Bl. 1<sup>r</sup> oben rechts. Durchstreichung und <em>Rondo </em>mit Bleistift"
@@ -2338,19 +2329,19 @@
                                             "measure": "39",
                                             "system": "Klav. o.",
                                             "position": "4.–6. Note",
-                                            "comment": "Viertelnote b<sup>1</sup>/b<sup>2</sup> geändert zu Triolenachteln durch Hinzufügen von <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>? Entzifferung unsicher."
+                                            "comment": "Viertelnote b<sup>1</sup>/b<sup>2</sup> geändert zu Triolenachteln durch Hinzufügen von <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>? Entzifferung unsicher."
                                         },
                                         {
                                             "measure": "40",
                                             "system": "Klav. o.",
                                             "position": "6. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> überschreibt es<sup>2</sup>? Entzifferung unsicher."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> überschreibt es<sup>2</sup>? Entzifferung unsicher."
                                         },
                                         {
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
                                             "measure": "42",
@@ -2362,25 +2353,25 @@
                                             "measure": "43",
                                             "system": "Klav. o.",
                                             "position": "5.–6. Note",
-                                            "comment": "e<sup>1</sup>/e<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2 </sup>ersetzt gestrichenes <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
+                                            "comment": "e<sup>1</sup>/e<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2 </sup>ersetzt gestrichenes <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
                                         },
                                         {
                                             "measure": "44",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für des."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für des."
                                         },
                                         {
                                             "measure": "48",
                                             "system": "Klav. u.",
                                             "position": "2/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis gestrichen."
                                         },
                                         {
                                             "measure": "63",
                                             "system": "Klav. o.",
                                             "position": "3/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> und as<sup>1</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> und as<sup>1</sup> gestrichen."
                                         },
                                         {
                                             "measure": "65",
@@ -2398,19 +2389,19 @@
                                             "measure": "71",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für ces überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für b."
+                                            "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für ces überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für b."
                                         },
                                         {
                                             "measure": "72",
                                             "system": "Klav. o.",
                                             "position": "3/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[bb]')}}</span> zu as<sup>2</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span> zu as<sup>2</sup> gestrichen."
                                         },
                                         {
                                             "measure": "72",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As gestrichen."
                                         },
                                         {
                                             "measure": "73",
@@ -2464,7 +2455,7 @@
                                             "measure": "91",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         }
                                     ]
                                 }
@@ -2521,7 +2512,7 @@
                                             "measure": "31",
                                             "system": "Klav. o.",
                                             "position": "2/8",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> mit blauem Buntstift hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> mit blauem Buntstift hinzugefügt."
                                         },
                                         {
                                             "measure": "33 <br /> bis 34",
@@ -2539,7 +2530,7 @@
                                             "measure": "34",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> hinzugefügt."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "34",
@@ -2551,31 +2542,31 @@
                                             "measure": "38",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis geändert zu Achteltriole <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis–d–e."
+                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis geändert zu Achteltriole <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis–d–e."
                                         },
                                         {
                                             "measure": "39",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c geändert zu Achteltriole <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c–d–e."
+                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c geändert zu Achteltriole <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c–d–e."
                                         },
                                         {
                                             "measure": "40",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>fes überschrieben zu Achtelpause und Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>fes."
+                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes überschrieben zu Achtelpause und Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes."
                                         },
                                         {
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis geändert zu Achtelpause und Achtelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis."
+                                            "comment": "Oberstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis geändert zu Achtelpause und Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis."
                                         },
                                         {
                                             "measure": "48",
                                             "system": "Klav. u.",
                                             "position": "2/4",
-                                            "comment": "Viertelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub> geändert zu punktierter Achtelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub> und Sechzehntelnote Fis."
+                                            "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub> geändert zu punktierter Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub> und Sechzehntelnote Fis."
                                         },
                                         {
                                             "measure": "48",
@@ -2593,7 +2584,7 @@
                                             "measure": "49",
                                             "system": "Klav. u.",
                                             "position": "2/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>A<sub>1</sub> gestrichen; Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>A geändert zu punktierter Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>A und Sechzehntelnote A<sub>1</sub>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>A<sub>1</sub> gestrichen; Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>A geändert zu punktierter Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>A und Sechzehntelnote A<sub>1</sub>."
                                         },
                                         {
                                             "measure": "49",
@@ -2611,13 +2602,13 @@
                                             "measure": "56",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "G/g gestrichen und ersetzt durch punktierte Achtelnote [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]Cis/[[#s]]cis und Sechzehntelnote D/d."
+                                            "comment": "G/g gestrichen und ersetzt durch punktierte Achtelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Cis/[[#s]]cis und Sechzehntelnote D/d."
                                         },
                                         {
                                             "measure": "57",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Fis/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis–G/g ersetzt durch Es/es–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>E/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis–G/g ersetzt durch Es/es–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>E/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e."
                                         },
                                         {
                                             "measure": "58",
@@ -2641,7 +2632,7 @@
                                             "measure": "68",
                                             "system": "Klav. o.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "68",
@@ -2653,13 +2644,13 @@
                                             "measure": "87",
                                             "system": "Klav. u.",
                                             "position": "12/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
                                         },
                                         {
                                             "measure": "89",
                                             "system": "Klav. u.",
                                             "position": "8/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
                                         },
                                         {
                                             "measure": "91–92",
@@ -2683,19 +2674,19 @@
                                             "measure": "92",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
-                                            "comment": "Punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2 </sup>und Sechzehntelnote d<sup>1</sup>/d<sup>2</sup> ersetzt durch Viertelnote as<sup>1</sup>/c<sup>2</sup>/f<sup>2</sup>."
+                                            "comment": "Punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2 </sup>und Sechzehntelnote d<sup>1</sup>/d<sup>2</sup> ersetzt durch Viertelnote as<sup>1</sup>/c<sup>2</sup>/f<sup>2</sup>."
                                         },
                                         {
                                             "measure": "92",
                                             "system": "Klav. o.",
                                             "position": "3.–4. Note",
-                                            "comment": "Punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2 </sup>und Sechzehntelnote c<sup>1</sup>/c<sup>2</sup> ersetzt durch Viertelnote g<sup>1</sup>/c<sup>2</sup>/es<sup>2</sup>."
+                                            "comment": "Punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2 </sup>und Sechzehntelnote c<sup>1</sup>/c<sup>2</sup> ersetzt durch Viertelnote g<sup>1</sup>/c<sup>2</sup>/es<sup>2</sup>."
                                         },
                                         {
                                             "measure": "93",
                                             "system": "Klav. o.",
                                             "position": "8/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/f<sup>2</sup> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/f<sup>2</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "93",
@@ -2728,25 +2719,25 @@
                                             "measure": "93",
                                             "system": "Klav. u.",
                                             "position": "3. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
                                             "measure": "95",
                                             "system": "Klav. o.",
                                             "position": "2/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
                                         },
                                         {
                                             "measure": "99",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> gestrichen."
                                         },
                                         {
                                             "measure": "100",
                                             "system": "Klav. u.",
                                             "position": "8/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
                                             "measure": "103",
@@ -2758,7 +2749,7 @@
                                             "measure": "103",
                                             "system": "Klav. o.",
                                             "position": "6. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup> überschreibt d<sup>2</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup> überschreibt d<sup>2</sup>."
                                         },
                                         {
                                             "measure": "104",
@@ -2776,7 +2767,7 @@
                                             "measure": "105",
                                             "system": "Klav. o.",
                                             "position": "7. Note",
-                                            "comment": "[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup> ersetzt durch cis<sup>3</sup> (vgl. vorangehende Korrektur)."
+                                            "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup> ersetzt durch cis<sup>3</sup> (vgl. vorangehende Korrektur)."
                                         },
                                         {
                                             "measure": "106",
@@ -2800,7 +2791,7 @@
                                             "measure": "108",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As<sub> </sub>überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B."
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As<sub> </sub>überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B."
                                         },
                                         {
                                             "measure": "109",
@@ -2824,7 +2815,7 @@
                                             "measure": "115",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> gestrichen."
                                         },
                                         {
                                             "measure": "128",
@@ -2836,7 +2827,7 @@
                                             "measure": "134",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>fes überschreibt es."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes überschreibt es."
                                         },
                                         {
                                             "measure": "134",
@@ -2848,7 +2839,7 @@
                                             "measure": "136",
                                             "system": "Klav.",
                                             "position": "5/8–6/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–f<sup>1</sup> ersetzt gestrichenes <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as–f in Klav. u."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>–f<sup>1</sup> ersetzt gestrichenes <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as–f in Klav. u."
                                         },
                                         {
                                             "measure": "141",
@@ -2866,7 +2857,7 @@
                                             "measure": "143",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. Korrekturen 2)."
+                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. Korrekturen 2)."
                                         },
                                         {
                                             "measure": "146",
@@ -2878,7 +2869,7 @@
                                             "measure": "148",
                                             "system": "Klav. u.",
                                             "position": "2–3/8",
-                                            "comment": "As–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es."
+                                            "comment": "As–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es."
                                         },
                                         {
                                             "measure": "150",
@@ -2932,7 +2923,7 @@
                                             "measure": "155",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "Oberstimmenschicht: [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. Korrekturen 2)."
+                                            "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. Korrekturen 2)."
                                         }
                                     ]
                                 }
@@ -2965,13 +2956,13 @@
                                             "measure": "94",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> hinzugefügt. Über dem System: <em>ces</em>"
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> hinzugefügt. Über dem System: <em>ces</em>"
                                         },
                                         {
                                             "measure": "95 <br /> bis 96",
                                             "system": "Klav. o.",
                                             "position": "3/4 <br /> 1/4",
-                                            "comment": "Viertelpausen überschrieben zu punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>3 </sup>und Sechzehntelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>3</sup> in T. 95 sowie Achtelnote b<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>fes<sup>2</sup>/b<sup>2</sup> und Achtelpause in T. 96. Legatobogen von punktierter Achtelnote des<sup>2</sup>/des<sup>3 </sup>zu Achtelnote b<sup>1</sup>/fes<sup>2</sup>/b<sup>2 </sup>hinzugefügt."
+                                            "comment": "Viertelpausen überschrieben zu punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>3 </sup>und Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>3</sup> in T. 95 sowie Achtelnote b<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes<sup>2</sup>/b<sup>2</sup> und Achtelpause in T. 96. Legatobogen von punktierter Achtelnote des<sup>2</sup>/des<sup>3 </sup>zu Achtelnote b<sup>1</sup>/fes<sup>2</sup>/b<sup>2 </sup>hinzugefügt."
                                         },
                                         {
                                             "measure": "96",
@@ -3091,7 +3082,7 @@
                                             "measure": "136",
                                             "system": "Klav. u.",
                                             "position": "3/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A hinzugefügt."
                                         },
                                         {
                                             "measure": "138–139",
@@ -3103,19 +3094,19 @@
                                             "measure": "139",
                                             "system": "Klav. u.",
                                             "position": "3–4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>A–d hinzugefügt und mit 1–2/8 zusammengebalkt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>A–d hinzugefügt und mit 1–2/8 zusammengebalkt."
                                         },
                                         {
                                             "measure": "141",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. Korrekturen 1)."
+                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. Korrekturen 1)."
                                         },
                                         {
                                             "measure": "141",
                                             "system": "Klav. o.",
                                             "position": "5/8",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> hinzugefügt."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "141–145",
@@ -3127,7 +3118,7 @@
                                             "measure": "142",
                                             "system": "Klav. o.",
                                             "position": "5–6/8",
-                                            "comment": "Achtelnoten g<sup>3</sup>–<span class='glyph'>{{ref.getGlyph('[bb]')}}</span>geses<sup>3</sup> (lies: heses<sup>3</sup>) hinzugefügt und mit übrigen Noten zusammengebalkt (vgl. TkA)."
+                                            "comment": "Achtelnoten g<sup>3</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>geses<sup>3</sup> (lies: heses<sup>3</sup>) hinzugefügt und mit übrigen Noten zusammengebalkt (vgl. TkA)."
                                         },
                                         {
                                             "measure": "143",
@@ -3253,7 +3244,7 @@
                                             "measure": "156",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
                                         },
                                         {
                                             "measure": "157",
@@ -3265,7 +3256,7 @@
                                             "measure": "157",
                                             "system": "Klav. o.",
                                             "position": "3/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h, f<sup>2</sup> und h<sup>2</sup> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h, f<sup>2</sup> und h<sup>2</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "158",
@@ -3310,7 +3301,7 @@
                                             "measure": "115",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1 </sup>überschreibt d<sup>1</sup>/f<sup>1</sup>."
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1 </sup>überschreibt d<sup>1</sup>/f<sup>1</sup>."
                                         },
                                         {
                                             "measure": "118",
@@ -3337,13 +3328,13 @@
                                             "measure": "109 <br /> bis 110",
                                             "system": "Klav. u.",
                                             "position": "letzte Note <br /> 1. Note",
-                                            "comment": "Ligaturen gestrichen und <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu Viertelnote As<sub>1</sub>/As in T. 110 hinzugefügt."
+                                            "comment": "Ligaturen gestrichen und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Viertelnote As<sub>1</sub>/As in T. 110 hinzugefügt."
                                         },
                                         {
                                             "measure": "110",
                                             "system": "Klav. u.",
                                             "position": "3–4/8",
-                                            "comment": "C/c–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>As ersetzt durch E/e–C/c."
+                                            "comment": "C/c–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As ersetzt durch E/e–C/c."
                                         },
                                         {
                                             "measure": "110",
@@ -3374,7 +3365,7 @@
                             ]
                         }
                     }
-                ]                
+                ]
             }
         }
     ]
