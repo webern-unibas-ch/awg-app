@@ -2225,7 +2225,7 @@
                             {
                                 "svgGroupId": "g-tkk-16",
                                 "measure": "76",
-                                "system": "21",
+                                "system": "2",
                                 "position": "8/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Es."
                             },
