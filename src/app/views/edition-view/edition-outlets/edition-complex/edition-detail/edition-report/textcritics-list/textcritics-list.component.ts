@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { TextcriticsList } from '@awg-views/edition-view/models';
@@ -57,14 +57,18 @@ export class TextcriticsListComponent {
     ref: TextcriticsListComponent;
 
     /**
+     * Public readonly injection variable: UTILS.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    readonly UTILS = inject(UtilityService);
+
+    /**
      * Constructor of the TextcriticsComponent.
      *
-     * It declares a public instance of the UtilityService and
-     * initializes the self-referring ref variable needed for CompileHtml library.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      */
-    constructor(public utils: UtilityService) {
+    constructor() {
         this.ref = this;
     }
 

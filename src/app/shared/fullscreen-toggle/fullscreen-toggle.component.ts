@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, inject,
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { FullscreenService } from '@awg-app/core/services';
+import { FullscreenService } from '@awg-core/services';
 
 /**
  * The FullscreenToggle component.

@@ -1,0 +1,44 @@
+{
+    "textcritics": [
+        {
+            "id": "M_267_TF1",
+            "label": "M 267 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition des Kinderstücks für Klavier M 267 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A'})\"><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition des Kinderstücks für Klavier M 267 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g-tkk-1",
+                                "measure": "1 <br /> bis 2",
+                                "system": "Klav.",
+                                "position": "5/8 <br /> 1. Note",
+                                "comment": "Decrescendogabel versetzt von unter den Systemen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-2",
+                                "measure": "5",
+                                "system": "Klav.",
+                                "position": "2–3/8",
+                                "comment": "Decrescendogabel versetzt von unter den Systemen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-3",
+                                "measure": "6",
+                                "system": "Klav.",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 3/8."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

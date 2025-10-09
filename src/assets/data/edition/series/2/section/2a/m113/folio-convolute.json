@@ -1,0 +1,2382 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk2a",
+                            "sigle": "M 26 Sk2",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk2b",
+                            "sigle": "M 26 Sk2",
+                            "sigleAddendum": "T. 8–9",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar452",
+                            "sheetId": "Mstar_452_SkXXa",
+                            "selectable": false,
+                            "sigle": "M* 452 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar452",
+                            "sheetId": "Mstar_452_SkXXb",
+                            "selectable": false,
+                            "sigle": "M* 452 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXa",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 25
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXb",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 18,
+                                    "endSystem": 21
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1a",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1b",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1d",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1c",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1e",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX1e",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2a",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2b",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2c",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2d",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX2e",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 27,
+                                    "endSystem": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXa",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXb",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXa",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXb",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXc",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXd",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXe",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXX",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXa",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXb",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXc",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_SkXXd",
+                            "sigle": "M 66 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXc",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXc",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXd",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXd",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXc",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXc",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXd",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "4r",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3b",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 20A–{24A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3c",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 20B–23B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3d",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 24B–28",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3e",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 29–{31A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3f",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 31B–33",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk4",
+                            "sigle": "M 113 Sk4",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5b",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 41B–43B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5c",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 44–50",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5d",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 51–54",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5_1a",
+                            "sigle": "M 113 Sk5.1",
+                            "sigleAddendum": "T. 44–44+3(1–3/8)",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5_1b",
+                            "sigle": "M 113 Sk5.1",
+                            "sigleAddendum": "T. 44+3(4–6/8)",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "4v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 347,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXc",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXd",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1a",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 1–4A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1b",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. {4B}–7",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1c",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 8–12B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1e",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 12C–14B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1d",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 11B",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1f",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 12E–15B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1g",
+                            "sigle": "M 113 Sk1",
+                            "sigleAddendum": "T. 16–17",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3a",
+                            "sigle": "M 113 Sk3",
+                            "sigleAddendum": "T. 18–19",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "26",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF1a",
+                            "sigle": "M 78 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF1b",
+                            "sigle": "M 78 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 7–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF1c",
+                            "sigle": "M 78 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 12–17",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF1d",
+                            "sigle": "M 78 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 18–20",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "Harmonisches Schema",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 17,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXX",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 25,
+                                    "endSystem": 26
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "26",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXa",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_SkXXb",
+                            "sigle": "M 78 Sk##",
+                            "sigleAddendum": "T. ###",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk6a",
+                            "sigle": "M 113 Sk6",
+                            "sigleAddendum": "T. 34–36",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk6b",
+                            "sigle": "M 113 Sk6",
+                            "sigleAddendum": "T. 37–40",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5_2",
+                            "sigle": "M 113 Sk5.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5e",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 55–58",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5f",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 59–61",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5g",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 62–71A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 15,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5h",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 71B(4–6/8)–{72A}",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5h",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. {72B(6/8)}–74",
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5i",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 75",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5j",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 76–78",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5k",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 79–82",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "26",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_TF4",
+                            "sigle": "M 66 Tintenniederschrift TF4",
+                            "sigleAddendum": "T. 68–76",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_TF4",
+                            "sigle": "M 66 Tintenniederschrift TF4",
+                            "sigleAddendum": "T. 77–84",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_TF4",
+                            "sigle": "M 66 Tintenniederschrift TF4",
+                            "sigleAddendum": "T. 85–92",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_TF4",
+                            "sigle": "M 66 Tintenniederschrift TF4",
+                            "sigleAddendum": "T. 93–101",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m66",
+                            "sheetId": "M_66_TF4",
+                            "sigle": "M 66 Tintenniederschrift TF4",
+                            "sigleAddendum": "T. 102–108",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 25
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "26",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF3",
+                            "sigle": "M 78 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 25–29",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF3",
+                            "sigle": "M 78 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 30–35",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF3",
+                            "sigle": "M 78 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 36–39",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF3",
+                            "sigle": "M 78 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 40–44",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 20
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m78",
+                            "sheetId": "M_78_TF3",
+                            "sigle": "M 78 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 45–47",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 23,
+                                    "endSystem": 26
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Tintenniederschrift und Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5(1–3/8)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 5(4–6/8)–9",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 10–13",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {14}–15",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2a",
+                            "sigle": "M 113 Sk2 T. 16A",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2b",
+                            "sigle": "M 113 Sk2",
+                            "sigleAddendum": "T. 16B–17A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {16}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–17",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2c",
+                            "sigle": "M 113 Sk2",
+                            "sigleAddendum": "T. 16C–17B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5a",
+                            "sigle": "M 113 Sk5",
+                            "sigleAddendum": "T. 39–41A",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 3,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 18–21",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 22–26",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 27–31",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 32–35",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 36–39",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 40–44",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 45–50",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. {51–52}, 53–56",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 51–52",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 57–60",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 61–64",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 65–71",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 72–74",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 75–77",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "22",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 345,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 78–81",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m113",
+                            "sheetId": "M_113_TF1",
+                            "sigle": "M 113 Tintenniederschrift",
+                            "sigleAddendum": "T. 82–84",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9a",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 44–49",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9b",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 50–56(1–2/4)",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9c",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 56(2–3/4)–58",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10a",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 60–64",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10b",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 65–{70A}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10e",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 77–78",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10c",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 67B–70B",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10_1",
+                            "sigle": "M 114 Sk10.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10d",
+                            "sigle": "M 114 Sk10",
+                            "sigleAddendum": "T. 71–76",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

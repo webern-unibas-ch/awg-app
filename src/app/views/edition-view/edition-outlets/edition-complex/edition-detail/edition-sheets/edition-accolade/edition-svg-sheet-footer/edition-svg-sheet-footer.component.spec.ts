@@ -245,21 +245,20 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
             });
 
-            it('... should contain fa-icon with chevronRight in evaluation paragraph if showEvaluation = false', () => {
+            it('... should display chevronRight icon in evaluation paragraph if showEvaluation = false', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p:first-child',
                     1,
                     1
                 );
-                const iconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
+                const faIconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expect(iconDes[0].children[0]).toBeTruthy();
-                expect(iconDes[0].children[0].classes).toBeTruthy();
-                expectToBe(iconDes[0].children[0].classes['fa-chevron-right'], true);
+                expectToBe(faIconIns(), expectedChevronRightIcon);
             });
 
-            it('... should contain fa-icon with chevronDown in evaluation paragraph if showEvaluation = true', () => {
+            it('... should display chevronDown icon in evaluation paragraph if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
@@ -269,11 +268,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1,
                     1
                 );
-                const iconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
+                const faIconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expect(iconDes[0].children[0]).toBeTruthy();
-                expect(iconDes[0].children[0].classes).toBeTruthy();
-                expectToBe(iconDes[0].children[0].classes['fa-chevron-down'], true);
+                expectToBe(faIconIns(), expectedChevronDownIcon);
             });
 
             it('... should contain a span.smallcaps in evaluation paragraph with first EditionTkaLabelComponent', () => {

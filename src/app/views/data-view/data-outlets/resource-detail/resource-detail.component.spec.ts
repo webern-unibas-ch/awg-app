@@ -155,7 +155,7 @@ describe('ResourceDetailComponent', () => {
 
         // Convert json objects
         jsonConvert = new JsonConvert();
-        expectedResourceFullResponseJson = jsonConvert.deserializeObject(
+        expectedResourceFullResponseJson = jsonConvert.deserialize(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );

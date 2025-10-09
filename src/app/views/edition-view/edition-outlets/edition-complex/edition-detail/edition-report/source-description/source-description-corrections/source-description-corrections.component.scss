@@ -1,0 +1,17 @@
+.awg-source-description-corrections-toggle {
+    margin-left: 1em;
+    cursor: pointer;
+
+    &.text-muted {
+        transition: color 0.2s;
+    }
+
+    &:hover,
+    &:focus {
+        color: inherit !important;
+    }
+}
+
+.awg-source-description-corrections-toggle-text {
+    text-decoration: underline;
+}
