@@ -136,7 +136,7 @@
                                 { "complex": "M43", "disabled": false },
                                 { "complex": "M44", "disabled": false },
                                 { "complex": "M113", "disabled": false },
-                                { "complex": "M114", "disabled": true },
+                                { "complex": "M114", "disabled": false },
                                 { "complex": "M112", "disabled": true },
                                 { "complex": "M267", "disabled": false }
                             ]
