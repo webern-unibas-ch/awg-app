@@ -1874,7 +1874,7 @@
                                 "measure": "79",
                                 "system": "21",
                                 "position": "1/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
+                                "comment": "Oberstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt Halbe Note <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-21",
