@@ -5490,10 +5490,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:~5.1.9":
-  version: 5.1.9
-  resolution: "@types/jasmine@npm:5.1.9"
-  checksum: 10c0/f39edad861c8d9c980fc5a8b594dc835d72bfa4187b9799a8a1d716b658ac0680e4a50d60e792718acfa19dc62016e8a23c2c6a87a2c90d1e31d070c01da1954
+"@types/jasmine@npm:~5.1.10":
+  version: 5.1.10
+  resolution: "@types/jasmine@npm:5.1.10"
+  checksum: 10c0/8edbf597ff024b5c1f6aed389032d63b4d186006c56b1187c536b58e26ca76744202fee7bc78a93a57e71ae9581f468e92b490df285eb817520422fa5ce330c7
   languageName: node
   linkType: hard
 
@@ -6646,7 +6646,7 @@ __metadata:
     "@ng-bootstrap/ng-bootstrap": "npm:^19.0.1"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
-    "@types/jasmine": "npm:~5.1.9"
+    "@types/jasmine": "npm:~5.1.10"
     "@types/node": "npm:^24.7.2"
     angular-cli-ghpages: "npm:^2.0.3"
     angular-eslint: "npm:^20.4.0"
