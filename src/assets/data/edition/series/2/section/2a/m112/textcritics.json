@@ -2552,7 +2552,7 @@
                             {
                                 "svgGroupId": "g-tkk-6",
                                 "measure": "{90A}",
-                                "system": "12",
+                                "system": "10",
                                 "position": "(5/8)",
                                 "comment": "Metrisch falsch gesetzte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> radiert."
                             },
