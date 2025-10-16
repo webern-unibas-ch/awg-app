@@ -662,7 +662,7 @@
                                 "measure": "11",
                                 "system": "7",
                                 "position": "9. Note",
-                                "comment": "sic: zwei <span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g-tkk-26",
@@ -2181,13 +2181,6 @@
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu möglichem es<sup>3</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
-                                "measure": "66",
-                                "system": "13",
-                                "position": "2/2",
-                                "comment": "Halbe Note überschreibt Viertelnote."
-                            },
-                            {
                                 "svgGroupId": "g-tkk-11",
                                 "measure": "70",
                                 "system": "9",
@@ -2811,10 +2804,10 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
-                                "measure": "",
-                                "system": "",
-                                "position": "",
-                                "comment": ""
+                                "measure": "17",
+                                "system": "8",
+                                "position": "1/2",
+                                "comment": "As<sub>1</sub> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",

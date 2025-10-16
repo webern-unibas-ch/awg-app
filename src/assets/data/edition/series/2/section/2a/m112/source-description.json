@@ -87,7 +87,7 @@
                                     [
                                         {
                                             "system": "20a–21a",
-                                            "measure": "25–28",
+                                            "measure": "26–29",
                                             "linkTo": "M_112_Sk1h"
                                         }
                                     ]
@@ -101,49 +101,49 @@
                                     [
                                         {
                                             "system": "2–3",
-                                            "measure": "29–33",
+                                            "measure": "30–34",
                                             "linkTo": "M_112_Sk1i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
-                                            "measure": "34–37",
+                                            "measure": "35–38",
                                             "linkTo": "M_112_Sk1j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9",
-                                            "measure": "38–43",
+                                            "measure": "39–44",
                                             "linkTo": "M_112_Sk1k"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–12",
-                                            "measure": "44–50",
+                                            "measure": "45–51",
                                             "linkTo": "M_112_Sk1l"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
-                                            "measure": "51–57",
+                                            "measure": "52–58",
                                             "linkTo": "M_112_Sk1m"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
-                                            "measure": "58–62",
+                                            "measure": "59–63",
                                             "linkTo": "M_112_Sk1n"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "19–21",
-                                            "measure": "63–65, 66A–67A",
+                                            "measure": "64–66, 67A–68A",
                                             "linkTo": "M_112_Sk1o"
                                         }
                                     ]
@@ -157,21 +157,21 @@
                                     [
                                         {
                                             "system": "1–3",
-                                            "measure": "68A, {69A}",
+                                            "measure": "69A, {70A}",
                                             "linkTo": "M_112_Sk1p"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
-                                            "measure": "67B–69B, 70A, {71–72}",
+                                            "measure": "68B–70B, 71A, {72–3}",
                                             "linkTo": "M_112_Sk1q"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9",
-                                            "measure": "66B, 67C–69C, 70B",
+                                            "measure": "67B, 68C–70C, 71B",
                                             "linkTo": "M_112_Sk1r"
                                         }
                                     ]
@@ -1041,8 +1041,85 @@
                                             "measure": "116A",
                                             "linkTo": "M_112_Sk10d"
                                         }
-                                    ]
-                                ]
+                                    ],
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "109B–111B, 112C",
+                                            "linkTo": "M_112_Sk10e"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "113B–116B, 117",
+                                            "linkTo": "M_112_Sk10f"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7—8",
+                                            "measure": "118A—123A",
+                                            "linkTo": "M_112_Sk10g"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10—11",
+                                            "measure": "124—126",
+                                            "linkTo": "M_112_Sk10h"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13—14",
+                                            "measure": "118B—121B",
+                                            "linkTo": "M_112_Sk10i"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10b—11b",
+                                            "measure": "122B—123B",
+                                            "linkTo": "M_112_Sk10j"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16—17",
+                                            "measure": "127—131",
+                                            "linkTo": "M_112_Sk10k"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19—20",
+                                            "measure": "{132A—133A}, 132B–133B",
+                                            "linkTo": "M_112_Sk10l"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2—3",
+                                            "measure": "134—137",
+                                            "linkTo": "M_112_Sk10m"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5—6",
+                                            "measure": "138—141",
+                                            "linkTo": "M_112_Sk10n"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9—10",
+                                            "measure": "149—151",
+                                            "linkTo": "M_112_Sk10o"
+                                        }
+                                    ]                                                                                                                                                                                                                                                                                                                                
+                                ]                                                                                                                   
                             }
                         ]
                     },
