@@ -3402,14 +3402,14 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-72",
-                                "measure": "144",
+                                "measure": "149",
                                 "system": "10",
                                 "position": "1/2",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis."
                             },
                             {
                                 "svgGroupId": "g-tkk-73",
-                                "measure": "144",
+                                "measure": "149",
                                 "system": "9",
                                 "position": "(3/4)",
                                 "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b gestrichen? Entzifferung unsicher."
