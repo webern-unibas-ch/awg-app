@@ -3318,7 +3318,7 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-60",
-                                "measure": "128",
+                                "measure": "134",
                                 "system": "3",
                                 "position": "2/2",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As."
