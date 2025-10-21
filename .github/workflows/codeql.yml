@@ -43,7 +43,7 @@ jobs:
                   languages: ${{ matrix.language }}
             # If this step fails, then you should remove it and run the build manually (see below)
             - name: Autobuild
-              uses: github/codeql-action/autobuild@16140ae1a102900babc80a33c44059580f687047 # v3.29.5
+              uses: github/codeql-action/autobuild@16140ae1a102900babc80a33c44059580f687047 # v4.30.9
             - name: Perform CodeQL Analysis
               uses: github/codeql-action/analyze@16140ae1a102900babc80a33c44059580f687047 # v3.29.5
               with:
