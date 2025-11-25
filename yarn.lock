@@ -393,9 +393,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/core@npm:20.3.2":
-  version: 20.3.2
-  resolution: "@angular-devkit/core@npm:20.3.2"
+"@angular-devkit/core@npm:20.3.4":
+  version: 20.3.4
+  resolution: "@angular-devkit/core@npm:20.3.4"
   dependencies:
     ajv: "npm:8.17.1"
     ajv-formats: "npm:3.0.1"
@@ -408,7 +408,7 @@ __metadata:
   peerDependenciesMeta:
     chokidar:
       optional: true
-  checksum: 10c0/02c5d61f336f3d72d091258f24a9236129ea8f64b5da3cfc58a71ba5aff0250544203554800a0b40b322de65aae69d63ba4584feb10c5e17255242cf8a1f73af
+  checksum: 10c0/1a7dc93244afb941bf1cbe3550a320b7f695e4ddc6bf3efc90f130aaa26dde7b3d17aa7174956fdcc8bf8a22d1726b9f0b799e30264051fe0330489e90a7d846
   languageName: node
   linkType: hard
 
@@ -431,16 +431,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/schematics@npm:20.3.2":
-  version: 20.3.2
-  resolution: "@angular-devkit/schematics@npm:20.3.2"
+"@angular-devkit/schematics@npm:20.3.4":
+  version: 20.3.4
+  resolution: "@angular-devkit/schematics@npm:20.3.4"
   dependencies:
-    "@angular-devkit/core": "npm:20.3.2"
+    "@angular-devkit/core": "npm:20.3.4"
     jsonc-parser: "npm:3.3.1"
     magic-string: "npm:0.30.17"
     ora: "npm:8.2.0"
     rxjs: "npm:7.8.2"
-  checksum: 10c0/d2e727cd6bbcc04f6b595991341ccd66acec8c2f023f2f89305c758f45ce600555d4c458a6df165e60d40b6dea9696d231c27e4380b6e3cb134163d8846bcf1f
+  checksum: 10c0/ddd257ac680440e40d5c6f59c15b08e906ac43687798b14374cfbcac44d08b2d3355bac4852cb76e8751eefa7798cafc2c44774d6dc50398d27b19e2b6f8226d
   languageName: node
   linkType: hard
 
@@ -2695,11 +2695,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@compodoc/compodoc@npm:^1.1.31":
-  version: 1.1.31
-  resolution: "@compodoc/compodoc@npm:1.1.31"
+"@compodoc/compodoc@npm:^1.1.32":
+  version: 1.1.32
+  resolution: "@compodoc/compodoc@npm:1.1.32"
   dependencies:
-    "@angular-devkit/schematics": "npm:20.3.2"
+    "@angular-devkit/schematics": "npm:20.3.4"
     "@babel/core": "npm:7.28.4"
     "@babel/plugin-transform-private-methods": "npm:7.27.1"
     "@babel/preset-env": "npm:7.28.3"
@@ -2721,7 +2721,7 @@ __metadata:
     glob: "npm:^11.0.3"
     handlebars: "npm:^4.7.8"
     html-entities: "npm:^2.6.0"
-    i18next: "npm:25.5.2"
+    i18next: "npm:25.5.3"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     loglevel: "npm:^1.9.2"
@@ -2740,11 +2740,11 @@ __metadata:
     svg-pan-zoom: "npm:^3.6.2"
     tablesort: "npm:^5.6.0"
     ts-morph: "npm:^27.0.0"
-    uuid: "npm:^13.0.0"
+    uuid: "npm:11.1.0"
     vis-network: "npm:^10.0.2"
   bin:
     compodoc: bin/index-cli.js
-  checksum: 10c0/32644946933e0a2b209345814d432c22dd7089e9e753ce9841df726fb1dd20c0a9bab006a4f018605c06fda9b11d4faf3fc72e54d223783b26033d2f9f946146
+  checksum: 10c0/0244e28a47a9b9d84d8047f68154fbcbba37db2d53f3e0f4190f0eaf1bf3c6e953bb93fc6a13b72306cf49451e5c8a46b41aa248051fb151b97fa494f0f231e8
   languageName: node
   linkType: hard
 
@@ -6658,7 +6658,7 @@ __metadata:
     "@codemirror/legacy-modes": "npm:^6.5.2"
     "@commitlint/cli": "npm:^20.1.0"
     "@commitlint/config-angular": "npm:^20.0.0"
-    "@compodoc/compodoc": "npm:^1.1.31"
+    "@compodoc/compodoc": "npm:^1.1.32"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.38.0"
     "@fortawesome/angular-fontawesome": "npm:^3.0.0"
@@ -11174,9 +11174,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:25.5.2":
-  version: 25.5.2
-  resolution: "i18next@npm:25.5.2"
+"i18next@npm:25.5.3":
+  version: 25.5.3
+  resolution: "i18next@npm:25.5.3"
   dependencies:
     "@babel/runtime": "npm:^7.27.6"
   peerDependencies:
@@ -11184,7 +11184,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/25db34d17e8f11f0cd52d9ddc9c2e5942800aaaa20d0f40563aa1c50e958abd553d82ab3acf2b50ed46530c8d5cf0d5d5ccaf4d75df660c96083f78c83553438
+  checksum: 10c0/0ebd20b9b06a7390561d5718579b3d5da7664df50e61d9a5d03bb0c9ded8dc9924ebaacb4b2aebb272caf153968f30766532f244ac63403d4927c8be533fbfd6
   languageName: node
   linkType: hard
 
@@ -17879,12 +17879,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "uuid@npm:13.0.0"
+"uuid@npm:11.1.0":
+  version: 11.1.0
+  resolution: "uuid@npm:11.1.0"
   bin:
-    uuid: dist-node/bin/uuid
-  checksum: 10c0/950e4c18d57fef6c69675344f5700a08af21e26b9eff2bf2180427564297368c538ea11ac9fb2e6528b17fc3966a9fd2c5049361b0b63c7d654f3c550c9b3d67
+    uuid: dist/esm/bin/uuid
+  checksum: 10c0/34aa51b9874ae398c2b799c88a127701408cd581ee89ec3baa53509dd8728cbb25826f2a038f9465f8b7be446f0fbf11558862965b18d21c993684297628d4d3
   languageName: node
   linkType: hard
 
