@@ -153,7 +153,7 @@
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.46.2",
-        "webpack-bundle-analyzer": "^4.10.2"
+        "webpack-bundle-analyzer": "^5.0.1"
     },
     "resolutions": {
         "sqlite3/node-gyp": "^10.1.0"
