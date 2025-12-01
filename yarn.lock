@@ -6699,7 +6699,7 @@ __metadata:
     lint-staged: "npm:^16.2.5"
     n3: "npm:^1.26.0"
     ngx-json-viewer: "npm:^3.2.1"
-    prettier: "npm:^3.6.2"
+    prettier: "npm:^3.7.1"
     rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.19"
     rxjs: "npm:~7.8.2"
     source-map-explorer: "npm:^2.5.3"
@@ -15036,12 +15036,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.6.2":
-  version: 3.6.2
-  resolution: "prettier@npm:3.6.2"
+"prettier@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "prettier@npm:3.7.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/488cb2f2b99ec13da1e50074912870217c11edaddedeadc649b1244c749d15ba94e846423d062e2c4c9ae683e2d65f754de28889ba06e697ac4f988d44f45812
+  checksum: 10c0/a6610043ee0a64a3251a948bf82fad3e59d984a8e8dea206400cfa190585417e3343b32c1f6ae7d8f40798a9b4bd91affc08fa7795dd99a9dec5c9bccdf31500
   languageName: node
   linkType: hard
 
