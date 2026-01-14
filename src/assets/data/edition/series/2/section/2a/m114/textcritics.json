@@ -11,21 +11,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5186",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassung 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>; Textfassung 3–6 T. 48 resp. 49: g<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g5190",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "16",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
                             },
                             {
-                                "svgGroupId": "g5194",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "18",
                                 "system": "Klav.",
                                 "position": "8/16",
@@ -47,77 +47,77 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5069",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassung 3–6 T. 48 resp. 49: g<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g5073",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "16",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
                             },
                             {
-                                "svgGroupId": "g5425",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "22",
                                 "system": "Klav.",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3. Note."
                             },
                             {
-                                "svgGroupId": "g5445",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "23",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5437",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "23",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5456",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk4'})\"><strong>Sk4</strong></a> (dort <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
                             },
                             {
-                                "svgGroupId": "g5460",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "25",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "Beginn der Decrescendogabel versetzt von zwischen 4/16 und 2/4."
                             },
                             {
-                                "svgGroupId": "g5464",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "35",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: d korrigiert zu f mit Blick auf harmonischen Kontext und analog Textfassungen 3–6."
                             },
                             {
-                                "svgGroupId": "g5468",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "36",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Notenhals zwischen d<sup>1</sup> (Klav. o.) und f (Klav. u.) weggelassen."
                             },
                             {
-                                "svgGroupId": "g5472",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "37",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext (vgl. Korrekturen 1 zu Klav.u.)."
                             },
                             {
-                                "svgGroupId": "g5493",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "37",
                                 "system": "Klav. u.",
                                 "position": "3/4",
