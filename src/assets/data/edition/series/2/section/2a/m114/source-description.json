@@ -26,10 +26,7 @@
                 "contents": [
                     {
                         "item": "M 102 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m102",
-                            "sheetId": "M_102_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Orchester M 102)",
                         "folios": [
                             {
@@ -50,10 +47,7 @@
                     },
                     {
                         "item": "M 102 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m102",
-                            "sheetId": "M_102_Sk2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Orchester M 102)",
                         "folios": [
                             {
