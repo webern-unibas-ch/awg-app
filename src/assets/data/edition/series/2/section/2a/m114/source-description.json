@@ -797,10 +797,7 @@
                     },
                     {
                         "item": "M* 494 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "mstar494",
-                            "sheetId": "Mstar_494_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 494)",
                         "folios": [
                             {
@@ -821,10 +818,7 @@
                     },
                     {
                         "item": "M* 494 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "mstar494",
-                            "sheetId": "Mstar_494_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 494)",
                         "folios": [
                             {
