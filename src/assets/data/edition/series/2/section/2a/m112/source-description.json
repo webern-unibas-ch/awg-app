@@ -1041,7 +1041,14 @@
                                             "measure": "116A",
                                             "linkTo": "M_112_Sk10d"
                                         }
-                                    ],
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
                                     [
                                         {
                                             "system": "1–2",
@@ -1058,68 +1065,75 @@
                                     ],
                                     [
                                         {
-                                            "system": "7—8",
-                                            "measure": "118A—123A",
+                                            "system": "7–8",
+                                            "measure": "118A–123A",
                                             "linkTo": "M_112_Sk10g"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "10—11",
-                                            "measure": "124—126",
+                                            "system": "10–11",
+                                            "measure": "124–126",
                                             "linkTo": "M_112_Sk10h"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "13—14",
-                                            "measure": "118B—121B",
+                                            "system": "13–14",
+                                            "measure": "118B–121B",
                                             "linkTo": "M_112_Sk10i"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "10b—11b",
-                                            "measure": "122B—123B",
+                                            "system": "10b–11b",
+                                            "measure": "122B–123B",
                                             "linkTo": "M_112_Sk10j"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "16—17",
-                                            "measure": "127—131",
+                                            "system": "16–17",
+                                            "measure": "127–131",
                                             "linkTo": "M_112_Sk10k"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "19—20",
-                                            "measure": "{132A—133A}, 132B–133B",
+                                            "system": "19–20",
+                                            "measure": "{132A–133A}, 132B–133B",
                                             "linkTo": "M_112_Sk10l"
                                         }
-                                    ],
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
                                     [
                                         {
-                                            "system": "2—3",
-                                            "measure": "134—137",
+                                            "system": "2–3",
+                                            "measure": "134–137",
                                             "linkTo": "M_112_Sk10m"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "5—6",
-                                            "measure": "138—141",
+                                            "system": "5–6",
+                                            "measure": "138–141",
                                             "linkTo": "M_112_Sk10n"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "9—10",
-                                            "measure": "149—151",
+                                            "system": "9–10",
+                                            "measure": "149–151",
                                             "linkTo": "M_112_Sk10o"
                                         }
-                                    ]                                                                                                                                                                                                                                                                                                                                
-                                ]                                                                                                                   
+                                    ]
+                                ]
                             }
                         ]
                     },
