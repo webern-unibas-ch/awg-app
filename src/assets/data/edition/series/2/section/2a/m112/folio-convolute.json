@@ -143,7 +143,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1h",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 25–28",
+                            "sigleAddendum": "T. 26–29",
                             "segmentSplit": 1.5,
                             "segments": [
                                 {
@@ -181,7 +181,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1i",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 29–33",
+                            "sigleAddendum": "T. 30–34",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -195,7 +195,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1j",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 34–37",
+                            "sigleAddendum": "T. 35–38",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -209,7 +209,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1k",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 38–43",
+                            "sigleAddendum": "T. 39–44",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -223,7 +223,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1l",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 44–50",
+                            "sigleAddendum": "T. 45–51",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -237,7 +237,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1m",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 51–57",
+                            "sigleAddendum": "T. 52–58",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -251,7 +251,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1n",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 58–62",
+                            "sigleAddendum": "T. 59–63",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -265,7 +265,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1o",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 63–67A",
+                            "sigleAddendum": "T. 64–68A",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -290,7 +290,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1p",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 68A–{69A}",
+                            "sigleAddendum": "T. 69A–{70A}",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -304,7 +304,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1q",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 67B–{72}",
+                            "sigleAddendum": "T. 68B–{73}",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -318,7 +318,7 @@
                             "complexId": "m112",
                             "sheetId": "M_112_Sk1r",
                             "sigle": "M 112 Sk1",
-                            "sigleAddendum": "T. 66B–70B",
+                            "sigleAddendum": "T. 67B–71B",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -563,8 +563,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 16,
-                                    "endSystem": 15
+                                    "startSystem": 15,
+                                    "endSystem": 14
                                 }
                             ]
                         },
@@ -578,8 +578,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 13,
-                                    "endSystem": 12
+                                    "startSystem": 12,
+                                    "endSystem": 11
                                 }
                             ]
                         },
@@ -968,7 +968,120 @@
                         "height": 347,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10e",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 109B–112C",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10f",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 113B–117",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10g",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 118A–123A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10h",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 124–126",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10i",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 118B–121B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10j",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 122B–123B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10k",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 127–131",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10l",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. {132A}–133B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 19,
+                                    "endSystem": 20
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
@@ -978,6 +1091,48 @@
                         "width": 266
                     },
                     "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10m",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 134–137",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10n",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 138–141",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10o",
+                            "sigle": "M 112 Sk10",
+                            "sigleAddendum": "T. 149–151",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
                         {
                             "complexId": "m112",
                             "sheetId": "M_112_Sk10_1",
@@ -1201,6 +1356,217 @@
                     "dimensions": {
                         "height": 348,
                         "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "FR1",
+            "convoluteLabel": "F Repropgrafie der Abschrift Wildgans (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 307,
+                        "width": 217
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 1–4",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 5–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 8–10",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 11–15",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 16–20",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 307,
+                        "width": 217
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 307,
+                        "width": 217
+                    },
+                    "content": [
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 21–25",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 26–30",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 31–34",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 35–38",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 39–44",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m112",
+                            "sheetId": "M_112_TF3",
+                            "sigle": "M 112 Tintenniederschrift TF3",
+                            "sigleAddendum": "T. 45–50",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "12",
+                    "dimensions": {
+                        "height": 307,
+                        "width": 217
                     },
                     "content": []
                 }
