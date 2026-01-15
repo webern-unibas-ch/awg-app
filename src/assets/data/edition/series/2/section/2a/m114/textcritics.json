@@ -139,147 +139,147 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5160",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g5164",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "16",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassungen 4–6."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "25",
                                 "system": "Klav.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>2</sup> sowie <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "26",
                                 "system": "Klav.",
                                 "position": "Taktanfang",
                                 "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C<sup>c</sup>'})\"><strong>C<sup>c</sup></strong></a>: einfacher Taktstrich."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "31",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "33",
                                 "system": "Klav. o.",
                                 "position": "4. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "34",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "36",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
                             },
                             {
-                                "svgGroupId": "g7132",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "41",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g7150",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "41",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g7154",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Oberstimmenschicht: ces<sup>4</sup> korrigiert zu as<sup>3</sup> mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g7172",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "5. Note, 8. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> und es<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g7176",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g7194",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "45",
                                 "system": "Klav. o.",
                                 "position": "2–3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> und h<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
                             },
                             {
-                                "svgGroupId": "g7198",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "46",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g7208",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g7218",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "49",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
-                                "svgGroupId": "g7222",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "50",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g7232",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> ergänzt analog Textfassungen 4–6."
                             },
                             {
-                                "svgGroupId": "g7236",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "58",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
@@ -301,252 +301,252 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4049",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
-                                "svgGroupId": "g4055",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g4059",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Notenhals ergänzt."
                             },
                             {
-                                "svgGroupId": "g4063",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
                             },
                             {
-                                "svgGroupId": "g4195",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4199",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "27",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Ligatur zu T. 26 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 26."
                             },
                             {
-                                "svgGroupId": "g5299",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "31",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g5309",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "33",
                                 "system": "Klav. u.",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog Textfassungen 2–3 (<a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
                             },
                             {
-                                "svgGroupId": "g5318",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "36",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
                             },
                             {
-                                "svgGroupId": "g5334",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "39",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g5336",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "41",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5352",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "41",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5378",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "42",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5360",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "6. Note",
                                 "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
                             },
                             {
-                                "svgGroupId": "g5634",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g5644",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "43",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5662",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "43",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5680",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5684",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g5688",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "46",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g5698",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g5708",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "49",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
-                                "svgGroupId": "g5717",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "53",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g6595",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "as: Ligatur zu T. 58 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 58."
                             },
                             {
-                                "svgGroupId": "g6605",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g6623",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "64",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 73."
                             },
                             {
-                                "svgGroupId": "g6649",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "68",
                                 "system": "Klav. o.",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g6671",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "74",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5728",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "80",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5732",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "84",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
                                 "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g5736",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "85",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
                             },
                             {
-                                "svgGroupId": "g5740",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "86",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
                             },
                             {
-                                "svgGroupId": "g5747",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "88",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
                             },
                             {
-                                "svgGroupId": "g5748",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "89",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
-                                "svgGroupId": "g5755",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "12/16",
                                 "comment": "Ende des Legatobogens versetzt von T. 90 1/4."
                             },
                             {
-                                "svgGroupId": "g5773",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "93",
                                 "system": "Klav. o.",
                                 "position": "8/16",
@@ -568,434 +568,434 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g630",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
-                                "svgGroupId": "g631",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g632",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Notenhals ergänzt."
                             },
                             {
-                                "svgGroupId": "g633",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
                             },
                             {
-                                "svgGroupId": "g637",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
-                                "svgGroupId": "g638",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "28",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Ligaturbogens zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
                             },
                             {
-                                "svgGroupId": "g750",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "32",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g752",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "40",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g754",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "42",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g753",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g908",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "43",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g907",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "6. Note",
                                 "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
                             },
                             {
-                                "svgGroupId": "g909",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "44",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g910",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g911",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g912",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "44",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g913",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "45",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g914",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "47",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g915",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "47",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g916",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "49",
                                 "system": "Klav. u.",
                                 "position": "8/16 und 12/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext und analog T. 50."
                             },
                             {
-                                "svgGroupId": "g917",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "50",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
-                                "svgGroupId": "g918",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "54",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
                             },
                             {
-                                "svgGroupId": "g167",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "57",
                                 "system": "Klav. u.",
                                 "position": "12/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g232",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "58",
                                 "system": "Klav. u.",
                                 "position": "4/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g874",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
                             },
                             {
-                                "svgGroupId": "g875",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g876",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "65",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
                             },
                             {
-                                "svgGroupId": "g732",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "75",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g733",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "81",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Viertelnote B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g734",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "85",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
                                 "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g735",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "86",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "<em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
                             },
                             {
-                                "svgGroupId": "g736",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "87",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
                             },
                             {
-                                "svgGroupId": "g737",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "89",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
                             },
                             {
-                                "svgGroupId": "g893",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "90",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
-                                "svgGroupId": "g894",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "90",
                                 "system": "Klav. o.",
                                 "position": "12/16",
                                 "comment": "Ende des Legatobogens versetzt von T. 91 1/4."
                             },
                             {
-                                "svgGroupId": "g895",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "94",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g896",
+                                "svgGroupId": "g-tkk-37",
                                 "measure": "98",
                                 "system": "Klav. u.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g897",
+                                "svgGroupId": "g-tkk-38",
                                 "measure": "99",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g1127",
+                                "svgGroupId": "g-tkk-39",
                                 "measure": "101",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
                             },
                             {
-                                "svgGroupId": "g1128",
+                                "svgGroupId": "g-tkk-40",
                                 "measure": "101",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
                             },
                             {
-                                "svgGroupId": "g1129",
+                                "svgGroupId": "g-tkk-41",
                                 "measure": "102",
                                 "system": "Klav. u.",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
                             },
                             {
-                                "svgGroupId": "g1130",
+                                "svgGroupId": "g-tkk-42",
                                 "measure": "102",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
                             },
                             {
-                                "svgGroupId": "g1131",
+                                "svgGroupId": "g-tkk-43",
                                 "measure": "103",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "as<sup>4</sup> korrigiert zu c<sup>4</sup> mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g576",
+                                "svgGroupId": "g-tkk-44",
                                 "measure": "115",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
                             },
                             {
-                                "svgGroupId": "577",
+                                "svgGroupId": "g-tkk-45",
                                 "measure": "118",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: sic (vgl. auch T. 4 und 48 sowie Korrekturen 2 in Textfassung 1 T. 4.)"
                             },
                             {
-                                "svgGroupId": "g578",
+                                "svgGroupId": "g-tkk-46",
                                 "measure": "119",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassungen 1–3 T. 5: f<sup>3</sup>; Textfassungen 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassungen 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g639",
+                                "svgGroupId": "g-tkk-47",
                                 "measure": "126",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> ergänzt analog T. 12."
                             },
                             {
-                                "svgGroupId": "g640",
+                                "svgGroupId": "g-tkk-48",
                                 "measure": "134",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
                             },
                             {
-                                "svgGroupId": "g641",
+                                "svgGroupId": "g-tkk-49",
                                 "measure": "136",
                                 "system": "Klav.",
                                 "position": "2–3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
                             },
                             {
-                                "svgGroupId": "g642",
+                                "svgGroupId": "g-tkk-50",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
                             },
                             {
-                                "svgGroupId": "g643",
+                                "svgGroupId": "g-tkk-51",
                                 "measure": "139",
                                 "system": "Klav. u.",
                                 "position": "3–4/8",
                                 "comment": "Kleinstich: Achtelnoten A–d sowie Achtelbalken ergänzt gemäß Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g712",
+                                "svgGroupId": "g-tkk-52",
                                 "measure": "141",
                                 "system": "Klav.",
                                 "position": "1–6/8",
                                 "comment": "Unterstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g713",
+                                "svgGroupId": "g-tkk-53",
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "1–6/8",
                                 "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g714",
+                                "svgGroupId": "g-tkk-54",
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "5–6/8",
                                 "comment": "Kleinstich: Achtelnoten ergänzt gemäß Korrekturen 2. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
                             },
                             {
-                                "svgGroupId": "g715",
+                                "svgGroupId": "g-tkk-55",
                                 "measure": "147",
                                 "system": "Klav. o.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g503",
+                                "svgGroupId": "g-tkk-56",
                                 "measure": "154",
                                 "system": "Klav. u.",
                                 "position": "1–6/8",
                                 "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g504",
+                                "svgGroupId": "g-tkk-57",
                                 "measure": "155",
                                 "system": "Klav. u.",
                                 "position": "1–6/8",
                                 "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g505",
+                                "svgGroupId": "g-tkk-58",
                                 "measure": "155",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
                                 "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk13'})\"><strong>Sk13</strong></a> T. 155B in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
                             },
                             {
-                                "svgGroupId": "g506",
+                                "svgGroupId": "g-tkk-59",
                                 "measure": "155",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Ende der Oktavierungsklammer versetzt von 4. Note."
                             },
                             {
-                                "svgGroupId": "g507",
+                                "svgGroupId": "g-tkk-60",
                                 "measure": "vor 157",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g508",
+                                "svgGroupId": "g-tkk-61",
                                 "measure": "157",
                                 "system": "Klav. u.",
                                 "position": "1/4",
                                 "comment": "Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g509",
+                                "svgGroupId": "g-tkk-62",
                                 "measure": "158",
                                 "system": "Klav.",
                                 "position": "Taktende",
@@ -1017,392 +1017,392 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g630",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
                             },
                             {
-                                "svgGroupId": "g631",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g632",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Notenhals ergänzt."
                             },
                             {
-                                "svgGroupId": "g633",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
                             },
                             {
-                                "svgGroupId": "g636",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
-                                "svgGroupId": "g637",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "28",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Ligatur zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
                             },
                             {
-                                "svgGroupId": "g749",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "32",
                                 "system": "Klav.",
                                 "position": "1/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g751",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "40",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
                             },
                             {
-                                "svgGroupId": "g752",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "42",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g753",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "42",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g906",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "43",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g907",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "43",
                                 "system": "Klav. o.",
                                 "position": "6. Note",
                                 "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
                             },
                             {
-                                "svgGroupId": "g908",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "44",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g909",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g910",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "44",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g911",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "44",
                                 "system": "Klav. o.",
                                 "position": "5. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g914",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "45",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g913",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "47",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g912",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "47",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g915",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "49",
                                 "system": "Klav. u.",
                                 "position": "8/16 und 12/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext und analog T. 50."
                             },
                             {
-                                "svgGroupId": "g916",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "50",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
                             },
                             {
-                                "svgGroupId": "g917",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "54",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
                             },
                             {
-                                "svgGroupId": "g871",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "57",
                                 "system": "Klav. u.",
                                 "position": "12/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g872",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "58",
                                 "system": "Klav. u.",
                                 "position": "4/16",
                                 "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g414",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
                             },
                             {
-                                "svgGroupId": "g873",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
-                                "svgGroupId": "g874",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "65",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
                             },
                             {
-                                "svgGroupId": "g731",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "75",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g732",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "81",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Viertelnote B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g733",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "85",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
                                 "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g734",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "86",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "<em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
                             },
                             {
-                                "svgGroupId": "g735",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "87",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
                             },
                             {
-                                "svgGroupId": "g736",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "89",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
                             },
                             {
-                                "svgGroupId": "g921",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "90",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
-                                "svgGroupId": "g922",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "90",
                                 "system": "Klav. o.",
                                 "position": "12/16",
                                 "comment": "Ende des Legatobogens versetzt von T. 91 1/4."
                             },
                             {
-                                "svgGroupId": "g923",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "94",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> ergänzt mit Blick auf T. 96 und harmonischen Kontext; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
                             },
                             {
-                                "svgGroupId": "g924",
+                                "svgGroupId": "g-tkk-37",
                                 "measure": "98",
                                 "system": "Klav. u.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g925",
+                                "svgGroupId": "g-tkk-38",
                                 "measure": "99",
                                 "system": "Klav. u.",
                                 "position": "8/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g1044",
+                                "svgGroupId": "g-tkk-39",
                                 "measure": "101",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
                             },
                             {
-                                "svgGroupId": "g1045",
+                                "svgGroupId": "g-tkk-40",
                                 "measure": "101",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
                             },
                             {
-                                "svgGroupId": "g1046",
+                                "svgGroupId": "g-tkk-41",
                                 "measure": "102",
                                 "system": "Klav. u.",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
                             },
                             {
-                                "svgGroupId": "g1047",
+                                "svgGroupId": "g-tkk-42",
                                 "measure": "102",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
                             },
                             {
-                                "svgGroupId": "g1048",
+                                "svgGroupId": "g-tkk-43",
                                 "measure": "103",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "as<sup>4</sup> korrigiert zu c<sup>4</sup> mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g1049",
+                                "svgGroupId": "g-tkk-44",
                                 "measure": "110",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E'})\"><strong>E</strong></a>: Einfacher Taktstrich."
                             },
                             {
-                                "svgGroupId": "g600",
+                                "svgGroupId": "g-tkk-45",
                                 "measure": "121",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
                             },
                             {
-                                "svgGroupId": "g601",
+                                "svgGroupId": "g-tkk-46",
                                 "measure": "124",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: sic (vgl. T. 4 und 48 sowie Korrekturen 2 in Textfassung 1 T. 4.)"
                             },
                             {
-                                "svgGroupId": "g602",
+                                "svgGroupId": "g-tkk-47",
                                 "measure": "125",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassungen 1–3 T. 5: f<sup>3</sup>; Textfassungen 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassungen 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
                             },
                             {
-                                "svgGroupId": "g659",
+                                "svgGroupId": "g-tkk-48",
                                 "measure": "134",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
                             },
                             {
-                                "svgGroupId": "g663",
+                                "svgGroupId": "g-tkk-49",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
                             },
                             {
-                                "svgGroupId": "g662",
+                                "svgGroupId": "g-tkk-50",
                                 "measure": "136",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
                             },
                             {
-                                "svgGroupId": "g787",
+                                "svgGroupId": "g-tkk-51",
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "g<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g789",
+                                "svgGroupId": "g-tkk-52",
                                 "measure": "147",
                                 "system": "Klav. o.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g463",
+                                "svgGroupId": "g-tkk-53",
                                 "measure": "155",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
                                 "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk13'})\"><strong>Sk13</strong></a> T. 155B in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
                             },
                             {
-                                "svgGroupId": "g464",
+                                "svgGroupId": "g-tkk-54",
                                 "measure": "155",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Ende der Oktavierungsklammer versetzt von 4. Note."
                             },
                             {
-                                "svgGroupId": "g467",
+                                "svgGroupId": "g-tkk-55",
                                 "measure": "vor 157",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel ergänzt mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g465",
+                                "svgGroupId": "g-tkk-56",
                                 "measure": "157",
                                 "system": "Klav. u.",
                                 "position": "1/4",
