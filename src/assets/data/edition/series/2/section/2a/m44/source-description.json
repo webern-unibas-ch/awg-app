@@ -176,7 +176,11 @@
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "1/8",
+<<<<<<< HEAD
+                                            "comment": "d überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+=======
                                             "comment": "d überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+>>>>>>> 3d367daa0af5fdb7d08ff4e0c35510e74818373c
                                         },
                                         {
                                             "measure": "5",
@@ -200,7 +204,11 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
+<<<<<<< HEAD
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote." 
+=======
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+>>>>>>> 3d367daa0af5fdb7d08ff4e0c35510e74818373c
                                         },
                                         {
                                             "measure": "11",
@@ -236,7 +244,11 @@
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "6/8",
+<<<<<<< HEAD
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>? Entzifferung unsicher."
+=======
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>? Entzifferung unsicher."
+>>>>>>> 3d367daa0af5fdb7d08ff4e0c35510e74818373c
                                         },
                                         {
                                             "measure": "17",
@@ -303,7 +315,11 @@
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: e<sup>1</sup>: Punktierte Halbe Note überschreibt Viertelnote."
+<<<<<<< HEAD
+                                        }                                                                                                                                                                                                                                                                                                                                                                                                         
+=======
                                         }
+>>>>>>> 3d367daa0af5fdb7d08ff4e0c35510e74818373c
                                     ]
                                 }
                             ]
@@ -330,7 +346,11 @@
                             ]
                         }
                     }
+<<<<<<< HEAD
+                ]                 
+=======
                 ]
+>>>>>>> 3d367daa0af5fdb7d08ff4e0c35510e74818373c
             }
         }
     ]
