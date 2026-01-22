@@ -365,7 +365,7 @@
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6c'})\"><strong>Sk6</strong> T. 90B</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6d'})\">90D</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6c'})\"><strong>Sk6</strong> T. 90B</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M_112_Sk6d'})\">90D</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Db'})\"><strong>C</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-28",
