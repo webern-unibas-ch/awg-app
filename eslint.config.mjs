@@ -64,7 +64,7 @@ export default typescriptEslint.config(
             parserOptions: {
                 project: ['tsconfig.eslint.json'],
                 createDefaultProgram: true,
-                projectService: true,
+                projectService: false,
                 tsconfigRootDir: import.meta.dirname,
             },
         },

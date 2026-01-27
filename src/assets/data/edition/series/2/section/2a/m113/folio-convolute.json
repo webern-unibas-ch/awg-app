@@ -76,9 +76,9 @@
                         {
                             "complexId": "mstar452",
                             "sheetId": "Mstar_452_SkXXa",
-                            "selectable": false,
                             "sigle": "M* 452 Sk##",
                             "sigleAddendum": "T. ###",
+                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -91,9 +91,9 @@
                         {
                             "complexId": "mstar452",
                             "sheetId": "Mstar_452_SkXXb",
-                            "selectable": false,
                             "sigle": "M* 452 Sk##",
                             "sigleAddendum": "T. ###",
+                            "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -1318,7 +1318,7 @@
                     "content": [
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1a",
+                            "sheetId": "M_78_TF1",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
@@ -1333,7 +1333,7 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1b",
+                            "sheetId": "M_78_TF1",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 7–11",
                             "selectable": false,
@@ -1348,7 +1348,7 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1c",
+                            "sheetId": "M_78_TF1",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–17",
                             "selectable": false,
@@ -1363,7 +1363,7 @@
                         },
                         {
                             "complexId": "m78",
-                            "sheetId": "M_78_TF1d",
+                            "sheetId": "M_78_TF1",
                             "sigle": "M 78 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 18–20",
                             "selectable": false,
