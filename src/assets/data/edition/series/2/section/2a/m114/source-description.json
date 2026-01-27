@@ -377,7 +377,7 @@
                         "item": "M 113",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113"
+                            "sheetId": "M_113_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -512,7 +512,7 @@
                         "item": "M 113",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113"
+                            "sheetId": "M_113_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -761,7 +761,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 1→2→3)",
                         "folios": [
@@ -889,7 +889,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 2)",
                         "folios": [
@@ -941,7 +941,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF3"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 3)",
                         "folios": [
@@ -2000,7 +2000,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF4"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 4→5→6)",
                         "folios": [
@@ -2097,7 +2097,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF5"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 5→6)",
                         "folios": [
@@ -2233,7 +2233,7 @@
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
-                            "sheetId": "M_114"
+                            "sheetId": "M_114_TF6"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 6)",
                         "folios": [
