@@ -1462,7 +1462,7 @@
             "id": "M_114_Sk2",
             "label": "M 114 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 114 Textfassung 1."
+                "<strong>Sk2</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 114 <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF1'})\">Textfassung 1</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1612,7 +1612,7 @@
             "id": "M_114_Sk3",
             "label": "M 114 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> beinhaltet eine erste Version für das erste Seitenthema von M 114, die nur bis T. 28 mit Textfassung 2 übereinstimmt und danach melodisch und harmonisch anders fortsetzt."
+                "<strong>Sk3</strong> beinhaltet eine erste Version für das erste Seitenthema von M 114, die nur bis T. 28 mit <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassung 2</a> übereinstimmt und danach melodisch und harmonisch anders fortsetzt."
             ],
             "commentary": {
                 "preamble": "",
@@ -1678,7 +1678,7 @@
             "id": "M_114_Sk4",
             "label": "M 114 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> bietet erstmals eine vollständige Überleitung zum Seitenthema in Textfassung 2."
+                "<strong>Sk4</strong> bietet erstmals eine vollständige Überleitung zum Seitenthema in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1730,7 +1730,7 @@
             "id": "M_114_Sk5",
             "label": "M 114 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> knüpft an <strong>Sk3</strong>3 an, indem es für Textfassung 2 das Seitenthema ab dem vierten Takt bis zum Beginn der folgenden Überleitung neu skizziert."
+                "<strong>Sk5</strong> knüpft an <strong>Sk3</strong> an, indem es für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassung 2</a> das Seitenthema ab dem vierten Takt bis zum Beginn der folgenden Überleitung neu skizziert."
             ],
             "commentary": {
                 "preamble": "",
@@ -1782,7 +1782,7 @@
             "id": "M_114_Sk6",
             "label": "M 114 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong>skizziert, wie auch <strong>Sk7</strong>, punktuell die neue Überleitung zum Seitenthema für Textfassung 3 von M 114."
+                "<strong>Sk6</strong>skizziert, wie auch <strong>Sk7</strong>, punktuell die neue Überleitung zum Seitenthema für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a> von M 114."
             ],
             "commentary": {
                 "preamble": "",
@@ -1806,7 +1806,7 @@
             "id": "M_114_Sk7",
             "label": "M 114 Sk7",
             "evaluations": [
-                "<strong>Sk7</strong> skizziert, wie auch <strong>Sk6</strong>, punktuell die neue Überleitung zum Seitenthema für Textfassung 3 von M 114."
+                "<strong>Sk7</strong> skizziert, wie auch <strong>Sk6</strong>, punktuell die neue Überleitung zum Seitenthema für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a> von M 114."
             ],
             "commentary": {
                 "preamble": "",
@@ -1872,7 +1872,7 @@
             "id": "M_114_Sk8",
             "label": "M 114 Sk8",
             "evaluations": [
-                "<strong>Sk8</strong> beinhaltet für Textfassung 3 von M 114 die neue Überleitung nach dem Seitenthema mitsamt dem anschließend wiederkehrenden Hauptthema."
+                "<strong>Sk8</strong> beinhaltet für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a> von M 114 die neue Überleitung nach dem Seitenthema mitsamt dem anschließend wiederkehrenden Hauptthema."
             ],
             "commentary": {
                 "preamble": "",
@@ -2043,7 +2043,7 @@
             "id": "M_114_Sk9",
             "label": "M 114 Sk9",
             "evaluations": [
-                "<strong>Sk9</strong> skizziert einen wesentlichen Teil des mittleren Abschnitts (Trio/Durchführung) von M 114, der im Durchführungsteil nach wenigen Takten abbricht. <strong>Sk9</strong> wird in der Tintenniederschrift von Textfassung 4 übernommen, die an die bestehende Exposition von Textfassung 3 anknüpft."
+                "<strong>Sk9</strong> skizziert einen wesentlichen Teil des mittleren Abschnitts (Trio/Durchführung) von M 114, der im Durchführungsteil nach wenigen Takten abbricht. <strong>Sk9</strong> wird in der Tintenniederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4'})\">Textfassung 4</a> übernommen, die an die bestehende Exposition von <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a> anknüpft."
             ],
             "commentary": {
                 "preamble": "",
@@ -2298,7 +2298,7 @@
             "id": "M_114_Sk9_1",
             "label": "M 114 Sk9.1",
             "evaluations": [
-                "<strong>Sk9.1</strong> geht <strong>Sk9</strong> inhaltlich unmittelbar voraus und liefert die fehlenden Verbindungstakte zwischen der Überleitung von der Exposition und dem Mittelteil. <strong>Sk9.1</strong> markiert damit auch den Anschlusspunkt von Textfassung 4 an den bestehenden Expositionsteil aus Textfassung 3."
+                "<strong>Sk9.1</strong> geht <strong>Sk9</strong> inhaltlich unmittelbar voraus und liefert die fehlenden Verbindungstakte zwischen der Überleitung von der Exposition und dem Mittelteil. <strong>Sk9.1</strong> markiert damit auch den Anschlusspunkt von <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4'})\">Textfassung 4</a> an den bestehenden Expositionsteil aus <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -2517,7 +2517,7 @@
             "id": "M_114_Sk11",
             "label": "M 114 Sk11",
             "evaluations": [
-                "<strong>Sk11</strong> skizziert die Coda für M 114 Textfassung 5, die zunehmend flüchtiger wird und schließlich nur noch das harmonische Gerüst der Schlusstakte andeutet."
+                "<strong>Sk11</strong> skizziert die Coda für M 114 <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF5'})\">Textfassung 5</a>, die zunehmend flüchtiger wird und schließlich nur noch das harmonische Gerüst der Schlusstakte andeutet."
             ],
             "commentary": {
                 "preamble": "",
@@ -2799,7 +2799,7 @@
             "id": "M_114_Sk14",
             "label": "M 114 Sk14",
             "evaluations": [
-                "<strong>Sk14</strong> entwirft das in Textfassung 6 zu Beginn der Reprise eingeschobene Seitenthema auf der Tonika."
+                "<strong>Sk14</strong> entwirft das in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF6'})\">Textfassung 6</a> zu Beginn der Reprise eingeschobene Seitenthema auf der Tonika."
             ],
             "commentary": {
                 "preamble": "",
