@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 @Component({
     selector: 'awg-edition-svg-sheet-viewer-nav',
     templateUrl: './edition-svg-sheet-viewer-nav.component.html',
-    styleUrl: './edition-svg-sheet-viewer-nav.component.scss',
+    styleUrls: ['./edition-svg-sheet-viewer-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })

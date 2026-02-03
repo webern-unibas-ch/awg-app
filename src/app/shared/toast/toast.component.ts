@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 
 import { Toast, ToastService } from './toast.service';
 
@@ -16,14 +16,11 @@ import { Toast, ToastService } from './toast.service';
 })
 export class ToastComponent {
     /**
-     * Constructor of the ToastComponent.
+     * Public variable: toastService.
      *
-     * It declares a public ToastService instance
-     * to handle the toast messages.
-     *
-     * @param {ToastService} toastService Instance of the ToastService.
+     * It keeps the instance of the injected ToastService.
      */
-    constructor(public toastService: ToastService) {}
+    toastService = inject(ToastService);
 
     /**
      * Public method: isTemplate.

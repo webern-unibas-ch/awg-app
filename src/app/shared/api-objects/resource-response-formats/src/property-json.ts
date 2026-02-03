@@ -14,13 +14,9 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import {
-    KnoraIRI,
-    KnoraRights,
-    LocationItemJson,
-    StringOrNumber,
-} from '@awg-shared/api-objects/basic-message-components';
 import { Any, JsonConvert, JsonObject, JsonProperty } from 'json2typescript';
+
+import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '@awg-shared/api-objects';
 
 /**
  * Represents a property value
@@ -203,7 +199,7 @@ export class PropertyJson {
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
             const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
+            return jsonConvert.deserialize(this.values, PropertyJsonValue);
         } catch (e) {
             console.error('PropertyJson: error in getValuesAsPropertyJsonValues', e);
             return [];

@@ -1,0 +1,76 @@
+<div class="awg-source-description-contents">
+    <p class="awg-source-description-contents-label no-para-margin">
+        <span class="smallcaps">Inhalt:</span>
+        <span class="awg-source-description-contents-toggle text-muted small">
+            [
+            <span
+                class="awg-source-description-contents-toggle-text"
+                (click)="toggleAllContentDetails(!openAllContentDetails)"
+                (keyup.enter)="toggleAllContentDetails(!openAllContentDetails)"
+                [attr.aria-expanded]="openAllContentDetails"
+                tabindex="0"
+                role="button"
+                >Alles {{ openAllContentDetails ? 'ein' : 'aus' }}klappen</span
+            >
+            ]
+        </span>
+    </p>
+
+    @for (content of contents; track $index) {
+        @if (content.item || content.itemDescription) {
+            <details
+                class="awg-source-description-content-details half-para-margin"
+                [id]="$index"
+                [attr.open]="openAllContentDetails ? '' : null">
+                <!-- content.itemDescription -->
+
+                <summary class="awg-source-description-content-item-summary no-para-margin">
+                    <span class="awg-source-description-content-item">
+                        @if (content.item && UTILS.isNotEmptyObject(content.itemLinkTo)) {
+                            <a
+                                (click)="
+                                    selectSvgSheet({
+                                        complexId: content.itemLinkTo.complexId,
+                                        sheetId: content.itemLinkTo.sheetId,
+                                    })
+                                "
+                                (keyup.enter)="
+                                    selectSvgSheet({
+                                        complexId: content.itemLinkTo.complexId,
+                                        sheetId: content.itemLinkTo.sheetId,
+                                    })
+                                "
+                                role="link"
+                                tabindex="0"
+                                ><strong>{{ content.item }}</strong></a
+                            >
+                        }
+                        @if (content.item && !UTILS.isNotEmptyObject(content.itemLinkTo)) {
+                            <strong>{{ content.item }}</strong>
+                        }
+                        @if (content.item && content.itemDescription) {
+                            <span>&nbsp;</span>
+                        }
+                        @if (content.itemDescription) {
+                            <span class="awg-source-description-content-item-description"
+                                ><span [compile-html]="content.itemDescription" [compile-html-ref]="ref"></span
+                            ></span>
+                        }
+                        <span>:</span><br />
+                    </span>
+                </summary>
+
+                <!-- content.folios -->
+                @if (content?.folios?.length) {
+                    <awg-source-description-content-table
+                        [content]="content"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                }
+            </details>
+        } @else if (content?.folios?.length) {
+            <awg-source-description-content-table
+                [content]="content"
+                (selectSvgSheetRequest)="selectSvgSheet($event)" />
+        }
+    }
+</div>

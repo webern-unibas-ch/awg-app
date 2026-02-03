@@ -49,11 +49,11 @@ describe('BibliographyService (DONE)', () => {
 
         // Convert json objects
         jsonConvert = new JsonConvert();
-        expectedResourceFullResponseJson = jsonConvert.deserializeObject(
+        expectedResourceFullResponseJson = jsonConvert.deserialize(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
-        expectedSearchResponseJson = jsonConvert.deserializeObject(mockSearchResponseJson, SearchResponseJson);
+        expectedSearchResponseJson = jsonConvert.deserialize(mockSearchResponseJson, SearchResponseJson);
 
         // Spies on service functions
         // `.and.callThrough` will track the spy down the nested describes, see

@@ -16,7 +16,7 @@ import {
 @Component({
     selector: 'awg-edition-svg-sheet-viewer-switch',
     templateUrl: './edition-svg-sheet-viewer-switch.component.html',
-    styleUrl: './edition-svg-sheet-viewer-switch.component.scss',
+    styleUrls: ['./edition-svg-sheet-viewer-switch.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
