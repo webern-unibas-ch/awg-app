@@ -1178,7 +1178,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Einschubstelle für Textfassungen 2 und 3."
+                                            "comment": "Verweiszeichen über dem System: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">3</a>."
                                         }
                                     ]
                                 }
@@ -1353,7 +1353,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Verweis Auf Einschubstelle T. 19 in Textfassung 1."
+                                            "comment": "Verweiszeichen über dem System: Verweis Auf Einschubstelle T. 19 in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "19–25",
@@ -1365,7 +1365,7 @@
                                             "measure": "29–30",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. Textfassung 3 T. 29–30). <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">Textfassung 3 T.29-39</a>). <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "32",
@@ -1398,7 +1398,7 @@
                                             "measure": "nach 25",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Tonartwechsel: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
+                                            "comment": "Tonartwechsel: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
                                         },
                                         {
                                             "measure": "27–28",
@@ -2266,9 +2266,11 @@
                                 ]
                             }
                         ]
-                    },
+                    }
+                ],
+                "corrections": [
                     {
-                        "id": "source_E<sup>a</sup>_corr_1",
+                        "id": "source_Ea_corr_1",
                         "label": "Korrekturen 1 in E<sup>a</sup> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
@@ -2451,7 +2453,7 @@
                         }
                     },
                     {
-                        "id": "source_E<sup>a</sup>_corr_2",
+                        "id": "source_Ea_corr_2",
                         "label": "Korrekturen 2 in E<sup>a</sup> (mit Bleistift und blauem Buntstift im Hinblick auf Textfassung 5)",
                         "evaluations": [],
                         "commentary": {
@@ -2644,7 +2646,7 @@
                                             "measure": "91–92",
                                             "system": "Klav. o.",
                                             "position": "Taktstrich",
-                                            "comment": "Einschubzeichen und <em>vi=</em> über dem System mit blauem Buntstift: Einschubstelle für Textfassung 5."
+                                            "comment": "Einschubzeichen und <em>vi=</em> über dem System mit blauem Buntstift: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF5'})\">Textfassung 5</a>."
                                         },
                                         {
                                             "measure": "92–95",
@@ -2688,7 +2690,7 @@
                         }
                     },
                     {
-                        "id": "source_E<sup>b</sup>_corr_1",
+                        "id": "source_Eb_corr_1",
                         "label": "Korrekturen 1 in E<sup>b</sup> (mit Tinte und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
@@ -2701,7 +2703,7 @@
                                             "measure": "93",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>de </em>mit blauem Buntstift über dem System: Verweis auf Einschubstelle in Textfassung 4 T. 92."
+                                            "comment": "<em>de </em>mit blauem Buntstift über dem System: Verweis auf Einschubstelle in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4f'})\">Textfassung 4 T. 92</a>."
                                         },
                                         {
                                             "measure": "93",
@@ -2919,7 +2921,7 @@
                         }
                     },
                     {
-                        "id": "source_E<sup>b</sup>_corr_2",
+                        "id": "source_Eb_corr_2",
                         "label": "Korrekturen 2 in E<sup>b</sup> (mit Bleistift, blauem und braunem Buntstift im Hinblick auf Textfassung 6)",
                         "evaluations": [],
                         "commentary": {
@@ -2932,7 +2934,7 @@
                                             "measure": "93",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>de </em>über dem System: Verweis auf Einschubstelle in Textfassung 4 T. 92."
+                                            "comment": "<em>de </em>über dem System: Verweis auf Einschubstelle in Textfassung <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4f'})\">Textfassung 4 T. 92</a>."
                                         },
                                         {
                                             "measure": "94–95",
@@ -2986,7 +2988,7 @@
                                             "measure": "108",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>vi- </em>mit blauem Buntstift über dem System: Einschubstelle für Textfassung 6 T. 106 (vgl. auch nachfolgende Korrektur)."
+                                            "comment": "<em>vi- </em>mit blauem Buntstift über dem System: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF6h'})\">Textfassung 6 T. 106</a> (vgl. auch nachfolgende Korrektur)."
                                         },
                                         {
                                             "measure": "108–114",
@@ -3264,7 +3266,7 @@
                         }
                     },
                     {
-                        "id": "source_E<sup>c</sup>_corr_1",
+                        "id": "source_Ec_corr_1",
                         "label": "Korrekturen 1 in E<sup>c</sup> (mit Tinte, braunem und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
@@ -3277,7 +3279,7 @@
                                             "measure": "vor 106",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Kreuz mit braunem Buntstift sowie Einschubzeichen und <em>vi=</em> mit blauem Buntstift vor dem System: Verweis auf Einschubstelle in Textfassung 5 T. 108."
+                                            "comment": "Kreuz mit braunem Buntstift sowie Einschubzeichen und <em>vi=</em> mit blauem Buntstift vor dem System: Verweis auf Einschubstelle in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF5h'})\">Textfassung 5 T. 108</a>."
                                         },
                                         {
                                             "measure": "114–115",
@@ -3303,7 +3305,7 @@
                         }
                     },
                     {
-                        "id": "source_E<sup>c</sup>_corr_2",
+                        "id": "source_Ec_corr_2",
                         "label": "Korrekturen 2 in E<sup>c</sup> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
