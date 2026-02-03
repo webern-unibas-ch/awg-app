@@ -14,8 +14,9 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { KnoraIRI, LocationItemJson } from '@awg-shared/api-objects/basic-message-components';
 import { JsonObject, JsonProperty } from 'json2typescript';
+
+import { KnoraIRI, LocationItemJson } from '@awg-shared/api-objects';
 import { ResinfoJson } from './resinfo-json';
 
 /**
