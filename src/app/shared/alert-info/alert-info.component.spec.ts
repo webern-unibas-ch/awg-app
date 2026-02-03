@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -26,7 +26,9 @@ describe('AlertInfoComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAlertModule], exports: [NgbAlertModule] })
     class NgbAnimationConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }
@@ -104,7 +106,7 @@ describe('AlertInfoComponent (DONE)', () => {
                 const faIconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedFaCircleInfo);
+                expectToEqual(faIconIns(), expectedFaCircleInfo);
             });
 
             it('... should display an error message in alert paragraph', () => {

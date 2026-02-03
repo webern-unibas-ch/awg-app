@@ -15,7 +15,8 @@
  * */
 
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
+
+import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects';
 
 /**
  * Represents a search result item

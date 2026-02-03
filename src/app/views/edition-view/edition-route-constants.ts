@@ -28,8 +28,8 @@ export class EDITION_CATALOGUE_TYPE_CONSTANTS {
     /**
      * The route constant for an extended Moldenhauer number (AWG-ID).
      */
-    static readonly MNR_PLUS: EditionRouteConstant = {
-        route: '/m_plus',
+    static readonly MNR_STAR: EditionRouteConstant = {
+        route: '/m_star',
         short: 'M*',
         full: 'Moldenhauer-Nr. (AWG-ID)',
     };

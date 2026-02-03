@@ -7,9 +7,9 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { IntroBlock } from '@awg-views/edition-view/models';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 
 import { EditionIntroContentComponent } from './edition-intro-content.component';
 

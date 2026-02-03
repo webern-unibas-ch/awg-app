@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
@@ -22,7 +22,9 @@ describe('DisclaimerWorkeditionsComponent', () => {
     // global NgbConfigModule
     @NgModule({ imports: [NgbPopoverModule], exports: [NgbPopoverModule] })
     class NgbConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }
@@ -86,7 +88,7 @@ describe('DisclaimerWorkeditionsComponent', () => {
                 const faIconDes = getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedFaCalendarXmark);
+                expectToEqual(faIconIns(), expectedFaCalendarXmark);
             });
         });
     });

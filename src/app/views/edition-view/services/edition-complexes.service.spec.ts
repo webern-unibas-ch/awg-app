@@ -205,7 +205,7 @@ describe('EditionComplexesService (DONE)', () => {
             const testComplex = new EditionComplex(
                 {
                     title: 'Test M Complex',
-                    catalogueType: 'MNR_PLUS',
+                    catalogueType: 'MNR_STAR',
                     catalogueNumber: '100',
                 },
                 {
@@ -214,7 +214,7 @@ describe('EditionComplexesService (DONE)', () => {
                 },
                 { series: '1', section: '5' }
             );
-            const testComplexId = 'm_plus100';
+            const testComplexId = 'm_star100';
             const expectedList = { [testComplexId.toUpperCase()]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 

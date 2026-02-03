@@ -6,10 +6,45 @@
             "siglumAddendum": "",
             "type": "Autograph von „Das lockere Saatgefilde“ M 146: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2)."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "343"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_M146_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -212,7 +247,7 @@
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>."
                                         },
                                         {
                                             "measure": "15",
@@ -275,7 +310,7 @@
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "3/16",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>."
                                         },
                                         {
                                             "measure": "8",

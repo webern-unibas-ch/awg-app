@@ -1,0 +1,337 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 44.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 43.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleiner Riss oben links."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 43",
+                        "itemLinkTo": {
+                            "complexId": "m43",
+                            "sheetId": "M_43_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 43)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 44",
+                        "itemLinkTo": {
+                            "complexId": "m44",
+                            "sheetId": "M_44_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 44)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "7–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Unterstimmenschicht: Rasur im System."
+                                        },
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "3–4/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: Balken zu 6/8 im unteren System rasiert."
+                                        },
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. o.",
+                                            "position": "(6/8)",
+                                            "comment": "Rasur im System."
+                                        },
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "e rasiert."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "1/4–3/8",
+                                            "comment": "Unterstimmenschicht: Ligatur auf Rasur. Ante correcturam: nicht entzifferbare Achtelnote auf 2/8, zusammengebalkt mit 1/8."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1/4–3/8",
+                                            "comment": "Oberstimmenschicht: Ligatur auf Rasur. Ante correcturam: Achtelnote e auf 2/8, zusammengebalkt mit 1/8."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote; Rasur vor Halber Note."
+                                        },
+                                        {
+                                            "measure": "3 </br>bis 6",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Rasur über dem System. Ende des Legatobogens versetzt von T. 4 2/4 nach T. 6 1/8 (vgl. nachfolgende Korrektur)."
+                                        },
+                                        {
+                                            "measure": "3 </br>bis 4",
+                                            "system": "Klav. o.",
+                                            "position": "5/8 </br>3/4",
+                                            "comment": "Legatobogen rasiert (vgl. vorangehende Korrektur)."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "d überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "d überschreibt e."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "2/4, 3/4",
+                                            "comment": "Viertelnoten d/g/h rasiert."
+                                        },
+                                        {
+                                            "measure": "8 </br>bis 9",
+                                            "system": "Klav. o.",
+                                            "position": "3/4 <br/>1/4",
+                                            "comment": "Rasur über dem System: Ende des Legatobogens versetzt von T. 8 3/4 nach T. 9 1/4; Beginn des Legatobogens versetzt von T. 9 1/4 nach T. 9 2. Note.."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Oberstimmenschicht: des überschreibt c."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "2–3/4",
+                                            "comment": "Oberstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "2.–4. Note",
+                                            "comment": "Obere Oktave auf Rasur."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. o.",
+                                            "position": "3.–6. Note",
+                                            "comment": "Rasur unter dem System: Ende des Legatobogens versetzt von letzter Note nach 3. Note."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote. "
+                                        },
+                                        {
+                                            "measure": "18",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "1/4–3/8",
+                                            "comment": "Oberstimmenschicht: Rasur im System."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "5/8",
+                                            "comment": "Oberstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "(1/4)",
+                                            "comment": "Legatobogen auf Rasur. Ante correcturam: c<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Rasur im System. Ante correcturam: h."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "Auf Rasur; fis<sup>1</sup> überschreibt g<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Rasur im System."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "23",
+                                            "system": "Klav. o.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Oberstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "23",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: e<sup>1</sup>: Punktierte Halbe Note überschreibt Viertelnote."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_A_corr_2",
+                        "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. o.",
+                                            "position": "5/8",
+                                            "comment": "Notenkopf für Halbe Note cis<sup>1</sup> hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
