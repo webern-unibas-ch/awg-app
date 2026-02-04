@@ -4,10 +4,10 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 410.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 412–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
@@ -15,9 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
