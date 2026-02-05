@@ -4,7 +4,7 @@
             "id": "Mx_412_TF1",
             "label": "M* 412 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Klavier M* 412</a> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "Für die Textedition der Studienkomposition für Klavier M* 412 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
                 "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 412 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
