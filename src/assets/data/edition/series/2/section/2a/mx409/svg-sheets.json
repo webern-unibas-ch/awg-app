@@ -3,11 +3,11 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "MSTAR_409_TF1",
+                "id": "Mx_409_TF1",
                 "label": "M* 409 Textfassung 1",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/mstar409/Mstar_409_Textfassung1-1von1-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/mx409/Mx409_Textfassung1-1von1-final.svg",
                         "image": "",
                         "partial": "",
                         "convolute": ""
@@ -15,11 +15,11 @@
                 ]
             },
             {
-                "id": "MSTAR_409_TF2",
+                "id": "Mx_409_TF2",
                 "label": "M* 409 Textfassung 2",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/mstar409/Mstar_409_Textfassung2-1von1-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/mx409/Mx409_Textfassung2-1von1-final.svg",
                         "image": "",
                         "partial": "",
                         "convolute": ""
