@@ -430,10 +430,10 @@ describe('EditionComplexComponent (DONE)', () => {
                 });
 
                 it('... should get an edition complex with M* number from EditionStateService', () => {
-                    const mnrPlusComplex = new EditionComplex(
+                    const mnrXComplex = new EditionComplex(
                         {
                             title: 'Test M* Complex',
-                            catalogueType: 'MNR_STAR',
+                            catalogueType: 'MNR_X',
                             catalogueNumber: '100',
                         },
                         {
@@ -442,12 +442,12 @@ describe('EditionComplexComponent (DONE)', () => {
                         },
                         { series: '1', section: '5' }
                     );
-                    expectedSelectedEditionComplexId = 'm_star100';
+                    expectedSelectedEditionComplexId = 'mx100';
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
                         if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
-                            return mnrPlusComplex;
+                            return mnrXComplex;
                         }
                         return null;
                     });
@@ -459,7 +459,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionComplexSpy, 2, mnrPlusComplex);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionComplexSpy, 2, mnrXComplex);
                     expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
 
                     expect(component.selectedEditionComplex$).toBeDefined();
