@@ -30,7 +30,7 @@
             "id": "Mx_412_Sk1",
             "label": "M* 412 Sk1",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_Sk1'})\">Skizze 1</a> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_Sk1'})\"><strong>Sk 1</strong></a> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
             ],
             "commentary": {
                 "preamble": "",
