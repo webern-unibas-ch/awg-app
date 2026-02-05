@@ -177,8 +177,8 @@
                 ]
             },
             {
-                "id": "M_114_TF5",
-                "label": "M 114 Textfassung 5",
+                "id": "M_114_TF6",
+                "label": "M 114 Textfassung 6",
                 "content": [
     
   
@@ -587,9 +587,21 @@
                         "convolute": "D"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk10-9von14-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk10-9von9-final.svg",
                         "image": "",
                         "partial": "i",
+                        "convolute": "D"
+                    }
+                ]
+            },
+            {
+                "id": "M_114_Sk10_1",
+                "label": "M 114 Sk10.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk10_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
                         "convolute": "D"
                     }
                 ]
@@ -677,19 +689,19 @@
                 "label": "M 114 Sk14",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-1von4-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-1von3-final.svg",
                         "image": "",
                         "partial": "a",
                         "convolute": "D"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-2von4-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-2von3-final.svg",
                         "image": "",
                         "partial": "b",
                         "convolute": "D"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-3von4-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m114/M114_Sk14-3von3-final.svg",
                         "image": "",
                         "partial": "c",
                         "convolute": "D"

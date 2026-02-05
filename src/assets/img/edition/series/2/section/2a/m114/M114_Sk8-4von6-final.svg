@@ -559,13 +559,13 @@
    d="m 164.1132,280.35713 c -11.70797,-18.68129 5.01065,-35.52791 -5.92265,-43.73323 h 0.456 c 13.2053,10.94264 -3.152,25.05194 5.45731,43.26923 z"
    id="path40"
    style="stroke-width:1.33333" /><g
-   id="g4"
+   id="g-tkk-13"
    class="tkk"><path
      id="polyline40"
      transform="matrix(1.4565556,0.50183823,-0.48704696,1.5007902,82.469143,-135.29872)"
      style="fill:none;stroke:#000000;stroke-width:0.483"
      d="m 271.113,170.821 6.491,-7.688" /></g><g
-   id="g6"
+   id="g-tkk-16"
    class="tkk"><path
      id="polyline41"
      transform="matrix(1.33333,0,0,1.33333,34.451879,29.047872)"
@@ -650,7 +650,7 @@
    id="text53"
    style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"
    aria-label="˙" /><g
-   id="g1"
+   id="g-tkk-11"
    class="tkk"><path
      d="m 232.94688,272.17583 q 0,-0.4592 0.328,-0.76533 0.328,-0.328 0.80906,-0.328 0.48107,0 0.80906,0.328 0.328,0.30613 0.328,0.76533 0,0.4592 -0.328,0.78719 -0.32799,0.328 -0.80906,0.328 -0.48106,0 -0.80906,-0.328 -0.328,-0.32799 -0.328,-0.78719 z"
      id="text54"
@@ -944,7 +944,7 @@
    id="text107"
    style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"
    aria-label="n" /><g
-   id="g8"
+   id="g-tkk-14"
    class="tkk"><path
      id="line105"
      style="fill:none;stroke:#000000;stroke-width:0.643998"
@@ -1209,7 +1209,7 @@
    id="text156"
    style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"
    aria-label="œ" /><g
-   id="g5"
+   id="g-tkk-15"
    class="tkk"><path
      id="line136"
      style="fill:none;stroke:#000000;stroke-width:0.643998"
@@ -1373,7 +1373,7 @@
    id="text192"
    style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"
    aria-label="œ" /><g
-   id="g7"
+   id="g-tkk-17"
    class="tkk"><path
      id="line166"
      style="fill:none;stroke:#000000;stroke-width:0.643998"
@@ -1779,7 +1779,7 @@
    d="M 240.15068,37.311238 H 238.8766 V 24.614429 h 1.27408"
    id="path1579-0-2-3"
    sodipodi:nodetypes="cccc" /></g></g><g
-   id="g2"
+   id="g-tkk-12"
    class="tkk"><path
      id="line73"
      style="fill:none;stroke:#777777;stroke-width:0.643998"

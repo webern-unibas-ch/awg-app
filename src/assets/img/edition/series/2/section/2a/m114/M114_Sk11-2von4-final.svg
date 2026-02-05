@@ -529,13 +529,7 @@
    d="M 166.35408,276.20572 H 959.93073" /><path
    id="line158"
    style="fill:none;stroke:#000000;stroke-width:0.643998"
-   d="M 166.35408,281.67239 H 959.93073" /><g
-   id="g7"
-   class="tkk"><path
-     id="polyline160"
-     style="fill:none;stroke:#000000;stroke-width:0.483"
-     transform="matrix(1.33333,0,0,1.33333,34.386743,32.829512)"
-     d="m 239.338,125.55 13.837,-7.858" /></g><path
+   d="M 166.35408,281.67239 H 959.93073" /><path
    id="line170"
    style="fill:none;stroke:#000000;stroke-width:0.903998"
    d="m 224.66594,188.73929 h 9.33865" /><path
@@ -559,7 +553,7 @@
    style="fill:none;stroke:#000000;stroke-width:0.643998"
    d="m 226.35393,175.98332 v 27.78926" />
 <g
-   id="g10"
+   id="g-tkk-7"
    class="tkk"><path
      id="line182"
      style="fill:none;stroke:#000000;stroke-width:0.903998"
@@ -1193,15 +1187,22 @@
    d="M 240.15068,37.311238 H 238.8766 V 24.614429 h 1.27408"
    id="path1579-0"
    sodipodi:nodetypes="cccc" /></g></g><g
-   id="g8"
+   id="g-tkk-9"
    class="tkk"><path
      style="fill:none;stroke:#000000;stroke-width:0.680315"
      d="m 384.21,196.0325 c 10.97223,-1.36814 17.19894,-3.68771 14.98495,3.19398 -0.95988,2.98356 -37.37814,64.4425 -38.58389,71.60282 -0.46334,2.75157 2.86525,1.40359 4.45199,1.11299 5.54627,-1.38657 35.21494,-20.40494 42.66488,-24.11493"
      id="path1"
      sodipodi:nodetypes="csssc" /></g><g
-   id="g9"
+   id="g-tkk-10"
    class="tkk"><path
      style="fill:none;stroke:#000000;stroke-width:0.680315"
      d="m 458.1838,276.02328 c 49.69986,-36.0306 227.25359,-130.11585 159.90058,-122.42968 -41.06746,4.68652 -199.68403,69.82817 -161.01358,83.10378 40.31504,13.8402 249.83878,-97.71458 109.07372,0.371 -5.84228,3.51463 -7.05529,8.6224 -0.371,8.90398 22.9782,0.96797 66.58649,-22.24467 89.95878,-16.35596 14.27381,3.59633 -44.93403,45.56259 -47.29389,46.77788"
      id="path2"
-     sodipodi:nodetypes="csssssc" /></g></svg>
+     sodipodi:nodetypes="csssssc" /></g>
+     <g
+   id="g-tkk-8"
+   class="tkk"><path
+     id="polyline160"
+     style="fill:none;stroke:#000000;stroke-width:0.483"
+     transform="matrix(1.33333,0,0,1.33333,34.386743,32.829512)"
+     d="m 239.338,125.55 13.837,-7.858" /></g></svg>
