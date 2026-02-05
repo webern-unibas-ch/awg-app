@@ -26,7 +26,9 @@
                 "contents": [
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mstar409",
+                            "sheetId": "MSTAR_409_TF1"},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
@@ -54,7 +56,9 @@
                     },
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mstar409",
+                            "sheetId": "MSTAR_409_TF2"},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {
@@ -505,7 +509,9 @@
                     },
                     {
                         "item": "M 23",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_TF1"},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 23: Textfassung 1 Thema)",
                         "folios": [
                             {
@@ -729,7 +735,9 @@
                     },
                     {
                         "item": "M 23 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk3"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 Var. II)",
                         "folios": [
                             {
@@ -741,14 +749,14 @@
                                         {
                                             "system": "6–7",
                                             "measure": "1–6",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9",
                                             "measure": "7–9",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk3b"
                                         }
                                     ]
                                 ]
@@ -757,7 +765,9 @@
                     },
                     {
                         "item": "M 23 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk4"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 Var. III)",
                         "folios": [
                             {
@@ -769,14 +779,14 @@
                                         {
                                             "system": "10–11",
                                             "measure": "{1A}, 1B, 2, {3A}, 3B, 4–5",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–13",
                                             "measure": "6–8",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk4b"
                                         }
                                     ]
                                 ]
@@ -785,7 +795,9 @@
                     },
                     {
                         "item": "M 23 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk5"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 Var. IV)",
                         "folios": [
                             {
@@ -797,14 +809,14 @@
                                         {
                                             "system": "14–15",
                                             "measure": "1–6, {7A}, 7B",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16a–17a",
                                             "measure": "8",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk5b"
                                         }
                                     ]
                                 ]
@@ -834,7 +846,9 @@
                     },
                     {
                         "item": "M 23 Sk6",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk6"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 verworfene Var.)",
                         "folios": [
                             {
@@ -846,7 +860,7 @@
                                         {
                                             "system": "18a–19a",
                                             "measure": "1–4",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk6"
                                         }
                                     ]
                                 ]
@@ -855,7 +869,9 @@
                     },
                     {
                         "item": "M 23 Sk7",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk7"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 verworfene Var.)",
                         "folios": [
                             {
@@ -867,7 +883,7 @@
                                         {
                                             "system": "18b–19b",
                                             "measure": "x+1 bis x+2",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk7"
                                         }
                                     ]
                                 ]
@@ -876,7 +892,9 @@
                     },
                     {
                         "item": "M 23 Sk8",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk8"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 verworfene Var.)",
                         "folios": [
                             {
@@ -888,7 +906,7 @@
                                         {
                                             "system": "18c",
                                             "measure": "x+1",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk8"
                                         }
                                     ]
                                 ]
@@ -918,7 +936,9 @@
                     },
                     {
                         "item": "M 23 Sk9",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m23",
+                            "sheetId": "M_23_Sk9"},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 verworfene Var.)",
                         "folios": [
                             {
@@ -930,7 +950,7 @@
                                         {
                                             "system": "22a–23a",
                                             "measure": "1–4",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk9"
                                         }
                                     ]
                                 ]
