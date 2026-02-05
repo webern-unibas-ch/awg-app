@@ -2,7 +2,7 @@
     {{ navItemLabel }}:
     @if (navItemLabel === 'Werkeditionen') {
         <awg-disclaimer-workeditions></awg-disclaimer-workeditions>
-    } @else if (!utils.isNotEmptyArray(svgSheets)) {
+    } @else if (!UTILS.isNotEmptyArray(svgSheets)) {
         <span>---</span>
     }
 </h6>

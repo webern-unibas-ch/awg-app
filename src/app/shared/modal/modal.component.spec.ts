@@ -1,5 +1,13 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, DebugElement, TemplateRef, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+    DOCUMENT,
+    inject,
+    TemplateRef,
+    ViewChild,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -25,10 +33,11 @@ import { ModalComponent } from './modal.component';
 class WrapperComponent implements AfterViewInit {
     @ViewChild(ModalComponent) modalComponentRef: ModalComponent;
     modal: TemplateRef<any>;
-    constructor(private cdr: ChangeDetectorRef) {}
+    private _cdr = inject(ChangeDetectorRef);
+
     ngAfterViewInit() {
         this.modal = this.modalComponentRef.modalTemplate;
-        this.cdr.detectChanges();
+        this._cdr.detectChanges();
     }
 }
 

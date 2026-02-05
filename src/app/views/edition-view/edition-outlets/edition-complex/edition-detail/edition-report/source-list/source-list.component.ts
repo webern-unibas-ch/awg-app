@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { Source, SourceList } from '@awg-views/edition-view/models';
@@ -49,14 +49,18 @@ export class SourceListComponent {
     ref: SourceListComponent;
 
     /**
+     * Readonly injection variable: UTILS.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    readonly UTILS = inject(UtilityService);
+
+    /**
      * Constructor of the SourceListComponent.
      *
-     * It initializes the self-referring ref variable needed for CompileHtml library,
-     * and declares a public {@link UtilityService} instance.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      */
-    constructor(public utils: UtilityService) {
+    constructor() {
         this.ref = this;
     }
 

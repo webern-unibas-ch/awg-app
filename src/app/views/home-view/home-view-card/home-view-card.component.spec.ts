@@ -193,7 +193,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(aDes[0], 'fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, faArrowRight);
+                    expectToEqual(faIconIns(), faArrowRight);
                 });
 
                 it('... should display link text on the info link button', () => {
@@ -209,7 +209,7 @@ describe('HomeViewCardComponent (DONE)', () => {
             describe('... with href', () => {
                 beforeEach(() => {
                     component.cardData.linkRouter = undefined;
-                    component.cardData.linkHref = 'https://www.anton-webern.ch/';
+                    component.cardData.linkHref = 'https://anton-webern.ch/';
 
                     detectChangesOnPush(fixture);
                 });
@@ -236,7 +236,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(aDes[0], 'fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, faArrowRight);
+                    expectToEqual(faIconIns(), faArrowRight);
                 });
 
                 it('... should display link text on the info link button', () => {

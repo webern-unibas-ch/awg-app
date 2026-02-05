@@ -173,6 +173,14 @@ export class EditionSheetsService {
             return new EditionSvgSheet();
         }
 
+        // Validate that expected edition types exist
+        const expectedKeys = ['workEditions', 'textEditions', 'sketchEditions'];
+        const missingKeys = expectedKeys.filter(key => !sheets[key]);
+
+        if (missingKeys.length > 0) {
+            console.error(`EditionSheetsService: Missing edition types in svg-sheets.json: ${missingKeys}`);
+        }
+
         const indexes = {
             workEditions: this._findSvgSheetIndexById(sheets.workEditions, id),
             textEditions: this._findSvgSheetIndexById(sheets.textEditions, id),
@@ -286,6 +294,9 @@ export class EditionSheetsService {
      * @returns {number} The index of the sheet in the array.
      */
     private _findSvgSheetIndexById(sheetArray: EditionSvgSheet[], id: string): number {
+        if (!sheetArray || !id) {
+            return -1;
+        }
         return sheetArray.findIndex(sheet => {
             let sheetId = sheet.id;
             // If we have partial sheets, look into content array for id with extra partial

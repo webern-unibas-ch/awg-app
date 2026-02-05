@@ -3,7 +3,9 @@
         {
             "id": "SkRT",
             "label": "M 286 / M 287 RT (Reihentabelle op. 19)",
-            "evaluations": [],
+            "evaluations": [
+                "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 19 in AWG I/3.]</small>"
+            ],
             "rowtable": true,
             "commentary": {
                 "preamble": "",
