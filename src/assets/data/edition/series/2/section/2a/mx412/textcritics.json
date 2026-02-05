@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M*_412_TF1",
+            "id": "Mx_412_TF1",
             "label": "M* 412 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 412 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
@@ -24,14 +24,13 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
-            "id": "M*_412_Sk1",
+            "id": "Mx_412_Sk1",
             "label": "M* 412 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 412."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -86,7 +85,7 @@
                                 "measure": "11",
                                 "system": "22",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht {{ref.getGlyph('[a]')}}g<sup>1</sup>: Halbe Note überschreibt Viertelnote."
+                                "comment": "Unterstimmenschicht <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                             },
                             {
                                 "svgGroupId": "g127",

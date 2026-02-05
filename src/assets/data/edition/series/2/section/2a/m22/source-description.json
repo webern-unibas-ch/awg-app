@@ -141,7 +141,10 @@
                     },
                     {
                         "item": "M* 412 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
@@ -3729,7 +3732,10 @@
                     },
                     {
                         "item": "M* 412",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
