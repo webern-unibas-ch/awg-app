@@ -1385,8 +1385,8 @@
                     "content": [
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_Sk1a",
-                            "sigle": "M* 409 Sk1",
+                            "sheetId": "Mx_409_TF1a",
+                            "sigle": "M* 409 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
                             "segmentSplit": 1,
@@ -1400,8 +1400,8 @@
                         },
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_Sk1b",
-                            "sigle": "M* 409 Sk1",
+                            "sheetId": "Mx_409_TF1b",
+                            "sigle": "M* 409 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
                             "segmentSplit": 3,
@@ -1415,8 +1415,8 @@
                         },
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_TF1",
-                            "sigle": "M* 409 TF1",
+                            "sheetId": "Mx_409_TF2",
+                            "sigle": "M* 409 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 2–4",
                             "selectable": false,
                             "segmentSplit": 3,
@@ -1430,8 +1430,8 @@
                         },
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_TF1",
-                            "sigle": "M* 409 TF1",
+                            "sheetId": "Mx_409_TF2",
+                            "sigle": "M* 409 Tintenniederschrift TF2",
                             "sigleAddendum": "T. 6–16",
                             "selectable": false,
                             "segmentSplit": 3,
