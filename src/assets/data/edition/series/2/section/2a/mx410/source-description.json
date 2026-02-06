@@ -26,7 +26,10 @@
                 "contents": [
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
@@ -54,7 +57,10 @@
                     },
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF2"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {
