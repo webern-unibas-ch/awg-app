@@ -1040,7 +1040,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_A<sup>a</sup>_corr_1",
+                        "id": "source_Aa_corr_1",
                         "label": "Korrekturen in <strong>A<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
@@ -1079,7 +1079,7 @@
                         }
                     },
                     {
-                        "id": "source_A<sup>b</sup>_corr_1",
+                        "id": "source_Ab_corr_1",
                         "label": "Korrekturen in <strong>A<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
