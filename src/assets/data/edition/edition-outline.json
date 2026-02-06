@@ -118,7 +118,7 @@
                                 { "complex": "M46", "disabled": false },
                                 { "complex": "M32", "disabled": false },
                                 { "complex": "M33", "disabled": false },
-                                { "complex": "M_STAR409", "disabled": true },
+                                { "complex": "MX409", "disabled": false },
                                 { "complex": "M_STAR410", "disabled": true },
                                 { "complex": "M_STAR412", "disabled": true },
                                 { "complex": "M_STAR413", "disabled": true },
