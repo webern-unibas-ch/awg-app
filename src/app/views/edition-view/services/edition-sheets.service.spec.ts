@@ -1,8 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
+import Spy = jasmine.Spy;
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { mockConsole } from '@testing/mock-helper/mock-console';
 
 import {
     EditionSvgOverlay,
@@ -26,6 +29,8 @@ describe('EditionSheetsService (DONE)', () => {
     let expectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedTextcriticsArray: Textcritics[];
 
+    let consoleSpy: Spy;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EditionSheetsService],
@@ -39,6 +44,14 @@ describe('EditionSheetsService (DONE)', () => {
         expectedSheets = mockEditionData.mockSvgSheetList.sheets;
         expectedTextcriticsArray = mockEditionData.mockTextcriticsData.textcritics;
         expectedTextcriticalCommentary = expectedTextcriticsArray.at(1).commentary;
+
+        // Spies on service functions
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+    });
+
+    afterEach(() => {
+        // Clear mock objects after each test
+        mockConsole.clear();
     });
 
     afterAll(() => {
@@ -47,6 +60,19 @@ describe('EditionSheetsService (DONE)', () => {
 
     it('... should create', () => {
         expect(editionSheetsService).toBeTruthy();
+    });
+
+    describe('mock test objects (self-test)', () => {
+        it('... should use mock console', () => {
+            console.error('Test');
+
+            expectSpyCall(consoleSpy, 1);
+            expectToBe(mockConsole.get(0), 'Test');
+        });
+
+        it('... should clear mock console after each run', () => {
+            expect(mockConsole.get(0)).toBeUndefined();
+        });
     });
 
     describe('#findTextcritics()', () => {
@@ -532,6 +558,37 @@ describe('EditionSheetsService (DONE)', () => {
             });
         });
 
+        describe('... should log an error message if', () => {
+            it('... the given sheet list is missing all expected edition types', () => {
+                const incompleteSheets = {
+                    anyEditionType: expectedSheets.workEditions,
+                } as any;
+
+                editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
+
+                expectSpyCall(consoleSpy, 1);
+                expectToEqual(
+                    mockConsole.get(0),
+                    'EditionSheetsService: Missing edition types in svg-sheets.json: workEditions,textEditions,sketchEditions'
+                );
+            });
+
+            it('... the given sheet list is missing some expected edition types', () => {
+                const incompleteSheets = {
+                    workEditions: expectedSheets.workEditions,
+                    textEditions: expectedSheets.textEditions,
+                } as any;
+
+                editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
+
+                expectSpyCall(consoleSpy, 1);
+                expectToEqual(
+                    mockConsole.get(0),
+                    'EditionSheetsService: Missing edition types in svg-sheets.json: sketchEditions'
+                );
+            });
+        });
+
         describe('... should return the correct sheet if', () => {
             it('...  the given id is in the workEditions section of the given sheet list', () => {
                 expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
@@ -809,6 +866,20 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return -1 if', () => {
+            it('... the given sheetArray is undefined', () => {
+                const index = editionSheetsService['_findSvgSheetIndexById'](undefined, 'someId');
+
+                expectToBe(index, -1);
+            });
+
+            it('... the given id is undefined', () => {
+                const expectedSheetArray = expectedSheets['sketchEditions'];
+
+                const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, undefined);
+
+                expectToBe(index, -1);
+            });
+
             it('... the given id is not in the given sheet list', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
 
