@@ -2150,7 +2150,7 @@
                     "content": [
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_TF1a",
+                            "sheetId": "Mx_409_TF1",
                             "sigle": "M* 409 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
@@ -2165,8 +2165,8 @@
                         },
                         {
                             "complexId": "mx409",
-                            "sheetId": "Mx_409_TF1b",
-                            "sigle": "M* 409 Tintenniederschrift TF1",
+                            "sheetId": "Mx_409_TF1",
+                            "sigle": "M* 409 TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
                             "segmentSplit": 3,
@@ -2181,7 +2181,7 @@
                         {
                             "complexId": "mx409",
                             "sheetId": "Mx_409_TF2",
-                            "sigle": "M* 409 Tintenniederschrift TF2",
+                            "sigle": "M* 409 TF2",
                             "sigleAddendum": "T. 2–4",
                             "selectable": false,
                             "segmentSplit": 3,
@@ -2196,8 +2196,8 @@
                         {
                             "complexId": "mx409",
                             "sheetId": "Mx_409_TF2",
-                            "sigle": "M* 409 Tintenniederschrift TF2",
-                            "sigleAddendum": "T. 6–16",
+                            "sigle": "M* 409 TF2",
+                            "sigleAddendum": "T. 6–8/14–16",
                             "selectable": false,
                             "segmentSplit": 3,
                             "segments": [
