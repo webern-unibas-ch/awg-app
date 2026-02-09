@@ -15,9 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
-                    "secondary": [
-                        "schwarze Tinte"
-                    ]
+                    "secondary": ["schwarze Tinte"]
                 },
                 "titles": [],
                 "dates": [],
@@ -117,9 +115,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -561,9 +557,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],

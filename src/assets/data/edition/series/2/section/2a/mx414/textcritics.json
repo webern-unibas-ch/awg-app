@@ -1,28 +1,17 @@
 {
     "textcritics": [
         {
-            "id": "M*_414_TF1",
+            "id": "Mx_414_TF1",
             "label": "M* 414 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 414 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
                 "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 414 ist <strong>B</strong> nach Korrekturen 1."   
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 414 ist <strong>B</strong> nach Korrekturen 1."
             ],
-            "commentary": {
-                "preamble": "",
-                "comments": [
-                    {
-                        "blockHeader": "",
-                        "blockComments": [
-                            "Nicht vorhanden."
-                        ]
-                    }
-                ]
-            },
-            "linkBoxes": []
-        },   
+            "commentary": {}
+        },
         {
-            "id": "M*_414_Sk1",
+            "id": "Mx_414_Sk1",
             "label": "M* 414 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der Studienkomposition für Klavier M* 416, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
@@ -59,7 +48,7 @@
                                 "measure": "2",
                                 "system": "2",
                                 "position": "4/4",
-                                "comment": "d gestrichen; {{ref.getGlyph('[#]')}}Gis überschreibt D."
+                                "comment": "d gestrichen; <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Gis überschreibt D."
                             },
                             {
                                 "svgGroupId": "g144",
