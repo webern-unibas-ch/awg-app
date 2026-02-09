@@ -15,6 +15,7 @@ const META_PAGE: MetaPage = {
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
     compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
     daschUrl: AppConfig.DASCH_URL,
+    deepWikiUrl: AppConfig.DEEP_WIKI_URL,
     dhlabUrl: AppConfig.DHLAB_URL,
     githubUrl: AppConfig.AWG_APP_GITHUB_URL,
     salsahUrl: AppConfig.SALSAH_URL,
@@ -32,7 +33,7 @@ const META_STRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
-            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+            homepage: AppConfig.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
         },
     ],
     lastModified: '29. Januar 2016',

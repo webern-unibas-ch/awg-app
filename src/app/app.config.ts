@@ -51,7 +51,7 @@ export class AppConfig {
      * @returns {string}
      */
     public static get AWG_PROJECT_URL(): string {
-        return 'https://www.anton-webern.ch/';
+        return 'https://anton-webern.ch/';
     }
 
     /**
@@ -112,6 +112,16 @@ export class AppConfig {
      */
     public static get DASCH_URL(): string {
         return 'https://www.dasch.swiss/';
+    }
+
+    /**
+     * Getter for the URL of the DeepWiki
+     * ({@link https://deepwiki.com/webern-unibas-ch/awg-app}).
+     *
+     * @returns {string}
+     */
+    public static get DEEP_WIKI_URL(): string {
+        return 'https://deepwiki.com/webern-unibas-ch/awg-app';
     }
 
     /**

@@ -15,7 +15,8 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson, ProjectItemJson } from '@awg-shared/api-objects/basic-message-components';
+
+import { BasicResponseJson, ProjectItemJson } from '@awg-shared/api-objects';
 
 /**
  * Represents a knora project

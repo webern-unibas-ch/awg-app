@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
     selector: 'awg-alert-error',
     templateUrl: './alert-error.component.html',
-    styleUrl: './alert-error.component.scss',
+    styleUrls: ['./alert-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })

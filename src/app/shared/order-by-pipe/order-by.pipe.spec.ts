@@ -94,9 +94,9 @@ describe('OrderByPipe (DONE)', () => {
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('... should keep `NaN` as it is', () => {
+        it('... should move `NaN` to the start', () => {
             const array = [3, NaN, 1];
-            const sortedArray = [1, NaN, 3];
+            const sortedArray = [NaN, 3, 1];
 
             expectToEqual(pipe.transform(array, 'anything'), sortedArray);
         });

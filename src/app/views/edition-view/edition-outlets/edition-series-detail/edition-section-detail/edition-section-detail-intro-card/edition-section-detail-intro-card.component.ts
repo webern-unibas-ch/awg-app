@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-app/views/edition-view/models';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSectionDetailIntroCard component.

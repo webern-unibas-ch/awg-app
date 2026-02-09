@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { ElementRef } from '@angular/core';
+import { DOCUMENT, ElementRef } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
