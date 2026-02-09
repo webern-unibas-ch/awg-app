@@ -1,28 +1,17 @@
 {
     "textcritics": [
         {
-            "id": "M*_416_TF1",
+            "id": "Mx_416_TF1",
             "label": "M* 416 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
                 "<strong>B</strong> weist keine Korrekturen auf.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong>."
             ],
-            "commentary": {
-                "preamble": "",
-                "comments": [
-                    {
-                        "blockHeader": "",
-                        "blockComments": [
-                            "Nicht vorhanden."
-                        ]
-                    }
-                ]
-            },
-            "linkBoxes": []
-        },   
+            "commentary": {}
+        },
         {
-            "id": "M*_416_Sk1",
+            "id": "Mx_416_Sk1",
             "label": "M* 416 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 416."

@@ -172,11 +172,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar416",
-                            "sheetId": "Mstar_416_Sk1",
+                            "complexId": "mx416",
+                            "sheetId": "Mx_416_Sk1",
                             "sigle": "M* 416 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "reversed": true,
                             "segmentSplit": 1,
                             "segments": [
