@@ -16,11 +16,11 @@ import {
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
+import { SearchResponseJson } from '@awg-shared/api-objects';
+import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { ExtendedSearchParams, SearchParams, SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
-import { SearchResponseJson } from '@awg-app/shared/api-objects';
-import { ViewHandleTypes } from '@awg-app/shared/view-handle-button-group/view-handle.model';
 import { SearchPanelComponent } from './search-panel.component';
 
 @Component({

@@ -13,6 +13,5 @@
             "@testing/*": ["testing/*"]
         }
     },
-    "files": ["src/test.ts", "src/polyfills.ts"],
-    "include": ["src/**/*.spec.ts", "src/**/*.d.ts", "src/testing/"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/"]
 }

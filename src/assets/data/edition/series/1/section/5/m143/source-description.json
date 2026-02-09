@@ -6,10 +6,45 @@
             "siglumAddendum": "",
             "type": "Autograph von „Erwachen aus dem tiefsten Traumesschoße“ M 143: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."],
                 "writingMaterialStrings": [
-                    "Notenpapier, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links."
+                    "Notenpapier, 18 Systeme, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "346"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M143_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Tinte",
@@ -176,7 +211,7 @@
                                             "measure": "21",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
                                         },
                                         {
                                             "measure": "23",
@@ -233,7 +268,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "8/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
                                         },
                                         {
                                             "measure": "14",
@@ -293,25 +328,25 @@
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
                                             "measure": "20",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
                                             "measure": "21",
                                             "system": "Ges.",
                                             "position": "2/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
                                             "measure": "24",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         }
                                     ]
                                 }
