@@ -88,7 +88,52 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-13",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk13"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-14",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk14"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-23a",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23a"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-23d",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23d"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "Mx_414_Sk2",
+            "label": "M* 414 Sk2",
+            "evaluations": [],
+            "commentary": {},
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-23c",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23c"
+                    }
+                }
+            ]
         }
     ]
 }
