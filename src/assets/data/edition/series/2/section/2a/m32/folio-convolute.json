@@ -1369,11 +1369,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar414",
-                            "sheetId": "Mstar_414_Sk1a",
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_Sk1a",
                             "sigle": "M* 414 Sk1",
                             "sigleAddendum": "T. 1–4",
-                            "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -1384,11 +1383,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar414",
-                            "sheetId": "Mstar_414_Sk1b",
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_Sk1b",
                             "sigle": "M* 414 Sk1",
                             "sigleAddendum": "T. 5–8",
-                            "selectable": false,
                             "segmentSplit": 4,
                             "segments": [
                                 {
@@ -1413,11 +1411,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar414",
-                            "sheetId": "Mstar_414_Sk2",
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_Sk2",
                             "sigle": "M* 414 Sk2",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
                                 {
