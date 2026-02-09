@@ -13,7 +13,8 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
+
+import { BasicResponseJson } from '@awg-shared/api-objects';
 
 /**
  * Represents the knora session
@@ -21,7 +22,6 @@ import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-compone
  * HTTP GET to http://host/v1/session
  *
  */
-
 @JsonObject('SessionJson')
 export class SessionJson extends BasicResponseJson {
     /**

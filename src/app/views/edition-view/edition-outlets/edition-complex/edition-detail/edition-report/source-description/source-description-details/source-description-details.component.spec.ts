@@ -1,6 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { DebugElement, DOCUMENT } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -193,8 +192,8 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain no punctuation marks if detailsClass equals `desc`', () => {
-                component.detailsClass = 'desc';
+            it('... should contain no punctuation marks if detailsClass equals `conditions`', () => {
+                component.detailsClass = 'conditions';
                 detectChangesOnPush(fixture);
 
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 3, 3);

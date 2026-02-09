@@ -20,7 +20,7 @@ export const mockResourceFullResponseJson = {
         restype_iconsrc:
             'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
         preview: null,
-        locations: null,
+        locations: [],
         locdata: null,
         resclass_name: 'object',
         resclass_has_location: false,

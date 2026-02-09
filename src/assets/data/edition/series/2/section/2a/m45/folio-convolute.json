@@ -1,0 +1,815 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk5a",
+                            "sigle": "M 45 Sk5",
+                            "sigleAddendum": "T. 7–{11A}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk5b",
+                            "sigle": "M 45 Sk5",
+                            "sigleAddendum": "T. 11B–15A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk5c",
+                            "sigle": "M 45 Sk5",
+                            "sigleAddendum": "T. 15B–17C(2–3/4)",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk5d",
+                            "sigle": "M 45 Sk5",
+                            "sigleAddendum": "T. 18B(1/4)",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 5,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk5e",
+                            "sigle": "M 45 Sk5",
+                            "sigleAddendum": "T. 18C",
+                            "segmentSplit": 6,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk6a",
+                            "sigle": "M 45 Sk6",
+                            "sigleAddendum": "T. {27A}–31",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk6b",
+                            "sigle": "M 45 Sk6",
+                            "sigleAddendum": "T. 32",
+                            "segmentSplit": 4,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk6c",
+                            "sigle": "M 45 Sk6",
+                            "sigleAddendum": "T. 34–37",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk7",
+                            "sigle": "M 45 Sk7",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2.25,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk1a",
+                            "sigle": "M 26 Sk1",
+                            "sigleAddendum": "T. 1A–4",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk1b",
+                            "sigle": "M 26 Sk1",
+                            "sigleAddendum": "T. 5–{12A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 20,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk1c",
+                            "sigle": "M 26 Sk1",
+                            "sigleAddendum": "T. {12B}–14",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 24,
+                                    "endSystem": 27
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "trademarkPosition": "unten links",
+                    "systems": "28",
+                    "dimensions": {
+                        "height": 343,
+                        "width": 263
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1a",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 1–8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1b",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 9A–11B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1c",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 12B–12C",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1d",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 9C–{13C}",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1e",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. {13D}–19A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1f",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 13F–18B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1g",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 19B–23B",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1h",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 24–32A",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1i",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. {27B}–29B",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 18,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1j",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 30B–36",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 20,
+                                    "endSystem": 21
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1k",
+                            "sigle": "M 45 Sk1",
+                            "sigleAddendum": "T. 37–38",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 19
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1_1",
+                            "sigle": "M 45 Sk1.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1_2",
+                            "sigle": "M 45 Sk1.2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk1_3",
+                            "sigle": "M 45 Sk1.3",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk2_1",
+                            "sigle": "M 45 Sk2.1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 22,
+                                    "endSystem": 23
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk2",
+                            "sigle": "M 45 Sk2",
+                            "sigleAddendum": "",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 24,
+                                    "endSystem": 25
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk3a",
+                            "sigle": "M 45 Sk3",
+                            "sigleAddendum": "T. 12A–16",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 26,
+                                    "endSystem": 27
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk3b",
+                            "sigle": "M 45 Sk3",
+                            "sigleAddendum": "T. 17–18",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 24,
+                                    "endSystem": 25
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 8–14",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 15–21",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 22–27",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 28–{33A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 33–39",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF1",
+                            "sigle": "M 45 Tintenniederschrift TF1→2",
+                            "sigleAddendum": "T. 40–41",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
+                            "sigleAddendum": "T. 6–11",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m26",
+                            "sheetId": "M_26_TF1",
+                            "sigle": "M 26 Tintenniederschrift",
+                            "sigleAddendum": "T. 12–14",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Tintenniederschrift und Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 7–12",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 13–17",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 18",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 27–31",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 32–38",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_TF2",
+                            "sigle": "M 45 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 39–47",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk4a",
+                            "sigle": "M 45 Sk4",
+                            "sigleAddendum": "T. 1–7",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m45",
+                            "sheetId": "M_45_Sk4b",
+                            "sigle": "M 45 Sk4",
+                            "sigleAddendum": "T. 8",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "dimensions": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
