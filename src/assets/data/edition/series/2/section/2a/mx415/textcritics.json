@@ -4,9 +4,9 @@
             "id": "Mx_415_TF1",
             "label": "M* 415 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M* 415 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
-                "<strong>B</strong> weist keine Korrekturen auf.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 415 ist <strong>B</strong>."
+                "Für die Textedition der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a> weist keine Korrekturen auf.",
+                "Hauptquelle für die Textedition der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a>."
             ],
             "commentary": {}
         },
@@ -14,7 +14,7 @@
             "id": "Mx_415_Sk1",
             "label": "M* 415 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 415."
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_Sk1'})\">Sk1</a> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -23,35 +23,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g185",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{1A}",
                                 "system": "18–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g186",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "5",
                                 "system": "17",
                                 "position": "1/4",
                                 "comment": "Viertelnote H/h gestrichen."
                             },
                             {
-                                "svgGroupId": "g187",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "6",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "Fis: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g188",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "7",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g189",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "8",
                                 "system": "18–17",
                                 "position": "(1/4)",
