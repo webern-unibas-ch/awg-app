@@ -14,7 +14,7 @@
             "id": "Mx_415_Sk1",
             "label": "M* 415 Sk1",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_Sk1'})\">Sk1</a> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a>."
             ],
             "commentary": {
                 "preamble": "",
