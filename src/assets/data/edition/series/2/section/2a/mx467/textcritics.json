@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M*_467_TF1",
+            "id": "Mx_467_TF1",
             "label": "M* 467 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition M* 467 ist <strong>C</strong> relevante Quelle. <strong>A</strong> und <strong>B</strong> enthalten Skizzen.",
@@ -27,10 +27,10 @@
             }
         },
         {
-            "id": "M*_467_Sk1",
+            "id": "Mx_467_Sk1",
             "label": "M* 467 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> hält den melodischen Verlauf von M* 467 fest."
+                "<strong>Sk1</strong> hält den melodischen Verlauf der <a (click)=\"ref.selectSvgSheet({complexId: 'm467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a> fest."
             ],
             "commentary": {
                 "preamble": "",
@@ -51,10 +51,10 @@
             }
         },
         {
-            "id": "M*_467_Sk2",
+            "id": "Mx_467_Sk2",
             "label": "M* 467 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die Verlaufsskizze zu der Studienkomposition M* 467."
+                "<strong>Sk2</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -115,6 +115,6 @@
                     }
                 ]
             }
-        }    
+        }
     ]
 }
