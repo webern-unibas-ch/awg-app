@@ -43,7 +43,8 @@ describe('ExternalLinkDirective', () => {
 
     const expectedExternalLink = 'https://coryrylan.com/blog/managing-external-links-safely-in-angular';
     const expectedNewExternalLink = 'https://anton-webern.ch/';
-    const expectedInternalLink = '#anchor';
+    const expectedBaseURI = `${location.origin}/`;
+    const expectedInternalLink = `${location.hostname}#anchor`;
     const expectedRelAttr = 'noopener noreferrer';
     const expectedTargetAttr = '_blank';
 
@@ -62,20 +63,19 @@ describe('ExternalLinkDirective', () => {
         cleanStylesFromDOM();
     });
 
-    it('... should have 4 anchor elements with href attributes', () => {
-        // All elements with an attached ExternalLinkDirective (a[href])
+    it('... should detect all anchor elements with href attributes (4)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
 
         expectToBe(aDes.length, 4);
     });
 
-    it('... should have 1 anchor element without href attributes', () => {
+    it('... should detect anchor elements without href attributes (1)', () => {
         bareADes = fixture.debugElement.queryAll(By.css('a:not([href])'));
 
         expectToBe(bareADes.length, 1);
     });
 
-    it('... should apply [href|target|rel] values to 1st anchor element (external)', () => {
+    it('... should apply [href|target|rel] values to external anchor element', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
@@ -85,7 +85,7 @@ describe('ExternalLinkDirective', () => {
         expectToBe(aEl.innerText, 'Link External');
     });
 
-    it('... should apply [href|target|rel] values to 2nd anchor element (dynamic external)', () => {
+    it('... should apply [href|target|rel] values to dynamic external anchor element', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[1].nativeElement;
 
@@ -95,11 +95,11 @@ describe('ExternalLinkDirective', () => {
         expectToBe(aEl.innerText, 'Link External Dynamic');
     });
 
-    it('... should not apply [target|rel] values to 3rd anchor element (internal)', () => {
+    it('... should not apply [target|rel] values to internal anchor element', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[2].nativeElement;
 
-        const expectedHref = aEl.baseURI + aEl.hostname + expectedInternalLink;
+        const expectedHref = expectedBaseURI + expectedInternalLink;
 
         expectToBe(aEl.href, expectedHref);
         expectToBe(aEl.rel, '');
@@ -107,11 +107,11 @@ describe('ExternalLinkDirective', () => {
         expectToBe(aEl.innerText, 'Link Internal');
     });
 
-    it('... should not apply [target|rel] values to 4th anchor element (dynamic internal)', () => {
+    it('... should not apply [target|rel] values to dynamic internal anchor element', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[3].nativeElement;
 
-        const expectedHref = aEl.baseURI + aEl.hostname + expectedInternalLink;
+        const expectedHref = expectedBaseURI + expectedInternalLink;
 
         expectToBe(aEl.href, expectedHref);
         expectToBe(aEl.rel, '');

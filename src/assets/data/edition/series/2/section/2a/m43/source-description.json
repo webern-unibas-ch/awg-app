@@ -164,7 +164,10 @@
                     },
                     {
                         "item": "M 44",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m44",
+                            "sheetId": "M_44_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 44)",
                         "folios": [
                             {
@@ -189,6 +192,149 @@
                                 ]
                             }
                         ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr",
+                        "label": "Korrekturen in <strong>B</strong> (mit schwarzer Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "vor 1",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Taktart: 4/4 überschreibt 3/4."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Ansatz zu Notenkopf fis."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "7/8",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "cis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "4/8",
+                                            "comment": "Fis/cis/fis überschreibt E/H/e."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "d geändert zu fis durch Streichung einer Hilfslinie."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "4/4",
+                                            "comment": "d: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu D und Ende der Geltungsstrichelung auf Rasur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "5.–6. Note",
+                                            "comment": "e<sup>1</sup> überschreibt fis<sup>1</sup> auf 8/8; Ligatur zu fis<sup>1</sup> davor gestrichen."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Balken rasiert und zwei Achtelnoten geändert zu Achtelnote und Viertelnote."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "(3/8)–4/8",
+                                            "comment": "Rasur im System auf 3/8; Achtelfähnchen auf 4/8 auf Rasur, möglicherweise Balken zu 3/8 rasiert."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "(4/8)",
+                                            "comment": "Rasur im System."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o",
+                                            "position": "4. Note",
+                                            "comment": "g<sup>1</sup>/h<sup>1</sup> überschreibt f<sup>1</sup>/a<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "h<sup>1</sup> überschreibt c<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o",
+                                            "position": "6. Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o",
+                                            "position": "6. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[fff]')}}</span> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "7–8/8",
+                                            "comment": "Balken auf Rasur: e<sup>1</sup> auf 8/8 nach rechts verschoben zur Verdeutlichung des metrischen Zusammenhangs."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o",
+                                            "position": "letzte Note",
+                                            "comment": "Rasur über der Note. Ante correcturam: Notenhals nach oben, möglicherweise mit Achtelfähnchen."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o",
+                                            "position": "1. Note",
+                                            "comment": "Auf Rasur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }

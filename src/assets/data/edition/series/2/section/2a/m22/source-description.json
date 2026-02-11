@@ -2351,7 +2351,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "12b–13b",
+                                            "system": "12b–15b",
                                             "measure": "1–5",
                                             "linkTo": ""
                                         }
@@ -2362,27 +2362,6 @@
                     },
                     {
                         "item": "M 24 Sk7",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
-                        "folios": [
-                            {
-                                "folio": "1v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "14b–15b",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 24 Sk8",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. II)",
                         "folios": [
@@ -2410,7 +2389,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk9",
+                        "item": "M 24 Sk8",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
@@ -2431,7 +2410,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk10",
+                        "item": "M 24 Sk9",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. III)",
                         "folios": [
@@ -2648,7 +2627,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk11",
+                        "item": "M 24 Sk10",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
@@ -2739,7 +2718,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk12",
+                        "item": "M 24 Sk11",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
@@ -2767,7 +2746,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk12.1",
+                        "item": "M 24 Sk11.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
@@ -2788,7 +2767,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk12.2",
+                        "item": "M 24 Sk11.2",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
@@ -2809,7 +2788,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk12.3",
+                        "item": "M 24 Sk11.3",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
@@ -2851,7 +2830,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk13",
+                        "item": "M 24 Sk12",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
@@ -2893,7 +2872,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk12.4",
+                        "item": "M 24 Sk11.4",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
@@ -2942,7 +2921,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk14.1",
+                        "item": "M 24 Sk13.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. V)",
                         "folios": [
@@ -2963,7 +2942,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk14",
+                        "item": "M 24 Sk13",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. V)",
                         "folios": [
@@ -3040,7 +3019,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk15.1",
+                        "item": "M 24 Sk14.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
@@ -3082,7 +3061,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk15",
+                        "item": "M 24 Sk14",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
@@ -3173,7 +3152,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk16",
+                        "item": "M 24 Sk15",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
@@ -3285,7 +3264,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk17",
+                        "item": "M 24 Sk16",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VII)",
                         "folios": [
@@ -3313,7 +3292,7 @@
                         ]
                     },
                     {
-                        "item": "M 24 Sk17.1",
+                        "item": "M 24 Sk16.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VII)",
                         "folios": [
@@ -3383,7 +3362,10 @@
                 "contents": [
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
@@ -3411,7 +3393,10 @@
                     },
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF2"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {

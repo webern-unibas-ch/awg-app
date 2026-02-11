@@ -14,8 +14,9 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
+
+import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects';
 
 /**
  * Represents information about a resource.

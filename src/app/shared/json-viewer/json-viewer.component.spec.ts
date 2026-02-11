@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, DebugElement, Input, NgModule } from '@angular/core';
+import { Component, DebugElement, Input, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -90,7 +90,9 @@ describe('JsonViewerComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
     class NgbNavWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }

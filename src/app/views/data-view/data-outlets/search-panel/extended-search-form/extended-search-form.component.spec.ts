@@ -1,8 +1,7 @@
-import { DOCUMENT } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { DebugElement, DOCUMENT } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -829,7 +828,7 @@ describe('ExtendedSearchFormComponent', () => {
                                 const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                                expectToEqual(faIconIns, expectedPlusIcon);
+                                expectToEqual(faIconIns(), expectedPlusIcon);
                             });
                         });
 
@@ -935,7 +934,7 @@ describe('ExtendedSearchFormComponent', () => {
                                 const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                                 const faIconIns = faIconDes[0].componentInstance.icon;
 
-                                expectToEqual(faIconIns, expectedTrashIcon);
+                                expectToEqual(faIconIns(), expectedTrashIcon);
                             });
                         });
 
@@ -1016,7 +1015,7 @@ describe('ExtendedSearchFormComponent', () => {
                         const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                         const faIconIns = faIconDes[0].componentInstance.icon;
 
-                        expectToEqual(faIconIns, expectedSearchIcon);
+                        expectToEqual(faIconIns(), expectedSearchIcon);
                     });
 
                     it('... should have a label for the search button', () => {
@@ -1066,7 +1065,7 @@ describe('ExtendedSearchFormComponent', () => {
                         const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                         const faIconIns = faIconDes[0].componentInstance.icon;
 
-                        expectToEqual(faIconIns, expectedRefreshIcon);
+                        expectToEqual(faIconIns(), expectedRefreshIcon);
                     });
 
                     it('... should have a label for the reset button', () => {

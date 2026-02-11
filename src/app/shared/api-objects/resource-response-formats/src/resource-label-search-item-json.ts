@@ -13,7 +13,8 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
+
+import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects';
 
 /**
  * Represents a retrieved resource when doing a label search
