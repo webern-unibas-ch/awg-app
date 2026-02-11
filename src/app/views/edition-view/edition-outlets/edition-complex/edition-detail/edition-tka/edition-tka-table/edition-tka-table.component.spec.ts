@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
@@ -15,10 +14,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet, TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 

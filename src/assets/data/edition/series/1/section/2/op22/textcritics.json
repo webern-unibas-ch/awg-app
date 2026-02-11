@@ -284,21 +284,21 @@
                                 "measure": "Bl. 3<sup>r</sup>",
                                 "system": "5a",
                                 "position": "G<sub>b</sub>: 2. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> mit Bleistift nachgezogen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> mit Bleistift nachgezogen."
                             },
                             {
                                 "svgGroupId": "g2041",
                                 "measure": "Bl. 3<sup>r</sup>",
                                 "system": "5a",
                                 "position": "G<sub>b</sub>: 3. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> mit Bleistift nachgezogen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> mit Bleistift nachgezogen."
                             },
                             {
                                 "svgGroupId": "g2051",
                                 "measure": "Bl. 3<sup>r</sup>",
                                 "system": "5a",
                                 "position": "G<sub>b</sub>: 4. Reihenton",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> mit Bleistift nachgezogen."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> mit Bleistift nachgezogen."
                             },
                             {
                                 "svgGroupId": "g2061",

@@ -15,7 +15,8 @@
  * */
 
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson, StringOrNumber } from '@awg-shared/api-objects/basic-message-components';
+
+import { BasicResponseJson, StringOrNumber } from '@awg-shared/api-objects';
 import { PagingItemJson } from './paging-item-json';
 import { SubjectItemJson } from './subject-item-json';
 import { ThumbMaxJson } from './thumb-max-json';

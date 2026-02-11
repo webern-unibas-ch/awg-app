@@ -6,7 +6,7 @@
             "siglumAddendum": "",
             "type": "",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {}
+            "physDesc": {}
         },
         {
             "id": "source_Aa",
@@ -14,22 +14,23 @@
             "siglumAddendum": "a",
             "type": "Skizzen zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>/<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">2</a>.",
             "location": "",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)"
+                    "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1)",
+                    "Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 14,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 14,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -38,29 +39,31 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_9_LIN_28",
+                        "trademark": {
+                            "variant": "JE_NO9_LIN28_OP12_AA1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -69,19 +72,11 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "2"
                     }
                 ],
@@ -262,8 +257,8 @@
             "siglumAddendum": "b",
             "type": "Skizzen zu <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (vermutlich zwei Hälften eines ursprünglichen Blattes)."
                 ],
                 "writingMaterialStrings": [
@@ -271,13 +266,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 11,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 11,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -286,14 +281,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22",
+                        "trademark": {
+                            "variant": "JE_NO7_LIN22_OP12_AB",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -302,9 +298,9 @@
                         "watermark": {
                             "variant": "T",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "auf dem Kopf stehend",
+                                    "preFolioInfo": "auf dem Kopf stehend",
                                     "folios": ["2"],
                                     "position": "unten"
                                 }
@@ -421,7 +417,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "6–8b",
+                                            "system": "6–8c",
                                             "measure": "11–12",
                                             "linkTo": ""
                                         }
@@ -463,8 +459,8 @@
             "siglumAddendum": "c",
             "type": "Skizzen zu „Schien mir’s, als ich sah die Sonne“ M 213.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 3<sup>v</sup>) mit Bleistift. Bl. 3<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken Rand: Blätter von Bogen abgetrennt; Risspuren am oberen Rand von Bl. 1–2 (vermutlich zwei Hälften eines ursprünglichen Blattes); Riss (ca. 80 mm) am linken Rand (System 6) von Bl. 3; Flecken auf Bl. 3<sup>v</sup>."
                 ],
                 "writingMaterialStrings": [
@@ -473,13 +469,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -488,29 +484,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 22,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 22,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -519,14 +507,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22",
+                        "trademark": {
+                            "variant": "JE_NO7_LIN22_OP12_AC",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["3r"],
                                     "position": "unten links"
                                 }
@@ -535,9 +524,9 @@
                         "watermark": {
                             "variant": "J. E. & Co. | W I E N",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "vertikal absteigend",
+                                    "preFolioInfo": "vertikal absteigend",
                                     "folios": ["3v"],
                                     "position": ""
                                 }
@@ -882,23 +871,23 @@
             "siglumAddendum": "d",
             "type": "Skizzen zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 1<sup>v</sup>, 3<sup>v</sup>) mit Bleistift. Verso-Seiten mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken bzw. rechten (Bl. 2) sowie am oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (Bl. 2 und 3: vermutlich zwei Hälften eines ursprünglichen Blattes)."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1)",
-                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3)"
+                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 2–3)"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 9,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 9,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "ca.",
@@ -907,29 +896,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 6,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 6,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -938,14 +919,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_C",
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP12_AD2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["2v"],
                                     "position": "unten links"
                                 }
@@ -954,15 +936,15 @@
                         "watermark": {
                             "variant": "J. E. & Co. | W I E N",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "vertikal absteigend",
+                                    "preFolioInfo": "vertikal absteigend",
                                     "folios": ["3v"],
                                     "position": ""
                                 }
                             ]
                         },
-                        "folioAddendum": "3"
+                        "folioAddendum": "2–3"
                     }
                 ],
                 "writingInstruments": {
@@ -1060,8 +1042,8 @@
             "siglumAddendum": "",
             "type": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">2</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
                 "writingMaterialStrings": [
@@ -1069,13 +1051,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1084,19 +1066,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "266"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_B",
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP12_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -1223,7 +1207,7 @@
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> gestrichen."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gestrichen."
                                         },
                                         {
                                             "measure": "23",
@@ -1262,7 +1246,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu virtuellem cis) hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu virtuellem cis) hinzugefügt."
                                         },
                                         {
                                             "measure": "11",
@@ -1274,13 +1258,13 @@
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>."
                                         },
                                         {
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "4/8",
-                                            "comment": "Es ersetzt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>."
+                                            "comment": "Es ersetzt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>."
                                         }
                                     ]
                                 }
@@ -1296,14 +1280,115 @@
             "siglumAddendum": "",
             "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
-                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10). Archivalische Paginierung <em>[1]</em> bis <em>[12]</em> (Bl. 1–6), <em>[12a]</em> bis <em>[12b]</em> (Bl. 7), <em>[13]</em> bis <em>[18]</em> (Bl. 8–10) unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 1<sup>v</sup>, 3<sup>r</sup>, 3<sup>v</sup>, 5<sup>v</sup>, 10<sup>r</sup>, 10<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Risse und Knickfalten auf Bl. 1<sup>r</sup>, Rissspuren auf Bl. 1<sup>r</sup> links: von Bogen abgetrennt; Knickfalte auf dem ganzen Bogen Bl. 2/3; Knickfalten auf Bl. 2<sup>r</sup> unten rechts, Durchschläge, Bleistift und Fingerabdrücke auf Bl. 2<sup>r</sup>; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 2<sup>v</sup>, spiegelverkehrtes M. A. 35 auf Bl. 2<sup>v</sup> unten Mitte; Knickfalten und Risse auf Bl. 3<sup>r</sup> rechts; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 3<sup>v</sup>; Fleck auf Bl. 4<sup>r</sup> oben lnks, Fingerabdrücke auf Bl. 4<sup>r</sup> unten; Fleck auf Bl. 5<sup>r</sup> oben lnks Fleck auf Bl. 5<sup>v</sup> oben rechts; Fingerabdrücke auf Bl. 6<sup>r</sup> unten rechts."
+            "physDesc": {
+                "conditions": [
+                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10). Archivalische Paginierung <em>[1]</em> bis <em>[12]</em> (Bl. 1–6), <em>[12a]</em> bis <em>[12b]</em> (Bl. 7), <em>[13]</em> bis <em>[18]</em> (Bl. 8–10) unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 1<sup>v</sup>, 3<sup>r</sup>, 3<sup>v</sup>, 5<sup>v</sup>, 10<sup>r</sup>, 10<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Risse und Knickfalten auf Bl. 1<sup>r</sup>, Rissspuren auf Bl. 1<sup>r</sup> links: von Bogen abgetrennt; horizontale Knickfalte auf Bl. 2/3; Knickfalten auf Bl. 2<sup>r</sup> unten rechts; Knickfalten und Risse auf Bl. 3<sup>r</sup> rechts."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 22 Systeme, Format: hoch 340 × 263 mm, Firmenzeichen: ##JE_7_22## recto unten links, Wasserzeichen: <em>T</em> oben recto lesbar (Bl. 1)",
                     "Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##JE_2_12## recto unten links (Bl. 2–6, 8–10)",
                     "Notenpapier, 7 Systeme, Format: quer 170 × 270 mm, kein Firmenzeichen (Bl. 7)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 11,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "263"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO7_LIN22_OP12_C1",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "T",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1"],
+                                    "position": "oben recto"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "345"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP12_C2",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["2r", "3r", "4r", "5r", "6r", "8r", "9r", "10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "2–6, 8–10"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 7,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "170"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {},
+                        "watermark": {},
+                        "folioAddendum": "7"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1793,7 +1878,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -1805,7 +1890,7 @@
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu F/e gestrichen mit blauer Tinte."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu F/e gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "13",
@@ -1841,7 +1926,7 @@
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "Auf Rasur. <br /> (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
+                                            "comment": "Auf Rasur. <br /> (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "14 <br /> bis 15",
@@ -1913,7 +1998,7 @@
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup> und (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup> und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
                                             "measure": "22",
@@ -1925,7 +2010,7 @@
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
                                             "measure": "22",
@@ -1985,25 +2070,60 @@
             "siglum": "D",
             "siglumAddendum": "",
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>.",
-            "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
-            "description": {
-                "desc": [
-                    "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
+            "location": "GB-Lbl, O. W. Neighbour Collection, MS Mus. 1810/163.",
+            "physDesc": {
+                "conditions": [
+                    "1 Blatt (Bl. 1). Archivalische Foliierung <em>1</em> recto oben rechts mit Bleistift. Horizontale Knickfalte bei System 5/6: am linken (recto) Rand ca. 40mm, am rechten (recto) Rand ca. 45mm eingerissen; Knickfalten an allen Ecken außer oben rechts; Rissspuren am linken (recto) Rand: von Bogen abgetrennt. Kleiner Stockfleck bei System 10 (recto: rechts). Ecken unten abgerissen."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
+                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme) vorgedruckten Akkoladen, Format: hoch 343 × 264 mm, Firmenzeichen: ##JE_12## recto unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "343"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "264"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO12_LIN12_OP12_D",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["evt. weitere"]
+                    "secondary": ["Bleistift (archivalische Foliierung)"]
                 },
                 "titles": [
-                    "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] recto oben"
+                    "<em>Gleich und</em> [<em>g</em>→]<em>Gleich | Goethe</em> [Mitte] | <em>Anton Webern op. 12</em> [rechts] recto oben"
                 ],
                 "dates": [],
                 "paginations": [],
                 "measureNumbers": [],
-                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3."],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3"],
                 "annotations": [],
                 "contents": [
                     {
@@ -2069,6 +2189,113 @@
                             }
                         ]
                     }
+                ], 
+                 "corrections": [
+                    {
+                        "id": "source_D_corr",
+                        "label": "Korrekturen in <strong>D</strong> (mit Tinte auf Rasur)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>.",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "<em>circa</em> auf Rasur. Ante correcturam vermutlich: Metronomzahl."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "",
+                                            "position": "5/8",
+                                            "comment": "<em>t</em>[empo] auf Rasur. Ante correcturam vermutlich: <em>Tempo</em>."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Ligaturbogen auf Rasur."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "6/8",
+                                            "comment": "Text: [i]<em>n</em> auf Rasur. Ante correcturam vermutlich: <em>im</em>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Ges.",
+                                            "position": "nach 3/4",
+                                            "comment": "Rasur: Vermutlich Position des Taktstrichs korrigiert."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Ende des Legatobogens (nach Akkoladenwechsel) auf Rasur."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Ges.",
+                                            "position": "2/8",
+                                            "comment": "Text: <em>d</em>[a] auf Rasur. Ante correcturam vermutlich: <em>Da</em>."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Legatobogen auf Rasur."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "",
+                                            "position": "Taktanfang bis (3/8)",
+                                            "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>tempo</em> [...] auf Rasur."
+                                        },
+                                        {
+                                            "measure": "18 <br /> bis 20",
+                                            "system": "Ges.",
+                                            "position": "3. Note <br /> 1/8",
+                                            "comment": "Legatobogen zunächst nur bis T. 19 1. Note (rasiert)."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "4/16",
+                                            "comment": "Fermate auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: <em>rit. - - - tempo</em> über Klav."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "5/8",
+                                            "comment": "Staccatopunkt auf Rasur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
                 ]
             }
         },
@@ -2078,8 +2305,8 @@
             "siglumAddendum": "",
             "type": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
-            "description": {
-                "desc": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
+            "physDesc": {
+                "conditions": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
                 "writingMaterialStrings": [],
                 "writingInstruments": {
                     "main": "",
@@ -2145,8 +2372,8 @@
             "siglumAddendum": "H",
             "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>.",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
                 ],
                 "corrections": [
@@ -2606,12 +2833,47 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Vier Lieder</em> op. 12.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "10 Blätter (Bl. 1–10): 1 Bogen (Bl. 1/10) schließt 4 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7, 8/9) ein. Bl. 3<sup>r</sup>–3<sup>v</sup>, 5<sup>v</sup>, 9<sup>r</sup>–9<sup>v</sup> bis auf die Paginierung unbeschriftet, Bl. 1<sup>v</sup>, 10<sup>v</sup> unbeschriftet."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format: hoch 340 × 268 mm, Firmenzeichen: ##??## auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "268"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP12_F",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["2r", "4r", "6r", "8r", "10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1–10"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -3093,7 +3355,7 @@
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> verändert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> verändert zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
                                         },
                                         {
                                             "measure": "21",
@@ -3726,7 +3988,7 @@
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> hinzugefügt mit Bleistift."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> hinzugefügt mit Bleistift."
                                         },
                                         {
                                             "measure": "19",
@@ -3748,8 +4010,8 @@
             "siglumAddendum": "",
             "type": "Druck von <em>Vier Lieder</em> op. 12.",
             "location": "Wien: Universal Edition, 1925.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "10 Seiten (S. [1]–[10]): 2 klammergeheftete ineinander gelegte Bögen (S. [1]|2/9|[10], 3|4/5|6) und 1 mit Klebstoff angeheftetes Blatt (S. 7|8) in Umschlag (S. [a–d]), Format: 306 × 230 mm. S. [10] sowie innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. S. [d]: Verlagsanzeige (<em>ARNOLD SCHÖNBERGS WERKE</em>)."
                 ],
                 "writingMaterialStrings": [],
@@ -4095,8 +4357,8 @@
             "siglumAddendum": "H",
             "type": "Handexemplar von <strong>G</strong>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                 ],
                 "annotations": [
