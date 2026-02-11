@@ -4,9 +4,9 @@
             "id": "Mx_416_TF1",
             "label": "M* 416 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
-                "<strong>B</strong> weist keine Korrekturen auf.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong>."
+                "Für die Textedition der Studienkomposition für Klavier M* 416 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a> weist keine Korrekturen auf.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a>."
             ],
             "commentary": {}
         },
@@ -14,7 +14,7 @@
             "id": "Mx_416_Sk1",
             "label": "M* 416 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 416."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx416', sheetId: 'Mx_416_TF1'})\">Studienkomposition für Klavier M* 416</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -23,7 +23,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g175",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{1A}",
                                 "system": "16–15",
                                 "position": "",
@@ -37,21 +37,21 @@
                                 "comment": "Viertelnote H/h gestrichen."
                             },
                             {
-                                "svgGroupId": "g176",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "3",
                                 "system": "15",
                                 "position": "(3/8)",
                                 "comment": "Metrisch falsch platzierte Viertelnote d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g177",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "4",
                                 "system": "16",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote."
                             },
                             {
-                                "svgGroupId": "g178",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "8",
                                 "system": "16",
                                 "position": "1. Note",
