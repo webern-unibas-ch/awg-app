@@ -13,7 +13,8 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
+
+import { BasicResponseJson } from '@awg-shared/api-objects';
 import { NodeItemJson } from './node-item-json';
 
 /**

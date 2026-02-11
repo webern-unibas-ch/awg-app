@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
@@ -11,7 +10,7 @@ import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { FullscreenService } from '@awg-app/core/services';
+import { FullscreenService } from '@awg-core/services';
 
 import { FullscreenToggleComponent } from './fullscreen-toggle.component';
 
@@ -134,7 +133,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(compDe, 'button.btn > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedFaExpand);
+                    expectToEqual(faIconIns(), expectedFaExpand);
                 });
             });
 
@@ -158,7 +157,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(compDe, 'button.btn > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedFaCompress);
+                    expectToEqual(faIconIns(), expectedFaCompress);
                 });
             });
         });

@@ -18,7 +18,7 @@ export const LOGOS_DATA: Logos = {
         id: 'awglogo',
         src: 'assets/img/logos/awg.png',
         alt: 'Logo AWG',
-        href: 'https://www.anton-webern.ch/',
+        href: 'https://anton-webern.ch/',
     },
     bootstrap: {
         id: 'bootstraplogo',

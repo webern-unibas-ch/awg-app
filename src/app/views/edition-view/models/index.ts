@@ -30,10 +30,15 @@ import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 import { EditionSvgOverlay, EditionSvgOverlayActionTypes, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
+import {
+    FolioCalculation,
+    FolioCalculationLine,
+    FolioCalculationPoint,
+    FolioCalculationRectangle,
+} from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
-import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
+import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroBlock, IntroList } from './intro.model';
@@ -41,11 +46,13 @@ import { Preface, PrefaceList } from './preface.model';
 
 import {
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
@@ -87,11 +94,12 @@ export {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationRectangle,
     FolioContent,
     FolioConvolute,
     FolioConvoluteList,
-    FolioFormat,
-    FolioSection,
+    FolioDimensions,
+    FolioSegment,
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
@@ -106,11 +114,13 @@ export {
     PrefaceList,
     Source,
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
     SourceEvaluation,
     SourceEvaluationList,

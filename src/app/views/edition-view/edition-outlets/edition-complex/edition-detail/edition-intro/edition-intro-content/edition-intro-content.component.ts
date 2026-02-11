@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 
 import { IntroBlock } from '@awg-views/edition-view/models';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionIntroContent component.

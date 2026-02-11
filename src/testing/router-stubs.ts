@@ -181,6 +181,7 @@ export class ActivatedRouteStub {
      *
      * @param {Params} [initialParams] The optional initial route parameters.
      */
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     constructor(initialParams?: Params) {
         if (initialParams) {
             this.testParamMap = initialParams;
