@@ -26,10 +26,10 @@
     <path id="text4" d="m-28.25 168.192.27-1.287q-.175.137-.49.22l.039-.191q.157-.063.309-.164.154-.101.23-.177.047-.046.089-.113h.122l-.357 1.712zm.92-.56q0-.216.064-.439.065-.223.144-.357t.164-.209.166-.11q.083-.036.183-.036.195 0 .325.145.132.145.132.42 0 .282-.091.559-.107.328-.298.492-.146.124-.333.124-.192 0-.325-.15-.131-.151-.131-.438m.203.054q0 .157.053.246.07.122.21.122.122 0 .222-.11.144-.157.216-.457.074-.3.074-.491 0-.184-.071-.265t-.185-.082q-.084 0-.157.043-.072.043-.138.148-.095.147-.164.442-.06.25-.06.404" aria-label="10" style="font-style:italic;font-size:2.38125px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#7d7d7d;stroke-width:.352777"/>
     <path id="text6" d="m-28.25 175.1.27-1.288q-.175.137-.49.22l.039-.19q.157-.064.309-.165.154-.101.23-.177.047-.046.089-.112h.122l-.357 1.711zm1.148 0 .27-1.288q-.175.137-.491.22l.04-.19q.156-.064.309-.165t.23-.177q.046-.046.088-.112h.122l-.357 1.711z" aria-label="11" style="font-style:italic;font-size:2.38125px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#7d7d7d;stroke-width:.352777"/>
   </g>
-  <g id="g4h" class="tkk" transform="matrix(.3279 0 0 .46767 65.202 5.91)">
+  <g id="g-tkk-28" class="tkk" transform="matrix(.3279 0 0 .46767 65.202 5.91)">
     <path id="rect1" d="M52.78 64.806h7.826v10.212H52.78z" style="fill:none;stroke-width:.139965"/>
   </g>
-  <g id="g5h" class="tkk" transform="matrix(2.41635 0 0 2.88998 57.782 -152.753)">
+  <g id="g-tkk-29" class="tkk" transform="matrix(2.41635 0 0 2.88998 57.782 -152.753)">
     <path id="rect2" d="M52.78 64.806h7.826v10.212H52.78z" style="fill:none;stroke-width:.139965"/>
   </g>
 </svg>

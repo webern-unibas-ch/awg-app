@@ -59,7 +59,7 @@
   <g id="text72" aria-label="1" class="cls-6 supplied staffN" style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
     <path id="path18504" d="m95.114 207.803.765-3.648q-.494.389-1.39.623l.111-.54q.445-.179.877-.466.435-.286.653-.5.131-.132.25-.32h.346l-1.012 4.851z"/>
   </g>
-  <g id="text74" aria-label="2" class="supplied staffN" style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
+  <g id="g-tkk-2" aria-label="2" class="supplied staffN" style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
     <path id="path18501" d="M94.488 248.303q.092-.431.254-.721.165-.294.435-.554.27-.264 1.042-.88.468-.373.639-.55.247-.258.36-.505.075-.168.075-.366 0-.333-.237-.563-.234-.234-.577-.234-.34 0-.593.237-.254.234-.363.755l-.583-.086q.085-.643.497-1.012.416-.372 1.032-.372.412 0 .745.171.336.172.504.481.168.31.168.64 0 .481-.343.926-.21.277-1.239 1.09-.441.35-.659.574-.214.224-.323.422h2.162l-.115.547z"/>
   </g>
   <g id="text76" aria-label="3" class="cls-6 supplied staffN" style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
@@ -251,7 +251,7 @@
   </g>
   <path id="line186" d="M717.225 242.763v-10.4" class="cls-2" style="fill:none;stroke:#000;stroke-width:.4px"/>
   <path id="path188" d="m704.925 233.463 12.5-1.7v1.7l-12.5 1.7z"/>
-  <g id="g1105" class="tkk">
+  <g id="g-tkk-1" class="tkk">
     <path id="path156" d="M627.325 229.663c-6.7 8.3-6.7 25 0 33.3" class="cls-2" style="fill:none;stroke:#000;stroke-width:.40000001px"/>
     <path id="path190" d="M723.025 228.663c9.8 8.3 9.8 25 0 33.3" class="cls-2" style="fill:none;stroke:#000;stroke-width:.40000001px"/>
   </g>

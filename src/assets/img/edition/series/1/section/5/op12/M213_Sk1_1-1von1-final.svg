@@ -21,13 +21,13 @@
     <path id="text4" d="m-28.693 167.746.205-.026q.023.179.102.257.08.077.21.077.155 0 .268-.112t.114-.256q0-.125-.085-.207t-.228-.082q-.016 0-.067.005l.036-.176q.03.005.058.005.18 0 .277-.087.097-.089.097-.216 0-.118-.08-.198-.079-.08-.194-.08-.113 0-.204.082t-.115.232l-.207-.042q.051-.21.197-.326.145-.115.344-.115.21 0 .338.127.13.127.13.311 0 .135-.07.236t-.21.167q.1.059.148.143.05.083.05.192 0 .229-.172.397t-.41.168q-.23 0-.374-.13-.142-.13-.158-.346" aria-label="3" style="font-style:italic;font-size:2.38125px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#7d7d7d;stroke-width:.352777"/>
     <path id="text6" d="m-28.112 175.1.092-.436h-.695l.044-.208.955-1.061h.172l-.227 1.083h.24l-.039.186h-.24l-.091.435zm.13-.622.15-.711-.635.711z" aria-label="4" style="font-style:italic;font-size:2.38125px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#7d7d7d;stroke-width:.352777"/>
   </g>
-  <g id="g4" class="tkk" transform="matrix(.59522 0 0 .85096 35.572 5.65)">
+  <g id="g-tkk-1" class="tkk" transform="matrix(.59522 0 0 .85096 35.572 5.65)">
     <path id="rect1" d="M52.78 64.806h7.826v10.212H52.78z" style="fill:none;stroke-width:.139965"/>
   </g>
-  <g id="g5" class="tkk" transform="matrix(.8173 0 0 .69867 33.056 1.618)">
+  <g id="g-tkk-2" class="tkk" transform="matrix(.8173 0 0 .69867 33.056 1.618)">
     <path id="rect2" d="M52.78 64.806h7.826v10.212H52.78z" style="fill:none;stroke-width:.139965"/>
   </g>
-  <g id="g6" class="tkk" transform="matrix(1.2317 0 0 .24928 -34.096 36.29)">
+  <g id="g-tkk-3" class="tkk" transform="matrix(1.2317 0 0 .24928 -34.096 36.29)">
     <path id="path2" d="m94.888 44.947-.001 12.582H97.9v13.828l1.797-.08V56.36h-3.152V44.847l-1.658.043z" style="fill:none;stroke:none;stroke-width:.139965"/>
   </g>
 </svg>

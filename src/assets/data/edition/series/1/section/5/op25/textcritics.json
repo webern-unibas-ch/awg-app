@@ -352,21 +352,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1145",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1",
                                 "system": "",
                                 "position": "4/8",
                                 "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4/8 und 5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4a'})\"><strong>M 317 Sk4</strong></a>."
                             },
                             {
-                                "svgGroupId": "g1198",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause."
                             },
                             {
-                                "svgGroupId": "g1204",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "1. Note",
@@ -393,7 +393,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g6494",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1–2",
                                 "system": "1",
                                 "position": "",
@@ -483,21 +483,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1055",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "A",
                                 "system": "1",
                                 "position": "1.–5. Reihenton",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "text74",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "A",
                                 "system": "1",
                                 "position": "2. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>?)."
                             },
                             {
-                                "svgGroupId": "g1065",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "B",
                                 "system": "1",
                                 "position": "4. Reihenton",
@@ -586,56 +586,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1245",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1–3",
                                 "system": "1",
                                 "position": "",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
-                                "svgGroupId": "text164",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "1",
                                 "system": "1",
                                 "position": "6/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
                             },
                             {
-                                "svgGroupId": "g1254",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "2",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "text194",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "2",
                                 "system": "1",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>?)."
                             },
                             {
-                                "svgGroupId": "text338",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "letzte Note",
                                 "comment": "Punkt unter der Note: Fleck oder Ansatz zu Notenkopf f?"
                             },
                             {
-                                "svgGroupId": "g1281",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "2 <br /> bis 3",
                                 "system": "3",
                                 "position": "letzte Note <br /> 3. Note",
                                 "comment": "Durch Einklammerung getilgt."
                             },
                             {
-                                "svgGroupId": "g242",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "3",
                                 "system": "1",
                                 "position": "3. Note",
                                 "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_1'})\"><strong>Sk2.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
                             },
                             {
-                                "svgGroupId": "g1295",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "4/8",
@@ -800,7 +800,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1105",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "",
@@ -1041,21 +1041,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1114",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1 <br /> bis 2",
                                 "system": "3",
                                 "position": "1. Note <br /> 1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
-                                "svgGroupId": "g1119",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Punktierung durch Einkreisung getilgt?"
                             },
                             {
-                                "svgGroupId": "g3069",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "1. Note",
@@ -1144,56 +1144,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1203",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "vor 3 <br /> bis 3",
                                 "system": "4",
                                 "position": "1. Note <br /> 1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
-                                "svgGroupId": "g1209",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "4",
                                 "position": "Taktanfang",
                                 "comment": "Asterisk verweist auf Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>."
                             },
                             {
-                                "svgGroupId": "g1213",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "{5–6}",
                                 "system": "4",
                                 "position": "",
                                 "comment": "Durch Einklammerung getilgt. (Die Variante in System 3 wird allerdings nicht von der Einklammerung eingeschlossen.)"
                             },
                             {
-                                "svgGroupId": "g1218",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "{5}",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "Ligaturbogen gestrichen."
                             },
                             {
-                                "svgGroupId": "g1206",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "{5}",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_1'})\"><strong>Sk3.1.1</strong></a>."
                             },
                             {
-                                "svgGroupId": "text228",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "{5}",
                                 "system": "4",
                                 "position": "6/8",
                                 "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                             },
                             {
-                                "svgGroupId": "g1241",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "{5} <br /> bis {6}",
                                 "system": "4",
                                 "position": "6/8 <br /> 3. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
-                                "svgGroupId": "g1225",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "{6}",
                                 "system": "4",
                                 "position": "1–2/8",
@@ -1296,7 +1296,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g312",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "5",
                                 "system": "6",
                                 "position": "",
@@ -1343,35 +1343,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g798",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "3 <br /> bis 5",
                                 "system": "4",
                                 "position": "1. Note <br /> 1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
-                                "svgGroupId": "g804",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "3",
                                 "system": "4",
                                 "position": "Taktanfang",
                                 "comment": "Asterisk verweist auf Anschluss von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a>."
                             },
                             {
-                                "svgGroupId": "g809",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "3",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "Punktierung durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g929",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "5",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g1958",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "5",
                                 "system": "4",
                                 "position": "nach 1. Note",
@@ -1461,77 +1461,77 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4504",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "5",
                                 "position": "",
                                 "comment": "Strich mit unklarer Bedeutung."
                             },
                             {
-                                "svgGroupId": "g310",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "G<sub>g</sub> (1): vor 1. Reihenton",
                                 "comment": "<em>1</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g104",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "G<sub>g</sub> (1): 7. Reihenton",
                                 "comment": "sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g1554",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g570",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "K<sub>gis</sub> (2): vor 1. Reihenton",
                                 "comment": "<em>2</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1572",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6",
                                 "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
                             },
                             {
-                                "svgGroupId": "g318",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "U<sub>g</sub> (3): vor 1. Reihenton",
                                 "comment": "<em>3</em> mit schwarzem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1591",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g566",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "KU<sub>fis</sub> (4): vor 1. Reihenton",
                                 "comment": "<em>4</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1608",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "7",
                                 "position": "KU<sub>fis</sub> (4): 2.–3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>)."
                             },
                             {
-                                "svgGroupId": "g1613",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "Bl. 38<sup>v</sup>",
                                 "system": "6–7",
                                 "position": "nach letzter Note",
@@ -1609,273 +1609,273 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g678",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{1A}",
                                 "system": "10–12",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g683",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "{1B}",
                                 "system": "10–12",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "text334",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "vor 1C",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "<em>4</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g687",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "1C",
                                 "system": "11",
                                 "position": "6/8",
                                 "comment": "sic: Winkel markiert hier nicht das Ende, sondern den 11. Reihenton von KU<sub>fis</sub> (<em>4</em>). 12. Reihenton von KU<sub>fis</sub> (<em>g</em>) ist zugleich 1. Reihenton von G<sub>g</sub> (<em>1</em>): siehe T. 2 System 10–11 jeweils 1. Note."
                             },
                             {
-                                "svgGroupId": "line20",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "nach 1C",
                                 "system": "11–12",
                                 "position": "",
                                 "comment": "Taktstrich nachgezogen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text580",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "2",
                                 "system": "10",
                                 "position": "1. Note",
                                 "comment": "<em>1</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1865",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "3B",
                                 "system": "2",
                                 "position": "1/8",
                                 "comment": "<em>zart</em> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1869",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "3B",
                                 "system": "3",
                                 "position": "3. Note",
                                 "comment": "Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text1144",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "3B",
                                 "system": "4",
                                 "position": "2/8",
                                 "comment": "<em>3</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g7843",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "3B",
                                 "system": "3–4",
                                 "position": "4.–6. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "text430",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "3B",
                                 "system": "6",
                                 "position": "1. Note",
                                 "comment": "<em>4</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g8572",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "3B",
                                 "system": "2",
                                 "position": "5/8",
                                 "comment": "Durch Einkreisung getilgt. Siehe Variante in System 1."
                             },
                             {
-                                "svgGroupId": "g1889",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "4",
                                 "system": "2–4",
                                 "position": "Taktanfang",
                                 "comment": "Taktvorzeichnung 2/4 überschreibt 4/4."
                             },
                             {
-                                "svgGroupId": "g1899",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g1903",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g9301",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "5",
                                 "system": "3–4",
                                 "position": "(1–2/4)",
                                 "comment": "Durch Einkreisung mit rotem Buntstift getilgt."
                             },
                             {
-                                "svgGroupId": "g1909",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "5",
                                 "system": "5–6",
                                 "position": "",
                                 "comment": "Durch Streichung getilgt."
                             },
                             {
-                                "svgGroupId": "g1917",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "5",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "<em>u. 1</em> und Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1925",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "5",
                                 "system": "5",
                                 "position": "1. Note",
                                 "comment": "Beide Winkel und <em>1</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1929",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "5",
                                 "system": "8",
                                 "position": "3. Note",
                                 "comment": "Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text806",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "5",
                                 "system": "7",
                                 "position": "1. Note",
                                 "comment": "<em>1</em> nachgezogen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1945",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "5/8",
                                 "comment": "<em>1</em> über dem System mit rotem Buntstift und radiert. <em>1</em> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
                             },
                             {
-                                "svgGroupId": "g2067",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "6",
                                 "system": "2",
                                 "position": "1.–2. Note",
                                 "comment": "<em>leuchtet</em> zusammengeschrieben."
                             },
                             {
-                                "svgGroupId": "g10030",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "6",
                                 "system": "3–4",
                                 "position": "1. Pause bis <br /> 1. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g10759",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "6",
                                 "system": "5",
                                 "position": "1. Note",
                                 "comment": "fis<sup>1</sup> durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "text1070",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "6",
                                 "system": "4",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g11488",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "6",
                                 "system": "5–6",
                                 "position": "2.–6. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "text888",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "6",
                                 "system": "3",
                                 "position": "2.–4. Note",
                                 "comment": "Triolenziffer nachgezogen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1871",
+                                "svgGroupId": "g-tkk-29",
                                 "measure": "6",
                                 "system": "3",
                                 "position": "letzte Note",
                                 "comment": "Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text1078",
+                                "svgGroupId": "g-tkk-30",
                                 "measure": "6",
                                 "system": "4",
                                 "position": "8/8",
                                 "comment": "<em>3</em> nachgezogen mit schwarzem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1165",
+                                "svgGroupId": "g-tkk-31",
                                 "measure": "7",
                                 "system": "10–11",
                                 "position": "Taktanfang",
                                 "comment": "<em>4/4</em> überschreibt <em>3/4</em>."
                             },
                             {
-                                "svgGroupId": "text1148",
+                                "svgGroupId": "g-tkk-32",
                                 "measure": "7",
                                 "system": "10",
                                 "position": "3/8",
                                 "comment": "<em>3</em> nachgezogen mit schwarzem Buntstift. (Ziffer bezieht sich auf 1. Note.)"
                             },
                             {
-                                "svgGroupId": "g1228",
+                                "svgGroupId": "g-tkk-33",
                                 "measure": "7",
                                 "system": "11",
                                 "position": "8/8",
                                 "comment": "Winkel nachgezogen mit schwarzem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1233",
+                                "svgGroupId": "g-tkk-34",
                                 "measure": "vor 8",
                                 "system": "12",
                                 "position": "",
                                 "comment": "Bassschlüssel gestrichen."
                             },
                             {
-                                "svgGroupId": "text1150",
+                                "svgGroupId": "g-tkk-35",
                                 "measure": "8",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "<em>2</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1236",
+                                "svgGroupId": "g-tkk-36",
                                 "measure": "9",
                                 "system": "11",
                                 "position": "(2/4)",
                                 "comment": "Viertelpause über dem System durch Einkreisung getilgt?"
                             },
                             {
-                                "svgGroupId": "text1212",
+                                "svgGroupId": "g-tkk-37",
                                 "measure": "9",
                                 "system": "11",
                                 "position": "3. Note",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                             },
                             {
-                                "svgGroupId": "g1247",
+                                "svgGroupId": "g-tkk-38",
                                 "measure": "9",
                                 "system": "12",
                                 "position": "2. Note",
                                 "comment": "8–┐ nachgezogen mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "text1152",
+                                "svgGroupId": "g-tkk-39",
                                 "measure": "9",
                                 "system": "13",
                                 "position": "1. Note",
@@ -1889,161 +1889,161 @@
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g1254",
+                                "svgGroupId": "g-tkk-40",
                                 "measure": "9",
                                 "system": "9",
                                 "position": "letzte Note",
                                 "comment": "Winkel mit schwarzem Buntstift und radiert."
                             },
                             {
-                                "svgGroupId": "g1445",
+                                "svgGroupId": "g-tkk-41",
                                 "measure": "9 <br /> bis 10",
                                 "system": "9",
                                 "position": "letzte Note <br /> 1. Note",
                                 "comment": "<em>einmal</em> zusammengeschrieben."
                             },
                             {
-                                "svgGroupId": "g1264",
+                                "svgGroupId": "g-tkk-42",
                                 "measure": "10",
                                 "system": "9",
                                 "position": "1. Note",
                                 "comment": "Winkel mit schwarzem Buntstift."
                             },
                             {
-                                "svgGroupId": "text1178",
+                                "svgGroupId": "g-tkk-43",
                                 "measure": "10",
                                 "system": "9",
                                 "position": "2. Note",
                                 "comment": "<em>1</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g9931",
+                                "svgGroupId": "g-tkk-44",
                                 "measure": "10",
                                 "system": "11–12",
                                 "position": "1. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g12115",
+                                "svgGroupId": "g-tkk-45",
                                 "measure": "12",
                                 "system": "13–14",
                                 "position": "Taktanfang",
                                 "comment": "<em>3/4</em> nachgezogen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text1216",
+                                "svgGroupId": "g-tkk-46",
                                 "measure": "12",
                                 "system": "8",
                                 "position": "(1. Note)",
                                 "comment": "<em>molto</em> [xx] radiert."
                             },
                             {
-                                "svgGroupId": "g1461",
+                                "svgGroupId": "g-tkk-47",
                                 "measure": "12",
                                 "system": "9",
                                 "position": "1/8",
                                 "comment": "Text: Kleinschreibung <em>wer</em>[-den] überschrieben zu Großschreibung <em>Wer</em>[-den]."
                             },
                             {
-                                "svgGroupId": "g20105",
+                                "svgGroupId": "g-tkk-48",
                                 "measure": "12",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Winkel mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1478",
+                                "svgGroupId": "g-tkk-49",
                                 "measure": "12",
                                 "system": "9",
                                 "position": "3.–5. Note",
                                 "comment": "<em>hingestellt</em> zusammengeschrieben."
                             },
                             {
-                                "svgGroupId": "text1058",
+                                "svgGroupId": "g-tkk-50",
                                 "measure": "12",
                                 "system": "13",
                                 "position": "2. Note",
                                 "comment": "<em>4</em> nachgezogen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text476",
+                                "svgGroupId": "g-tkk-51",
                                 "measure": "13",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "<em>gilt</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g12150",
+                                "svgGroupId": "g-tkk-52",
                                 "measure": "13",
                                 "system": "15, 16",
                                 "position": "1. Pause",
                                 "comment": "Viertelpause überschreibt Achtelpause."
                             },
                             {
-                                "svgGroupId": "g12880",
+                                "svgGroupId": "g-tkk-53",
                                 "measure": "13",
                                 "system": "14",
                                 "position": "2. Note",
                                 "comment": "Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g13611",
+                                "svgGroupId": "g-tkk-54",
                                 "measure": "13",
                                 "system": "15",
                                 "position": "(5/8)",
                                 "comment": "Achtelpause gestrichen."
                             },
                             {
-                                "svgGroupId": "g14343",
+                                "svgGroupId": "g-tkk-55",
                                 "measure": "13",
                                 "system": "14",
                                 "position": "letzte Note",
                                 "comment": "<em>u. 4</em> gestrichen mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g15072",
+                                "svgGroupId": "g-tkk-56",
                                 "measure": "13",
                                 "system": "14–15",
                                 "position": "letzte Note",
                                 "comment": "Pfeil mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g15803",
+                                "svgGroupId": "g-tkk-57",
                                 "measure": "13",
                                 "system": "15",
                                 "position": "letzte Note",
                                 "comment": "Winkel gestrichen."
                             },
                             {
-                                "svgGroupId": "text474",
+                                "svgGroupId": "g-tkk-58",
                                 "measure": "14",
                                 "system": "15–16",
                                 "position": "Taktanfang",
                                 "comment": "<em>3</em> mit schwarzem Buntstift."
                             },
                             {
-                                "svgGroupId": "g17374",
+                                "svgGroupId": "g-tkk-59",
                                 "measure": "14",
                                 "system": "15, 16",
                                 "position": "1. Note",
                                 "comment": "Achtelnote überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g21745",
+                                "svgGroupId": "g-tkk-60",
                                 "measure": "14",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "<em>u.</em> von <em>u. 3</em> sowie Winkel mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g18830",
+                                "svgGroupId": "g-tkk-61",
                                 "measure": "14",
                                 "system": "13",
                                 "position": "2. Note",
                                 "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g19559",
+                                "svgGroupId": "g-tkk-62",
                                 "measure": "14",
                                 "system": "16",
                                 "position": "letzte Note",
@@ -2133,28 +2133,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g25236",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "2",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "Beide Winkel und <em>1</em> (G<sub>g</sub>) mit rotem Buntstift. "
                             },
                             {
-                                "svgGroupId": "g1225",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "2",
                                 "system": "13",
                                 "position": "6/8–4/4",
                                 "comment": "Decrescendogabel zu 4/4 überschrieben zu Decrescendogabel von 6/8–4/4."
                             },
                             {
-                                "svgGroupId": "g30323",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "{3}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g31053",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "{3}",
                                 "system": "14",
                                 "position": "letzte Note",
@@ -2214,14 +2214,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g35106",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "13",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "sic: Verweisstrich führt zu <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 14. Inhaltlich bezieht sich <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4_3'})\"><strong>Sk4.3</strong></a> jedoch auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13. "
                             },
                             {
-                                "svgGroupId": "g36576",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "13",
                                 "system": "16",
                                 "position": "letzte Note",
@@ -2262,63 +2262,63 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "text440",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1",
                                 "position": "G<sub>g</sub>",
                                 "comment": "Reihennummerierung <em>1</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text682",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1",
                                 "position": "K<sub>gis</sub>",
                                 "comment": "Reihennummerierung <em>2</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text444",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2",
                                 "position": "U<sub>g</sub>",
                                 "comment": "Reihennummerierung <em>3</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text686",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2",
                                 "position": "KU<sub>fis</sub>",
                                 "comment": "Reihennummerierung <em>4</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text450",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3",
                                 "position": "G<sub>c</sub>",
                                 "comment": "Reihennummerierung <em>5</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "text688",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3",
                                 "position": "K<sub>cis</sub>",
                                 "comment": "Reihennummerierung <em>6</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "text458",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4",
                                 "position": "U<sub>c</sub>",
                                 "comment": "Reihennummerierung <em>7</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "text690",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4",
                                 "position": "KU<sub>h</sub>",
                                 "comment": "Reihennummerierung <em>8</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g3291",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3–4",
                                 "position": "",
@@ -2343,28 +2343,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g249",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{1A}",
                                 "system": "8",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g251",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "{2A}",
                                 "system": "8",
                                 "position": "",
                                 "comment": "Durch Einklammerung getilgt."
                             },
                             {
-                                "svgGroupId": "g253",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "3",
                                 "system": "7",
                                 "position": "1.–2. Note",
                                 "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 6."
                             },
                             {
-                                "svgGroupId": "g252",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "3",
                                 "system": "8",
                                 "position": "1. Note",
@@ -2398,21 +2398,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g2060",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "vor 1y <br /> bis 1y",
                                 "system": "2",
                                 "position": "1. Note <br /> nach 4/4",
                                 "comment": "Taktstrich nach T. 1y 2/4 gestrichen, Viertelnote überschreibt Halbe Note vor T. 1y 1. Note und in T. 1y 2/4. Taktstriche am Taktanfang von T. 1y und in T. 1y nach 4/4 hinzugefügt.  <br /> Ante correcturam: vermutlich zunächst voller 3/2-Takt mit Viertelpause, Halbe Note g<sup>2</sup> mit Ligatur zu Viertelnote, Halbe Note e<sup>2</sup>.  <br /> Dann voller 3/2-Takt mit Viertelpause, Ligatur aus zwei Viertelnoten g<sup>2</sup>, Viertelnote e<sup>2</sup>, Viertelpause, Viertelnote dis<sup>2</sup>. <br /> Dann Auftakt zu T. 1y mit Viertelpause, Viertelnote g<sup>2</sup> mit Ligatur zu vollem 3/2-Takt T. 1y. Dabei Taktstrich nach T. 1y 4/4 redundant, aber nicht getilgt."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "4x <br /> 3y",
                                 "system": "1 <br /> 2",
                                 "position": "5/8 <br /> 1/8",
                                 "comment": "Achtelpause hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "4x <br /> bis 5x",
                                 "system": "1",
                                 "position": "4/8 <br /> 1/8",
@@ -2438,14 +2438,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g159",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "letzte Note",
                                 "comment": "sic: <em>Nach</em> statt <em>Nacht</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
                             },
                             {
-                                "svgGroupId": "g158",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "nach 3",
                                 "system": "2",
                                 "position": "",
@@ -2479,14 +2479,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g229",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "",
                                 "comment": "<em>7</em> mit grünem Buntstift nachgezogen."
                             },
                             {
-                                "svgGroupId": "g1344",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "1. Note",
@@ -2520,161 +2520,161 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g-tkk-1",
                                 "measure": "{1A}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g-tkk-2",
                                 "measure": "{1B}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "g-tkk-3",
                                 "measure": "{1C–2A}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "g-tkk-4",
                                 "measure": "1D",
                                 "system": "7–8",
                                 "position": "1/8",
                                 "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g-tkk-5",
                                 "measure": "2B",
                                 "system": "7",
                                 "position": "1. Note",
                                 "comment": "Winkel mit grünem Buntstift nachgezogen."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g-tkk-6",
                                 "measure": "2B",
                                 "system": "5",
                                 "position": "3/8",
                                 "comment": "<em>7</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g-tkk-7",
                                 "measure": "2B",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 9–10."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g-tkk-8",
                                 "measure": "2B",
                                 "system": "9–10",
                                 "position": "4/8",
                                 "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
                             },
                             {
-                                "svgGroupId": "g21b",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "{3A}",
                                 "system": "13–14",
                                 "position": "1–2/8",
                                 "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 15–16."
                             },
                             {
-                                "svgGroupId": "g22b",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "{3A}",
                                 "system": "12–16",
                                 "position": "1–3/8",
                                 "comment": "Achtelbalken von T. 2B in System 16 gestrichen und ersetzt durch Achtelpause. Achtelpausen in System 13 und 16 gestrichen sowie Verweislinie zu System 11 3/8 hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g23b",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "{3A–4A}",
                                 "system": "11–14",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g24b",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "{3B}",
                                 "system": "11",
                                 "position": "",
                                 "comment": "Taktzahl <em>3</em> überschreibt <em>5</em>."
                             },
                             {
-                                "svgGroupId": "g25b",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "{3B}",
                                 "system": "11–14",
                                 "position": "",
                                 "comment": "Durch Einklammerung rechts getilgt."
                             },
                             {
-                                "svgGroupId": "g28b",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "3C",
                                 "system": "13",
                                 "position": "6/8",
                                 "comment": "Winkel mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g212b",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "4B",
                                 "system": "13–14",
                                 "position": "",
                                 "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
                             },
                             {
-                                "svgGroupId": "text337b",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "4B",
                                 "system": "16",
                                 "position": "1/8",
                                 "comment": "<em>8</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "g27b",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "4B",
                                 "system": "16",
                                 "position": "3/4",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1210b",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "4B",
                                 "system": "15",
                                 "position": "6/8",
                                 "comment": "e gestrichen. Dann <em>bleibt</em> hinzugefügt, dann <em>bleibt</em> getilgt durch Einkreisung. <br /> <em>8va</em> gestrichen."
                             },
                             {
-                                "svgGroupId": "g213b",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "5",
                                 "system": "13–14",
                                 "position": "",
                                 "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
                             },
                             {
-                                "svgGroupId": "g211b",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "5",
                                 "system": "16",
                                 "position": "6/8",
                                 "comment": "B/a gestrichen und durch Einkreisung getilgt, ersetzt durch A/b."
                             },
                             {
-                                "svgGroupId": "g1281",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "7",
                                 "system": "1",
                                 "position": "2. Pause",
                                 "comment": "Gestrichen."
                             },
                             {
-                                "svgGroupId": "g1301",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "8",
                                 "system": "1",
                                 "position": "1.–2. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g1305",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "10",
                                 "system": "4",
                                 "position": "5–6/8",
