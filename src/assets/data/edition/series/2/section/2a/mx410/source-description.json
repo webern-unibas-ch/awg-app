@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 409: Textfassung 1→2 (<strong>A<sup>a</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 409: Textfassung 2 (<strong>A<sup>b</sup></strong>).<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 410, M* 412–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 410.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 412–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1043,8 +1043,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_Aa_corr_1",
-                        "label": "Korrekturen in <strong>A<sup>a</sup></strong> (mit Tinte)",
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen in <strong>A</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1053,55 +1053,52 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "7",
+                                            "measure": "4",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "8",
                                             "system": "Klav. o.",
-                                            "position": "6/16",
-                                            "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt e<sup>1</sup>."
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                                         },
                                         {
                                             "measure": "11",
-                                            "system": "Klav. o.",
-                                            "position": "1. Note",
-                                            "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Alternative Version unter den Systemen:  <br /> ##Abbildung##"
                                         },
                                         {
-                                            "measure": "15",
+                                            "measure": "12",
                                             "system": "Klav. o.",
-                                            "position": "4/8",
-                                            "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
+                                            "position": "1. Note",
+                                            "comment": "a<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
-                                            "measure": "16",
-                                            "system": "Klav. o.",
-                                            "position": "1. Note",
-                                            "comment": "Halbe Note überschreibt Viertelnote."
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": "source_Ab_corr_1",
-                        "label": "Korrekturen in <strong>A<sup>b</sup></strong> (mit Tinte)",
-                        "evaluations": [],
-                        "commentary": {
-                            "preamble": "",
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "6/14",
-                                            "system": "Klav. o.",
-                                            "position": "1. Note",
-                                            "comment": "c<sup>3</sup> geändert zu a<sup>2</sup>."
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht: Viertelpause überschreibt Ansatz zu Halber Note D? Entzifferung unsicher."
                                         },
                                         {
-                                            "measure": "8/16",
+                                            "measure": "12",
                                             "system": "Klav. o.",
-                                            "position": "1. Note",
-                                            "comment": "Halbe Note überschreibt Viertelnote? Entzifferung unsicher."
+                                            "position": "5/8",
+                                            "comment": "Achtelpause überschreibt Viertelpause."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. o.",
+                                            "position": "(1/4)",
+                                            "comment": "Unterstimmenschicht: auf Rasur."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "a überschreibt g? Entzifferung unsicher."
                                         }
                                     ]
                                 }
