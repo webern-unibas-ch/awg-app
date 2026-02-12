@@ -3,7 +3,11 @@
         {
             "id": "M_114_TF1",
             "label": "M 114 Textfassung 1",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <strong>C<sup>a</sup></strong> relevante Quelle. <strong>C<sup>b</sup></strong> und <strong>C<sup>c</sup></strong> beziehen sich auf spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
+                "<strong>C<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassungen 2 und 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <strong>C<sup>a</sup></strong> nach Korrekturen 1." 
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -39,7 +43,11 @@
         {
             "id": "M_114_TF2",
             "label": "M 114 Textfassung 2",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <strong>C<sup>a</sup></strong> und <strong>C<sup>b</sup></strong> relevante Quellen. <strong>C<sup>c</sup></strong> und <strong>E</strong> beziehen sich auf spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
+                "<strong>C<sup>a</sup></strong> und <strong>C<sup>b</sup></strong> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>C<sup>a</sup></strong> betreffen Textfassungen 2 und 3. Korrekturen 2 in <strong>C<sup>b</sup></strong> betreffen Textfassung 3. Der Zustand post correcturam in <strong>C<sup>a</sup></strong> und nach Korrekturen 1 in <strong>C<sup>b</sup></strong> konstituiert eine kohärente Textfassung. <strong>C<sup>b</sup></strong> enthält T. 19–39 (Bl. 1 r System 8–7/5–4/2–1, Bl. 1 v System 21a–20a) für Textfassung 2, die T. 19–20 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <strong>C<sup>a</sup></strong> (Einklammerung, Verweiszeichen) und <strong>C<sup>b</sup></strong> (Verweiszeichen) mit braunem Buntstift und Tinte bzw. Bleistift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <strong>C<sup>a</sup></strong> post correcturam und <strong>C<sup>b</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>c</sup></strong> und <strong>E<sup>a</sup></strong>."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -131,7 +139,11 @@
         {
             "id": "M_114_TF3",
             "label": "M 114 Textfassung 3",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong> relevante Quellen. <strong>C<sup>b</sup></strong> und <strong>E</strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
+                "<strong>C<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. <strong>C<sup>c</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>C<sup>a</sup></strong> betreffen Textfassungen 2 und 3. Korrekturen 2 in <strong>C<sup>c</sup></strong> betreffen Textfassung 4. Der Zustand post correcturam in <strong>C<sup>a</sup></strong> und nach Korrekturen 1 in <strong>C<sup>c</sup></strong> konstituiert eine kohärente Textfassung. <strong>C<sup>c</sup></strong> enthält T. 19–58 (Bl. 1 v System 17–16/14–13/11–10/8–7/5–4/2–1/21b–20b) für Textfassung 3, die T. 19–39 aus Textfassung 2 ersetzen. Entsprechende Markierungen sind in <strong>C<sup>a</sup></strong> (Einklammerung, Verweiszeichen) und <strong>C<sup>c</sup></strong> (Verweiszeichen) mit braunem Buntstift und Tinte eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <strong>C<sup>a</sup></strong> post correcturam und <strong>C<sup>c</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>b</sup></strong> und <strong>E<sup>a</sup></strong>." 
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -293,7 +305,11 @@
         {
             "id": "M_114_TF4",
             "label": "M 114 Textfassung 4",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist E a relevante Quelle. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong>, <strong>C<sup>c</sup></strong>, <strong>E<sup>b</sup></strong> und <strong>E<sup>c</sup></strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
+                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 5. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.", 
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist <strong>E<sup>a</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -560,7 +576,11 @@
         {
             "id": "M_114_TF5",
             "label": "M 114 Textfassung 5",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> relevante Quellen. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong>, <strong>C<sup>c</sup></strong> und <strong>E<sup>c</sup></strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
+                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. <strong>E<sup>b</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem sowie braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>E<sup>a</sup></strong> betreffen Textfassungen 5 und 6. Korrekturen 2 in <strong>E<sup>b</sup></strong> betreffen Textfassung 6. Der Zustand post correcturam in <strong>E<sup>a</sup></strong> und nach Korrekturen 1 in <strong>E<sup>b</sup></strong> konstituiert eine kohärente Textfassung. <strong>E<sup>b</sup></strong> enthält T. 93–158 (Bl. 3v, 5 r und 5v) für Textfassung 5, die T. 92–95 aus Textfassung 4 ersetzen. Entsprechende Markierungen sind in <strong>E<sup>a</sup></strong> (Einklammerung, Streichung, „vi-[de]“) und <strong>E<sup>b</sup></strong> („[vi-]de“) mit Bleistift und blauem Buntstift bzw. blauem Buntstift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <strong>E<sup>a</sup></strong> post correcturam und <strong>E<sup>b</sup></strong> nach Korrekturen 1. Für einige sonst lückenhaft bleibende Stellen wurden die Korrekturen 2 in <strong>E<sup>b</sup></strong> berücksichtigt (im Notentext wiedergegeben im Kleinstich). Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -1009,7 +1029,11 @@
         {
             "id": "M_114_TF6",
             "label": "M 114 Textfassung 6",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <strong>E<sup>a</sup></strong>, <strong>E<sup>b</sup></strong> und <strong>E<sup>c</sup></strong> relevante Quellen. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong> und <strong>C<sup>c</sup></strong> beziehen sich auf frühere Textfassungen; <strong>E</strong>, <strong>B</strong>, <strong>C<sup>d</sup></strong> und <strong>D</strong> enthalten Skizzen.",
+                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. <strong>E<sup>b</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem sowie braunem Buntstift. <strong>E<sup>c</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte und blauem Buntstift sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist in allen drei Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>E<sup>a</sup></strong> betreffen Textfassungen 5 und 6. Korrekturen 2 in <strong>E<sup>b</sup></strong> betreffen Textfassung 6. Der Zustand post correcturam in <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> sowie nach Korrekturen 1 in <strong>E<sup>c</sup></strong> konstituiert eine kohärente Textfassung. <strong>E<sup>c</sup></strong> enthält T. 106–120 (Bl. 4 r) für Textfassung 6, die T. 108–114 aus Textfassung 5 ersetzen. Entsprechende Markierungen sind in <strong>E<sup>b</sup></strong> (Einklammerung, Streichung, Verweiszeichen, „vi-[de]“) und <strong>E<sup>c</sup></strong> („[vi-]de“) mit Bleistift, braunem und blauem Buntstift bzw. blauem Buntstift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> post correcturam sowie <strong>E<sup>c</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -2056,7 +2080,7 @@
                                 "measure": "63",
                                 "system": "9",
                                 "position": "1/4",
-                                "comment": "[Viertelnote F gestrichen.]"
+                                "comment": "Viertelnote F gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
@@ -2327,29 +2351,7 @@
                 "comments": [
                     {
                         "blockHeader": "",
-                        "blockComments": [
-                            {
-                                "svgGroupId": "g###",
-                                "measure": "95",
-                                "system": "7",
-                                "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
-                            },
-                            {
-                                "svgGroupId": "g8",
-                                "measure": "95",
-                                "system": "7",
-                                "position": "4. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt a<sup>2</sup>."
-                            },
-                            {
-                                "svgGroupId": "g9",
-                                "measure": "95",
-                                "system": "8",
-                                "position": "3/4",
-                                "comment": "Viertelnote überschreibt Halbe Note."
-                            }
-                        ]
+                        "blockComments": []
                     }
                 ]
             }
@@ -2366,6 +2368,69 @@
                     {
                         "blockHeader": "",
                         "blockComments": [
+                            {
+                                "svgGroupId": "g-tkk-1",
+                                "measure": "94A",
+                                "system": "18",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-2",
+                                "measure": "95A",
+                                "system": "17",
+                                "position": "1/8",
+                                "comment": "b<sup>2</sup> überschreibt as<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-3",
+                                "measure": "95A",
+                                "system": "18",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-4",
+                                "measure": "94B",
+                                "system": "17",
+                                "position": "3/8",
+                                "comment": "as<sup>1</sup> überschreibt g<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-5",
+                                "measure": "94B",
+                                "system": "18",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>E überschreibt C."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-6",
+                                "measure": "94B",
+                                "system": "18",
+                                "position": "12/16",
+                                "comment": "Sechzehntelnote F gestrichen."
+                            },
+                             {
+                                "svgGroupId": "g-tkk-7",
+                                "measure": "95B",
+                                "system": "17",
+                                "position": "4/16",
+                                "comment": "Sechzehntelbalken gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-8",
+                                "measure": "95B",
+                                "system": "17",
+                                "position": "3/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-8a",
+                                "measure": "95B",
+                                "system": "17",
+                                "position": "4/8",
+                                "comment": "Achtelnote es<sup>1</sup>/es<sup>2</sup> gestrichen."
+                            },                            
                             {
                                 "svgGroupId": "g-tkk-9",
                                 "measure": "97",
