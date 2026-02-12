@@ -289,7 +289,7 @@
                     {
                         "item": "M* 467 Sk1",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition M* 466)",
+                        "itemDescription": "(Skizze zu Studienkomposition M* 467)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -496,7 +496,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469 und „Du bist mein, ich bin dein“ M 9.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist in der Falte eingerissen."],
@@ -715,7 +715,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "8–7",
+                                            "system": "4–3",
                                             "measure": "1–8",
                                             "linkTo": ""
                                         }
@@ -736,7 +736,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "8–7",
+                                            "system": "2–1",
                                             "measure": "1–4, 5A–7A, 5B–7B, 8",
                                             "linkTo": ""
                                         }
@@ -792,7 +792,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "",
+                                            "system": "10b–9b",
                                             "measure": "",
                                             "linkTo": ""
                                         }
@@ -942,7 +942,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "7–9",
+                                            "system": "7–6",
                                             "measure": "27–35",
                                             "linkTo": ""
                                         }
