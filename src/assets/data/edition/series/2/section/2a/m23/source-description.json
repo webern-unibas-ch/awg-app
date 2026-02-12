@@ -1657,7 +1657,10 @@
                 "contents": [
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
@@ -1685,7 +1688,10 @@
                     },
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx409",
+                            "sheetId": "Mx_409_TF2"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {
@@ -1713,7 +1719,10 @@
                     },
                     {
                         "item": "M* 410",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 410)",
                         "folios": [
                             {
@@ -2024,7 +2033,10 @@
                     },
                     {
                         "item": "M* 412",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
