@@ -19,7 +19,7 @@
                                 "measure": "12–16",
                                 "system": "",
                                 "position": "",
-                                "comment": "Tonartvorzeichnung ergänzt. <strong>A</strong>: Akkoladenwechsel nach T. 11."
+                                "comment": "Tonartvorzeichnung ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx410', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 11."
                             }
                         ]
                     }
