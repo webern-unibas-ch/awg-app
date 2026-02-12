@@ -156,14 +156,21 @@
                                         {
                                             "system": "26c–27c",
                                             "measure": "1–8",
-                                            "linkTo": ""
+                                            "linkTo": "Mx_412_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "22b–23b",
                                             "measure": "9–11",
-                                            "linkTo": ""
+                                            "linkTo": "Mx_412_Sk1b"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20b–21",
+                                            "measure": "12",
+                                            "linkTo": "Mx_412_Sk1c"
                                         }
                                     ]
                                 ]
@@ -185,7 +192,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "28–27",
+                                            "system": "28–27 (auf dem Kopf stehend)",
                                             "measure": "1–8",
                                             "linkTo": ""
                                         }
@@ -209,14 +216,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "26–25",
+                                            "system": "26–25 (auf dem Kopf stehend)",
                                             "measure": "{1A}, 1B, 2–4, {5A}, 5B, 6",
                                             "linkTo": "M_22_Sk3a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "24–23",
+                                            "system": "24–23 (auf dem Kopf stehend)",
                                             "measure": "7–8",
                                             "linkTo": "M_22_Sk3b"
                                         }
@@ -240,14 +247,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "22–21",
+                                            "system": "22–21 (auf dem Kopf stehend)",
                                             "measure": "1–4, {5A}, 5B, 6(1–2/4)",
                                             "linkTo": "M_22_Sk4a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "20–19",
+                                            "system": "20–19 (auf dem Kopf stehend)",
                                             "measure": "6(3/4)–8",
                                             "linkTo": "M_22_Sk4b"
                                         }
@@ -271,7 +278,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "18a–17a",
+                                            "system": "18a–17a (auf dem Kopf stehend)",
                                             "measure": "1–4",
                                             "linkTo": ""
                                         }
@@ -295,7 +302,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "16a–15a",
+                                            "system": "16a–15a (auf dem Kopf stehend)",
                                             "measure": "1–8",
                                             "linkTo": ""
                                         }
@@ -319,7 +326,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "14a–13a",
+                                            "system": "14a–13a (auf dem Kopf stehend)",
                                             "measure": "1–4",
                                             "linkTo": ""
                                         }
@@ -343,21 +350,21 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "14b–13b",
+                                            "system": "14b–13b (auf dem Kopf stehend)",
                                             "measure": "1–5(1–2/4)",
                                             "linkTo": "M_22_Sk22a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "16b–15b",
+                                            "system": "16b–15b (auf dem Kopf stehend)",
                                             "measure": "5(3/4)–6",
                                             "linkTo": "M_22_Sk22b"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "18b–17b",
+                                            "system": "18b–17b (auf dem Kopf stehend)",
                                             "measure": "7–8",
                                             "linkTo": "M_22_Sk22c"
                                         }
@@ -381,7 +388,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "12–11",
+                                            "system": "12–11 (auf dem Kopf stehend)",
                                             "measure": "1",
                                             "linkTo": ""
                                         }
@@ -405,14 +412,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "10–9",
+                                            "system": "10–9 (auf dem Kopf stehend)",
                                             "measure": "{1A–2A}, 1B–2B, 1C–2C, 3–4",
                                             "linkTo": "M_22_Sk9a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "7a–6",
+                                            "system": "7a–6 (auf dem Kopf stehend)",
                                             "measure": "5–8",
                                             "linkTo": "M_22_Sk9b"
                                         }
@@ -436,7 +443,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "8–7b",
+                                            "system": "8–7b (auf dem Kopf stehend)",
                                             "measure": "{1–3}",
                                             "linkTo": ""
                                         }
@@ -460,7 +467,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "5–4",
+                                            "system": "5–4 (auf dem Kopf stehend)",
                                             "measure": "1–4, {5A}, 5B, 6, {7A–8A}, 7B–8B",
                                             "linkTo": ""
                                         }
@@ -484,7 +491,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "3–2",
+                                            "system": "3–2 (auf dem Kopf stehend)",
                                             "measure": "1–8",
                                             "linkTo": ""
                                         }
