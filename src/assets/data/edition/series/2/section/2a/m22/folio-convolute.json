@@ -2209,8 +2209,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
@@ -2224,8 +2224,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 11B",
                             "selectable": false,
@@ -2239,8 +2239,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
