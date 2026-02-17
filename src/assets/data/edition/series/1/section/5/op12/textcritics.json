@@ -476,7 +476,7 @@
                                 "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
                             },
                             {
-                                "svgGroupId": "",
+                                "svgGroupId": "g...",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
