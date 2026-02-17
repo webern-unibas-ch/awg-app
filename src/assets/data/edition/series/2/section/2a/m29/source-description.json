@@ -164,7 +164,10 @@
                     },
                     {
                         "item": "M* 415 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx415",
+                            "sheetId": "Mx_415_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 415)",
                         "folios": [
                             {
