@@ -1,0 +1,112 @@
+{
+    "textcritics": [
+        {
+            "id": "Mx_412_TF1",
+            "label": "M* 412 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 412 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 412 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g-tkk-1",
+                                "measure": "16",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "Mx_412_Sk1",
+            "label": "M* 412 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g-tkk-1",
+                                "measure": "1",
+                                "system": "26",
+                                "position": "5/8",
+                                "comment": "Oberstimmenschicht: e<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-2",
+                                "measure": "2",
+                                "system": "26",
+                                "position": "(3/4)",
+                                "comment": "Oberstimmenschicht: Viertelnote e<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-3",
+                                "measure": "3",
+                                "system": "27",
+                                "position": "(1/4)",
+                                "comment": "Triolenachteloten e<sup>1</sup>–h–g gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-4",
+                                "measure": "4",
+                                "system": "26",
+                                "position": "1. Note",
+                                "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-5",
+                                "measure": "5",
+                                "system": "26",
+                                "position": "(5/8)",
+                                "comment": "Nicht entzifferbare Streichung im System."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-6",
+                                "measure": "10",
+                                "system": "23",
+                                "position": "letzte Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-7",
+                                "measure": "11",
+                                "system": "22",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g-tkk-8",
+                                "measure": "11",
+                                "system": "23",
+                                "position": "1/4",
+                                "comment": "Viertelpause überschreibt Achtelpause."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-1",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk1"
+                    }
+                }
+            ]
+        }
+    ]
+}
