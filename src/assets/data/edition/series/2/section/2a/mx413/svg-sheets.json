@@ -1,0 +1,33 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "Mx_413_TF1",
+                "label": "M* 413 einzige Textfassung",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/mx413/Mx413_Textfassung1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "B"
+                    }
+                ]
+            }
+        ],
+        "sketchEditions": [
+            {
+                "id": "Mx_413_Sk1",
+                "label": "M* 413 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/mx413/Mx413_Sk1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            }
+        ]
+    }
+}
