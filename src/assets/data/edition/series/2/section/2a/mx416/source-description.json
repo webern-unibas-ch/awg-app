@@ -164,7 +164,10 @@
                     },
                     {
                         "item": "M* 415 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx415",
+                            "sheetId": "Mx_415_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 415)",
                         "folios": [
                             {
@@ -444,7 +447,10 @@
                     },
                     {
                         "item": "M* 410",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 410)",
                         "folios": [
                             {
@@ -755,7 +761,10 @@
                     },
                     {
                         "item": "M* 412",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
@@ -783,7 +792,10 @@
                     },
                     {
                         "item": "M* 413",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx413",
+                            "sheetId": "Mx_413_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 413)",
                         "folios": [
                             {
@@ -794,7 +806,7 @@
                                     [
                                         {
                                             "system": "7–8",
-                                            "measure": "1–8",
+                                            "measure": "1–7",
                                             "linkTo": ""
                                         }
                                     ]
@@ -804,7 +816,10 @@
                     },
                     {
                         "item": "M* 414",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -825,7 +840,10 @@
                     },
                     {
                         "item": "M* 415",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx415",
+                            "sheetId": "Mx_415_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 415)",
                         "folios": [
                             {
