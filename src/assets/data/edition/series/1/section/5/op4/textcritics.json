@@ -1314,7 +1314,7 @@
                                 "comment": "Text: Großschreibung <em>Wöl</em>(-bung) korrigiert zu <em>wöl</em>(-bung) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                             },
                             {
-                                "svgGroupId": "g714c2",
+                                "svgGroupId": "g-tkk-49a",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "2/8",
@@ -1503,21 +1503,21 @@
                                 "comment": "Silbenbogen ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
                             },
                             {
-                                "svgGroupId": "g-tkk-75",
+                                "svgGroupId": "g",
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "1/4",
                                 "comment": "Fortsetzung des Ligaturbogens zu F<sub>1</sub> von T. 13 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 13."
                             },
                             {
-                                "svgGroupId": "g341",
+                                "svgGroupId": "g-tkk-76",
                                 "measure": "14–15",
                                 "system": "Ges.",
                                 "position": "",
                                 "comment": "T. 14: Halbe Pause, drei Viertelpausen, T. 15: Halbe Pause, drei Viertelpausen (die zweite mit Fermate), Halbe Pause korrigiert gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam."
                             },
                             {
-                                "svgGroupId": "g-tkk-76",
+                                "svgGroupId": "g-tkk-77",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
