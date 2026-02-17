@@ -156,11 +156,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar415",
-                            "sheetId": "Mstar_415_Sk1",
+                            "complexId": "mx415",
+                            "sheetId": "Mx_415_Sk1",
                             "sigle": "M* 415 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "reversed": true,
                             "segmentSplit": 1,
                             "segments": [
@@ -391,8 +390,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
@@ -406,8 +405,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 11B",
                             "selectable": false,
@@ -421,8 +420,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar410",
-                            "sheetId": "Mstar_410_TF1",
+                            "complexId": "mx410",
+                            "sheetId": "Mx_410_TF1",
                             "sigle": "M* 410 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
@@ -466,8 +465,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar412",
-                            "sheetId": "Mstar_412_TF1",
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_TF1",
                             "sigle": "M* 412 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
@@ -481,8 +480,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar412",
-                            "sheetId": "Mstar_412_TF1",
+                            "complexId": "mx412",
+                            "sheetId": "Mx_412_TF1",
                             "sigle": "M* 412 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
@@ -772,8 +771,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar413",
-                            "sheetId": "Mstar_413_TF1",
+                            "complexId": "mx413",
+                            "sheetId": "Mx_413_TF1",
                             "sigle": "M* 413 Tintenniederschrift TF1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -787,8 +786,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar414",
-                            "sheetId": "Mstar_414_TF1",
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_TF1",
                             "sigle": "M* 414 Tintenniederschrift TF1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -932,8 +931,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar415",
-                            "sheetId": "Mstar_415_TF1",
+                            "complexId": "mx415",
+                            "sheetId": "Mx_415_TF1",
                             "sigle": "M* 415 Tintenniederschrift TF1",
                             "sigleAddendum": "",
                             "selectable": false,
