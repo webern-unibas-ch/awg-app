@@ -600,11 +600,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar413",
-                            "sheetId": "Mstar_413_Sk1",
+                            "complexId": "mx413",
+                            "sheetId": "Mx_413_Sk1",
                             "sigle": "M* 413 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -3033,8 +3032,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar413",
-                            "sheetId": "Mstar_413_TF1",
+                            "complexId": "mx413",
+                            "sheetId": "Mx_413_TF1",
                             "sigle": "M* 413 Tintenniederschrift TF1",
                             "sigleAddendum": "",
                             "selectable": false,
