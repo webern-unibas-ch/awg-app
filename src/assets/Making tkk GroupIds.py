@@ -1,5 +1,8 @@
 # made by Eli (lili041 --Github) with Google Gemini
-# you have to fill in the  -path of your .json textcritics-  and the  -path or your .svg folder- !
+# you have to fill in the  -path of .json textcritics-  and the  -path or .svg folder- !
+
+# ACHTUNG: TODO werden übersprungen, das heisst aber auch, dass sie innerhalb eines Blockes nicht einberechnet werden, 
+# und danach weitergezählt wird, als ob nichts wäre: g-tkk-1, g-tkk-2, g-tkk-3, g-tkk-4, TODO, g-tkk-5, g-tkk-6, ...
 
 
 import json
