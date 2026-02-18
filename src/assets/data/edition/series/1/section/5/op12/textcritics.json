@@ -789,7 +789,7 @@
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "10",
-                                "system": "12",
+                                "system": "13",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                             },
@@ -1187,14 +1187,14 @@
                             {
                                 "svgGroupId": "g-tkk-31",
                                 "measure": "40",
-                                "system": "13",
+                                "system": "14",
                                 "position": "1. Note",
                                 "comment": "Gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-32",
                                 "measure": "40",
-                                "system": "13",
+                                "system": "14",
                                 "position": "2.–4. Note",
                                 "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 12."
                             }
@@ -1478,14 +1478,14 @@
                             {
                                 "svgGroupId": "g-tkk-1",
                                 "measure": "",
-                                "system": "12",
+                                "system": "13",
                                 "position": "2. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "",
-                                "system": "12",
+                                "system": "13",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> (siehe auch Tonbuchstabe <em>c</em>) überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b."
                             }
@@ -1532,14 +1532,14 @@
                             {
                                 "svgGroupId": "g-tkk-1",
                                 "measure": "",
-                                "system": "12",
+                                "system": "13",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
                                 "measure": "",
-                                "system": "12–13",
+                                "system": "13–14",
                                 "position": "",
                                 "comment": "Durch Einkreisung getilgt."
                             }
