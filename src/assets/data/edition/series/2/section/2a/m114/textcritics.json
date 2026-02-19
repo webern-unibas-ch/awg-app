@@ -4,9 +4,9 @@
             "id": "M_114_TF1",
             "label": "M 114 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <strong>C<sup>a</sup></strong> relevante Quelle. <strong>C<sup>b</sup></strong> und <strong>C<sup>c</sup></strong> beziehen sich auf spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
-                "<strong>C<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassungen 2 und 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <strong>C<sup>a</sup></strong> nach Korrekturen 1." 
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> beziehen sich auf spätere Textfassungen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_2'})\">Korrekturen 2</a> mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">3</a>. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -44,9 +44,9 @@
             "id": "M_114_TF2",
             "label": "M 114 Textfassung 2",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <strong>C<sup>a</sup></strong> und <strong>C<sup>b</sup></strong> relevante Quellen. <strong>C<sup>c</sup></strong> und <strong>E</strong> beziehen sich auf spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
-                "<strong>C<sup>a</sup></strong> und <strong>C<sup>b</sup></strong> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>C<sup>a</sup></strong> betreffen Textfassungen 2 und 3. Korrekturen 2 in <strong>C<sup>b</sup></strong> betreffen Textfassung 3. Der Zustand post correcturam in <strong>C<sup>a</sup></strong> und nach Korrekturen 1 in <strong>C<sup>b</sup></strong> konstituiert eine kohärente Textfassung. <strong>C<sup>b</sup></strong> enthält T. 19–39 (Bl. 1 r System 8–7/5–4/2–1, Bl. 1 v System 21a–20a) für Textfassung 2, die T. 19–20 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <strong>C<sup>a</sup></strong> (Einklammerung, Verweiszeichen) und <strong>C<sup>b</sup></strong> (Verweiszeichen) mit braunem Buntstift und Tinte bzw. Bleistift eingetragen.",
-                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <strong>C<sup>a</sup></strong> post correcturam und <strong>C<sup>b</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>c</sup></strong> und <strong>E<sup>a</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E</strong></a> beziehen sich auf spätere Textfassungen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> weisen zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_2'})\">Korrekturen 2</a> mit Tinte, Bleistift und braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_2'})\">Korrekturen 2 in <strong>C<sup>a</sup></strong></a> betreffen Textfassungen 2 und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">3</a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Cb_corr_2'})\">Korrekturen 2 in <strong>C<sup>b</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3'})\">Textfassung 3</a>. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und nach Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> enthält T. 19–39 (Bl. 1<sup>r</sup> System 8–7/5–4/2–1, Bl. 1<sup>v</sup> System 21a–20a) für Textfassung 2, die T. 19–20 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF1'})\">Textfassung 1</a> ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> (Einklammerung, Verweiszeichen) und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> (Verweiszeichen) mit braunem Buntstift und Tinte bzw. Bleistift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -94,7 +94,7 @@
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk4'})\"><strong>Sk4</strong></a> (dort <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk4b'})\"><strong>Sk4</strong></a> (dort <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -122,7 +122,7 @@
                                 "measure": "37",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext (vgl. Korrekturen 1 zu Klav.u.)."
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Cb_corr_1'})\">Korrekturen 1</a> zu Klav. u.)."
                             },
                             {
                                 "svgGroupId": "g-tkk-11",
@@ -140,9 +140,9 @@
             "id": "M_114_TF3",
             "label": "M 114 Textfassung 3",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong> relevante Quellen. <strong>C<sup>b</sup></strong> und <strong>E</strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
-                "<strong>C<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift. <strong>C<sup>c</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>C<sup>a</sup></strong> betreffen Textfassungen 2 und 3. Korrekturen 2 in <strong>C<sup>c</sup></strong> betreffen Textfassung 4. Der Zustand post correcturam in <strong>C<sup>a</sup></strong> und nach Korrekturen 1 in <strong>C<sup>c</sup></strong> konstituiert eine kohärente Textfassung. <strong>C<sup>c</sup></strong> enthält T. 19–58 (Bl. 1 v System 17–16/14–13/11–10/8–7/5–4/2–1/21b–20b) für Textfassung 3, die T. 19–39 aus Textfassung 2 ersetzen. Entsprechende Markierungen sind in <strong>C<sup>a</sup></strong> (Einklammerung, Verweiszeichen) und <strong>C<sup>c</sup></strong> (Verweiszeichen) mit braunem Buntstift und Tinte eingetragen.",
-                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <strong>C<sup>a</sup></strong> post correcturam und <strong>C<sup>c</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>b</sup></strong> und <strong>E<sup>a</sup></strong>." 
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E</strong></a> beziehen sich auf frühere bzw. spätere Textfassungen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ca_corr_2'})\">Korrekturen 2</a> mit Tinte, Bleistift und braunem Buntstift. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Cc_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Cc_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassungen 2</a> und 3. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4'})\">Textfassung 4</a>. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und nach Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> enthält T. 19–58 (Bl. 1<sup>v</sup> System 17–16/14–13/11–10/8–7/5–4/2–1/21b–20b) für Textfassung 3, die T. 19–39 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2'})\">Textfassung 2</a> ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> (Einklammerung, Verweiszeichen) und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> (Verweiszeichen) mit braunem Buntstift und Tinte eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -183,7 +183,7 @@
                                 "measure": "26",
                                 "system": "Klav.",
                                 "position": "Taktanfang",
-                                "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C<sup>c</sup>'})\"><strong>C<sup>c</sup></strong></a>: einfacher Taktstrich."
+                                "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a>: einfacher Taktstrich."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
@@ -267,7 +267,7 @@
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk8d'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-18",
@@ -306,9 +306,9 @@
             "id": "M_114_TF4",
             "label": "M 114 Textfassung 4",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist E a relevante Quelle. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong>, <strong>C<sup>c</sup></strong>, <strong>E<sup>b</sup></strong> und <strong>E<sup>c</sup></strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
-                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 5. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.", 
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist <strong>E<sup>a</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> beziehen sich auf frühere bzw. spätere Textfassungen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_2'})\">Korrekturen 2</a> mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF5'})\">Textfassung 5</a>. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 114 Textfassung 4 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -342,7 +342,7 @@
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
+                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_1'})\">Korrekturen 1</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -356,7 +356,7 @@
                                 "measure": "27",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Ligatur zu T. 26 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 26."
+                                "comment": "Unterstimmenschicht: Ligatur zu T. 26 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 26."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -370,7 +370,7 @@
                                 "measure": "33",
                                 "system": "Klav. u.",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2b'})\">Textfassungen 2</a>–<a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">3</a> (<a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF2b'})\">Textfassungen 2</a>–<a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">3</a> (<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-9",
@@ -461,7 +461,7 @@
                                 "measure": "46",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk8d'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-22",
@@ -482,14 +482,14 @@
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "as: Ligatur zu T. 58 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 58."
+                                "comment": "as: Ligatur zu T. 58 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 58."
                             },
                             {
                                 "svgGroupId": "g-tkk-25",
                                 "measure": "59",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9_1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9_1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-26",
@@ -503,7 +503,7 @@
                                 "measure": "68",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und Korrekturen 2."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-28",
@@ -552,7 +552,7 @@
                                 "measure": "89",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9l'})\"><strong>Sk9</strong> T. 89</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-35",
@@ -577,9 +577,9 @@
             "id": "M_114_TF5",
             "label": "M 114 Textfassung 5",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> relevante Quellen. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong>, <strong>C<sup>c</sup></strong> und <strong>E<sup>c</sup></strong> beziehen sich auf frühere bzw. spätere Textfassungen, <strong>C<sup>d</sup></strong> enthält Skizzen.",
-                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. <strong>E<sup>b</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem sowie braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>E<sup>a</sup></strong> betreffen Textfassungen 5 und 6. Korrekturen 2 in <strong>E<sup>b</sup></strong> betreffen Textfassung 6. Der Zustand post correcturam in <strong>E<sup>a</sup></strong> und nach Korrekturen 1 in <strong>E<sup>b</sup></strong> konstituiert eine kohärente Textfassung. <strong>E<sup>b</sup></strong> enthält T. 93–158 (Bl. 3v, 5 r und 5v) für Textfassung 5, die T. 92–95 aus Textfassung 4 ersetzen. Entsprechende Markierungen sind in <strong>E<sup>a</sup></strong> (Einklammerung, Streichung, „vi-[de]“) und <strong>E<sup>b</sup></strong> („[vi-]de“) mit Bleistift und blauem Buntstift bzw. blauem Buntstift eingetragen.",
-                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <strong>E<sup>a</sup></strong> post correcturam und <strong>E<sup>b</sup></strong> nach Korrekturen 1. Für einige sonst lückenhaft bleibende Stellen wurden die Korrekturen 2 in <strong>E<sup>b</sup></strong> berücksichtigt (im Notentext wiedergegeben im Kleinstich). Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> beziehen sich auf frühere bzw. spätere Textfassungen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_2'})\">Korrekturen 2</a> mit Bleistift und blauem Buntstift. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a> mit Bleistift und blauem sowie braunem Buntstift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> betreffen Textfassungen 5 und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF6'})\">6</a>. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF6'})\">Textfassung 6</a>. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> und nach Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> enthält T. 93–158 (Bl. 3<sup>v</sup>, 5<sup>r</sup> und 5<sup>v</sup>) für Textfassung 5, die T. 92–95 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF4'})\">Textfassung 4</a> ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> (Einklammerung, Streichung, „vi-[de]“) und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> („[vi-]de“) mit Bleistift und blauem Buntstift bzw. blauem Buntstift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 5 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> post correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1. Für einige sonst lückenhaft bleibende Stellen wurden die Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> berücksichtigt (im Notentext wiedergegeben im Kleinstich). Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -613,7 +613,7 @@
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
+                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Ea_corr_1'})\">Korrekturen 1</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-5",
@@ -627,7 +627,7 @@
                                 "measure": "28",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Ligaturbogens zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
+                                "comment": "Unterstimmenschicht: Ligaturbogens zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
@@ -718,7 +718,7 @@
                                 "measure": "47",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk8d'})\"><strong>Sk8</strong> T. 46</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-20",
@@ -760,14 +760,14 @@
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
+                                "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
                             },
                             {
                                 "svgGroupId": "g-tkk-26",
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9_1'})\"><strong>Sk9.1</strong> T. 59</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_B'})\"><strong>B</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-27",
@@ -823,7 +823,7 @@
                                 "measure": "90",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9l'})\"><strong>Sk9</strong> T. 89</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_D'})\"><strong>D</strong></a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-35",
@@ -837,7 +837,7 @@
                                 "measure": "94",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
+                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-37",
@@ -921,7 +921,7 @@
                                 "measure": "134",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>)."
                             },
                             {
                                 "svgGroupId": "g-tkk-49",
@@ -942,28 +942,28 @@
                                 "measure": "139",
                                 "system": "Klav. u.",
                                 "position": "3–4/8",
-                                "comment": "Kleinstich: Achtelnoten A–d sowie Achtelbalken ergänzt gemäß Korrekturen 2."
+                                "comment": "Kleinstich: Achtelnoten A–d sowie Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-52",
                                 "measure": "141",
                                 "system": "Klav.",
                                 "position": "1–6/8",
-                                "comment": "Unterstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                                "comment": "Unterstimmenschicht: Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-53",
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "1–6/8",
-                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-54",
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "5–6/8",
-                                "comment": "Kleinstich: Achtelnoten ergänzt gemäß Korrekturen 2. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
+                                "comment": "Kleinstich: Achtelnoten ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
                             },
                             {
                                 "svgGroupId": "g-tkk-55",
@@ -977,21 +977,21 @@
                                 "measure": "154",
                                 "system": "Klav. u.",
                                 "position": "1–6/8",
-                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-57",
                                 "measure": "155",
                                 "system": "Klav. u.",
                                 "position": "1–6/8",
-                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-58",
                                 "measure": "155",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
-                                "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk13'})\"><strong>Sk13</strong></a> T. 155B in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
+                                "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk13d'})\"><strong>Sk13</strong> T. 155B</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
                             },
                             {
                                 "svgGroupId": "g-tkk-59",
@@ -1019,7 +1019,7 @@
                                 "measure": "158",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>b</sup>'})\"><strong>E<sup>b</sup></strong></a>: Einfacher Taktstrich (vgl. Korrekturen 2)."
+                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: Einfacher Taktstrich (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                             }
                         ]
                     }
@@ -1030,9 +1030,9 @@
             "id": "M_114_TF6",
             "label": "M 114 Textfassung 6",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <strong>E<sup>a</sup></strong>, <strong>E<sup>b</sup></strong> und <strong>E<sup>c</sup></strong> relevante Quellen. <strong>C<sup>a</sup></strong>, <strong>C<sup>b</sup></strong> und <strong>C<sup>c</sup></strong> beziehen sich auf frühere Textfassungen; <strong>E</strong>, <strong>B</strong>, <strong>C<sup>d</sup></strong> und <strong>D</strong> enthalten Skizzen.",
-                "<strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. <strong>E<sup>b</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem sowie braunem Buntstift. <strong>E<sup>c</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte und blauem Buntstift sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist in allen drei Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>E<sup>a</sup></strong> betreffen Textfassungen 5 und 6. Korrekturen 2 in <strong>E<sup>b</sup></strong> betreffen Textfassung 6. Der Zustand post correcturam in <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> sowie nach Korrekturen 1 in <strong>E<sup>c</sup></strong> konstituiert eine kohärente Textfassung. <strong>E<sup>c</sup></strong> enthält T. 106–120 (Bl. 4 r) für Textfassung 6, die T. 108–114 aus Textfassung 5 ersetzen. Entsprechende Markierungen sind in <strong>E<sup>b</sup></strong> (Einklammerung, Streichung, Verweiszeichen, „vi-[de]“) und <strong>E<sup>c</sup></strong> („[vi-]de“) mit Bleistift, braunem und blauem Buntstift bzw. blauem Buntstift eingetragen.",
-                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <strong>E<sup>a</sup></strong> und <strong>E<sup>b</sup></strong> post correcturam sowie <strong>E<sup>c</sup></strong> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <strong>C<sup>a</sup></strong> und <strong>C<sup>c</sup></strong>."
+                "Für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> beziehen sich auf frühere Textfassungen; <strong>A</strong>, <strong>B</strong>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> und <strong>D</strong> enthalten Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem sowie braunem Buntstift. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte und blauem Buntstift sowie die später erfolgten Korrekturen 2 mit Bleistift und blauem Buntstift. Der Zustand vor Korrekturen 1 ist in allen drei Quellen nicht immer zu entziffern. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> betreffen Textfassungen 5 und 6. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> betreffen Textfassung 6. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> sowie nach Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> enthält T. 106–120 (Bl. 4 r) für Textfassung 6, die T. 108–114 aus Textfassung 5 ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> (Einklammerung, Streichung, Verweiszeichen, „vi-[de]“) und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> („[vi-]de“) mit Bleistift, braunem und blauem Buntstift bzw. blauem Buntstift eingetragen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 114 Textfassung 6 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> post correcturam sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <strong>C<sup>c</sup></strong>."
             ],
             "commentary": {
                 "preamble": "",
@@ -2410,7 +2410,7 @@
                                 "position": "12/16",
                                 "comment": "Sechzehntelnote F gestrichen."
                             },
-                             {
+                            {
                                 "svgGroupId": "g-tkk-7",
                                 "measure": "95B",
                                 "system": "17",
@@ -2430,7 +2430,7 @@
                                 "system": "17",
                                 "position": "4/8",
                                 "comment": "Achtelnote es<sup>1</sup>/es<sup>2</sup> gestrichen."
-                            },                            
+                            },
                             {
                                 "svgGroupId": "g-tkk-9",
                                 "measure": "97",
