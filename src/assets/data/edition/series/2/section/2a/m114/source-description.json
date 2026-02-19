@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 1 und 4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Orchester M 102.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -353,7 +353,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 und 4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 113.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -737,7 +737,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift und Skizzen.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 1→2→3 (<strong>C<sup>a</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 2 (<strong>C<sup>b</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>c</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>d</sup></strong>).<br />Enthält auch Skizzen zu Studienkomposition M* 495 und nicht identifizierte Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1601,7 +1601,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 4–6.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1974,7 +1974,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 4→5→6 (<strong>E<sup>a</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 5→6 (<strong>E<sup>b</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung: 6 (<strong>E<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
