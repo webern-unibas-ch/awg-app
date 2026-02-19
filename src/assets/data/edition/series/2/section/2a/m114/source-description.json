@@ -1007,7 +1007,7 @@
                 "corrections": [
                     {
                         "id": "source_Ca_corr_1",
-                        "label": "Korrekturen 1 in C<sup>a</sup> (mit Tinte)",
+                        "label": "Korrekturen 1 in <strong>C<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1100,7 +1100,7 @@
                     },
                     {
                         "id": "source_Ca_corr_2",
-                        "label": "Korrekturen 2 in C<sup>a</sup> (mit Tinte, Bleistift und braunem Buntstift im Hinblick auf Textfassungen 2 und 3)",
+                        "label": "Korrekturen 2 in <strong>C<sup>a</sup></strong> (mit Tinte, Bleistift und braunem Buntstift im Hinblick auf Textfassungen 2 und 3)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1185,10 +1185,9 @@
                             ]
                         }
                     },
-
                     {
                         "id": "source_Cb_corr_1",
-                        "label": "Korrekturen 1 in C<sup>b</sup> (mit Tinte und Bleistift)",
+                        "label": "Korrekturen 1 in <strong>C<sup>b</sup></strong> (mit Tinte und Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1341,7 +1340,7 @@
                     },
                     {
                         "id": "source_Cb_corr_2",
-                        "label": "Korrekturen 2 in C<sup>b</sup> (mit Bleistift)",
+                        "label": "Korrekturen 2 in <strong>C<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1380,7 +1379,7 @@
                     },
                     {
                         "id": "source_Cc_corr_1",
-                        "label": "Korrekturen 1 in C<sup>c</sup> (mit Tinte)",
+                        "label": "Korrekturen 1 in <strong>C<sup>c</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1473,7 +1472,7 @@
                     },
                     {
                         "id": "source_Cc_corr_2",
-                        "label": "Korrekturen 2 in C<sup>c</sup> (mit Bleistift)",
+                        "label": "Korrekturen 2 in <strong>C<sup>c</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2271,7 +2270,7 @@
                 "corrections": [
                     {
                         "id": "source_Ea_corr_1",
-                        "label": "Korrekturen 1 in E<sup>a</sup> (mit Tinte)",
+                        "label": "Korrekturen 1 in <strong>E<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2454,7 +2453,7 @@
                     },
                     {
                         "id": "source_Ea_corr_2",
-                        "label": "Korrekturen 2 in E<sup>a</sup> (mit Bleistift und blauem Buntstift im Hinblick auf Textfassung 5)",
+                        "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift und blauem Buntstift im Hinblick auf Textfassung 5)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2691,7 +2690,7 @@
                     },
                     {
                         "id": "source_Eb_corr_1",
-                        "label": "Korrekturen 1 in E<sup>b</sup> (mit Tinte und blauem Buntstift)",
+                        "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2922,7 +2921,7 @@
                     },
                     {
                         "id": "source_Eb_corr_2",
-                        "label": "Korrekturen 2 in E<sup>b</sup> (mit Bleistift, blauem und braunem Buntstift im Hinblick auf Textfassung 6)",
+                        "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift, blauem und braunem Buntstift im Hinblick auf Textfassung 6)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -3267,7 +3266,7 @@
                     },
                     {
                         "id": "source_Ec_corr_1",
-                        "label": "Korrekturen 1 in E<sup>c</sup> (mit Tinte, braunem und blauem Buntstift)",
+                        "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit Tinte, braunem und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -3306,7 +3305,7 @@
                     },
                     {
                         "id": "source_Ec_corr_2",
-                        "label": "Korrekturen 2 in E<sup>c</sup> (mit Bleistift und blauem Buntstift)",
+                        "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
