@@ -277,11 +277,6 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should have fa-icon on first nav-item link', () => {
                 const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
-                const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
-                const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
-
-                expectToBe(navItemLinkSpanEl2.textContent, '(current)');
-                expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
                 getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -391,14 +386,10 @@ describe('NavbarComponent (DONE)', () => {
 
             describe('... first nav-item link (home)', () => {
                 it('... should have home label and fa-icon', () => {
-                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 1, 1);
                     const navItemLinkSpanEl1: HTMLSpanElement = navItemLinkSpanDes[0].nativeElement;
-                    const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
 
                     expectToBe(navItemLinkSpanEl1.textContent, expectedNavbarLabels['home']);
-
-                    expectToBe(navItemLinkSpanEl2.textContent, '(current)');
-                    expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
                     getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
                 });
