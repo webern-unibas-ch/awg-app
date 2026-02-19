@@ -1352,7 +1352,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Verweis Auf Einschubstelle T. 19 in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle T. 19 in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "19–25",
@@ -1364,7 +1364,7 @@
                                             "measure": "29–30",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">Textfassung 3 T. 29-30</a>). <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "32",
@@ -2591,7 +2591,7 @@
                                             "measure": "56",
                                             "system": "Klav. u.",
                                             "position": "3/4",
-                                            "comment": "G/g gestrichen und ersetzt durch punktierte Achtelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Cis/[[#s]]cis und Sechzehntelnote D/d."
+                                            "comment": "G/g gestrichen und ersetzt durch punktierte Achtelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Cis/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis und Sechzehntelnote D/d."
                                         },
                                         {
                                             "measure": "57",
@@ -2657,7 +2657,7 @@
                                             "measure": "92",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für Bassstimme unter dem System. <br /> ##Abildung##"
+                                            "comment": "Alternative Skizze für Bassstimme unter dem System. <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "92",
@@ -2834,7 +2834,7 @@
                                             "measure": "141",
                                             "system": "Klav.",
                                             "position": "3–4/8",
-                                            "comment": "des–f ersetzt des<sup>1</sup>–f<sup>1</sup> in Klav. o. (vgl. Korrekturen 2)."
+                                            "comment": "des–f ersetzt des<sup>1</sup>–f<sup>1</sup> in Klav. o. (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "143",
@@ -2846,7 +2846,7 @@
                                             "measure": "143",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. Korrekturen 2)."
+                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "146",
@@ -2894,13 +2894,13 @@
                                             "measure": "154",
                                             "system": "Klav. u.",
                                             "position": "3/8",
-                                            "comment": "Oberstimmenschicht: d ersetzt g (vgl. Korrekturen 2)."
+                                            "comment": "Oberstimmenschicht: d ersetzt g (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "154",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "Oberstimmenschicht: g ersetzt d (vgl. Korrekturen 2)."
+                                            "comment": "Oberstimmenschicht: g ersetzt d (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "measure": "155",
@@ -2912,7 +2912,7 @@
                                             "measure": "155",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. Korrekturen 2)."
+                                            "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
                                         }
                                     ]
                                 }
@@ -3089,7 +3089,7 @@
                                             "measure": "141",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. Korrekturen 1)."
+                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>)."
                                         },
                                         {
                                             "measure": "141",
@@ -3113,7 +3113,7 @@
                                             "measure": "143",
                                             "system": "Klav. o.",
                                             "position": "1–6/8",
-                                            "comment": "Unterstimmenschicht gestrichen (vgl. Korrekturen 1)."
+                                            "comment": "Unterstimmenschicht gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>)."
                                         },
                                         {
                                             "measure": "144",
