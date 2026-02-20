@@ -1955,7 +1955,7 @@
                             "sheetId": "M_113_Sk5a",
                             "sigle": "M 113 Sk5",
                             "sigleAddendum": "T. 39–41A",
-                            "segmentSplit": 2,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -2241,10 +2241,9 @@
                         },
                         {
                             "complexId": "m114",
-                            "sheetId": "M_114_Sk9a",
-                            "sigle": "M 114 Sk9",
+                            "sheetId": "M_114_Sk8d",
+                            "sigle": "M 114 Sk8",
                             "sigleAddendum": "T. 44–49",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -2256,10 +2255,9 @@
                         },
                         {
                             "complexId": "m114",
-                            "sheetId": "M_114_Sk9b",
-                            "sigle": "M 114 Sk9",
+                            "sheetId": "M_114_Sk8e",
+                            "sigle": "M 114 Sk8",
                             "sigleAddendum": "T. 50–56(1–2/4)",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -2271,70 +2269,65 @@
                         },
                         {
                             "complexId": "m114",
+                            "sheetId": "M_114_Sk8f",
+                            "sigle": "M 114 Sk8",
+                            "sigleAddendum": "T. 56(2–3/4)–58",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9a",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 60–64",
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9b",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 65–{70A}",
+                            "segmentSplit": 1.25,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9e",
+                            "sigle": "M 114 Sk9",
+                            "sigleAddendum": "T. 77–78",
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
                             "sheetId": "M_114_Sk9c",
                             "sigle": "M 114 Sk9",
-                            "sigleAddendum": "T. 56(2–3/4)–58",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 1,
-                                    "startSystem": 10,
-                                    "endSystem": 9
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10a",
-                            "sigle": "M 114 Sk10",
-                            "sigleAddendum": "T. 60–64",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 2,
-                                    "startSystem": 10,
-                                    "endSystem": 9
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10b",
-                            "sigle": "M 114 Sk10",
-                            "sigleAddendum": "T. 65–{70A}",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 1,
-                                    "startSystem": 7,
-                                    "endSystem": 6
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10e",
-                            "sigle": "M 114 Sk10",
-                            "sigleAddendum": "T. 77–78",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 2,
-                                    "startSystem": 7,
-                                    "endSystem": 6
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m114",
-                            "sheetId": "M_114_Sk10c",
-                            "sigle": "M 114 Sk10",
                             "sigleAddendum": "T. 67B–70B",
-                            "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -2346,10 +2339,9 @@
                         },
                         {
                             "complexId": "m114",
-                            "sheetId": "M_114_Sk10_1",
-                            "sigle": "M 114 Sk10.1",
+                            "sheetId": "M_114_Sk9_1",
+                            "sigle": "M 114 Sk9.1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -2361,10 +2353,9 @@
                         },
                         {
                             "complexId": "m114",
-                            "sheetId": "M_114_Sk10d",
-                            "sigle": "M 114 Sk10",
+                            "sheetId": "M_114_Sk9d",
+                            "sigle": "M 114 Sk9",
                             "sigleAddendum": "T. 71–76",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
