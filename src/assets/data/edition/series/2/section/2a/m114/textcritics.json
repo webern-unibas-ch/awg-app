@@ -2399,6 +2399,76 @@
                         "complexId": "m114",
                         "sheetId": "M_114_Sk8f"
                     }
+                },
+                {
+                    "svgGroupId": "g-lb-9b",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9b"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9c",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9e",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9f",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9g",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9g"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9i",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9j",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9j"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9k",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9k"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9_1",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-9_2",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9_2"
+                    }
                 }
             ]
         },
@@ -2424,7 +2494,16 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-9c",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9c"
+                    }
+                }
+            ]
         },
         {
             "id": "M_114_Sk9_2",
@@ -2432,7 +2511,19 @@
             "evaluations": [
                 "<strong>Sk9.2</strong> formuliert den in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9'})\"><strong>Sk9</strong></a> gestrichenen <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_Sk9m'})\">T. 91</a> neu."
             ],
-            "commentary": {}
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-9n",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk9n"
+                    }
+                }
+            ]
         },
         {
             "id": "M_114_Sk10",
@@ -2645,7 +2736,37 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-10f",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-10h",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10h"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-10i",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-10_1",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10_1"
+                    }
+                }
+            ]
         },
         {
             "id": "M_114_Sk10_1",
@@ -2656,7 +2777,23 @@
             "commentary": {
                 "preamble": "",
                 "comments": []
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g-lb-10ha",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10h"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-10hb",
+                    "linkTo": {
+                        "complexId": "m114",
+                        "sheetId": "M_114_Sk10h"
+                    }
+                }
+            ]
         },
         {
             "id": "M_114_Sk11",
