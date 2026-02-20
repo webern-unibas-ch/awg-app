@@ -429,93 +429,7 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113_Sk2"
-                        },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11 (Bleistift)",
-                                            "measure": "16A",
-                                            "linkTo": "M_113_Sk2a"
-                                        }
-                                    ]
-                                ]
                             },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "10b–6 (Bleistift)",
-                                            "measure": "16B-17A",
-                                            "linkTo": "M_113_Sk2b"
-                                        }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "5a–3a (Bleistift)",
-                                            "measure": "16C, 17B",
-                                            "linkTo": "M_113_Sk2c"
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113 Sk5",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113_Sk5"
-                        },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "3b–2a",
-                                            "measure": "39–41",
-                                            "linkTo": "M_113_Sk5a"
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 113",
-                        "itemLinkTo": {
-                            "complexId": "m113",
-                            "sheetId": "M_113_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
-                        "folios": [
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
@@ -568,6 +482,159 @@
                                             "system": "4–3",
                                             "measure": "45–50",
                                             "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "{51–52}, 53–56",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "51–52",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "57–60",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "61–64",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "65, 70–71",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "72–74",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "75–77",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "78–81",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "82–84",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11 (Bleistift)",
+                                            "measure": "16A",
+                                            "linkTo": "M_113_Sk2a"
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–6 (Bleistift)",
+                                            "measure": "16B, 17A",
+                                            "linkTo": "M_113_Sk2b"
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a–3a (Bleistift)",
+                                            "measure": "16C, 17B",
+                                            "linkTo": "M_113_Sk2c"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–2a",
+                                            "measure": "39–41A",
+                                            "linkTo": "M_113_Sk5a"
                                         }
                                     ]
                                 ]
