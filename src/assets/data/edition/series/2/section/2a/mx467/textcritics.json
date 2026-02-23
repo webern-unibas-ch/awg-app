@@ -30,7 +30,7 @@
             "id": "Mx_467_Sk1",
             "label": "M* 467 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> hält den melodischen Verlauf der <a (click)=\"ref.selectSvgSheet({complexId: 'm467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a> fest."
+                "<strong>Sk1</strong> hält den melodischen Verlauf der <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a> fest."
             ],
             "commentary": {
                 "preamble": "",
