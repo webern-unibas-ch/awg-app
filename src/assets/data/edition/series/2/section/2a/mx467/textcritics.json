@@ -54,7 +54,7 @@
             "id": "Mx_467_Sk2",
             "label": "M* 467 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a>."
+                "<strong>Sk2</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx_467_TF1'})\">Studienkomposition für Klavier M* 467</a>."
             ],
             "commentary": {
                 "preamble": "",
