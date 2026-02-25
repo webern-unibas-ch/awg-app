@@ -154,14 +154,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "4a–5 (auf dem Kopf stehend)",
+                                            "system": "4b–5 (auf dem Kopf stehend)",
                                             "measure": "35–38",
                                             "linkTo": "M_114_Sk8a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "1a–2a (auf dem Kopf stehend)",
+                                            "system": "1b–2b (auf dem Kopf stehend)",
                                             "measure": "39–41",
                                             "linkTo": "M_114_Sk8b"
                                         }
@@ -192,7 +192,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1–2",
+                                            "system": "1–2 (auf dem Kopf stehend)",
                                             "measure": "1–8",
                                             "linkTo": ""
                                         }
@@ -216,21 +216,21 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "4b–5",
+                                            "system": "4–5 (auf dem Kopf stehend)",
                                             "measure": "1–8",
                                             "linkTo": "M_114_Sk2a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "7–8",
+                                            "system": "7–8 (auf dem Kopf stehend)",
                                             "measure": "9–10, {11A}, 11B, 12, 13A, 13B",
                                             "linkTo": "M_114_Sk2b"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "10–11",
+                                            "system": "10–11 (auf dem Kopf stehend)",
                                             "measure": "14–21",
                                             "linkTo": "M_114_Sk2c"
                                         }
@@ -254,14 +254,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "13–14",
+                                            "system": "13–14 (auf dem Kopf stehend)",
                                             "measure": "26–28, {29}, 30–32",
                                             "linkTo": "M_114_Sk3a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "16a–17a",
+                                            "system": "16b–17b (auf dem Kopf stehend)",
                                             "measure": "33–35",
                                             "linkTo": "M_114_Sk3b"
                                         }
@@ -285,14 +285,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "16b–17b",
+                                            "system": "16a–17a (auf dem Kopf stehend)",
                                             "measure": "20–21, {22A}, 22B",
                                             "linkTo": "M_114_Sk4a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "18a–19a",
+                                            "system": "18b–19b (auf dem Kopf stehend)",
                                             "measure": "23–25",
                                             "linkTo": "M_114_Sk4b"
                                         }
@@ -316,14 +316,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "18b–19b",
+                                            "system": "18a–19a (auf dem Kopf stehend)",
                                             "measure": "29–30",
                                             "linkTo": "M_114_Sk5a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "21–22",
+                                            "system": "21–22 (auf dem Kopf stehend)",
                                             "measure": "31–36",
                                             "linkTo": "M_114_Sk5b"
                                         }
@@ -337,7 +337,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1b–2b",
+                                            "system": "1c–2c (auf dem Kopf stehend)",
                                             "measure": "37–38",
                                             "linkTo": "M_114_Sk5c"
                                         }
@@ -632,7 +632,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "3b–2a",
+                                            "system": "3b–2a (Bleistift)",
                                             "measure": "39–41A",
                                             "linkTo": "M_113_Sk5a"
                                         }
@@ -884,9 +884,9 @@
                         ]
                     },
                     {
-                        "item": "M* 494 Sk1",
+                        "item": "M* 495 Sk1",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition M* 494)",
+                        "itemDescription": "(Skizze zu Studienkomposition M* 495)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1677,8 +1677,8 @@
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 265–268 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingInstruments": {
-                    "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "main": "Bleistift",
+                    "secondary": ["schwarze Tinte"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1899,14 +1899,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1–2",
+                                            "system": "1–2 (Tinte)",
                                             "measure": "134–138",
                                             "linkTo": "M_114_Sk12a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "4–5",
+                                            "system": "4–5 (Tinte)",
                                             "measure": "139–141",
                                             "linkTo": "M_114_Sk12b"
                                         }
@@ -1930,7 +1930,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "7–8 (Bleistift)",
+                                            "system": "7–8",
                                             "measure": "143–147",
                                             "linkTo": "M_114_Sk13a"
                                         }
@@ -1944,7 +1944,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "10–11 (Bleistift)",
+                                            "system": "10–11",
                                             "measure": "148–152",
                                             "linkTo": "M_114_Sk13b"
                                         }
@@ -1958,7 +1958,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "13–14 (Bleistift)",
+                                            "system": "13–14",
                                             "measure": "153–154, {155A–157A}",
                                             "linkTo": "M_114_Sk13c"
                                         }
@@ -1972,7 +1972,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "16–17 (Bleistift)",
+                                            "system": "16–17",
                                             "measure": "155B–157B, 158",
                                             "linkTo": "M_114_Sk13d"
                                         }
@@ -2118,7 +2118,98 @@
                                         }
                                     ]
                                 ]
-                            }
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–3",
+                                            "measure": "38–42 → T. 39–43",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "43–47 → T. 44–48",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "48–53 → T. 49–54",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "54–58 → T. 55–59",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "59–64 → T. 60–65",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "65–70 → T. 66–71",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                                                        {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–3",
+                                            "measure": "71–75 → T. 72–76",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "76–81 → T. 82–87",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "82–87 → T. 83–88",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "88–92 → T. 89–92, {92}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14a–15a",
+                                            "measure": "93–95 → T. {94–96}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }                            
                         ]
                     },
                     {
