@@ -129,8 +129,8 @@
                         {
                             "complexId": "m29",
                             "sheetId": "M_29_Sk3b",
-                            "sigle": "M 29 Sk3",
-                            "sigleAddendum": "T. {x+6}",
+                            "sigle": "M 29 Sk3 T. {x+6}",
+                            "sigleAddendum": "",
                             "segmentSplit": 3,
                             "segments": [
                                 {
@@ -171,11 +171,10 @@
                             ]
                         },
                         {
-                            "complexId": "mstar416",
-                            "sheetId": "Mstar_416_Sk1",
+                            "complexId": "mx416",
+                            "sheetId": "Mx_416_Sk1",
                             "sigle": "M* 416 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "reversed": true,
                             "segmentSplit": 1,
                             "segments": [
