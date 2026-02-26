@@ -1015,8 +1015,8 @@
                         {
                             "complexId": "m29",
                             "sheetId": "M_29_Sk3b",
-                            "sigle": "M 29 Sk3",
-                            "sigleAddendum": "T. {x+6}",
+                            "sigle": "M 29 Sk3 T. {x+6}",
+                            "sigleAddendum": "",
                             "segmentSplit": 3,
                             "segments": [
                                 {
