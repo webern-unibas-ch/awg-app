@@ -671,8 +671,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 8,
-                                    "endSystem": 7
+                                    "startSystem": 4,
+                                    "endSystem": 3
                                 }
                             ]
                         },
@@ -686,8 +686,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 8,
-                                    "endSystem": 7
+                                    "startSystem": 2,
+                                    "endSystem": 1
                                 }
                             ]
                         }
@@ -745,6 +745,21 @@
                                     "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "",
+                            "sheetId": "",
+                            "sigle": "Skizze von der Hand",
+                            "sigleAddendum": "Arnold Schönbergs",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 9
                                 }
                             ]
                         },
