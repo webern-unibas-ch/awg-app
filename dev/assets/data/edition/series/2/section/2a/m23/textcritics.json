@@ -140,7 +140,7 @@
                                 "measure": "7",
                                 "system": "5",
                                 "position": "4/4",
-                                "comment": "Unterstimmenschicht: Viertelnote [b]es<sup>1</sup> gestrichen."
+                                "comment": "Unterstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g13",
