@@ -8,7 +8,10 @@
                 "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx413', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx413', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx413', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 413 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx413', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
-            "commentary": {}
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
         },
         {
             "id": "Mx_413_Sk1",
