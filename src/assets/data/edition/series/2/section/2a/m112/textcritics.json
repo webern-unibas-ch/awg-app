@@ -1683,7 +1683,7 @@
                                 "measure": "80",
                                 "system": "9",
                                 "position": "(1. Note)",
-                                "comment": "sic: [a] über <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> über <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-53",
