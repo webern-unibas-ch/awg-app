@@ -8,7 +8,10 @@
                 "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a> weist keine Korrekturen auf.",
                 "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 415 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a>."
             ],
-            "commentary": {}
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
         },
         {
             "id": "Mx_415_Sk1",
