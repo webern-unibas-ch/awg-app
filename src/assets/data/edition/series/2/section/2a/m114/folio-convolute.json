@@ -163,7 +163,7 @@
                             "sigle": "M 114 Sk8",
                             "sigleAddendum": "T. 39–41",
                             "reversed": true,
-                            "segmentSplit": 2,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
                                     "position": 2,
@@ -193,10 +193,10 @@
                             "sigle": "M 114 Sk5",
                             "sigleAddendum": "T. 37–38",
                             "reversed": true,
-                            "segmentSplit": 2,
+                            "segmentSplit": 3,
                             "segments": [
                                 {
-                                    "position": 1,
+                                    "position": 3,
                                     "startSystem": 2,
                                     "endSystem": 1
                                 }
@@ -1759,7 +1759,98 @@
                         "height": 346,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 38–42 → T. 39–43",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 43–47 → T. 44–48",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 48–53 → T. 49–54",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 54–58 → T. 55–59",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 59–64 → T. 60–65",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 65–70 → T. 66–71",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "3r",
@@ -1770,6 +1861,81 @@
                         "width": 266
                     },
                     "content": [
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 71–75 → T. 72–76",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 76–81 → T. 82–87",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 82–87 → T. 83–88",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 88–92 → T. 89–{92}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m114",
+                            "sheetId": "M_114_TF4",
+                            "sigle": "M 114 Tintenniederschrift TF4→5→6",
+                            "sigleAddendum": "T. 93–95 → T. {94–96}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
                         {
                             "complexId": "m114",
                             "sheetId": "M_114_Sk10a",
@@ -2070,7 +2236,7 @@
                 },
                 {
                     "folioId": "5v",
-                    "trademarkPosition": "unten links",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
