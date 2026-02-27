@@ -1996,7 +1996,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "2–3 (Bleistift)",
+                                            "system": "2–3",
                                             "measure": "106–110",
                                             "linkTo": "M_114_Sk14a"
                                         }
@@ -2010,7 +2010,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "5–6 (Bleistift)",
+                                            "system": "5–6",
                                             "measure": "111–116",
                                             "linkTo": "M_114_Sk14b"
                                         }
@@ -2024,7 +2024,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "8–9 (Bleistift)",
+                                            "system": "8–9",
                                             "measure": "117–121",
                                             "linkTo": "M_114_Sk14c"
                                         }
@@ -2168,7 +2168,7 @@
                                     ]
                                 ]
                             },
-                                                        {
+                            {
                                 "folio": "3r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
@@ -2209,7 +2209,7 @@
                                         }
                                     ]
                                 ]
-                            }                            
+                            }
                         ]
                     },
                     {
