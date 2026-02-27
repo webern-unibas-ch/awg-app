@@ -471,7 +471,567 @@
         },
         {
             "convoluteId": "B",
-            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "convoluteLabel": "B Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 344,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mx476",
+                            "sheetId": "Mx_476_Sk1a",
+                            "sigle": "M* 476 Sk1",
+                            "sigleAddendum": "T. 1–8A",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx476",
+                            "sheetId": "Mx_476_Sk1b",
+                            "sigle": "M* 476 Sk1",
+                            "sigleAddendum": "T. 5B–8B",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx477",
+                            "sheetId": "Mx_477_Sk1a",
+                            "sigle": "M* 477 Sk1",
+                            "sigleAddendum": "T. 1–8A",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx477",
+                            "sheetId": "Mx_477_Sk1b",
+                            "sigle": "M* 477 Sk1",
+                            "sigleAddendum": "T. 5B–8B",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx478",
+                            "sheetId": "Mx_478_Sk2",
+                            "sigle": "M* 478 Sk2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx478",
+                            "sheetId": "Mx_478_Sk1",
+                            "sigle": "M* 478 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx479",
+                            "sheetId": "Mx_479_Sk1a",
+                            "sigle": "M* 479 Sk1",
+                            "sigleAddendum": "T. 1A–8",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx479",
+                            "sheetId": "Mx_479_Sk1b",
+                            "sigle": "M* 479 Sk1",
+                            "sigleAddendum": "T. 1B–4B",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx479",
+                            "sheetId": "Mx_479_Sk2a",
+                            "sigle": "M* 479 Sk2",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx479",
+                            "sheetId": "Mx_479_Sk2b",
+                            "sigle": "M* 479 Sk2 T. 8",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx480",
+                            "sheetId": "Mx_480_Sk1",
+                            "sigle": "M* 480 Sk1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 344,
+                        "width": 264
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "trademarkPosition": "oben rechts",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 344,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mx471",
+                            "sheetId": "Mx_471_Sk1a",
+                            "sigle": "M* 471 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx471",
+                            "sheetId": "Mx_471_Sk1b",
+                            "sigle": "M* 471 Sk1",
+                            "sigleAddendum": "T. 8–13",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1a",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 1–8A",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1b",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 5B–{11A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1c",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. {12A}–{16A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1d",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 15B–{18A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1e",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. {17B–21}",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1f",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 17C–22",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1g",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 23–25",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m84",
+                            "sheetId": "M_84_Sk1h",
+                            "sigle": "M 84 Sk1",
+                            "sigleAddendum": "T. 26–28",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "reversed": true,
+                    "dimensions": {
+                        "height": 344,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "mx467",
+                            "sheetId": "Mx_467_Sk1",
+                            "sigle": "M* 467 Sk1",
+                            "sigleAddendum": "",
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx470",
+                            "sheetId": "Mx_470_Sk1a",
+                            "sigle": "M* 470 Sk1",
+                            "sigleAddendum": "T. 1–{10A}",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx470",
+                            "sheetId": "Mx_470_Sk1b",
+                            "sigle": "M* 470 Sk1",
+                            "sigleAddendum": "T. 8B–14",
+                            "selectable": false,
+                            "segmentSplit": 1,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 14,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx470",
+                            "sheetId": "Mx_470_Sk1c",
+                            "sigle": "M* 470 Sk1",
+                            "sigleAddendum": "T. 15–16",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx474",
+                            "sheetId": "Mx_474_Sk1a",
+                            "sigle": "M* 474 Sk1",
+                            "sigleAddendum": "T. 1A–8A",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx474",
+                            "sheetId": "Mx_474_Sk1b",
+                            "sigle": "M* 474 Sk1",
+                            "sigleAddendum": "T. 5B–8B",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx474",
+                            "sheetId": "Mx_474_Sk2a",
+                            "sigle": "M* 474 Sk2",
+                            "sigleAddendum": "T. 1A–8",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx474",
+                            "sheetId": "Mx_474_Sk2b",
+                            "sigle": "M* 474 Sk2",
+                            "sigleAddendum": "T. 1B–4B",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx475",
+                            "sheetId": "Mx_475_Sk1a",
+                            "sigle": "M* 475 Sk1",
+                            "sigleAddendum": "T. 1A–8A",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx475",
+                            "sheetId": "Mx_475_Sk1b",
+                            "sigle": "M* 475 Sk1",
+                            "sigleAddendum": "T. 5B–4B",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx475",
+                            "sheetId": "Mx_475_Sk2a",
+                            "sigle": "M* 475 Sk2",
+                            "sigleAddendum": "T. 1–8A",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx475",
+                            "sheetId": "Mx_475_Sk2b",
+                            "sigle": "M* 475 Sk2",
+                            "sigleAddendum": "T. 8B",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 8,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mx475",
+                            "sheetId": "Mx_475_Sk2c",
+                            "sigle": "M* 475 Sk2",
+                            "sigleAddendum": "T. 6B–8C",
+                            "selectable": false,
+                            "segmentSplit": 3,
+                            "segments": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 12,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Tintenniederschrift (CH-Bps)",
             "folios": [
                 {
                     "folioId": "1r",

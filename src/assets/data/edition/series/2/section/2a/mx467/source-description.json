@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464, M* 466–467, M* 472–473, M* 480–483.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 467.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464–467, M* 472–473, M* 480–483.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -502,12 +502,490 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 467.<br />Enthält auch Skizzen zu Studienkompositionen „Komm heilʼger Geist, du Tröster mein“ M 84, M* 470–471 und M* 474–480.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "1 Bogen (Bl. 1/2). Bl. 1<sup>v</sup> unbeschrieben. Horizontale Knickfalte. Bogen unten eingerissen."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 344 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M* 476 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 476)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–4, 5A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "5B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 477 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 477)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–13",
+                                            "measure": "1–4, 5A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "5B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 478 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 478)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10a–9a",
+                                            "measure": "{1A–8A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 478 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 478)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–5a",
+                                            "measure": "1–4, 5A–8A, 5B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 479 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 479)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4a–3a",
+                                            "measure": "1A–4A, 5–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a–1a",
+                                            "measure": "1B–4B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 479 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 479)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–3b",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 480 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 480)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–1b",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 471 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 471 „Gib dich zufrieden und sei stille“)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–15a",
+                                            "measure": "8–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 84 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M 84 „Komm heilʼger Geist, du Tröster mein“)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "1–4, {5A}, 6A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–10",
+                                            "measure": "5B, {6B–8B}, 9–10, {11A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–8",
+                                            "measure": "{12A, 12B, 13A}, 11B, 12C, 13B, {14A–16A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "15B–16B, 15C, 14B, 15C–16C, {17A–18A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–4a",
+                                            "measure": "{17B–18B, 19–21}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "17C–18C, 19B–21B, 22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b–4b",
+                                            "measure": "23–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16b–15b",
+                                            "measure": "26–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 467 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mx467",
+                            "sheetId": "Mx_467_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 467)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 470 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 470 „Komm heilʼger Geist, du Tröster mein“)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "1–7, {8A–10A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–11c",
+                                            "measure": "8B, {9B–10B, 9C}, 9D, 10C, 11–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–11b",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 474 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 474)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–9",
+                                            "measure": "1A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8a–7a",
+                                            "measure": "5B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 474 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 474)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–5a",
+                                            "measure": "1A–4A, 5–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b–7b",
+                                            "measure": "1B–4B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 475 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 475)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4a–3a",
+                                            "measure": "1A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a–1a",
+                                            "measure": "5B–8B, 1B–4B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 475 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Studienkomposition M* 475)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–1b",
+                                            "measure": "1–5, 6A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8c–7c",
+                                            "measure": "8B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12c–11c",
+                                            "measure": "6B–7B, 8C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 467.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464–466 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist in der Falte eingerissen."],
                 "writingMaterialStrings": [
-                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
@@ -1001,8 +1479,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_B_corr_1",
-                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1011,16 +1489,10 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "2",
-                                            "system": "Klav. u.",
-                                            "position": "3/4",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "7",
+                                            "measure": "8",
                                             "system": "Klav. o.",
-                                            "position": "2. Note",
-                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Ganze Note überschreibt Notenkopf d<sup>1</sup>."
                                         }
                                     ]
                                 }
@@ -1028,8 +1500,8 @@
                         }
                     },
                     {
-                        "id": "source_B_corr_2",
-                        "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift und blauem Buntstift von der Hand Schönbergs)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1039,33 +1511,39 @@
                                     "blockComments": [
                                         {
                                             "measure": "1",
-                                            "system": "Klav.",
-                                            "position": "1.–3. Note",
-                                            "comment": "Linie zwischen g<sup>1</sup> und e<sup>1</sup> in Klav. o. sowie C und A in Klav. u. zur Verdeutlichung der offenen Quintparallele."
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht: g<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "measure": "1 <br /> bis 2",
-                                            "system": "Klav. o.",
-                                            "position": "4/4 <br /> 1. Note",
-                                            "comment": "Linie zwischen h<sup>1 </sup>und a<sup>1</sup> sowie e<sup>1</sup> und d<sup>1</sup> zur Verdeutlichung der offenen Quintparallele."
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "1/2",
+                                            "comment": "a überschrieben zu c<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "5–8",
+                                            "measure": "2 <br /> bis 3",
                                             "system": "Klav. o.",
+                                            "position": "letzte Note <br /> 1. Note",
+                                            "comment": "Linie zwischen <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1 </sup>und c<sup>2</sup> in Klav. o. sowie e und f im Klav. u. zur Verdeutlichung der offenen Quintparallele."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. o.",
+                                            "position": "1/2",
+                                            "comment": "Unterstimmenschicht: Halbe Note c<sup>1</sup>/e<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Bogen über dem System."
+                                            "comment": "<em>II</em> (oder <em>V</em>?) unter dem System."
                                         },
                                         {
-                                            "measure": "5",
-                                            "system": "Klav.",
-                                            "position": "3/4–4/4",
-                                            "comment": "Linie zwischen c<sup>2</sup> und h<sup>1</sup> in Klav. o. sowie f und e in Klav. u. zur Verdeutlichung der offenen Quintparallele."
-                                        },
-                                        {
-                                            "measure": "7",
-                                            "system": "",
-                                            "position": "3/4–4/4",
-                                            "comment": "Linie zwischen c<sup>2</sup> und d<sup>2</sup> in Klav. o. sowie f und g in Klav. u. zur Verdeutlichung der offenen Quintparallele."
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "<em>I</em> unter dem System.<em> </em>"
                                         }
                                     ]
                                 }

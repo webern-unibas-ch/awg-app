@@ -291,8 +291,11 @@
                     },
                     {
                         "item": "M* 467 Sk1",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition M* 467)",
+                        "itemLinkTo": {
+                            "complexId": "mx467",
+                            "sheetId": "Mx_467_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 467)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -854,8 +857,11 @@
                     },
                     {
                         "item": "M* 467",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 467)",
+                        "itemLinkTo": {
+                            "complexId": "mx467",
+                            "sheetId": "Mx_467_TF1"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 467)",
                         "folios": [
                             {
                                 "folio": "2r",
