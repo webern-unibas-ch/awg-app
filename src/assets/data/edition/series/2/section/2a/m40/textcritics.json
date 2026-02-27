@@ -169,7 +169,7 @@
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1496",
