@@ -6,7 +6,6 @@
             "folios": [
                 {
                     "folioId": "1r",
-                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -78,6 +77,7 @@
                 },
                 {
                     "folioId": "1v",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -164,7 +164,6 @@
                 },
                 {
                     "folioId": "2r",
-                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -267,7 +266,6 @@
                             "sheetId": "Mx_465_Sk1",
                             "sigle": "M* 465 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -282,7 +280,6 @@
                             "sheetId": "Mx_466_Sk1",
                             "sigle": "M* 466 Sk1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -310,6 +307,7 @@
                 },
                 {
                     "folioId": "2v",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -1037,7 +1035,6 @@
             "folios": [
                 {
                     "folioId": "1r",
-                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -1094,6 +1091,7 @@
                 },
                 {
                     "folioId": "1v",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -1231,8 +1229,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 8,
-                                    "endSystem": 7
+                                    "startSystem": 4,
+                                    "endSystem": 3
                                 }
                             ]
                         },
@@ -1246,8 +1244,8 @@
                             "segments": [
                                 {
                                     "position": 1,
-                                    "startSystem": 8,
-                                    "endSystem": 7
+                                    "startSystem": 2,
+                                    "endSystem": 1
                                 }
                             ]
                         }
@@ -1255,7 +1253,6 @@
                 },
                 {
                     "folioId": "2r",
-                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -1309,6 +1306,21 @@
                             ]
                         },
                         {
+                            "complexId": "",
+                            "sheetId": "",
+                            "sigle": "Skizze von der Hand",
+                            "sigleAddendum": "Arnold Schönbergs",
+                            "selectable": false,
+                            "segmentSplit": 2,
+                            "segments": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
                             "complexId": "mx465",
                             "sheetId": "Mx_465_TF1",
                             "sigle": "M* 465 Tintenniederschrift TF1",
@@ -1357,6 +1369,7 @@
                 },
                 {
                     "folioId": "2v",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
