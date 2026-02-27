@@ -330,11 +330,11 @@
     </g>
   </g>
   <path id="text320" d="M769.817 206.515q0-.46.328-.765.328-.328.809-.328t.809.328q.328.306.328.765 0 .46-.328.787-.328.328-.809.328t-.81-.328q-.327-.328-.327-.787" aria-label="." style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002"/>
-  <g id="g6" class="link-box">
+  <g id="g6" class="link-box-todo">
     <path id="rect138" d="M172.64 177.796h316.61v54.211H172.64Z" style="fill:#fff;stroke:#777;stroke-width:.683"/>
     <text xml:space="preserve" id="text1" x="276.185" y="212.532" style="font-weight:700;font-size:21.3333px;line-height:normal;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;text-decoration-color:#000;fill:#777;fill-opacity:.866667;stroke-width:1.02"><tspan id="tspan1" x="276.185" y="212.532">M* 494 Sk1</tspan></text>
   </g>
-  <g id="g7" class="link-box">
+  <g id="g7" class="link-box-todo">
     <path id="rect402" d="M172.186 426.301V238.757H570.16v65h60.64v122.544" style="fill:#fff;stroke:#777;stroke-width:.683;fill-opacity:1"/>
     <text xml:space="preserve" id="text2" x="346.733" y="342.659" style="font-weight:700;font-size:21.3333px;line-height:normal;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;text-decoration-color:#000;fill:#777;fill-opacity:.866667;stroke-width:1.02"><tspan id="tspan2" x="346.733" y="342.659">M* 495 Sk1</tspan></text>
   </g>

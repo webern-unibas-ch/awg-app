@@ -2780,14 +2780,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-10ha",
-                    "linkTo": {
-                        "complexId": "m114",
-                        "sheetId": "M_114_Sk10h"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-10hb",
+                    "svgGroupId": "g-lb-10h",
                     "linkTo": {
                         "complexId": "m114",
                         "sheetId": "M_114_Sk10h"
