@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464, M* 466–467, M* 472–473, M* 480–483.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 466.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464–465, M* 467, M* 472–473, M* 480–483.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -499,7 +499,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 466.<br />Enthält auch Tintenniederschrift von Studienkompositionen M* 464–465 und M* 467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist in der Falte eingerissen."],
@@ -1005,16 +1005,10 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "2",
+                                            "measure": "1",
                                             "system": "Klav. u.",
-                                            "position": "3/4",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "7",
-                                            "system": "Klav. o.",
-                                            "position": "2. Note",
-                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Achtelfähnchen gestrichen."
                                         }
                                     ]
                                 }
@@ -1023,7 +1017,7 @@
                     },
                     {
                         "id": "source_B_corr_2",
-                        "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Arnold Schönbergs)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1033,33 +1027,39 @@
                                     "blockComments": [
                                         {
                                             "measure": "1",
-                                            "system": "Klav.",
-                                            "position": "1.–3. Note",
-                                            "comment": "Linie zwischen g<sup>1</sup> und e<sup>1</sup> in Klav. o. sowie C und A in Klav. u. zur Verdeutlichung der offenen Quintparallele."
-                                        },
-                                        {
-                                            "measure": "1 <br /> bis 2",
                                             "system": "Klav. o.",
-                                            "position": "4/4 <br /> 1. Note",
-                                            "comment": "Linie zwischen h<sup>1 </sup>und a<sup>1</sup> sowie e<sup>1</sup> und d<sup>1</sup> zur Verdeutlichung der offenen Quintparallele."
+                                            "position": "3/8",
+                                            "comment": "Unterstimmenschicht: d<sup>1</sup> eingekreist."
                                         },
                                         {
-                                            "measure": "5–8",
-                                            "system": "Klav. o.",
-                                            "position": "",
-                                            "comment": "Bogen über dem System."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav.",
+                                            "measure": "1",
+                                            "system": "",
                                             "position": "3/4–4/4",
                                             "comment": "Linie zwischen c<sup>2</sup> und h<sup>1</sup> in Klav. o. sowie f und e in Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
-                                            "measure": "7",
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Unterstimmenschicht: f<sup>1</sup> eingekreist."
+                                        },
+                                        {
+                                            "measure": "5 <br /> bis 6",
+                                            "system": "Klav. u.",
+                                            "position": "4/4 <br /> 2. Note",
+                                            "comment": "Oberstimmenschicht: c<sup>1</sup>–d<sup>1</sup>–d<sup>1</sup> gestrichen und ersetzt durch g–g–g."
+                                        },
+                                        {
+                                            "measure": "6",
                                             "system": "",
-                                            "position": "3/4–4/4",
-                                            "comment": "Linie zwischen c<sup>2</sup> und d<sup>2</sup> in Klav. o. sowie f und g in Klav. u. zur Verdeutlichung der offenen Quintparallele."
+                                            "position": "4/8 bis letzte Note",
+                                            "comment": "Linie zwischen d<sup>2</sup> und g<sup>2</sup> in Klav. o. sowie H und g in Klav. u. zur Verdeutlichung der verdeckten Oktavparallele."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "g gestrichen und ersetzt durch G."
                                         }
                                     ]
                                 }
