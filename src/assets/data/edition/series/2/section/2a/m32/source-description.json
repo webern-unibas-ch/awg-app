@@ -1692,7 +1692,10 @@
                     },
                     {
                         "item": "M* 414 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -1704,14 +1707,14 @@
                                         {
                                             "system": "1b–2b",
                                             "measure": "1–4",
-                                            "linkTo": ""
+                                            "linkTo": "Mx_414_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3c–4c",
                                             "measure": "5–8",
-                                            "linkTo": ""
+                                            "linkTo": "Mx_414_Sk1b"
                                         }
                                     ]
                                 ]
@@ -1768,7 +1771,10 @@
                     },
                     {
                         "item": "M* 414 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx414",
+                            "sheetId": "Mx_414_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -1834,7 +1840,10 @@
                     },
                     {
                         "item": "M* 413 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "mx413",
+                            "sheetId": "Mx_413_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 413)",
                         "folios": [
                             {

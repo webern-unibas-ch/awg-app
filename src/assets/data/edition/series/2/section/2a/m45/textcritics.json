@@ -336,7 +336,7 @@
                                 "measure": "10A",
                                 "system": "3",
                                 "position": "2/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup> überscheibt fis<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup> überschreibt fis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-17",
@@ -1086,7 +1086,7 @@
                                 "measure": "16",
                                 "system": "26",
                                 "position": "3/8",
-                                "comment": "Mittelstimmenschicht: d<sup>2</sup>/fis<sup>2</sup> überschreibt cis<sup>2</sup>/e<sup></sup>."
+                                "comment": "Mittelstimmenschicht: d<sup>2</sup>/fis<sup>2</sup> überschreibt cis<sup>2</sup>/e<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-10",
