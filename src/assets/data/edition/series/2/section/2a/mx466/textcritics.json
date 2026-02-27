@@ -8,7 +8,10 @@
                 "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
                 "Hauptquelle für die Textedition der Studienkomposition M* 466 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
-            "commentary": {}
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
         },
         {
             "id": "Mx_466_Sk1",
@@ -41,7 +44,7 @@
                                 "measure": "1",
                                 "system": "3",
                                 "position": "4/4",
-                                "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> überschreibt Achtelnoten e<sup>1</sup>–d<sup></sup>."
+                                "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> überschreibt Achtelnoten e<sup>1</sup>–d<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -53,7 +56,7 @@
                             {
                                 "svgGroupId": "g-tkk-5",
                                 "measure": "5",
-                                "system": "2",
+                                "system": "3",
                                 "position": "3/8",
                                 "comment": "Oberstimmenschicht: a<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
