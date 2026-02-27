@@ -19,7 +19,7 @@
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "1/2",
-                                "comment": "Kleinstich: Halbe Note c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß Korrekturen 2."
+                                "comment": "Kleinstich: Halbe Note c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>."
                             }
                         ]
                     }
@@ -74,7 +74,7 @@
                                 "measure": "2",
                                 "system": "18",
                                 "position": "3/4",
-                                "comment": "Unterstimmenschicht: Viertelnote a<sup>1</sup> überschreibt mit Oberstimme zusammengehalste Halbe Note [#]gis<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: Viertelnote a<sup>1</sup> überschreibt mit Oberstimme zusammengehalste Halbe Note <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
