@@ -1,0 +1,45 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "Mx_467_TF1",
+                "label": "M* 467 einzige Textfassung",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/mx467/Mx467_Textfassung1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "C"
+                    }
+                ]
+            }
+        ],
+        "sketchEditions": [
+            {
+                "id": "Mx_467_Sk1",
+                "label": "M* 467 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/mx467/Mx467_Sk1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "Mx_467_Sk2",
+                "label": "M* 467 Sk2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/mx467/Mx467_Sk2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "B"
+                    }
+                ]
+            }
+        ]
+    }
+}
