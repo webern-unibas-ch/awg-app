@@ -2063,6 +2063,19 @@
                 "annotations": [],
                 "contents": [
                     {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
                         "item": "M 114",
                         "itemLinkTo": {
                             "complexId": "m114",
