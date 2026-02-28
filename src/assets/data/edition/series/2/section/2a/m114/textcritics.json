@@ -2542,7 +2542,7 @@
                                 "measure": "94A",
                                 "system": "18",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g-tkk-2",
@@ -2556,7 +2556,7 @@
                                 "measure": "95A",
                                 "system": "18",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
@@ -2570,7 +2570,7 @@
                                 "measure": "94B",
                                 "system": "18",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[[a]]')}}</span>E überschreibt C."
+                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]E überschreibt C."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
@@ -2591,7 +2591,7 @@
                                 "measure": "95B",
                                 "system": "17",
                                 "position": "3/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-8a",
