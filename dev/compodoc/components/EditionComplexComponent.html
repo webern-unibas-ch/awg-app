@@ -711,7 +711,7 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     updateEditionComplexFromRoute(): void {
         this._route.paramMap.subscribe(params &#x3D;&gt; {
             const id: string &#x3D; params.get(&#x27;complexId&#x27;) || &#x27;&#x27;;
-            const complex &#x3D; EditionComplexesService.getEditionComplexById(id.toUpperCase());
+            const complex &#x3D; EditionComplexesService.getEditionComplexById(id);
 
             if (this._utils.isNotEmptyObject(complex)) {
                 const series &#x3D; EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
