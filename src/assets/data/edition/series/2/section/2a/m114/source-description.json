@@ -1200,9 +1200,9 @@
                                             "comment": "Unterstimmenschicht: Viertelnoten eingeklammert und ersetzt durch Halbe Note."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Klav. o.",
-                                            "position": "1/4 <br /> 1/4",
+                                            "position": "1/4 <br />1/4",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -1226,7 +1226,7 @@
                                         {
                                             "measure": "14–18",
                                             "system": "Klav. o.",
-                                            "position": "Taktanfang <br /> Taktende",
+                                            "position": "Taktanfang <br />Taktende",
                                             "comment": "Takte mit braunem Buntstift (von Schönbergs Hand?) über dem System eingeklammert."
                                         },
                                         {
@@ -1431,7 +1431,7 @@
                                             "measure": "29–30",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M_114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "32",
@@ -1469,7 +1469,7 @@
                                         {
                                             "measure": "27–28",
                                             "system": "Klav. u.",
-                                            "position": "1. Note <br /> 1. Note",
+                                            "position": "1. Note <br />1. Note",
                                             "comment": "Ligatur gestrichen."
                                         },
                                         {
@@ -1548,9 +1548,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "24 <br /> bis 25",
+                                            "measure": "24 <br />bis 25",
                                             "system": "Klav. o.",
-                                            "position": "2/4 <br /> 3/4",
+                                            "position": "2/4 <br />3/4",
                                             "comment": "Skizze über dem System: diastematisch undefinierte punktierte Achtelnote und Sechzehntelnote in T. 24 2/4, anschließend Geltungsstrichelung bis T. 25 3/4."
                                         },
                                         {
@@ -1635,7 +1635,7 @@
                                             "measure": "43",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt überarbeitet: <br /> ##Abbildung##"
+                                            "comment": "Takt überarbeitet: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "44",
@@ -2471,12 +2471,12 @@
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Violinschlüssel überschreibt Bassschlüssel. Ante correcturam: Akkolade mitsamt Notenschlüsseln und Vorzeichen je ein System höher vorgezeichnet.  <br /> ##Abbildung## <br /> Die Vorzeichen in Klav. o. wurden nicht angepasst und sind im Bassschlüssel zu lesen, der für die Takte 14–16 letztlich doch Gültigkeit behielt (vgl. TkA)."
+                                            "comment": "Violinschlüssel überschreibt Bassschlüssel. Ante correcturam: Akkolade mitsamt Notenschlüsseln und Vorzeichen je ein System höher vorgezeichnet. <br />##Abbildung## <br />Die Vorzeichen in Klav. o. wurden nicht angepasst und sind im Bassschlüssel zu lesen, der für die Takte 14–16 letztlich doch Gültigkeit behielt (vgl. TkA)."
                                         },
                                         {
-                                            "measure": "29 <br /> bis 30",
+                                            "measure": "29 <br />bis 30",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Ligatur zu cis<sup>2</sup>–cis<sup>2</sup> gestrichen."
                                         },
                                         {
@@ -2659,8 +2659,8 @@
                                         {
                                             "measure": "24–25",
                                             "system": "Klav.",
-                                            "position": "Taktanfang <br /> Taktende",
-                                            "comment": "Klammer über dem System und Markierungen unter dem System mit blauem Buntstift. Zusätzlichen Takt nach T. 25 über dem System mit Bleistift eingefügt. <br /> ##Abbildung##"
+                                            "position": "Taktanfang <br />Taktende",
+                                            "comment": "Klammer über dem System und Markierungen unter dem System mit blauem Buntstift. Zusätzlichen Takt nach T. 25 über dem System mit Bleistift eingefügt. <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "26",
@@ -2675,9 +2675,9 @@
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> mit blauem Buntstift hinzugefügt."
                                         },
                                         {
-                                            "measure": "33 <br /> bis 34",
+                                            "measure": "33 <br />bis 34",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 1. Note",
+                                            "position": "letzte Note <br />1. Note",
                                             "comment": "Ligatur hinzugefügt."
                                         },
                                         {
@@ -2828,7 +2828,7 @@
                                             "measure": "92",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für Bassstimme unter dem System. <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze für Bassstimme unter dem System. <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "92",
@@ -3119,9 +3119,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> hinzugefügt. Über dem System: <em>ces</em>"
                                         },
                                         {
-                                            "measure": "95 <br /> bis 96",
+                                            "measure": "95 <br />bis 96",
                                             "system": "Klav. o.",
-                                            "position": "3/4 <br /> 1/4",
+                                            "position": "3/4 <br />1/4",
                                             "comment": "Viertelpausen überschrieben zu punktierte Achtelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>3 </sup>und Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>3</sup> in T. 95 sowie Achtelnote b<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>fes<sup>2</sup>/b<sup>2</sup> und Achtelpause in T. 96. Legatobogen von punktierter Achtelnote des<sup>2</sup>/des<sup>3 </sup>zu Achtelnote b<sup>1</sup>/fes<sup>2</sup>/b<sup>2 </sup>hinzugefügt."
                                         },
                                         {
@@ -3247,7 +3247,7 @@
                                         {
                                             "measure": "138–139",
                                             "system": "Klav.",
-                                            "position": "Taktanfang <br /> Taktende",
+                                            "position": "Taktanfang <br />Taktende",
                                             "comment": "Takte über den Systemen eingeklammert."
                                         },
                                         {
@@ -3271,7 +3271,7 @@
                                         {
                                             "measure": "141–145",
                                             "system": "Klav. u.",
-                                            "position": "4/8 <br /> 5/8",
+                                            "position": "4/8 <br />5/8",
                                             "comment": "<em>cresc</em>. mit Geltungsstrichelung unter dem System."
                                         },
                                         {
@@ -3329,9 +3329,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> zwischen den Systemen hinzugefügt."
                                         },
                                         {
-                                            "measure": "149 <br /> bis 151",
+                                            "measure": "149 <br />bis 151",
                                             "system": "Klav.",
-                                            "position": "4/8 <br /> 2/8",
+                                            "position": "4/8 <br />2/8",
                                             "comment": "<em>cresc</em>. mit Geltungsstrichelung hinzugefügt."
                                         },
                                         {
@@ -3341,21 +3341,21 @@
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "150 <br /> bis 152",
+                                            "measure": "150 <br />bis 152",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 5. Note",
+                                            "position": "letzte Note <br />5. Note",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "152 <br /> bis 153",
+                                            "measure": "152 <br />bis 153",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 4/8",
+                                            "position": "6/8 <br />4/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "153  <br /> bis 154",
+                                            "measure": "153 <br />bis 154",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> 4/8",
+                                            "position": "4. Note <br />4/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -3383,9 +3383,9 @@
                                             "comment": "d gestrichen (vgl. Korrekturen 1)."
                                         },
                                         {
-                                            "measure": "154  <br /> bis 155",
+                                            "measure": "154 <br />bis 155",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> 4/8",
+                                            "position": "4. Note <br />4/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -3395,9 +3395,9 @@
                                             "comment": "Achtelnoten nachgezeichnet und zusammengebalkt. Ante correcturam: kein Balken."
                                         },
                                         {
-                                            "measure": "155  <br /> bis 156",
+                                            "measure": "155 <br />bis 156",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> letzte Note",
+                                            "position": "4. Note <br />letzte Note",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -3485,9 +3485,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "109 <br /> bis 110",
+                                            "measure": "109 <br />bis 110",
                                             "system": "Klav. u.",
-                                            "position": "letzte Note <br /> 1. Note",
+                                            "position": "letzte Note <br />1. Note",
                                             "comment": "Ligaturen gestrichen und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Viertelnote As<sub>1</sub>/As in T. 110 hinzugefügt."
                                         },
                                         {
