@@ -1395,7 +1395,7 @@
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "g<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>geses<sup>3</sup> korrigiert zu <span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>heses<sup>3</sup> mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "g-tkk-52",
