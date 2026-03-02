@@ -103,6 +103,29 @@ describe('EditionComplexesService (DONE)', () => {
             expect(complex).toBeTruthy();
             expectToEqual(complex, testComplex);
         });
+
+        it('... should return the correct edition complex by ID in a case-insensitive way', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            const expectedList = { [testComplexId]: testComplex };
+            EditionComplexesService.setEditionComplexesList(expectedList);
+
+            const complex = EditionComplexesService.getEditionComplexById(testComplexId.toUpperCase());
+
+            expect(complex).toBeTruthy();
+            expectToEqual(complex, testComplex);
+        });
     });
 
     describe('#getEditionComplexesList()', () => {
