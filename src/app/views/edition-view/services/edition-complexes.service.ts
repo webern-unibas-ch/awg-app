@@ -37,11 +37,12 @@ export class EditionComplexesService {
     /**
      * Static method: getEditionComplexById.
      *
-     * It finds an edition complex by a given id.
+     * It finds an edition complex by a given id using case-insensitive lookup.
+     * The id is normalized to lowercase before searching the complexes list.
      *
-     * @param {string} id The given id.
+     * @param {string} id The given id (case-insensitive).
      *
-     * @returns {EditionComplex} The found edition complex.
+     * @returns {EditionComplex} The found edition complex, or undefined if not found.
      */
     static getEditionComplexById(id: string): EditionComplex {
         return EditionComplexesService._editionComplexesList[id.toLowerCase()];
