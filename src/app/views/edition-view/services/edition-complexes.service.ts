@@ -43,7 +43,7 @@ export class EditionComplexesService {
      *
      * @param {string} id The given id (will be normalized to lowercase).
      *
-     * @returns {EditionComplex} The found edition complex, or undefined if not found.
+     * @returns {EditionComplex} The found edition complex.
      */
     static getEditionComplexById(id: string): EditionComplex {
         return EditionComplexesService._editionComplexesList[id.toLowerCase()];
