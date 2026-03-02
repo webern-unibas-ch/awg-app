@@ -86,9 +86,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "17 <br /> bis 18",
+                                "measure": "17 <br />bis 18",
                                 "system": "Klav. o.",
-                                "position": "Taktende <br /> Taktanfang",
+                                "position": "Taktende <br />Taktanfang",
                                 "comment": "Violinschlüssel versetzt von vor T. 18 2/8 und Kustos ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 17."
                             },
                             {

@@ -168,7 +168,7 @@
                                         {
                                             "measure": "2",
                                             "system": "Klav.",
-                                            "position": "1. Pause (Klav.o.) <br /> bis Taktende",
+                                            "position": "1. Pause (Klav.o.) <br />bis Taktende",
                                             "comment": "Auf Tektur."
                                         },
                                         {
@@ -316,12 +316,12 @@
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "8–9/16",
-                                            "comment": "Sechzehntelbalken geändert zu Sechzehntelfähnchen.  <br /> Staccatopunkte hinzugefügt."
+                                            "comment": "Sechzehntelbalken geändert zu Sechzehntelfähnchen. <br />Staccatopunkte hinzugefügt."
                                         },
                                         {
-                                            "measure": "11 <br /> bis 12",
+                                            "measure": "11 <br />bis 12",
                                             "system": "Klav.",
-                                            "position": "letzte Note <br /> 2. Note (Klav. u.)",
+                                            "position": "letzte Note <br />2. Note (Klav. u.)",
                                             "comment": "<em>Ped</em>[.] <em>---</em> hinzugefügt mit Bleistift."
                                         },
                                         {
@@ -334,7 +334,7 @@
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Arpeggioschlange hinzugefügt mit Bleistift.  <br /> <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit Bleistift."
+                                            "comment": "Arpeggioschlange hinzugefügt mit Bleistift. <br /><span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit Bleistift."
                                         },
                                         {
                                             "measure": "13",

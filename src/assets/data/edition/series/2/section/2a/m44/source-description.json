@@ -161,15 +161,15 @@
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote; Rasur vor Halber Note."
                                         },
                                         {
-                                            "measure": "3 </br>bis 6",
+                                            "measure": "3 <br />bis 6",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Rasur über dem System. Ende des Legatobogens versetzt von T. 4 2/4 nach T. 6 1/8 (vgl. nachfolgende Korrektur)."
                                         },
                                         {
-                                            "measure": "3 </br>bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav. o.",
-                                            "position": "5/8 </br>3/4",
+                                            "position": "5/8 <br />3/4",
                                             "comment": "Legatobogen rasiert (vgl. vorangehende Korrektur)."
                                         },
                                         {
@@ -191,10 +191,10 @@
                                             "comment": "Viertelnoten d/g/h rasiert."
                                         },
                                         {
-                                            "measure": "8 </br>bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Klav. o.",
-                                            "position": "3/4 <br/>1/4",
-                                            "comment": "Rasur über dem System: Ende des Legatobogens versetzt von T. 8 3/4 nach T. 9 1/4; Beginn des Legatobogens versetzt von T. 9 1/4 nach T. 9 2. Note.."
+                                            "position": "3/4 <br />1/4",
+                                            "comment": "Rasur über dem System: Ende des Legatobogens versetzt von T. 8 3/4 nach T. 9 1/4; Beginn des Legatobogens versetzt von T. 9 1/4 nach T. 9 2. Note."
                                         },
                                         {
                                             "measure": "11",

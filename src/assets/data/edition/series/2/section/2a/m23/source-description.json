@@ -3536,9 +3536,9 @@
                                             "comment": "f<sup>2</sup> überschreibt g<sup>2</sup>."
                                         },
                                         {
-                                            "measure": "6  <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav. o.",
-                                            "position": "8/8  <br /> 2/8",
+                                            "position": "8/8 <br />2/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 6 8/8 nach T. 7 2/8."
                                         },
                                         {
@@ -3645,9 +3645,9 @@
                                     "blockHeader": "Var. I.",
                                     "blockComments": [
                                         {
-                                            "measure": "10  <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "2/4  <br /> 3/4",
+                                            "position": "2/4 <br />3/4",
                                             "comment": "Noten teilweise vorgezeichnet."
                                         }
                                     ]
@@ -3659,7 +3659,7 @@
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "(2/4)",
-                                            "comment": "Markierung im System zwischen 3/8 und 8/16: Achtelnote und Sechzehntelpause nahezu übereinander notiert. Metrischer Zusammenhang in System 17 verdeutlicht:  <br /> ###Abbildung###"
+                                            "comment": "Markierung im System zwischen 3/8 und 8/16: Achtelnote und Sechzehntelpause nahezu übereinander notiert. Metrischer Zusammenhang in System 17 verdeutlicht: <br />###Abbildung###"
                                         },
                                         {
                                             "measure": "2",
@@ -3697,15 +3697,15 @@
                                     "blockHeader": "Var. III.",
                                     "blockComments": [
                                         {
-                                            "measure": "vor 1 <br /> bis 2",
+                                            "measure": "vor 1 <br />bis 2",
                                             "system": "Klav. u.",
-                                            "position": "1. Note <br /> 1/4",
+                                            "position": "1. Note <br />1/4",
                                             "comment": "Noten pauschal gestrichen."
                                         },
                                         {
-                                            "measure": "1 <br /> bis 2",
+                                            "measure": "1 <br />bis 2",
                                             "system": "Klav. o.",
-                                            "position": "1/8 <br /> 1/4",
+                                            "position": "1/8 <br />1/4",
                                             "comment": "Noten unterstrichen."
                                         },
                                         {
@@ -3792,9 +3792,9 @@
                                             "comment": "Viertelpause ersetzt durch Achtelnoten cis<sup>2</sup>–d<sup>2</sup>–ais<sup>1</sup>–h<sup>1</sup> (sic)."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Klav. o.",
-                                            "position": "3/4 <br /> 1/4",
+                                            "position": "3/4 <br />1/4",
                                             "comment": "Klammer über dem System."
                                         },
                                         {
@@ -3852,9 +3852,9 @@
                                             "comment": "Viertelnote (sic) c/d/fis hinzugefügt."
                                         },
                                         {
-                                            "measure": "11 <br /> bis 12",
+                                            "measure": "11 <br />bis 12",
                                             "system": "Klav. u.",
-                                            "position": "1/4 <br /> (4/8)",
+                                            "position": "1/4 <br />(4/8)",
                                             "comment": "Wellenförmige Klammer unter dem System."
                                         }
                                     ]

@@ -75,7 +75,7 @@
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "4. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> ergänzt. <br /> Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 4. und 5. Note mit Blick auf Textfassung 3."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> ergänzt. <br />Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 4. und 5. Note mit Blick auf Textfassung 3."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -107,9 +107,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "5 <br /> bis 6",
+                                "measure": "5 <br />bis 6",
                                 "system": "Klav. o.",
-                                "position": "4/8 <br /> 1. Note",
+                                "position": "4/8 <br />1. Note",
                                 "comment": "Crescendogabel versetzt von T. 6 1–2/8 analog Ges. und mit Blick auf Textfassung 3."
                             },
                             {
@@ -123,7 +123,7 @@
                                 "svgGroupId": "TODO",
                                 "measure": "7",
                                 "system": "Klav.",
-                                "position": "Taktanfang <br /> bis Taktende",
+                                "position": "Taktanfang <br />bis Taktende",
                                 "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) als redundant weggelassen."
                             },
                             {
@@ -184,9 +184,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "10 <br /> bis 12",
+                                "measure": "10 <br />bis 12",
                                 "system": "",
-                                "position": "Taktanfang <br /> 2/4",
+                                "position": "Taktanfang <br />2/4",
                                 "comment": "Ende der Geltungsstrichelung von T. 10 5/8 versetzt bis T. 12 2/4 analog Geltungsstrichelung vom wiederholten <em>rit.</em> über Klav. o. Wiederholtes <em>rit.</em> und Geltungsstrichelung über Klav. o. als redundant weggelassen."
                             },
                             {
@@ -238,9 +238,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "6 <br /> bis 7",
+                                "measure": "6 <br />bis 7",
                                 "system": "Klav.",
-                                "position": "5/8 <br /> (1/8)",
+                                "position": "5/8 <br />(1/8)",
                                 "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) zwischen den Systemen als redundant weggelassen."
                             },
                             {
@@ -376,9 +376,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "8 <br /> bis 12",
+                                "measure": "8 <br />bis 12",
                                 "system": "Klav.",
-                                "position": "3. Note <br /> Taktende",
+                                "position": "3. Note <br />Taktende",
                                 "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) als redundant weggelassen."
                             },
                             {
@@ -390,9 +390,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "8 <br /> bis 9",
+                                "measure": "8 <br />bis 9",
                                 "system": "Klav. u.",
-                                "position": "3. Note <br /> 1. Note",
+                                "position": "3. Note <br />1. Note",
                                 "comment": "Legatobogen e–d als redundant weggelassen."
                             },
                             {
@@ -421,7 +421,7 @@
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: Ende des Legatobogens versetzt von T. 9 letzte Note.  <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9, trotzdem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>."
+                                "comment": "Unterstimmenschicht: Ende des Legatobogens versetzt von T. 9 letzte Note. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9, trotzdem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -503,7 +503,7 @@
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt. <br /> Text sic: drei Punkte nach <em>Staub</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Punkte."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt. <br />Text sic: drei Punkte nach <em>Staub</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Punkte."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -612,7 +612,7 @@
                                 "svgGroupId": "TODO",
                                 "measure": "8",
                                 "system": "",
-                                "position": "2/8 <br /> bis Taktende",
+                                "position": "2/8 <br />bis Taktende",
                                 "comment": "<em>rit. - - -</em> von Klav. u. über die Akkolade versetzt."
                             },
                             {
@@ -634,7 +634,7 @@
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "1/8",
-                                "comment": "Ende des Legatobogens versetzt von T. 9 6/8. <br /> <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9."
+                                "comment": "Ende des Legatobogens versetzt von T. 9 6/8. <br /><span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -648,7 +648,7 @@
                                 "measure": "10",
                                 "system": "Ges.",
                                 "position": "5–6/8",
-                                "comment": "Längenstrich ergänzt. <br /> Text sic: Komma nach <em>Gunst</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Komma."
+                                "comment": "Längenstrich ergänzt. <br />Text sic: Komma nach <em>Gunst</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Komma."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -661,8 +661,8 @@
                                 "svgGroupId": "TODO",
                                 "measure": "12",
                                 "system": "",
-                                "position": "Taktanfang <br /> bis Taktende",
-                                "comment": "Anfang von <em>rit. - - -</em> versetzt von (2/8) analog Klav. zwischen den Systemen und mit Blick auf Textfassung 4 (<strong>J$</strong>).  <br /> <em>rit. - - -</em> in Klav. zwischen den Systemen als redundant weggelassen."
+                                "position": "Taktanfang <br />bis Taktende",
+                                "comment": "Anfang von <em>rit. - - -</em> versetzt von (2/8) analog Klav. zwischen den Systemen und mit Blick auf Textfassung 4 (<strong>J$</strong>). <br /><em>rit. - - -</em> in Klav. zwischen den Systemen als redundant weggelassen."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -987,16 +987,16 @@
                             },
                             {
                                 "svgGroupId": "g657",
-                                "measure": "3 <br /> bis 4",
+                                "measure": "3 <br />bis 4",
                                 "system": "Klav. u.",
-                                "position": "3. Pause <br /> 1/4",
-                                "comment": "Bogen von T. 3 3. Pause bis T. 4 1/4 und Quintolenziffer korrigiert zu Quintolenklammer von T. 3 3. Pause bis letzte Note und Legatobogen von T. 3 7. Note bis T. 4 1/4. Siehe auch TkA zu T. 4. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> T. 3–4 Klav. u.: <br /> ##Abbildung##"
+                                "position": "3. Pause <br />1/4",
+                                "comment": "Bogen von T. 3 3. Pause bis T. 4 1/4 und Quintolenziffer korrigiert zu Quintolenklammer von T. 3 3. Pause bis letzte Note und Legatobogen von T. 3 7. Note bis T. 4 1/4. Siehe auch TkA zu T. 4. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> T. 3–4 Klav. u.: <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g658",
                                 "measure": "4",
                                 "system": "Klav. u.",
-                                "position": "1. Pause,  <br /> 2.–3. Note, 2.–3. Pause",
+                                "position": "1. Pause, <br />2.–3. Note, 2.–3. Pause",
                                 "comment": "Bogen von 1.–3. Pause und Quintolenziffer korrigiert zu Quintolenklammer von 1.–3. Pause und Legatobogen von 2.–3. Note. Siehe auch TkA zu T. 3–4."
                             },
                             {
@@ -1045,14 +1045,14 @@
                                 "svgGroupId": "g529",
                                 "measure": "9",
                                 "system": "Klav. u.",
-                                "position": "1.–2. Pause,  <br /> 1.–4. Note",
+                                "position": "1.–2. Pause, <br />1.–4. Note",
                                 "comment": "Bogen von 1. Pause bis 4. Note und Sextolenziffer korrigiert zu Sextolenklammer von 1. Pause bis 4. Note und Legatobogen von 1.–4. Note. Siehe auch TkA zu 3.–4. Pause, 5.–8. Note."
                             },
                             {
                                 "svgGroupId": "g530",
                                 "measure": "9",
                                 "system": "Klav. u.",
-                                "position": "3.–4. Pause,  <br /> 5.–8. Note",
+                                "position": "3.–4. Pause, <br />5.–8. Note",
                                 "comment": "Bogen von 3. Pause bis 8. Note und Sextolenziffer korrigiert zu Sextolenklammer von 3. Pause bis 8. Note und Legatobogen von 5.–8. Note. Siehe auch TkA zu 1.–2. Pause, 1.–4. Note."
                             },
                             {
@@ -1101,14 +1101,14 @@
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "5/8",
-                                "comment": "Text: Punkt nach (träu-me-)<em>rei</em> gesetzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>:  <br /> ##Abbildung##"
+                                "comment": "Text: Punkt nach (träu-me-)<em>rei</em> gesetzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g583",
                                 "measure": "4",
                                 "system": "Klav. u.",
-                                "position": "1. Pause,  <br /> 2.–3. Note, 2.–3. Pause",
-                                "comment": "Bogen von 1.–3. Pause korrigiert zu Quintolenklammer von 1.–3. Pause und Legatobogen von 2.–3. Note. Siehe auch TkA zu T. 4 4. Pause, 4.–7. Note. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>:  <br /> ##Abbildung##"
+                                "position": "1. Pause, <br />2.–3. Note, 2.–3. Pause",
+                                "comment": "Bogen von 1.–3. Pause korrigiert zu Quintolenklammer von 1.–3. Pause und Legatobogen von 2.–3. Note. Siehe auch TkA zu T. 4 4. Pause, 4.–7. Note. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g584",
@@ -1128,8 +1128,8 @@
                                 "svgGroupId": "g586",
                                 "measure": "4",
                                 "system": "Klav. u.",
-                                "position": "4. Pause,  <br /> 4.–7. Note",
-                                "comment": "Bogen von 4. Pause bis 7. Note und Quintolenziffer korrigiert zu Quintolenklammer von 4. Pause bis 7. Note und Legatobogen von 4.–7. Note. Siehe auch TkA zu T. 4 1. Pause, 2.–3. Note, 2.–3. Pause. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: <br /> ##Abbildung##"
+                                "position": "4. Pause, <br />4.–7. Note",
+                                "comment": "Bogen von 4. Pause bis 7. Note und Quintolenziffer korrigiert zu Quintolenklammer von 4. Pause bis 7. Note und Legatobogen von 4.–7. Note. Siehe auch TkA zu T. 4 1. Pause, 2.–3. Note, 2.–3. Pause. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g610",
@@ -1149,14 +1149,14 @@
                                 "svgGroupId": "g475",
                                 "measure": "9",
                                 "system": "Klav. u.",
-                                "position": "1.–2. Pause,  <br /> 1.–4. Note",
+                                "position": "1.–2. Pause, <br />1.–4. Note",
                                 "comment": "Anfang des Bogens versetzt von 1. Pause zu 1. Note sowie Sextolenziffer und -klammer ergänzt. Siehe auch TkA zu 3.–4. Pause, 5.–8. Note."
                             },
                             {
                                 "svgGroupId": "g476",
                                 "measure": "9",
                                 "system": "Klav. u.",
-                                "position": "3.–4. Pause,  <br /> 5.–8. Note",
+                                "position": "3.–4. Pause, <br />5.–8. Note",
                                 "comment": "Anfang des Bogens versetzt von 3. Pause zu 5. Note sowie Sextolenziffer und -klammer ergänzt. Siehe auch TkA zu 1.–2. Pause, 1.–4. Note."
                             },
                             {
@@ -1225,7 +1225,7 @@
                                 "measure": "8",
                                 "system": "Ges.",
                                 "position": "3–4/8",
-                                "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Text: Längenstrich ergänzt.  <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_1'})\">Korrekturen 1</a>: Rasur nach <em>bleicht</em>."
+                                "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br />Text: Längenstrich ergänzt. <br />Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_1'})\">Korrekturen 1</a>: Rasur nach <em>bleicht</em>."
                             },
                             {
                                 "svgGroupId": "g500",
@@ -1311,9 +1311,9 @@
                             },
                             {
                                 "svgGroupId": "g485a",
-                                "measure": "2 <br /> bis 4",
+                                "measure": "2 <br />bis 4",
                                 "system": "",
-                                "position": "letzte Note  <br /> 1. Note",
+                                "position": "letzte Note <br />1. Note",
                                 "comment": "Redundantes <em>Rit.--- Tempo</em> über Klav. weggelassen."
                             },
                             {
@@ -1325,9 +1325,9 @@
                             },
                             {
                                 "svgGroupId": "g485",
-                                "measure": "8 <br /> bis 13",
+                                "measure": "8 <br />bis 13",
                                 "system": "",
-                                "position": "3/8  <br /> 1. Note",
+                                "position": "3/8 <br />1. Note",
                                 "comment": "Redundantes <em>Rit.--- Langsam</em> über Klav. weggelassen."
                             },
                             {
@@ -1421,7 +1421,7 @@
                             },
                             {
                                 "svgGroupId": "g608",
-                                "measure": "5 <br /> bis 6",
+                                "measure": "5 <br />bis 6",
                                 "system": "Ges.",
                                 "position": "3/8",
                                 "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
@@ -1475,9 +1475,9 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g597",
-                                "measure": "3 <br /> bis 4",
+                                "measure": "3 <br />bis 4",
                                 "system": "",
-                                "position": "1. Note <br /> Taktende",
+                                "position": "1. Note <br />Taktende",
                                 "comment": "<em>Rit. - - -</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
                             },
                             {
@@ -1496,9 +1496,9 @@
                             },
                             {
                                 "svgGroupId": "g425",
-                                "measure": "6 <br /> bis 7",
+                                "measure": "6 <br />bis 7",
                                 "system": "",
-                                "position": "(1. Note) <br /> Taktanfang",
+                                "position": "(1. Note) <br />Taktanfang",
                                 "comment": "<em>Rit. - - - Fließend (etwas langsamer als zu Beginn)</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
                             },
                             {
@@ -1510,9 +1510,9 @@
                             },
                             {
                                 "svgGroupId": "g426-1",
-                                "measure": "9 <br /> bis 10",
+                                "measure": "9 <br />bis 10",
                                 "system": "",
-                                "position": "1. Note <br /> (3/4)",
+                                "position": "1. Note <br />(3/4)",
                                 "comment": "<em>rit. - - -</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
                             }
                         ]
@@ -1798,7 +1798,7 @@
                                 "measure": "10",
                                 "system": "Ges.",
                                 "position": "5–6/8",
-                                "comment": "Text: Großschreibung <em>Gunst</em> korrigiert zu Kleinschreibung <em>gunst</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Längenstrich nach <em>gunst</em> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?)."
+                                "comment": "Text: Großschreibung <em>Gunst</em> korrigiert zu Kleinschreibung <em>gunst</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br />Längenstrich nach <em>gunst</em> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?)."
                             },
                             {
                                 "svgGroupId": "g753",
@@ -1865,9 +1865,9 @@
                             },
                             {
                                 "svgGroupId": "g762",
-                                "measure": "13 <br /> bis 14",
+                                "measure": "13 <br />bis 14",
                                 "system": "",
-                                "position": "(3/4) <br /> (4/8)",
+                                "position": "(3/4) <br />(4/8)",
                                 "comment": "<em>rit[.] - - -</em> versetzt von zwischen Klav. o./u."
                             },
                             {

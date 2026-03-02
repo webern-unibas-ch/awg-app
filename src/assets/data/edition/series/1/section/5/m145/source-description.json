@@ -278,9 +278,9 @@
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu C<sub>1</sub>/C hinzugefügt."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "",
-                                            "position": "(4/8) <br /> (2/8)",
+                                            "position": "(4/8) <br />(2/8)",
                                             "comment": "<em>rit</em>[.] <em>- - -</em> hinzugefügt."
                                         },
                                         {
@@ -302,10 +302,10 @@
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "measure": "20 <br /> bis 21",
+                                            "measure": "20 <br />bis 21",
                                             "system": "Klav. u.",
                                             "position": "2/2",
-                                            "comment": "Korrekturskizze:  <br /> ##Abbildung##"
+                                            "comment": "Korrekturskizze: <br />##Abbildung##"
                                         }
                                     ]
                                 }
