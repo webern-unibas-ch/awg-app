@@ -385,11 +385,11 @@
             }
         },
         {
-            "id": "M_212_TF1",
+            "id": "M212_TF1",
             "label": "M 212 Textfassung 1",
             "evaluations": [
                 "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> einzige relevante Quelle.",
-                "Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.",
+                "Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
                 "Hauptquelle für die Textedition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> ante correcturam."
             ],
             "commentary": {
@@ -417,7 +417,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "text748",
@@ -502,7 +502,7 @@
             }
         },
         {
-            "id": "M_212_TF2",
+            "id": "M212_TF2",
             "label": "M 212 Textfassung 2",
             "evaluations": [
                 "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen.",
@@ -563,7 +563,7 @@
             }
         },
         {
-            "id": "M_216_TF1",
+            "id": "M216_TF1",
             "label": "M 216 Textfassung 1",
             "evaluations": [
                 "Für die Edition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen.",
@@ -603,10 +603,10 @@
             }
         },
         {
-            "id": "M_212_Sk1",
+            "id": "M212_Sk1",
             "label": "M 212 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -626,7 +626,7 @@
                                 "measure": "2",
                                 "system": "3",
                                 "position": "4/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "g1320",
@@ -767,11 +767,11 @@
             }
         },
         {
-            "id": "M_212_Sk2",
+            "id": "M212_Sk2",
             "label": "M 212 Sk2",
             "evaluations": [
-                "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">„Der Tag ist vergangen“ M 212: Textfassung 1</a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk4'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">„Der Tag ist vergangen“ M 212: Textfassung 2</a>) entspricht. Da T. 10–11 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> übernommen wurden und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr'})\">Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> entstanden.",
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (Gis/cis) getilgt."
+                "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">„Der Tag ist vergangen“ M 212: Textfassung 1</a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk3'})\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk4'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">„Der Tag ist vergangen“ M 212: Textfassung 2</a>) entspricht. Da T. 10–11 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> übernommen wurden und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr'})\">Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> entstanden.",
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (Gis/cis) getilgt."
             ],
             "commentary": {
                 "preamble": "",
@@ -791,7 +791,7 @@
                                 "measure": "10",
                                 "system": "12",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                             },
                             {
                                 "svgGroupId": "g1006",
@@ -816,16 +816,16 @@
                     "svgGroupId": "g3816",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk3"
+                        "sheetId": "M212_Sk3"
                     }
                 }
             ]
         },
         {
-            "id": "M_212_Sk3",
+            "id": "M212_Sk3",
             "label": "M 212 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> formulierte und in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> verwendete Variante."
+                "<strong>Sk3</strong> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> formulierte und in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> verwendete Variante."
             ],
             "commentary": {
                 "preamble": "",
@@ -863,20 +863,20 @@
                     "svgGroupId": "g4399",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk2"
+                        "sheetId": "M212_Sk2"
                     }
                 },
                 {
                     "svgGroupId": "g4410",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk5"
+                        "sheetId": "M212_Sk5"
                     }
                 }
             ]
         },
         {
-            "id": "M_212_Sk4",
+            "id": "M212_Sk4",
             "label": "M 212 Sk4",
             "evaluations": [
                 "<strong>Sk4</strong> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6)."
@@ -910,13 +910,13 @@
                     "svgGroupId": "g4957",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk5"
+                        "sheetId": "M212_Sk5"
                     }
                 }
             ]
         },
         {
-            "id": "M_212_Sk5",
+            "id": "M212_Sk5",
             "label": "M 212 Sk5",
             "evaluations": [
                 "<strong>Sk5</strong> bringt in der letzten Korrekturschicht die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> verwendete Variante."
@@ -950,20 +950,20 @@
                     "svgGroupId": "g5508",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk3"
+                        "sheetId": "M212_Sk3"
                     }
                 },
                 {
                     "svgGroupId": "g5497",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_212_Sk4"
+                        "sheetId": "M212_Sk4"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1",
+            "id": "M213_Sk1",
             "label": "M 213 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu „Schien mir’s, als ich sah die Sonne“ M 213. Gegenüber der <span class='link-todo'>einzigen Textfassung</span> des Liedes weist <strong>Sk1</strong> teilweise eine andere Takteinteilung auf."
@@ -1207,86 +1207,86 @@
                     "svgGroupId": "g11e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_5"
+                        "sheetId": "M213_Sk1_5"
                     }
                 },
                 {
                     "svgGroupId": "g12e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_6"
+                        "sheetId": "M213_Sk1_6"
                     }
                 },
                 {
                     "svgGroupId": "g13e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_3"
+                        "sheetId": "M213_Sk1_3"
                     }
                 },
                 {
                     "svgGroupId": "g14e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_2"
+                        "sheetId": "M213_Sk1_2"
                     }
                 },
                 {
                     "svgGroupId": "g15e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1f"
+                        "sheetId": "M213_Sk1f"
                     }
                 },
                 {
                     "svgGroupId": "g12f",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1e"
+                        "sheetId": "M213_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g13f",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_3"
+                        "sheetId": "M213_Sk1_3"
                     }
                 },
                 {
                     "svgGroupId": "g14f",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_2"
+                        "sheetId": "M213_Sk1_2"
                     }
                 },
                 {
                     "svgGroupId": "g13i",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_3"
+                        "sheetId": "M213_Sk1_4_3"
                     }
                 },
                 {
                     "svgGroupId": "g14i",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_2"
+                        "sheetId": "M213_Sk1_4_2"
                     }
                 },
                 {
                     "svgGroupId": "g15i",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_1"
+                        "sheetId": "M213_Sk1_4_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_1",
+            "id": "M213_Sk1_1",
             "label": "M 213 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> überarbeitet T. 18B–20C von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1d'})\"><strong>Sk1</strong></a>, ohne bereits die Formulierung der <span class='link-todo'>einzigen Textfassung</span> T. 18–20 identisch vorwegzunehmen."
+                "<strong>Sk1.1</strong> überarbeitet T. 18B–20C von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1d'})\"><strong>Sk1</strong></a>, ohne bereits die Formulierung der <span class='link-todo'>einzigen Textfassung</span> T. 18–20 identisch vorwegzunehmen."
             ],
             "commentary": {
                 "preamble": "",
@@ -1322,10 +1322,10 @@
             "linkBoxes": []
         },
         {
-            "id": "M_213_Sk1_2",
+            "id": "M213_Sk1_2",
             "label": "M 213 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> überarbeitet die Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1e'})\"><strong>Sk1</strong></a> in T. 24 ab dem 5/16 und ergänzt sie für die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1e'})\"><strong>Sk1</strong></a> unausgefüllt gelassenen T. 25–26 (siehe <span class='link-todo'>einzige Textfassung</span> T. 27–29)."
+                "<strong>Sk1.2</strong> überarbeitet die Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1e'})\"><strong>Sk1</strong></a> in T. 24 ab dem 5/16 und ergänzt sie für die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1e'})\"><strong>Sk1</strong></a> unausgefüllt gelassenen T. 25–26 (siehe <span class='link-todo'>einzige Textfassung</span> T. 27–29)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1363,30 +1363,30 @@
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1e"
+                        "sheetId": "M213_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g13",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_3"
+                        "sheetId": "M213_Sk1_3"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1f"
+                        "sheetId": "M213_Sk1f"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_3",
+            "id": "M213_Sk1_3",
             "label": "M 213 Sk3",
             "evaluations": [
-                "<strong>Sk1.3</strong> ist eine Rhythmusskizze zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 33–36 (siehe <span class='link-todo'>einzige Textfassung</span> T. 35–38)."
+                "<strong>Sk1.3</strong> ist eine Rhythmusskizze zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 33–36 (siehe <span class='link-todo'>einzige Textfassung</span> T. 35–38)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1410,30 +1410,30 @@
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1e"
+                        "sheetId": "M213_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1f"
+                        "sheetId": "M213_Sk1f"
                     }
                 },
                 {
                     "svgGroupId": "g14",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_2"
+                        "sheetId": "M213_Sk1_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_4_1",
+            "id": "M213_Sk1_4_1",
             "label": "M 213 Sk1.4.1",
             "evaluations": [
-                "<strong>Sk1.4.1</strong>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<strong>Sk1.4.1</strong>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1444,30 +1444,30 @@
                     "svgGroupId": "g13",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_3"
+                        "sheetId": "M213_Sk1_4_3"
                     }
                 },
                 {
                     "svgGroupId": "g14",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_2"
+                        "sheetId": "M213_Sk1_4_2"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1i"
+                        "sheetId": "M213_Sk1i"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_4_2",
+            "id": "M213_Sk1_4_2",
             "label": "M 213 Sk1.4.2",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1498,30 +1498,30 @@
                     "svgGroupId": "g13",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_3"
+                        "sheetId": "M213_Sk1_4_3"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_1"
+                        "sheetId": "M213_Sk1_4_1"
                     }
                 },
                 {
                     "svgGroupId": "g14",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1i"
+                        "sheetId": "M213_Sk1i"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_4_3",
+            "id": "M213_Sk1_4_3",
             "label": "M 213 Sk1.4.3",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1552,30 +1552,30 @@
                     "svgGroupId": "g14",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_2"
+                        "sheetId": "M213_Sk1_4_2"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_4_1"
+                        "sheetId": "M213_Sk1_4_1"
                     }
                 },
                 {
                     "svgGroupId": "g16",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1i"
+                        "sheetId": "M213_Sk1i"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_5",
+            "id": "M213_Sk1_5",
             "label": "M 213 Sk1.5",
             "evaluations": [
-                "<strong>Sk1.5</strong> ist eine nicht zuordenbare Rhythmusskizze vermutlich zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.5</strong> ist eine nicht zuordenbare Rhythmusskizze vermutlich zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1'})\"><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1586,23 +1586,23 @@
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_6"
+                        "sheetId": "M213_Sk1_6"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1e"
+                        "sheetId": "M213_Sk1e"
                     }
                 }
             ]
         },
         {
-            "id": "M_213_Sk1_6",
+            "id": "M213_Sk1_6",
             "label": "M 213 Sk1.6",
             "evaluations": [
-                "<strong>Sk1.6</strong> ist eine nicht zuordenbare Rhythmusskizze, möglicherweise zu den Schlusstakten (siehe Triller) von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.6</strong> ist eine nicht zuordenbare Rhythmusskizze, möglicherweise zu den Schlusstakten (siehe Triller) von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1'})\"><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1613,23 +1613,23 @@
                     "svgGroupId": "g11",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1_5"
+                        "sheetId": "M213_Sk1_5"
                     }
                 },
                 {
                     "svgGroupId": "g15",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_213_Sk1e"
+                        "sheetId": "M213_Sk1e"
                     }
                 }
             ]
         },
         {
-            "id": "M_216_Sk1",
+            "id": "M216_Sk1",
             "label": "M 216 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1805,7 +1805,7 @@
             "linkBoxes": []
         },
         {
-            "id": "M_217_Sk1",
+            "id": "M217_Sk1",
             "label": "M 217 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217. Gegenüber der <span class='link-todo'>einzigen Textfassung</span> des Liedes weist <strong>Sk1</strong> teilweise eine andere Takteinteilung auf sowie einen zusätzlichen Takt (T. 10)."
@@ -1884,7 +1884,7 @@
                                 "measure": "11",
                                 "system": "3",
                                 "position": "3–6/8",
-                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
                             },
                             {
                                 "svgGroupId": "g5c",
@@ -1965,51 +1965,51 @@
                     "svgGroupId": "g11c",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1d"
+                        "sheetId": "M217_Sk1d"
                     }
                 },
                 {
                     "svgGroupId": "g11d",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1c"
+                        "sheetId": "M217_Sk1c"
                     }
                 },
                 {
                     "svgGroupId": "g11d-6",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1e"
+                        "sheetId": "M217_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g11e",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1d"
+                        "sheetId": "M217_Sk1d"
                     }
                 },
                 {
                     "svgGroupId": "g11g",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1_1"
+                        "sheetId": "M217_Sk1_1"
                     }
                 },
                 {
                     "svgGroupId": "g12g",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1_2"
+                        "sheetId": "M217_Sk1_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_217_Sk1_1",
+            "id": "M217_Sk1_1",
             "label": "M 217 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> überarbeitet T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1c'})\"><strong>Sk1</strong></a> im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</span> T. 11–12."
+                "<strong>Sk1.1</strong> überarbeitet T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1c'})\"><strong>Sk1</strong></a> im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</span> T. 11–12."
             ],
             "commentary": {
                 "preamble": "",
@@ -2033,23 +2033,23 @@
                     "svgGroupId": "g11",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1_2"
+                        "sheetId": "M217_Sk1_2"
                     }
                 },
                 {
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1g"
+                        "sheetId": "M217_Sk1g"
                     }
                 }
             ]
         },
         {
-            "id": "M_217_Sk1_2",
+            "id": "M217_Sk1_2",
             "label": "M 217 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> ergänzt T. 27B aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1g'})\"><strong>Sk1</strong></a> um einen weiteren Viertelwert und fügt zwei weitere Takte an im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</em> T. 26–28."
+                "<strong>Sk1.2</strong> ergänzt T. 27B aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1g'})\"><strong>Sk1</strong></a> um einen weiteren Viertelwert und fügt zwei weitere Takte an im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</em> T. 26–28."
             ],
             "commentary": {
                 "preamble": "",
@@ -2080,14 +2080,14 @@
                     "svgGroupId": "g11",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1_1"
+                        "sheetId": "M217_Sk1_1"
                     }
                 },
                 {
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M_217_Sk1g"
+                        "sheetId": "M217_Sk1g"
                     }
                 }
             ]

@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_35_42_TF1",
+            "id": "M35_42_TF1",
             "label": "M 35/42 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 35/42 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm35_42', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm35_42', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm35_42', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm35_42', fragmentId: 'source_C'})\"><strong>C</strong></a> enthalten Skizzen.",
@@ -55,7 +55,7 @@
             }
         },
         {
-            "id": "M_35_42_Sk1",
+            "id": "M35_42_Sk1",
             "label": "M 35/42 Sk1",
             "evaluations": ["<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 35/42."],
             "commentary": {
@@ -241,55 +241,55 @@
                     "svgGroupId": "g1",
                     "linkTo": {
                         "complexId": "m36",
-                        "sheetId": "M_36_Sk1c"
+                        "sheetId": "M36_Sk1c"
                     }
                 },
                 {
                     "svgGroupId": "g2",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1c"
+                        "sheetId": "M35_42_Sk1c"
                     }
                 },
                 {
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1d"
+                        "sheetId": "M35_42_Sk1d"
                     }
                 },
                 {
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1e"
+                        "sheetId": "M35_42_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g8",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1f"
+                        "sheetId": "M35_42_Sk1f"
                     }
                 },
                 {
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1_1"
+                        "sheetId": "M35_42_Sk1_1"
                     }
                 },
                 {
                     "svgGroupId": "g43928",
                     "linkTo": {
                         "complexId": "m40",
-                        "sheetId": "M_40_Sk1_1"
+                        "sheetId": "M40_Sk1_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_35_42_Sk1_1",
+            "id": "M35_42_Sk1_1",
             "label": "M 35/42 Sk1.1",
             "evaluations": [
                 "<strong>Sk1.1</strong> modifiziert T. 22 und fügt einen Takt zwischen T. 22 und T. 23 der Verlaufsskizze ein."
@@ -323,27 +323,27 @@
                     "svgGroupId": "g1",
                     "linkTo": {
                         "complexId": "m40",
-                        "sheetId": "M_40_Sk1_1"
+                        "sheetId": "M40_Sk1_1"
                     }
                 },
                 {
                     "svgGroupId": "g559",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1e"
+                        "sheetId": "M35_42_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g44389",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1f"
+                        "sheetId": "M35_42_Sk1f"
                     }
                 }
             ]
         },
         {
-            "id": "M_35_42_Sk2",
+            "id": "M35_42_Sk2",
             "label": "M 35/42 Sk2",
             "evaluations": ["<strong>Sk2</strong> notiert eine alternative Schlussformel für den ersten A-Teil."],
             "commentary": {
@@ -375,7 +375,7 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_TF1a"
+                        "sheetId": "M35_42_TF1a"
                     }
                 }
             ]

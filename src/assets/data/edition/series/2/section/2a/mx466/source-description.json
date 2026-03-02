@@ -245,7 +245,7 @@
                         "item": "M* 465 Sk1",
                         "itemLinkTo": {
                             "complexId": "mx465",
-                            "sheetId": "Mx_465_Sk1"
+                            "sheetId": "Mx465_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 465)",
                         "folios": [
@@ -269,7 +269,7 @@
                         "item": "M* 466 Sk1",
                         "itemLinkTo": {
                             "complexId": "mx466",
-                            "sheetId": "Mx_466_Sk1"
+                            "sheetId": "Mx466_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 466)",
                         "folios": [
@@ -293,7 +293,7 @@
                         "item": "M* 467 Sk1",
                         "itemLinkTo": {
                             "complexId": "mx467",
-                            "sheetId": "Mx_467_Sk1"
+                            "sheetId": "Mx467_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 467)",
                         "folios": [
@@ -811,7 +811,7 @@
                         "item": "M* 465",
                         "itemLinkTo": {
                             "complexId": "mx465",
-                            "sheetId": "Mx_465_TF1"
+                            "sheetId": "Mx465_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 465)",
                         "folios": [
@@ -835,7 +835,7 @@
                         "item": "M* 466",
                         "itemLinkTo": {
                             "complexId": "mx466",
-                            "sheetId": "Mx_466_TF1"
+                            "sheetId": "Mx466_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 466)",
                         "folios": [
@@ -859,7 +859,7 @@
                         "item": "M* 467",
                         "itemLinkTo": {
                             "complexId": "mx467",
-                            "sheetId": "Mx_467_TF1"
+                            "sheetId": "Mx467_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 467)",
                         "folios": [

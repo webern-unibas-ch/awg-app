@@ -26,7 +26,7 @@
                         "item": "M 46 Sk4",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk4"
+                            "sheetId": "M46_Sk4"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46)",
                         "folios": [
@@ -50,7 +50,7 @@
                         "item": "M 46 Sk8",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk8"
+                            "sheetId": "M46_Sk8"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -74,7 +74,7 @@
                         "item": "M 46 Sk9",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk9"
+                            "sheetId": "M46_Sk9"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -364,7 +364,7 @@
                         "item": "M 46 Sk1",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk1"
+                            "sheetId": "M46_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46)",
                         "folios": [
@@ -377,14 +377,14 @@
                                         {
                                             "system": "18–17",
                                             "measure": "1–8",
-                                            "linkTo": "M_46_Sk1a"
+                                            "linkTo": "M46_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–15",
                                             "measure": "9–12",
-                                            "linkTo": "M_46_Sk1b"
+                                            "linkTo": "M46_Sk1b"
                                         }
                                     ]
                                 ]
@@ -395,7 +395,7 @@
                         "item": "M 46 Sk2",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk2"
+                            "sheetId": "M46_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46)",
                         "folios": [
@@ -408,14 +408,14 @@
                                         {
                                             "system": "14–13",
                                             "measure": "21–23, {24A}, 24B, 25–27",
-                                            "linkTo": "M_46_Sk2a"
+                                            "linkTo": "M46_Sk2a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–11a",
                                             "measure": "28–35",
-                                            "linkTo": "M_46_Sk2b"
+                                            "linkTo": "M46_Sk2b"
                                         }
                                     ]
                                 ]
@@ -426,7 +426,7 @@
                         "item": "M 46 Sk3.1",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk3_1"
+                            "sheetId": "M46_Sk3_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46)",
                         "folios": [
@@ -450,7 +450,7 @@
                         "item": "M 46 Sk3",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk3"
+                            "sheetId": "M46_Sk3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46)",
                         "folios": [
@@ -463,28 +463,28 @@
                                         {
                                             "system": "9–8",
                                             "measure": "1–8",
-                                            "linkTo": "M_46_Sk3a"
+                                            "linkTo": "M46_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–5",
                                             "measure": "9–16",
-                                            "linkTo": "M_46_Sk3b"
+                                            "linkTo": "M46_Sk3b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–3",
                                             "measure": "17–26",
-                                            "linkTo": "M_46_Sk3c"
+                                            "linkTo": "M46_Sk3c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "2–1",
                                             "measure": "27–34",
-                                            "linkTo": "M_46_Sk3d"
+                                            "linkTo": "M46_Sk3d"
                                         }
                                     ]
                                 ]
@@ -522,7 +522,7 @@
                         "item": "M 46",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_TF1"
+                            "sheetId": "M46_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 46: Textfassung 1)",
                         "folios": [
@@ -588,7 +588,7 @@
                         "item": "M 46 Sk5",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk5"
+                            "sheetId": "M46_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -601,14 +601,14 @@
                                         {
                                             "system": "4b–5b",
                                             "measure": "9–12",
-                                            "linkTo": "M_46_Sk5a"
+                                            "linkTo": "M46_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–8a",
                                             "measure": "13–15",
-                                            "linkTo": "M_46_Sk5b"
+                                            "linkTo": "M46_Sk5b"
                                         }
                                     ]
                                 ]
@@ -619,7 +619,7 @@
                         "item": "M 46 Sk6",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk6"
+                            "sheetId": "M46_Sk6"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -632,14 +632,14 @@
                                         {
                                             "system": "13b–14b",
                                             "measure": "27–30, 31A–32A",
-                                            "linkTo": "M_46_Sk6a"
+                                            "linkTo": "M46_Sk6a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "15–16",
                                             "measure": "{31B–32B}, 33–38",
-                                            "linkTo": "M_46_Sk6b"
+                                            "linkTo": "M46_Sk6b"
                                         }
                                     ]
                                 ]
@@ -650,7 +650,7 @@
                         "item": "M 46 Sk7",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk7"
+                            "sheetId": "M46_Sk7"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -674,7 +674,7 @@
                         "item": "M 46 Sk6.1",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_Sk6_1"
+                            "sheetId": "M46_Sk6_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [
@@ -829,7 +829,7 @@
                         "item": "M 46",
                         "itemLinkTo": {
                             "complexId": "m46",
-                            "sheetId": "M_46_TF2"
+                            "sheetId": "M46_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 46: Textfassung 2)",
                         "folios": [

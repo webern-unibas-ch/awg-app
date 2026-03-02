@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_212_TF1",
+                "id": "M212_TF1",
                 "label": "M 212 Textfassung 1",
                 "content": [
                     {
@@ -21,7 +21,7 @@
                 ]
             },
             {
-                "id": "M_212_TF2",
+                "id": "M212_TF2",
                 "label": "M 212 Textfassung 2",
                 "content": [
                     {
@@ -39,7 +39,7 @@
                 ]
             },
             {
-                "id": "M_216_TF1",
+                "id": "M216_TF1",
                 "label": "M 216 Textfassung 1",
                 "content": [
                     {
@@ -59,7 +59,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_212_Sk1",
+                "id": "M212_Sk1",
                 "label": "M 212 Sk1",
                 "content": [
                     {
@@ -95,7 +95,7 @@
                 ]
             },
             {
-                "id": "M_212_Sk2",
+                "id": "M212_Sk2",
                 "label": "M 212 Sk2",
                 "content": [
                     {
@@ -107,7 +107,7 @@
                 ]
             },
             {
-                "id": "M_212_Sk3",
+                "id": "M212_Sk3",
                 "label": "M 212 Sk3",
                 "content": [
                     {
@@ -119,7 +119,7 @@
                 ]
             },
             {
-                "id": "M_212_Sk4",
+                "id": "M212_Sk4",
                 "label": "M 212 Sk4",
                 "content": [
                     {
@@ -131,7 +131,7 @@
                 ]
             },
             {
-                "id": "M_212_Sk5",
+                "id": "M212_Sk5",
                 "label": "M 212 Sk5",
                 "content": [
                     {
@@ -143,7 +143,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1",
+                "id": "M213_Sk1",
                 "label": "M 213 Sk1",
                 "content": [
                     {
@@ -203,7 +203,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_1",
+                "id": "M213_Sk1_1",
                 "label": "M 213 Sk1.1",
                 "content": [
                     {
@@ -215,7 +215,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_2",
+                "id": "M213_Sk1_2",
                 "label": "M 213 Sk1.2",
                 "content": [
                     {
@@ -227,7 +227,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_3",
+                "id": "M213_Sk1_3",
                 "label": "M 213 Sk1.3",
                 "content": [
                     {
@@ -239,7 +239,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_4_1",
+                "id": "M213_Sk1_4_1",
                 "label": "M 213 Sk1.4.1",
                 "content": [
                     {
@@ -251,7 +251,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_4_2",
+                "id": "M213_Sk1_4_2",
                 "label": "M 213 Sk1.4.2",
                 "content": [
                     {
@@ -263,7 +263,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_4_3",
+                "id": "M213_Sk1_4_3",
                 "label": "M 213 Sk1.4.3",
                 "content": [
                     {
@@ -275,7 +275,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_5",
+                "id": "M213_Sk1_5",
                 "label": "M 213 Sk1.5",
                 "content": [
                     {
@@ -287,7 +287,7 @@
                 ]
             },
             {
-                "id": "M_213_Sk1_6",
+                "id": "M213_Sk1_6",
                 "label": "M 213 Sk1.6",
                 "content": [
                     {
@@ -299,7 +299,7 @@
                 ]
             },
             {
-                "id": "M_216_Sk1",
+                "id": "M216_Sk1",
                 "label": "M 216 Sk1",
                 "content": [
                     {
@@ -341,7 +341,7 @@
                 ]
             },
             {
-                "id": "M_217_Sk1",
+                "id": "M217_Sk1",
                 "label": "M 217 Sk1",
                 "content": [
                     {
@@ -389,7 +389,7 @@
                 ]
             },
             {
-                "id": "M_217_Sk1_1",
+                "id": "M217_Sk1_1",
                 "label": "M 217 Sk1.1",
                 "content": [
                     {
@@ -401,7 +401,7 @@
                 ]
             },
             {
-                "id": "M_217_Sk1_2",
+                "id": "M217_Sk1_2",
                 "label": "M 217 Sk1.2",
                 "content": [
                     {

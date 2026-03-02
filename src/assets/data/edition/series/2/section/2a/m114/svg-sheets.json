@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_114_TF1",
+                "id": "M114_TF1",
                 "label": "M 114 Textfassung 1",
                 "content": [
                     {
@@ -15,7 +15,7 @@
                 ]
             },
             {
-                "id": "M_114_TF2",
+                "id": "M114_TF2",
                 "label": "M 114 Textfassung 2",
                 "content": [
                     {
@@ -33,7 +33,7 @@
                 ]
             },
             {
-                "id": "M_114_TF3",
+                "id": "M114_TF3",
                 "label": "M 114 Textfassung 3",
                 "content": [
                     {
@@ -57,7 +57,7 @@
                 ]
             },
             {
-                "id": "M_114_TF4",
+                "id": "M114_TF4",
                 "label": "M 114 Textfassung 4",
                 "content": [
                     {
@@ -99,7 +99,7 @@
                 ]
             },
             {
-                "id": "M_114_TF5",
+                "id": "M114_TF5",
                 "label": "M 114 Textfassung 5",
                 "content": [
                     {
@@ -177,7 +177,7 @@
                 ]
             },
             {
-                "id": "M_114_TF6",
+                "id": "M114_TF6",
                 "label": "M 114 Textfassung 6",
                 "content": [
                     {
@@ -257,7 +257,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_114_Sk1",
+                "id": "M114_Sk1",
                 "label": "M 114 Sk1",
                 "content": [
                     {
@@ -269,7 +269,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk2",
+                "id": "M114_Sk2",
                 "label": "M 114 Sk2",
                 "content": [
                     {
@@ -293,7 +293,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk3",
+                "id": "M114_Sk3",
                 "label": "M 114 Sk3",
                 "content": [
                     {
@@ -311,7 +311,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk4",
+                "id": "M114_Sk4",
                 "label": "M 114 Sk4",
                 "content": [
                     {
@@ -329,7 +329,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk5",
+                "id": "M114_Sk5",
                 "label": "M 114 Sk5",
                 "content": [
                     {
@@ -353,7 +353,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk6",
+                "id": "M114_Sk6",
                 "label": "M 114 Sk6",
                 "content": [
                     {
@@ -365,7 +365,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk7",
+                "id": "M114_Sk7",
                 "label": "M 114 Sk7",
                 "content": [
                     {
@@ -377,7 +377,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk8",
+                "id": "M114_Sk8",
                 "label": "M 114 Sk8",
                 "content": [
                     {
@@ -419,7 +419,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk9",
+                "id": "M114_Sk9",
                 "label": "M 114 Sk9",
                 "content": [
                     {
@@ -509,7 +509,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk9_1",
+                "id": "M114_Sk9_1",
                 "label": "M 114 Sk9.1",
                 "content": [
                     {
@@ -521,7 +521,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk9_2",
+                "id": "M114_Sk9_2",
                 "label": "M 114 Sk9.2",
                 "content": [
                     {
@@ -533,7 +533,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk10",
+                "id": "M114_Sk10",
                 "label": "M 114 Sk10",
                 "content": [
                     {
@@ -593,7 +593,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk10_1",
+                "id": "M114_Sk10_1",
                 "label": "M 114 Sk10.1",
                 "content": [
                     {
@@ -605,7 +605,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk11",
+                "id": "M114_Sk11",
                 "label": "M 114 Sk11",
                 "content": [
                     {
@@ -635,7 +635,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk12",
+                "id": "M114_Sk12",
                 "label": "M 114 Sk12",
                 "content": [
                     {
@@ -653,7 +653,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk13",
+                "id": "M114_Sk13",
                 "label": "M 114 Sk13",
                 "content": [
                     {
@@ -683,7 +683,7 @@
                 ]
             },
             {
-                "id": "M_114_Sk14",
+                "id": "M114_Sk14",
                 "label": "M 114 Sk14",
                 "content": [
                     {

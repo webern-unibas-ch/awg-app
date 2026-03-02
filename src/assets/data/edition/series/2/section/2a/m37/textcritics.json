@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_37_TF1",
+            "id": "M37_TF1",
             "label": "M 37 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -48,7 +48,7 @@
             }
         },
         {
-            "id": "M_37_Sk1",
+            "id": "M37_Sk1",
             "label": "M 37 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
@@ -62,23 +62,23 @@
                     "svgGroupId": "g1365",
                     "linkTo": {
                         "complexId": "m37",
-                        "sheetId": "M_37_Sk2"
+                        "sheetId": "M37_Sk2"
                     }
                 },
                 {
                     "svgGroupId": "g8434",
                     "linkTo": {
                         "complexId": "m38",
-                        "sheetId": "M_38_Sk2"
+                        "sheetId": "M38_Sk2"
                     }
                 }
             ]
         },
         {
-            "id": "M_37_Sk2",
+            "id": "M37_Sk2",
             "label": "M 37 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet({complexId: 'm37', sheetId: 'M_37_Sk1'})\"><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet({complexId: 'm37', sheetId: 'M37_Sk1'})\"><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "commentary": {
                 "preamble": "",
@@ -109,20 +109,20 @@
                     "svgGroupId": "g17377",
                     "linkTo": {
                         "complexId": "m37",
-                        "sheetId": "M_37_Sk1"
+                        "sheetId": "M37_Sk1"
                     }
                 },
                 {
                     "svgGroupId": "g18107",
                     "linkTo": {
                         "complexId": "m38",
-                        "sheetId": "M_38_Sk2"
+                        "sheetId": "M38_Sk2"
                     }
                 }
             ]
         },
         {
-            "id": "M_37_Sk3",
+            "id": "M37_Sk3",
             "label": "M 37 Sk3",
             "evaluations": ["<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 37."],
             "commentary": {

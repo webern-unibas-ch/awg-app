@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_39_TF1",
+            "id": "M39_TF1",
             "label": "M 39 Textfassung 1",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 39 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> bezieht sich auf Textfassung 2, <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> enthält Skizzen.",
@@ -41,7 +41,7 @@
             }
         },
         {
-            "id": "M_39_TF2",
+            "id": "M39_TF2",
             "label": "M 39 Textfassung 2",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 39 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a> enthalten Skizzen.",
@@ -80,7 +80,7 @@
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g3099",
@@ -116,10 +116,10 @@
             }
         },
         {
-            "id": "M_39_Sk1",
+            "id": "M39_Sk1",
             "label": "M 39 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF1'})\">Studienkomposition für Klavier M 39 Textfassung 1</a>, bei der allerdings die T. 15–17 aus der Reprise aufgrund der identischen Übereinstimmung mit T. 1–3 ausgelassen sind."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M39_TF1'})\">Studienkomposition für Klavier M 39 Textfassung 1</a>, bei der allerdings die T. 15–17 aus der Reprise aufgrund der identischen Übereinstimmung mit T. 1–3 ausgelassen sind."
             ],
             "commentary": {
                 "preamble": "",
@@ -381,79 +381,79 @@
                     "svgGroupId": "g1",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1a"
+                        "sheetId": "M39_Sk1a"
                     }
                 },
                 {
                     "svgGroupId": "g3",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1c"
+                        "sheetId": "M39_Sk1c"
                     }
                 },
                 {
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1d"
+                        "sheetId": "M39_Sk1d"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1e"
+                        "sheetId": "M39_Sk1e"
                     }
                 },
                 {
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1g"
+                        "sheetId": "M39_Sk1g"
                     }
                 },
                 {
                     "svgGroupId": "g8",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1h"
+                        "sheetId": "M39_Sk1h"
                     }
                 },
                 {
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1i"
+                        "sheetId": "M39_Sk1i"
                     }
                 },
                 {
                     "svgGroupId": "g10",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1j"
+                        "sheetId": "M39_Sk1j"
                     }
                 },
                 {
                     "svgGroupId": "g11",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1k"
+                        "sheetId": "M39_Sk1k"
                     }
                 },
                 {
                     "svgGroupId": "g12",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1_1"
+                        "sheetId": "M39_Sk1_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_39_Sk1_1",
+            "id": "M39_Sk1_1",
             "label": "M 39 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> beinhaltet eine überarbeitete Fassung des in <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk1a'})\"><strong>Sk1</strong></a> gestrichenen T. 2."
+                "<strong>Sk1.1</strong> beinhaltet eine überarbeitete Fassung des in <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M39_Sk1a'})\"><strong>Sk1</strong></a> gestrichenen T. 2."
             ],
             "commentary": {
                 "preamble": "",
@@ -477,30 +477,30 @@
                     "svgGroupId": "g1749",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1c"
+                        "sheetId": "M39_Sk1c"
                     }
                 },
                 {
                     "svgGroupId": "g3211",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1g"
+                        "sheetId": "M39_Sk1g"
                     }
                 },
                 {
                     "svgGroupId": "g1006",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_Sk1j"
+                        "sheetId": "M39_Sk1j"
                     }
                 }
             ]
         },
         {
-            "id": "M_39_Sk2",
+            "id": "M39_Sk2",
             "label": "M 39 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> überarbeitet den Mittelteil (T. 9–12) von M 39 im Hinblick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk2</strong> überarbeitet den Mittelteil (T. 9–12) von M 39 im Hinblick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M39_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -538,7 +538,7 @@
                     "svgGroupId": "g13319",
                     "linkTo": {
                         "complexId": "m39",
-                        "sheetId": "M_39_TF2b"
+                        "sheetId": "M39_TF2b"
                     }
                 }
             ]

@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_32_TF1",
+            "id": "M32_TF1",
             "label": "M 32 Textfassung 1",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quelle.",
@@ -34,7 +34,7 @@
             }
         },
         {
-            "id": "M_32_TF2",
+            "id": "M32_TF2",
             "label": "M 32 Textfassung 2",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_D'})\"><strong>D</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> enthält Skizzen.",
@@ -74,7 +74,7 @@
             }
         },
         {
-            "id": "M_32_TF3",
+            "id": "M32_TF3",
             "label": "M 32 Textfassung 3",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_D'})\"><strong>D</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_F'})\"><strong>F</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> enthalten Skizzen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> bezieht sich auf Textfassung 2.",
@@ -121,7 +121,7 @@
             }
         },
         {
-            "id": "M_32_Sk1",
+            "id": "M32_Sk1",
             "label": "M 32 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> entwirft einen ersten möglichen Melodieverlauf für das Hauptthema von M 32, der in rhythmischer und harmonischer Hinsicht von der gültigen Version abweicht."
@@ -166,7 +166,7 @@
             }
         },
         {
-            "id": "M_32_Sk2",
+            "id": "M32_Sk2",
             "label": "M 32 Sk2",
             "evaluations": ["<strong>Sk2</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 32."],
             "commentary": {
@@ -604,30 +604,30 @@
                     "svgGroupId": "g-lb-2c",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk2c"
+                        "sheetId": "M32_Sk2c"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-2e",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk2e"
+                        "sheetId": "M32_Sk2e"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-2-1",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk2_1"
+                        "sheetId": "M32_Sk2_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_32_Sk2_1",
+            "id": "M32_Sk2_1",
             "label": "M 32 Sk2.1",
             "evaluations": [
-                "<strong>Sk2.1</strong> überarbeitet <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2j'})\">T. 58</a> aus der <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2'})\">Verlaufsskizze</a> und fügt zwischen T. 58 und 59 aus der Verlaufsskizze zwei weitere Takte ein. Der Hinweis <em>wiederholen</em> deutet darauf hin, dass diese Sequenz wiederholt werden soll (in <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_TF1'})\">Textfassung 1</a> geschieht dies in der unteren Oktave)."
+                "<strong>Sk2.1</strong> überarbeitet <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk2j'})\">T. 58</a> aus der <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk2'})\">Verlaufsskizze</a> und fügt zwischen T. 58 und 59 aus der Verlaufsskizze zwei weitere Takte ein. Der Hinweis <em>wiederholen</em> deutet darauf hin, dass diese Sequenz wiederholt werden soll (in <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF1'})\">Textfassung 1</a> geschieht dies in der unteren Oktave)."
             ],
             "commentary": {
                 "preamble": "",
@@ -658,16 +658,16 @@
                     "svgGroupId": "g-lb-2j",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk2j"
+                        "sheetId": "M32_Sk2j"
                     }
                 }
             ]
         },
         {
-            "id": "M_32_Sk2_2",
+            "id": "M32_Sk2_2",
             "label": "M 32 Sk2.2",
             "evaluations": [
-                "<strong>Sk2.1</strong> enthält <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2n'})\">T. 72</a> aus <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk2'})\"><strong>Sk2</strong></a> in einer Version, bei der die Mittelstimmen in ganzen Noten notiert sind – was in der Tintenniederschrift jedoch keinen Niederschlag fand."
+                "<strong>Sk2.1</strong> enthält <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk2n'})\">T. 72</a> aus <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk2'})\"><strong>Sk2</strong></a> in einer Version, bei der die Mittelstimmen in ganzen Noten notiert sind – was in der Tintenniederschrift jedoch keinen Niederschlag fand."
             ],
             "commentary": {
                 "preamble": "",
@@ -678,16 +678,16 @@
                     "svgGroupId": "g-lb-1d",
                     "linkTo": {
                         "complexId": "m33",
-                        "sheetId": "M_33_Sk1d"
+                        "sheetId": "M33_Sk1d"
                     }
                 }
             ]
         },
         {
-            "id": "M_32_Sk3",
+            "id": "M32_Sk3",
             "label": "M 32 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> skizziert T. 39–41 für die gekürzte Überleitung im B-Teil von M 32 <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk3</strong> skizziert T. 39–41 für die gekürzte Überleitung im B-Teil von M 32 <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -695,10 +695,10 @@
             }
         },
         {
-            "id": "M_32_Sk4",
+            "id": "M32_Sk4",
             "label": "M 32 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> enthält eine längere Überarbeitung für den Mittelteil von <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_TF3'})\">Textfassung 3</a>, die vor allem in harmonischer Hinsicht neue Wege beschreitet. Die spezifische Verteilung der Skizzenakkoladen auf dem Blatt und die Verweispfeile deuten darauf hin, dass die Takte 30–33 nachträglich in den Verlauf von <strong>Sk4</strong> eingebaut worden sind. Dieser Einschub zwischen T. 29 und 34 wurde in einem ersten Versuch (<a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk4_1'})\"><strong>Sk4.1</strong></a>) verworfen."
+                "<strong>Sk4</strong> enthält eine längere Überarbeitung für den Mittelteil von <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF3'})\">Textfassung 3</a>, die vor allem in harmonischer Hinsicht neue Wege beschreitet. Die spezifische Verteilung der Skizzenakkoladen auf dem Blatt und die Verweispfeile deuten darauf hin, dass die Takte 30–33 nachträglich in den Verlauf von <strong>Sk4</strong> eingebaut worden sind. Dieser Einschub zwischen T. 29 und 34 wurde in einem ersten Versuch (<a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk4_1'})\"><strong>Sk4.1</strong></a>) verworfen."
             ],
             "commentary": {
                 "preamble": "",
@@ -806,51 +806,51 @@
                     "svgGroupId": "g-lb-4a",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4a"
+                        "sheetId": "M32_Sk4a"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-4b",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4b"
+                        "sheetId": "M32_Sk4b"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-4c",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4c"
+                        "sheetId": "M32_Sk4c"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-4d",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4d"
+                        "sheetId": "M32_Sk4d"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-4-2",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4_2"
+                        "sheetId": "M32_Sk4_2"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-5",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk5"
+                        "sheetId": "M32_Sk5"
                     }
                 }
             ]
         },
         {
-            "id": "M_32_Sk4_1",
+            "id": "M32_Sk4_1",
             "label": "M 32 Sk4.1",
             "evaluations": [
-                "<strong>Sk4.1</strong> enthält einen verworfenen Einschub zu <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk4'})\"><strong>Sk4</strong></a> (siehe auch Skizzenkommentar zu <strong>Sk4</strong>)."
+                "<strong>Sk4.1</strong> enthält einen verworfenen Einschub zu <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk4'})\"><strong>Sk4</strong></a> (siehe auch Skizzenkommentar zu <strong>Sk4</strong>)."
             ],
             "commentary": {
                 "preamble": "",
@@ -892,10 +892,10 @@
             }
         },
         {
-            "id": "M_32_Sk4_2",
+            "id": "M32_Sk4_2",
             "label": "M 32 Sk4.2",
             "evaluations": [
-                "<strong>Sk4.2</strong> ist nicht mit Bestimmtheit einzuordnen. Die zwei skizzierten Takte sind in Zusammenhang mit <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_Sk4'})\"><strong>Sk4</strong></a> entstanden. Es ist jedoch unklar, ob diese die in <strong>Sk4</strong> nach der ersten Niederschrift gestrichenen Takte 32–33 ersetzen oder daran anschliessen sollten, bevor die definitive Variante im Untersatz von T. 32–33 notiert worden ist."
+                "<strong>Sk4.2</strong> ist nicht mit Bestimmtheit einzuordnen. Die zwei skizzierten Takte sind in Zusammenhang mit <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_Sk4'})\"><strong>Sk4</strong></a> entstanden. Es ist jedoch unklar, ob diese die in <strong>Sk4</strong> nach der ersten Niederschrift gestrichenen Takte 32–33 ersetzen oder daran anschliessen sollten, bevor die definitive Variante im Untersatz von T. 32–33 notiert worden ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -940,23 +940,23 @@
                     "svgGroupId": "g-lb-4b",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4b"
+                        "sheetId": "M32_Sk4b"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-5",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk5"
+                        "sheetId": "M32_Sk5"
                     }
                 }
             ]
         },
         {
-            "id": "M_32_Sk5",
+            "id": "M32_Sk5",
             "label": "M 32 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> enthält die ersten vier Takte für die Überarbeitung des Schlusses ab T. 49 in <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M_32_TF3'})\">Textfassung 3</a>."
+                "<strong>Sk5</strong> enthält die ersten vier Takte für die Überarbeitung des Schlusses ab T. 49 in <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF3'})\">Textfassung 3</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -994,14 +994,14 @@
                     "svgGroupId": "g-lb-4b",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4b"
+                        "sheetId": "M32_Sk4b"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-4-2",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk4_2"
+                        "sheetId": "M32_Sk4_2"
                     }
                 }
             ]

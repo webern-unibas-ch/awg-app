@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_45_TF1",
+                "id": "M45_TF1",
                 "label": "M 45 Textfassung 1",
                 "content": [
                     {
@@ -21,7 +21,7 @@
                 ]
             },
             {
-                "id": "M_45_TF2",
+                "id": "M45_TF2",
                 "label": "M 45 Textfassung 2",
                 "content": [
                     {
@@ -53,7 +53,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_45_Sk1",
+                "id": "M45_Sk1",
                 "label": "M 45 Sk1",
                 "content": [
                     {
@@ -125,7 +125,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk1_1",
+                "id": "M45_Sk1_1",
                 "label": "M 45 Sk1.1",
                 "content": [
                     {
@@ -137,7 +137,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk1_2",
+                "id": "M45_Sk1_2",
                 "label": "M 45 Sk1.2",
                 "content": [
                     {
@@ -149,7 +149,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk1_3",
+                "id": "M45_Sk1_3",
                 "label": "M 45 Sk1.3",
                 "content": [
                     {
@@ -161,7 +161,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk2",
+                "id": "M45_Sk2",
                 "label": "M 45 Sk2",
                 "content": [
                     {
@@ -173,7 +173,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk2_1",
+                "id": "M45_Sk2_1",
                 "label": "M 45 Sk2.1",
                 "content": [
                     {
@@ -185,7 +185,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk3",
+                "id": "M45_Sk3",
                 "label": "M 45 Sk3",
                 "content": [
                     {
@@ -203,7 +203,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk4",
+                "id": "M45_Sk4",
                 "label": "M 45 Sk4",
                 "content": [
                     {
@@ -221,7 +221,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk5",
+                "id": "M45_Sk5",
                 "label": "M 45 Sk5",
                 "content": [
                     {
@@ -257,7 +257,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk6",
+                "id": "M45_Sk6",
                 "label": "M 45 Sk6",
                 "content": [
                     {
@@ -281,7 +281,7 @@
                 ]
             },
             {
-                "id": "M_45_Sk7",
+                "id": "M45_Sk7",
                 "label": "M 45 Sk7",
                 "content": [
                     {

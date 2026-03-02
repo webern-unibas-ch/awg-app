@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "Mx_467_TF1",
+                "id": "Mx467_TF1",
                 "label": "M* 467 einzige Textfassung",
                 "content": [
                     {
@@ -17,7 +17,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "Mx_467_Sk1",
+                "id": "Mx467_Sk1",
                 "label": "M* 467 Sk1",
                 "content": [
                     {
@@ -29,7 +29,7 @@
                 ]
             },
             {
-                "id": "Mx_467_Sk2",
+                "id": "Mx467_Sk2",
                 "label": "M* 467 Sk2",
                 "content": [
                     {
