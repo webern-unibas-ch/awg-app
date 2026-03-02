@@ -1532,7 +1532,7 @@
                                         {
                                             "measure": "38–39",
                                             "system": "Klav. o.",
-                                            "position": "Taktanfang <br /> Taktende",
+                                            "position": "Taktanfang <br />Taktende",
                                             "comment": "Takte über dem System mit Bleistift eingeklammert."
                                         },
                                         {
@@ -2247,7 +2247,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "33  <br /> bis 34",
+                                            "measure": "33 <br />bis 34",
                                             "system": "Klav. u.",
                                             "position": "Taktstrich",
                                             "comment": "Einschubzeichen im System."
@@ -2259,13 +2259,13 @@
                                             "comment": "<em>Moll </em>zwischen den Systemen."
                                         },
                                         {
-                                            "measure": "34  <br /> bis 35",
+                                            "measure": "34 <br />bis 35",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "<em>Thema unten </em>unter dem System."
                                         },
                                         {
-                                            "measure": "34  <br /> bis 36",
+                                            "measure": "34 <br />bis 36",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>oben Gegenstimme </em>über dem System."
@@ -2389,7 +2389,7 @@
                                             "measure": "nach 29",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {{ '{' }}30A–31A{{ '}' }} pauschal gestrichen. <br /> ##Abbildung##"
+                                            "comment": "Takte {{ '{' }}30A–31A{{ '}' }} pauschal gestrichen. <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "{30A}",
@@ -2418,7 +2418,7 @@
                                         {
                                             "measure": "50",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> bis letzte Note",
+                                            "position": "1. Note <br />bis letzte Note",
                                             "comment": "Noten auf Rasur."
                                         },
                                         {

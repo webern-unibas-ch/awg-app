@@ -792,9 +792,9 @@
                                             "comment": "Pfeil unter dem System zu T. 11."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Klav. u.",
-                                            "position": "4/4 <br /> 1/4",
+                                            "position": "4/4 <br />1/4",
                                             "comment": "<em>4 Stufen darüber </em>unter dem System."
                                         },
                                         {
@@ -822,9 +822,9 @@
                                             "comment": "Achteltriole h–H–f überschreibt Achtelnoten h–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "letzte Note <br /> 1/4",
+                                            "position": "letzte Note <br />1/4",
                                             "comment": "Schräg abfallende Linie im und unter dem System."
                                         },
                                         {
@@ -1495,9 +1495,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt."
                                         },
                                         {
-                                            "measure": "68  <br /> bis 72",
+                                            "measure": "68 <br />bis 72",
                                             "system": "Klav.",
-                                            "position": "2/4 <br /> 7/8",
+                                            "position": "2/4 <br />7/8",
                                             "comment": "<em>cres. </em>[sic] mit Geltungsstrichelung hinzugefügt."
                                         },
                                         {
@@ -1555,15 +1555,15 @@
                                             "comment": "Untere Oktave D–Cis–E<sub>1</sub>–F hinzugefügt."
                                         },
                                         {
-                                            "measure": "73  <br /> bis 74",
+                                            "measure": "73 <br />bis 74",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 4/4",
+                                            "position": "1. Note <br />4/4",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "74  <br /> bis 76",
+                                            "measure": "74 <br />bis 76",
                                             "system": "Klav. o.",
-                                            "position": "5. Note <br /> letzte Note",
+                                            "position": "5. Note <br />letzte Note",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -1591,9 +1591,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "77  <br /> bis 80",
+                                            "measure": "77 <br />bis 80",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 8/8",
+                                            "position": "1. Note <br />8/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -1603,9 +1603,9 @@
                                             "comment": "Noten mit rotem Buntstift unterstrichen."
                                         },
                                         {
-                                            "measure": "78  <br /> bis 79",
+                                            "measure": "78 <br />bis 79",
                                             "system": "Klav.",
-                                            "position": "8/8 <br /> (6/8)",
+                                            "position": "8/8 <br />(6/8)",
                                             "comment": "Crescendogabel unter den Systemen hinzugefügt."
                                         },
                                         {
@@ -1654,7 +1654,7 @@
                                             "measure": "82",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für Klav. o. über dem System: <br /> ###Abbildung##"
+                                            "comment": "Alternative Skizze für Klav. o. über dem System: <br />##Abbildung##"
                                         }
                                     ]
                                 }
@@ -2384,9 +2384,9 @@
                                             "comment": "Taktstrich nachgezogen."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Klav. o.",
-                                            "position": "2/4 <br /> 4/4",
+                                            "position": "2/4 <br />4/4",
                                             "comment": "Oberstimmenschicht: Legatobogen nachgezogen."
                                         },
                                         {
@@ -2408,9 +2408,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a nachgezogen."
                                         },
                                         {
-                                            "measure": "19 <br /> bis 20",
+                                            "measure": "19 <br />bis 20",
                                             "system": "Klav. u.",
-                                            "position": "letzte Note <br /> 1/2",
+                                            "position": "letzte Note <br />1/2",
                                             "comment": "Notenköpfe von D<sub>1</sub>–D<sub>1</sub> nachgezogen."
                                         },
                                         {

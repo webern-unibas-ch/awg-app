@@ -183,7 +183,7 @@
                                 "measure": "5",
                                 "system": "Ges.",
                                 "position": "3/8",
-                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>.  <br /> Text sic: <em>mir’s</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>mirs</em> (ohne Apostroph)."
+                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <br />Text sic: <em>mir’s</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>mirs</em> (ohne Apostroph)."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -367,9 +367,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "18 <br /> bis 19",
+                                "measure": "18 <br />bis 19",
                                 "system": "Ges.",
-                                "position": "12/16 <br /> 1. Note",
+                                "position": "12/16 <br />1. Note",
                                 "comment": "Text sic: Silbentrennung <em>ein-an</em>(-der)."
                             },
                             {
@@ -541,7 +541,7 @@
                                 "measure": "13",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>.  <br /> <em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>. <br /><em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "g457b",
@@ -1032,9 +1032,9 @@
                             },
                             {
                                 "svgGroupId": "g8c",
-                                "measure": "{19A} <br /> bis {20A}",
+                                "measure": "{19A} <br />bis {20A}",
                                 "system": "15",
-                                "position": "3/4 <br /> 1/4",
+                                "position": "3/4 <br />1/4",
                                 "comment": "Durch Einkreisungen getilgt."
                             },
                             {
@@ -1172,7 +1172,7 @@
                             },
                             {
                                 "svgGroupId": "g5h",
-                                "measure": "38 <br /> bis nach 38",
+                                "measure": "38 <br />bis nach 38",
                                 "system": "",
                                 "position": "nach 4/16",
                                 "comment": "Taktstrich nach 4/16 ansatzweise radiert. Vermutlich danach vorgezeichneter Taktstrich am Ende der Akkolade gestrichen und Taktstrich nach 6/16 hinzugefügt."
@@ -1688,9 +1688,9 @@
                             },
                             {
                                 "svgGroupId": "g9b",
-                                "measure": "8  <br /> bis 9",
+                                "measure": "8 <br />bis 9",
                                 "system": "7",
-                                "position": "3/4 <br /> 1/8",
+                                "position": "3/4 <br />1/8",
                                 "comment": "Ligaturbogen zu T. 9 1/8 gestrichen und Achtelnote ersetzt durch Achtelpause."
                             },
                             {
@@ -1786,9 +1786,9 @@
                             },
                             {
                                 "svgGroupId": "g1f",
-                                "measure": "20 <br /> bis 21",
+                                "measure": "20 <br />bis 21",
                                 "system": "5",
-                                "position": "6/8 <br /> 1. Note",
+                                "position": "6/8 <br />1. Note",
                                 "comment": "cis<sup>2</sup>–g<sup>2</sup> durch Einkreisung getilgt."
                             },
                             {

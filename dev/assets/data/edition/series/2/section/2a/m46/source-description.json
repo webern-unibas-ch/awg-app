@@ -767,7 +767,7 @@
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter dem System: <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze unter dem System: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "24",
@@ -785,12 +785,12 @@
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze über dem System darüber:  <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze über dem System darüber: <br />##Abbildung##"
                                         },
                                         {
-                                            "measure": "30 <br /> bis 31",
+                                            "measure": "30 <br />bis 31",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 1. Note",
+                                            "position": "3/4 <br />1. Note",
                                             "comment": "Legatobogen hinzugefügt."
                                         }
                                     ]
@@ -1013,9 +1013,9 @@
                                             "comment": "Punktierte Halbe Note E/H ersetzt gestrichene Halbe Note e/h."
                                         },
                                         {
-                                            "measure": "24  <br /> bis 25",
+                                            "measure": "24 <br />bis 25",
                                             "system": "Klav. u.",
-                                            "position": "1. Note <br /> 1. Note",
+                                            "position": "1. Note <br />1. Note",
                                             "comment": "Unterstimmenschicht: Rasur im System. Ante correcturam: Legatobogen von punktierter Halber Note H in T. 24 zu Viertelnote gis in T. 25."
                                         },
                                         {
@@ -1031,13 +1031,13 @@
                                             "comment": "Rasur im System."
                                         },
                                         {
-                                            "measure": "27  <br /> bis 28",
+                                            "measure": "27 <br />bis 28",
                                             "system": "Klav. o.",
-                                            "position": "3/4 <br /> 3/4",
+                                            "position": "3/4 <br />3/4",
                                             "comment": "Ende des Legatobogens versetzt von T. 28 3/4 nach T. 27 3/4."
                                         },
                                         {
-                                            "measure": "28  <br /> bis 29",
+                                            "measure": "28 <br />bis 29",
                                             "system": "Klav. o.",
                                             "position": "1/8–6/8",
                                             "comment": "Unterstimmenschicht mit Bleistift vorskizziert."
@@ -1118,9 +1118,9 @@
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup> überschreibt e<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "27 <br /> bis 28",
+                                            "measure": "27 <br />bis 28",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 1/8",
+                                            "position": "6/8 <br />1/8",
                                             "comment": "Unterstimmenschicht: Ligaturbogen zu e<sup>1</sup>–e<sup>1 </sup>nachgezeichnet."
                                         },
                                         {

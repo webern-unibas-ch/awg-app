@@ -86,9 +86,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-11",
-                                "measure": "39 <br /> bis 40",
+                                "measure": "39 <br />bis 40",
                                 "system": "Klav. o.",
-                                "position": "letzte Note <br /> 1. Note",
+                                "position": "letzte Note <br />1. Note",
                                 "comment": "a in T. 40 versetzt aus Klav. u.; Ligaturbogen in T. 39 und Legatobogen in T. 40 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a>: Seitenwechsel."
                             }
                         ]
@@ -382,9 +382,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-23",
-                                "measure": "10C(3–4/4)<br />bis 11C",
+                                "measure": "10C(3–4/4) <br />bis 11C",
                                 "system": "5",
-                                "position": "2/2<br />bis 1/4",
+                                "position": "2/2 <br />bis 1/4",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {

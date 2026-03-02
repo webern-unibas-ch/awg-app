@@ -439,9 +439,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-38",
-                                "measure": "136 </br>bis 141",
+                                "measure": "136 <br />bis 141",
                                 "system": "Klav. u.",
-                                "position": "1. Note <br /> letzte Note",
+                                "position": "1. Note <br />letzte Note",
                                 "comment": "Oktavierung: sic."
                             },
                             {
@@ -1899,9 +1899,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-24",
-                                "measure": "{81A}</br>{82A}",
+                                "measure": "{81A} <br />{82A}",
                                 "system": "21",
-                                "position": "1. Note </br>3. Note",
+                                "position": "1. Note <br />3. Note",
                                 "comment": "Obere Oktave gestrichen."
                             },
                             {
@@ -1955,9 +1955,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-32",
-                                "measure": "82B </br>83B",
+                                "measure": "82B <br />83B",
                                 "system": "18",
-                                "position": "8/8 </br>1/4",
+                                "position": "8/8 <br />1/4",
                                 "comment": "Oberstimmenschicht: Ligatur gestrichen."
                             },
                             {
@@ -2006,7 +2006,7 @@
                                 "svgGroupId": "g-tkk-39",
                                 "measure": "85B",
                                 "system": "14",
-                                "position": "1. Note </br>3. Note",
+                                "position": "1. Note <br />3. Note",
                                 "comment": "Ganze Note <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B<sub>1</sub> gestrichen."
                             },
                             {
@@ -2996,9 +2996,9 @@
                             },
                             {
                                 "svgGroupId": "g-tkk-15",
-                                "measure": "112B </br>bis 113A",
+                                "measure": "112B <br />bis 113A",
                                 "system": "20",
-                                "position": "(4/4) </br>1/4",
+                                "position": "(4/4) <br />1/4",
                                 "comment": "Ligatur gestrichen."
                             },
                             {
