@@ -35,7 +35,7 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedEditionLabel = 'AWG';
     });
 

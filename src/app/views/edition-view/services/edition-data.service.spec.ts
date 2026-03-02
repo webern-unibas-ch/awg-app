@@ -107,7 +107,7 @@ describe('EditionDataService (DONE)', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedSeriesRoute = expectedEditionComplex.pubStatement.series.route;
         expectedSectionRoute = expectedEditionComplex.pubStatement.section.route;
         expectedIntroRoute =

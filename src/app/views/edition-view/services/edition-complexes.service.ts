@@ -44,7 +44,7 @@ export class EditionComplexesService {
      * @returns {EditionComplex} The found edition complex.
      */
     static getEditionComplexById(id: string): EditionComplex {
-        return EditionComplexesService._editionComplexesList[id.toUpperCase()];
+        return EditionComplexesService._editionComplexesList[id];
     }
 
     /**

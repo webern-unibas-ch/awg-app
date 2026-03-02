@@ -227,7 +227,7 @@ describe('EditionReportComponent', () => {
 
         // Test data
         expectedReportFragment = 'source_A';
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
