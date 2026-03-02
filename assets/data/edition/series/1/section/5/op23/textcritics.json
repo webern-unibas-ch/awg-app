@@ -86,9 +86,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "17 <br /> bis 18",
+                                "measure": "17 <br />bis 18",
                                 "system": "Klav. o.",
-                                "position": "Taktende <br /> Taktanfang",
+                                "position": "Taktende <br />Taktanfang",
                                 "comment": "Violinschlüssel versetzt von vor T. 18 2/8 und Kustos ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 17."
                             },
                             {
@@ -408,10 +408,10 @@
             }
         },
         {
-            "id": "M_312_Sk1",
+            "id": "M312_Sk1",
             "label": "M 312 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
+                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
             ],
             "commentary": {
                 "preamble": "",
@@ -470,23 +470,23 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk4d"
+                        "sheetId": "M312_Sk4d"
                     }
                 },
                 {
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk1_1"
+                        "sheetId": "M312_Sk1_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_312_Sk1_1",
+            "id": "M312_Sk1_1",
             "label": "M 312 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
+                "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
             ],
             "commentary": {
                 "preamble": "",
@@ -517,13 +517,13 @@
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk1"
+                        "sheetId": "M312_Sk1"
                     }
                 }
             ]
         },
         {
-            "id": "M_312_Sk3",
+            "id": "M312_Sk3",
             "label": "M 312 Sk3",
             "evaluations": [
                 "<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."
@@ -571,21 +571,21 @@
                     "svgGroupId": "g1406",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk3_1"
+                        "sheetId": "M312_Sk3_1"
                     }
                 },
                 {
                     "svgGroupId": "g1412",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk3_2"
+                        "sheetId": "M312_Sk3_2"
                     }
                 },
                 {
                     "svgGroupId": "g1418",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_312_Sk3_3"
+                        "sheetId": "M312_Sk3_3"
                     }
                 }
             ]
@@ -672,7 +672,7 @@
             }
         },
         {
-            "id": "M_314_Sk1",
+            "id": "M314_Sk1",
             "label": "M 314 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> skizziert den Anfang der Singstimme von „Das dunkle Herz“ M 314 auf der Grundlage der Reihenform KU<sub>f</sub>.",
@@ -707,16 +707,16 @@
                     "svgGroupId": "g1418",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_314_Sk2"
+                        "sheetId": "M314_Sk2"
                     }
                 }
             ]
         },
         {
-            "id": "M_314_Sk2",
+            "id": "M314_Sk2",
             "label": "M 314 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_314_Sk1'})\"><strong>Sk1</strong></a>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
+                "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M314_Sk1'})\"><strong>Sk1</strong></a>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
                 "Die Ziffern <em>VII</em> (U<sub>d</sub>) und <em>II</em> (K<sub>h</sub>) bezeichnen den Anfang der verwendeten Reihenformen gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
             ],
             "commentary": {
@@ -762,7 +762,7 @@
                     "svgGroupId": "g1418",
                     "linkTo": {
                         "complexId": "op23",
-                        "sheetId": "M_314_Sk1"
+                        "sheetId": "M314_Sk1"
                     }
                 }
             ]

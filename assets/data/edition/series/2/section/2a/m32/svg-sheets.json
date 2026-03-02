@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_32_TF1",
+                "id": "M32_TF1",
                 "label": "M 32 Textfassung 1",
                 "content": [
                     {
@@ -33,7 +33,7 @@
                 ]
             },
             {
-                "id": "M_32_TF2",
+                "id": "M32_TF2",
                 "label": "M 32 Textfassung 2",
                 "content": [
                     {
@@ -63,7 +63,7 @@
                 ]
             },
             {
-                "id": "M_32_TF3",
+                "id": "M32_TF3",
                 "label": "M 32 Textfassung 3",
                 "content": [
                     {
@@ -89,7 +89,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_32_Sk1",
+                "id": "M32_Sk1",
                 "label": "M 32 Sk1",
                 "content": [
                     {
@@ -101,7 +101,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk2",
+                "id": "M32_Sk2",
                 "label": "M 32 Sk2",
                 "content": [
                     {
@@ -197,7 +197,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk2_1",
+                "id": "M32_Sk2_1",
                 "label": "M 32 Sk2.1",
                 "content": [
                     {
@@ -209,7 +209,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk2_2",
+                "id": "M32_Sk2_2",
                 "label": "M 32 Sk2.2",
                 "content": [
                     {
@@ -221,7 +221,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk3",
+                "id": "M32_Sk3",
                 "label": "M 32 Sk3",
                 "content": [
                     {
@@ -233,7 +233,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk4",
+                "id": "M32_Sk4",
                 "label": "M 32 Sk4",
                 "content": [
                     {
@@ -263,7 +263,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk4_1",
+                "id": "M32_Sk4_1",
                 "label": "M 32 Sk4.1",
                 "content": [
                     {
@@ -275,7 +275,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk4_2",
+                "id": "M32_Sk4_2",
                 "label": "M 32 Sk4.2",
                 "content": [
                     {
@@ -287,7 +287,7 @@
                 ]
             },
             {
-                "id": "M_32_Sk5",
+                "id": "M32_Sk5",
                 "label": "M 32 Sk5",
                 "content": [
                     {

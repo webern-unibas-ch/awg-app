@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_145_TF1",
+            "id": "M145_TF1",
             "label": "M 145 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von Trauer I („So wart bis ich dies dir noch künde“) M 145 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
@@ -33,7 +33,7 @@
                                 "measure": "2",
                                 "system": "Ges.",
                                 "position": "5/8",
-                                "comment": "Text: Großschreibung <em>Daß</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung.  <br /> Text sic: <em>Daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em>."
+                                "comment": "Text: Großschreibung <em>Daß</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. <br />Text sic: <em>Daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em>."
                             },
                             {
                                 "svgGroupId": "g487",
@@ -131,7 +131,7 @@
                                 "measure": "11",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: <em>ich</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em><span class=\"smallcaps\">ich</span></em> (Kleinschreibung mit Kapitälchen). <br /> Text sic: Längenstrich nach <em>ich</em>."
+                                "comment": "Text sic: <em>ich</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em><span class=\"smallcaps\">ich</span></em> (Kleinschreibung mit Kapitälchen). <br />Text sic: Längenstrich nach <em>ich</em>."
                             },
                             {
                                 "svgGroupId": "g767",
@@ -201,7 +201,7 @@
                                 "measure": "15",
                                 "system": "Ges.",
                                 "position": "8/8",
-                                "comment": "Text: Anführungszeichen vor <em>Laß</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 20 4/8. <br /> Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
+                                "comment": "Text: Anführungszeichen vor <em>Laß</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 20 4/8. <br />Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
                             },
                             {
                                 "svgGroupId": "g771",

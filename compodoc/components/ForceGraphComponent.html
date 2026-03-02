@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content component">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -139,9 +157,9 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code>OnInit</code>
-                <code>OnChanges</code>
-                <code>OnDestroy</code>
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -525,7 +543,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
@@ -774,7 +792,7 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_clickedOnNode(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, d)</code>
+                    <code>_clickedOnNode(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, d: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>)</code>
                 </td>
             </tr>
 
@@ -825,6 +843,7 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
                                         <tr>
                                                 <td>d</td>
                                             <td>
+                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
                                             </td>
 
                                             <td>
@@ -1101,7 +1120,7 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_filterNodesByType(nodes: <a href="../interfaces/D3Simulation.html" target="_self">D3SimulationNode[]</a>, type: <a href="../undefineds/D3SimulationNodeType.html" target="_self">D3SimulationNodeType</a>)</code>
+                    <code>_filterNodesByType(nodes: <a href="../interfaces/D3Simulation.html" target="_self">D3SimulationNode[]</a>, type: <a href="../miscellaneous/enumerations.html#D3SimulationNodeType" target="_self">D3SimulationNodeType</a>)</code>
                 </td>
             </tr>
 
@@ -2194,7 +2213,7 @@ necessary for the force simulation.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnChanges(changes: SimpleChanges)</code>
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                 </td>
             </tr>
 
@@ -2229,7 +2248,7 @@ necessary for the force simulation.</p>
                                         <tr>
                                                 <td>changes</td>
                                             <td>
-                                                        <code>SimpleChanges</code>
+                                                            <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
                                             </td>
 
                                             <td>
@@ -2748,6 +2767,12 @@ removing scale factor and transitions.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(GraphVisualizerService)</code>
                     </td>
                 </tr>
@@ -2780,6 +2805,12 @@ removing scale factor and transitions.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(PrefixPipe)</code>
@@ -2990,6 +3021,12 @@ removing scale factor and transitions.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>faCompressArrowsAlt</code>
                     </td>
                 </tr>
@@ -3139,6 +3176,12 @@ removing scale factor and transitions.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>new SliderConfig(1, 0.1, 3, 0.01, 1)</code>
@@ -4571,7 +4614,7 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider {
     
 </div>
 
-<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/vis-network.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>

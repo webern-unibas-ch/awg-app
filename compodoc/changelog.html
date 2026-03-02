@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -80,11 +94,344 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content getting-started">
+               <div class="content changelog">
                    <div class="content-data">
+
+
 
 <h1>Changelog</h1>
 <p>All notable changes to this project will be documented in this file. See <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a> for commit guidelines.</p>
+<h2><a href="https://github.com/webern-unibas-ch/awg-app/compare/v1.5.0...v1.6.0">1.6.0</a> (2026-03-02)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>assets:</strong> add files for m*409 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/18f213d200759956b63017d85b4015e7e331326a">18f213d</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*410 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e2041f86bca8d8c738e244e70f321c4b5ad6e5bc">e2041f8</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*412 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6855a4236a4f95b0f8beb834ade414e17a7a7cb8">6855a42</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*413 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/dfac2b109b7bf50519e6738dc45d71b88cdeaef8">dfac2b1</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*414 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/94d093c8ae08123477f31189e522dc0ee49050b0">94d093c</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*415 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7f2032cdcd242675d1c046ebdebdd83f72de8e90">7f2032c</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*416 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f5b8f6906cd49368187aeff43a9740053073bcc7">f5b8f69</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*465 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f8afb964e0d03e900c163c93607f0238e185ec81">f8afb96</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*466 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4a37e37e90993be669cd2027a6257768be500192">4a37e37</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m*467 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1e9a237fb34b9621b31a816f927b0c56896ebd1c">1e9a237</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m112 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/776f4b60910e28c2e394dfef35116fdca4ca38af">776f4b6</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a>)</li>
+<li><strong>assets:</strong> add files for m114 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5d0fd9d3fc2a20d0795ad17e03e17cf9efd1ad40">5d0fd9d</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> add files for m44 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/27d9240fcd9fdce84174e1e8ac9d0d82cef9996a">27d9240</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a>)</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> fix import for shared api objects (<a href="https://github.com/webern-unibas-ch/awg-app/commit/de4768711e45e948ff3ca6b8308d7d69116d74eb">de47687</a>)</li>
+<li><strong>app:</strong> fix linting errors after update (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c3a7683c42bde69a3eeb02d94ab0d16500ed362f">c3a7683</a>)</li>
+<li><strong>app:</strong> fix linting errors after update (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ebeb8708604541a201ddf0e871e428f914f457d4">ebeb870</a>)</li>
+<li><strong>assets:</strong> consolidate <code>&lt;br&gt;</code> elements (<a href="https://github.com/webern-unibas-ch/awg-app/commit/511a46c959372a06e7f36914d040d0eaa29c4446">511a46c</a>)</li>
+<li><strong>assets:</strong> consolidate sheet ids (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d36f47805a4b663ec0a27fcc4f12d3947b7ceadc">d36f478</a>)</li>
+<li><strong>assets:</strong> fix comments and ids in mx409 &amp; mx410 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d284690d73ed596e5f3a09d7790b47e1b427efc4">d284690</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a> &amp; <a href="https://github.com/lili041">@lili041</a>)</li>
+<li><strong>assets:</strong> fix typos in edition content (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a6a67c75d5c19077347b3949074db4c46de5a349">a6a67c7</a>)</li>
+<li><strong>assets:</strong> rename mstar -&gt; mx (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3bfe5b5665a7c9c753798df3f7c5104f4b8901dd">3bfe5b5</a>)</li>
+<li><strong>assets:</strong> update m22, m23 &amp; m46 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/226ffc0eae959edf01a4e815b4b30fe1c2d4b288">226ffc0</a>; thanks to <a href="https://github.com/chael-mi">@chael-mi</a>)</li>
+<li><strong>assets:</strong> validate edition types in sheets.json (<a href="https://github.com/webern-unibas-ch/awg-app/commit/34c7e7c1e512e86dfb266fe3edb1b7d6a00e9924">34c7e7c</a>)</li>
+<li><strong>core:</strong> remove sr-only attribute (unsupported in FA 7) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ad2e142922b0134b16dab131c166f5b818d384c2">ad2e142</a>)</li>
+<li><strong>edition:</strong> use lowercase complex ids across the app (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a3c807473345d3dc528792aa505b3eecf002856b">a3c8074</a>)</li>
+</ul>
+<h3>Tests</h3>
+<ul>
+<li><strong>app:</strong> fix faIcon checks to use signals after update (<a href="https://github.com/webern-unibas-ch/awg-app/commit/28f60ad0aefcaeeed6a26369882ca34dad1b702d">28f60ad</a>)</li>
+<li><strong>app:</strong> fix tests after upgrade (<a href="https://github.com/webern-unibas-ch/awg-app/commit/34278977902c2c909ff511af7928528ff3455629">3427897</a>)</li>
+<li><strong>shared:</strong> fix test with NaN in order pipe (<a href="https://github.com/webern-unibas-ch/awg-app/issues/2590">#2590</a>) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ed469d41318b49668ed49dd5ebc7b2be40cce323">ed469d4</a>)</li>
+</ul>
+<h3>Styles</h3>
+<ul>
+<li><strong>app:</strong> fix scss import paths (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e17c9bfeb7365e5f1b215f52bd8e8edc9c9223b6">e17c9bf</a>)</li>
+<li><strong>app:</strong> fix scss import paths for tests (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e3b47a9cf5309c9a07110d0dd9c8131c0fba1e45">e3b47a9</a>)</li>
+</ul>
+<h3>Build System</h3>
+<ul>
+<li><strong>app:</strong> adjust dependabot groups (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9f9ccca12a0248c653550328e56c404d89316ab9">9f9ccca</a>)</li>
+<li><strong>app:</strong> fall back to devkit build for tests (karma compatibility) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c3bfa0005e4f754adfcec2fadd19282e15a7090f">c3bfa00</a>)</li>
+<li><strong>app:</strong> fix tsconfig after update (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d90f6d5a68cd743ef6d0da1a0ec247077bd551f7">d90f6d5</a>)</li>
+<li><strong>app:</strong> udpate supported minimal node version to 20.19 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/52ae741c4f26d987d91babfd280a2530870b03bf">52ae741</a>)</li>
+<li><strong>app:</strong> update to Angular v20 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a85318f9ba5b1e595c9a833c0830fbff69f1dfe5">a85318f</a>)</li>
+<li><strong>app:</strong> update to angular-eslint v20 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e4c2ee113645d820c65c3692f4b26f0f5cae7686">e4c2ee1</a>)</li>
+<li><strong>app:</strong> update yarn (<a href="https://github.com/webern-unibas-ch/awg-app/issues/2589">#2589</a>) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3f779e4ee22c547f4b66479f41970f00efbbbd02">3f779e4</a>)</li>
+<li><strong>deps-dev:</strong> bump @commitlint/cli in the commitlint group (<a href="https://github.com/webern-unibas-ch/awg-app/commit/583eb87df2409efff32df87e9254d78a5322d6ed">583eb87</a>)</li>
+<li><strong>deps-dev:</strong> bump @compodoc/compodoc from 1.1.26 to 1.1.30 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ed2de5a0768a34bc914967fe07a350a91ff090e5">ed2de5a</a>)</li>
+<li><strong>deps-dev:</strong> bump @compodoc/compodoc from 1.1.30 to 1.1.31 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ada9c7eabe45e201ea6f55b136076359251fd4df">ada9c7e</a>)</li>
+<li><strong>deps-dev:</strong> bump @compodoc/compodoc from 1.1.31 to 1.1.32 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cae89b766a88c8ae5d6e66c9591f252c1111e58f">cae89b7</a>)</li>
+<li><strong>deps-dev:</strong> bump @compodoc/compodoc from 1.1.32 to 1.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/01f289eb6e10b96e004a4abc6d858658dc6cd3f1">01f289e</a>)</li>
+<li><strong>deps-dev:</strong> bump @compodoc/compodoc from 1.2.0 to 1.2.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/89ef1148e0fe32b6c5801ee5c6941be31f935652">89ef114</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/eslintrc from 3.3.1 to 3.3.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2518a5aa1945e7a8c866f0eb1045b367ac56b125">2518a5a</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/eslintrc from 3.3.3 to 3.3.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/71b16b5930acdd06f8b11dfb8258c96a909ca8c8">71b16b5</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.28.0 to 9.29.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/12ed6e4ed251454535372f8cfdafad11201f06ac">12ed6e4</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.29.0 to 9.30.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9e73b9bd89c60ae2f30e5c45dec90b20145d7401">9e73b9b</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.30.1 to 9.31.0 (<a href="https://github.com/webern-unibas-ch/awg-app/issues/2498">#2498</a>) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/391890f28c24673a447f0dace1de4390110906ab">391890f</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.31.0 to 9.32.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4157d37e377f464ba62de109013e879c1fdaad6a">4157d37</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.32.0 to 9.33.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/42faae22b5c3c2eba3931ffbc2814459f6f5b592">42faae2</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.33.0 to 9.35.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/14544a44e7bedc210b46035eaeaf1d1c1a61c45b">14544a4</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.35.0 to 9.37.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6bc3aa64c6d8f5b20ca59df8fceb2fdbebbd4a95">6bc3aa6</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.37.0 to 9.38.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f7d9644f3c57bcd354a28796c625e8b12bbf7457">f7d9644</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.38.0 to 9.39.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4890e6c3fca4f34b1ca6a8feabeca0f39c0473d9">4890e6c</a>)</li>
+<li><strong>deps-dev:</strong> bump @eslint/js from 9.39.1 to 9.39.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/196af9fd9c5ad02ce286c71c5db5602a491a205e">196af9f</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/jasmine from 5.1.11 to 5.1.13 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/08c98aa3557c94f07d895dc27024c7a7aa2679db">08c98aa</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/jasmine from 5.1.13 to 5.1.15 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ed54faf341129c1012c0c41fcce03fbb558bbf83">ed54faf</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/jasmine from 5.1.8 to 5.1.9 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6b6e6f8c09665fa85e5f2a14e0267dcbaff31070">6b6e6f8</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/jasmine from 5.1.9 to 5.1.11 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ab7d0489a9e656c3a4864aa9b237a8be1ecce933">ab7d048</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 22.15.30 to 24.0.14 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9c9353b290c2b6964c6c8c7ee704ae8e17a17ee1">9c9353b</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.0.14 to 24.0.15 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/aafbf6e1b99fc2fb59a6dbb7514d5d88b4b42967">aafbf6e</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.0.15 to 24.1.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6ab7ce672bf754f81084bda634a466a047d6dc34">6ab7ce6</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.1.0 to 24.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f472af5fd983b04113f19b2bd14b46a3136e5822">f472af5</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.2.0 to 24.3.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/16b416c0ee6a75256ea688a3440d5ce581971f58">16b416c</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.3.1 to 24.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ef1de395b967ba05d7ed073311f03237c6281f13">ef1de39</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.5.0 to 24.5.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3798874e5550f3337517f90472bbc915d93cd371">3798874</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.5.1 to 24.5.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e5793938542b4c2e434bfbf023b69fd1065425ff">e579393</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.5.2 to 24.6.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/842c7fb06d209bad1f97b53ade47b1e16b07062e">842c7fb</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.6.2 to 24.7.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5019083f01bf80c065ccbacd6e82b92105b11bdb">5019083</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.7.0 to 24.7.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/71ddc38cda7d45403e5c8eb42ef8e7ac1e714b3c">71ddc38</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.7.2 to 24.8.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/90224dccbc2fe22c820ba28658fae085ea1d758d">90224dc</a>)</li>
+<li><strong>deps-dev:</strong> bump @types/node from 24.9.1 to 24.10.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4c1649d026123b9be502fb89816bc5b1b951cb2c">4c1649d</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-cli-ghpages from 2.0.3 to 3.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/63dc4752b482adc0985bbef950ff9b0f2a3a8778">63dc475</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-cli-ghpages from 3.0.1 to 3.0.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c42100ecd5cec2e82e45e4ae060de34fa973db72">c42100e</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-eslint from 20.1.1 to 20.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b2115b5b9acc2e89f7baf4948669a484ee037624">b2115b5</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-eslint from 20.2.0 to 20.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6d68f2f60106b1654434ff441b475ff53c1f2c28">6d68f2f</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-eslint from 20.3.0 to 20.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/57633fcd300dc27ea86d619d1570f9af70c26cc5">57633fc</a>)</li>
+<li><strong>deps-dev:</strong> bump angular-eslint from 20.4.0 to 20.6.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/650e8075cbadbcd45a1fc2f6ac6fe46929b685a1">650e807</a>)</li>
+<li><strong>deps-dev:</strong> bump commit-and-tag-version from 12.5.1 to 12.5.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/27ca46c55b09b2dee867d64b11236871d5c5b03e">27ca46c</a>)</li>
+<li><strong>deps-dev:</strong> bump commit-and-tag-version from 12.5.2 to 12.6.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c39c51d933f849a066404e61f80a4e2d413eaa8f">c39c51d</a>)</li>
+<li><strong>deps-dev:</strong> bump commit-and-tag-version from 12.6.0 to 12.6.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cdfe7fbc3dc1a5cd56c9dce1a792e4857806e3fa">cdfe7fb</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.28.0 to 9.29.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4e2d0952f37c2c8677171c86a7e64f6667828967">4e2d095</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.29.0 to 9.30.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/828449f80de7c68c8e76418b650689af82a661fd">828449f</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.30.1 to 9.31.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/29782fc2daf263949a3da4de323865e7816352ec">29782fc</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.31.0 to 9.32.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2a9444245b04de157cf3560a9bc9fc2b658b35e6">2a94442</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.32.0 to 9.33.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1896324b73199fe68eea58736eac18751aaf27a3">1896324</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.33.0 to 9.35.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2344a6346a3fd662916c5560886ca6860925e593">2344a63</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.35.0 to 9.36.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6916e9c403d2d3f855b095c285789ef4d2d5ac71">6916e9c</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.36.0 to 9.37.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1cadfe3ff367bd53c255960a18d8cb9e71b2813e">1cadfe3</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.37.0 to 9.38.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/92a838d4bc4f170641fe811bac1c798c4edfd065">92a838d</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.38.0 to 9.39.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5dc9c2cf7c6e98a429f8115d73d8c72ecbef330e">5dc9c2c</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 9.39.1 to 9.39.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0daf531a44ecbdbcaf251760f7b639c0ecfbe228">0daf531</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-config-prettier from 10.1.5 to 10.1.8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3f589aa70cfd4ef17548a8d1dc85dcaad4f9d350">3f589aa</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-angular from 4.1.0 to 5.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2cc3c0c05962624e8f03325bc0dc59c11ae17e89">2cc3c0c</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-import from 2.31.0 to 2.32.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/36427d9850728cd6f86103b29cf7657eacf42455">36427d9</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.0.1 to 51.0.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ab2e5812f2919f4791b1f850d7ab83fb431ce3ca">ab2e581</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.0.3 to 51.2.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a84e8f8a002eb94cbae0386e946f79bf63f24c39">a84e8f8</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.2.3 to 51.3.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9f15a1438d92e5508ce203f92c41a64ed32d09c4">9f15a14</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.3.3 to 51.3.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/48171c6ed120dc6be642ad2faeb21658175ef3ce">48171c6</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.3.4 to 51.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/92e5959c1aff0d9a03e92a50243776a472e65f50">92e5959</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 51.4.1 to 52.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/79eb498a93d3d2e2e40c9d9dcbacda3c09dde795">79eb498</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 52.0.0 to 52.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/95705f2010f03a1526e5ec0db5d3bd568f91d544">95705f2</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 52.0.1 to 52.0.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/31e278daf94d01fa3bf4dbd0b6d35a5df7ede6b9">31e278d</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 52.0.2 to 52.0.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b977b76cd6332995297260d33d005a75c12a6623">b977b76</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 52.0.4 to 54.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8bd79a28daf909295da086e4c105591c1175f276">8bd79a2</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 54.0.0 to 55.0.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d067a9d273d4e91ef03ebeb330588d68a0119f1c">d067a9d</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 55.0.5 to 55.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4e5d643b716339e717cd464214d152ddb944087f">4e5d643</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 55.2.0 to 56.1.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5d68975e22da967575c500c23e748665ca9d7396">5d68975</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 55.2.0 to 57.0.8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d59012e708ff77e2d6de9e3a7c31ef8800167aab">d59012e</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 58.0.0 to 58.1.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0f66fdb92a525f824c3814102ec46bd401ef8060">0f66fdb</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 58.1.1 to 60.1.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ce19a678157d73f2edab265166519eed14d150bc">ce19a67</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.1.1 to 60.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/175a4d862a458ee7917556f267cee99e39a4dc98">175a4d8</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.2.0 to 60.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/dad64a3cc8385abc4cccf8b8eb39526269ad0cc4">dad64a3</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.3.0 to 60.3.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/90e8412249f4fd6fa095b9a332bc88a6bb412f99">90e8412</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.3.0 to 60.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/89286b2505341e8f16f8092ec5a4e7d4667a840a">89286b2</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.4.0 to 60.7.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/13a1cbf8e809936490a48035cf1cb37bb90247ef">13a1cbf</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 60.7.1 to 60.8.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2c7d47c7245f4ee2ebcbedee7ec1dac032b6c7da">2c7d47c</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.0.0 to 61.1.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1304fddddf3720b34ae2426a4182ceebbf7dcee7">1304fdd</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.1.2 to 61.1.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a39e2d7d647696de3a9977d73bfe3babddf6fb41">a39e2d7</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.1.4 to 61.1.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/39ab994e8aad4f15f126f7bb1b8b6685a5b20744">39ab994</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.1.5 to 61.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2176fcbb2865710aedbfcde713282c443a132e8a">2176fcb</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.3.0 to 61.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e16d36d4801750c9358704af3da865e7929aa81e">e16d36d</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.4.1 to 61.5.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7f182af7a40d19d8df119f6e15287d9e15e6c776">7f182af</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.5.0 to 61.7.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/25aef6d1348238c66b48c6e07a0dca9b3fc81ed0">25aef6d</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 61.7.1 to 62.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/59cf908acf0d3ccb509524e70003744b2d8fb6cb">59cf908</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.0.0 to 62.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/03a4ccdba95c34005e4d57d3e9e3ed1755728bf1">03a4ccd</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.2.0 to 62.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0084b5650bae39a86369acf053854ee59d96e62b">0084b56</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.3.0 to 62.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b7ac47e9b2f9906e806b2a67d2f1e5711cfcbf61">b7ac47e</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.4.1 to 62.5.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2ab443fafe76254e1104763f124f34026d47922b">2ab443f</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.5.0 to 62.5.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/03242114efd2a112c919d78fa13839c3605285c2">0324211</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.5.4 to 62.5.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c26ae10b102c8687299cbcfc4e906d16f5b2d9b7">c26ae10</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 62.6.0 to 62.7.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7d769526a1821041961f368a7b4893494ffbafa6">7d76952</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-prettier from 5.4.1 to 5.5.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/992574a6b50eab85968482b183106dce1e794064">992574a</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-prettier from 5.5.1 to 5.5.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cb3aee5f85322325ecd9557240768578d50b6431">cb3aee5</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-prettier from 5.5.3 to 5.5.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/30e85ab0e6adc2acc70dcd64be93978394822b0d">30e85ab</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-prettier from 5.5.4 to 5.5.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8fe6d2ecf54752108c89633d5e5e0ae782625417">8fe6d2e</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 16.2.0 to 16.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6a44ba1ead4d20ee04a31bee3f15aa08bb61b403">6a44ba1</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 16.3.0 to 16.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/659d87333884ed630f9bd9769a49fed9c85b7b56">659d873</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 16.4.0 to 16.5.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ade76d9e3fb21a39807eb2b93bf16684c66692bb">ade76d9</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 16.5.0 to 17.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/87bee555f6c8735644a01e9b3269dd08c7a724c2">87bee55</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 17.0.0 to 17.1.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b320b6349e5e77c36fc539aca63362f9fb4a9815">b320b63</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 17.1.0 to 17.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/34ab4926d553d7f27b9d7e05bd49f438fcc53227">34ab492</a>)</li>
+<li><strong>deps-dev:</strong> bump globals from 17.3.0 to 17.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1b526e5510439912e00a8562f9522bb3140b0463">1b526e5</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.10.0 to 5.11.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/25b24f17bb6a7802114dafaf0f9bd9a1560bc20d">25b24f1</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.11.0 to 5.12.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c3f0ead9c23c04f45e8622b7343d61314991ef8e">c3f0ead</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.12.0 to 5.12.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/60588df83a931e1891dbfe588c0e2890a370589b">60588df</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.12.1 to 5.13.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/59ddc881716b22411e07f1568b9099e401a546ba">59ddc88</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.8.0 to 5.9.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e2bc5c2e458372fd9593fdf5b3f7e8ec6b73f7dc">e2bc5c2</a>)</li>
+<li><strong>deps-dev:</strong> bump jasmine-core from 5.9.0 to 5.10.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d1e326c40b2d3025cbd53744f0b92649f3cd4d7f">d1e326c</a>)</li>
+<li><strong>deps-dev:</strong> bump karma-jasmine-html-reporter from 2.1.0 to 2.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5799df10fbfa50d9f02f183f529f25e0bd40b6ad">5799df1</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.1.0 to 16.1.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a2254e7bde3c91c02168b8e89dc4aefb901c7586">a2254e7</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.1.2 to 16.1.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/508086ea8b9a7d7014388e658cb49c337e3abbf0">508086e</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.1.4 to 16.1.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/00f2ee6849ed1c8560ab8775133d87be72bbab96">00f2ee6</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.1.5 to 16.1.6 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/35ef175b11476b26fc4edc09b7aa077a312a55e1">35ef175</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.1.6 to 16.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6f4b15b8ddf79492a35fd44eaaebea4f7ce86d37">6f4b15b</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.0 to 16.2.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e74de976f969fd72d80496fe84ec5eca2fce98c8">e74de97</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.1 to 16.2.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5051bfb60cb6f2f9dc47ff26cca58257cee37567">5051bfb</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.3 to 16.2.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f0ca99c65fa985f06200c0ba6d0dd19b10c6133e">f0ca99c</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.4 to 16.2.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b288c9b196f9a349e7aea0371d0b234a889ffebb">b288c9b</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.5 to 16.2.7 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c9be5b18d48dbc740251e7a2f26c8d7316c22853">c9be5b1</a>)</li>
+<li><strong>deps-dev:</strong> bump lint-staged from 16.2.7 to 16.3.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2de357726e00d150dc6b6344a19997e071f8eb1e">2de3577</a>)</li>
+<li><strong>deps-dev:</strong> bump prettier from 3.5.3 to 3.6.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/35a6fd95e663b7fa7ef456206e74bb5bf0caaee3">35a6fd9</a>)</li>
+<li><strong>deps-dev:</strong> bump prettier from 3.6.2 to 3.7.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/aa105caaab25e23e688ee89dc9aee4929f6856e5">aa105ca</a>)</li>
+<li><strong>deps-dev:</strong> bump prettier from 3.7.1 to 3.7.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/532e973b0347e1bce28eb0c301bc62705b5badc5">532e973</a>)</li>
+<li><strong>deps-dev:</strong> bump prettier from 3.7.4 to 3.8.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/abac3a167083bc664f0676e644f90fe5c11bc005">abac3a1</a>)</li>
+<li><strong>deps-dev:</strong> bump prettier from 3.8.0 to 3.8.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cc3b016dffbb21f9cbc3200d7b59f54cd6659faf">cc3b016</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group across 1 directory with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3d9e1629a7d6bbc0be24c5a9cc57205e426b0d6d">3d9e162</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b266cee8f0e164139935cf28044441ce3bd1c312">b266cee</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e6e0037665efd7daed9714d16f690f901c3c6191">e6e0037</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2474182b78ba8ce44422b4e905145acc748cb776">2474182</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/469ea0b7702cfc54c0c40a1954912c2ecfc473a6">469ea0b</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4292042b317fce9d38bcf7ad5879e32a2b119484">4292042</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/faf01c921a97cb78413ad7cde3d0bafa1997fcc5">faf01c9</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cf4dda35c711911daa41692d527dbacc5106112f">cf4dda3</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cbd8078f250e691e794b6425b7725c8c43413827">cbd8078</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/abaa301d657b86c4de34e76856c76c4c12c84b35">abaa301</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e405f8bb0156d0303bed06d3e87657f35cdc6985">e405f8b</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a2a417b76a5297f0e4a3da4c257734c02a2f5cae">a2a417b</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a549d8b4342b1291a5d65bdc9b92a667aff32fc5">a549d8b</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7b19636f73280c5b05331e80cd59b8cb667c6174">7b19636</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5bf8a69911521edb393d9c893daf9946462d9b16">5bf8a69</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/fe949950839cbd88030b7da14b76448877a72877">fe94995</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/fb21445815861e9ebd19de658c9d6eccc0e7cf8b">fb21445</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0a2484e55c74b61db76706f7588e20cd3f8541af">0a2484e</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/695e7d558ccc36e36850f4b066351db2b368d554">695e7d5</a>)</li>
+<li><strong>deps-dev:</strong> bump the commitlint group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5a0af65c9f6e89622d9668ccf1d688ee3891243c">5a0af65</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.34.0 to 8.35.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cec06dad7934e173ffbebac7ff31054a251678d2">cec06da</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.35.0 to 8.35.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a8adb685956655524bb7120dfb4cd4bd11ca8f9c">a8adb68</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.35.1 to 8.37.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ecb0a9bf5f26f03362a6515dfc5172f364724385">ecb0a9b</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.37.0 to 8.38.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/77f16307a13975b7148f4ef3b8e4375a767f4fa2">77f1630</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.38.0 to 8.39.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f1e4d6367dbb2347a314fb140c8882cf699f6ca9">f1e4d63</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.39.0 to 8.39.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/503a2c2bb6ad2cac9d56375b2840ec9832232e93">503a2c2</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.39.1 to 8.43.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ca57c0433eeb6558b12841ac334ac545412a0971">ca57c04</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.43.0 to 8.44.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d6cdd065779dd9b6c51ccfda8bdc2bfb218ae438">d6cdd06</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.44.0 to 8.44.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/dd5871a6a99b1f64225da3825d0855f2f933f601">dd5871a</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.44.1 to 8.45.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c72fd5690426c8fc7ce071a72587c84a33c1ea8c">c72fd56</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.45.0 to 8.46.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/958528b00d4bf0f814905832354daaafb43ed405">958528b</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.46.0 to 8.46.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/85cdc8047d31a2ff1c1227868695af90a1f0c425">85cdc80</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.46.1 to 8.46.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0812ea3fbf3f867e2031037d811c9946e416d0dc">0812ea3</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.46.2 to 8.53.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/74c4902001b331b7c5eeab39c27525d1f8c9c62b">74c4902</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.54.0 to 8.55.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5906782dda57104bfd03e525ea3ce926013defc7">5906782</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.55.0 to 8.56.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4d5ca24af73dfe1655d6e87c2b49c6c81b6abf86">4d5ca24</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.56.0 to 8.56.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6c07219c64323643354846d7791a1a6f76b35860">6c07219</a>)</li>
+<li><strong>deps-dev:</strong> bump webpack-bundle-analyzer from 4.10.2 to 5.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e0da4dc9000d63f646cf2ee7fa21e6368835b2d6">e0da4dc</a>)</li>
+<li><strong>deps-dev:</strong> bump webpack-bundle-analyzer from 5.0.1 to 5.1.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/18e048d6e06dfdeea75eb317c1b4e413facb8c57">18e048d</a>)</li>
+<li><strong>deps-dev:</strong> bump webpack-bundle-analyzer from 5.1.0 to 5.1.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5a02e0f22fc80b0b02322828acf00906ad4ff9ea">5a02e0f</a>)</li>
+<li><strong>deps-dev:</strong> bump webpack-bundle-analyzer from 5.1.1 to 5.2.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/52eb88a823bbc2b07b683da92109401b9702c77f">52eb88a</a>)</li>
+<li><strong>deps:</strong> bump @angular/common from 20.3.6 to 20.3.14 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/746670f1dcc4f0f2e4121419211abcf73052b915">746670f</a>)</li>
+<li><strong>deps:</strong> bump @angular/compiler from 20.3.15 to 20.3.16 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e6930fe60f9ccd7ed8693002c3e996628d307d9a">e6930fe</a>)</li>
+<li><strong>deps:</strong> bump @angular/compiler from 20.3.6 to 20.3.15 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/483b66b0bfd894219d0719286844b9a46f961caf">483b66b</a>)</li>
+<li><strong>deps:</strong> bump @angular/core from 20.3.16 to 20.3.17 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c486b4cf64d9edf5f46d9026e144bc1b0f7d499a">c486b4c</a>)</li>
+<li><strong>deps:</strong> bump @angular/core from 20.3.6 to 20.3.16 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/44627dcd064e95ef9f2c7460f4c307de4881e43d">44627dc</a>)</li>
+<li><strong>deps:</strong> bump @codemirror/legacy-modes from 6.5.1 to 6.5.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e670fb3811fd4bff6b2f753276433b906f59e00c">e670fb3</a>)</li>
+<li><strong>deps:</strong> bump @eslint/plugin-kit from 0.3.1 to 0.3.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/90d6506d3e3e73c316f2682bf3ebe36c1dcb9495">90d6506</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/angular-fontawesome from 1.0.0 to 2.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6b9ebf64e444e750d36c4b390b3f8db864cc25a7">6b9ebf6</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/angular-fontawesome from 2.0.1 to 3.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f4d1bf7a4869acc29c56e9e24bf2512e3ac1fe61">f4d1bf7</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/free-solid-svg-icons (<a href="https://github.com/webern-unibas-ch/awg-app/commit/32c0fb998296d902e73b7ec7352b5ce15e5438bf">32c0fb9</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/free-solid-svg-icons (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e263bdc1d5bd58ece14a3f86cb645634f8005c78">e263bdc</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/free-solid-svg-icons (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1f93e80065cf1582886fb1d32626ba8b1e7d143c">1f93e80</a>)</li>
+<li><strong>deps:</strong> bump @fortawesome/free-solid-svg-icons (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1a82e4d088aa7be812b98e99255b24956acfc60d">1a82e4d</a>)</li>
+<li><strong>deps:</strong> bump @isaacs/brace-expansion from 5.0.0 to 5.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4616aed00acba0d2f817902bdacb41c42e5c190a">4616aed</a>)</li>
+<li><strong>deps:</strong> bump @ng-bootstrap/ng-bootstrap from 18.0.0 to 19.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e5199fc78f57942b3681bafa252b69fb15ce6746">e5199fc</a>)</li>
+<li><strong>deps:</strong> bump actions/checkout from 4.2.2 to 5.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1db0108a074e6e1a779e88dcbd6119046ff79745">1db0108</a>)</li>
+<li><strong>deps:</strong> bump actions/checkout from 5.0.0 to 6.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/424a7c555930fd38a9c438211b2fd7d9909ebaeb">424a7c5</a>)</li>
+<li><strong>deps:</strong> bump actions/checkout from 6.0.0 to 6.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/66a79b2ed0cdbe07c18b4b129e81b28b9bca4ddc">66a79b2</a>)</li>
+<li><strong>deps:</strong> bump actions/checkout from 6.0.1 to 6.0.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/29d46423fb6060682f54480e5387f0ae7cf52c4f">29d4642</a>)</li>
+<li><strong>deps:</strong> bump actions/dependency-review-action from 4.7.1 to 4.7.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a8a593a8e6ac21812b74d06b820d1aa85d0c6a12">a8a593a</a>)</li>
+<li><strong>deps:</strong> bump actions/dependency-review-action from 4.7.3 to 4.8.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9202f1a21cc504e731804ab372218711ff361b52">9202f1a</a>)</li>
+<li><strong>deps:</strong> bump actions/dependency-review-action from 4.8.0 to 4.8.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9642e4c60e49e70343d8856109dc41aac51c6b32">9642e4c</a>)</li>
+<li><strong>deps:</strong> bump actions/dependency-review-action from 4.8.1 to 4.8.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d98a6a6c339b07ff666c7a69074b19a2f0840a3f">d98a6a6</a>)</li>
+<li><strong>deps:</strong> bump actions/dependency-review-action from 4.8.2 to 4.8.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/bebe902fab52ffbaf765b247f2becac0d6890017">bebe902</a>)</li>
+<li><strong>deps:</strong> bump actions/download-artifact from 4.3.0 to 5.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a721c5dd8bd34d05424e6ebadad9f7b29cd6684e">a721c5d</a>)</li>
+<li><strong>deps:</strong> bump actions/download-artifact from 5.0.0 to 6.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/87b006fb164f8f00a118288fa76fb505cc39ef47">87b006f</a>)</li>
+<li><strong>deps:</strong> bump actions/download-artifact from 6.0.0 to 7.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b314326323ae55866534180477ac074206088e7f">b314326</a>)</li>
+<li><strong>deps:</strong> bump actions/download-artifact from 7.0.0 to 8.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0bdde2ba08f27fbbfbc9891b237d27a516ed48a1">0bdde2b</a>)</li>
+<li><strong>deps:</strong> bump actions/upload-artifact from 4.6.2 to 5.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/85fe8908b2f72518783e5b129b55f6eea57e7adc">85fe890</a>)</li>
+<li><strong>deps:</strong> bump actions/upload-artifact from 5.0.0 to 6.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1d7e7ed4e46c3ef98b5313d9f52594028a0bd1b7">1d7e7ed</a>)</li>
+<li><strong>deps:</strong> bump actions/upload-artifact from 6.0.0 to 7.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a662d42c288733096a874510380a8964a2ce5e06">a662d42</a>)</li>
+<li><strong>deps:</strong> bump bootstrap from 5.3.6 to 5.3.7 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/81d843e477892aa3b9acfd83c23bc2185e7d82ff">81d843e</a>)</li>
+<li><strong>deps:</strong> bump bootstrap from 5.3.7 to 5.3.8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/96c03e83b5dba3b809dd85899cf7c8949977c180">96c03e8</a>)</li>
+<li><strong>deps:</strong> bump codecov/codecov-action from 5.4.3 to 5.5.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/854a4286bd013878e6c8bcfef1c50eb1c4b1f899">854a428</a>)</li>
+<li><strong>deps:</strong> bump codecov/codecov-action from 5.5.1 to 5.5.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8e2eb1cd6430efcb20800df0fd4f7066b3b44910">8e2eb1c</a>)</li>
+<li><strong>deps:</strong> bump codemirror from 6.0.1 to 6.0.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f9e7e6fe9bed6f3cb3e8a6f8d04f3895f2385be5">f9e7e6f</a>)</li>
+<li><strong>deps:</strong> bump express from 4.21.2 to 4.22.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e01e2ee1259dae1c171f7c013c65980f28e6ed80">e01e2ee</a>)</li>
+<li><strong>deps:</strong> bump fast-xml-parser from 5.3.2 to 5.3.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/870a02caac5fd2e0ca4eec20ac2d57488bcfa4b6">870a02c</a>)</li>
+<li><strong>deps:</strong> bump fast-xml-parser from 5.3.4 to 5.3.6 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e53a33552a3e11accfd1c0d2567734e9297d83b2">e53a335</a>)</li>
+<li><strong>deps:</strong> bump fast-xml-parser from 5.3.6 to 5.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6f0fc73cb94028d517a2452686de468d2fe5a642">6f0fc73</a>)</li>
+<li><strong>deps:</strong> bump form-data from 4.0.1 to 4.0.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/90ff607d3624c7d14b11dc2ab474e372a8dc5435">90ff607</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.0 to 3.29.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c5c3c0fb7313ae3edacd0485031ed8577f54ecce">c5c3c0f</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.1 to 3.29.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e606d4426e0bbb8cbbc61d9dd8cf4c725bb11996">e606d44</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.2 to 3.29.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/eab3dfb5c65c7b4cdc734c63887c1ba64f58fb8d">eab3dfb</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.3 to 3.29.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/de5847fb6f873e0378a39cc8436d6506ec5b62ee">de5847f</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.4 to 3.29.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2ed148e247746181ef68998b0945a16ba9de7bfd">2ed148e</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.7 to 3.29.8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d90fee01d19367ec3226807fdf1eccd23fbbd646">d90fee0</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.8 to 3.29.9 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/efd21305dec8fad2b4b313216f9f183dc3fa6dd3">efd2130</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.29.9 to 3.30.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/37b45cdb5048e7d5445121651dc1d5af46bc9be6">37b45cd</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.30.2 to 3.30.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ecf2ac23c4d961d33d428e43661d067e5e588256">ecf2ac2</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.30.3 to 3.30.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e9da254634208e5b25508a74bbe93bf2a262ab21">e9da254</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.30.4 to 3.30.6 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d5a0a4eee4a1ca75088c88ad35f00c717b519d9e">d5a0a4e</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 3.30.6 to 4.30.8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1b75960a0f87adc74017b5aab65be09cbaa0d1d2">1b75960</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.30.8 to 4.30.9 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7fb065d15b73cf1936c4be2555400a23a0567d90">7fb065d</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.30.9 to 4.31.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/13e337ae7fae241e983e6232e5d2d9539573c4e4">13e337a</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.31.10 to 4.32.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f2df8b0e345e340dbd11f89fcc6bf62bf8345135">f2df8b0</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.31.5 to 4.31.6 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0673ebe48d35e74ecd0838ddc82aadcefbcd0712">0673ebe</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.31.6 to 4.31.7 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5664771a363c3890ee4e76c37fb0aa357226d012">5664771</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.31.7 to 4.31.9 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/aabd878fa4e48b6860ca790c2d61984c3f8eb451">aabd878</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.31.9 to 4.31.10 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b0202d0ed744d67fb777d597bd127b3a88a0bd21">b0202d0</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.32.0 to 4.32.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/91cbbc1302e00f759499ed50c13c34a4dfb18ac3">91cbbc1</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.32.1 to 4.32.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ea08dc37734f067cd12f65c3144a8e9e400490be">ea08dc3</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.32.2 to 4.32.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b8b71d519de24459ab44c4b206f8ef9a00324634">b8b71d5</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.32.3 to 4.32.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0fb74f1b7ee849f2567e26894e98578523f4e278">0fb74f1</a>)</li>
+<li><strong>deps:</strong> bump github/codeql-action from 4.32.4 to 4.32.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/09a3fca511bdc6a64cb97595c66a520549a5869e">09a3fca</a>)</li>
+<li><strong>deps:</strong> bump js-yaml from 4.1.0 to 4.1.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/09006f1aae1abe7dcb2a1384a13d510b65fe776a">09006f1</a>)</li>
+<li><strong>deps:</strong> bump lodash from 4.17.21 to 4.17.23 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/683d9b6242f0088d13e0d0544bc767f3a0237a5f">683d9b6</a>)</li>
+<li><strong>deps:</strong> bump n3 from 1.26.0 to 2.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c63daab83268a9aef52b7ce3245c5d6bc5f5c87e">c63daab</a>)</li>
+<li><strong>deps:</strong> bump n3 from 2.0.0 to 2.0.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b524c7da686c3bc1e4ee2e571d510255e34bcebc">b524c7d</a>)</li>
+<li><strong>deps:</strong> bump node-forge from 1.3.1 to 1.3.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5f40853796cf6ae09445503ef7065ca21f18ff8b">5f40853</a>)</li>
+<li><strong>deps:</strong> bump ossf/scorecard-action from 2.4.2 to 2.4.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/375fa045a28c1675027e8ee71d70dea187868f69">375fa04</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.3.2 to 2.3.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a38ebc95f9797d65930866a2b7272b18ea3d3e7a">a38ebc9</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.3.3 to 2.3.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/772f586a5ef3ed8351a8484f074b6318df1ff88d">772f586</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.3.4 to 2.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/09a51aced7924275983f19067bdc11420f34d082">09a51ac</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.4.0 to 2.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/33938cb357d0387c627f3f506bfb7972d2397edd">33938cb</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.4.1 to 2.4.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d7fbab71049cc832840895a929d06c4ee7cfec6c">d7fbab7</a>)</li>
+<li><strong>deps:</strong> bump softprops/action-gh-release from 2.4.2 to 2.5.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b67237e7503c2d31a4f45ad8c43bf10877016d30">b67237e</a>)</li>
+<li><strong>deps:</strong> bump SonarSource/sonarqube-scan-action from 5.2.0 to 5.3.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/db3a32d5fc0889e243050e75a51304b007db2b83">db3a32d</a>)</li>
+<li><strong>deps:</strong> bump SonarSource/sonarqube-scan-action from 5.3.0 to 5.3.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/dc9e8e643230d432344e4d356c0b116e24d0c96d">dc9e8e6</a>)</li>
+<li><strong>deps:</strong> bump SonarSource/sonarqube-scan-action from 5.3.1 to 6.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6ff881330aab297afa6bff36fc98fd0532c56a41">6ff8813</a>)</li>
+<li><strong>deps:</strong> bump SonarSource/sonarqube-scan-action from 6.0.0 to 7.0.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/32a80c97b1c81431d7d82df29be0154e5eea1345">32a80c9</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.12.1 to 2.12.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/08df0d722bee98b29823c9ff2f864632a96ee372">08df0d7</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.12.2 to 2.13.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5fec12562f11b3bdea1bfe135f9eb567b94c9cd7">5fec125</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.13.0 to 2.13.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/353027132871b8a0fd3d21f76b868891c95304ec">3530271</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.13.1 to 2.13.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ee318e9f0da0528f5dbc1c6e120e6db2bc57e8df">ee318e9</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.13.2 to 2.13.3 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1bc0175b8ea8edb5511437448a869434ba01ebfa">1bc0175</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.13.3 to 2.14.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b3ff7f8be5560fe8329ce6359b34559836fe8d5e">b3ff7f8</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.14.0 to 2.14.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/33a2f3b991a53bed7c89ac3faa7ae5bd67df91a3">33a2f3b</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.14.1 to 2.14.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b12a4a99e1fac68ae5399362e534bcf2a43b4216">b12a4a9</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.14.2 to 2.15.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a2d134b98f9dee68fe480e95fafc6503713f106c">a2d134b</a>)</li>
+<li><strong>deps:</strong> bump tar-fs from 2.1.3 to 2.1.4 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/572b6e75bcec9d89f1a68d33ff4359a6be1dd6f3">572b6e7</a>)</li>
+<li><strong>deps:</strong> bump the angular group across 1 directory with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/bb3c261407455fc2e6cf2a60c61234b5f66a8bb4">bb3c261</a>)</li>
+<li><strong>deps:</strong> bump the angular group across 1 directory with 12 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/21978db8a246e0b1fbfecfbe7e4ba8a82da8fc73">21978db</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8f036d05368f391aa87b634545b165b7723da499">8f036d0</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8a94506876d0d011950d3c39e126e89669475899">8a94506</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6db0b2137b5ddd00aaf27753167573ac4777550d">6db0b21</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c33f37df34ac9e34b226bc1952d6faaa299a2562">c33f37d</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/36dfee9a54cdba28ad0e6b7fe26372d238894c99">36dfee9</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ea99c99342085200e9dbe9dd1c0ec3eddbb141ef">ea99c99</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3b3084f7a566932494b25ae5eb654f58329883be">3b3084f</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b9fac852a1beb48f97318fb67a774f9c3c775a04">b9fac85</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 11 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/135a7bb4ce118bb19b2143684460dee0b60b4dc9">135a7bb</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 12 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6ec4225f2d2e71b707ce89d0aea475685ae1d97c">6ec4225</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 12 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b6284ac82a6751927ddd6345178b6a7ddc26dead">b6284ac</a>)</li>
+<li><strong>deps:</strong> bump the angular group with 12 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/463133fd8adbbd0da985f3425e5b2f2da7cd97df">463133f</a>)</li>
+<li><strong>deps:</strong> bump tmp from 0.2.3 to 0.2.5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2cbff9915a66250b60a732061ad792bf48410e1c">2cbff99</a>)</li>
+<li><strong>deps:</strong> bump zone.js from 0.15.1 to 0.16.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/95504399ed64231c0972c2ab6b799ef09987c5ad">9550439</a>)</li>
+<li><strong>deps:</strong> bump zone.js from 0.16.0 to 0.16.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/09e7540aeab5442c0b6a4f26ce617ce57a6e8b8c">09e7540</a>)</li>
+</ul>
 <h2><a href="https://github.com/webern-unibas-ch/awg-app/compare/v1.4.0...v1.5.0">1.5.0</a> (2025-06-16)</h2>
 <h3>Features</h3>
 <ul>
@@ -4738,6 +5085,8 @@ Sketch id&#39;s are now provided via query params instead of &quot;normal&quot; 
 
 
 
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -4763,7 +5112,7 @@ Sketch id&#39;s are now provided via query params instead of &quot;normal&quot; 
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'changelog';
             var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>

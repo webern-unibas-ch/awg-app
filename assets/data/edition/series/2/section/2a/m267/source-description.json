@@ -30,7 +30,7 @@
                         "item": "M 267",
                         "itemLinkTo": {
                             "complexId": "m267",
-                            "sheetId": "M_267_TF1"
+                            "sheetId": "M267_TF1"
                         },
                         "itemDescription": "(Kinderstück für Klavier M 267)",
                         "folios": [
@@ -105,7 +105,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "1  <br /> bis 2",
+                                            "measure": "1 <br />bis 2",
                                             "system": "Klav.",
                                             "position": "6/8–1/4",
                                             "comment": "Rasuren im oberen System und zwischen den Systemen. Ante correcturam: Legatobogen von T. 1 5/8 zu rasierter, nicht entzifferbarer Note in T. 2 1/4 und Crescendogabel von T. 1 5/8 bis T. 2 1/4."
@@ -153,9 +153,9 @@
                                             "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Klav. o.",
-                                            "position": "7/16 <br /> 1/4",
+                                            "position": "7/16 <br />1/4",
                                             "comment": "Rasur über dem System."
                                         },
                                         {
@@ -237,19 +237,19 @@
                                             "measure": "nach 7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "1–3/8",
-                                            "comment": "Diverse Eintragungen und Streichungen in beiden Systemen: <br /> ##Abbildung##"
+                                            "comment": "Diverse Eintragungen und Streichungen in beiden Systemen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "8 bis 9",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 2/4",
-                                            "comment": "Alternative Skizze über dem System: <br /> ##Abbildung##"
+                                            "position": "6/8 <br />2/4",
+                                            "comment": "Alternative Skizze über dem System: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "9",
@@ -267,7 +267,7 @@
                                             "measure": "15 bis nach 15",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Skizze über und nach der Akkolade: <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze über und nach der Akkolade: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "15",
@@ -279,7 +279,7 @@
                                             "measure": "nach 17",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu T. 16 3/4 bis T. 19 in Systemen 4–5: <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze zu T. 16 3/4 bis T. 19 in Systemen 4–5: <br />##Abbildung##"
                                         }
                                     ]
                                 }

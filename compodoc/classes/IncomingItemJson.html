@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content class">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -216,7 +234,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -288,7 +306,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -360,7 +378,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/incoming-item-json.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -410,7 +428,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { KnoraIRI } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+
+import { KnoraIRI } from &#x27;@awg-shared/api-objects&#x27;;
 import { ResinfoJson } from &#x27;./resinfo-json&#x27;;
 
 /**

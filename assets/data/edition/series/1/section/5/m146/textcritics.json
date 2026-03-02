@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_146_TF1",
+            "id": "M146_TF1",
             "label": "M 146 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von „Das lockere Saatgefilde“ M 146 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
@@ -103,7 +103,7 @@
                                 "measure": "12",
                                 "system": "Ges.",
                                 "position": "6/8",
-                                "comment": "Anfang des Bogens versetzt von Anfang T. 13 (Fortführung eines Bogens nach Seitenwechsel).  <br /> Text: Großschreibung <em>Das</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                                "comment": "Anfang des Bogens versetzt von Anfang T. 13 (Fortführung eines Bogens nach Seitenwechsel). <br />Text: Großschreibung <em>Das</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                             },
                             {
                                 "svgGroupId": "g571",

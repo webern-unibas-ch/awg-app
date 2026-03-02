@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_23_TF1",
+            "id": "M23_TF1",
             "label": "M 23 Textfassung 1",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 23 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthält Skizzen.",
@@ -34,7 +34,7 @@
             }
         },
         {
-            "id": "M_23_TF2",
+            "id": "M23_TF2",
             "label": "M 23 Textfassung 2",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 23 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_C'})\"><strong>C</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm23', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> bezieht sich auf Textfassung 1.",
@@ -96,10 +96,10 @@
             }
         },
         {
-            "id": "M_23_Sk1",
+            "id": "M23_Sk1",
             "label": "M 23 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF1'})\">Textfassung 1</a>, die die frühere Version des Variations-Themas vorstellt."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF1'})\">Textfassung 1</a>, die die frühere Version des Variations-Themas vorstellt."
             ],
             "commentary": {
                 "preamble": "",
@@ -140,7 +140,7 @@
                                 "measure": "7",
                                 "system": "5",
                                 "position": "4/4",
-                                "comment": "Unterstimmenschicht: Viertelnote [b]es<sup>1</sup> gestrichen."
+                                "comment": "Unterstimmenschicht: Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g13",
@@ -214,23 +214,23 @@
                     "svgGroupId": "g11",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk28_1"
+                        "sheetId": "M22_Sk28_1"
                     }
                 },
                 {
                     "svgGroupId": "g10",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk31b"
+                        "sheetId": "M22_Sk31b"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk2",
+            "id": "M23_Sk2",
             "label": "M 23 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2a'})\">erste Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk2</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2a'})\">erste Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -261,9 +261,9 @@
                             },
                             {
                                 "svgGroupId": "g16",
-                                "measure": "2 </br>bis 3",
+                                "measure": "2 <br />bis 3",
                                 "system": "18–19",
-                                "position": "letzte Note </br>1. Note",
+                                "position": "letzte Note <br />1. Note",
                                 "comment": "Mittelstimmenschicht: Triolenachtelnote g mitsamt Balkierung zu vorangehendem c<sup>1</sup> im oberen System und Ligatur zu T. 3 1. Note gestrichen."
                             },
                             {
@@ -394,23 +394,23 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk32_1"
+                        "sheetId": "M22_Sk32_1"
                     }
                 },
                 {
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk32_1_1"
+                        "sheetId": "M22_Sk32_1_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk3",
+            "id": "M23_Sk3",
             "label": "M 23 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2c'})\">zweite Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk3</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2c'})\">zweite Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -508,10 +508,10 @@
             }
         },
         {
-            "id": "M_23_Sk4",
+            "id": "M23_Sk4",
             "label": "M 23 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2d'})\">dritte Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk4</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2d'})\">dritte Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -602,10 +602,10 @@
             }
         },
         {
-            "id": "M_23_Sk5",
+            "id": "M23_Sk5",
             "label": "M 23 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2e'})\">vierte Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF2'})\">Textfassung 2</a>."
+                "<strong>Sk5</strong> entwirft die <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2e'})\">vierte Variation</a> für die Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -668,7 +668,7 @@
             }
         },
         {
-            "id": "M_23_Sk6",
+            "id": "M23_Sk6",
             "label": "M 23 Sk6",
             "evaluations": [
                 "<strong>Sk6</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -709,20 +709,20 @@
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk7"
+                        "sheetId": "M23_Sk7"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk8"
+                        "sheetId": "M23_Sk8"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk7",
+            "id": "M23_Sk7",
             "label": "M 23 Sk7",
             "evaluations": [
                 "<strong>Sk7</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -749,20 +749,20 @@
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk6"
+                        "sheetId": "M23_Sk6"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk8"
+                        "sheetId": "M23_Sk8"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk8",
+            "id": "M23_Sk8",
             "label": "M 23 Sk8",
             "evaluations": [
                 "<strong>Sk8</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -789,20 +789,20 @@
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk6"
+                        "sheetId": "M23_Sk6"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk7"
+                        "sheetId": "M23_Sk7"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk9",
+            "id": "M23_Sk9",
             "label": "M 23 Sk9",
             "evaluations": [
                 "<strong>Sk9</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -847,7 +847,7 @@
             }
         },
         {
-            "id": "M_23_Sk10",
+            "id": "M23_Sk10",
             "label": "M 23 Sk10",
             "evaluations": [
                 "<strong>Sk10</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -909,13 +909,13 @@
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk13"
+                        "sheetId": "M23_Sk13"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk11",
+            "id": "M23_Sk11",
             "label": "M 23 Sk11",
             "evaluations": [
                 "<strong>Sk11</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -942,13 +942,13 @@
                     "svgGroupId": "g8",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk14"
+                        "sheetId": "M23_Sk14"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk12",
+            "id": "M23_Sk12",
             "label": "M 23 Sk12",
             "evaluations": [
                 "<strong>Sk12</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -982,13 +982,13 @@
                     "svgGroupId": "g8",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk15"
+                        "sheetId": "M23_Sk15"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk13",
+            "id": "M23_Sk13",
             "label": "M 23 Sk13",
             "evaluations": [
                 "<strong>Sk13</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -1029,13 +1029,13 @@
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk10"
+                        "sheetId": "M23_Sk10"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk14",
+            "id": "M23_Sk14",
             "label": "M 23 Sk14",
             "evaluations": [
                 "<strong>Sk14</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -1069,13 +1069,13 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk11"
+                        "sheetId": "M23_Sk11"
                     }
                 }
             ]
         },
         {
-            "id": "M_23_Sk15",
+            "id": "M23_Sk15",
             "label": "M 23 Sk15",
             "evaluations": [
                 "<strong>Sk15</strong> skizziert im Ansatz eine weitere mögliche Variation für die Studienkomposition für Klavier M 23."
@@ -1102,7 +1102,7 @@
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m23",
-                        "sheetId": "M_23_Sk12"
+                        "sheetId": "M23_Sk12"
                     }
                 }
             ]

@@ -12,7 +12,7 @@
             "id": "source_Aa",
             "siglum": "A",
             "siglumAddendum": "a",
-            "type": "Skizzen zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>/<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">2</a>.",
+            "type": "Skizzen zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>/<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>.",
             "location": "",
             "physDesc": {
                 "conditions": [
@@ -86,7 +86,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1c'})\"><strong>Sk1</strong></a>)"
+                    "<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1c'})\"><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -97,7 +97,7 @@
                         "item": "M 212 Sk1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_212_Sk1a"
+                            "sheetId": "M212_Sk1a"
                         },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212)",
                         "folios": [
@@ -110,21 +110,21 @@
                                         {
                                             "system": "2–4",
                                             "measure": "1–6",
-                                            "linkTo": "M_212_Sk1a"
+                                            "linkTo": "M212_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–9",
                                             "measure": "7–12",
-                                            "linkTo": "M_212_Sk1b"
+                                            "linkTo": "M212_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–14",
                                             "measure": "13–17",
-                                            "linkTo": "M_212_Sk1c"
+                                            "linkTo": "M212_Sk1c"
                                         }
                                     ]
                                 ]
@@ -138,14 +138,14 @@
                                         {
                                             "system": "6–10",
                                             "measure": "18–22",
-                                            "linkTo": "M_212_Sk1d"
+                                            "linkTo": "M212_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–15",
                                             "measure": "23–24",
-                                            "linkTo": "M_212_Sk1e"
+                                            "linkTo": "M212_Sk1e"
                                         }
                                     ]
                                 ]
@@ -156,9 +156,9 @@
                         "item": "M 212 Sk2",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_212_Sk2"
+                            "sheetId": "M212_Sk2"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -180,9 +180,9 @@
                         "item": "M 212 Sk3",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_212_Sk3"
+                            "sheetId": "M212_Sk3"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -204,9 +204,9 @@
                         "item": "M 212 Sk5",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_212_Sk5"
+                            "sheetId": "M212_Sk5"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -228,9 +228,9 @@
                         "item": "M 212 Sk4",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_212_Sk4"
+                            "sheetId": "M212_Sk4"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -315,7 +315,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>9</em>[→<em>10.</em>] <em>IV. 1917 | Wien</em> auf Bl. 1<sup>v</sup> System 9–10 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1g'})\"><strong>Sk1</strong></a>)"
+                    "<em>9</em>[→<em>10.</em>] <em>IV. 1917 | Wien</em> auf Bl. 1<sup>v</sup> System 9–10 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1g'})\"><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -326,7 +326,7 @@
                         "item": "M 217 Sk1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_217_Sk1a"
+                            "sheetId": "M217_Sk1a"
                         },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
@@ -339,14 +339,14 @@
                                         {
                                             "system": "1–5",
                                             "measure": "1–5",
-                                            "linkTo": "M_217_Sk1a"
+                                            "linkTo": "M217_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–10",
                                             "measure": "6–10",
-                                            "linkTo": "M_217_Sk1b"
+                                            "linkTo": "M217_Sk1b"
                                         }
                                     ]
                                 ]
@@ -360,21 +360,21 @@
                                         {
                                             "system": "1–4",
                                             "measure": "11–15",
-                                            "linkTo": "M_217_Sk1c"
+                                            "linkTo": "M217_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–9b",
                                             "measure": "16–19, {20A–21A}",
-                                            "linkTo": "M_217_Sk1d"
+                                            "linkTo": "M217_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9a/c–11",
                                             "measure": "{22A–23A}, 20B–22B",
-                                            "linkTo": "M_217_Sk1e"
+                                            "linkTo": "M217_Sk1e"
                                         }
                                     ]
                                 ]
@@ -388,14 +388,14 @@
                                         {
                                             "system": "2–4",
                                             "measure": "23B–27A",
-                                            "linkTo": "M_217_Sk1f"
+                                            "linkTo": "M217_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–10a",
                                             "measure": "27B",
-                                            "linkTo": "M_217_Sk1g"
+                                            "linkTo": "M217_Sk1g"
                                         }
                                     ]
                                 ]
@@ -406,7 +406,7 @@
                         "item": "M 217 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_217_Sk1_1"
+                            "sheetId": "M217_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
@@ -430,7 +430,7 @@
                         "item": "M 217 Sk1.2",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_217_Sk1_2"
+                            "sheetId": "M217_Sk1_2"
                         },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
@@ -541,7 +541,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1i'})\"><strong>Sk1</strong></a>)"
+                    "<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1i'})\"><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -552,7 +552,7 @@
                         "item": "M 213 Sk1.4.3",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_4_3"
+                            "sheetId": "M213_Sk1_4_3"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -576,7 +576,7 @@
                         "item": "M 213 Sk1.4.2",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_4_2"
+                            "sheetId": "M213_Sk1_4_2"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -600,7 +600,7 @@
                         "item": "M 213 Sk1.4.1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_4_1"
+                            "sheetId": "M213_Sk1_4_1"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -624,7 +624,7 @@
                         "item": "M 213 Sk1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1a"
+                            "sheetId": "M213_Sk1a"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -637,21 +637,21 @@
                                         {
                                             "system": "1–6",
                                             "measure": "1–3, {4A}, 4B–6",
-                                            "linkTo": "M_213_Sk1a"
+                                            "linkTo": "M213_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–10",
                                             "measure": "{7A}, 7B–13",
-                                            "linkTo": "M_213_Sk1b"
+                                            "linkTo": "M213_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–16",
                                             "measure": "14–17, {18A–20A}",
-                                            "linkTo": "M_213_Sk1c"
+                                            "linkTo": "M213_Sk1c"
                                         }
                                     ]
                                 ]
@@ -665,21 +665,21 @@
                                         {
                                             "system": "1–4",
                                             "measure": "18B–20B, 21, {22A}, 22B",
-                                            "linkTo": "M_213_Sk1d"
+                                            "linkTo": "M213_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–13b",
                                             "measure": "23–28",
-                                            "linkTo": "M_213_Sk1e"
+                                            "linkTo": "M213_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12a–15a",
                                             "measure": "29A–32A",
-                                            "linkTo": "M_213_Sk1f"
+                                            "linkTo": "M213_Sk1f"
                                         }
                                     ]
                                 ]
@@ -693,21 +693,21 @@
                                         {
                                             "system": "1–4",
                                             "measure": "{29B–31B}, 29C–31C",
-                                            "linkTo": "M_213_Sk1g"
+                                            "linkTo": "M213_Sk1g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–11",
                                             "measure": "32B, 33–38",
-                                            "linkTo": "M_213_Sk1h"
+                                            "linkTo": "M213_Sk1h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13a–15a",
                                             "measure": "39–40",
-                                            "linkTo": "M_213_Sk1i"
+                                            "linkTo": "M213_Sk1i"
                                         }
                                     ]
                                 ]
@@ -718,7 +718,7 @@
                         "item": "M 213 Sk1.5",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_5"
+                            "sheetId": "M213_Sk1_5"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -742,7 +742,7 @@
                         "item": "M 213 Sk1.6",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_6"
+                            "sheetId": "M213_Sk1_6"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -766,7 +766,7 @@
                         "item": "M 213 Sk1.3",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_3"
+                            "sheetId": "M213_Sk1_3"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -790,7 +790,7 @@
                         "item": "M 213 Sk1.2",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_2"
+                            "sheetId": "M213_Sk1_2"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -814,7 +814,7 @@
                         "item": "M 213 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_213_Sk1_1"
+                            "sheetId": "M213_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
@@ -953,7 +953,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>Wien | 31. III. 1917</em> auf Bl. 3<sup>r</sup> System 5–6 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_Sk1f'})\"><strong>Sk1</strong></a>)"
+                    "<em>Wien | 31. III. 1917</em> auf Bl. 3<sup>r</sup> System 5–6 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_Sk1f'})\"><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -964,7 +964,7 @@
                         "item": "M 216 Sk1",
                         "itemLinkTo": {
                             "complexId": "op12",
-                            "sheetId": "M_216_Sk1a"
+                            "sheetId": "M216_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Gleich und Gleich [„Ein Blumenglöckchen“] M 216)",
                         "folios": [
@@ -977,14 +977,14 @@
                                         {
                                             "system": "2–4",
                                             "measure": "1–5",
-                                            "linkTo": "M_216_Sk1a"
+                                            "linkTo": "M216_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–9",
                                             "measure": "6–10",
-                                            "linkTo": "M_216_Sk1b"
+                                            "linkTo": "M216_Sk1b"
                                         }
                                     ]
                                 ]
@@ -998,14 +998,14 @@
                                         {
                                             "system": "1–3",
                                             "measure": "11–12, {13A–14A}",
-                                            "linkTo": "M_216_Sk1c"
+                                            "linkTo": "M216_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–6",
                                             "measure": "{15A}, 13B–15B",
-                                            "linkTo": "M_216_Sk1d"
+                                            "linkTo": "M216_Sk1d"
                                         }
                                     ]
                                 ]
@@ -1019,14 +1019,14 @@
                                         {
                                             "system": "1–3",
                                             "measure": "16–19",
-                                            "linkTo": "M_216_Sk1e"
+                                            "linkTo": "M216_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–6",
                                             "measure": "20–21",
-                                            "linkTo": "M_216_Sk1f"
+                                            "linkTo": "M216_Sk1f"
                                         }
                                     ]
                                 ]
@@ -1040,7 +1040,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">2</a>.",
+            "type": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1101,7 +1101,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">2</a>",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1168,7 +1168,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1225,7 +1225,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1278,7 +1278,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
+            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1435,7 +1435,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1736,7 +1736,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -1803,7 +1803,7 @@
                         "label": "Korrekturen in <strong>C<sup>a</sup></strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1869,7 +1869,7 @@
                                             "comment": "Pedal-Aufhebung gestrichen mit blauer Tinte."
                                         },
                                         {
-                                            "measure": "11 <br /> bis 12",
+                                            "measure": "11 <br />bis 12",
                                             "system": "",
                                             "position": "",
                                             "comment": "<em>sehr langsam</em> in T. 11 3/4 gestrichen und geändert zu <em>rit.</em> (T. 11), <em>molto</em> (T. 12) und Geltungsstrichelung mit blauer Tinte."
@@ -1878,7 +1878,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
+                                            "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /><em>zögernd</em> gestrichen mit blauer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -1926,12 +1926,12 @@
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "Auf Rasur. <br /> (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
+                                            "comment": "Auf Rasur. <br />(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Ges.",
-                                            "position": "4. Note <br /> 2/8",
+                                            "position": "4. Note <br />2/8",
                                             "comment": "Crescendogabel ergänzt mit blauer Tinte."
                                         },
                                         {
@@ -1989,9 +1989,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> mit blauer Tinte."
                                         },
                                         {
-                                            "measure": "21 <br /> bis 22",
+                                            "measure": "21 <br />bis 22",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 2/4",
+                                            "position": "1. Note <br />2/4",
                                             "comment": "Legatobogen ergänzt mit Bleistift."
                                         },
                                         {
@@ -2019,7 +2019,7 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit blauer Tinte."
                                         },
                                         {
-                                            "measure": "22 <br /> bis 23",
+                                            "measure": "22 <br />bis 23",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Gis<sub>1</sub>/Cis geändert zu As<sub>1</sub>/Des."
@@ -2055,7 +2055,7 @@
                         "id": "source_Cd_corr",
                         "label": "Korrekturen in <strong>C<sup>d</sup></strong>",
                         "evaluations": [
-                            "<strong>C<sup>d</sup></strong> weist drei voneinander unterscheidbare Korrekturschichten auf: mit Tinte ggf. auf Rasur (Korrekturen 1), mit Bleistift (Korrekturen 2) und mit Kopierstift (Korrekturen 3). Der Zustand vor und nach Korrekturen 1 ist nicht eindeutig entzifferbar, post correcturam entspricht er in weiten Teilen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a> von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216. Korrekturen 2 und 3 betreffen die Überarbeitung zu der in <strong>F</strong> etablierten <span class='link-todo'>Textfassung 2</span>. Auf eine tabellarische Darstellung der verschiedenen Korrekturschichten wird verzichtet, da sie auf Grund der zahlreichen Abweichungen der Grundschicht zu den beiden edierten Textfassungen nicht praktikabel ist."
+                            "<strong>C<sup>d</sup></strong> weist drei voneinander unterscheidbare Korrekturschichten auf: mit Tinte ggf. auf Rasur (Korrekturen 1), mit Bleistift (Korrekturen 2) und mit Kopierstift (Korrekturen 3). Der Zustand vor und nach Korrekturen 1 ist nicht eindeutig entzifferbar, post correcturam entspricht er in weiten Teilen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a> von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216. Korrekturen 2 und 3 betreffen die Überarbeitung zu der in <strong>F</strong> etablierten <span class='link-todo'>Textfassung 2</span>. Auf eine tabellarische Darstellung der verschiedenen Korrekturschichten wird verzichtet, da sie auf Grund der zahlreichen Abweichungen der Grundschicht zu den beiden edierten Textfassungen nicht praktikabel ist."
                         ],
                         "commentary": {
                             "preamble": "",
@@ -2069,7 +2069,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>.",
+            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>.",
             "location": "GB-Lbl, O. W. Neighbour Collection, MS Mus. 1810/163.",
             "physDesc": {
                 "conditions": [
@@ -2129,7 +2129,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2189,14 +2189,14 @@
                             }
                         ]
                     }
-                ], 
-                 "corrections": [
+                ],
+                "corrections": [
                     {
                         "id": "source_D_corr",
                         "label": "Korrekturen in <strong>D</strong> (mit Tinte auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2268,9 +2268,9 @@
                                             "comment": "<em>tempo</em> [...] auf Rasur."
                                         },
                                         {
-                                            "measure": "18 <br /> bis 20",
+                                            "measure": "18 <br />bis 20",
                                             "system": "Ges.",
-                                            "position": "3. Note <br /> 1/8",
+                                            "position": "3. Note <br />1/8",
                                             "comment": "Legatobogen zunächst nur bis T. 19 1. Note (rasiert)."
                                         },
                                         {
@@ -2303,7 +2303,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.",
+            "type": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "physDesc": {
                 "conditions": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
@@ -2324,7 +2324,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>",
+                        "itemDescription": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2370,7 +2370,7 @@
             "id": "source_EH",
             "siglum": "E",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>.",
+            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>.",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
             "physDesc": {
                 "conditions": [
@@ -2382,7 +2382,7 @@
                         "label": "Korrekturen in <strong>E<sup>H</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2400,9 +2400,9 @@
                                             "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
                                         },
                                         {
-                                            "measure": "1<br />bis 2",
+                                            "measure": "1 <br />bis 2",
                                             "system": "Klav. o.",
-                                            "position": "1/8<br />4/8",
+                                            "position": "1/8 <br />4/8",
                                             "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
                                         },
                                         {
@@ -2424,9 +2424,9 @@
                                             "comment": "Tenutostrich hinzugefügt."
                                         },
                                         {
-                                            "measure": "3<br />bis 5",
+                                            "measure": "3 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "6/8<br />3/8",
+                                            "position": "6/8 <br />3/8",
                                             "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
                                         },
                                         {
@@ -2448,9 +2448,9 @@
                                             "comment": "Crescendogabel hinzugefügt."
                                         },
                                         {
-                                            "measure": "4<br />bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "3/8<br />3/8",
+                                            "position": "3/8 <br />3/8",
                                             "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
                                         },
                                         {
@@ -2472,9 +2472,9 @@
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
-                                            "measure": "5<br />bis 7",
+                                            "measure": "5 <br />bis 7",
                                             "system": "Ges.",
-                                            "position": "4/8<br />1/4",
+                                            "position": "4/8 <br />1/4",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -2508,21 +2508,21 @@
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
-                                            "measure": "7<br />bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "2. Note<br />1. Note",
+                                            "position": "2. Note <br />1. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "7<br />bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "3. Note<br />nach 1/4",
+                                            "position": "3. Note <br />nach 1/4",
                                             "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
                                         },
                                         {
-                                            "measure": "7<br />bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "3. Note<br />3/8",
+                                            "position": "3. Note <br />3/8",
                                             "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
                                         },
                                         {
@@ -2532,15 +2532,15 @@
                                             "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
                                         },
                                         {
-                                            "measure": "8<br />bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Ges.",
-                                            "position": "3/8<br />2. Note",
+                                            "position": "3/8 <br />2. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "8<br />bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Ges.",
-                                            "position": "4/8<br />2. Note",
+                                            "position": "4/8 <br />2. Note",
                                             "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
                                         },
                                         {
@@ -2562,21 +2562,21 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "9<br />bis 11",
+                                            "measure": "9 <br />bis 11",
                                             "system": "Ges.",
-                                            "position": "3. Note<br />1/4",
+                                            "position": "3. Note <br />1/4",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "9<br />bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Klav. u.",
-                                            "position": "4/8<br />1/4",
+                                            "position": "4/8 <br />1/4",
                                             "comment": "Legatobogen gestrichen."
                                         },
                                         {
-                                            "measure": "9<br />bis 11",
+                                            "measure": "9 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "4/8<br />1/4",
+                                            "position": "4/8 <br />1/4",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -2586,9 +2586,9 @@
                                             "comment": "Tenutostriche gestrichen."
                                         },
                                         {
-                                            "measure": "10<br />bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "1. Note<br />2. Note",
+                                            "position": "1. Note <br />2. Note",
                                             "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
                                         },
                                         {
@@ -2598,9 +2598,9 @@
                                             "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
                                         },
                                         {
-                                            "measure": "10<br />bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "2. Note<br />2. Note",
+                                            "position": "2. Note <br />2. Note",
                                             "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
                                         },
                                         {
@@ -2646,9 +2646,9 @@
                                             "comment": "Fermate gestrichen."
                                         },
                                         {
-                                            "measure": "13<br />bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Ges.",
-                                            "position": "2/8<br /> 2. Note?",
+                                            "position": "2/8 <br />2. Note?",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -2688,13 +2688,13 @@
                                             "comment": "Decrescendogabel gestrichen."
                                         },
                                         {
-                                            "measure": "14<br />bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/8",
                                             "comment": "Anfang des Bogens geändert von T. 14 3/8."
                                         },
                                         {
-                                            "measure": "14<br />bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/8",
                                             "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
@@ -2712,7 +2712,7 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                                         },
                                         {
-                                            "measure": "15<br />bis 16",
+                                            "measure": "15 <br />bis 16",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/4",
                                             "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
@@ -2742,9 +2742,9 @@
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
-                                            "measure": "17<br />bis 18",
+                                            "measure": "17 <br />bis 18",
                                             "system": "Ges.",
-                                            "position": "1/8<br />2. Note",
+                                            "position": "1/8 <br />2. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -2762,7 +2762,7 @@
                                         {
                                             "measure": "18",
                                             "system": "Ges.",
-                                            "position": "Taktanfang<br />bis 2. Note",
+                                            "position": "Taktanfang <br />bis 2. Note",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
@@ -2778,7 +2778,7 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "18<br />bis 21",
+                                            "measure": "18 <br />bis 21",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "Bogen hinzugefügt."
@@ -2808,7 +2808,7 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                         },
                                         {
-                                            "measure": "21<br />bis 22",
+                                            "measure": "21 <br />bis 22",
                                             "system": "Klav.",
                                             "position": "2/4",
                                             "comment": "Decrescendogabel hinzugefügt."
@@ -3286,15 +3286,15 @@
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
-                                            "measure": "5 <br /> bis 6",
+                                            "measure": "5 <br />bis 6",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
-                                            "measure": "5 <br /> bis 7",
+                                            "measure": "5 <br />bis 7",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 1/4",
+                                            "position": "4/8 <br />1/4",
                                             "comment": "Zwei Bögen von T. 5 4/8 bis T. 6 4/16 und von T. 6 3. Note bis T. 7 1/4 über dem System rasiert."
                                         },
                                         {
@@ -3310,9 +3310,9 @@
                                             "comment": "Triolenklammer hinzugefügt mit rotem Buntstift."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 2. Note",
+                                            "position": "1. Note <br />2. Note",
                                             "comment": "Legatobogen auf Rasur."
                                         },
                                         {
@@ -3322,9 +3322,9 @@
                                             "comment": "Rasur unter dem System. Ende des Bogen von T. 9 letzte Note?"
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "2. Note <br /> 2. Note",
+                                            "position": "2. Note <br />2. Note",
                                             "comment": "Decrescendogabel, <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> auf Rasur."
                                         },
                                         {
@@ -3364,7 +3364,7 @@
                                             "comment": "Rasur rechts neben g. Ante correcturam: Punktierung?"
                                         },
                                         {
-                                            "measure": "21 <br /> bis 22",
+                                            "measure": "21 <br />bis 22",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Bogen über dem System rasiert."
@@ -3384,13 +3384,13 @@
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
-                                            "comment": "g<sup>2</sup> auf Rasur.  <br /> Ende der Decrescendogabel auf Rasur."
+                                            "comment": "g<sup>2</sup> auf Rasur. <br />Ende der Decrescendogabel auf Rasur."
                                         },
                                         {
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur. <br /> Rasur am Notenhals."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur. <br />Rasur am Notenhals."
                                         },
                                         {
                                             "measure": "5",
@@ -3453,7 +3453,7 @@
                                             "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst in T. 8 4/8?"
                                         },
                                         {
-                                            "measure": "12 <br /> bis 13",
+                                            "measure": "12 <br />bis 13",
                                             "system": "Klav.",
                                             "position": "letzte Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel, <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> auf Rasur. Ante correcturam: Decrescendogabel zuerst über den Taktstrich?"
@@ -3471,9 +3471,9 @@
                                             "comment": "Notenhals auf Rasur."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 16",
+                                            "measure": "14 <br />bis 16",
                                             "system": "Klav. u.",
-                                            "position": "2/4 <br /> 2/4",
+                                            "position": "2/4 <br />2/4",
                                             "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 16 bis 17.)"
                                         },
                                         {
@@ -3483,9 +3483,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[mp]')}}</span>, Crescendogabel auf Rasur."
                                         },
                                         {
-                                            "measure": "16 <br /> bis 17",
+                                            "measure": "16 <br />bis 17",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 2/4",
+                                            "position": "3/4 <br />2/4",
                                             "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 14 bis 16.)"
                                         },
                                         {
@@ -3519,9 +3519,9 @@
                                             "comment": "<em>?</em> mit rotem Buntstift: Text fehlt."
                                         },
                                         {
-                                            "measure": "18 <br /> bis 19",
+                                            "measure": "18 <br />bis 19",
                                             "system": "Klav. u.",
-                                            "position": "1/16 <br /> 3/4",
+                                            "position": "1/16 <br />3/4",
                                             "comment": "Rasur über dem System. Ante correcturam: Bogen?"
                                         },
                                         {
@@ -3531,9 +3531,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, mit schwarzer Tinte nachgezogen."
                                         },
                                         {
-                                            "measure": "18 <br /> bis 19",
+                                            "measure": "18 <br />bis 19",
                                             "system": "Klav. o.",
-                                            "position": "3/4 <br /> 3. Note",
+                                            "position": "3/4 <br />3. Note",
                                             "comment": "Decrescendogabel auf Rasur."
                                         },
                                         {
@@ -3543,10 +3543,10 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und Decrescendogabel mit schwarzer Tinte überschreiben Decrescendogabel mit Bleitstift."
                                         },
                                         {
-                                            "measure": "19 <br /> bis 22",
+                                            "measure": "19 <br />bis 22",
                                             "system": "Ges.",
-                                            "position": "3/4 <br /> 2/4",
-                                            "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4.  <br /> (Decrescendogabel in T. 22 auf dieser Rasur.)"
+                                            "position": "3/4 <br />2/4",
+                                            "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4. <br />(Decrescendogabel in T. 22 auf dieser Rasur.)"
                                         },
                                         {
                                             "measure": "20",
@@ -3576,7 +3576,7 @@
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Auf Rasur. (Untersatz geändert.) <br /> <span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                            "comment": "Auf Rasur. (Untersatz geändert.) <br /><span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, nachgezogen mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "22",
@@ -3591,7 +3591,7 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, mit schwarzer Tinte nachgezogen."
                                         },
                                         {
-                                            "measure": "23 <br /> bis 24",
+                                            "measure": "23 <br />bis 24",
                                             "system": "Ges., Klav.",
                                             "position": "Taktanfang",
                                             "comment": "Auf Rasur. (Untersatzkorrektur?)"
@@ -3603,15 +3603,15 @@
                                             "comment": "Rasuren unter dem System."
                                         },
                                         {
-                                            "measure": "25 <br /> bis 26",
+                                            "measure": "25 <br />bis 26",
                                             "system": "Klav. o.",
-                                            "position": "3/8 <br /> 2. Note",
+                                            "position": "3/8 <br />2. Note",
                                             "comment": "Rasuren über dem System. Ante correcturam: Bogen bis T. 26 2. Note?"
                                         },
                                         {
-                                            "measure": "25 <br /> bis 26",
+                                            "measure": "25 <br />bis 26",
                                             "system": "Klav.",
-                                            "position": "2/4 <br /> Taktende",
+                                            "position": "2/4 <br />Taktende",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
@@ -3692,9 +3692,9 @@
                                             "comment": "Rasuren über den Noten."
                                         },
                                         {
-                                            "measure": "15 <br /> bis 16",
+                                            "measure": "15 <br />bis 16",
                                             "system": "Ges.",
-                                            "position": "3/8 <br /> Taktende",
+                                            "position": "3/8 <br />Taktende",
                                             "comment": "Rasur unter den Noten. Ante correcturam: Bogen unter den Noten."
                                         },
                                         {
@@ -3758,9 +3758,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
-                                            "measure": "24 <br /> bis 25",
+                                            "measure": "24 <br />bis 25",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> letzte Note",
+                                            "position": "1. Note <br />letzte Note",
                                             "comment": "Rasuren über dem System. Decrescendogabel in T. 25 3.–4. Note auf Rasur."
                                         },
                                         {
@@ -3785,7 +3785,7 @@
                                             "measure": "26",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> <em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
+                                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>. <br /><em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
                                         },
                                         {
                                             "measure": "26",
@@ -3812,9 +3812,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
-                                            "measure": "27 <br /> bis 28",
+                                            "measure": "27 <br />bis 28",
                                             "system": "Ges.",
-                                            "position": "2/16 <br /> 2/8",
+                                            "position": "2/16 <br />2/8",
                                             "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 27 2/16 bis T. 28 2/8."
                                         },
                                         {
@@ -3824,9 +3824,9 @@
                                             "comment": "Bogen auf Rasur."
                                         },
                                         {
-                                            "measure": "28 <br /> bis 29",
+                                            "measure": "28 <br />bis 29",
                                             "system": "Ges.",
-                                            "position": "3. Note <br /> 2. Note",
+                                            "position": "3. Note <br />2. Note",
                                             "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 28 3. Note bis T. 29 2. Note."
                                         },
                                         {
@@ -3857,7 +3857,7 @@
                                             "measure": "34",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> Geltungsstrichelung auf Rasur."
+                                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>. <br />Geltungsstrichelung auf Rasur."
                                         },
                                         {
                                             "measure": "34",
@@ -3901,27 +3901,27 @@
                                             "comment": "Viertelpausen und Fermate zu 2/4 hinzugefügt mit Bleistift."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "e/g auf Rasur."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Klav. o.",
-                                            "position": "2/8 <br /> 2/8",
-                                            "comment": "Notenköpfe mit Bleistift nachgezogen.  <br /> Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
+                                            "position": "2/8 <br />2/8",
+                                            "comment": "Notenköpfe mit Bleistift nachgezogen. <br />Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Ges.",
-                                            "position": "2/4 <br /> 1. Note",
+                                            "position": "2/4 <br />1. Note",
                                             "comment": "Rasur über dem System. Ante correcturam: Bogen und Decrescendogabel überschneiden sich."
                                         },
                                         {

@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_38_TF1",
+            "id": "M38_TF1",
             "label": "M 38 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 38 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen.",
@@ -48,10 +48,10 @@
             }
         },
         {
-            "id": "M_38_Sk1",
+            "id": "M38_Sk1",
             "label": "M 38 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -100,10 +100,10 @@
             }
         },
         {
-            "id": "M_38_Sk2",
+            "id": "M38_Sk2",
             "label": "M 38 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -127,23 +127,23 @@
                     "svgGroupId": "g1",
                     "linkTo": {
                         "complexId": "m37",
-                        "sheetId": "M_37_Sk1"
+                        "sheetId": "M37_Sk1"
                     }
                 },
                 {
                     "svgGroupId": "g2",
                     "linkTo": {
                         "complexId": "m37",
-                        "sheetId": "M_37_Sk2"
+                        "sheetId": "M37_Sk2"
                     }
                 }
             ]
         },
         {
-            "id": "M_38_Sk3",
+            "id": "M38_Sk3",
             "label": "M 38 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -251,9 +251,9 @@
                             },
                             {
                                 "svgGroupId": "g1426",
-                                "measure": "{11A}<br />bis {12A}",
+                                "measure": "{11A} <br />bis {12A}",
                                 "system": "1–2",
-                                "position": "1/8<br />2/8",
+                                "position": "1/8 <br />2/8",
                                 "comment": "Noten gestrichen."
                             },
                             {

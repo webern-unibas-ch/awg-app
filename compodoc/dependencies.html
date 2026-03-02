@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -97,46 +111,50 @@
 
 
 
+
+
+
+
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Dependencies</li>
     </ol>
     <ul class="dependencies-list">
         <li>
-            <b>@angular/animations</b> : ^19.2.13</li>
+            <b>@angular/animations</b> : ^20.3.6</li>
         <li>
-            <b>@angular/common</b> : ^19.2.13</li>
+            <b>@angular/common</b> : ^20.3.14</li>
         <li>
-            <b>@angular/compiler</b> : ^19.2.13</li>
+            <b>@angular/compiler</b> : ^20.3.16</li>
         <li>
-            <b>@angular/core</b> : ^19.2.13</li>
+            <b>@angular/core</b> : ^20.3.17</li>
         <li>
-            <b>@angular/forms</b> : ^19.2.13</li>
+            <b>@angular/forms</b> : ^20.3.6</li>
         <li>
-            <b>@angular/localize</b> : ^19.2.13</li>
+            <b>@angular/localize</b> : ^20.3.6</li>
         <li>
-            <b>@angular/platform-browser</b> : ^19.2.13</li>
+            <b>@angular/platform-browser</b> : ^20.3.6</li>
         <li>
-            <b>@angular/platform-browser-dynamic</b> : ^19.2.13</li>
+            <b>@angular/platform-browser-dynamic</b> : ^20.3.6</li>
         <li>
-            <b>@angular/platform-server</b> : ^19.2.13</li>
+            <b>@angular/platform-server</b> : ^20.3.6</li>
         <li>
-            <b>@angular/router</b> : ^19.2.13</li>
+            <b>@angular/router</b> : ^20.3.6</li>
         <li>
-            <b>@codemirror/legacy-modes</b> : ^6.5.1</li>
+            <b>@codemirror/legacy-modes</b> : ^6.5.2</li>
         <li>
-            <b>@fortawesome/angular-fontawesome</b> : ^1.0.0</li>
+            <b>@fortawesome/angular-fontawesome</b> : ^3.0.0</li>
         <li>
-            <b>@fortawesome/free-solid-svg-icons</b> : ^6.7.2</li>
+            <b>@fortawesome/free-solid-svg-icons</b> : ^7.2.0</li>
         <li>
             <b>@kolkov/ngx-gallery</b> : 2.0.1</li>
         <li>
-            <b>@ng-bootstrap/ng-bootstrap</b> : ^18.0.0</li>
+            <b>@ng-bootstrap/ng-bootstrap</b> : ^19.0.1</li>
         <li>
             <b>@popperjs/core</b> : ^2.11.8</li>
         <li>
-            <b>bootstrap</b> : ^5.3.6</li>
+            <b>bootstrap</b> : ^5.3.8</li>
         <li>
-            <b>codemirror</b> : ^6.0.1</li>
+            <b>codemirror</b> : ^6.0.2</li>
         <li>
             <b>d3-drag</b> : ^3.0.0</li>
         <li>
@@ -150,7 +168,7 @@
         <li>
             <b>json2typescript</b> : ^1.6.1</li>
         <li>
-            <b>n3</b> : ^1.26.0</li>
+            <b>n3</b> : ^2.0.1</li>
         <li>
             <b>ngx-json-viewer</b> : ^3.2.1</li>
         <li>
@@ -162,7 +180,7 @@
         <li>
             <b>tslib</b> : ^2.8.1</li>
         <li>
-            <b>zone.js</b> : ~0.15.1</li>
+            <b>zone.js</b> : ~0.16.1</li>
     </ul>
 
 

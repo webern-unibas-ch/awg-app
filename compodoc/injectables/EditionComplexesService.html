@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -223,8 +241,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -270,8 +288,8 @@ for the complexes of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -279,7 +297,9 @@ for the complexes of the edition view.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Static method: getEditionComplexById.</p>
-<p>It finds an edition complex by a given id.</p>
+<p>It finds an edition complex by a given id.
+The input id is normalized to lowercase to match against lowercase keys
+in the edition complexes list.</p>
 </div>
 
                             <div class="io-description">
@@ -307,7 +327,7 @@ for the complexes of the edition view.</p>
 
 
                                             <td>
-                                                    <p>The given id.</p>
+                                                    <p>The given id (will be normalized to lowercase).</p>
 
                                             </td>
                                         </tr>
@@ -348,8 +368,8 @@ for the complexes of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -440,8 +460,8 @@ for the complexes of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -588,13 +608,15 @@ export class EditionComplexesService {
      * Static method: getEditionComplexById.
      *
      * It finds an edition complex by a given id.
+     * The input id is normalized to lowercase to match against lowercase keys
+     * in the edition complexes list.
      *
-     * @param {string} id The given id.
+     * @param {string} id The given id (will be normalized to lowercase).
      *
      * @returns {EditionComplex} The found edition complex.
      */
     static getEditionComplexById(id: string): EditionComplex {
-        return EditionComplexesService._editionComplexesList[id.toUpperCase()];
+        return EditionComplexesService._editionComplexesList[id.toLowerCase()];
     }
 
     /**

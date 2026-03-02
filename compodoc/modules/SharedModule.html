@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content module">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -118,6 +136,10 @@
 <title>cluster_SharedModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 4085,-268 4085,-70 8,-70"/>
 </g>
+<g id="clust25" class="cluster">
+<title>cluster_SharedModule_exports</title>
+<polygon fill="none" stroke="black" points="74,-208 74,-260 4019,-260 4019,-208 74,-208"/>
+</g>
 <g id="clust24" class="cluster">
 <title>cluster_SharedModule_imports</title>
 <polygon fill="none" stroke="black" points="3595,-78 3595,-130 4077,-130 4077,-78 3595,-78"/>
@@ -125,10 +147,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_SharedModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 3587,-130 3587,-78 16,-78"/>
-</g>
-<g id="clust25" class="cluster">
-<title>cluster_SharedModule_exports</title>
-<polygon fill="none" stroke="black" points="74,-208 74,-260 4019,-260 4019,-208 74,-208"/>
 </g>
 <!-- AbbrDirective -->
 <g id="node1" class="node">

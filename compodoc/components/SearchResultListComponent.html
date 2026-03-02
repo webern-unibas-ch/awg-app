@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content component">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -142,8 +160,8 @@ and the results in table or grid view.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code>OnInit</code>
-                <code>OnDestroy</code>
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -1061,7 +1079,7 @@ to the <a href="rowNumberChangeRequest">rowNumberChangeRequest</a>.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onViewChange(view: <a href="../undefineds/ViewHandleTypes.html" target="_self">ViewHandleTypes</a>)</code>
+<code>onViewChange(view: <a href="../miscellaneous/enumerations.html#ViewHandleTypes" target="_self">ViewHandleTypes</a>)</code>
                 </td>
             </tr>
 
@@ -1183,7 +1201,7 @@ values needed for the Paginator.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setViewType(viewType: <a href="../undefineds/ViewHandleTypes.html" target="_self">ViewHandleTypes</a>)</code>
+<code>setViewType(viewType: <a href="../miscellaneous/enumerations.html#ViewHandleTypes" target="_self">ViewHandleTypes</a>)</code>
                 </td>
             </tr>
 
@@ -1345,6 +1363,12 @@ and updates the info message and search info.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(ConversionService)</code>
                     </td>
                 </tr>
@@ -1377,6 +1401,12 @@ and updates the info message and search info.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(DataStreamerService)</code>
@@ -1453,6 +1483,12 @@ and updates the info message and search info.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(Router)</code>
                     </td>
                 </tr>
@@ -1519,6 +1555,12 @@ and updates the info message and search info.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(SideInfoService)</code>
@@ -1591,6 +1633,12 @@ and updates the info message and search info.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>faGripHorizontal</code>
                     </td>
                 </tr>
@@ -1621,6 +1669,12 @@ and updates the info message and search info.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>faTable</code>
@@ -2529,7 +2583,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     
 </div>
 
-<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/vis-network.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>

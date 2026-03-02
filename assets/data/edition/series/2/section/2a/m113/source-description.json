@@ -778,7 +778,7 @@
                         "item": "M 113 Sk3",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk3"
+                            "sheetId": "M113_Sk3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -791,7 +791,7 @@
                                         {
                                             "system": "2b–1b",
                                             "measure": "18–19",
-                                            "linkTo": "M_113_Sk3a"
+                                            "linkTo": "M113_Sk3a"
                                         }
                                     ]
                                 ]
@@ -805,35 +805,35 @@
                                         {
                                             "system": "16–15",
                                             "measure": "20A–21A, 22, {23A–24A}",
-                                            "linkTo": "M_113_Sk3b"
+                                            "linkTo": "M113_Sk3b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–13",
                                             "measure": "20B–21B, 21+1, 23B",
-                                            "linkTo": "M_113_Sk3c"
+                                            "linkTo": "M113_Sk3c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–11",
                                             "measure": "24B, 25, 26(1–3/8), {26(4–6/8)A}, 26(4–6/8)B, 27–28",
-                                            "linkTo": "M_113_Sk3d"
+                                            "linkTo": "M113_Sk3d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–9",
                                             "measure": "29, {30A–31A}",
-                                            "linkTo": "M_113_Sk3e"
+                                            "linkTo": "M113_Sk3e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–7",
                                             "measure": "31B, 30B, 31C, 32–33",
-                                            "linkTo": "M_113_Sk3f"
+                                            "linkTo": "M113_Sk3f"
                                         }
                                     ]
                                 ]
@@ -844,7 +844,7 @@
                         "item": "M 113 Sk4",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk4"
+                            "sheetId": "M113_Sk4"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -868,7 +868,7 @@
                         "item": "M 113 Sk5",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk5"
+                            "sheetId": "M113_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -881,21 +881,21 @@
                                         {
                                             "system": "6b–5b",
                                             "measure": "41B, 42, {43A}, 43B",
-                                            "linkTo": "M_113_Sk5b"
+                                            "linkTo": "M113_Sk5b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4a–3a",
                                             "measure": "44–50",
-                                            "linkTo": "M_113_Sk5c"
+                                            "linkTo": "M113_Sk5c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "2a–1a",
                                             "measure": "51–54",
-                                            "linkTo": "M_113_Sk5d"
+                                            "linkTo": "M113_Sk5d"
                                         }
                                     ]
                                 ]
@@ -906,7 +906,7 @@
                         "item": "M 113 Sk5.1",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk5_1"
+                            "sheetId": "M113_Sk5_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -919,14 +919,14 @@
                                         {
                                             "system": "2b–1b",
                                             "measure": "44, 44+1, 44+2, 44+3(1–3/8)",
-                                            "linkTo": "M_113_Sk5_1a"
+                                            "linkTo": "M113_Sk5_1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4b–3b",
                                             "measure": "44+3(4–6/8)",
-                                            "linkTo": "M_113_Sk5_1b"
+                                            "linkTo": "M113_Sk5_1b"
                                         }
                                     ]
                                 ]
@@ -979,7 +979,7 @@
                         "item": "M 113 Sk1",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk1"
+                            "sheetId": "M113_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -992,49 +992,49 @@
                                         {
                                             "system": "12b–9b",
                                             "measure": "1–3, 4A",
-                                            "linkTo": "M_113_Sk1a"
+                                            "linkTo": "M113_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10a–9a",
                                             "measure": "{4B}, 4C, 5–7",
-                                            "linkTo": "M_113_Sk1b"
+                                            "linkTo": "M113_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–7",
                                             "measure": "8–10, 11A, {12A}, 12B",
-                                            "linkTo": "M_113_Sk1c"
+                                            "linkTo": "M113_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7b–6b",
                                             "measure": "11B",
-                                            "linkTo": "M_113_Sk1d"
+                                            "linkTo": "M113_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6a–5",
                                             "measure": "12C, 13A(1–2/8), 12D, 13B, 14A, 13A(3–6/8), 14B",
-                                            "linkTo": "M_113_Sk1e"
+                                            "linkTo": "M113_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–3",
                                             "measure": "12E, 13C–14C, {15A}, 15B",
-                                            "linkTo": "M_113_Sk1f"
+                                            "linkTo": "M113_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "2a–1a",
                                             "measure": "16–17",
-                                            "linkTo": "M_113_Sk1g"
+                                            "linkTo": "M113_Sk1g"
                                         }
                                     ]
                                 ]
@@ -1213,7 +1213,7 @@
                         "item": "M 113 Sk6",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk6"
+                            "sheetId": "M113_Sk6"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1226,14 +1226,14 @@
                                         {
                                             "system": "6b–7b",
                                             "measure": "34–36",
-                                            "linkTo": "M_113_Sk6a"
+                                            "linkTo": "M113_Sk6a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8b–9b",
                                             "measure": "37–40",
-                                            "linkTo": "M_113_Sk6b"
+                                            "linkTo": "M113_Sk6b"
                                         }
                                     ]
                                 ]
@@ -1244,7 +1244,7 @@
                         "item": "M 113 Sk5.2",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk5_2"
+                            "sheetId": "M113_Sk5_2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1268,7 +1268,7 @@
                         "item": "M 113 Sk5",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk5"
+                            "sheetId": "M113_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1281,49 +1281,49 @@
                                         {
                                             "system": "11b–12b",
                                             "measure": "55–58",
-                                            "linkTo": "M_113_Sk5e"
+                                            "linkTo": "M113_Sk5e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "59–61",
-                                            "linkTo": "M_113_Sk5f"
+                                            "linkTo": "M113_Sk5f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "15–18b",
                                             "measure": "62–63, 68–70, 71A",
-                                            "linkTo": "M_113_Sk5g"
+                                            "linkTo": "M113_Sk5g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "71B(4–6/8), {72A, 72B(6/8)}, 73–74",
-                                            "linkTo": "M_113_Sk5h"
+                                            "linkTo": "M113_Sk5h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20a–21",
                                             "measure": "75",
-                                            "linkTo": "M_113_Sk5i"
+                                            "linkTo": "M113_Sk5i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "19–20b",
                                             "measure": "76–78",
-                                            "linkTo": "M_113_Sk5j"
+                                            "linkTo": "M113_Sk5j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "22–23",
                                             "measure": "79–82",
-                                            "linkTo": "M_113_Sk5k"
+                                            "linkTo": "M113_Sk5k"
                                         }
                                     ]
                                 ]
@@ -1459,7 +1459,7 @@
                         "item": "M 113",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_TF1"
+                            "sheetId": "M113_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1499,7 +1499,7 @@
                                     [
                                         {
                                             "system": "10–9a",
-                                            "measure": "{16}",
+                                            "measure": "{16–17}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1651,7 +1651,7 @@
                         "item": "M 113 Sk2",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk2"
+                            "sheetId": "M113_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1664,7 +1664,7 @@
                                         {
                                             "system": "11 (Bleistift)",
                                             "measure": "16A",
-                                            "linkTo": "M_113_Sk2a"
+                                            "linkTo": "M113_Sk2a"
                                         }
                                     ]
                                 ]
@@ -1678,7 +1678,7 @@
                                         {
                                             "system": "10b–6 (Bleistift)",
                                             "measure": "16B, 17A",
-                                            "linkTo": "M_113_Sk2b"
+                                            "linkTo": "M113_Sk2b"
                                         }
                                     ]
                                 ]
@@ -1692,7 +1692,7 @@
                                         {
                                             "system": "5a–3a (Bleistift)",
                                             "measure": "16C, 17B",
-                                            "linkTo": "M_113_Sk2c"
+                                            "linkTo": "M113_Sk2c"
                                         }
                                     ]
                                 ]
@@ -1703,7 +1703,7 @@
                         "item": "M 113 Sk5",
                         "itemLinkTo": {
                             "complexId": "m113",
-                            "sheetId": "M_113_Sk5"
+                            "sheetId": "M113_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
                         "folios": [
@@ -1716,7 +1716,7 @@
                                         {
                                             "system": "3b–2a",
                                             "measure": "39–41A",
-                                            "linkTo": ""
+                                            "linkTo": "M113_Sk5a"
                                         }
                                     ]
                                 ]
@@ -1724,8 +1724,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk9",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk8",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M114_Sk8"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 3)",
                         "folios": [
                             {
@@ -1737,7 +1740,7 @@
                                         {
                                             "system": "16–15 (Bleistift)",
                                             "measure": "44–49",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk8d"
                                         }
                                     ]
                                 ]
@@ -1751,7 +1754,7 @@
                                         {
                                             "system": "13–12 (Bleistift)",
                                             "measure": "50–56(1–2/4)",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk8e"
                                         }
                                     ]
                                 ]
@@ -1765,7 +1768,7 @@
                                         {
                                             "system": "10a–9a (Bleistift)",
                                             "measure": "56(2–3/4)–58",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk8f"
                                         }
                                     ]
                                 ]
@@ -1773,8 +1776,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk10",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk9",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M114_Sk9"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {
@@ -1786,7 +1792,7 @@
                                         {
                                             "system": "10b–9b (Bleistift)",
                                             "measure": "60–64",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk9a"
                                         }
                                     ]
                                 ]
@@ -1800,7 +1806,7 @@
                                         {
                                             "system": "7a–6a (Bleistift)",
                                             "measure": "65–66, {67A–70A}",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk9b"
                                         }
                                     ]
                                 ]
@@ -1814,7 +1820,7 @@
                                         {
                                             "system": "5b–4b (Bleistift)",
                                             "measure": "67B–70B",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk9c"
                                         }
                                     ]
                                 ]
@@ -1828,7 +1834,7 @@
                                         {
                                             "system": "2–1 (Bleistift)",
                                             "measure": "71–73, 74A, 74B, 75–76",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk9d"
                                         }
                                     ]
                                 ]
@@ -1842,7 +1848,7 @@
                                         {
                                             "system": "7b–6b (Bleistift)",
                                             "measure": "77–78",
-                                            "linkTo": ""
+                                            "linkTo": "M114_Sk9e"
                                         }
                                     ]
                                 ]
@@ -1850,8 +1856,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk10.1",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk9.1",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M114_Sk9_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {
@@ -1889,15 +1898,15 @@
                                             "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: Oberstimmenschicht nach unten gehalst."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 3/8",
+                                            "position": "letzte Note <br />3/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 6 letzte Note nach T. 7 3/8."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
-                                            "position": "1/8 <br /> 8. Note",
+                                            "position": "1/8 <br />8. Note",
                                             "comment": "Legatobogen gestrichen."
                                         },
                                         {
@@ -1934,7 +1943,7 @@
                                             "measure": "{14}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "15",
@@ -1946,7 +1955,7 @@
                                             "measure": "{16–17}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17:  <br /> ##Abbildung##"
+                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "{16}",
@@ -2003,9 +2012,9 @@
                                             "comment": "Oberstimmenschicht: Balkierung überschreibt Achtelfähnchen."
                                         },
                                         {
-                                            "measure": "38 <br /> bis 39",
+                                            "measure": "38 <br />bis 39",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 5. Note",
+                                            "position": "letzte Note <br />5. Note",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von T. 38 letzte Note nach T. 39 1. Note, nach T. 39 5. Note."
                                         },
                                         {
@@ -2024,7 +2033,7 @@
                                             "measure": "{42}",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "{42}",
@@ -2087,9 +2096,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "54  <br /> bis 56",
+                                            "measure": "54 <br />bis 56",
                                             "system": "Klav.",
-                                            "position": "1. Note <br /> letzte Note",
+                                            "position": "1. Note <br />letzte Note",
                                             "comment": "Ende des Legatobogens versetzt von T. 54 1. Note nach T. 56 letzte Note."
                                         },
                                         {
@@ -2171,9 +2180,9 @@
                                             "comment": "Achtelpause überschreibt Notenkopf zu A."
                                         },
                                         {
-                                            "measure": "83 <br /> bis 84",
+                                            "measure": "83 <br />bis 84",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 1. Note",
+                                            "position": "6/8 <br />1. Note",
                                             "comment": "Ende des Legatobogens versetzt von T. 83 6/8 nach T. 84 1. Note."
                                         }
                                     ]
@@ -2198,9 +2207,9 @@
                                             "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note gestrichen."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 3",
+                                            "measure": "2 <br />bis 3",
                                             "system": "Klav. u.",
-                                            "position": "4/8 <br /> 1/8",
+                                            "position": "4/8 <br />1/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -2288,9 +2297,9 @@
                                             "comment": "Unterstimmenschicht: Viertelnote b<sup>1</sup> gestrichen und durch Viertelnote d<sup>1</sup>–g<sup>1</sup> ersetzt, diese gestrichen."
                                         },
                                         {
-                                            "measure": "28 <br /> bis 29",
+                                            "measure": "28 <br />bis 29",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> 3/8",
+                                            "position": "4. Note <br />3/8",
                                             "comment": "Klammer über dem System."
                                         },
                                         {
@@ -2333,7 +2342,7 @@
                                             "measure": "46–47",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter den Systemen:  <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze unter den Systemen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "48",
@@ -2345,12 +2354,12 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br /> ##Abbildung##"
+                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br />##Abbildung##"
                                         },
                                         {
-                                            "measure": "51 <br /> bis 52",
+                                            "measure": "51 <br />bis 52",
                                             "system": "Klav. u.",
-                                            "position": "1. Note <br /> (1/4)",
+                                            "position": "1. Note <br />(1/4)",
                                             "comment": "Viertelnote F in T. 52 mit Ligatur zu F in T. 51 hinzugefügt."
                                         }
                                     ]

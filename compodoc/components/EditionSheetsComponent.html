@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content component">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -143,8 +161,8 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code>OnInit</code>
-                <code>OnDestroy</code>
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -485,7 +503,7 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_fetchEditionComplexData(queryParams: ParamMap)</code>
+                    <code>_fetchEditionComplexData(queryParams: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
                 </td>
             </tr>
 
@@ -521,7 +539,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
                                         <tr>
                                                 <td>queryParams</td>
                                             <td>
-                                                        <code>ParamMap</code>
+                                                            <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
                                             </td>
 
                                             <td>
@@ -538,7 +556,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex | &gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex | unknown&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -610,7 +628,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_handleQueryParams(queryParams: ParamMap)</code>
+                    <code>_handleQueryParams(queryParams: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
                 </td>
             </tr>
 
@@ -645,7 +663,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
                                         <tr>
                                                 <td>queryParams</td>
                                             <td>
-                                                        <code>ParamMap</code>
+                                                            <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
                                             </td>
 
                                             <td>
@@ -688,7 +706,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: NavigationExtras)</code>
+                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: <a href="https://angular.io/api/router/NavigationExtras" target="_blank">NavigationExtras</a>)</code>
                 </td>
             </tr>
 
@@ -755,7 +773,7 @@ from the EditionDataService, assigns the data and handles the query params.</p>
                                         <tr>
                                                 <td>navigationExtras</td>
                                             <td>
-                                                        <code>NavigationExtras</code>
+                                                            <code><a href="https://angular.io/api/router/NavigationExtras" target="_blank" >NavigationExtras</a></code>
                                             </td>
 
                                             <td>
@@ -1504,6 +1522,12 @@ within the context of an edition complex identified by the provided complexId.</
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(EditionDataService)</code>
                     </td>
                 </tr>
@@ -1536,6 +1560,12 @@ within the context of an edition complex identified by the provided complexId.</
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(EditionSheetsService)</code>
@@ -1572,6 +1602,12 @@ within the context of an edition complex identified by the provided complexId.</
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(EditionStateService)</code>
                     </td>
                 </tr>
@@ -1603,6 +1639,12 @@ within the context of an edition complex identified by the provided complexId.</
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>true</code>
@@ -1639,6 +1681,12 @@ within the context of an edition complex identified by the provided complexId.</
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(LoadingService)</code>
                     </td>
                 </tr>
@@ -1671,6 +1719,12 @@ within the context of an edition complex identified by the provided complexId.</
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(ActivatedRoute)</code>
@@ -1745,6 +1799,12 @@ within the context of an edition complex identified by the provided complexId.</
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(UtilityService)</code>
@@ -1881,6 +1941,12 @@ within the context of an edition complex identified by the provided complexId.</
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>false</code>
@@ -2090,6 +2156,12 @@ within the context of an edition complex identified by the provided complexId.</
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
@@ -2239,6 +2311,10 @@ within the context of an edition complex identified by the provided complexId.</
 <p> It returns the EDITION_ROUTE_CONSTANTS.</p>
 </div>
 
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                                </div>
                         </td>
                     </tr>
 
@@ -2876,7 +2952,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     
 </div>
 
-<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/vis-network.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>

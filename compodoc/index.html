@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -80,13 +94,14 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content getting-started">
+               <div class="content readme">
                    <div class="content-data">
+
 
 <h1>AWG App</h1>
 <p><img src="https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg" alt="GitHub package.json version" class="img-responsive">
 <a href="https://github.com/angular/angular"><img src="https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular" alt="GitHub package.json dependency version (prod)" class="img-responsive"></a>
-<img src="https://img.shields.io/badge/node.js-%3E=v20.13.1-blue" alt="Node.js version" class="img-responsive">
+<img src="https://img.shields.io/badge/node.js-%3E=v20.19.0-blue" alt="Node.js version" class="img-responsive">
 <img src="https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app" alt="GitHub commit activity" class="img-responsive">
 <img src="https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg" alt="CI Workflow" class="img-responsive">
 <a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6" alt="codecov" class="img-responsive"></a>
@@ -191,11 +206,12 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://dhlab.unibas.ch/#/team/muennich"><img src="https://avatars.githubusercontent.com/u/21059419?v=4?s=100" width="100px;" alt="Stefan Münnich"/><br /><sub><b>Stefan Münnich</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Tests">⚠️</a> <a href="#ideas-musicEnfanthen" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Documentation">📖</a> <a href="#projectManagement-musicEnfanthen" title="Project Management">📆</a> <a href="#maintenance-musicEnfanthen" title="Maintenance">🚧</a> <a href="#infra-musicEnfanthen" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-musicEnfanthen" title="Design">🎨</a> <a href="#content-musicEnfanthen" title="Content">🖋</a> <a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3AmusicEnfanthen" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/masthom"><img src="https://avatars.githubusercontent.com/u/53256309?v=4?s=100" width="100px;" alt="Thomas"/><br /><sub><b>Thomas</b></sub></a><br /><a href="#projectManagement-masthom" title="Project Management">📆</a> <a href="#ideas-masthom" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=masthom" title="Documentation">📖</a> <a href="#content-masthom" title="Content">🖋</a> <a href="#data-masthom" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://dhlab.unibas.ch/#/team/muennich"><img src="https://avatars.githubusercontent.com/u/21059419?v=4?s=100" width="100px;" alt="Stefan Münnich"/><br /><sub><b>Stefan Münnich</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Documentation">📖</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Tests">⚠️</a> <a href="#projectManagement-musicEnfanthen" title="Project Management">📆</a> <a href="#maintenance-musicEnfanthen" title="Maintenance">🚧</a> <a href="#ideas-musicEnfanthen" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-musicEnfanthen" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-musicEnfanthen" title="Design">🎨</a> <a href="#content-musicEnfanthen" title="Content">🖋</a> <a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3AmusicEnfanthen" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/masthom"><img src="https://avatars.githubusercontent.com/u/53256309?v=4?s=100" width="100px;" alt="Thomas"/><br /><sub><b>Thomas</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=masthom" title="Documentation">📖</a> <a href="#projectManagement-masthom" title="Project Management">📆</a> <a href="#ideas-masthom" title="Ideas, Planning, & Feedback">🤔</a> <a href="#content-masthom" title="Content">🖋</a> <a href="#data-masthom" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/chael-mi"><img src="https://avatars.githubusercontent.com/u/108875866?v=4?s=100" width="100px;" alt="chael-mi"/><br /><sub><b>chael-mi</b></sub></a><br /><a href="#ideas-chael-mi" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=chael-mi" title="Documentation">📖</a> <a href="#content-chael-mi" title="Content">🖋</a> <a href="#data-chael-mi" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vanBithoven"><img src="https://avatars.githubusercontent.com/u/86300228?v=4?s=100" width="100px;" alt="vanBithoven"/><br /><sub><b>vanBithoven</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Tests">⚠️</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AMWilke"><img src="https://avatars.githubusercontent.com/u/101800133?v=4?s=100" width="100px;" alt="AMWilke"/><br /><sub><b>AMWilke</b></sub></a><br /><a href="#data-AMWilke" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lili041"><img src="https://avatars.githubusercontent.com/u/186849853?v=4?s=100" width="100px;" alt="lili041"/><br /><sub><b>lili041</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3Alili041" title="Bug reports">🐛</a> <a href="#data-lili041" title="Data">🔣</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=lili041" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -213,6 +229,9 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
 <p>If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.</p>
 <p>For security concerns, please do not create a public issue. Instead, send an email directly to &lt;info-awg[at]unibas.ch&gt;, following our <a href="SECURITY.md">Security Policy</a>. We take all security issues seriously and will respond as quickly as possible to resolve the matter.</p>
 <p>For any other queries or if you wish to reach out directly, please contact us at &lt;info-awg[at]unibas.ch&gt;.</p>
+
+
+
 
 
 
@@ -259,7 +278,7 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>

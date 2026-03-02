@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content interface">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -150,7 +168,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-properties-response-json.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-properties-response-json.ts:41</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -161,8 +179,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
-import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
+
+import { BasicResponseJson } from &#x27;@awg-shared/api-objects&#x27;;
 import { PropJson } from &#x27;./prop-json&#x27;;
 
 /**
