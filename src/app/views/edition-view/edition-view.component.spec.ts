@@ -117,7 +117,7 @@ describe('EditionViewComponent (DONE)', () => {
         expectedIsIntroView = false;
         expectedIsPrefaceView = false;
         expectedIsRowTableView = true;
-        expectedSelectedEditionComplexId = 'OP12';
+        expectedSelectedEditionComplexId = 'op12';
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );

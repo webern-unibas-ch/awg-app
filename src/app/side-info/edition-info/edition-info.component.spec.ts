@@ -540,8 +540,8 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return combined opus and mnr complexes', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('OP12');
-                const mnrComplex = EditionComplexesService.getEditionComplexById('M22');
+                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
+                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
 
                 const section: EditionOutlineSection = {
                     content: {
@@ -561,7 +561,7 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return only opus complexes if mnr complexes are empty', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('OP12');
+                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
                 const section: EditionOutlineSection = {
                     content: {
                         complexTypes: {
@@ -577,7 +577,7 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return only mnr complexes if opus complexes are empty', () => {
-                const mnrComplex = EditionComplexesService.getEditionComplexById('M22');
+                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
                 const section: EditionOutlineSection = {
                     content: {
                         complexTypes: {
