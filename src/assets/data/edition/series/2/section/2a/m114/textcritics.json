@@ -2281,7 +2281,7 @@
                                 "measure": "88",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Des gestrichen."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Des gestrichen; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As überschreibt G."
                             },
                             {
                                 "svgGroupId": "g-tkk-20",
