@@ -206,7 +206,7 @@
             "id": "M29_Sk4",
             "label": "M 29 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'MM29_TF1'})\">Studienkomposition für Klavier M 29</a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
+                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M29_TF1'})\">Studienkomposition für Klavier M 29</a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
             ],
             "commentary": {
                 "preamble": "",
