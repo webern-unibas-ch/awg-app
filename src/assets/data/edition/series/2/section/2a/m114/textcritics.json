@@ -942,7 +942,7 @@
                                 "measure": "139",
                                 "system": "Klav. u.",
                                 "position": "3–4/8",
-                                "comment": "Kleinstich: Achtelnoten A–d sowie Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
+                                "comment": "Kleinstich: Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>A–d sowie Achtelbalken ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g-tkk-52",
