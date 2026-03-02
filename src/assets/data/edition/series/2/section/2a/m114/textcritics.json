@@ -2840,7 +2840,7 @@
                                 "measure": "137",
                                 "system": "11",
                                 "position": "6/8",
-                                "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H überschreibt G."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H überschreibt G."
                             },
                             {
                                 "svgGroupId": "g-tkk-7",
