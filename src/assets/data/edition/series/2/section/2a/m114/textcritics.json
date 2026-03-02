@@ -2958,7 +2958,7 @@
                                 "measure": "144",
                                 "system": "8",
                                 "position": "4–5/8",
-                                "comment": "es–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces überschreibt c–As."
+                                "comment": "es–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces überschreibt c–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As."
                             },
                             {
                                 "svgGroupId": "g-tkk-3",
