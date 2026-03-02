@@ -2594,140 +2594,140 @@
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-8a",
+                                "svgGroupId": "g-tkk-9",
                                 "measure": "95B",
                                 "system": "17",
                                 "position": "4/8",
                                 "comment": "Achtelnote es<sup>1</sup>/es<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "g-tkk-10",
                                 "measure": "97",
                                 "system": "2",
                                 "position": "4. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B überschreibt G."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "g-tkk-11",
                                 "measure": "{99A}",
                                 "system": "1–2",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "g-tkk-12",
                                 "measure": "98B(3/4)–99C(1/4)",
                                 "system": "5–6",
                                 "position": "",
                                 "comment": "Taktzuordnung unsicher. Es scheint sich bei den Akkorden um Erinnerungsstützen in Zusammenhang mit dem geplanten harmonischen Gerüst zu handeln."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "g-tkk-13",
                                 "measure": "98B(3/4)",
                                 "system": "6",
                                 "position": "1. Note",
                                 "comment": "es gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-13",
+                                "svgGroupId": "g-tkk-14",
                                 "measure": "100A",
                                 "system": "5",
                                 "position": "1/8",
                                 "comment": "Augmentationspunkte gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-14",
+                                "svgGroupId": "g-tkk-15",
                                 "measure": "100A",
                                 "system": "5",
                                 "position": "2/8",
                                 "comment": "es<sup>2</sup>/b<sup>2</sup> überschreibt c<sup>2</sup>/g<sup>2</sup>? Entzifferung des gesamten Akkordes unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-15",
+                                "svgGroupId": "g-tkk-16",
                                 "measure": "100A",
                                 "system": "6",
                                 "position": "8/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-16",
+                                "svgGroupId": "g-tkk-17",
                                 "measure": "101B",
                                 "system": "9",
                                 "position": "2. Note",
                                 "comment": "Sechzehntelnote As gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-17",
+                                "svgGroupId": "g-tkk-18",
                                 "measure": "103",
                                 "system": "11",
                                 "position": "6. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-18",
+                                "svgGroupId": "g-tkk-19",
                                 "measure": "{105A}",
                                 "system": "11–12",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-19",
+                                "svgGroupId": "g-tkk-20",
                                 "measure": "{105A}",
                                 "system": "12",
                                 "position": "5. Note",
                                 "comment": "f überschreibt as."
                             },
                             {
-                                "svgGroupId": "g-tkk-20",
+                                "svgGroupId": "g-tkk-21",
                                 "measure": "106",
                                 "system": "14",
                                 "position": "(1/4)",
                                 "comment": "Punktierte Achtelnote as<sup>2</sup>/d<sup>3</sup>/f<sup>3</sup> und Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-21",
+                                "svgGroupId": "g-tkk-22",
                                 "measure": "105B",
                                 "system": "15",
                                 "position": "4/16",
                                 "comment": "[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H überschreibt G."
                             },
                             {
-                                "svgGroupId": "g-tkk-22",
+                                "svgGroupId": "g-tkk-23",
                                 "measure": "105B",
                                 "system": "14",
                                 "position": "4.–6 Note",
                                 "comment": "g<sup>2</sup>–f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> überschreibt f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-23",
+                                "svgGroupId": "g-tkk-24",
                                 "measure": "105B",
                                 "system": "15",
                                 "position": "5.–6. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt g–h."
                             },
                             {
-                                "svgGroupId": "g-tkk-24",
+                                "svgGroupId": "g-tkk-25",
                                 "measure": "108",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: g überschreibt f."
                             },
                             {
-                                "svgGroupId": "g-tkk-25",
+                                "svgGroupId": "g-tkk-26",
                                 "measure": "108",
                                 "system": "18",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: es überschreibt f."
                             },
                             {
-                                "svgGroupId": "g-tkk-26",
+                                "svgGroupId": "g-tkk-27",
                                 "measure": "108",
                                 "system": "18",
                                 "position": "8/16",
                                 "comment": "Unterstimmenschicht: Es überschreibt G."
                             },
                             {
-                                "svgGroupId": "g-tkk-27",
+                                "svgGroupId": "g-tkk-28",
                                 "measure": "109",
                                 "system": "18",
                                 "position": "5. Note",
