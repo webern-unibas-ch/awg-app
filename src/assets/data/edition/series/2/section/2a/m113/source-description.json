@@ -1898,15 +1898,15 @@
                                             "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: Oberstimmenschicht nach unten gehalst."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 3/8",
+                                            "position": "letzte Note <br />3/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 6 letzte Note nach T. 7 3/8."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
-                                            "position": "1/8 <br /> 8. Note",
+                                            "position": "1/8 <br />8. Note",
                                             "comment": "Legatobogen gestrichen."
                                         },
                                         {
@@ -1943,7 +1943,7 @@
                                             "measure": "{14}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "15",
@@ -1955,7 +1955,7 @@
                                             "measure": "{16–17}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17:  <br /> ##Abbildung##"
+                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "{16}",
@@ -2012,9 +2012,9 @@
                                             "comment": "Oberstimmenschicht: Balkierung überschreibt Achtelfähnchen."
                                         },
                                         {
-                                            "measure": "38 <br /> bis 39",
+                                            "measure": "38 <br />bis 39",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 5. Note",
+                                            "position": "letzte Note <br />5. Note",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von T. 38 letzte Note nach T. 39 1. Note, nach T. 39 5. Note."
                                         },
                                         {
@@ -2033,7 +2033,7 @@
                                             "measure": "{42}",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "{42}",
@@ -2096,9 +2096,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "54  <br /> bis 56",
+                                            "measure": "54 <br />bis 56",
                                             "system": "Klav.",
-                                            "position": "1. Note <br /> letzte Note",
+                                            "position": "1. Note <br />letzte Note",
                                             "comment": "Ende des Legatobogens versetzt von T. 54 1. Note nach T. 56 letzte Note."
                                         },
                                         {
@@ -2180,9 +2180,9 @@
                                             "comment": "Achtelpause überschreibt Notenkopf zu A."
                                         },
                                         {
-                                            "measure": "83 <br /> bis 84",
+                                            "measure": "83 <br />bis 84",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 1. Note",
+                                            "position": "6/8 <br />1. Note",
                                             "comment": "Ende des Legatobogens versetzt von T. 83 6/8 nach T. 84 1. Note."
                                         }
                                     ]
@@ -2207,9 +2207,9 @@
                                             "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note gestrichen."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 3",
+                                            "measure": "2 <br />bis 3",
                                             "system": "Klav. u.",
-                                            "position": "4/8 <br /> 1/8",
+                                            "position": "4/8 <br />1/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
@@ -2297,9 +2297,9 @@
                                             "comment": "Unterstimmenschicht: Viertelnote b<sup>1</sup> gestrichen und durch Viertelnote d<sup>1</sup>–g<sup>1</sup> ersetzt, diese gestrichen."
                                         },
                                         {
-                                            "measure": "28 <br /> bis 29",
+                                            "measure": "28 <br />bis 29",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> 3/8",
+                                            "position": "4. Note <br />3/8",
                                             "comment": "Klammer über dem System."
                                         },
                                         {
@@ -2342,7 +2342,7 @@
                                             "measure": "46–47",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter den Systemen:  <br /> ##Abbildung##"
+                                            "comment": "Alternative Skizze unter den Systemen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "48",
@@ -2354,12 +2354,12 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br /> ##Abbildung##"
+                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br />##Abbildung##"
                                         },
                                         {
-                                            "measure": "51 <br /> bis 52",
+                                            "measure": "51 <br />bis 52",
                                             "system": "Klav. u.",
-                                            "position": "1. Note <br /> (1/4)",
+                                            "position": "1. Note <br />(1/4)",
                                             "comment": "Viertelnote F in T. 52 mit Ligatur zu F in T. 51 hinzugefügt."
                                         }
                                     ]

@@ -1193,13 +1193,13 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "In beiden Systemen Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 11",
+                                            "measure": "9 <br />bis 11",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte durch Einkreisung getilgt: Ersetzt durch Textfassung 2 T. 9–12."
@@ -1241,9 +1241,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Klav. o.",
-                                            "position": "1/4 <br /> zweitletzte Note",
+                                            "position": "1/4 <br />zweitletzte Note",
                                             "comment": "Bogen über dem System. Möglicherweise Teil der Tilgung durch Einkreisung für Textfassung 2 (vgl. Korrekturen zu T. 9–11)."
                                         },
                                         {

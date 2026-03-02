@@ -1522,9 +1522,9 @@
                                             "comment": "a überschrieben zu c<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 3",
+                                            "measure": "2 <br />bis 3",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> 1. Note",
+                                            "position": "letzte Note <br />1. Note",
                                             "comment": "Linie zwischen <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1 </sup>und c<sup>2</sup> in Klav. o. sowie e und f im Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {

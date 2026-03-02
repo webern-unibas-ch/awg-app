@@ -632,9 +632,9 @@
                                             "comment": "Unterstimmenschicht: Legatobogen gestrichen."
                                         },
                                         {
-                                            "measure": "12 <br /> bis 14",
+                                            "measure": "12 <br />bis 14",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> letzte Note",
+                                            "position": "6/8 <br />letzte Note",
                                             "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von T. 12 6/8 nach T. 14 letzte Note der Unterstimmenschicht (vgl. TkA)."
                                         },
                                         {
@@ -692,7 +692,7 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> rasiert."
                                         },
                                         {
-                                            "measure": "22  <br /> bis 23",
+                                            "measure": "22 <br />bis 23",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 22 6/8 nach T. 23 6/8."
@@ -749,7 +749,7 @@
                                             "measure": "nach 32",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen:  <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "33",
@@ -857,9 +857,9 @@
                                             "comment": "Mittelstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "measure": "24 <br /> bis 25",
+                                            "measure": "24 <br />bis 25",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 1/4",
+                                            "position": "3/4 <br />1/4",
                                             "comment": "Ligatur zu B<sub>1</sub>–B<sub>1</sub> mit Bleistift hinzugefügt."
                                         },
                                         {
@@ -869,9 +869,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "measure": "26 <br /> bis 27",
+                                            "measure": "26 <br />bis 27",
                                             "system": "Klav. u.",
-                                            "position": "6/8 <br /> 1/8",
+                                            "position": "6/8 <br />1/8",
                                             "comment": "Ligatur zu C–C mit Bleistift hinzugefügt."
                                         },
                                         {
@@ -1109,9 +1109,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 1/4",
+                                            "position": "1. Note <br />1/4",
                                             "comment": "Oberstimmenschicht: Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen."
                                         },
                                         {
@@ -1121,9 +1121,9 @@
                                             "comment": "Halbe Note f gestrichen (vgl. auch T. 45)."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 3/4",
+                                            "position": "6/8 <br />3/4",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von T. 10 6/8 nach T. 11 3. Note, dann nach T. 11 3/4."
                                         },
                                         {
@@ -1136,7 +1136,7 @@
                                             "measure": "nach 13",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "14",
@@ -1213,13 +1213,13 @@
                                         {
                                             "measure": "43",
                                             "system": "Klav. o.",
-                                            "position": "erste Note <br /> letzte Note",
+                                            "position": "erste Note <br />letzte Note",
                                             "comment": "Ende des Legatobogens versetzt von erster zu letzter Note."
                                         },
                                         {
                                             "measure": "43–44",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
@@ -1250,9 +1250,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Halbe Note gis zu Unterstimmenschicht in T. 7 sowie Ligaturbögen zu gis/cis<sup>1</sup>–gis/cis<sup>1 </sup>in T. 7 bis 8 hinzugefügt; gis und Ligaturbögen wieder gestrichen."
                                         },
                                         {
@@ -1265,7 +1265,7 @@
                                             "measure": "40–42",
                                             "system": "Klav.",
                                             "position": "1–2/8",
-                                            "comment": "Alternative Skizze unter den Systemen notiert: <br /> ###Abbildung###"
+                                            "comment": "Alternative Skizze unter den Systemen notiert: <br />###Abbildung###"
                                         },
                                         {
                                             "measure": "43",
@@ -1276,7 +1276,7 @@
                                         {
                                             "measure": "43–44",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Ligatur zu gis/cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1</sup>– gis/cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1</sup> hinzugefügt."
                                         }
                                     ]

@@ -388,9 +388,9 @@
                                             "comment": "Bogenanfang zu Bogen bis T. 7 3. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) gestrichen und Staccatopunkte hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav. u.",
-                                            "position": "27/16 <br /> 4/16",
+                                            "position": "27/16 <br />4/16",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) gestrichen und geändert zu zwei Bögen T. 6 27–28/16, T. 7 1–2/16 sowie Staccatopunkte zu T. 7 34/16 mit roter Tinte."
                                         },
                                         {
@@ -424,22 +424,22 @@
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) gestrichen und geändert zu Bogen 18–20/16 und Staccatopunkten zu 21–23/16 mit roter Tinte."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav.",
-                                            "position": "24/16 <br /> 1/8",
+                                            "position": "24/16 <br />1/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) geändert zu zwei Bögen T. 7 24–26/16 und T. 7 27/16 bis T. 8 1/8."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "Zuerst: <em><u>etwas breiter</u></em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) hinzugefügt mit Bleistift.  <br /> Dann: gestrichen und geändert zu <em>noch langsamer</em> mit roter Tinte."
+                                            "comment": "Zuerst: <em><u>etwas breiter</u></em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>) hinzugefügt mit Bleistift. <br />Dann: gestrichen und geändert zu <em>noch langsamer</em> mit roter Tinte."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "3/8",
-                                            "comment": "Zuerst: Pedal-Aufhebung zu 1/8.  <br /> Dann: gestrichen und versetzt zu 2/8 mit roter Tinte.  <br /> Dann: gestrichen und versetzt zu 3/8 mit Bleistift."
+                                            "comment": "Zuerst: Pedal-Aufhebung zu 1/8. <br />Dann: gestrichen und versetzt zu 2/8 mit roter Tinte. <br />Dann: gestrichen und versetzt zu 3/8 mit Bleistift."
                                         },
                                         {
                                             "measure": "8",
@@ -562,9 +562,9 @@
                                             "comment": "Gestrichelter Teiltaktstrich hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Klav. o.",
-                                            "position": "4. Note <br /> 1. Note",
+                                            "position": "4. Note <br />1. Note",
                                             "comment": "Unterstimmenschicht: Ligaturbogen zu fis hinzugefügt mit roter Tinte."
                                         },
                                         {
@@ -997,9 +997,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "vor 1 <br /> bis 2",
+                                            "measure": "vor 1 <br />bis 2",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> 2/8",
+                                            "position": "1. Note <br />2/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1015,9 +1015,9 @@
                                             "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 5",
+                                            "measure": "2 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> 2/8",
+                                            "position": "1. Note <br />2/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1027,15 +1027,15 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[sf]')}}</span> auf Rasur. Ante correcturam: vermutlich <span class='glyph'>{{ref.getGlyph('[sfz]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 7",
+                                            "measure": "5 <br />bis 7",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 2. Note",
+                                            "position": "6/8 <br />2. Note",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 9",
+                                            "measure": "7 <br />bis 9",
                                             "system": "Ges.",
-                                            "position": "6/16 <br /> 4/8",
+                                            "position": "6/16 <br />4/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1057,9 +1057,9 @@
                                             "comment": "Triolische Viertelpause überschreibt Achtelpause (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 12",
+                                            "measure": "10 <br />bis 12",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 6/8",
+                                            "position": "6/8 <br />6/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1087,9 +1087,9 @@
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 15",
+                                            "measure": "13 <br />bis 15",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> 4/8",
+                                            "position": "1. Note <br />4/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1105,15 +1105,15 @@
                                             "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
-                                            "measure": "15 <br /> bis 17",
+                                            "measure": "15 <br />bis 17",
                                             "system": "Ges.",
-                                            "position": "3. Note <br /> 3. Note",
+                                            "position": "3. Note <br />3. Note",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
-                                            "measure": "16 <br /> bis 18",
+                                            "measure": "16 <br />bis 18",
                                             "system": "Klav. u.",
-                                            "position": "vorletzte Note <br /> 1/4",
+                                            "position": "vorletzte Note <br />1/4",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) teilweise rasiert und geändert zu zwei Bögen T. 16 vorletzte Note bis T. 17 2/8 sowie T. 17 3/8 bis T. 18 1/4."
                                         },
                                         {
@@ -1123,9 +1123,9 @@
                                             "comment": "Punktierte Achtelpause in Klav. o. und Achtelpause in Klav. u. auf Rasur."
                                         },
                                         {
-                                            "measure": "17 <br /> bis 18",
+                                            "measure": "17 <br />bis 18",
                                             "system": "Ges.",
-                                            "position": "4. Note <br /> 5. Note",
+                                            "position": "4. Note <br />5. Note",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>) rasiert."
                                         },
                                         {
@@ -1150,7 +1150,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "vor 1 <br /> bis 1",
+                                            "measure": "vor 1 <br />bis 1",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 3</span>."
@@ -1162,9 +1162,9 @@
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 3</span>."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav.",
-                                            "position": "letzte Note <br /> letzte Note",
+                                            "position": "letzte Note <br />letzte Note",
                                             "comment": "Decrescendogabel T. 4 1.–2. Note und Crescendogabel 3. – 4. Note (siehe <span class='link-todo'>Textfassung 3</span>) überschreiben Decrescendogabel."
                                         },
                                         {
@@ -1186,9 +1186,9 @@
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 3</span>."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 16",
+                                            "measure": "13 <br />bis 16",
                                             "system": "Klav. o.",
-                                            "position": "8/16 <br /> 2. Note",
+                                            "position": "8/16 <br />2. Note",
                                             "comment": "Bogen geändert zu zwei Bögen in T. 13 8/16–6/8 und T. 14 1. Note bis T. 16 2. Note."
                                         },
                                         {
@@ -1255,7 +1255,7 @@
                                             "comment": "Viertelpause (siehe <span class='link-todo'>Textfassung 2</span>) überschreibt Achtelpause."
                                         },
                                         {
-                                            "measure": "vor 1 <br /> bis 2",
+                                            "measure": "vor 1 <br />bis 2",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 2</span>."
@@ -1267,7 +1267,7 @@
                                             "comment": "Fähnchen überschreiben Balkennotation."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Klav.",
                                             "position": "2/4",
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 2</span>."
@@ -1351,9 +1351,9 @@
                                             "comment": "Korrekturskizzen zu <span class='link-todo'>Textfassung 2</span>."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Klav.",
-                                            "position": "2. Note <br /> 5/16",
+                                            "position": "2. Note <br />5/16",
                                             "comment": "<em>Ped</em>[.] <em>- - -</em> bis Ende T. 13 (Akkoladenwechsel) und Pedal-Aufhebung in T. 14 5/16 hinzugefügt (siehe <span class='link-todo'>Textfassung 2</span>)."
                                         },
                                         {
@@ -1456,9 +1456,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Ges.",
-                                            "position": "2. Note <br /> 1/8",
+                                            "position": "2. Note <br />1/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
@@ -1859,9 +1859,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "1 <br /> bis 2",
+                                            "measure": "1 <br />bis 2",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 1/8",
+                                            "position": "4/8 <br />1/8",
                                             "comment": "Bogen gestrichen."
                                         },
                                         {
@@ -2150,16 +2150,16 @@
                                             "comment": "<em>Langsam</em> hinzugefügt."
                                         },
                                         {
-                                            "measure": "vor 1 <br /> bis 2",
+                                            "measure": "vor 1 <br />bis 2",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> 2/8",
+                                            "position": "1. Note <br />2/8",
                                             "comment": "Bogen gestrichen."
                                         },
                                         {
                                             "measure": "vor 1",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /> <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /><span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
                                             "measure": "2",
@@ -2186,15 +2186,15 @@
                                             "comment": "Bögen hinzugefügt."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "",
-                                            "position": "(2/4) <br /> Taktende",
+                                            "position": "(2/4) <br />Taktende",
                                             "comment": "Zuerst <em>rit.</em> zu Anfang T. 4 über Klav. hinzugefügt, dann gestrichen und geändert zu <em>rit</em>[.] <em>- - -</em>."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 2/8",
+                                            "position": "4/8 <br />2/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
@@ -2273,19 +2273,19 @@
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "6/8",
-                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /> <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und &gt; hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /><span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und &gt; hinzugefügt."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 2. Note",
+                                            "position": "6/8 <br />2. Note",
                                             "comment": "Crescendogabel hinzugefügt."
                                         },
                                         {
                                             "measure": "12",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /> [<em>xx</em>] (?) über der Note hinzugefügt."
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br />[<em>xx</em>] (?) über der Note hinzugefügt."
                                         },
                                         {
                                             "measure": "12",
@@ -2330,9 +2330,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a hinzugefügt."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Ges.",
-                                            "position": "2/8 <br /> 4/8",
+                                            "position": "2/8 <br />4/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
@@ -2342,9 +2342,9 @@
                                             "comment": "(Zusätzliches) <span class='glyph'>{{ref.getGlyph('[p]')}}</span> und [<em>xx</em>] (?) über dem System hinzugefügt."
                                         },
                                         {
-                                            "measure": "15 <br /> bis 17",
+                                            "measure": "15 <br />bis 17",
                                             "system": "",
-                                            "position": "(3/4) <br /> Taktende",
+                                            "position": "(3/4) <br />Taktende",
                                             "comment": "<em>rit</em>[.] <em>- - -</em> hinzugefügt."
                                         },
                                         {
@@ -2598,15 +2598,15 @@
                                             "comment": "Taktartvorzeichnung <em>3/4</em> hinzugefügt mit schwarzer Tinte."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 3",
+                                            "measure": "2 <br />bis 3",
                                             "system": "Klav. u",
-                                            "position": "letzte Note <br /> 2/8",
+                                            "position": "letzte Note <br />2/8",
                                             "comment": "Unterstimmenschicht: Bogen hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 5",
+                                            "measure": "3 <br />bis 5",
                                             "system": "Klav. u.",
-                                            "position": "1/4 <br /> 6. Note",
+                                            "position": "1/4 <br />6. Note",
                                             "comment": "Oberstimmenschicht: Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) gestrichen mit roter Tinte."
                                         },
                                         {
@@ -2637,18 +2637,18 @@
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "2.–3. Note",
-                                            "comment": "Bögen über und unter dem System hinzugefügt mit roter Tinte.  <br /> Decrescendogabel hinzugefügt mit roter Tinte."
+                                            "comment": "Bögen über und unter dem System hinzugefügt mit roter Tinte. <br />Decrescendogabel hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Klav. u.",
-                                            "position": "2/4 <br /> 2/8",
+                                            "position": "2/4 <br />2/8",
                                             "comment": "Notation wie <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a> geändert zu <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a> mit roter Tinte."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 1/8",
+                                            "position": "4/8 <br />1/8",
                                             "comment": "Crescendogabel hinzugefügt mit roter Tinte."
                                         },
                                         {
@@ -2679,7 +2679,7 @@
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "3/4 bis 6. Note",
-                                            "comment": "Oberstimmenschicht: Ligaturbögen zu 6. Note gestrichen,  <br /> 6. Note gestrichen und korrigiert zu Achtelpause mit roter Tinte."
+                                            "comment": "Oberstimmenschicht: Ligaturbögen zu 6. Note gestrichen, <br />6. Note gestrichen und korrigiert zu Achtelpause mit roter Tinte."
                                         },
                                         {
                                             "measure": "5",
@@ -2694,9 +2694,9 @@
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 8",
+                                            "measure": "5 <br />bis 8",
                                             "system": "Klav.",
-                                            "position": "vorletzte Note <br /> 1/4",
+                                            "position": "vorletzte Note <br />1/4",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) in T. 6–8 gestrichen mit roter Tinte."
                                         },
                                         {
@@ -2760,9 +2760,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu G/c hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 12",
+                                            "measure": "8 <br />bis 12",
                                             "system": "Klav. o.",
-                                            "position": "2/4 <br /> 1/8",
+                                            "position": "2/4 <br />1/8",
                                             "comment": "Bogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) gestrichen in T. 9–11."
                                         },
                                         {
@@ -2781,7 +2781,7 @@
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "<em>express.</em> hinzugefügt mit roter Tinte. <br /> Arpeggioschlange hinzugefügt mit roter Tinte."
+                                            "comment": "<em>express.</em> hinzugefügt mit roter Tinte. <br />Arpeggioschlange hinzugefügt mit roter Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -2826,9 +2826,9 @@
                                             "comment": "Unterstimmenschicht: Achtelpause hinzugefügt mit roter Tinte."
                                         },
                                         {
-                                            "measure": "12 <br /> bis 13",
+                                            "measure": "12 <br />bis 13",
                                             "system": "Ges.",
-                                            "position": "letzte Note <br /> 3/8",
+                                            "position": "letzte Note <br />3/8",
                                             "comment": "Bogen von T. 12 1. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) geändert zu Bogen von T. 12 letzte Note mit roter Tinte."
                                         },
                                         {
@@ -2844,9 +2844,9 @@
                                             "comment": "Notation wie <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a> geändert zu <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a> mit roter Tinte."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "",
-                                            "position": "Taktanfang <br /> Taktende",
+                                            "position": "Taktanfang <br />Taktende",
                                             "comment": "<em>rit. - - -</em> hinzugefügt mit roter Tinte."
                                         },
                                         {
@@ -3615,7 +3615,7 @@
                                             "comment": "<em>Küh</em>[-le] überschreibt <em>küh</em>[-le] (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>) mit schwarzer Tinte."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
                                             "position": "4. Note",
                                             "comment": "Unterstimmenschicht: Punktierte Viertelnote D<sub>1</sub>, punktierte Viertelnote mit Ligatur zu Viertelnote D<sub>1</sub>, punktierte Halbe Note mit Ligatur zu Viertelnote D<sub>1</sub>, punktierte Viertelnote D<sub>1</sub>, punktierte Viertelnote mit Ligatur zu halbe Note Cis<sub>1</sub> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">2</a>) geändert zu Achtelnote D<sub>1</sub>, zwei Achtelpausen, Achtelnote D<sub>1</sub>, Viertelpause, Viertelnote D<sub>1</sub>, Achtelnote D<sub>1</sub>, Achtelpause, Halbe Pause, Viertelpause, Achtelnote D<sub>1</sub>, zwei Achtelpausen, Achtelnote Cis<sub>1</sub>, Viertelpause, Halbe Pause (sic: Variante zu <span class='link-todo'>Textfassung 3</span>) mit Bleistift. Siehe auch Korrekturen in T. 11 Klav. u. 1. Note und Klav. o. 2. Note."
@@ -3705,9 +3705,9 @@
                                             "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>) gestrichen mit Bleistift."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Klav. u.",
-                                            "position": "7/4 <br /> 1/4",
+                                            "position": "7/4 <br />1/4",
                                             "comment": "Unterstimmenschicht: Ligatur mit zwei Viertelnoten F<sub>1</sub> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>) geändert zu Viertelnote, Viertelpause mit Bleistift."
                                         }
                                     ]
@@ -3957,13 +3957,13 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "",
-                                            "comment": "Taktvorzeichnung <em>3/8</em> überschreibt <em>4/8</em>.  <br /> sic (Variante zu <span class='link-todo'>Textfassung 2</span>): Notation als Achtelquartole. <br /> Siehe auch Korrektur in Klav."
+                                            "comment": "Taktvorzeichnung <em>3/8</em> überschreibt <em>4/8</em>. <br />sic (Variante zu <span class='link-todo'>Textfassung 2</span>): Notation als Achtelquartole. <br />Siehe auch Korrektur in Klav."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Gestrichen und am rechten Seitanrand neu notiert mit schwarzer Tinte: <br /> ##Abbildung##"
+                                            "comment": "Gestrichen und am rechten Seitenrand neu notiert mit schwarzer Tinte: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "9",
@@ -3978,9 +3978,9 @@
                                             "comment": "<em>ruhig (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span<em> = ca 72)</em> auf Rasur."
                                         },
                                         {
-                                            "measure": "12 <br /> und 14",
+                                            "measure": "12 <br />und 14",
                                             "system": "Ges.",
-                                            "position": "letzte Note <br /> 1. Note",
+                                            "position": "letzte Note <br />1. Note",
                                             "comment": "Text sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <em>Klang. Fer</em>[-ne] (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a> T. 11, 13)."
                                         },
                                         {
@@ -3993,7 +3993,7 @@
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "1. Note",
-                                            "comment": "sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> (zusätzlich zu T. 15). <br /> sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <em>Ped.</em> erst zu 3/8."
+                                            "comment": "sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> (zusätzlich zu T. 15). <br />sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <em>Ped.</em> erst zu 3/8."
                                         }
                                     ]
                                 },
@@ -4070,7 +4070,7 @@
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte. <br /><em>die</em> überschreibt <em>Die</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "8",
@@ -4100,7 +4100,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "5. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> über dem System hinzugefügt mit blauer Tinte <br /> <em>Ha</em>[-schen] überschreibt <em>ha</em>[-schen] (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> über dem System hinzugefügt mit blauer Tinte <br /><em>Ha</em>[-schen] überschreibt <em>ha</em>[-schen] (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "10",
@@ -4118,7 +4118,7 @@
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes <span class='glyph'>{{ref.getGlyph('[p]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>) unter dem System. <br /><em>wird</em> überschreibt <em>Wird</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>) mit schwarzer Tinte."
                                         },
                                         {
                                             "measure": "11",
@@ -4729,9 +4729,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> bei 13/8 gestrichen und neu notiert bei 6/4 mit schwarzer Tinte."
                                         },
                                         {
-                                            "measure": "11 <br /> bis 12",
+                                            "measure": "11 <br />bis 12",
                                             "system": "Ges.",
-                                            "position": "13/8 <br /> 2/8",
+                                            "position": "13/8 <br />2/8",
                                             "comment": "Decrescendogabel T. 11 13/8 bis T. 12 1/8 über dem System gestrichen mit Bleistift. Decrescendogabel T. 13/8 bis T. 12 2/8 unter dem System möglicherweise dann hinzugefügt mit schwarzer Tinte."
                                         },
                                         {
@@ -4782,9 +4782,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> überschreibt Anfang der Crescendogabel, vermutlich hinzugefügt mit schwarzer Tinte."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Ges.",
-                                            "position": "letzte Note <br /> 1/4",
+                                            "position": "letzte Note <br />1/4",
                                             "comment": "Silbenlängenstrich hinzugefügt mit blauem Buntstift."
                                         },
                                         {
@@ -4977,9 +4977,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> unter dem System gestrichen. ##zwischen den Systemen neu notiert? siehe nächste Korrektur##"
                                         },
                                         {
-                                            "measure": "1 <br /> bis 5",
+                                            "measure": "1 <br />bis 5",
                                             "system": "Klav.",
-                                            "position": "1. Pause <br /> (3/4)",
+                                            "position": "1. Pause <br />(3/4)",
                                             "comment": "sic: rechte Hand als Oberstimmenschicht in Klav. u. notiert. Markierung und Anmerkung <em>× Anmerkung für | den Stecher: | rechte Hand ins obere | System (Baßschlüssel)</em> am rechten Seitenrand sowie Bassschlüssel in Klav. o. T. 1 vor 1. Pause sowie Violinschlüssel in Klav. o. T. 5 vor 2. Pause hinzugefügt mit rotem Buntstift."
                                         },
                                         {
