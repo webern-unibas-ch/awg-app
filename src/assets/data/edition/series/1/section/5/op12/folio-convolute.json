@@ -638,7 +638,7 @@
                     },
                     "content": [
                         {
-                            "complexId": "Mx_unknown",
+                            "complexId": "mx_unknown",
                             "sheetId": "Mx_unknown_Sk1",
                             "sigle": "unidentifizierte Skizze",
                             "sigleAddendum": "T. 1–4",
@@ -653,7 +653,7 @@
                             ]
                         },
                         {
-                            "complexId": "Mx_unknown",
+                            "complexId": "mx_unknown",
                             "sheetId": "Mx_unknown_Sk1",
                             "sigle": "unidentifizierte Skizze",
                             "sigleAddendum": "T. 5–6",
