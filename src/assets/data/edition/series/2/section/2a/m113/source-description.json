@@ -1499,7 +1499,7 @@
                                     [
                                         {
                                             "system": "10–9a",
-                                            "measure": "{16}",
+                                            "measure": "{16–17}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1716,7 +1716,7 @@
                                         {
                                             "system": "3b–2a",
                                             "measure": "39–41A",
-                                            "linkTo": ""
+                                            "linkTo": "M_113_Sk5a"
                                         }
                                     ]
                                 ]
@@ -1724,8 +1724,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk9",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk8",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk8"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 3)",
                         "folios": [
                             {
@@ -1737,7 +1740,7 @@
                                         {
                                             "system": "16–15 (Bleistift)",
                                             "measure": "44–49",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk8d"
                                         }
                                     ]
                                 ]
@@ -1751,7 +1754,7 @@
                                         {
                                             "system": "13–12 (Bleistift)",
                                             "measure": "50–56(1–2/4)",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk8e"
                                         }
                                     ]
                                 ]
@@ -1765,7 +1768,7 @@
                                         {
                                             "system": "10a–9a (Bleistift)",
                                             "measure": "56(2–3/4)–58",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk8f"
                                         }
                                     ]
                                 ]
@@ -1773,8 +1776,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk10",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk9",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {
@@ -1786,7 +1792,7 @@
                                         {
                                             "system": "10b–9b (Bleistift)",
                                             "measure": "60–64",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk9a"
                                         }
                                     ]
                                 ]
@@ -1800,7 +1806,7 @@
                                         {
                                             "system": "7a–6a (Bleistift)",
                                             "measure": "65–66, {67A–70A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk9b"
                                         }
                                     ]
                                 ]
@@ -1814,7 +1820,7 @@
                                         {
                                             "system": "5b–4b (Bleistift)",
                                             "measure": "67B–70B",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk9c"
                                         }
                                     ]
                                 ]
@@ -1828,7 +1834,7 @@
                                         {
                                             "system": "2–1 (Bleistift)",
                                             "measure": "71–73, 74A, 74B, 75–76",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk9d"
                                         }
                                     ]
                                 ]
@@ -1842,7 +1848,7 @@
                                         {
                                             "system": "7b–6b (Bleistift)",
                                             "measure": "77–78",
-                                            "linkTo": ""
+                                            "linkTo": "M_114_Sk9e"
                                         }
                                     ]
                                 ]
@@ -1850,8 +1856,11 @@
                         ]
                     },
                     {
-                        "item": "M 114 Sk10.1",
-                        "itemLinkTo": {},
+                        "item": "M 114 Sk9.1",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
                         "folios": [
                             {

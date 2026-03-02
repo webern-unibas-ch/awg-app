@@ -264,7 +264,7 @@
                                 "measure": "83",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu ais ergänz mit Blick auf T. 28."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu ais ergänzt mit Blick auf T. 28."
                             }
                         ]
                     }
@@ -1106,7 +1106,7 @@
                                 "measure": "74",
                                 "system": "17",
                                 "position": "7–8/16",
-                                "comment": "Rhyhtmische Figur für Sechzehnteltriole radiert? Entzifferung unsicher."
+                                "comment": "Rhythmische Figur für Sechzehnteltriole radiert? Entzifferung unsicher."
                             },
                             {
                                 "svgGroupId": "g-tkk-40",
