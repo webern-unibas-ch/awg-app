@@ -85,8 +85,8 @@ describe('EditionComplexComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
-        expectedSelectedEditionComplexId = 'OP12';
+        expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
+        expectedSelectedEditionComplexId = 'op12';
 
         // Spies
         updateEditionComplexFromRouteSpy = spyOn(component, 'updateEditionComplexFromRoute').and.callThrough();
@@ -153,7 +153,7 @@ describe('EditionComplexComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set route params via ActivatedRoute mock
-            expectedSelectedEditionComplexId = 'OP12';
+            expectedSelectedEditionComplexId = 'op12';
             mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId }; // Op. 12
 
             // Trigger initial data binding
@@ -186,12 +186,12 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     1,
-                    EditionComplexesService.getEditionComplexById('OP12')
+                    EditionComplexesService.getEditionComplexById('op12')
                 );
 
                 // ----------------
                 // Change to op. 25
-                mockActivatedRoute.testParamMap = { complexId: 'OP25' };
+                mockActivatedRoute.testParamMap = { complexId: 'op25' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -200,7 +200,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     2,
-                    EditionComplexesService.getEditionComplexById('OP25')
+                    EditionComplexesService.getEditionComplexById('op25')
                 );
             });
 
@@ -208,7 +208,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     1,
-                    EditionComplexesService.getEditionComplexById('OP12')
+                    EditionComplexesService.getEditionComplexById('op12')
                 );
 
                 // Change to non-existing id
@@ -221,7 +221,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     1,
-                    EditionComplexesService.getEditionComplexById('OP12')
+                    EditionComplexesService.getEditionComplexById('op12')
                 );
 
                 // ------------------
@@ -235,12 +235,12 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     1,
-                    EditionComplexesService.getEditionComplexById('OP12')
+                    EditionComplexesService.getEditionComplexById('op12')
                 );
 
                 // ----------------------
                 // Change to another key
-                mockActivatedRoute.testParamMap = { anotherId: 'OP12' };
+                mockActivatedRoute.testParamMap = { anotherId: 'op12' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -249,7 +249,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectSpyCall(
                     editionStateServiceUpdateSelectedEditionComplexSpy,
                     1,
-                    EditionComplexesService.getEditionComplexById('OP12')
+                    EditionComplexesService.getEditionComplexById('op12')
                 );
             });
 
@@ -374,7 +374,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectedSelectedEditionComplexId = 'op100';
 
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return opusComplex;
                         }
                         return null;
@@ -410,7 +410,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return mnrComplex;
                         }
                         return null;
@@ -446,7 +446,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return mnrXComplex;
                         }
                         return null;
@@ -479,7 +479,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingRespComplex;
                         }
                         return null;
@@ -595,7 +595,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingTitleComplex;
                         }
                         return null;
@@ -626,7 +626,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
-                        if (id.toUpperCase() === expectedSelectedEditionComplexId.toUpperCase()) {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingPubComplex;
                         }
                         return null;

@@ -274,7 +274,7 @@ describe('IntroComponent (DONE)', () => {
         expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
         expectedEditionIntroComplexData = JSON.parse(JSON.stringify(mockEditionData.mockIntroComplexData));
         expectedEditionIntroFilteredData = JSON.parse(JSON.stringify(mockEditionData.mockIntroFilteredData));
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedErrorObject = null;
 
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';

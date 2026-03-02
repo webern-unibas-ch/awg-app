@@ -76,7 +76,7 @@ const EDITION_VIEW_ROUTES: Routes = [
                 pathMatch: 'prefix',
             },
             {
-                // ComplexID (OP12, M34, etc.).
+                // ComplexID (op12, m34, etc.).
                 path: 'complex/:complexId',
                 component: EditionComplexComponent,
                 children: [
