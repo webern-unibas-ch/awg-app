@@ -27,8 +27,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar400",
-                            "sheetId": "Mstar_400_Sk1",
+                            "complexId": "mx400",
+                            "sheetId": "Mx_400_Sk1",
                             "sigle": "M* 400 Sk1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -197,8 +197,8 @@
                     },
                     "content": [
                         {
-                            "complexId": "mstar401",
-                            "sheetId": "Mstar_401_Sk1a",
+                            "complexId": "mx401",
+                            "sheetId": "Mx_401_Sk1a",
                             "sigle": "M* 401 Sk1",
                             "sigleAddendum": "T. 1–11",
                             "selectable": false,
@@ -212,8 +212,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar401",
-                            "sheetId": "Mstar_401_Sk1b",
+                            "complexId": "mx401",
+                            "sheetId": "Mx_401_Sk1b",
                             "sigle": "M* 401 Sk1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
@@ -227,8 +227,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar401",
-                            "sheetId": "Mstar_401_Sk1_1",
+                            "complexId": "mx401",
+                            "sheetId": "Mx_401_Sk1_1",
                             "sigle": "M* 401 Sk1.1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -242,8 +242,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar401",
-                            "sheetId": "Mstar_401_Sk1_2",
+                            "complexId": "mx401",
+                            "sheetId": "Mx_401_Sk1_2",
                             "sigle": "M* 401 Sk1.2",
                             "sigleAddendum": "",
                             "selectable": false,
