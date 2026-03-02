@@ -101,8 +101,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar407",
-                            "sheetId": "Mstar_407_Sk1_1",
+                            "complexId": "mx407",
+                            "sheetId": "Mx_407_Sk1_1",
                             "sigle": "M* 407 Sk1.1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -116,8 +116,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar407",
-                            "sheetId": "Mstar_407_Sk1",
+                            "complexId": "mx407",
+                            "sheetId": "Mx_407_Sk1",
                             "sigle": "M* 407 Sk1",
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
@@ -131,8 +131,8 @@
                             ]
                         },
                         {
-                            "complexId": "mstar407",
-                            "sheetId": "Mstar_407_Sk1",
+                            "complexId": "mx407",
+                            "sheetId": "Mx_407_Sk1",
                             "sigle": "M* 407 Sk1",
                             "sigleAddendum": "T. 8–13",
                             "selectable": false,
