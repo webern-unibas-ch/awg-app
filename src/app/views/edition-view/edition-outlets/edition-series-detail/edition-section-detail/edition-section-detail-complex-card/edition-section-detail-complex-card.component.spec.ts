@@ -42,11 +42,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
         // Test data
         expectedComplexes = [
-            { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: true },
-            { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('op12'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('op23'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('op25'), disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('m212'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('m213'), disabled: true },
         ];
     });
 

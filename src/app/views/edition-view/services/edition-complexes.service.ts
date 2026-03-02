@@ -38,13 +38,15 @@ export class EditionComplexesService {
      * Static method: getEditionComplexById.
      *
      * It finds an edition complex by a given id.
+     * The input id is normalized to lowercase to match against lowercase keys
+     * in the edition complexes list.
      *
-     * @param {string} id The given id.
+     * @param {string} id The given id (will be normalized to lowercase).
      *
      * @returns {EditionComplex} The found edition complex.
      */
     static getEditionComplexById(id: string): EditionComplex {
-        return EditionComplexesService._editionComplexesList[id.toUpperCase()];
+        return EditionComplexesService._editionComplexesList[id.toLowerCase()];
     }
 
     /**

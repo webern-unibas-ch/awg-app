@@ -46,7 +46,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         const mockEditionStateService = jasmine.createSpyObj('EditionStateService', ['getSelectedEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
         getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.and.returnValue(
-            observableOf(EditionComplexesService.getEditionComplexById('OP12'))
+            observableOf(EditionComplexesService.getEditionComplexById('op12'))
         );
 
         TestBed.configureTestingModule({
@@ -61,7 +61,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,

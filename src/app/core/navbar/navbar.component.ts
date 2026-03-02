@@ -70,17 +70,17 @@ export class NavbarComponent implements OnInit {
      * It keeps the array of displayed edition complexes.
      */
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EditionComplexesService.getEditionComplexById('OP3'),
-        EditionComplexesService.getEditionComplexById('OP4'),
-        EditionComplexesService.getEditionComplexById('OP12'),
-        EditionComplexesService.getEditionComplexById('OP23'),
-        EditionComplexesService.getEditionComplexById('OP25'),
-        EditionComplexesService.getEditionComplexById('M22'),
-        EditionComplexesService.getEditionComplexById('M30'),
-        EditionComplexesService.getEditionComplexById('M31'),
-        EditionComplexesService.getEditionComplexById('M34'),
-        EditionComplexesService.getEditionComplexById('M35_42'),
-        EditionComplexesService.getEditionComplexById('M37'),
+        EditionComplexesService.getEditionComplexById('op3'),
+        EditionComplexesService.getEditionComplexById('op4'),
+        EditionComplexesService.getEditionComplexById('op12'),
+        EditionComplexesService.getEditionComplexById('op23'),
+        EditionComplexesService.getEditionComplexById('op25'),
+        EditionComplexesService.getEditionComplexById('m22'),
+        EditionComplexesService.getEditionComplexById('m30'),
+        EditionComplexesService.getEditionComplexById('m31'),
+        EditionComplexesService.getEditionComplexById('m34'),
+        EditionComplexesService.getEditionComplexById('m35_42'),
+        EditionComplexesService.getEditionComplexById('m37'),
     ];
 
     /**

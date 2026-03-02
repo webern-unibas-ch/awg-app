@@ -59,7 +59,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';

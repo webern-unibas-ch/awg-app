@@ -37,15 +37,15 @@ export const mockEditionOutline = [
                 section: EDITION_ROUTE_CONSTANTS.SECTION_5,
                 complexTypes: {
                     opus: [
-                        { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
-                        { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
-                        { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('op12'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('op23'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('op25'), disabled: false },
                     ],
                     mnr: [
-                        { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
-                        { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: false },
-                        { complex: EditionComplexesService.getEditionComplexById('M216'), disabled: false },
-                        { complex: EditionComplexesService.getEditionComplexById('M217'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('m212'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('m213'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('m216'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('m217'), disabled: false },
                     ],
                 },
                 disabled: true,

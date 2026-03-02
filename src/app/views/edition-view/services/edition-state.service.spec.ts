@@ -32,7 +32,7 @@ describe('EditionStateService (DONE)', () => {
         editionStateService = TestBed.inject(EditionStateService);
 
         // Test data (default)
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedEditionOutline = EditionOutlineService.getEditionOutline();
         expectedEditionSeries = expectedEditionOutline[0];
         expectedEditionSection = expectedEditionOutline[0].sections[0];
@@ -125,7 +125,7 @@ describe('EditionStateService (DONE)', () => {
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });
@@ -146,7 +146,7 @@ describe('EditionStateService (DONE)', () => {
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });
