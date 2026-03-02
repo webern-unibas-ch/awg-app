@@ -2979,7 +2979,7 @@
                                 "measure": "146",
                                 "system": "8",
                                 "position": "(1/4)",
-                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>."
+                                "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g-tkk-6",
