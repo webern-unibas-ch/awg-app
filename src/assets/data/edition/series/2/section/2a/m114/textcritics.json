@@ -2288,7 +2288,7 @@
                                 "measure": "89",
                                 "system": "2",
                                 "position": "(1/4)",
-                                "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–c/c<sup>1</sup>; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> auf 4/16 gestrichen und ersetzt durch f<sup>1</sup>."
+                                "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ces/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>–[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> auf 4/16 gestrichen und ersetzt durch f<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g-tkk-21",
