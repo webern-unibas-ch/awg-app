@@ -2204,7 +2204,7 @@
                                 "measure": "73",
                                 "system": "2",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]<sup>2</sup>: Viertelnote überschreibt Halbe Note."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]a<sup>2</sup>: Viertelnote überschreibt Halbe Note."
                             },
                             {
                                 "svgGroupId": "g-tkk-9",
