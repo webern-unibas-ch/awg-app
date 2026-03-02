@@ -638,8 +638,8 @@
                     },
                     "content": [
                         {
-                            "complexId": "Mstar_unknown",
-                            "sheetId": "Mstar_unknown_Sk1",
+                            "complexId": "mx_unknown",
+                            "sheetId": "Mx_unknown_Sk1",
                             "sigle": "unidentifizierte Skizze",
                             "sigleAddendum": "T. 1–4",
                             "selectable": false,
@@ -653,8 +653,8 @@
                             ]
                         },
                         {
-                            "complexId": "Mstar_unknown",
-                            "sheetId": "Mstar_unknown_Sk1",
+                            "complexId": "mx_unknown",
+                            "sheetId": "Mx_unknown_Sk1",
                             "sigle": "unidentifizierte Skizze",
                             "sigleAddendum": "T. 5–6",
                             "selectable": false,
