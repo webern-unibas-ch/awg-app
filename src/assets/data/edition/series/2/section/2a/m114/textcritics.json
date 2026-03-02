@@ -963,7 +963,7 @@
                                 "measure": "142",
                                 "system": "Klav. o.",
                                 "position": "5–6/8",
-                                "comment": "Kleinstich: Achtelnoten ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
+                                "comment": "Kleinstich: Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]g<sup>3</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>heses<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'm114', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
                             },
                             {
                                 "svgGroupId": "g-tkk-55",
