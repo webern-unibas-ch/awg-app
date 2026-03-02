@@ -26,7 +26,7 @@
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause. <br />Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -82,7 +82,7 @@
                                 "measure": "8",
                                 "system": "Ges.",
                                 "position": "5. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Pause. <br />Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -278,9 +278,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "47 <br /> bis 48",
+                                "measure": "47 <br />bis 48",
                                 "system": "Ges.",
-                                "position": "letzte Note <br /> 1. Note",
+                                "position": "letzte Note <br />1. Note",
                                 "comment": "Längenstrich ergänzt."
                             },
                             {
@@ -313,7 +313,7 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "73 <br /> bis 74",
+                                "measure": "73 <br />bis 74",
                                 "system": "Ges.",
                                 "position": "2/4",
                                 "comment": "Text sic: Silbentrennung <em>Sü-ße</em>."
@@ -622,9 +622,9 @@
                             },
                             {
                                 "svgGroupId": "g1281",
-                                "measure": "2 <br /> bis 3",
+                                "measure": "2 <br />bis 3",
                                 "system": "3",
-                                "position": "letzte Note <br /> 3. Note",
+                                "position": "letzte Note <br />3. Note",
                                 "comment": "Durch Einklammerung getilgt."
                             },
                             {
@@ -1042,9 +1042,9 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g1114",
-                                "measure": "1 <br /> bis 2",
+                                "measure": "1 <br />bis 2",
                                 "system": "3",
-                                "position": "1. Note <br /> 1. Note",
+                                "position": "1. Note <br />1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
@@ -1145,9 +1145,9 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g1203",
-                                "measure": "vor 3 <br /> bis 3",
+                                "measure": "vor 3 <br />bis 3",
                                 "system": "4",
-                                "position": "1. Note <br /> 1. Note",
+                                "position": "1. Note <br />1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
@@ -1187,9 +1187,9 @@
                             },
                             {
                                 "svgGroupId": "g1241",
-                                "measure": "{5} <br /> bis {6}",
+                                "measure": "{5} <br />bis {6}",
                                 "system": "4",
-                                "position": "6/8 <br /> 3. Note",
+                                "position": "6/8 <br />3. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
@@ -1344,9 +1344,9 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g798",
-                                "measure": "3 <br /> bis 5",
+                                "measure": "3 <br />bis 5",
                                 "system": "4",
-                                "position": "1. Note <br /> 1. Note",
+                                "position": "1. Note <br />1. Note",
                                 "comment": "Text in Kurrentschrift."
                             },
                             {
@@ -1773,7 +1773,7 @@
                                 "svgGroupId": "g10030",
                                 "measure": "6",
                                 "system": "3–4",
-                                "position": "1. Pause bis <br /> 1. Note",
+                                "position": "1. Pause <br />bis 1. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
@@ -1897,9 +1897,9 @@
                             },
                             {
                                 "svgGroupId": "g1445",
-                                "measure": "9 <br /> bis 10",
+                                "measure": "9 <br />bis 10",
                                 "system": "9",
-                                "position": "letzte Note <br /> 1. Note",
+                                "position": "letzte Note <br />1. Note",
                                 "comment": "<em>einmal</em> zusammengeschrieben."
                             },
                             {
@@ -2399,23 +2399,23 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g2060",
-                                "measure": "vor 1y <br /> bis 1y",
+                                "measure": "vor 1y <br />bis 1y",
                                 "system": "2",
-                                "position": "1. Note <br /> nach 4/4",
-                                "comment": "Taktstrich nach T. 1y 2/4 gestrichen, Viertelnote überschreibt Halbe Note vor T. 1y 1. Note und in T. 1y 2/4. Taktstriche am Taktanfang von T. 1y und in T. 1y nach 4/4 hinzugefügt.  <br /> Ante correcturam: vermutlich zunächst voller 3/2-Takt mit Viertelpause, Halbe Note g<sup>2</sup> mit Ligatur zu Viertelnote, Halbe Note e<sup>2</sup>.  <br /> Dann voller 3/2-Takt mit Viertelpause, Ligatur aus zwei Viertelnoten g<sup>2</sup>, Viertelnote e<sup>2</sup>, Viertelpause, Viertelnote dis<sup>2</sup>. <br /> Dann Auftakt zu T. 1y mit Viertelpause, Viertelnote g<sup>2</sup> mit Ligatur zu vollem 3/2-Takt T. 1y. Dabei Taktstrich nach T. 1y 4/4 redundant, aber nicht getilgt."
+                                "position": "1. Note <br />nach 4/4",
+                                "comment": "Taktstrich nach T. 1y 2/4 gestrichen, Viertelnote überschreibt Halbe Note vor T. 1y 1. Note und in T. 1y 2/4. Taktstriche am Taktanfang von T. 1y und in T. 1y nach 4/4 hinzugefügt. <br />Ante correcturam: vermutlich zunächst voller 3/2-Takt mit Viertelpause, Halbe Note g<sup>2</sup> mit Ligatur zu Viertelnote, Halbe Note e<sup>2</sup>. <br />Dann voller 3/2-Takt mit Viertelpause, Ligatur aus zwei Viertelnoten g<sup>2</sup>, Viertelnote e<sup>2</sup>, Viertelpause, Viertelnote dis<sup>2</sup>. <br />Dann Auftakt zu T. 1y mit Viertelpause, Viertelnote g<sup>2</sup> mit Ligatur zu vollem 3/2-Takt T. 1y. Dabei Taktstrich nach T. 1y 4/4 redundant, aber nicht getilgt."
                             },
                             {
                                 "svgGroupId": "g2",
-                                "measure": "4x <br /> 3y",
-                                "system": "1 <br /> 2",
-                                "position": "5/8 <br /> 1/8",
+                                "measure": "4x <br />3y",
+                                "system": "1 <br />2",
+                                "position": "5/8 <br />1/8",
                                 "comment": "Achtelpause hinzugefügt."
                             },
                             {
                                 "svgGroupId": "g1",
-                                "measure": "4x <br /> bis 5x",
+                                "measure": "4x <br />bis 5x",
                                 "system": "1",
-                                "position": "4/8 <br /> 1/8",
+                                "position": "4/8 <br />1/8",
                                 "comment": "Balken überschreibt Achtelfähnchen in T. 4x 4/8."
                             }
                         ]
@@ -2643,7 +2643,7 @@
                                 "measure": "4B",
                                 "system": "15",
                                 "position": "6/8",
-                                "comment": "e gestrichen. Dann <em>bleibt</em> hinzugefügt, dann <em>bleibt</em> getilgt durch Einkreisung. <br /> <em>8va</em> gestrichen."
+                                "comment": "e gestrichen. Dann <em>bleibt</em> hinzugefügt, dann <em>bleibt</em> getilgt durch Einkreisung. <br /><em>8va</em> gestrichen."
                             },
                             {
                                 "svgGroupId": "g213b",

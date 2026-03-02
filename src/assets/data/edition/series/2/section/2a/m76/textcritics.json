@@ -54,7 +54,7 @@
                                 "measure": "14–17",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "Unterstimmenschicht in <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br /> ##Abbildung##"
+                                "comment": "Unterstimmenschicht in <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g2650",

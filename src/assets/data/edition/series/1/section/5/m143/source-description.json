@@ -262,7 +262,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "4/8–8/8",
-                                            "comment": "Korrekturskizze am rechten Seitenrand:  <br /> ##Abbildung##"
+                                            "comment": "Korrekturskizze am rechten Seitenrand: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "11",
@@ -283,16 +283,16 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "14 <br /> bis 15",
+                                            "measure": "14 <br />bis 15",
                                             "system": "Klav. o.",
-                                            "position": "4/4 <br /> 1/4",
+                                            "position": "4/4 <br />1/4",
                                             "comment": "Ligaturbögen hinzugefügt."
                                         },
                                         {
                                             "measure": "15–16",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Dynamik überschreibt:  <br /> ##Abbildung##"
+                                            "comment": "Dynamik überschreibt: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "15",
@@ -313,10 +313,10 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "16 <br /> bis 17",
+                                            "measure": "16 <br />bis 17",
                                             "system": "Klav. o.",
-                                            "position": "4/4 <br /> 1/4",
-                                            "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen.  <br /> Dann: Crescendogabel wieder hinzugefügt."
+                                            "position": "4/4 <br />1/4",
+                                            "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen. <br />Dann: Crescendogabel wieder hinzugefügt."
                                         },
                                         {
                                             "measure": "17",
