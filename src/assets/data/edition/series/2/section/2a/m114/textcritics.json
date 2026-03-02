@@ -73,7 +73,7 @@
                                 "measure": "22",
                                 "system": "Klav.",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3. Note."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 3. Note."
                             },
                             {
                                 "svgGroupId": "g-tkk-4",
