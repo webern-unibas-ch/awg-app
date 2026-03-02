@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_34_TF1",
+            "id": "M34_TF1",
             "label": "M 34 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 34 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm34', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm34', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -19,7 +19,7 @@
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M_34_Sk1'})\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M_34_Sk1_1'})\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
+                                "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M34_Sk1'})\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M34_Sk1_1'})\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
                             }
                         ]
                     }
@@ -27,7 +27,7 @@
             }
         },
         {
-            "id": "M_34_Sk1",
+            "id": "M34_Sk1",
             "label": "M 34 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 34, die jedoch ab T. 7–15 maßgeblich von der späteren achttaktigen Tintenniederschrift abweicht, indem sie stattdessen eine sechzehntaktige Periode formuliert."
@@ -92,7 +92,7 @@
                                 "measure": "14",
                                 "system": "4",
                                 "position": "3/8",
-                                "comment": "b überscheibt es<sup>1</sup>."
+                                "comment": "b überschreibt es<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g9346",
@@ -138,16 +138,16 @@
                     "svgGroupId": "g3378",
                     "linkTo": {
                         "complexId": "m34",
-                        "sheetId": "M_34_Sk1_1"
+                        "sheetId": "M34_Sk1_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_34_Sk1_1",
+            "id": "M34_Sk1_1",
             "label": "M 34 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M_34_Sk1'})\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
+                "<strong>Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm34', sheetId: 'M34_Sk1'})\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
             ],
             "commentary": {
                 "preamble": "",
@@ -192,7 +192,7 @@
                     "svgGroupId": "g1228",
                     "linkTo": {
                         "complexId": "m34",
-                        "sheetId": "M_34_Sk1c"
+                        "sheetId": "M34_Sk1c"
                     }
                 }
             ]

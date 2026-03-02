@@ -66,13 +66,13 @@ describe('EditionComplexesService (DONE)', () => {
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
-            expect(editionComplexesList['OP3']).toBeDefined();
-            expect(editionComplexesList['M22']).toBeDefined();
+            expect(editionComplexesList['op3']).toBeDefined();
+            expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].respStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
+            expect(editionComplexesList['op3'].respStatement).toBeDefined();
+            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
         });
     });
 
@@ -95,10 +95,33 @@ describe('EditionComplexesService (DONE)', () => {
                 { series: '1', section: '5' }
             );
             const testComplexId = 'op100';
-            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            const expectedList = { [testComplexId]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 
             const complex = EditionComplexesService.getEditionComplexById(testComplexId);
+
+            expect(complex).toBeTruthy();
+            expectToEqual(complex, testComplex);
+        });
+
+        it('... should return the correct edition complex by ID in a case-insensitive way', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            const expectedList = { [testComplexId]: testComplex };
+            EditionComplexesService.setEditionComplexesList(expectedList);
+
+            const complex = EditionComplexesService.getEditionComplexById(testComplexId.toUpperCase());
 
             expect(complex).toBeTruthy();
             expectToEqual(complex, testComplex);
@@ -120,13 +143,13 @@ describe('EditionComplexesService (DONE)', () => {
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
-            expect(editionComplexesList['OP3']).toBeDefined();
-            expect(editionComplexesList['M22']).toBeDefined();
+            expect(editionComplexesList['op3']).toBeDefined();
+            expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].respStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
+            expect(editionComplexesList['op3'].respStatement).toBeDefined();
+            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
         });
     });
 
@@ -149,7 +172,7 @@ describe('EditionComplexesService (DONE)', () => {
                 { series: '1', section: '5' }
             );
             const testComplexId = 'op100';
-            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            const expectedList = { [testComplexId]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
@@ -171,7 +194,7 @@ describe('EditionComplexesService (DONE)', () => {
                 { series: '1', section: '5' }
             );
             const testComplexId = 'op100';
-            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            const expectedList = { [testComplexId]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
@@ -193,7 +216,7 @@ describe('EditionComplexesService (DONE)', () => {
                 { series: '1', section: '5' }
             );
             const testComplexId = 'm100';
-            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            const expectedList = { [testComplexId]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
@@ -205,8 +228,8 @@ describe('EditionComplexesService (DONE)', () => {
             const testComplex = new EditionComplex(
                 {
                     title: 'Test M Complex',
-                    catalogueType: 'MNR_STAR',
-                    catalogueNumber: '100',
+                    catalogueType: 'MNR_X',
+                    catalogueNumber: '400',
                 },
                 {
                     editors: [],
@@ -214,8 +237,8 @@ describe('EditionComplexesService (DONE)', () => {
                 },
                 { series: '1', section: '5' }
             );
-            const testComplexId = 'm_star100';
-            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            const testComplexId = 'mx400';
+            const expectedList = { [testComplexId]: testComplex };
             EditionComplexesService.setEditionComplexesList(expectedList);
 
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
@@ -237,13 +260,13 @@ describe('EditionComplexesService (DONE)', () => {
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
-            expect(editionComplexesList['OP3']).toBeDefined();
-            expect(editionComplexesList['M22']).toBeDefined();
+            expect(editionComplexesList['op3']).toBeDefined();
+            expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].respStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
+            expect(editionComplexesList['op3'].respStatement).toBeDefined();
+            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
         });
     });
 });

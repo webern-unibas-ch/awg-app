@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_40_TF1",
+            "id": "M40_TF1",
             "label": "M 40 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 40 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -48,10 +48,10 @@
             }
         },
         {
-            "id": "M_40_Sk1",
+            "id": "M40_Sk1",
             "label": "M 40 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_TF1'})\">Studienkomposition für Klavier M 40</a>, die vor der Reprise abbricht."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M40_TF1'})\">Studienkomposition für Klavier M 40</a>, die vor der Reprise abbricht."
             ],
             "commentary": {
                 "preamble": "",
@@ -169,7 +169,7 @@
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1496",
@@ -271,23 +271,23 @@
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m40",
-                        "sheetId": "M_40_Sk1b"
+                        "sheetId": "M40_Sk1b"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m40",
-                        "sheetId": "M_40_Sk1c"
+                        "sheetId": "M40_Sk1c"
                     }
                 }
             ]
         },
         {
-            "id": "M_40_Sk1_1",
+            "id": "M40_Sk1_1",
             "label": "M 40 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M40_Sk1'})\"><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -311,14 +311,14 @@
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1f"
+                        "sheetId": "M35_42_Sk1f"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m35_42",
-                        "sheetId": "M_35_42_Sk1_1"
+                        "sheetId": "M35_42_Sk1_1"
                     }
                 }
             ]

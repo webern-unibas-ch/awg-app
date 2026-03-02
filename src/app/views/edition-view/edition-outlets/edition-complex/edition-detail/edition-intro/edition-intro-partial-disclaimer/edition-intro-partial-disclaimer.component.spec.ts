@@ -46,7 +46,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedEditionLabel = EDITION_ROUTE_CONSTANTS.EDITION.short;
         expectedEditionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
         expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;

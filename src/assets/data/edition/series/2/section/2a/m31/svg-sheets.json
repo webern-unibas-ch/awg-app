@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_31_TF1",
+                "id": "M31_TF1",
                 "label": "M 31 einzige Textfassung",
                 "content": [
                     {
@@ -23,7 +23,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_31_Sk1",
+                "id": "M31_Sk1",
                 "label": "M 31 Sk1",
                 "content": [
                     {
@@ -41,7 +41,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk2",
+                "id": "M31_Sk2",
                 "label": "M 31 Sk2",
                 "content": [
                     {
@@ -53,7 +53,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk3",
+                "id": "M31_Sk3",
                 "label": "M 31 Sk3",
                 "content": [
                     {
@@ -83,7 +83,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk3_1",
+                "id": "M31_Sk3_1",
                 "label": "M 31 Sk3.1",
                 "content": [
                     {
@@ -95,7 +95,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk3_2",
+                "id": "M31_Sk3_2",
                 "label": "M 31 Sk3.2",
                 "content": [
                     {
@@ -107,7 +107,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk4",
+                "id": "M31_Sk4",
                 "label": "M 31 Sk4",
                 "content": [
                     {
@@ -131,7 +131,7 @@
                 ]
             },
             {
-                "id": "M_31_Sk5",
+                "id": "M31_Sk5",
                 "label": "M 31 Sk5",
                 "content": [
                     {

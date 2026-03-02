@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -23,7 +23,6 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionComplex, EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { DOCUMENT } from '@angular/common';
 import { EditionInfoComponent } from './edition-info.component';
 
 /** Helper functions */
@@ -112,7 +111,9 @@ describe('EditionInfoComponent (DONE)', () => {
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
     class NgbAccordionWithConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }
@@ -539,8 +540,8 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return combined opus and mnr complexes', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('OP12');
-                const mnrComplex = EditionComplexesService.getEditionComplexById('M22');
+                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
+                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
 
                 const section: EditionOutlineSection = {
                     content: {
@@ -560,7 +561,7 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return only opus complexes if mnr complexes are empty', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('OP12');
+                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
                 const section: EditionOutlineSection = {
                     content: {
                         complexTypes: {
@@ -576,7 +577,7 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... should return only mnr complexes if opus complexes are empty', () => {
-                const mnrComplex = EditionComplexesService.getEditionComplexById('M22');
+                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
                 const section: EditionOutlineSection = {
                     content: {
                         complexTypes: {

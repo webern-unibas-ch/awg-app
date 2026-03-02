@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
@@ -60,7 +59,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';

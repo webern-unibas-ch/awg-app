@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, DOCUMENT, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -118,7 +117,7 @@ describe('EditionViewComponent (DONE)', () => {
         expectedIsIntroView = false;
         expectedIsPrefaceView = false;
         expectedIsRowTableView = true;
-        expectedSelectedEditionComplexId = 'OP12';
+        expectedSelectedEditionComplexId = 'op12';
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );

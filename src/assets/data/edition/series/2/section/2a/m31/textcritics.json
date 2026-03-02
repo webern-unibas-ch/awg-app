@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_31_TF1",
+            "id": "M31_TF1",
             "label": "M 31 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -76,7 +76,7 @@
             }
         },
         {
-            "id": "M_31_Sk1",
+            "id": "M31_Sk1",
             "label": "M 31 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> enthält eine erste rhythmische Skizze zum Hauptthema der Studienkomposition für Klavier M 31."
@@ -103,20 +103,20 @@
                     "svgGroupId": "g415",
                     "linkTo": {
                         "complexId": "m30",
-                        "sheetId": "M_30_Sk1k"
+                        "sheetId": "M30_Sk1k"
                     }
                 },
                 {
                     "svgGroupId": "g3",
                     "linkTo": {
                         "complexId": "m30",
-                        "sheetId": "M_30_Sk1k"
+                        "sheetId": "M30_Sk1k"
                     }
                 }
             ]
         },
         {
-            "id": "M_31_Sk2",
+            "id": "M31_Sk2",
             "label": "M 31 Sk2",
             "evaluations": [
                 "<strong>Sk2</strong> formuliert ein kontrastierendes Thema in E-Dur für den B-Teil, das von der Tintenniederschrift jedoch noch stark abweicht."
@@ -140,7 +140,7 @@
             }
         },
         {
-            "id": "M_31_Sk3",
+            "id": "M31_Sk3",
             "label": "M 31 Sk3",
             "evaluations": [
                 "<strong>Sk3</strong> beinhaltet eine Verlaufsskizze vom A-Teil und B-Teil der Studienkomposition für Klavier M 31, deren Übergang zur Reprise von der Tintenniederschrift abweicht."
@@ -230,23 +230,23 @@
                     "svgGroupId": "g403",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3_1"
+                        "sheetId": "M31_Sk3_1"
                     }
                 },
                 {
                     "svgGroupId": "g399",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3_2"
+                        "sheetId": "M31_Sk3_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_31_Sk3_1",
+            "id": "M31_Sk3_1",
             "label": "M 31 Sk3.1",
             "evaluations": [
-                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> ein."
+                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M31_Sk3'})\"><strong>Sk3</strong></a> ein."
             ],
             "commentary": {
                 "preamble": "",
@@ -270,23 +270,23 @@
                     "svgGroupId": "g398",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3d"
+                        "sheetId": "M31_Sk3d"
                     }
                 },
                 {
                     "svgGroupId": "g402",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3_2"
+                        "sheetId": "M31_Sk3_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_31_Sk3_2",
+            "id": "M31_Sk3_2",
             "label": "M 31 Sk3.2",
             "evaluations": [
-                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
+                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M31_Sk3'})\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
             ],
             "commentary": {
                 "preamble": "",
@@ -310,20 +310,20 @@
                     "svgGroupId": "g396",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3d"
+                        "sheetId": "M31_Sk3d"
                     }
                 },
                 {
                     "svgGroupId": "g400",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk3_1"
+                        "sheetId": "M31_Sk3_1"
                     }
                 }
             ]
         },
         {
-            "id": "M_31_Sk4",
+            "id": "M31_Sk4",
             "label": "M 31 Sk4",
             "evaluations": [
                 "<strong>Sk4</strong> setzt erneut beim B-Teil an, um einen – unter erheblichen Korrekturvorgängen – mit der Tintenniederschrift nahezu übereinstimmenden Verlauf des Mittelteils zu formulieren."
@@ -434,41 +434,41 @@
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk4a"
+                        "sheetId": "M31_Sk4a"
                     }
                 },
                 {
                     "svgGroupId": "g42",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk4b"
+                        "sheetId": "M31_Sk4b"
                     }
                 },
                 {
                     "svgGroupId": "g43",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk4b"
+                        "sheetId": "M31_Sk4b"
                     }
                 },
                 {
                     "svgGroupId": "g45",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk4c"
+                        "sheetId": "M31_Sk4c"
                     }
                 },
                 {
                     "svgGroupId": "g46",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk4c"
+                        "sheetId": "M31_Sk4c"
                     }
                 }
             ]
         },
         {
-            "id": "M_31_Sk5",
+            "id": "M31_Sk5",
             "label": "M 31 Sk5",
             "evaluations": [
                 "<strong>Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift."

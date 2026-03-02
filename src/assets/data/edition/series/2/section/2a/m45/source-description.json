@@ -26,7 +26,7 @@
                         "item": "M 45 Sk5",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk5"
+                            "sheetId": "M45_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45: Textfassung 2)",
                         "folios": [
@@ -39,35 +39,35 @@
                                         {
                                             "system": "1–2",
                                             "measure": "7–9, 10A, 10B(2–3/4), 10C(2–3/4), {11A}",
-                                            "linkTo": "M_45_Sk5a"
+                                            "linkTo": "M45_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–4",
                                             "measure": "11B, 12–13, {14A}, 14B, 15A",
-                                            "linkTo": "M_45_Sk5b"
+                                            "linkTo": "M45_Sk5b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–7",
                                             "measure": "15B, 16A, {17A–18A}, 16B(3/4), 17B, 17C(2–3/4)",
-                                            "linkTo": "M_45_Sk5c"
+                                            "linkTo": "M45_Sk5c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5",
                                             "measure": "18B(1/4)",
-                                            "linkTo": "M_45_Sk5d"
+                                            "linkTo": "M45_Sk5d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9a",
                                             "measure": "18C",
-                                            "linkTo": "M_45_Sk5e"
+                                            "linkTo": "M45_Sk5e"
                                         }
                                     ]
                                 ]
@@ -78,7 +78,7 @@
                         "item": "M 45 Sk6",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk6"
+                            "sheetId": "M45_Sk6"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45: Textfassung 2)",
                         "folios": [
@@ -91,21 +91,21 @@
                                         {
                                             "system": "9b–10",
                                             "measure": "{27A}, 27B, 28–31",
-                                            "linkTo": "M_45_Sk6a"
+                                            "linkTo": "M45_Sk6a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11a–12a",
                                             "measure": "32",
-                                            "linkTo": "M_45_Sk6b"
+                                            "linkTo": "M45_Sk6b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "34–37",
-                                            "linkTo": "M_45_Sk6c"
+                                            "linkTo": "M45_Sk6c"
                                         }
                                     ]
                                 ]
@@ -116,7 +116,7 @@
                         "item": "M 45 Sk7",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk7"
+                            "sheetId": "M45_Sk7"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45: Textfassung 2)",
                         "folios": [
@@ -175,7 +175,7 @@
                         "item": "M 45 Sk1",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk1"
+                            "sheetId": "M45_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -188,77 +188,77 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–8",
-                                            "linkTo": "M_45_Sk1a"
+                                            "linkTo": "M45_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–4",
                                             "measure": "9A–12A, 9B–11B",
-                                            "linkTo": "M_45_Sk1b"
+                                            "linkTo": "M45_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5a–6a",
                                             "measure": "12B, 13A–14A, 10C(3–4/4), 11C–12C",
-                                            "linkTo": "M_45_Sk1c"
+                                            "linkTo": "M45_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "9C, 10D–11D, {12D, 13B}, 11D(3/4), 12E, {13C}",
-                                            "linkTo": "M_45_Sk1d"
+                                            "linkTo": "M45_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11b",
                                             "measure": "{13D}, 13E, 14B, 15A–19A",
-                                            "linkTo": "M_45_Sk1e"
+                                            "linkTo": "M45_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–13",
                                             "measure": "13F, 14C, 13G, 14D, 15B–18B",
-                                            "linkTo": "M_45_Sk1f"
+                                            "linkTo": "M45_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "19B, 20A–23A, 20B–23B",
-                                            "linkTo": "M_45_Sk1g"
+                                            "linkTo": "M45_Sk1g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–17",
                                             "measure": "24–26, 27A–32A",
-                                            "linkTo": "M_45_Sk1h"
+                                            "linkTo": "M45_Sk1h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18b–19b",
                                             "measure": "{27B}, 27C, {28B}, 29B",
-                                            "linkTo": "M_45_Sk1i"
+                                            "linkTo": "M45_Sk1i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20–21",
                                             "measure": "30B–32B, 33–36",
-                                            "linkTo": "M_45_Sk1j"
+                                            "linkTo": "M45_Sk1j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18a–19a",
                                             "measure": "37–38",
-                                            "linkTo": "M_45_Sk1k"
+                                            "linkTo": "M45_Sk1k"
                                         }
                                     ]
                                 ]
@@ -269,7 +269,7 @@
                         "item": "M 45 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk1_1"
+                            "sheetId": "M45_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -293,7 +293,7 @@
                         "item": "M 45 Sk1.2",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk1_2"
+                            "sheetId": "M45_Sk1_2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -317,7 +317,7 @@
                         "item": "M 45 Sk1.3",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk1_3"
+                            "sheetId": "M45_Sk1_3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -341,7 +341,7 @@
                         "item": "M 45 Sk2.1",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk2_1"
+                            "sheetId": "M45_Sk2_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -365,7 +365,7 @@
                         "item": "M 45 Sk2",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk2"
+                            "sheetId": "M45_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -389,7 +389,7 @@
                         "item": "M 45 Sk3",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk3"
+                            "sheetId": "M45_Sk3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -402,14 +402,14 @@
                                         {
                                             "system": "26–27",
                                             "measure": "12A, 12B, 13, {14A}, 14B, {15A}, 15B, 16",
-                                            "linkTo": "M_45_Sk3a"
+                                            "linkTo": "M45_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "24b–25b",
                                             "measure": "17–18",
-                                            "linkTo": "M_45_Sk3b"
+                                            "linkTo": "M45_Sk3b"
                                         }
                                     ]
                                 ]
@@ -447,7 +447,7 @@
                         "item": "M 45",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_TF1"
+                            "sheetId": "M45_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 1→2)",
                         "folios": [
@@ -632,9 +632,9 @@
                                             "comment": "Unterstimmenschicht: Legatobogen gestrichen."
                                         },
                                         {
-                                            "measure": "12 <br /> bis 14",
+                                            "measure": "12 <br />bis 14",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> letzte Note",
+                                            "position": "6/8 <br />letzte Note",
                                             "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von T. 12 6/8 nach T. 14 letzte Note der Unterstimmenschicht (vgl. TkA)."
                                         },
                                         {
@@ -659,7 +659,7 @@
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "(5–6/8)",
-                                            "comment": "Rasur zwischen den Systemen. Ante correcturam: möglicherweise Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M_45_Sk3'})\"><strong>Sk3</strong></a>)."
+                                            "comment": "Rasur zwischen den Systemen. Ante correcturam: möglicherweise Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_Sk3'})\"><strong>Sk3</strong></a>)."
                                         },
                                         {
                                             "measure": "18",
@@ -692,7 +692,7 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> rasiert."
                                         },
                                         {
-                                            "measure": "22  <br /> bis 23",
+                                            "measure": "22 <br />bis 23",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 22 6/8 nach T. 23 6/8."
@@ -749,7 +749,7 @@
                                             "measure": "nach 32",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen:  <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "33",
@@ -857,9 +857,9 @@
                                             "comment": "Mittelstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "measure": "24 <br /> bis 25",
+                                            "measure": "24 <br />bis 25",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 1/4",
+                                            "position": "3/4 <br />1/4",
                                             "comment": "Ligatur zu B<sub>1</sub>–B<sub>1</sub> mit Bleistift hinzugefügt."
                                         },
                                         {
@@ -869,9 +869,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "measure": "26 <br /> bis 27",
+                                            "measure": "26 <br />bis 27",
                                             "system": "Klav. u.",
-                                            "position": "6/8 <br /> 1/8",
+                                            "position": "6/8 <br />1/8",
                                             "comment": "Ligatur zu C–C mit Bleistift hinzugefügt."
                                         },
                                         {
@@ -1010,7 +1010,7 @@
                         "item": "M 45",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_TF2"
+                            "sheetId": "M45_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 2)",
                         "folios": [
@@ -1069,7 +1069,7 @@
                         "item": "M 45 Sk4",
                         "itemLinkTo": {
                             "complexId": "m45",
-                            "sheetId": "M_45_Sk4"
+                            "sheetId": "M45_Sk4"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 45)",
                         "folios": [
@@ -1082,14 +1082,14 @@
                                         {
                                             "system": "1–2 (Tinte)",
                                             "measure": "1–7",
-                                            "linkTo": "M_45_Sk4a"
+                                            "linkTo": "M45_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5 (Tinte)",
                                             "measure": "8",
-                                            "linkTo": "M_45_Sk4b"
+                                            "linkTo": "M45_Sk4b"
                                         }
                                     ]
                                 ]
@@ -1109,9 +1109,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav. o.",
-                                            "position": "1. Note <br /> 1/4",
+                                            "position": "1. Note <br />1/4",
                                             "comment": "Oberstimmenschicht: Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen."
                                         },
                                         {
@@ -1121,9 +1121,9 @@
                                             "comment": "Halbe Note f gestrichen (vgl. auch T. 45)."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
-                                            "position": "6/8 <br /> 3/4",
+                                            "position": "6/8 <br />3/4",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von T. 10 6/8 nach T. 11 3. Note, dann nach T. 11 3/4."
                                         },
                                         {
@@ -1136,7 +1136,7 @@
                                             "measure": "nach 13",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br /> ##Abbildung##"
+                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "14",
@@ -1213,13 +1213,13 @@
                                         {
                                             "measure": "43",
                                             "system": "Klav. o.",
-                                            "position": "erste Note <br /> letzte Note",
+                                            "position": "erste Note <br />letzte Note",
                                             "comment": "Ende des Legatobogens versetzt von erster zu letzter Note."
                                         },
                                         {
                                             "measure": "43–44",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
@@ -1250,9 +1250,9 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Halbe Note gis zu Unterstimmenschicht in T. 7 sowie Ligaturbögen zu gis/cis<sup>1</sup>–gis/cis<sup>1 </sup>in T. 7 bis 8 hinzugefügt; gis und Ligaturbögen wieder gestrichen."
                                         },
                                         {
@@ -1265,7 +1265,7 @@
                                             "measure": "40–42",
                                             "system": "Klav.",
                                             "position": "1–2/8",
-                                            "comment": "Alternative Skizze unter den Systemen notiert: <br /> ###Abbildung###"
+                                            "comment": "Alternative Skizze unter den Systemen notiert: <br />###Abbildung###"
                                         },
                                         {
                                             "measure": "43",
@@ -1276,7 +1276,7 @@
                                         {
                                             "measure": "43–44",
                                             "system": "Klav. o.",
-                                            "position": "letzte Note <br /> erste Note",
+                                            "position": "letzte Note <br />erste Note",
                                             "comment": "Ligatur zu gis/cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1</sup>– gis/cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1</sup> hinzugefügt."
                                         }
                                     ]

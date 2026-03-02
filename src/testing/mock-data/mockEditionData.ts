@@ -121,7 +121,7 @@ export const mockEditionData = {
                         content: [
                             {
                                 complexId: 'op12',
-                                sheetId: 'M_212_Sk1',
+                                sheetId: 'M212_Sk1',
                                 sigle: 'M 212 Sk1',
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: true,
@@ -137,7 +137,7 @@ export const mockEditionData = {
                             },
                             {
                                 complexId: 'op12',
-                                sheetId: 'M_212_Sk3',
+                                sheetId: 'M212_Sk3',
                                 sigle: 'M 212 Sk3',
                                 sigleAddendum: 'T. 3',
                                 segmentSplit: 1,
@@ -152,7 +152,7 @@ export const mockEditionData = {
                             },
                             {
                                 complexId: 'op12',
-                                sheetId: 'M_212_Sk2',
+                                sheetId: 'M212_Sk2',
                                 sigle: 'M 212 Sk2',
                                 sigleAddendum: 'T. 2',
                                 segmentSplit: 1,
@@ -194,7 +194,7 @@ export const mockEditionData = {
         content: [
             {
                 complexId: 'op12',
-                sheetId: 'M_212_Sk1_1',
+                sheetId: 'M212_Sk1_1',
                 sigle: 'M 212 Sk1.1',
                 sigleAddendum: '',
                 selectable: undefined,

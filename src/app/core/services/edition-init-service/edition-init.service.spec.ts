@@ -61,13 +61,13 @@ describe('EditionInitService (DONE)', () => {
             expect(editionComplexesList).not.toBe({});
 
             // Test for samples
-            expect(editionComplexesList['OP3']).toBeDefined();
-            expect(editionComplexesList['M22']).toBeDefined();
+            expect(editionComplexesList['op3']).toBeDefined();
+            expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].respStatement).toBeDefined();
-            expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
+            expect(editionComplexesList['op3'].respStatement).toBeDefined();
+            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
         });
 
         it('... should make the EditionOutline available', () => {

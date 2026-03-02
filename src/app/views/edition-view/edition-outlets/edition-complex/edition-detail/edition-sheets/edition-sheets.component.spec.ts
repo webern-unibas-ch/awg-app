@@ -243,12 +243,12 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Test data
         expectedIsFullscreen = false;
 
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
 
         expectedComplexId = 'op12';
         expectedNextComplexId = 'testComplex2';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}/`;
-        expectedSheetId = 'M_212_Sk1';
+        expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
 
         expectedFolioConvoluteData = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData));

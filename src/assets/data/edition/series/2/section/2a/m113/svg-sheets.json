@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_113_TF1",
+                "id": "M113_TF1",
                 "label": "M 113 einzige Textfassung",
                 "content": [
                     {
@@ -59,7 +59,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_113_Sk1",
+                "id": "M113_Sk1",
                 "label": "M 113 Sk1",
                 "content": [
                     {
@@ -107,7 +107,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk2",
+                "id": "M113_Sk2",
                 "label": "M 113 Sk2",
                 "content": [
                     {
@@ -131,7 +131,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk3",
+                "id": "M113_Sk3",
                 "label": "M 113 Sk3",
                 "content": [
                     {
@@ -173,7 +173,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk4",
+                "id": "M113_Sk4",
                 "label": "M 113 Sk4",
                 "content": [
                     {
@@ -185,7 +185,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk5",
+                "id": "M113_Sk5",
                 "label": "M 113 Sk5",
                 "content": [
                     {
@@ -257,7 +257,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk5_1",
+                "id": "M113_Sk5_1",
                 "label": "M 113 Sk5.1",
                 "content": [
                     {
@@ -275,7 +275,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk5_2",
+                "id": "M113_Sk5_2",
                 "label": "M 113 Sk5.2",
                 "content": [
                     {
@@ -287,7 +287,7 @@
                 ]
             },
             {
-                "id": "M_113_Sk6",
+                "id": "M113_Sk6",
                 "label": "M 113 Sk6",
                 "content": [
                     {

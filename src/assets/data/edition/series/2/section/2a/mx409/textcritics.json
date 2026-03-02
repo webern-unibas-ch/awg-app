@@ -1,0 +1,30 @@
+{
+    "textcritics": [
+        {
+            "id": "Mx409_TF1",
+            "label": "M* 409 Textfassung 1",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF2'})\">Textfassung 2</a>.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> weist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_Aa_corr_1'})\">Korrekturen mit Tinte</a> auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> post correcturam."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
+        },
+        {
+            "id": "Mx409_TF2",
+            "label": "M* 409 Textfassung 2",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> relevante Quellen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> weisen <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_Aa_corr_1'})\">Korrekturen mit Tinte</a> auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> enthält T. 2–4 (Bl. 1<sup>r</sup> System 5b–6b) und T. 6–8/14–16 (Bl. 1<sup>r</sup> System 5c–6c) für Textfassung 2, die T. 2–4 und T. 6–8/14–16 aus <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF1'})\">Textfassung 1</a> ersetzen.",
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M* 409 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'mx409', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> post correcturam."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
+        }
+    ]
+}

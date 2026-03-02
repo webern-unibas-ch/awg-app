@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
@@ -275,7 +274,7 @@ describe('IntroComponent (DONE)', () => {
         expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
         expectedEditionIntroComplexData = JSON.parse(JSON.stringify(mockEditionData.mockIntroComplexData));
         expectedEditionIntroFilteredData = JSON.parse(JSON.stringify(mockEditionData.mockIntroFilteredData));
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedErrorObject = null;
 
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';

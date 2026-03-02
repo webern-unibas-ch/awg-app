@@ -54,9 +54,9 @@ const EDITION_VIEW_ROUTES: Routes = [
                         // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
                         loadChildren: () =>
-                            import(
-                                './edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module'
-                            ).then(m => m.EditionSectionDetailModule),
+                            import('./edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module').then(
+                                m => m.EditionSectionDetailModule
+                            ),
                     },
                     {
                         path: 'sections/:id',
@@ -76,7 +76,7 @@ const EDITION_VIEW_ROUTES: Routes = [
                 pathMatch: 'prefix',
             },
             {
-                // ComplexID (OP12, M34, etc.).
+                // ComplexID (op12, m34, etc.).
                 path: 'complex/:complexId',
                 component: EditionComplexComponent,
                 children: [
@@ -87,30 +87,30 @@ const EDITION_VIEW_ROUTES: Routes = [
                             {
                                 path: 'intro',
                                 loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module'
-                                    ).then(m => m.EditionIntroModule),
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module').then(
+                                        m => m.EditionIntroModule
+                                    ),
                             },
                             {
                                 path: 'sheets',
                                 loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module'
-                                    ).then(m => m.EditionSheetsModule),
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module').then(
+                                        m => m.EditionSheetsModule
+                                    ),
                             },
                             {
                                 path: 'report',
                                 loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module'
-                                    ).then(m => m.EditionReportModule),
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module').then(
+                                        m => m.EditionReportModule
+                                    ),
                             },
                             {
                                 path: 'graph',
                                 loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module'
-                                    ).then(m => m.EditionGraphModule),
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module').then(
+                                        m => m.EditionGraphModule
+                                    ),
                             },
                             {
                                 path: '',

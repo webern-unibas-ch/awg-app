@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_267_TF1",
+            "id": "M267_TF1",
             "label": "M 267 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition des Kinderstücks für Klavier M 267 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
@@ -16,9 +16,9 @@
                         "blockComments": [
                             {
                                 "svgGroupId": "g-tkk-1",
-                                "measure": "1 <br /> bis 2",
+                                "measure": "1 <br />bis 2",
                                 "system": "Klav.",
-                                "position": "5/8 <br /> 1. Note",
+                                "position": "5/8 <br />1. Note",
                                 "comment": "Decrescendogabel versetzt von unter den Systemen."
                             },
                             {

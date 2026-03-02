@@ -1,4 +1,4 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { IsActiveMatchOptions, Router } from '@angular/router';
 
@@ -92,7 +92,9 @@ describe('NavbarComponent (DONE)', () => {
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
     class NgbConfigModule {
-        constructor(config: NgbConfig) {
+        constructor() {
+            const config = inject(NgbConfig);
+
             // Set animations to false
             config.animation = false;
         }
@@ -134,17 +136,17 @@ describe('NavbarComponent (DONE)', () => {
         expectedLogos = LOGOS_DATA;
 
         expectedEditionComplexes = [
-            EditionComplexesService.getEditionComplexById('OP3'),
-            EditionComplexesService.getEditionComplexById('OP4'),
-            EditionComplexesService.getEditionComplexById('OP12'),
-            EditionComplexesService.getEditionComplexById('OP23'),
-            EditionComplexesService.getEditionComplexById('OP25'),
-            EditionComplexesService.getEditionComplexById('M22'),
-            EditionComplexesService.getEditionComplexById('M30'),
-            EditionComplexesService.getEditionComplexById('M31'),
-            EditionComplexesService.getEditionComplexById('M34'),
-            EditionComplexesService.getEditionComplexById('M35_42'),
-            EditionComplexesService.getEditionComplexById('M37'),
+            EditionComplexesService.getEditionComplexById('op3'),
+            EditionComplexesService.getEditionComplexById('op4'),
+            EditionComplexesService.getEditionComplexById('op12'),
+            EditionComplexesService.getEditionComplexById('op23'),
+            EditionComplexesService.getEditionComplexById('op25'),
+            EditionComplexesService.getEditionComplexById('m22'),
+            EditionComplexesService.getEditionComplexById('m30'),
+            EditionComplexesService.getEditionComplexById('m31'),
+            EditionComplexesService.getEditionComplexById('m34'),
+            EditionComplexesService.getEditionComplexById('m35_42'),
+            EditionComplexesService.getEditionComplexById('m37'),
         ];
         expectedRouterlinks = getRouterlinks(expectedEditionComplexes);
 
@@ -275,11 +277,6 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should have fa-icon on first nav-item link', () => {
                 const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
-                const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
-                const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
-
-                expectToBe(navItemLinkSpanEl2.textContent, '(current)');
-                expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
                 getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -389,14 +386,10 @@ describe('NavbarComponent (DONE)', () => {
 
             describe('... first nav-item link (home)', () => {
                 it('... should have home label and fa-icon', () => {
-                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 1, 1);
                     const navItemLinkSpanEl1: HTMLSpanElement = navItemLinkSpanDes[0].nativeElement;
-                    const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
 
                     expectToBe(navItemLinkSpanEl1.textContent, expectedNavbarLabels['home']);
-
-                    expectToBe(navItemLinkSpanEl2.textContent, '(current)');
-                    expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
                     getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
                 });
@@ -405,7 +398,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['home']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['home']);
                 });
             });
 
@@ -432,7 +425,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['edition']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['edition']);
                 });
 
                 it('... should have a dropdown menu', () => {
@@ -592,7 +585,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['structure']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['structure']);
                 });
             });
 
@@ -610,7 +603,7 @@ describe('NavbarComponent (DONE)', () => {
                     const faIconDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
-                    expectToEqual(faIconIns, expectedNavbarIcons['contact']);
+                    expectToEqual(faIconIns(), expectedNavbarIcons['contact']);
                 });
             });
         });

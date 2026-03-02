@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">2</a> (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">2</a> (<strong>A<sup>b</sup></strong>).",
+            "type": "Autographe von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">2</a> (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">2</a> (<strong>A<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -96,7 +96,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">2</a> (<strong>A<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">2</a> (<strong>A<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -152,7 +152,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">2</a> (<strong>A<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">2</a> (<strong>A<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -219,15 +219,15 @@
                         "label": "Korrekturen 1 in <strong>A<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Klav. u.",
-                                            "position": "4/8 <br /> 3/8",
+                                            "position": "4/8 <br />3/8",
                                             "comment": "Legatobogen nach T. 4 6/8 rasiert."
                                         },
                                         {
@@ -237,10 +237,10 @@
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 7",
+                                            "measure": "5 <br />bis 7",
                                             "system": "Klav.",
-                                            "position": "4/8 <br /> (2/4)",
-                                            "comment": "Zuerst: auf Rasur. Ante correcturam teilweise zu entziffern: Klav. o. T. 5 4/8 bis T. 6 3/8 und T. 7 1/8 eine Oktave tiefer.  <br /> Dann T. 6 6/8: Akzidenzien rasiert und h<sup>2</sup> korrigiert zu c<sup>3</sup>. (Entzifferung nicht eindeutig, mehrmals nachgezogen: möglicherweise bleibt h<sup>2</sup>?). Siehe TkA zu T 6 6/8."
+                                            "position": "4/8 <br />(2/4)",
+                                            "comment": "Zuerst: auf Rasur. Ante correcturam teilweise zu entziffern: Klav. o. T. 5 4/8 bis T. 6 3/8 und T. 7 1/8 eine Oktave tiefer. <br />Dann T. 6 6/8: Akzidenzien rasiert und h<sup>2</sup> korrigiert zu c<sup>3</sup>. (Entzifferung nicht eindeutig, mehrmals nachgezogen: möglicherweise bleibt h<sup>2</sup>?). Siehe TkA zu T 6 6/8."
                                         },
                                         {
                                             "measure": "7",
@@ -270,7 +270,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1/4",
-                                            "comment": "Notenhals auf Rasur. Ante correcturam: Achtelfähnchen. <br /> Text: Kleinschreibung <em>m</em>[öcht] überschrieben zu <em>M</em>[öcht]."
+                                            "comment": "Notenhals auf Rasur. Ante correcturam: Achtelfähnchen. <br />Text: Kleinschreibung <em>m</em>[öcht] überschrieben zu <em>M</em>[öcht]."
                                         },
                                         {
                                             "measure": "11",
@@ -288,7 +288,7 @@
                         "label": "Korrekturen 2 in <strong>A<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -297,13 +297,13 @@
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1/8",
-                                            "comment": "Achtelnote E getilgt durch Einkreisung und ersetzt durch Achtelpause. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Achtelnote E getilgt durch Einkreisung und ersetzt durch Achtelpause. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen über, unter und nach den Systemen.  <br /> System 9–13:  <br /> ##Abbildung## <br /> System 15–18:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen über, unter und nach den Systemen. <br />System 9–13: <br />##Abbildung## <br />System 15–18: <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "11",
@@ -321,7 +321,7 @@
                         "label": "Korrekturen 1 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -450,7 +450,7 @@
                         "label": "Korrekturen 2 in <strong>A<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -459,19 +459,19 @@
                                             "measure": "3–5",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–15): <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–15): <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "5–11/16",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 16–18): <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen unter der Akkoalde (System 16–18): <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "9–16/16",
-                                            "comment": "Korrekturskizzen unter und nach der Akkoalde (System 4, 6): <br /> ##Abbildung##"
+                                            "comment": "Korrekturskizzen unter und nach der Akkoalde (System 4, 6): <br />##Abbildung##"
                                         },
                                         {
                                             "measure": "9",
@@ -483,7 +483,7 @@
                                             "measure": "10",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–18): <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–18): <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>."
                                         }
                                     ]
                                 }
@@ -497,7 +497,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>.",
+            "type": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[a].",
             "physDesc": {
                 "conditions": [
@@ -558,7 +558,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -618,7 +618,7 @@
                         "label": "Korrekturen in <strong>B</strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -639,7 +639,7 @@
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "1–4/16",
-                                            "comment": "Klav. u. 1–4/16 auf Rasur, Klav. o. (2/16) rasiert. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Klav. u. 1–4/16 auf Rasur, Klav. o. (2/16) rasiert. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "10",
@@ -659,7 +659,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">3</a>.",
+            "type": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF3'})\">3</a>.",
             "location": "A-Wn, Mus.Hs.38735.MusA/Webern/4.",
             "physDesc": {
                 "conditions": [
@@ -723,7 +723,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -797,7 +797,7 @@
                         "label": "Korrekturen in <strong>C</strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -818,49 +818,49 @@
                                             "measure": "1",
                                             "system": "Ges.",
                                             "position": "2/4",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote d<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote d<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "2–3/4",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "3/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich as<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich as<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "Rasur unter 1. Note. Ante correcturam: vermutlich Unterstimmenschicht Viertelnote b/e<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Rasur unter 1. Note. Ante correcturam: vermutlich Unterstimmenschicht Viertelnote b/e<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang bis 6/8",
-                                            "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) rasiert."
+                                            "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) rasiert."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "2–6/8",
-                                            "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) rasiert."
+                                            "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) rasiert."
                                         },
                                         {
                                             "measure": "3",
@@ -869,28 +869,28 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav.",
-                                            "position": "6/8 <br /> 2/8",
+                                            "position": "6/8 <br />2/8",
                                             "comment": "Crescendo-/Decrescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav. u.",
-                                            "position": "6/8 <br /> 6/8",
+                                            "position": "6/8 <br />6/8",
                                             "comment": "Legatobogen rasiert und neu gesetzt in T. 3 6/8 bis T. 4 1/4 und T. 4 4–6/8."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "2/8",
-                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Von</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Von</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
-                                            "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). D. h. Augementationspunkt zu 2. Note vermutlich hinzugefügt."
+                                            "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). D. h. Augementationspunkt zu 2. Note vermutlich hinzugefügt."
                                         },
                                         {
                                             "measure": "5",
@@ -917,22 +917,22 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 6",
+                                            "measure": "5 <br />bis 6",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 1. Note",
+                                            "position": "4/8 <br />1. Note",
                                             "comment": "Crescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "6",
@@ -944,7 +944,7 @@
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "5/16",
-                                            "comment": "Rasur unter der Note. Ante correcturam: vermutlich <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Rasur unter der Note. Ante correcturam: vermutlich <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
@@ -956,49 +956,49 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "5.–6. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "11–12/16",
-                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des ersten Legatobogens zu 11/16 und Anfang des zweiten Legatobogens zu 12/16 gesetzt. Siehe auch Korrektur zu T. 7 6–7/32 und T. 7 10.–12. Note."
+                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des ersten Legatobogens zu 11/16 und Anfang des zweiten Legatobogens zu 12/16 gesetzt. Siehe auch Korrektur zu T. 7 6–7/32 und T. 7 10.–12. Note."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1.–4. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "",
-                                            "position": "3/16 <br /> 1/8",
+                                            "position": "3/16 <br />1/8",
                                             "comment": "<em>rit. - - -</em> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift. <em>rit. - - -</em> auch über Klav. o. ab T. 7 1/8 zuerst mit Bleistift, dann radiert."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "3/16–12/16",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich: wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>. Text: <em>ein</em> zu 3/16 (ante correcturam: vermutlich Großschreibung <em>Ein</em>) und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich: wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>. Text: <em>ein</em> zu 3/16 (ante correcturam: vermutlich Großschreibung <em>Ein</em>) und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "6–7/32",
-                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des zweiten Legatobogens zu 6/32 und Anfang des dritten Legatobogens zu 7/32 gesetzt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 10.–12. Note."
+                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des zweiten Legatobogens zu 6/32 und Anfang des dritten Legatobogens zu 7/32 gesetzt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 10.–12. Note."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "10.–12. Note",
-                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des dritten Legatobogens zu 10. Note gesetzt und Staccatopunkte zu 11.–12. Note hinzugefügt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 6–7/32."
+                                            "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) teilweise rasiert und geändert; Ende des dritten Legatobogens zu 10. Note gesetzt und Staccatopunkte zu 11.–12. Note hinzugefügt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 6–7/32."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "11–12/16",
-                                            "comment": "Staccatopunkte auf Rasur. Ante correcturam: Legatobogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). <br /> Decrescendogabel auf Rasur hinzugefügt."
+                                            "comment": "Staccatopunkte auf Rasur. Ante correcturam: Legatobogen (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). <br />Decrescendogabel auf Rasur hinzugefügt."
                                         },
                                         {
                                             "measure": "8",
@@ -1022,7 +1022,7 @@
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
-                                            "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). D. h. Augmentationspunkt zu 2. Note vermutlich hinzugefügt."
+                                            "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). D. h. Augmentationspunkt zu 2. Note vermutlich hinzugefügt."
                                         },
                                         {
                                             "measure": "8",
@@ -1031,40 +1031,40 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 10",
+                                            "measure": "8 <br />bis 10",
                                             "system": "Klav.",
-                                            "position": "4/8 <br /> 1/8",
-                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "position": "4/8 <br />1/8",
+                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "5–6/8",
-                                            "comment": "Achtelfähnchen geändert zu Balken.  <br /> Silbenbogen hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                            "comment": "Achtelfähnchen geändert zu Balken. <br />Silbenbogen hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1/4",
-                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Möcht</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Möcht</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "4.–5. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) mit Silbenbogen."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) mit Silbenbogen."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "(1/4)",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "3–4/8",
-                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich <em>rühr-te</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich <em>rühr-te</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "10",
@@ -1073,10 +1073,10 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "2. Note <br /> 1/4",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "position": "2. Note <br />1/4",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         }
                                     ]
                                 }
@@ -1090,7 +1090,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Fragment von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>.",
+            "type": "Fragment von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1149,9 +1149,9 @@
                         "item": "M 136 Sk1",
                         "itemLinkTo": {
                             "complexId": "op3",
-                            "sheetId": "M_136_Sk1"
+                            "sheetId": "M136_Sk1"
                         },
-                        "itemDescription": "(Fragment von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)",
+                        "itemDescription": "(Fragment von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1176,7 +1176,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>E<sup>b</sup></strong>) / „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a> (<strong>E<sup>c</sup></strong>) / „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a> (<strong>E<sup>d</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">2</a> (<strong>E<sup>e</sup></strong>).",
+            "type": "Autographe von „Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a> (<strong>E<sup>b</sup></strong>) / „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a> (<strong>E<sup>c</sup></strong>) / „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a> (<strong>E<sup>d</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">2</a> (<strong>E<sup>e</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1425,7 +1425,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>E<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a> (<strong>E<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -1487,7 +1487,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a> (<strong>E<sup>c</sup></strong>)",
+                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a> (<strong>E<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -1578,7 +1578,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a> (<strong>E<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a> (<strong>E<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -1648,7 +1648,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">2</a> (<strong>E<sup>e</sup></strong>)",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">2</a> (<strong>E<sup>e</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -1763,12 +1763,12 @@
                                             "measure": "1",
                                             "system": "Ges.",
                                             "position": "(2/4)",
-                                            "comment": "Triole aus Viertelnote, Achtelpause geändert zu Viertelnote; Bogen nach Viertelnote gestrichen mit rotem Buntstift. <br /> &lt; &gt; hinzugefügt mit grünem Buntstift."
+                                            "comment": "Triole aus Viertelnote, Achtelpause geändert zu Viertelnote; Bogen nach Viertelnote gestrichen mit rotem Buntstift. <br />&lt; &gt; hinzugefügt mit grünem Buntstift."
                                         },
                                         {
-                                            "measure": "1 <br /> bis 2",
+                                            "measure": "1 <br />bis 2",
                                             "system": "Ges.",
-                                            "position": "1. Note <br /> 5/8",
+                                            "position": "1. Note <br />5/8",
                                             "comment": "Bogen hinzugefügt mit rotem Buntstift."
                                         },
                                         {
@@ -1853,7 +1853,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1868,7 +1868,7 @@
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "3",
@@ -1886,7 +1886,7 @@
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "1.–3. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "6",
@@ -1898,37 +1898,37 @@
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "6–12/16",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "4. Note",
-                                            "comment": "Text: <em>ein</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Ein</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text: <em>ein</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Ein</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "Text: <em>nun</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Nun</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text: <em>nun</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Nun</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "2/2",
-                                            "comment": "Vermutlich Viertelpause zu 4/4 rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>) und Halbe Pause hinzugefügt."
+                                            "comment": "Vermutlich Viertelpause zu 4/4 rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>) und Halbe Pause hinzugefügt."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "vorletze Note",
-                                            "comment": "Text: <em>um</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Um</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text: <em>um</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Um</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "9",
@@ -1952,7 +1952,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "letzte Note",
-                                            "comment": "Text: <em>in</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>In</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text: <em>in</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>In</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "10",
@@ -1976,7 +1976,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift und grünem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2006,9 +2006,9 @@
                                             "comment": "Wellenlinie über den Noten mit grünem Buntstift."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "",
-                                            "position": "(5/8) <br /> Taktanfang",
+                                            "position": "(5/8) <br />Taktanfang",
                                             "comment": "<em>rit.- - - langsamer</em> gestrichen mit Bleistift."
                                         },
                                         {
@@ -2039,12 +2039,12 @@
                                             "measure": "6",
                                             "system": "",
                                             "position": "(2/4)",
-                                            "comment": "Zuerst: <em>rit</em> zu (4/8) hinzugefügt mit grünem Buntstift.  <br /> Dann: <em>rit</em> gestrichen und <em>Rit</em> zu 3/8 hinzugefügt mit grünem Buntstift."
+                                            "comment": "Zuerst: <em>rit</em> zu (4/8) hinzugefügt mit grünem Buntstift. <br />Dann: <em>rit</em> gestrichen und <em>Rit</em> zu 3/8 hinzugefügt mit grünem Buntstift."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "",
-                                            "position": "2/8 <br /> Taktanfang",
+                                            "position": "2/8 <br />Taktanfang",
                                             "comment": "<em>acell. - - - tempo</em> hinzugefügt zunächst mit Bleistift, dann mit schwarzer Tinte nachgezogen. (Siehe <span class='link-todo'>Textfassung 3</span>.)"
                                         },
                                         {
@@ -2075,7 +2075,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2089,31 +2089,31 @@
                                         {
                                             "measure": "vor 1",
                                             "system": "Klav. o./u.",
-                                            "position": "1. Pause  <br /> bis letzte Note",
+                                            "position": "1. Pause <br />bis letzte Note",
                                             "comment": "Bögen gestrichen."
                                         },
                                         {
-                                            "measure": "vor 1 <br /> bis 3",
+                                            "measure": "vor 1 <br />bis 3",
                                             "system": "Ges.",
-                                            "position": "2/8 <br /> 4. Note",
+                                            "position": "2/8 <br />4. Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 5",
+                                            "measure": "3 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 1/8",
+                                            "position": "6/8 <br />1/8",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 7",
+                                            "measure": "5 <br />bis 7",
                                             "system": "Ges.",
-                                            "position": "4/16 <br /> vorletzte Note",
+                                            "position": "4/16 <br />vorletzte Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 10",
+                                            "measure": "6 <br />bis 10",
                                             "system": "Klav. o.",
-                                            "position": "1/8 <br /> 1/8",
+                                            "position": "1/8 <br />1/8",
                                             "comment": "Bogen rasiert. Bögen T. 6 1/8 bis T. 7 3. Note sowie T. 7 4. Note bis T. 10 1/8 vermutlich hinzugefügt."
                                         },
                                         {
@@ -2129,15 +2129,15 @@
                                             "comment": "Text: Rasur nach <em>bleicht</em>."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 11",
+                                            "measure": "8 <br />bis 11",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> letzte Note",
+                                            "position": "4/8 <br />letzte Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 12",
+                                            "measure": "10 <br />bis 12",
                                             "system": "Klav.",
-                                            "position": "2. Note <br /> 2/4",
+                                            "position": "2. Note <br />2/4",
                                             "comment": "Bogen gestrichen. Bogen in T. 10 2. Note bis 8/16 auf Rasur hinzugefügt."
                                         },
                                         {
@@ -2147,15 +2147,15 @@
                                             "comment": "A auf Rasur."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Ges.",
-                                            "position": "1/8 <br /> letzte Note",
+                                            "position": "1/8 <br />letzte Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
                                             "measure": "14",
                                             "system": "Klav.",
-                                            "position": "1. Note <br /> bis 2/4",
+                                            "position": "1. Note <br />bis 2/4",
                                             "comment": "Ligaturbögen auf Rasur."
                                         }
                                     ]
@@ -2168,7 +2168,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2177,25 +2177,25 @@
                                             "measure": "2",
                                             "system": "Klav.",
                                             "position": "1–3/8",
-                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "3–7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "Taktanfang",
-                                            "comment": "2/4-Taktvorzeichnung geändert zu 3/4. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "2/4-Taktvorzeichnung geändert zu 3/4. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "1. Note",
-                                            "comment": "Achtelnote geändert zu punktierter Viertelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Achtelnote geändert zu punktierter Viertelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "4",
@@ -2210,22 +2210,22 @@
                                             "comment": "<em>tempo</em> hinzugefügt."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "",
-                                            "position": "Taktanfang <br /> Taktende",
-                                            "comment": "Zuerst: <em>rit. - - -</em> hinzugefügt.  <br /> Dann: Position von <em>rit.</em> geändert zu T. 9 Taktanfang."
+                                            "position": "Taktanfang <br />Taktende",
+                                            "comment": "Zuerst: <em>rit. - - -</em> hinzugefügt. <br />Dann: Position von <em>rit.</em> geändert zu T. 9 Taktanfang."
                                         },
                                         {
                                             "measure": "11",
                                             "system": "Ges.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "<em>8va</em> hinzugefügt. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "<em>8va</em> hinzugefügt. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "11",
@@ -2243,7 +2243,7 @@
                                             "measure": "14–15",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Korrekturskizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>."
                                         }
                                     ]
                                 }
@@ -2255,7 +2255,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>d</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2264,7 +2264,7 @@
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "3–4/8",
-                                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung2</a>."
+                                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung2</a>."
                                         },
                                         {
                                             "measure": "2",
@@ -2273,10 +2273,10 @@
                                             "comment": "Achtelnote geändert zu Sechzehntelnote und zu (16/16) versetzt. Siehe auch <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_2'})\">Korrekturen 2</a> 7/8."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 6",
+                                            "measure": "5 <br />bis 6",
                                             "system": "Ges.",
                                             "position": "3/8",
-                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA."
+                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA."
                                         },
                                         {
                                             "measure": "5",
@@ -2288,31 +2288,31 @@
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "",
-                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA zu 1–4/8."
+                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA zu 1–4/8."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
-                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA."
+                                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>. Entzifferung ante correcturam unsicher: siehe TkA."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
-                                            "comment": "Fortführung des Bogens nach T. 8 geändert zu Ende des Bogens in T. 7 letzte Note. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Fortführung des Bogens nach T. 8 geändert zu Ende des Bogens in T. 7 letzte Note. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "3–6/8",
-                                            "comment": "Teilweise auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Teilweise auf Rasur geändert zu rhythmischer Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "3–4/8",
-                                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung2</a>."
+                                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung2</a>."
                                         }
                                     ]
                                 }
@@ -2324,7 +2324,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2405,7 +2405,7 @@
                                             "measure": "7",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>sehr ruhig</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>) gestrichen und geändert zu <em>langsamer als zu Beginn</em>."
+                                            "comment": "<em>sehr ruhig</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>) gestrichen und geändert zu <em>langsamer als zu Beginn</em>."
                                         },
                                         {
                                             "measure": "7",
@@ -2438,9 +2438,9 @@
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "",
-                                            "position": "Taktanfang <br /> Taktende",
+                                            "position": "Taktanfang <br />Taktende",
                                             "comment": "<em>Rit</em>[.] <em>- - - </em>hinzugefügt."
                                         },
                                         {
@@ -2483,7 +2483,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2492,7 +2492,7 @@
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "4–5/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "2",
@@ -2504,13 +2504,13 @@
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 2/4–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 2/4–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "2.–3. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "2",
@@ -2588,13 +2588,13 @@
                                             "measure": "13–15",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>. Siehe auch <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a> T. 14 Klav. u."
+                                            "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>. Siehe auch <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a> T. 14 Klav. u."
                                         },
                                         {
-                                            "measure": "16 <br /> bis [17]",
+                                            "measure": "16 <br />bis [17]",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Zusätzlicher Takt [17] (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>) gestrichen und Schlusstaktstrich nach T. 16 hinzugefügt."
+                                            "comment": "Zusätzlicher Takt [17] (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>) gestrichen und Schlusstaktstrich nach T. 16 hinzugefügt."
                                         }
                                     ]
                                 }
@@ -2606,7 +2606,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>e</sup></strong> (mit türkisem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2741,7 +2741,7 @@
                         "label": "Korrekturen 3 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2812,7 +2812,7 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
+            "type": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a> (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -2911,7 +2911,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF1'})\">3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2980,7 +2980,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>F<sup>b</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a> (<strong>F<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -3042,7 +3042,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a> (<strong>F<sup>c</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a> (<strong>F<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -3115,7 +3115,7 @@
                         "label": "Korrekturen 1 in <strong>F<sup>a</sup></strong> (mit schwarzer Tinte, Hs. Webern)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3130,7 +3130,7 @@
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "1",
@@ -3148,43 +3148,43 @@
                                             "measure": "1",
                                             "system": "Ges.",
                                             "position": "2/4",
-                                            "comment": "Auf Rasur. Ante correcturam vermutlich: Achtelpause, Achtelnote d<sup>1</sup> (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). Text: <em>Dies</em> neu zu 2/4 notiert (Hs. Webern)."
+                                            "comment": "Auf Rasur. Ante correcturam vermutlich: Achtelpause, Achtelnote d<sup>1</sup> (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). Text: <em>Dies</em> neu zu 2/4 notiert (Hs. Webern)."
                                         },
                                         {
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "2–3/4",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Klav.",
                                             "position": "1. bis letzte Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "1/4",
-                                            "comment": "Rasur. Ante correcturam: vermutlich Viertelnote b/e<sup>1</sup> als Unterstimmenschicht in Klav. o. (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Rasur. Ante correcturam: vermutlich Viertelnote b/e<sup>1</sup> als Unterstimmenschicht in Klav. o. (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang bis 6/8",
-                                            "comment": "Fortsetzung des Legatobogens (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) rasiert."
+                                            "comment": "Fortsetzung des Legatobogens (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) rasiert."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "2–6/8",
-                                            "comment": "Fortsetzung des Legatobogens (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>) rasiert."
+                                            "comment": "Fortsetzung des Legatobogens (wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>) rasiert."
                                         },
                                         {
                                             "measure": "3",
@@ -3199,22 +3199,22 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav.",
-                                            "position": "6/8 <br /> 2/8",
+                                            "position": "6/8 <br />2/8",
                                             "comment": "Crescendo-/Decrescendogabel hinzugefügt."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 4",
+                                            "measure": "3 <br />bis 4",
                                             "system": "Klav. u.",
-                                            "position": "6/8 <br /> 6/8",
+                                            "position": "6/8 <br />6/8",
                                             "comment": "Legatobogen rasiert. Bogen T. 4 4–6/8 auf Rasur."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "4",
@@ -3250,13 +3250,13 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "6",
@@ -3274,24 +3274,24 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "5.–6. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1.–4. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "3/16–12/16",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>. Text: <em>Ein</em> zu 3/16 und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>. Text: <em>Ein</em> zu 3/16 und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "",
-                                            "position": "3/16 <br /> 1/8",
+                                            "position": "3/16 <br />1/8",
                                             "comment": "<em>rit. - - -</em> hinzugefügt über Ges. und Klav. o."
                                         },
                                         {
@@ -3310,7 +3310,7 @@
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "8",
@@ -3319,33 +3319,33 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 10",
+                                            "measure": "8 <br />bis 10",
                                             "system": "Klav.",
-                                            "position": "4/8 <br /> 1/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "position": "4/8 <br />1/8",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "5–6/8",
-                                            "comment": "Achtelfähnchen bei 5/8 überschrieben mit Balken zu 6/8.  <br /> Silbenbogen hinzugefügt."
+                                            "comment": "Achtelfähnchen bei 5/8 überschrieben mit Balken zu 6/8. <br />Silbenbogen hinzugefügt."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "4.–5. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). Silbenbogen hinzugefügt."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). Silbenbogen hinzugefügt."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "(1/4)",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>). <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>). <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 12",
+                                            "measure": "10 <br />bis 12",
                                             "system": "",
-                                            "position": "(2/8) <br /> 1/4",
+                                            "position": "(2/8) <br />1/4",
                                             "comment": "<em>rit. - - -</em> über ges. und Klav. o. hinzugefügt."
                                         },
                                         {
@@ -3355,22 +3355,22 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "2. Note <br /> 1/4",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>."
+                                            "position": "2. Note <br />1/4",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav.",
-                                            "position": "2. Note <br /> 2/4",
+                                            "position": "2. Note <br />2/4",
                                             "comment": "<em>Ped.</em> und [Pedal-Aufhebung] hinzugefügt."
                                         },
                                         {
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich [<em>rühr(-)</em>]<em>te</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Text: auf Rasur. Ante correcturam: vermutlich [<em>rühr(-)</em>]<em>te</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF2'})\">Textfassung 2</a>)."
                                         }
                                     ]
                                 }
@@ -3382,7 +3382,7 @@
                         "label": "Korrekturen 2 in <strong>F<sup>a</sup></strong> (Hs. Webern)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M133_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3397,7 +3397,7 @@
                                             "measure": "1",
                                             "system": "Ges.",
                                             "position": "2/4",
-                                            "comment": "Geändert zu Triole aus Viertelnote d<sup>1</sup> und Achtelpause mit Bogen (siehe <span class='link-todo'>Textfassung 4</span>) mit grünem Buntstift.  <br /> Siehe <span class='link-todo'>TkA zu Textfassung 4</span>."
+                                            "comment": "Geändert zu Triole aus Viertelnote d<sup>1</sup> und Achtelpause mit Bogen (siehe <span class='link-todo'>Textfassung 4</span>) mit grünem Buntstift. <br />Siehe <span class='link-todo'>TkA zu Textfassung 4</span>."
                                         },
                                         {
                                             "measure": "2",
@@ -3415,13 +3415,13 @@
                                             "measure": "7",
                                             "system": "",
                                             "position": "",
-                                            "comment": "4/4-Taktvorzeichnung am Taktanfang hinzugefügt bei Klav. o. mit Bleistift und zwischen den Klav.-Systemen mit grünem Buntstift. Am Taktende mit grünem Buntstift und Bleistift Hinzufügung (4/4):  <br /> ##Abbildung##  <br /> Siehe <span class='link-todo'>Textfassung 4</span>."
+                                            "comment": "4/4-Taktvorzeichnung am Taktanfang hinzugefügt bei Klav. o. mit Bleistift und zwischen den Klav.-Systemen mit grünem Buntstift. Am Taktende mit grünem Buntstift und Bleistift Hinzufügung (4/4): <br />##Abbildung## <br />Siehe <span class='link-todo'>Textfassung 4</span>."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "(1/8)",
-                                            "comment": "Zuerst: Sechzehntelpause hinzugefügt mit Bleistift.  <br /> Dann: Sechzehntelpause gestrichen und Achtelpause mit Fermate hinzugefügt mit Bleistift."
+                                            "comment": "Zuerst: Sechzehntelpause hinzugefügt mit Bleistift. <br />Dann: Sechzehntelpause gestrichen und Achtelpause mit Fermate hinzugefügt mit Bleistift."
                                         },
                                         {
                                             "measure": "8",
@@ -3436,15 +3436,15 @@
                                             "comment": "Zäsurzeichen gestrichen mit Bleistift."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 1/8",
+                                            "position": "3/4 <br />1/8",
                                             "comment": "Ligaturbögen in T. 9 3/4 gestrichen sowie Achtelpause und Triolenzeichen hinzugefügt mit Bleistift; Achtelnoten in T. 10 1/8 gestrichen mit Bleistift. Siehe <span class='link-todo'>Textfassung 4</span>."
                                         },
                                         {
-                                            "measure": "10 <br /> bis 11",
+                                            "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
-                                            "position": "3/4 <br /> 1/4",
+                                            "position": "3/4 <br />1/4",
                                             "comment": "Unterstimmenschicht: Ligatur zwei Viertelnoten Fis<sub>1</sub> gestrichen mit grünem Buntstift. Siehe <span class='link-todo'>Textfassung 4</span>."
                                         }
                                     ]
@@ -3457,7 +3457,7 @@
                         "label": "Korrekturen 1 in <strong>F<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur, Hs. Webern)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>. Abweichungen der Grundschicht von <strong>F<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>. Abweichungen der Grundschicht von <strong>F<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3472,19 +3472,19 @@
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "3. Note",
-                                            "comment": "Text sic: Großschreibung <em>Nur</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>Nur</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "2/8–8/16",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich drei Achtelnoten fis<sup>1</sup>–dis<sup>2</sup>–ais<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich drei Achtelnoten fis<sup>1</sup>–dis<sup>2</sup>–ais<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "letzte Note",
-                                            "comment": "Text sic: Großschreibung <em>Was</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>Was</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "5",
@@ -3496,7 +3496,7 @@
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "3.–4. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten d<sup>1</sup>–cis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten d<sup>1</sup>–cis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "6",
@@ -3508,31 +3508,31 @@
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "3.–4. Note",
-                                            "comment": "Text sic: <em>Ein</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: <em>Ein</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "1/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "1/4",
-                                            "comment": "Text sic: Großschreibung <em>Mai</em>. Komma fehlt (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>Mai</em>. Komma fehlt (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "Text sic: Großschreibung <em>Nun</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>Nun</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "Text sic: Großschreibung <em>Um</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>Um</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "9",
@@ -3556,7 +3556,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "letzte Note",
-                                            "comment": "Text sic: Großschreibung <em>In</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Text sic: Großschreibung <em>In</em> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>)."
                                         }
                                     ]
                                 }
@@ -3568,7 +3568,7 @@
                         "label": "Korrekturen 2 in <strong>F<sup>b</sup></strong> (Hs. Webern)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3610,9 +3610,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
-                                            "measure": "1 <br /> bis 3",
+                                            "measure": "1 <br />bis 3",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 5/8",
+                                            "position": "6/8 <br />5/8",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3640,9 +3640,9 @@
                                             "comment": "Decrescendogabel hinzugefügt mit grünem Buntstift."
                                         },
                                         {
-                                            "measure": "3 <br /> bis 5",
+                                            "measure": "3 <br />bis 5",
                                             "system": "Klav. o.",
-                                            "position": "1/8 <br /> 3. Note",
+                                            "position": "1/8 <br />3. Note",
                                             "comment": "Bogen überschrieben zu Verlängerung des Bogens bis T. 2 letzte Note zu T. 3 1/8 sowie zu Bogen in T. 3 2.–6. Note, T. 3 7. Note bis T. 4 5. Note und T. 4 6. Note bis T. 5 3. Note mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3706,9 +3706,9 @@
                                             "comment": "Decrescendogabel hinzugefügt mit grünem Buntstift."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Ges.",
-                                            "position": "letzte Note <br /> 4. Note",
+                                            "position": "letzte Note <br />4. Note",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3730,9 +3730,9 @@
                                             "comment": "Vermutlich zunächst Decrescendogabel hinzugefügt mit schwarzer Tinte, dann Wellenline auf Gabel hinzugefügt (als Streichung?) mit rotem Buntstift."
                                         },
                                         {
-                                            "measure": "5 <br /> bis 6",
+                                            "measure": "5 <br />bis 6",
                                             "system": "",
-                                            "position": "5/16 <br /> Taktende",
+                                            "position": "5/16 <br />Taktende",
                                             "comment": "<em>rit</em>[.]<em> - - -</em> zunächst hinzugefügt über Ges. mit Bleistift und rotem Buntstift sowie über Klav. o. mit schwarzer Tinte, dann über Klav. o. bis vor T. 6 5/8 gestrichen mit schwarzer Tinte. Siehe Korrektur in T. 6 5/8 bis Taktende."
                                         },
                                         {
@@ -3790,21 +3790,21 @@
                                             "comment": "Decrescendogabel hinzugefügt mit grünem Buntstift (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Klav. o.",
-                                            "position": "4/16 <br /> 6/8",
+                                            "position": "4/16 <br />6/8",
                                             "comment": "Bogen in T. 5 gestrichen, in T. 6 überschrieben mit Bogen zu 2–4/8 und Tenutostriche zu 5–6/8 (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "3.–4. Note",
-                                            "comment": "Triole aus Achtelnote gis<sup>1</sup> (mit Tenutostrich), Achtelpause, Achtelnote g<sup>1</sup> (siehe <span class='link-todo'>Textfassung 3</span>) teilweise auf Rasur. Ante correcturam: vermutlich zunächst zwei Achtelnoten gis<sup>1</sup>–g<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>), dann Triole aus Viertelnote gis<sup>1</sup> und Achtelnote g<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Triole aus Achtelnote gis<sup>1</sup> (mit Tenutostrich), Achtelpause, Achtelnote g<sup>1</sup> (siehe <span class='link-todo'>Textfassung 3</span>) teilweise auf Rasur. Ante correcturam: vermutlich zunächst zwei Achtelnoten gis<sup>1</sup>–g<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF1'})\">Textfassung 1</a>), dann Triole aus Viertelnote gis<sup>1</sup> und Achtelnote g<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "",
-                                            "position": "3/8 <br /> bis Taktende",
+                                            "position": "3/8 <br />bis Taktende",
                                             "comment": "<em>rit</em>[.] [eingerahmt] und Wellenlinie hinzugefügt über Ges. mit rotem Buntstift (überschreibt Korrektur in T. 5 5/8 bis Taktende). <em>rit.</em> in T. 6 5/8 aus Korrektur in T. 5 5/8 bis Taktende eingerahmt mit rotem Bunstift."
                                         },
                                         {
@@ -3814,9 +3814,9 @@
                                             "comment": "Crescendogabel bis vorletzte Note, Decrescendogabel bis letzte Note überschreibt Crescendogabel bis vorletzte Note mit grünem Buntstift (siehe <span class='link-todo'>Textfassung 3</span> 3/8 bis letzte Note)."
                                         },
                                         {
-                                            "measure": "6 <br /> bis 7",
+                                            "measure": "6 <br />bis 7",
                                             "system": "Ges.",
-                                            "position": "4. Note <br /> 1/8",
+                                            "position": "4. Note <br />1/8",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3826,9 +3826,9 @@
                                             "comment": "<em>rit. - - -</em>  (siehe <span class='link-todo'>Textfassung 3</span>) hinzugefügt über Ges. und Klav. o. mit schwarzer Tinte (überschreibt dort Geltungsstrichelung von Korrektur in T. 5 5/16 bis T. 6 Taktende). Siehe Korrektur in T. 6 3/8 bis Taktende."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "",
-                                            "position": "Taktanfang <br /> Taktanfang",
+                                            "position": "Taktanfang <br />Taktanfang",
                                             "comment": "<em>accell. - - - tempo I.</em> hinzugefügt über Ges. sowie in T. 6 1–2/8 <em>- - - accell.</em> hinzugefügt überKlav. o. mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3844,9 +3844,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Klav. u.",
-                                            "position": "4/16 <br /> 4/16",
+                                            "position": "4/16 <br />4/16",
                                             "comment": "Bogen geändert zu zwei Bögen in T. 7 4–12/16 und T. 8 1–4/16 (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3862,9 +3862,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt mit schwarzer Tinte."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 1/4",
+                                            "position": "4/8 <br />1/4",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3922,9 +3922,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[mp]')}}</span>, Crescendogabel hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
-                                            "measure": "8 <br /> bis 9",
+                                            "measure": "8 <br />bis 9",
                                             "system": "Ges.",
-                                            "position": "8. Note <br /> 3/8",
+                                            "position": "8. Note <br />3/8",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -3988,9 +3988,9 @@
                                             "comment": "gis<sup>1</sup> (siehe <span class='link-todo'>Textfassung 3</span>) auf Rasur. Ante correcturam: vermutlich as<sup>1</sup>."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Ges.",
-                                            "position": "letzte Note <br /> 6/8",
+                                            "position": "letzte Note <br />6/8",
                                             "comment": "Bogen hinzugefügt mit schwarzer Tinte (siehe <span class='link-todo'>Textfassung 3</span>)."
                                         },
                                         {
@@ -4051,7 +4051,7 @@
                         "label": "Korrekturen in <strong>F<sup>c</sup></strong> (mit Bleistift, Hs. Webern)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -4063,9 +4063,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "measure": "2 <br /> bis 4",
+                                            "measure": "2 <br />bis 4",
                                             "system": "Ges.",
-                                            "position": "1/4 <br /> 2/8",
+                                            "position": "1/4 <br />2/8",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -4105,9 +4105,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 6",
+                                            "measure": "4 <br />bis 6",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 6/8",
+                                            "position": "4/8 <br />6/8",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -4195,9 +4195,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 2/8",
+                                            "position": "4/8 <br />2/8",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -4207,9 +4207,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>3</sup> hinzugefügt."
                                         },
                                         {
-                                            "measure": "7 <br /> bis 8",
+                                            "measure": "7 <br />bis 8",
                                             "system": "Ges.",
-                                            "position": "6/8 <br /> 2/8",
+                                            "position": "6/8 <br />2/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
@@ -4225,9 +4225,9 @@
                                             "comment": "<em>ruhig</em> hinzugefügt."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Ges.",
-                                            "position": "4/8 <br /> 6/8",
+                                            "position": "4/8 <br />6/8",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
@@ -4314,7 +4314,7 @@
             "id": "source_G",
             "siglum": "G",
             "siglumAddendum": "",
-            "type": "Autographe von „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">2</a> (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">3</a> (<strong>G<sup>c</sup></strong>). Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "type": "Autographe von „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">2</a> (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF3'})\">3</a> (<strong>G<sup>c</sup></strong>). Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "physDesc": {
                 "conditions": [
@@ -4469,7 +4469,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">3</a> (<strong>G<sup>c</sup></strong>)",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF3'})\">3</a> (<strong>G<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -4525,7 +4525,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">2</a> (<strong>G<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">2</a> (<strong>G<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -4626,7 +4626,7 @@
                         "label": "Korrekturen in <strong>G<sup>b</sup></strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Abweichungen der Grundschicht von <strong>G<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>. Abweichungen der Grundschicht von <strong>G<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -4641,7 +4641,7 @@
                                             "measure": "vor 1",
                                             "system": "Klav. o.",
                                             "position": "1.–5. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "vor 1",
@@ -4653,7 +4653,7 @@
                                             "measure": "1",
                                             "system": "Klav.",
                                             "position": "1–4/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "1",
@@ -4677,7 +4677,7 @@
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "(2–4/4)",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "2",
@@ -4689,7 +4689,7 @@
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "7.–8. Note",
-                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>) geändert zu punktierter Achtelnote, Sechzehntelnote."
+                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>) geändert zu punktierter Achtelnote, Sechzehntelnote."
                                         },
                                         {
                                             "measure": "2",
@@ -4701,7 +4701,7 @@
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "sic: zwei Achtelnoten es<sup>1</sup>/ges<sup>1</sup>–d<sup>1</sup>/f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "sic: zwei Achtelnoten es<sup>1</sup>/ges<sup>1</sup>–d<sup>1</sup>/f<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "3",
@@ -4719,7 +4719,7 @@
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "(3/4)",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "4",
@@ -4740,9 +4740,9 @@
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt mit Bleistift."
                                         },
                                         {
-                                            "measure": "4 <br /> bis 5",
+                                            "measure": "4 <br />bis 5",
                                             "system": "Klav.",
-                                            "position": "5/16 <br /> 2/8",
+                                            "position": "5/16 <br />2/8",
                                             "comment": "<em>Ped</em>[.]<em> - - -</em> hinzugefügt mit Bleistift."
                                         },
                                         {
@@ -4761,7 +4761,7 @@
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "13/32–6/8",
-                                            "comment": "Auf Tektur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Tektur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "5",
@@ -4791,19 +4791,19 @@
                                             "measure": "7",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em><s>sehr ruhig</s></em> gestrichen mit schwarzer Tinte.  <br /> <em><s>sehr ruhig</s></em> hinzugefügt mit Bleistift, gestrichen mit Bleistift. <br /> <em>Langsamer | als zu Beginn</em> hinzugefügt mit roter Tinte."
+                                            "comment": "<em><s>sehr ruhig</s></em> gestrichen mit schwarzer Tinte. <br /><em><s>sehr ruhig</s></em> hinzugefügt mit Bleistift, gestrichen mit Bleistift. <br /><em>Langsamer | als zu Beginn</em> hinzugefügt mit roter Tinte."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1/8 bis 1. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "7",
@@ -4845,7 +4845,7 @@
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "3.–6. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "8",
@@ -4869,7 +4869,7 @@
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "6. Note",
-                                            "comment": "Tenutostrich hinzugefügt mit roter Tinte.  <br /> <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> nachgezogen mit roter Tinte."
+                                            "comment": "Tenutostrich hinzugefügt mit roter Tinte. <br /><span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> nachgezogen mit roter Tinte."
                                         },
                                         {
                                             "measure": "8",
@@ -4887,7 +4887,7 @@
                                             "measure": "9",
                                             "system": "Klav.",
                                             "position": "(1/2)",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "9",
@@ -4905,7 +4905,7 @@
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
-                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>) geändert zu punktierter Achtelnote, Sechzehntelnote."
+                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>) geändert zu punktierter Achtelnote, Sechzehntelnote."
                                         },
                                         {
                                             "measure": "10",
@@ -4923,7 +4923,7 @@
                         "label": "Korrekturen in <strong>G<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -4938,37 +4938,37 @@
                                             "measure": "1–3",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "2",
                                             "system": "Ges.",
                                             "position": "1–2/8",
-                                            "comment": "Viertelnote (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>) geändert zu Achtelnote, Achtelpause."
+                                            "comment": "Viertelnote (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>) geändert zu Achtelnote, Achtelpause."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "1.–2., 5.–6. Note",
-                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>) geändert zu punktierte Achtelnote, Sechzehntelnote."
+                                            "comment": "Zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>) geändert zu punktierte Achtelnote, Sechzehntelnote."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>."
+                                            "comment": "Auf Rasuren. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "4–6/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup>–e<sup>1</sup>–gis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup>–e<sup>1</sup>–gis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "3.–4. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
                                             "measure": "6",
@@ -5016,13 +5016,13 @@
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "4. Note",
-                                            "comment": "Unterstimmenschicht auf Rasur. Ante correcturam: vermutlich Viertelnote, Achtelnote d (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>)."
+                                            "comment": "Unterstimmenschicht auf Rasur. Ante correcturam: vermutlich Viertelnote, Achtelnote d (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>)."
                                         },
                                         {
-                                            "measure": "13 <br /> bis 14",
+                                            "measure": "13 <br />bis 14",
                                             "system": "Klav. u.",
-                                            "position": "4. Note <br /> 1/4",
-                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>)."
+                                            "position": "4. Note <br />1/4",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF2'})\">Textfassung 2</a>)."
                                         }
                                     ]
                                 }
@@ -5036,7 +5036,7 @@
             "id": "source_H",
             "siglum": "H",
             "siglumAddendum": "",
-            "type": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>.",
+            "type": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[b].",
             "physDesc": {
                 "conditions": [
@@ -5094,7 +5094,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>",
+                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -5154,7 +5154,7 @@
                         "label": "Korrekturen 1 in <strong>H</strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -5169,25 +5169,25 @@
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>."
                                         },
                                         {
                                             "measure": "4",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "(Redundante) Taktvorzeichnung 3/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>) gestrichen."
+                                            "comment": "(Redundante) Taktvorzeichnung 3/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>) gestrichen."
                                         },
                                         {
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "4/8",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich es<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "ais auf Rasur. Ante correcturam: vermutlich b (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "ais auf Rasur. Ante correcturam: vermutlich b (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "7",
@@ -5199,7 +5199,7 @@
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "ais und Tenutostrich auf Rasur. Ante correcturam: vermutlich b (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "ais und Tenutostrich auf Rasur. Ante correcturam: vermutlich b (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "7",
@@ -5235,7 +5235,7 @@
                         "label": "Korrekturen 2 in <strong>H</strong> (mit Bleistift und Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M135_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -5301,9 +5301,9 @@
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> mit rotem Buntstift."
                                         },
                                         {
-                                            "measure": "9 <br /> bis 10",
+                                            "measure": "9 <br />bis 10",
                                             "system": "Ges.",
-                                            "position": "2/8 <br /> 1/4",
+                                            "position": "2/8 <br />1/4",
                                             "comment": "Decrescendogabel hinzugefügt mit rotem Buntstift."
                                         },
                                         {
@@ -5348,7 +5348,7 @@
             "id": "source_I",
             "siglum": "I",
             "siglumAddendum": "",
-            "type": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>.",
+            "type": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[c].",
             "physDesc": {
                 "conditions": [
@@ -5398,7 +5398,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -5472,7 +5472,7 @@
                         "label": "Korrekturen 1 in <strong>I</strong> (mit schwarzer Tinte [Text: rote Tinte] ggf. auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -5487,13 +5487,13 @@
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "5–6/8",
-                                            "comment": "Auf Rasur. Ante correcruram: vermutlich cis–Cis (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcruram: vermutlich cis–Cis (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "1.–3. Note",
-                                            "comment": "Oberstimmenschicht: Auf Rasur. Ante correcruram: vermutlich zwei Achtelnoten es<sup>1</sup>/ges<sup>1</sup>–d/f (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Oberstimmenschicht: Auf Rasur. Ante correcruram: vermutlich zwei Achtelnoten es<sup>1</sup>/ges<sup>1</sup>–d/f (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "5",
@@ -5517,13 +5517,13 @@
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
-                                            "comment": "ges<sup>1</sup> auf Rasur. Ante correcturam: vermutlich fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "ges<sup>1</sup> auf Rasur. Ante correcturam: vermutlich fis<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich H/gis (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)."
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich H/gis (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF1'})\">Textfassung 1</a>)."
                                         },
                                         {
                                             "measure": "10",
@@ -5547,7 +5547,7 @@
                         "label": "Korrekturen 2 in <strong>I</strong> (mit Bleistift und Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M136_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -5559,7 +5559,7 @@
                                             "comment": "Pedal-Aufhebung hinzugefügt mit Bleistift."
                                         },
                                         {
-                                            "measure": "vor 1 <br /> bis 1",
+                                            "measure": "vor 1 <br />bis 1",
                                             "system": "Ges.",
                                             "position": "2/8",
                                             "comment": "Crescendogabel hinzugefügt mit rotem Buntstift."
@@ -5666,7 +5666,7 @@
             "id": "source_J",
             "siglum": "J",
             "siglumAddendum": "",
-            "type": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF4'})\">Textfassung 4</a>.",
+            "type": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF4'})\">Textfassung 4</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[d].",
             "physDesc": {
                 "conditions": [
@@ -5724,7 +5724,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF4'})\">Textfassung 4</a>",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF4'})\">Textfassung 4</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -5784,7 +5784,7 @@
                         "label": "Korrekturen in <strong>J</strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF4'})\">Textfassung 4</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M137_TF4'})\">Textfassung 4</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
