@@ -1,0 +1,1588 @@
+{
+    "editionComplexes": [
+        {
+            "m22": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier/Streichquartett",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "22"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "21. März 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m23": {
+                "titleStatement": {
+                    "title": "<em>Der Winter ist vergangen, ich seh den Maienschein</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "23"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "29. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m29": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "29"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m30": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "30"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "19. Januar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m31": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "31"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "19. Januar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m32": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "32"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "24. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m33": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "33"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m34": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "34"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Mai 2023"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m35_42": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "35/42"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "8. Februar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m36": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "36"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "14. August 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m37": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "37"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "19. Januar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m38": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "38"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "15. August 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m39": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "39"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "9. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m40": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "40"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m41": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "41"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m43": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "43"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m44": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "44"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "9. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m45": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "45"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m46": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "46"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m75": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "75"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m76": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier/Streichquartett",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "76"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m112": {
+                "titleStatement": {
+                    "title": "<em>Satz für Klavier</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "112"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "5. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m113": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "113"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "23. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m114": {
+                "titleStatement": {
+                    "title": "<em>Rondo für Klavier</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "114"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m116": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "116"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "23. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m133": {
+                "titleStatement": {
+                    "title": "„Dies ist ein Lied“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "133"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m134": {
+                "titleStatement": {
+                    "title": "„Im Windesweben“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "134"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m135": {
+                "titleStatement": {
+                    "title": "„An Bachesranft“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "135"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m136": {
+                "titleStatement": {
+                    "title": "„Im Morgentaun“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "136"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m137": {
+                "titleStatement": {
+                    "title": "„Kahl reckt der Baum“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "137"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m138": {
+                "titleStatement": {
+                    "title": "<em>Eingang</em> („Welt der Gestalten“)",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "138"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m139": {
+                "titleStatement": {
+                    "title": "„Noch zwingt mich Treue“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "139"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m140": {
+                "titleStatement": {
+                    "title": "„Ja Heil und Dank dir“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "140"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m141": {
+                "titleStatement": {
+                    "title": "„So ich traurig bin“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "141"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m142": {
+                "titleStatement": {
+                    "title": "„Ihr tratet zu dem Herde“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "142"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m143": {
+                "titleStatement": {
+                    "title": "„Erwachen aus dem tiefsten Traumesschoße“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "143"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m144": {
+                "titleStatement": {
+                    "title": "<em>Kunfttag I</em> („Dem bist du Kind“)",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "144"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m145": {
+                "titleStatement": {
+                    "title": "<em>Trauer I</em> („So wart bis ich dies dir noch künde“)",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "145"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m146": {
+                "titleStatement": {
+                    "title": "„Das lockere Saatgefilde“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "146"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m212": {
+                "titleStatement": {
+                    "title": "„Der Tag ist vergangen“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "212"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m213": {
+                "titleStatement": {
+                    "title": "„Schien mir’s, als ich sah die Sonne“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "213"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m216": {
+                "titleStatement": {
+                    "title": "Gleich und Gleich („Ein Blumenglöckchen“)",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "216"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m217": {
+                "titleStatement": {
+                    "title": "Die geheimnisvolle Flöte („An einem Abend“)",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "217"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m267": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "267"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "m289": {
+                "titleStatement": {
+                    "title": "",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "289"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        },
+        {
+            "m290": {
+                "titleStatement": {
+                    "title": "",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "290"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        },
+        {
+            "m291": {
+                "titleStatement": {
+                    "title": "",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "291"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        },
+        {
+            "m312": {
+                "titleStatement": {
+                    "title": "„Herr Jesus mein“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "312"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m314": {
+                "titleStatement": {
+                    "title": "„Das dunkle Herz“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "314"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "19. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m317": {
+                "titleStatement": {
+                    "title": "„Wie bin ich froh!“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "317"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m321": {
+                "titleStatement": {
+                    "title": "„Sterne, Ihr silbernen Bienen“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "321"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m322": {
+                "titleStatement": {
+                    "title": "„Des Herzens Purpurvogel“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "322"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "mx409": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "409"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx410": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "410"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx412": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "412"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx413": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "413"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "5. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx414": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "414"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx415": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "415"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx416": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "416"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx465": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "465"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx466": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "466"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "mx467": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR_X",
+                    "catalogueNumber": "467"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "op3": {
+                "titleStatement": {
+                    "title": "<em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "3"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "op4": {
+                "titleStatement": {
+                    "title": "<em>Fünf Lieder nach Gedichten von Stefan George</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "4"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Juni 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "op12": {
+                "titleStatement": {
+                    "title": "<em>Vier Lieder</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "12"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "9. April 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "op19": {
+                "titleStatement": {
+                    "title": "<em>Zwei Lieder für gemischten Chor und Ensemble</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "19"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Mai 2023"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "3"
+                }
+            }
+        },
+        {
+            "op20": {
+                "titleStatement": {
+                    "title": "<em>Trio für Geige, Bratsche und Violoncello</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "20"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "20. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        },
+        {
+            "op22": {
+                "titleStatement": {
+                    "title": "Quartett für Geige, Klarinette, Tenorsaxophon und Klavier",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "22"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Mai 2023"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        },
+        {
+            "op23": {
+                "titleStatement": {
+                    "title": "<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "23"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "17. April 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "op24": {
+                "titleStatement": {
+                    "title": "<em>Konzert für neun Instrumente</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "24"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Mai 2023"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "1"
+                }
+            }
+        },
+        {
+            "op25": {
+                "titleStatement": {
+                    "title": "<em>Drei Lieder nach Gedichten von Hildegard Jone</em>",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "25"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "17. April 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "op27": {
+                "titleStatement": {
+                    "title": "Variationen für Klavier",
+                    "catalogueType": "OPUS",
+                    "catalogueNumber": "27"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html"
+                        }
+                    ],
+                    "lastModified": "6. Mai 2023"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "2"
+                }
+            }
+        }
+    ]
+}
