@@ -3,9 +3,7 @@
     "projectOwner": "webern-unibas-ch",
     "repoType": "github",
     "repoHost": "https://github.com",
-    "files": [
-        "README.md"
-    ],
+    "files": ["README.md"],
     "imageSize": 100,
     "commit": false,
     "commitConvention": "angular",
@@ -33,47 +31,38 @@
             "name": "Thomas",
             "avatar_url": "https://avatars.githubusercontent.com/u/53256309?v=4",
             "profile": "https://github.com/masthom",
-            "contributions": [
-                "doc",
-                "projectManagement",
-                "ideas",
-                "content",
-                "data"
-            ]
+            "contributions": ["doc", "projectManagement", "ideas", "content", "data"]
         },
         {
             "login": "chael-mi",
             "name": "chael-mi",
             "avatar_url": "https://avatars.githubusercontent.com/u/108875866?v=4",
             "profile": "https://github.com/chael-mi",
-            "contributions": [
-                "ideas",
-                "doc",
-                "content",
-                "data"
-            ]
+            "contributions": ["ideas", "doc", "content", "data"]
         },
         {
             "login": "vanBithoven",
             "name": "vanBithoven",
             "avatar_url": "https://avatars.githubusercontent.com/u/86300228?v=4",
             "profile": "https://github.com/vanBithoven",
-            "contributions": [
-                "code",
-                "test",
-                "doc"
-            ]
+            "contributions": ["code", "test", "doc"]
         },
         {
             "login": "AMWilke",
             "name": "AMWilke",
             "avatar_url": "https://avatars.githubusercontent.com/u/101800133?v=4",
             "profile": "https://github.com/AMWilke",
-            "contributions": [
-                "data"
-            ]
+            "contributions": ["data"]
+        },
+        {
+            "login": "lili041",
+            "name": "lili041",
+            "avatar_url": "https://avatars.githubusercontent.com/u/186849853?v=4",
+            "profile": "https://github.com/lili041",
+            "contributions": ["bug", "data", "doc"]
         }
     ],
     "contributorsPerLine": 7,
-    "skipCi": true
+    "skipCi": true,
+    "commitType": "docs"
 }
