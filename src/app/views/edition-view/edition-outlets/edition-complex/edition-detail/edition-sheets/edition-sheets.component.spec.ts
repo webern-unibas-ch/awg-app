@@ -248,7 +248,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedComplexId = 'op12';
         expectedNextComplexId = 'testComplex2';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}/`;
-        expectedSheetId = 'M_212_Sk1';
+        expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
 
         expectedFolioConvoluteData = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData));

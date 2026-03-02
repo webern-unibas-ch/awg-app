@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_30_TF1",
+            "id": "M30_TF1",
             "label": "M 30 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 30 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -54,7 +54,7 @@
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm30', sheetId: 'M_30_Sk1k'})\"><strong>Sk1</strong></a>)."
+                                "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm30', sheetId: 'M30_Sk1k'})\"><strong>Sk1</strong></a>)."
                             }
                         ]
                     }
@@ -62,7 +62,7 @@
             }
         },
         {
-            "id": "M_30_Sk1",
+            "id": "M30_Sk1",
             "label": "M 30 Sk1",
             "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 30, die allerdings zahlreiche Überarbeitungen in Form von Streichungen und Ersetzungen aufweist."
@@ -481,14 +481,14 @@
                     "svgGroupId": "g2",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk1a"
+                        "sheetId": "M31_Sk1a"
                     }
                 },
                 {
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m31",
-                        "sheetId": "M_31_Sk1b"
+                        "sheetId": "M31_Sk1b"
                     }
                 }
             ]

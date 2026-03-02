@@ -28,7 +28,7 @@
                         "item": "M 43",
                         "itemLinkTo": {
                             "complexId": "m43",
-                            "sheetId": "M_43_TF1"
+                            "sheetId": "M43_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 43)",
                         "folios": [
@@ -73,7 +73,7 @@
                         "item": "M 44",
                         "itemLinkTo": {
                             "complexId": "m44",
-                            "sheetId": "M_44_TF1"
+                            "sheetId": "M44_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 44)",
                         "folios": [

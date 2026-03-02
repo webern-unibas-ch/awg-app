@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_41_TF1",
+            "id": "M41_TF1",
             "label": "M 41 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 41 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm41', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm41', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -55,10 +55,10 @@
             }
         },
         {
-            "id": "M_41_Sk1",
+            "id": "M41_Sk1",
             "label": "M 41 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm41', sheetId: 'M_41_TF1'})\">Studienkomposition für Klavier M 41</a>, die ab T. 24 zunehmend ausfranst, indem sie nur noch das harmonische Grundgerüst bzw. die Basslinie skizziert."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm41', sheetId: 'M41_TF1'})\">Studienkomposition für Klavier M 41</a>, die ab T. 24 zunehmend ausfranst, indem sie nur noch das harmonische Grundgerüst bzw. die Basslinie skizziert."
             ],
             "commentary": {
                 "preamble": "",
@@ -243,23 +243,23 @@
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1_1b"
+                        "sheetId": "M41_Sk1_1b"
                     }
                 },
                 {
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1_2"
+                        "sheetId": "M41_Sk1_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_41_Sk1_1",
+            "id": "M41_Sk1_1",
             "label": "M 41 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> formuliert die in der Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm41', sheetId: 'M_41_Sk1'})\"><strong>Sk1</strong></a> ab T. 24 nur noch sporadisch vorhandene bzw. gänzlich fehlende Melodielinie und verkürzt den bestehenden Verlauf aus <strong>Sk1</strong>."
+                "<strong>Sk1.1</strong> formuliert die in der Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm41', sheetId: 'M41_Sk1'})\"><strong>Sk1</strong></a> ab T. 24 nur noch sporadisch vorhandene bzw. gänzlich fehlende Melodielinie und verkürzt den bestehenden Verlauf aus <strong>Sk1</strong>."
             ],
             "commentary": {
                 "preamble": "",
@@ -290,20 +290,20 @@
                     "svgGroupId": "g8",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1f"
+                        "sheetId": "M41_Sk1f"
                     }
                 },
                 {
                     "svgGroupId": "g9",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1_2"
+                        "sheetId": "M41_Sk1_2"
                     }
                 }
             ]
         },
         {
-            "id": "M_41_Sk1_2",
+            "id": "M41_Sk1_2",
             "label": "M 41 Sk1.2",
             "evaluations": [
                 "<strong>Sk1.2</strong> bietet erstmals eine vollständig ausformulierte Version der Schlusstakte."
@@ -351,14 +351,14 @@
                     "svgGroupId": "g6",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1_1b"
+                        "sheetId": "M41_Sk1_1b"
                     }
                 },
                 {
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m41",
-                        "sheetId": "M_41_Sk1f"
+                        "sheetId": "M41_Sk1f"
                     }
                 }
             ]

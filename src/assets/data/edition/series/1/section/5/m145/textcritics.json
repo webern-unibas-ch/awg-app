@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_145_TF1",
+            "id": "M145_TF1",
             "label": "M 145 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von Trauer I („So wart bis ich dies dir noch künde“) M 145 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",

@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "Mx_414_TF1",
+                "id": "Mx414_TF1",
                 "label": "M* 414 einzige Textfassung",
                 "content": [
                     {
@@ -17,7 +17,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "Mx_414_Sk1",
+                "id": "Mx414_Sk1",
                 "label": "M* 414 Sk1",
                 "content": [
                     {
@@ -35,7 +35,7 @@
                 ]
             },
             {
-                "id": "Mx_414_Sk2",
+                "id": "Mx414_Sk2",
                 "label": "M* 414 Sk2",
                 "content": [
                     {

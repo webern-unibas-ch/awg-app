@@ -957,11 +957,11 @@
             }
         },
         {
-            "id": "M_138_TF1",
+            "id": "M138_TF1",
             "label": "M 138 Textfassung 1",
             "evaluations": [
                 "Für die Edition von <em>Eingang</em> („Welt der Gestalten“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quellen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam bietet im Vergleich dazu einen kohärenteren Text, der Textfassung 1 etabliert. Die autographen <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a> betreffen <span class='link-todo'>spätere Textfassungen</span> oder sind aufführungsspezifisch motiviert.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M138_TF2'})\">Textfassung 2</a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam bietet im Vergleich dazu einen kohärenteren Text, der Textfassung 1 etabliert. Die autographen <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a> betreffen <span class='link-todo'>spätere Textfassungen</span> oder sind aufführungsspezifisch motiviert.",
                 "Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "commentary": {
@@ -1529,7 +1529,7 @@
             }
         },
         {
-            "id": "M_138_TF2",
+            "id": "M138_TF2",
             "label": "M 138 Textfassung 2",
             "evaluations": [
                 "Für die Edition von Eingang („Welt der Gestalten“) M 138 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
@@ -1582,7 +1582,7 @@
                                 "measure": "5",
                                 "system": "Ges.",
                                 "position": "8. Note",
-                                "comment": "Längenstrich nach <em>gold</em> getilgt. Siehe Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>: Notenwert als Ligatur von zwei Achtelnoten notiert."
+                                "comment": "Längenstrich nach <em>gold</em> getilgt. Siehe Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M138_TF1'})\">Textfassung 1</a>: Notenwert als Ligatur von zwei Achtelnoten notiert."
                             },
                             {
                                 "svgGroupId": "g578",
@@ -1660,7 +1660,7 @@
             }
         },
         {
-            "id": "M_139_TF1",
+            "id": "M139_TF1",
             "label": "M 139 Textfassung 1",
             "evaluations": [
                 "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> relevante Quellen.",
@@ -2092,7 +2092,7 @@
             }
         },
         {
-            "id": "M_139_TF2",
+            "id": "M139_TF2",
             "label": "M 139 Textfassung 2",
             "evaluations": [
                 "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> einzige relvante Quelle.",
@@ -2230,7 +2230,7 @@
             }
         },
         {
-            "id": "M_140_TF1",
+            "id": "M140_TF1",
             "label": "M 140 Textfassung 1",
             "evaluations": [
                 "Für die Edition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> einzige relevante Quelle. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bb_corr'})\">Korrekturen in <strong>B<sup>b</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>. Hauptquelle für die Textedition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> ante correcturam."
@@ -2380,7 +2380,7 @@
             }
         },
         {
-            "id": "M_141_TF1",
+            "id": "M141_TF1",
             "label": "M 141 Textfassung 1",
             "evaluations": [
                 "Für die Edition von „So ich traurig bin“ M 141 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 1. Korrekturen 2 skizzieren <span class='link-todo'>Textfassung 2</span>. <br />Hauptquelle für die Textedition von Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> nach Korrekturen 1."
@@ -2446,11 +2446,11 @@
             }
         },
         {
-            "id": "M_142_TF1",
+            "id": "M142_TF1",
             "label": "M 142 Textfassung 1",
             "evaluations": [
                 "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a> einzige relevante Quelle.",
-                "Autographe Quellen sowie eine Korrekturfahne des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>, die diese oder evt. noch frühere Textfassungen dokumentieren könnten, sind verschollen ([<strong>C</strong>], [<strong>E</strong>], [<strong>F</strong>]). Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Eintragungen in Weberns Handexemplar <strong>G<sup>H</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>.",
+                "Autographe Quellen sowie eine Korrekturfahne des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>, die diese oder evt. noch frühere Textfassungen dokumentieren könnten, sind verschollen ([<strong>C</strong>], [<strong>E</strong>], [<strong>F</strong>]). Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Eintragungen in Weberns Handexemplar <strong>G<sup>H</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M142_TF2'})\">Textfassung 2</a>.",
                 "Hauptquelle für die Textedition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>."
             ],
             "commentary": {
@@ -2464,7 +2464,7 @@
                                 "measure": "vor 1",
                                 "system": "",
                                 "position": "Anfang",
-                                "comment": "sic: keine Taktartvorzeichnung. Taktzählung T. 1–15 (mit Auftakt) mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "sic: keine Taktartvorzeichnung. Taktzählung T. 1–15 (mit Auftakt) mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M142_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "g594",
@@ -2535,7 +2535,7 @@
             }
         },
         {
-            "id": "M_142_TF2",
+            "id": "M142_TF2",
             "label": "M 142 Textfassung 2",
             "evaluations": [
                 "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> einzige relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> ist Weberns Handexemplar des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
@@ -2588,14 +2588,14 @@
                                 "measure": "5",
                                 "system": "Klav.",
                                 "position": "vorletzte Note",
-                                "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>)."
+                                "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M142_TF1'})\">Textfassung 1</a>)."
                             },
                             {
                                 "svgGroupId": "g666",
                                 "measure": "5 <br />bis 6",
                                 "system": "Klav.",
                                 "position": "vorletzte Note",
-                                "comment": "Oberstimmenschicht: Bogen von T. 5 vorletzte Note bis T. 6 1/4 gesetzt mit Blick auf Streichung des Bogens bis T. 8 1/4 erst nach T. 6 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Bogen von T. 5 vorletzte Note bis T. 8 1/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) nach T. 6 1/4 gestrichen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 5."
+                                "comment": "Oberstimmenschicht: Bogen von T. 5 vorletzte Note bis T. 6 1/4 gesetzt mit Blick auf Streichung des Bogens bis T. 8 1/4 erst nach T. 6 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Bogen von T. 5 vorletzte Note bis T. 8 1/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M142_TF1'})\">Textfassung 1</a>) nach T. 6 1/4 gestrichen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 5."
                             },
                             {
                                 "svgGroupId": "g557",

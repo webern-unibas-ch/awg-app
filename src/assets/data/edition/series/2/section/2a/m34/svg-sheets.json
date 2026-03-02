@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_34_TF1",
+                "id": "M34_TF1",
                 "label": "M 34 einzige Textfassung",
                 "content": [
                     {
@@ -17,7 +17,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_34_Sk1",
+                "id": "M34_Sk1",
                 "label": "M 34 Sk1",
                 "content": [
                     {
@@ -41,7 +41,7 @@
                 ]
             },
             {
-                "id": "M_34_Sk1_1",
+                "id": "M34_Sk1_1",
                 "label": "M 34 Sk1.1",
                 "content": [
                     {

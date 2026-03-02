@@ -26,7 +26,7 @@
                         "item": "M 112 Sk1",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk1"
+                            "sheetId": "M112_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -39,56 +39,56 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–5",
-                                            "linkTo": "M_112_Sk1a"
+                                            "linkTo": "M112_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "6–8, {9A}",
-                                            "linkTo": "M_112_Sk1b"
+                                            "linkTo": "M112_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "{10A}, 9B–10B, 11",
-                                            "linkTo": "M_112_Sk1c"
+                                            "linkTo": "M112_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11a–12a",
                                             "measure": "12, 13A",
-                                            "linkTo": "M_112_Sk1d"
+                                            "linkTo": "M112_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "13B, 14–19",
-                                            "linkTo": "M_112_Sk1e"
+                                            "linkTo": "M112_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20b–21b",
                                             "measure": "20",
-                                            "linkTo": "M_112_Sk1f"
+                                            "linkTo": "M112_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "{21A}, 21B, 22–25",
-                                            "linkTo": "M_112_Sk1g"
+                                            "linkTo": "M112_Sk1g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20a–21a",
                                             "measure": "26–29",
-                                            "linkTo": "M_112_Sk1h"
+                                            "linkTo": "M112_Sk1h"
                                         }
                                     ]
                                 ]
@@ -102,49 +102,49 @@
                                         {
                                             "system": "2–3",
                                             "measure": "30–34",
-                                            "linkTo": "M_112_Sk1i"
+                                            "linkTo": "M112_Sk1i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
                                             "measure": "35–38",
-                                            "linkTo": "M_112_Sk1j"
+                                            "linkTo": "M112_Sk1j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9",
                                             "measure": "39–44",
-                                            "linkTo": "M_112_Sk1k"
+                                            "linkTo": "M112_Sk1k"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–12",
                                             "measure": "45–51",
-                                            "linkTo": "M_112_Sk1l"
+                                            "linkTo": "M112_Sk1l"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "52–58",
-                                            "linkTo": "M_112_Sk1m"
+                                            "linkTo": "M112_Sk1m"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "59–63",
-                                            "linkTo": "M_112_Sk1n"
+                                            "linkTo": "M112_Sk1n"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "19–21",
                                             "measure": "64–66, 67A–68A",
-                                            "linkTo": "M_112_Sk1o"
+                                            "linkTo": "M112_Sk1o"
                                         }
                                     ]
                                 ]
@@ -158,21 +158,21 @@
                                         {
                                             "system": "1–3",
                                             "measure": "69A, {70A}",
-                                            "linkTo": "M_112_Sk1p"
+                                            "linkTo": "M112_Sk1p"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
                                             "measure": "68B–70B, 71A, {72–73}",
-                                            "linkTo": "M_112_Sk1q"
+                                            "linkTo": "M112_Sk1q"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8–9",
                                             "measure": "67B, 68C–70C, 71B",
-                                            "linkTo": "M_112_Sk1r"
+                                            "linkTo": "M112_Sk1r"
                                         }
                                     ]
                                 ]
@@ -183,7 +183,7 @@
                         "item": "M 112 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk1_1"
+                            "sheetId": "M112_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -207,7 +207,7 @@
                         "item": "M 112 Sk1.2",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk1_2"
+                            "sheetId": "M112_Sk1_2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -231,7 +231,7 @@
                         "item": "M 112 Sk1.3",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk1_3"
+                            "sheetId": "M112_Sk1_3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -255,7 +255,7 @@
                         "item": "M 112 Sk2",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk2"
+                            "sheetId": "M112_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -268,28 +268,28 @@
                                         {
                                             "system": "11–12",
                                             "measure": "56–60",
-                                            "linkTo": "M_112_Sk2a"
+                                            "linkTo": "M112_Sk2a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14–15",
                                             "measure": "61–64",
-                                            "linkTo": "M_112_Sk2b"
+                                            "linkTo": "M112_Sk2b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "65–67, {68A–69A}",
-                                            "linkTo": "M_112_Sk2c"
+                                            "linkTo": "M112_Sk2c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20–21",
                                             "measure": "68B–69B, 70–71",
-                                            "linkTo": "M_112_Sk2d"
+                                            "linkTo": "M112_Sk2d"
                                         }
                                     ]
                                 ]
@@ -303,21 +303,21 @@
                                         {
                                             "system": "1–2",
                                             "measure": "72–74, {75A}",
-                                            "linkTo": "M_112_Sk2e"
+                                            "linkTo": "M112_Sk2e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
                                             "measure": "75B, 65–78",
-                                            "linkTo": "M_112_Sk2f"
+                                            "linkTo": "M112_Sk2f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9–10",
                                             "measure": "79–82",
-                                            "linkTo": "M_112_Sk2g"
+                                            "linkTo": "M112_Sk2g"
                                         }
                                     ]
                                 ]
@@ -328,7 +328,7 @@
                         "item": "M 112 Sk5",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk5"
+                            "sheetId": "M112_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -341,35 +341,35 @@
                                         {
                                             "system": "12a–15a",
                                             "measure": "82B–85B",
-                                            "linkTo": "M_112_Sk5f"
+                                            "linkTo": "M112_Sk5f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "82C–85C, 86–87",
-                                            "linkTo": "M_112_Sk5g"
+                                            "linkTo": "M112_Sk5g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20–21",
                                             "measure": "88, {89A}, 89B, 90",
-                                            "linkTo": "M_112_Sk5h"
+                                            "linkTo": "M112_Sk5h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14b–15b",
                                             "measure": "91–92",
-                                            "linkTo": "M_112_Sk5i"
+                                            "linkTo": "M112_Sk5i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12b",
                                             "measure": "93+x",
-                                            "linkTo": "M_112_Sk5j"
+                                            "linkTo": "M112_Sk5j"
                                         }
                                     ]
                                 ]
@@ -407,7 +407,7 @@
                         "item": "M 112",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_TF1"
+                            "sheetId": "M112_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 1)",
                         "folios": [
@@ -452,7 +452,7 @@
                         "item": "M 112 Sk4.1",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk4_1"
+                            "sheetId": "M112_Sk4_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -476,7 +476,7 @@
                         "item": "M 112 Sk3",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk3"
+                            "sheetId": "M112_Sk3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -500,7 +500,7 @@
                         "item": "M 112 Sk4",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk4"
+                            "sheetId": "M112_Sk4"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -513,21 +513,21 @@
                                         {
                                             "system": "10–8",
                                             "measure": "62–65",
-                                            "linkTo": "M_112_Sk4a"
+                                            "linkTo": "M112_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–5",
                                             "measure": "{66A–67A}, 66B–67B, 68–69",
-                                            "linkTo": "M_112_Sk4b"
+                                            "linkTo": "M112_Sk4b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–2",
                                             "measure": "70–76",
-                                            "linkTo": "M_112_Sk4c"
+                                            "linkTo": "M112_Sk4c"
                                         }
                                     ]
                                 ]
@@ -541,28 +541,28 @@
                                         {
                                             "system": "21–20",
                                             "measure": "77–80, {81A–82A}",
-                                            "linkTo": "M_112_Sk4d"
+                                            "linkTo": "M112_Sk4d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18–17",
                                             "measure": "{83A–84A}, 81B–84B",
-                                            "linkTo": "M_112_Sk4e"
+                                            "linkTo": "M112_Sk4e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "15–14",
                                             "measure": "{85A}, {86}, 85B",
-                                            "linkTo": "M_112_Sk4f"
+                                            "linkTo": "M112_Sk4f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12a–11a",
                                             "measure": "81C–82C",
-                                            "linkTo": "M_112_Sk4g"
+                                            "linkTo": "M112_Sk4g"
                                         }
                                     ]
                                 ]
@@ -573,7 +573,7 @@
                         "item": "M 112 Sk5",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk5"
+                            "sheetId": "M112_Sk5"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -586,28 +586,28 @@
                                         {
                                             "system": "10–8",
                                             "measure": "66–70",
-                                            "linkTo": "M_112_Sk5a"
+                                            "linkTo": "M112_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–5",
                                             "measure": "71–75",
-                                            "linkTo": "M_112_Sk5b"
+                                            "linkTo": "M112_Sk5b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–2",
                                             "measure": "76, {77A–79A}, 77B, {78B–79B}",
-                                            "linkTo": "M_112_Sk5c"
+                                            "linkTo": "M112_Sk5c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12b–11b",
                                             "measure": "78C–79C, 80",
-                                            "linkTo": "M_112_Sk5d"
+                                            "linkTo": "M112_Sk5d"
                                         }
                                     ]
                                 ]
@@ -881,7 +881,7 @@
                         "item": "M 112 Sk5",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk5e"
+                            "sheetId": "M112_Sk5e"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -926,7 +926,7 @@
                         "item": "M 112 Sk7",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk7"
+                            "sheetId": "M112_Sk7"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -950,7 +950,7 @@
                         "item": "M 112 Sk8",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk8"
+                            "sheetId": "M112_Sk8"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -963,14 +963,14 @@
                                         {
                                             "system": "7b–8b",
                                             "measure": "16–18",
-                                            "linkTo": "M_112_Sk8a"
+                                            "linkTo": "M112_Sk8a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10a–11a",
                                             "measure": "19–20",
-                                            "linkTo": "M_112_Sk8b"
+                                            "linkTo": "M112_Sk8b"
                                         }
                                     ]
                                 ]
@@ -981,7 +981,7 @@
                         "item": "M 112 Sk9",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk9"
+                            "sheetId": "M112_Sk9"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -1005,7 +1005,7 @@
                         "item": "M 112 Sk10",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk10"
+                            "sheetId": "M112_Sk10"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -1018,28 +1018,28 @@
                                         {
                                             "system": "13–14",
                                             "measure": "103–106",
-                                            "linkTo": "M_112_Sk10a"
+                                            "linkTo": "M112_Sk10a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–17",
                                             "measure": "107, {108A}, 108B, 109A–110A",
-                                            "linkTo": "M_112_Sk10b"
+                                            "linkTo": "M112_Sk10b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "19–20",
                                             "measure": "111A, {112A}, 112B, 113A–115A",
-                                            "linkTo": "M_112_Sk10c"
+                                            "linkTo": "M112_Sk10c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5b–6b",
                                             "measure": "116A",
-                                            "linkTo": "M_112_Sk10d"
+                                            "linkTo": "M112_Sk10d"
                                         }
                                     ]
                                 ]
@@ -1053,56 +1053,56 @@
                                         {
                                             "system": "1–2",
                                             "measure": "109B–111B, 112C",
-                                            "linkTo": "M_112_Sk10e"
+                                            "linkTo": "M112_Sk10e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "113B–116B, 117",
-                                            "linkTo": "M_112_Sk10f"
+                                            "linkTo": "M112_Sk10f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "118A–123A",
-                                            "linkTo": "M_112_Sk10g"
+                                            "linkTo": "M112_Sk10g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10a–11a",
                                             "measure": "124–126",
-                                            "linkTo": "M_112_Sk10h"
+                                            "linkTo": "M112_Sk10h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "118B–121B",
-                                            "linkTo": "M_112_Sk10i"
+                                            "linkTo": "M112_Sk10i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10b–11b",
                                             "measure": "122B–123B",
-                                            "linkTo": "M_112_Sk10j"
+                                            "linkTo": "M112_Sk10j"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–17",
                                             "measure": "127–131",
-                                            "linkTo": "M_112_Sk10k"
+                                            "linkTo": "M112_Sk10k"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "19–20",
                                             "measure": "{132A–133A}, 132B–133B",
-                                            "linkTo": "M_112_Sk10l"
+                                            "linkTo": "M112_Sk10l"
                                         }
                                     ]
                                 ]
@@ -1116,21 +1116,21 @@
                                         {
                                             "system": "2–3",
                                             "measure": "134–137",
-                                            "linkTo": "M_112_Sk10m"
+                                            "linkTo": "M112_Sk10m"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
                                             "measure": "138–141",
-                                            "linkTo": "M_112_Sk10n"
+                                            "linkTo": "M112_Sk10n"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9–10",
                                             "measure": "149–151",
-                                            "linkTo": "M_112_Sk10o"
+                                            "linkTo": "M112_Sk10o"
                                         }
                                     ]
                                 ]
@@ -1141,7 +1141,7 @@
                         "item": "M 112 Sk10.1",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk10_1"
+                            "sheetId": "M112_Sk10_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -1192,7 +1192,7 @@
                         "item": "M 112",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_TF2"
+                            "sheetId": "M112_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 2)",
                         "folios": [
@@ -1251,7 +1251,7 @@
                         "item": "M 112 Sk6",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_Sk6"
+                            "sheetId": "M112_Sk6"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
                         "folios": [
@@ -1264,35 +1264,35 @@
                                         {
                                             "system": "13–12",
                                             "measure": "81–86",
-                                            "linkTo": "M_112_Sk6a"
+                                            "linkTo": "M112_Sk6a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–9",
                                             "measure": "87–88, {89A–90A}",
-                                            "linkTo": "M_112_Sk6b"
+                                            "linkTo": "M112_Sk6b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–6",
                                             "measure": "{91A–92A}, 89B–91B",
-                                            "linkTo": "M_112_Sk6c"
+                                            "linkTo": "M112_Sk6c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–3",
                                             "measure": "{89C–90C}, 89D–90D, 91C(1–3/4)",
-                                            "linkTo": "M_112_Sk6d"
+                                            "linkTo": "M112_Sk6d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "2–1",
                                             "measure": "91C(2–4/4), 92B, 93",
-                                            "linkTo": "M_112_Sk6e"
+                                            "linkTo": "M112_Sk6e"
                                         }
                                     ]
                                 ]
@@ -1692,7 +1692,7 @@
                         "item": "M 112",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_TF3"
+                            "sheetId": "M112_TF3"
                         },
                         "itemDescription": "(Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3)",
                         "folios": [
@@ -2031,7 +2031,7 @@
                         "item": "M 112",
                         "itemLinkTo": {
                             "complexId": "m112",
-                            "sheetId": "M_112_TF3"
+                            "sheetId": "M112_TF3"
                         },
                         "itemDescription": "(Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3)",
                         "folios": [

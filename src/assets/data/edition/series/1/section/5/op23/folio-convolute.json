@@ -24,7 +24,7 @@
                     "content": [
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk1",
+                            "sheetId": "M312_Sk1",
                             "sigle": "M 312 Sk1",
                             "sigleAddendum": "",
                             "segmentSplit": 1,
@@ -38,7 +38,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk1_1",
+                            "sheetId": "M312_Sk1_1",
                             "sigle": "M 312 Sk1.1",
                             "sigleAddendum": "",
                             "segmentSplit": 3,
@@ -52,7 +52,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk2",
+                            "sheetId": "M312_Sk2",
                             "sigle": "M 312 Sk2 (Reihentabelle)",
                             "sigleAddendum": "Reihenformen 1–10",
                             "selectable": false,
@@ -67,7 +67,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk3",
+                            "sheetId": "M312_Sk3",
                             "sigle": "M 312 Sk3",
                             "sigleAddendum": "",
                             "segmentSplit": 1,
@@ -81,7 +81,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk3_1",
+                            "sheetId": "M312_Sk3_1",
                             "sigle": "M 312 Sk3.1",
                             "sigleAddendum": "",
                             "selectable": false,
@@ -96,7 +96,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk3_2",
+                            "sheetId": "M312_Sk3_2",
                             "sigle": "M 312 Sk3.2",
                             "selectable": false,
                             "sigleAddendum": "",
@@ -111,7 +111,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_312_Sk3_3",
+                            "sheetId": "M312_Sk3_3",
                             "sigle": "M 312 Sk3.3",
                             "selectable": false,
                             "sigleAddendum": "",
@@ -137,7 +137,7 @@
                     "content": [
                         {
                             "complexId": "op23",
-                            "sheetId": "M_314_Sk2",
+                            "sheetId": "M314_Sk2",
                             "sigle": "M 314 Sk2",
                             "sigleAddendum": "",
                             "segmentSplit": 1,
@@ -151,7 +151,7 @@
                         },
                         {
                             "complexId": "op23",
-                            "sheetId": "M_314_Sk1",
+                            "sheetId": "M314_Sk1",
                             "sigle": "M 314 Sk1",
                             "sigleAddendum": "",
                             "segmentSplit": 2,

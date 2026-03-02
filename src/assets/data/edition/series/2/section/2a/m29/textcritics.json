@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_29_TF1",
+            "id": "M29_TF1",
             "label": "M 29 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthalten Skizzen.",
@@ -34,10 +34,10 @@
             }
         },
         {
-            "id": "M_29_Sk1",
+            "id": "M29_Sk1",
             "label": "M 29 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M_29_TF1'})\">Studienkomposition für Klavier M 29</a> enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
+                "<strong>Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M29_TF1'})\">Studienkomposition für Klavier M 29</a> enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
             ],
             "commentary": {
                 "preamble": "",
@@ -103,16 +103,16 @@
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk28b"
+                        "sheetId": "M22_Sk28b"
                     }
                 }
             ]
         },
         {
-            "id": "M_29_Sk2",
+            "id": "M29_Sk2",
             "label": "M 29 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M_29_Sk1'})\"><strong>Sk1</strong></a>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+                "<strong>Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M29_Sk1'})\"><strong>Sk1</strong></a>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -136,16 +136,16 @@
                     "svgGroupId": "g7",
                     "linkTo": {
                         "complexId": "m29",
-                        "sheetId": "M_29_Sk3a"
+                        "sheetId": "M29_Sk3a"
                     }
                 }
             ]
         },
         {
-            "id": "M_29_Sk3",
+            "id": "M29_Sk3",
             "label": "M 29 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M_29_Sk1'})\"><strong>Sk1</strong></a>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+                "<strong>Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M29_Sk1'})\"><strong>Sk1</strong></a>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -190,23 +190,23 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m29",
-                        "sheetId": "M_29_Sk2"
+                        "sheetId": "M29_Sk2"
                     }
                 },
                 {
                     "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk28a"
+                        "sheetId": "M22_Sk28a"
                     }
                 }
             ]
         },
         {
-            "id": "M_29_Sk4",
+            "id": "M29_Sk4",
             "label": "M 29 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId:  'M_29_TF1'})\">Studienkomposition für Klavier M 29</a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
+                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'MM29_TF1'})\">Studienkomposition für Klavier M 29</a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
             ],
             "commentary": {
                 "preamble": "",
@@ -493,10 +493,10 @@
             }
         },
         {
-            "id": "M_29_Sk5",
+            "id": "M29_Sk5",
             "label": "M 29 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M_29_TF1'})\">Studienkomposition für Klavier M 29</a> eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
+                "<strong>Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'm29', sheetId: 'M29_TF1'})\">Studienkomposition für Klavier M 29</a> eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
             ],
             "commentary": {
                 "preamble": "",

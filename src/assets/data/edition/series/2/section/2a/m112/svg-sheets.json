@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_112_TF1",
+                "id": "M112_TF1",
                 "label": "M 112 Textfassung 1",
                 "content": [
                     {
@@ -15,7 +15,7 @@
                 ]
             },
             {
-                "id": "M_112_TF2",
+                "id": "M112_TF2",
                 "label": "M 112 Textfassung 2",
                 "content": [
                     {
@@ -33,7 +33,7 @@
                 ]
             },
             {
-                "id": "M_112_TF3",
+                "id": "M112_TF3",
                 "label": "M 112 Textfassung 3",
                 "content": [
                     {
@@ -101,7 +101,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_112_Sk1",
+                "id": "M112_Sk1",
                 "label": "M 112 Sk1",
                 "content": [
                     {
@@ -215,7 +215,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk1_1",
+                "id": "M112_Sk1_1",
                 "label": "M 112 Sk1.1",
                 "content": [
                     {
@@ -227,7 +227,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk1_2",
+                "id": "M112_Sk1_2",
                 "label": "M 112 Sk1.2",
                 "content": [
                     {
@@ -239,7 +239,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk1_3",
+                "id": "M112_Sk1_3",
                 "label": "M 112 Sk1.3",
                 "content": [
                     {
@@ -251,7 +251,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk2",
+                "id": "M112_Sk2",
                 "label": "M 112 Sk2",
                 "content": [
                     {
@@ -299,7 +299,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk3",
+                "id": "M112_Sk3",
                 "label": "M 112 Sk3",
                 "content": [
                     {
@@ -311,7 +311,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk4",
+                "id": "M112_Sk4",
                 "label": "M 112 Sk4",
                 "content": [
                     {
@@ -359,7 +359,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk4_1",
+                "id": "M112_Sk4_1",
                 "label": "M 112 Sk4.1",
                 "content": [
                     {
@@ -371,7 +371,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk5",
+                "id": "M112_Sk5",
                 "label": "M 112 Sk5",
                 "content": [
                     {
@@ -437,7 +437,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk6",
+                "id": "M112_Sk6",
                 "label": "M 112 Sk6",
                 "content": [
                     {
@@ -473,7 +473,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk7",
+                "id": "M112_Sk7",
                 "label": "M 112 Sk7",
                 "content": [
                     {
@@ -485,7 +485,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk8",
+                "id": "M112_Sk8",
                 "label": "M 112 Sk8",
                 "content": [
                     {
@@ -503,7 +503,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk9",
+                "id": "M112_Sk9",
                 "label": "M 112 Sk9",
                 "content": [
                     {
@@ -515,7 +515,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk10",
+                "id": "M112_Sk10",
                 "label": "M 112 Sk10",
                 "content": [
                     {
@@ -611,7 +611,7 @@
                 ]
             },
             {
-                "id": "M_112_Sk10_1",
+                "id": "M112_Sk10_1",
                 "label": "M 112 Sk10.1",
                 "content": [
                     {

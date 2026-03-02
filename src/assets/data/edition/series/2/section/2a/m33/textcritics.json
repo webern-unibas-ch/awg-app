@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_33_TF1",
+            "id": "M33_TF1",
             "label": "M 33 Textfassung 1",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 33 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm33', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm33', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> bezieht sich auf Textfassung 2.",
@@ -48,7 +48,7 @@
             }
         },
         {
-            "id": "M_33_TF2",
+            "id": "M33_TF2",
             "label": "M 33 Textfassung 2",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 33 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm33', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm33', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm33', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -102,7 +102,7 @@
             }
         },
         {
-            "id": "M_33_Sk1",
+            "id": "M33_Sk1",
             "label": "M 33 Sk1",
             "evaluations": ["<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 33."],
             "commentary": {
@@ -309,7 +309,7 @@
                     "svgGroupId": "g5",
                     "linkTo": {
                         "complexId": "m32",
-                        "sheetId": "M_32_Sk2_2"
+                        "sheetId": "M32_Sk2_2"
                     }
                 }
             ]

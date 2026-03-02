@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_144_TF1",
+            "id": "M144_TF1",
             "label": "M 144 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von <em>Kunfttag I</em> („Dem bist du Kind“) M 144 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",

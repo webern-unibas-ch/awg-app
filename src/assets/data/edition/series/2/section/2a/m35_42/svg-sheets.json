@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_35_42_TF1",
+                "id": "M35_42_TF1",
                 "label": "M 35/42 einzige Textfassung",
                 "content": [
                     {
@@ -23,7 +23,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_35_42_Sk1",
+                "id": "M35_42_Sk1",
                 "label": "M 35/42 Sk1",
                 "content": [
                     {
@@ -65,7 +65,7 @@
                 ]
             },
             {
-                "id": "M_35_42_Sk1_1",
+                "id": "M35_42_Sk1_1",
                 "label": "M 35/42 Sk1.1",
                 "content": [
                     {
@@ -77,7 +77,7 @@
                 ]
             },
             {
-                "id": "M_35_42_Sk2",
+                "id": "M35_42_Sk2",
                 "label": "M 35/42 Sk2",
                 "content": [
                     {

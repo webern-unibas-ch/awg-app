@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_76_TF1",
+            "id": "M76_TF1",
             "label": "M 76 Textfassung 1",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_B'})\"><strong>B</strong></a> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
