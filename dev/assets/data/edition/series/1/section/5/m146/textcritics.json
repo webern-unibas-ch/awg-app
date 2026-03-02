@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_146_TF1",
+            "id": "M146_TF1",
             "label": "M 146 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von „Das lockere Saatgefilde“ M 146 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",

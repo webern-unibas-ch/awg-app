@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "Mx_415_TF1",
+            "id": "Mx415_TF1",
             "label": "M* 415 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 415 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx415', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -14,10 +14,10 @@
             }
         },
         {
-            "id": "Mx_415_Sk1",
+            "id": "Mx415_Sk1",
             "label": "M* 415 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx_415_TF1'})\">Studienkomposition für Klavier M* 415</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx415', sheetId: 'Mx415_TF1'})\">Studienkomposition für Klavier M* 415</a>."
             ],
             "commentary": {
                 "preamble": "",

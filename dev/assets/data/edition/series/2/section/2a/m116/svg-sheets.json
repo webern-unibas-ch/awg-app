@@ -3,7 +3,7 @@
         "workEditions": [],
         "textEditions": [
             {
-                "id": "M_116_TF1",
+                "id": "M116_TF1",
                 "label": "M 116 einzige Textfassung",
                 "content": [
                     {
@@ -23,7 +23,7 @@
         ],
         "sketchEditions": [
             {
-                "id": "M_116_Sk1",
+                "id": "M116_Sk1",
                 "label": "M 116 Sk1",
                 "content": [
                     {
@@ -47,7 +47,7 @@
                 ]
             },
             {
-                "id": "M_116_Sk1_1",
+                "id": "M116_Sk1_1",
                 "label": "M 116 Sk1.1",
                 "content": [
                     {
@@ -59,7 +59,7 @@
                 ]
             },
             {
-                "id": "M_116_Sk1_2",
+                "id": "M116_Sk1_2",
                 "label": "M 116 Sk1.2",
                 "content": [
                     {
@@ -71,7 +71,7 @@
                 ]
             },
             {
-                "id": "M_116_Sk1_3",
+                "id": "M116_Sk1_3",
                 "label": "M 116 Sk1.3",
                 "content": [
                     {
@@ -83,7 +83,7 @@
                 ]
             },
             {
-                "id": "M_116_Sk2",
+                "id": "M116_Sk2",
                 "label": "M 116 Sk2",
                 "content": [
                     {

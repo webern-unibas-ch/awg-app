@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "Mx_466_TF1",
+            "id": "Mx466_TF1",
             "label": "M* 466 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition M* 466 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -14,10 +14,10 @@
             }
         },
         {
-            "id": "Mx_466_Sk1",
+            "id": "Mx466_Sk1",
             "label": "M* 466 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx466', sheetId: 'Mx_466_TF1'})\">Studienkomposition für Klavier M* 466.</a>"
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx466', sheetId: 'Mx466_TF1'})\">Studienkomposition für Klavier M* 466.</a>"
             ],
             "commentary": {
                 "preamble": "",

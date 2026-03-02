@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_43_TF1",
+            "id": "M43_TF1",
             "label": "M 43 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 43 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -62,10 +62,10 @@
             }
         },
         {
-            "id": "M_43_Sk1",
+            "id": "M43_Sk1",
             "label": "M 43 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist eine rhythmische Skizze zur <a (click)=\"ref.selectSvgSheet({complexId: 'm43', sheetId: 'M_43_TF1'})\">Studienkomposition für Klavier M 43</a>."
+                "<strong>Sk1</strong> ist eine rhythmische Skizze zur <a (click)=\"ref.selectSvgSheet({complexId: 'm43', sheetId: 'M43_TF1'})\">Studienkomposition für Klavier M 43</a>."
             ],
             "commentary": {
                 "preamble": "",

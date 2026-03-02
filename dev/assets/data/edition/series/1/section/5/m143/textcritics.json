@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_143_TF1",
+            "id": "M143_TF1",
             "label": "M 143 einzige Textfassung",
             "evaluations": [
                 "Für die Edition der einzigen Textfassung von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",

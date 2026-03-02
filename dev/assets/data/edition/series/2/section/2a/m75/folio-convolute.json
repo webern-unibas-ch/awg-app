@@ -15,7 +15,7 @@
                     "content": [
                         {
                             "complexId": "m116",
-                            "sheetId": "M_116_Sk2c",
+                            "sheetId": "M116_Sk2c",
                             "sigle": "M 116 Sk2",
                             "sigleAddendum": "T. 11B–13",
                             "segmentSplit": 1,
@@ -29,7 +29,7 @@
                         },
                         {
                             "complexId": "m116",
-                            "sheetId": "M_116_Sk2d",
+                            "sheetId": "M116_Sk2d",
                             "sigle": "M 116 Sk2",
                             "sigleAddendum": "T. 14A–15B",
                             "segmentSplit": 1,
@@ -43,7 +43,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_Sk1a",
+                            "sheetId": "M75_Sk1a",
                             "sigle": "M 75 Sk1",
                             "sigleAddendum": "T. 1–7B",
                             "segmentSplit": 1,
@@ -57,7 +57,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_Sk1b",
+                            "sheetId": "M75_Sk1b",
                             "sigle": "M 75 Sk1",
                             "sigleAddendum": "T. 8–14",
                             "segmentSplit": 1,
@@ -71,7 +71,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_Sk1_1",
+                            "sheetId": "M75_Sk1_1",
                             "sigle": "M 75 Sk1.1",
                             "sigleAddendum": "",
                             "segmentSplit": 3,
@@ -111,7 +111,7 @@
                     "content": [
                         {
                             "complexId": "m76",
-                            "sheetId": "M_76_TF1",
+                            "sheetId": "M76_TF1",
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
@@ -126,7 +126,7 @@
                         },
                         {
                             "complexId": "m76",
-                            "sheetId": "M_76_TF1",
+                            "sheetId": "M76_TF1",
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 6–11",
                             "selectable": false,
@@ -141,7 +141,7 @@
                         },
                         {
                             "complexId": "m76",
-                            "sheetId": "M_76_TF1",
+                            "sheetId": "M76_TF1",
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
@@ -156,7 +156,7 @@
                         },
                         {
                             "complexId": "m76",
-                            "sheetId": "M_76_TF1",
+                            "sheetId": "M76_TF1",
                             "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 17–21",
                             "selectable": false,
@@ -181,7 +181,7 @@
                     "content": [
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_TF1",
+                            "sheetId": "M75_TF1",
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
@@ -196,7 +196,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_TF1",
+                            "sheetId": "M75_TF1",
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 6–9",
                             "selectable": false,
@@ -211,7 +211,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_TF1",
+                            "sheetId": "M75_TF1",
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 10–13",
                             "selectable": false,
@@ -226,7 +226,7 @@
                         },
                         {
                             "complexId": "m75",
-                            "sheetId": "M_75_TF1",
+                            "sheetId": "M75_TF1",
                             "sigle": "M 75 Tintenniederschrift",
                             "sigleAddendum": "T. 14",
                             "selectable": false,

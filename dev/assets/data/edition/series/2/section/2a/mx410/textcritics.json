@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "Mx_410_TF1",
+            "id": "Mx410_TF1",
             "label": "M* 410 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 410 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx410', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",

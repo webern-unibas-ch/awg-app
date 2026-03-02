@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "Mx_412_TF1",
+            "id": "Mx412_TF1",
             "label": "M* 412 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 412 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx412', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -27,10 +27,10 @@
             }
         },
         {
-            "id": "Mx_412_Sk1",
+            "id": "Mx412_Sk1",
             "label": "M* 412 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx_412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx412', sheetId: 'Mx412_TF1'})\">Studienkomposition für Klavier M* 412</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -103,7 +103,7 @@
                     "svgGroupId": "g-lb-1",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk1"
+                        "sheetId": "M22_Sk1"
                     }
                 }
             ]

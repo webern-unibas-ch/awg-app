@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "Mx_414_TF1",
+            "id": "Mx414_TF1",
             "label": "M* 414 einzige Textfassung",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M* 414 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
@@ -14,10 +14,10 @@
             }
         },
         {
-            "id": "Mx_414_Sk1",
+            "id": "Mx414_Sk1",
             "label": "M* 414 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx_414_TF1'})\">Studienkomposition für Klavier M* 414</a>, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
+                "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">Studienkomposition für Klavier M* 414</a>, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
             ],
             "commentary": {
                 "preamble": "",
@@ -97,37 +97,37 @@
                     "svgGroupId": "g-lb-13",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk13"
+                        "sheetId": "M22_Sk13"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-14",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk14"
+                        "sheetId": "M22_Sk14"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-23a",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk23a"
+                        "sheetId": "M22_Sk23a"
                     }
                 },
                 {
                     "svgGroupId": "g-lb-23d",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk23d"
+                        "sheetId": "M22_Sk23d"
                     }
                 }
             ]
         },
         {
-            "id": "Mx_414_Sk2",
+            "id": "Mx414_Sk2",
             "label": "M* 414 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die zweite Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx_414_TF1'})\">Studienkomposition für Klavier M* 414</a>."
+                "<strong>Sk2</strong> ist die zweite Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">Studienkomposition für Klavier M* 414</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -207,7 +207,7 @@
                     "svgGroupId": "g-lb-23c",
                     "linkTo": {
                         "complexId": "m22",
-                        "sheetId": "M_22_Sk23c"
+                        "sheetId": "M22_Sk23c"
                     }
                 }
             ]
