@@ -2017,7 +2017,7 @@
                                 "measure": "39",
                                 "system": "2",
                                 "position": "3/4",
-                                "comment": "g überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F."
+                                "comment": "G überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F."
                             },
                             {
                                 "svgGroupId": "g-tkk-9",
