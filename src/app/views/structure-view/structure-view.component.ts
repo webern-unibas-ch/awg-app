@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class StructureViewComponent {

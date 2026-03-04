@@ -726,7 +726,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
 
             describe('... should not do anything if ', () => {
                 it('... query is undefined', () => {
-                    let expectedQuery: undefined;
+                    const expectedQuery = undefined;
 
                     component.onSearch(expectedQuery);
                     fixture.detectChanges();
@@ -735,7 +735,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 it('... query is null', () => {
-                    let expectedQuery: null;
+                    const expectedQuery = null;
 
                     component.onSearch(expectedQuery);
                     fixture.detectChanges();
@@ -744,7 +744,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 it('... query has type `never`', () => {
-                    let expectedQuery: never;
+                    const expectedQuery = undefined as never;
 
                     component.onSearch(expectedQuery);
                     fixture.detectChanges();

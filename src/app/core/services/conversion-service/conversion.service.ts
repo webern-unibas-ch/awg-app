@@ -178,12 +178,9 @@ export class ConversionService extends ApiService {
                             prop.label = prop.label.replace(' (Richtext)', '');
 
                             for (let i = 0; i < prop.values.length; i++) {
-                                // Init
-
-                                let htmlstr = '';
-
                                 // Convert linear salsah standoff to html (using plugin "htmlConverter")
-                                htmlstr = this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
+                                const htmlstr =
+                                    this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr) || '';
 
                                 // Trim string
                                 propValue[i] = htmlstr.trim();

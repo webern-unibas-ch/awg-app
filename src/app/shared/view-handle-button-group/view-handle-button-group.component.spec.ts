@@ -468,7 +468,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
 
                 it('... view has type `never`', () => {
-                    let expectedView: never;
+                    const expectedView = undefined as never;
 
                     (component as any)._onViewChange(expectedView);
                     fixture.detectChanges();
