@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/model
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
     styleUrls: ['./resource-info.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {

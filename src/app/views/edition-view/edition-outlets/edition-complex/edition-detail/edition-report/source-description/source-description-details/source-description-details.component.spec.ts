@@ -107,7 +107,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             component.detailsLabel = expectedDetailsLabel;
 
             // Trigger initial data binding
-            fixture.detectChanges();
+            detectChangesOnPush(fixture);
         });
 
         it('... should have `details`', () => {
@@ -123,15 +123,15 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one outer paragraph when details are given', () => {
+                getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
+            });
+
             it('... should contain no outer paragraph if no details are given', () => {
                 component.details = [];
                 detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'p', 0, 0);
-            });
-
-            it('... should contain one outer paragraph when details are given', () => {
-                getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
             });
 
             it('... the outer paragraph should have the detailsClass appended to its class name', () => {

@@ -12,6 +12,7 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockSearchResponseJson } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
@@ -298,7 +299,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 component.getResourceInfoData();
 
                 // Apply changes
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Check new subscription
                 expectSpyCall(getResourceInfoDataSpy, 2);
@@ -491,7 +492,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     component.getResourceInfoData();
 
                     // Apply changes
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectedGoToIndex = 1;
                     expectedResultSize = 3;
@@ -523,7 +524,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     // Apply changes
                     (component as any)._buildForm(undefined, expectedResultSize);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expect(component.resourceInfoFormGroup).toBeTruthy();
                     expectToBe(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value, expectedEmptyIndex);
@@ -937,7 +938,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 resourceInfoIndex.setValue(chosenIndex);
 
                 // Apply changes
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Trigger click on resourceIndex=1 with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
@@ -953,7 +954,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 resourceInfoIndex.setValue(chosenIndex);
 
                 // Apply changes
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Trigger click on resourceIndex=5 with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
@@ -1194,7 +1195,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 it('... should display query in span in second div', () => {
                     component.resourceInfoData.searchResults.query = 'Test';
 
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
@@ -1206,7 +1207,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 it('... should display `---`  without query in span in second div', () => {
                     component.resourceInfoData.searchResults.query = '';
 
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
@@ -1391,7 +1392,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                             // Apply changes
-                            fixture.detectChanges();
+                            detectChangesOnPush(fixture);
                         });
 
                         it('... should have current.displayIndex === 1', () => {
@@ -1625,7 +1626,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 resourceInfoIndex.setValue('');
 
                                 // Apply changes
-                                fixture.detectChanges();
+                                detectChangesOnPush(fixture);
 
                                 const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
@@ -1668,7 +1669,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 resourceInfoIndex.setValue('');
 
                                 // Apply changes
-                                fixture.detectChanges();
+                                detectChangesOnPush(fixture);
 
                                 const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
@@ -1692,7 +1693,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 resourceInfoIndex.setValue(1);
 
                                 // Apply changes
-                                fixture.detectChanges();
+                                detectChangesOnPush(fixture);
 
                                 const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
@@ -1749,7 +1750,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 resourceInfoIndex.setValue('');
 
                                 // Apply changes
-                                fixture.detectChanges();
+                                detectChangesOnPush(fixture);
 
                                 // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
@@ -1779,7 +1780,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 resourceInfoIndex.setValue(chosenIndex);
 
                                 // Apply changes
-                                fixture.detectChanges();
+                                detectChangesOnPush(fixture);
 
                                 // Input index is different from current.displayIndex
                                 expect(resourceInfoIndex.value).not.toBe(
@@ -1818,7 +1819,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                             // Apply changes
-                            fixture.detectChanges();
+                            detectChangesOnPush(fixture);
 
                             getAndExpectDebugElementByCss(compDe, 'li.awg-list-group-item', 0, 0);
                         });
@@ -1976,7 +1977,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                             // Apply changes
-                            fixture.detectChanges();
+                            detectChangesOnPush(fixture);
                         });
 
                         it('... should have current.displayIndex === resultSize', () => {

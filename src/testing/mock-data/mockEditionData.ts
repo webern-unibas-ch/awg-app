@@ -168,6 +168,7 @@ export const mockEditionData = {
                         ],
                     },
                 ],
+                linkTo: '',
             },
             {
                 convoluteId: 'B',

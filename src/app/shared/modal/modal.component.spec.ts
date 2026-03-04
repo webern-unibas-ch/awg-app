@@ -14,6 +14,7 @@ import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -168,7 +169,8 @@ describe('ModalComponent', () => {
 
         it('... should render the modal content in div.modal-body', () => {
             component.open(expectedSnippetKey1);
-            fixture.detectChanges();
+
+            detectChangesOnPush(fixture);
 
             const bodyDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
             const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
@@ -217,14 +219,14 @@ describe('ModalComponent', () => {
             expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1]);
 
             component.open(expectedSnippetKey2);
-            fixture.detectChanges();
+            detectChangesOnPush(fixture);
 
             expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey2]);
         });
 
         it('... should set the modal content to empty string if snippet is unknown', () => {
             component.open(expectedUnknownSnippetKey);
-            fixture.detectChanges();
+            detectChangesOnPush(fixture);
 
             expectToBe(component.modalContent, '');
         });
@@ -235,7 +237,7 @@ describe('ModalComponent', () => {
             mockModalRef.result = new Promise(resolve => resolve(closeMessage));
 
             component.open(expectedSnippetKey1);
-            fixture.detectChanges();
+            detectChangesOnPush(fixture);
 
             await expectAsync(
                 ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
@@ -251,7 +253,7 @@ describe('ModalComponent', () => {
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
@@ -266,7 +268,7 @@ describe('ModalComponent', () => {
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
@@ -281,7 +283,7 @@ describe('ModalComponent', () => {
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result

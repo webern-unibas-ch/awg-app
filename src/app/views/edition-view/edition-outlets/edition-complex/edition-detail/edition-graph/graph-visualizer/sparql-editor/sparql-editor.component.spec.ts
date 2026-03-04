@@ -1588,7 +1588,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Directly trigger ngOnChanges
                 component.ngOnChanges({
-                    query: new SimpleChange(component.query, [expectedSelectQuery1], false),
+                    query: new SimpleChange(component.query, expectedSelectQuery1, false),
                 });
 
                 expectSpyCall(setViewTypeSpy, 2);
@@ -1599,7 +1599,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Directly trigger ngOnChanges
                 component.ngOnChanges({
-                    query: new SimpleChange(component.query, [expectedSelectQuery1], true),
+                    query: new SimpleChange(component.query, expectedSelectQuery1, true),
                 });
 
                 expectSpyCall(setViewTypeSpy, 1);

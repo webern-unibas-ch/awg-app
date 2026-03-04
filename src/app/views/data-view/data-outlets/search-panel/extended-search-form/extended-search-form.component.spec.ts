@@ -1350,11 +1350,11 @@ describe('ExtendedSearchFormComponent', () => {
             it('... should trigger the `listenToUserCompopChange` method', () => {
                 const index = 0;
 
-                expectSpyCall(listenToUserCompopChangeSpy, 2, index);
+                expectSpyCall(listenToUserCompopChangeSpy, 3, index);
 
                 component.getCompopControlAtIndex(index);
 
-                expectSpyCall(listenToUserCompopChangeSpy, 3, index);
+                expectSpyCall(listenToUserCompopChangeSpy, 4, index);
             });
 
             it('... should return the compopoControl at the given index', () => {
@@ -1524,11 +1524,11 @@ describe('ExtendedSearchFormComponent', () => {
             it('... should trigger the `listenToUserPropertyChange` method', () => {
                 const index = 0;
 
-                expectSpyCall(listenToUserPropertyChangeSpy, 2, index);
+                expectSpyCall(listenToUserPropertyChangeSpy, 3, index);
 
                 component.getPropertyIdControlAtIndex(index);
 
-                expectSpyCall(listenToUserPropertyChangeSpy, 3, index);
+                expectSpyCall(listenToUserPropertyChangeSpy, 4, index);
             });
 
             it('... should return the correct propertyIdControl', () => {
@@ -1835,7 +1835,7 @@ describe('ExtendedSearchFormComponent', () => {
             });
 
             it('... should call `listenToUserPropertyChange` on init', () => {
-                expectSpyCall(listenToUserPropertyChangeSpy, 2, undefined);
+                expectSpyCall(listenToUserPropertyChangeSpy, 3, undefined);
             });
 
             it('... should trigger the `getPropertyListEntryById` method when the user changes the propertyId', () => {
@@ -1849,12 +1849,12 @@ describe('ExtendedSearchFormComponent', () => {
                 const expectedProperty = expectedPropertyListsResponse.properties[0];
                 controls['propertyIdControl'].setValue(expectedProperty.id);
 
-                expectSpyCall(getPropertyListEntryByIdSpy, 2, expectedProperty.id);
+                expectSpyCall(getPropertyListEntryByIdSpy, 3, expectedProperty.id);
 
                 const expectedProperty1 = expectedPropertyListsResponse.properties[1];
                 controls['propertyIdControl'].setValue(expectedProperty1.id);
 
-                expectSpyCall(getPropertyListEntryByIdSpy, 4, expectedProperty1.id);
+                expectSpyCall(getPropertyListEntryByIdSpy, 6, expectedProperty1.id);
             });
 
             it('... should enable the compop control and set to empty string when the changed propertyId is found', () => {
@@ -1904,7 +1904,7 @@ describe('ExtendedSearchFormComponent', () => {
                 const expectedProperty = expectedPropertyListsResponse.properties[0];
                 controls['propertyIdControl'].setValue(expectedProperty.id);
 
-                expectSpyCall(getCompopSetByValueTypeSpy, 2, [
+                expectSpyCall(getCompopSetByValueTypeSpy, 3, [
                     expectedProperty.valuetype_id,
                     expectedProperty.guielement_id,
                 ]);
@@ -1912,7 +1912,7 @@ describe('ExtendedSearchFormComponent', () => {
                 const expectedProperty1 = expectedPropertyListsResponse.properties[1];
                 controls['propertyIdControl'].setValue(expectedProperty1.id);
 
-                expectSpyCall(getCompopSetByValueTypeSpy, 4, [
+                expectSpyCall(getCompopSetByValueTypeSpy, 6, [
                     expectedProperty1.valuetype_id,
                     expectedProperty1.guielement_id,
                 ]);
@@ -1994,7 +1994,7 @@ describe('ExtendedSearchFormComponent', () => {
             });
 
             it('... should call `listenToUserCompopChange` on init', () => {
-                expectSpyCall(listenToUserCompopChangeSpy, 2, undefined);
+                expectSpyCall(listenToUserCompopChangeSpy, 3, undefined);
             });
 
             it('... should enable the searchval control when the user changes the compop and compop is not `EXISTS`', () => {

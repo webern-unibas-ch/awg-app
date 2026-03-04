@@ -323,8 +323,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 component.ngOnChanges({
                     selectedConvolute: new SimpleChange(
-                        expectedConvolute,
-                        mockEditionData.mockFolioConvoluteData.convolutes[1],
+                        expectedConvolute as FolioConvolute,
+                        mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
                         true
                     ),
                 });
@@ -337,8 +337,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 component.ngOnChanges({
                     selectedConvolute: new SimpleChange(
-                        mockEditionData.mockFolioConvoluteData.convolutes[1],
-                        expectedConvolute,
+                        mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
+                        expectedConvolute as FolioConvolute,
                         false
                     ),
                 });

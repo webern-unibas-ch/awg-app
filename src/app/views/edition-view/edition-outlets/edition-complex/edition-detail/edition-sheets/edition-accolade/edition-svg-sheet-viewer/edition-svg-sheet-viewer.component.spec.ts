@@ -8,6 +8,7 @@ import { faCompressArrowsAlt, IconDefinition } from '@fortawesome/free-solid-svg
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -470,7 +471,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                     it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkaOverlays are available', () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
                         component.hasAvailableTkaOverlays = false;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -490,7 +491,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                     it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkaOverlays, but no suppliedClasses are available', () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkaOverlays = true;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -510,7 +511,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                     it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkaOverlays are available', () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkaOverlays = false;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -571,7 +572,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                     it('... should pass the updated `hasAvailableTkaOverlays` flag (true) to the switch component', () => {
                         component.hasAvailableTkaOverlays = true;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,

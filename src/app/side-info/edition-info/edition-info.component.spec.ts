@@ -269,7 +269,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should open item body for selected section', () => {
                 expectedSections.forEach((section, sectionIndex) => {
                     component.selectedEditionSection = section;
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                     const itemDes = getAndExpectDebugElementByCss(

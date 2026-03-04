@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
@@ -20,6 +20,7 @@ import { EditionDataService, EditionOutlineService, EditionStateService } from '
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class EditionIntroComponent implements OnDestroy, OnInit {

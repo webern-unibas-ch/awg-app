@@ -469,7 +469,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 // Directly trigger ngOnChanges
                 component.suppliedClasses = new Map([...expectedSuppliedClasses]);
                 component.ngOnChanges({
-                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, [component.suppliedClasses], false),
+                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, component.suppliedClasses, false),
                 });
 
                 expectToBe(component.allClassesVisible, true);
@@ -485,7 +485,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 component.suppliedClasses.set('another-class1', true);
                 component.suppliedClasses.set('another-class2', true);
                 component.ngOnChanges({
-                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, [component.suppliedClasses], false),
+                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, component.suppliedClasses, false),
                 });
 
                 expectToBe(component.allClassesVisible, true);

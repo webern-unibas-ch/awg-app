@@ -7,6 +7,7 @@ import { ActivatedRouteSnapshot, Router, RouterModule, Routes } from '@angular/r
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { AnalyticsService, EditionInitService } from '@awg-core/services';
@@ -395,7 +396,7 @@ describe('AppComponent (DONE)', () => {
                 );
                 expect(success).toBeTruthy();
 
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
                 const viewContainerCmp = viewContainerDes[0].injector.get(
