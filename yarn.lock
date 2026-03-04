@@ -3717,19 +3717,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kolkov/ngx-gallery@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@kolkov/ngx-gallery@npm:2.0.1"
-  dependencies:
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    "@angular/animations": ">=13.0.0 <14"
-    "@angular/common": ">=13.0.0 <14"
-    "@angular/core": ">=13.0.0 <14"
-  checksum: 10c0/0904aa8dadb9c444789faa039e1a6d8614085a967e4bbcf676a2d75ded1111f2961669fd4974f3b6cd867844b023a3d7d611f68eaa3b69d41dc71e739e94cf6d
-  languageName: node
-  linkType: hard
-
 "@lezer/common@npm:^1.0.0, @lezer/common@npm:^1.1.0":
   version: 1.2.3
   resolution: "@lezer/common@npm:1.2.3"
@@ -6020,7 +6007,6 @@ __metadata:
     "@eslint/js": "npm:^10.0.1"
     "@fortawesome/angular-fontawesome": "npm:^4.0.0"
     "@fortawesome/free-solid-svg-icons": "npm:^7.2.0"
-    "@kolkov/ngx-gallery": "npm:2.0.1"
     "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
@@ -6047,7 +6033,6 @@ __metadata:
     gzipper: "npm:^8.2.1"
     husky: "npm:^9.1.7"
     jasmine-core: "npm:~6.1.0"
-    json2typescript: "npm:^1.6.1"
     karma: "npm:~6.4.4"
     karma-chrome-launcher: "npm:~3.2.0"
     karma-coverage: "npm:^2.2.1"
@@ -11000,13 +10985,6 @@ __metadata:
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 10c0/7dbf35cd0411d1d648dceb6d59ce5857ec939e52e4afc37601aa3da611f0987d5cee5b38d58329ceddf3ed48bd7215229c8d52059ab01f2444a338bf24ed0f37
-  languageName: node
-  linkType: hard
-
-"json2typescript@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "json2typescript@npm:1.6.1"
-  checksum: 10c0/be3a360d512d7a56d3ed7fb8f4925b85e7e4cd8101e2119a0b71ad6776def32b801efa6355778df4e809b1f12af32e3311a04ae213ae836efa320d794d087464
   languageName: node
   linkType: hard
 

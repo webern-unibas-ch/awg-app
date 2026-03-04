@@ -23,10 +23,6 @@ const APP_ROUTES: Routes = [
         loadChildren: () => import('@awg-views/contact-view/contact-view.module').then(m => m.ContactViewModule),
     },
     {
-        path: 'data',
-        loadChildren: () => import('@awg-views/data-view/data-view.module').then(m => m.DataViewModule),
-    },
-    {
         path: 'edition',
         loadChildren: () => import('@awg-views/edition-view/edition-view.module').then(m => m.EditionViewModule),
     },

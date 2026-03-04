@@ -16,8 +16,6 @@ import {
 
 import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
 
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
-
 import { JsonViewerComponent } from './json-viewer.component';
 
 // Helper functions for nav items
@@ -76,7 +74,7 @@ function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[]
 })
 class NgxJsonViewerStubComponent {
     @Input()
-    json: ResourceFullResponseJson | {};
+    json: unknown;
 }
 
 describe('JsonViewerComponent (DONE)', () => {
@@ -85,7 +83,7 @@ describe('JsonViewerComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedHeader: string;
-    let expectedData: ResourceFullResponseJson;
+    let expectedData: unknown;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
@@ -111,9 +109,20 @@ describe('JsonViewerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedHeader = 'Converted JSON response from Salsah-API';
-        expectedData = new ResourceFullResponseJson();
-        expectedData.status = 1;
+        expectedHeader = 'JSON Viewer Test Data';
+        expectedData = {
+            status: 1,
+            message: 'Test response',
+            data: {
+                id: 123,
+                name: 'Test Item',
+                values: [1, 2, 3],
+                metadata: {
+                    created: '2026-03-04',
+                    updated: '2026-03-04',
+                },
+            },
+        };
     });
 
     afterAll(() => {

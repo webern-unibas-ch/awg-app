@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 // Shared modules
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { CodeMirrorModule } from './codemirror/codemirror.module';
 import { CompileHtmlModule } from './compile-html';
@@ -56,7 +55,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         CompileHtmlModule,
         CodeMirrorModule,
         FontAwesomeModule,
-        NgxGalleryModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
     ],
@@ -91,7 +89,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         RouterModule,
         CompileHtmlModule,
         FontAwesomeModule,
-        NgxGalleryModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
 

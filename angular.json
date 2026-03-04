@@ -36,11 +36,7 @@
                         "stylePreprocessorOptions": {
                             "includePaths": ["."]
                         },
-                        "scripts": [
-                            "node_modules/rdfstore/dist/rdfstore_min.js",
-                            "src/assets/js/dateConverter.js",
-                            "src/assets/js/htmlConverter.js"
-                        ],
+                        "scripts": ["node_modules/rdfstore/dist/rdfstore_min.js"],
                         "browser": "src/main.ts"
                     },
                     "configurations": {
@@ -127,11 +123,7 @@
                         "stylePreprocessorOptions": {
                             "includePaths": ["."]
                         },
-                        "scripts": [
-                            "node_modules/rdfstore/dist/rdfstore_min.js",
-                            "src/assets/js/dateConverter.js",
-                            "src/assets/js/htmlConverter.js"
-                        ],
+                        "scripts": ["node_modules/rdfstore/dist/rdfstore_min.js"],
                         "assets": ["src/favicon.ico", "src/assets"]
                     },
                     "configurations": {
