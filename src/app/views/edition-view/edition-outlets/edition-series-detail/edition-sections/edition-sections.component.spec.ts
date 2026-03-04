@@ -5,6 +5,7 @@ import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -583,7 +584,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
             it('...should set `selectedSeries$`', () => {
                 component.selectedSeries$ = undefined;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expect(component.selectedSeries$).toBeUndefined();
 

@@ -1,6 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ToastComponent } from './toast.component';
@@ -129,7 +130,7 @@ describe('ToastComponent (DONE)', () => {
                 toastService.add(otherToast);
 
                 // Apply changes
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;

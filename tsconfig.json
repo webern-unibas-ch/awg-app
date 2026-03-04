@@ -16,7 +16,6 @@
         "sourceMap": true,
         "strict": false,
         "useDefineForClassFields": false,
-        "lib": ["ES2022", "dom"],
         "target": "ES2022",
         "module": "preserve",
         "typeRoots": ["node_modules/@types"],

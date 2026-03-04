@@ -10,12 +10,7 @@ module.exports = function (config) {
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
             require('karma-coverage'),
-            require('@angular-devkit/build-angular/plugins/karma'),
         ],
-        files: [{ pattern: 'src/testing/mock-data/mockSvgHeader.svg', included: false, watched: false, served: true }],
-        mime: {
-            'image/svg+xml': ['svg'],
-        },
         client: {
             jasmine: {
                 // you can add configuration options for Jasmine here

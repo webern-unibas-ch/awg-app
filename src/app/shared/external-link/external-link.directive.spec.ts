@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
 import { expectToBe } from '@testing/expect-helper';
 import { ExternalLinkDirective } from './external-link.directive';
@@ -132,7 +133,7 @@ describe('ExternalLinkDirective', () => {
         component.dynamicExternalLink = expectedNewExternalLink;
 
         // Apply changes
-        fixture.detectChanges();
+        detectChangesOnPush(fixture);
 
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[1].nativeElement;

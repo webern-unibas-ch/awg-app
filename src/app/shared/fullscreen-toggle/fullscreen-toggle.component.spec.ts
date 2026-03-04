@@ -99,8 +99,20 @@ describe('FullscreenToggleComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no button', () => {
-                getAndExpectDebugElementByCss(compDe, 'button', 0, 0);
+            it('... should contain one "open fullscreen" button', () => {
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+
+                const expectedTitle = 'Open fullscreen';
+
+                expectToBe(btnEl.title.trim(), expectedTitle);
+            });
+
+            it('... should display expand icon on "open fullscreen" button', () => {
+                const faIconDes = getAndExpectDebugElementByCss(compDe, 'button.btn > fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
+
+                expectToEqual(faIconIns(), expectedFaExpand);
             });
         });
     });
@@ -120,6 +132,12 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('... not in fullscreen mode', () => {
+                beforeEach(() => {
+                    // Unset fullscreen
+                    component.isFullscreen = false;
+                    detectChangesOnPush(fixture);
+                });
+
                 it('... should contain one "open fullscreen" button', () => {
                     const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
