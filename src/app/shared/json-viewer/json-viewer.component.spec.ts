@@ -74,7 +74,7 @@ function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[]
 })
 class NgxJsonViewerStubComponent {
     @Input()
-    json: any;
+    json: unknown;
 }
 
 describe('JsonViewerComponent (DONE)', () => {
@@ -83,7 +83,7 @@ describe('JsonViewerComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedHeader: string;
-    let expectedData: any;
+    let expectedData: unknown;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })

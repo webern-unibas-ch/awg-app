@@ -25,7 +25,7 @@ export class JsonViewerComponent {
      * It keeps the data for the json viewer.
      */
     @Input()
-    jsonViewerData: any;
+    jsonViewerData: unknown;
 
     /**
      * Input variable: jsonViewerHeader.
