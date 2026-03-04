@@ -32,7 +32,7 @@ import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/mode
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
     styleUrls: ['./search-result-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {

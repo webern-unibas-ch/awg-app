@@ -30,7 +30,7 @@ describe('OrderByPipe (DONE)', () => {
     });
 
     it('... should work with not defined array as well', () => {
-        let array;
+        const array = undefined;
         expect(pipe.transform(array, 'anything')).toBeUndefined();
         expect(pipe.transform(array, 'anything')).toEqual(array);
     });

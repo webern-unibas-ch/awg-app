@@ -2629,8 +2629,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 component.onSearch();
 
-                let expectedSearchParams = new ExtendedSearchParams();
-                expectedSearchParams = {
+                const expectedSearchParams: ExtendedSearchParams = {
                     filterByRestype: expectedResourceTypesResponse.resourcetypes[0].id,
                     propertyId: [controls.propertyIdControl.value],
                     compop: [controls.compopControl.value],
@@ -2663,8 +2662,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 component.onSearch();
 
-                let expectedSearchParams = new ExtendedSearchParams();
-                expectedSearchParams = {
+                const expectedSearchParams: ExtendedSearchParams = {
                     filterByRestype: expectedResourceTypesResponse.resourcetypes[0].id,
                     propertyId: [controls.propertyIdControl.value],
                     compop: [controls.compopControl.value],

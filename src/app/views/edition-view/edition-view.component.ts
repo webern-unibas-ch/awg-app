@@ -17,7 +17,7 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrls: ['./edition-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class EditionViewComponent implements OnInit {

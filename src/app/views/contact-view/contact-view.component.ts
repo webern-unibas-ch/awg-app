@@ -14,7 +14,7 @@ import { CoreService } from '@awg-core/services';
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class ContactViewComponent implements OnInit {
