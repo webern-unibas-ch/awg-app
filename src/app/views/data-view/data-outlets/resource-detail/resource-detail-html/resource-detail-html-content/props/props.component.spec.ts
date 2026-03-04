@@ -207,7 +207,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
 
                     // Directly trigger ngOnChanges
                     component.ngOnChanges({
-                        props: new SimpleChange(component.props, [expectedProps], false),
+                        props: new SimpleChange(component.props, expectedProps, false),
                     });
 
                     expectSpyCall(exposeGndSpy, 1, gndRemoveEvent);

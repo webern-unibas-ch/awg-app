@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
     expectToContain,
@@ -147,13 +148,14 @@ describe('ViewContainerComponent (DONE)', () => {
             });
 
             describe('... with `showSideOutlet=false`', () => {
-                beforeEach(() => {
+                beforeEach(fakeAsync(() => {
                     // Simulate the parent component setting the input
                     component.activateSideOutlet = false;
 
                     // Trigger initial data binding
-                    fixture.detectChanges();
-                });
+                    detectChangesOnPush(fixture);
+                    tick(); // Ensure change detection completes
+                }));
 
                 it('... should have class `justify-content-center` on `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);

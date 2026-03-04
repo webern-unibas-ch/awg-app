@@ -17,6 +17,7 @@ import Spy = jasmine.Spy;
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -573,7 +574,7 @@ describe('IntroComponent (DONE)', () => {
                 describe('... without complex', () => {
                     beforeEach(() => {
                         component.editionComplex = undefined;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
                     });
 
                     it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
@@ -642,7 +643,7 @@ describe('IntroComponent (DONE)', () => {
                 it('... should contain one EditionIntroPlaceholderComponent (stubbed)', waitForAsync(() => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
@@ -651,7 +652,7 @@ describe('IntroComponent (DONE)', () => {
                 it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', waitForAsync(() => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -675,7 +676,7 @@ describe('IntroComponent (DONE)', () => {
                     fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedErrorObject));
 
                     component.getEditionIntroData();
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 }));
 
                 it('... should not contain intro view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
@@ -700,7 +701,7 @@ describe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is EMPTY', () => {
                         // Mock empty observable
                         component.editionIntroData$ = EMPTY;
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
@@ -710,7 +711,7 @@ describe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is undefined', () => {
                         // Mock undefined response
                         component.editionIntroData$ = observableOf(undefined);
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
@@ -720,7 +721,7 @@ describe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is null', () => {
                         // Mock null response
                         component.editionIntroData$ = observableOf(null);
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
@@ -770,7 +771,7 @@ describe('IntroComponent (DONE)', () => {
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
@@ -785,7 +786,7 @@ describe('IntroComponent (DONE)', () => {
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
@@ -798,7 +799,7 @@ describe('IntroComponent (DONE)', () => {
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, invalidIntroUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
@@ -847,7 +848,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onIntroFragmentNavigate(expectedIntroIds);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
             });
@@ -861,7 +862,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -874,7 +875,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -887,7 +888,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -901,7 +902,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -913,7 +914,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -926,7 +927,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -956,7 +957,7 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should set `currentLanguage` to the given language', () => {
                 component.onLanguageSet(expectedCurrentLaguage);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectToBe(component.currentLanguage, expectedCurrentLaguage);
 
@@ -1010,14 +1011,14 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should open modal with given id', () => {
                 component.onModalOpen(expectedModalSnippet);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
 
                 const otherSnippet = 'otherSnippet';
                 component.onModalOpen(otherSnippet);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 2, otherSnippet);
                 expectSpyCall(openModalSpy, 2, otherSnippet);
@@ -1080,7 +1081,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onReportFragmentNavigate(expectedReportIds);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedReportIds.complexId,
@@ -1100,7 +1101,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1119,7 +1120,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1138,7 +1139,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1158,7 +1159,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1176,7 +1177,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1195,7 +1196,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1239,7 +1240,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onSvgSheetSelect(expectedSheetIds);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedSheetIds.complexId,
@@ -1259,7 +1260,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1278,7 +1279,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1297,7 +1298,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1317,7 +1318,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1335,7 +1336,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1354,7 +1355,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1747,7 +1748,7 @@ describe('IntroComponent (DONE)', () => {
                     tick();
 
                     (component as any)._loadEditionIntroData();
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 }));
 
                 it('... should have full editionIntroData$', waitForAsync(() => {
@@ -1952,7 +1953,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -1971,7 +1972,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -2000,7 +2001,7 @@ describe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -2019,7 +2020,7 @@ describe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -2034,7 +2035,7 @@ describe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -2053,7 +2054,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedEditionComplex.complexId.route.replace('/', ''),
@@ -2078,7 +2079,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedNextComplexId,
@@ -2104,7 +2105,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2127,7 +2128,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2152,7 +2153,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2175,7 +2176,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2200,7 +2201,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2223,7 +2224,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2251,7 +2252,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2275,7 +2276,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2301,7 +2302,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2325,7 +2326,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2351,7 +2352,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2375,7 +2376,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2402,7 +2403,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2425,7 +2426,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2450,7 +2451,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2473,7 +2474,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2498,7 +2499,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2521,7 +2522,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,

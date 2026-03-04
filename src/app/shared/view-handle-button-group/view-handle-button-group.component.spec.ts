@@ -301,7 +301,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 // Directly trigger ngOnChanges
                 component.selectedViewType = ViewHandleTypes.GRID;
                 component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [component.selectedViewType], false),
+                    selectedViewType: new SimpleChange(component.selectedViewType, component.selectedViewType, false),
                 });
 
                 expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
@@ -313,7 +313,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 // Directly trigger ngOnChanges
                 component.selectedViewType = ViewHandleTypes.GRID;
                 component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [ViewHandleTypes.GRID], true),
+                    selectedViewType: new SimpleChange(component.selectedViewType, ViewHandleTypes.GRID, true),
                 });
 
                 expectSpyCall(createFormGroupSpy, 1, (component.selectedViewType = ViewHandleTypes.GRAPH));

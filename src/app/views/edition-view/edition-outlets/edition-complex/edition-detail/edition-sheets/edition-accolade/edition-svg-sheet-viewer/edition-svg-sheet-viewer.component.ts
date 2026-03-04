@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -42,6 +43,7 @@ import * as D3_ZOOM from 'd3-zoom';
     selector: 'awg-edition-svg-sheet-viewer',
     templateUrl: './edition-svg-sheet-viewer.component.html',
     styleUrls: ['./edition-svg-sheet-viewer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, AfterViewInit {

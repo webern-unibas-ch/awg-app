@@ -364,13 +364,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                 component.triples = changedTriples;
                 // Wait for fixture to be stable
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectToEqual(component.triples, changedTriples);
 
                 // Reset triples
                 component.resetTriples();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 2, undefined);
                 expect(component.triples).toBeDefined();
@@ -383,11 +383,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set undefined triples
                 component.triples = undefined;
                 component.graphRDFInputData.triples = undefined;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Reset triples
                 component.resetTriples();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 2);
                 expect(component.triples).toBeUndefined();
@@ -430,7 +430,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const changedQuery = { ...expectedGraphRDFData.queryList[1] };
 
                 component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Matches queryList queries by label
                 expectSpyCall(resetQuerySpy, 2, undefined);
@@ -452,7 +452,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
 
                     component.resetQuery(changedQuery);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     // Matches queryList queries only by label
                     expectSpyCall(resetQuerySpy, 2, undefined);
@@ -470,7 +470,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     changedQuery.queryLabel = 'select all tests';
 
                     component.resetQuery(changedQuery);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     // Matches queryList queries only by type
                     expectSpyCall(resetQuerySpy, 2, undefined);
@@ -493,7 +493,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Set correct return value of service
                     serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
                     component.resetQuery(changedQuery);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(resetQuerySpy, 2, undefined);
 
@@ -509,13 +509,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set changed query
                 const changedQuery = { ...expectedGraphRDFData.queryList[1] };
                 component.query = changedQuery;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectToEqual(component.query, changedQuery);
 
                 // Reset triples
                 component.resetQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, undefined);
 
@@ -528,7 +528,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set undefined triples
                 component.queryList = undefined;
                 component.graphRDFInputData.queryList = undefined;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // Reset query
                 const changedQuery = {
@@ -538,7 +538,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, changedQuery);
                 expect(component.queryList).toBeUndefined();
@@ -549,7 +549,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Reset query
                 component.resetQuery(expectedGraphRDFData.queryList[1]);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -603,7 +603,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Perform query without prefixes
                 component.query = queryWithoutPrefixes;
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(serviceCheckNamespacesInQuerySpy, 2, [
@@ -620,7 +620,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(serviceGetQueryTypeSpy, 2, expectedGraphRDFData.queryList[0].queryString);
@@ -634,7 +634,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -651,7 +651,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -693,7 +693,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'update');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
@@ -705,7 +705,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'other');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
@@ -719,7 +719,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             beforeEach(() => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
             });
@@ -738,7 +738,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, expectedCallback);
@@ -754,7 +754,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
@@ -777,7 +777,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
@@ -800,7 +800,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
@@ -823,7 +823,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
@@ -852,7 +852,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 await expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
@@ -874,7 +874,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             beforeEach(() => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
                 consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
@@ -945,7 +945,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Trigger error message
                 component.showErrorMessage(toastMessage);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -966,7 +966,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Trigger error message without delay value
                 component.showErrorMessage(toastMessage);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -982,7 +982,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             beforeEach(() => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
                 consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
@@ -1042,7 +1042,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set select mode
                 component.query = expectedGraphRDFData.queryList[0];
                 component.query.queryType = 'select';
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
                 consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
@@ -1127,7 +1127,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', () => {
                     component.query.queryType = 'construct';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1136,7 +1136,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', () => {
                     component.query.queryType = 'select';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1145,7 +1145,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', () => {
                     component.query.queryType = 'other';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1158,7 +1158,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Set fullscreen mode
                     component.isFullscreen = true;
 
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 });
 
                 it('... should contain a main div with 2 child divs', () => {
@@ -1190,7 +1190,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', () => {
                     component.query.queryType = 'construct';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1199,7 +1199,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', () => {
                     component.query.queryType = 'select';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1208,7 +1208,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', () => {
                     component.query.queryType = 'other';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1316,7 +1316,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 beforeEach(() => {
                     // Set select mode
                     component.query.queryType = 'construct';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
@@ -1361,7 +1361,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 beforeEach(() => {
                     // Set select mode
                     component.query.queryType = 'select';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
@@ -1397,7 +1397,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 beforeEach(() => {
                     // Set select mode
                     component.query.queryType = 'other';
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryType` passed down from main component', () => {
