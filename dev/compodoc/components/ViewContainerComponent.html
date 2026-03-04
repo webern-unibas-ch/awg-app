@@ -165,7 +165,7 @@ that loads the side-info components.</p>
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
 
@@ -291,7 +291,7 @@ that loads the side-info components.</p>
     selector: &#x27;awg-view-container&#x27;,
     templateUrl: &#x27;./view-container.component.html&#x27;,
     styleUrls: [&#x27;./view-container.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class ViewContainerComponent {

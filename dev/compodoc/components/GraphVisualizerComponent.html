@@ -169,7 +169,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
 
@@ -1290,7 +1290,7 @@ import { GraphVisualizerService } from &#x27;./services&#x27;;
     selector: &#x27;awg-graph-visualizer&#x27;,
     templateUrl: &#x27;./graph-visualizer.component.html&#x27;,
     styleUrls: [&#x27;./graph-visualizer.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class GraphVisualizerComponent implements OnInit {
