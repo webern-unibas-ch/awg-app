@@ -102,7 +102,7 @@
         "@fortawesome/angular-fontawesome": "^4.0.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",
         "@kolkov/ngx-gallery": "2.0.1",
-        "@ng-bootstrap/ng-bootstrap": "^19.0.1",
+        "@ng-bootstrap/ng-bootstrap": "^20.0.0",
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.8",
         "codemirror": "^6.0.2",
