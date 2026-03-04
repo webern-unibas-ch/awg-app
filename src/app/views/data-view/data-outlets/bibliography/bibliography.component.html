@@ -1,9 +1,0 @@
-<!-- content: bibliography -->
-<awg-bibliography-search></awg-bibliography-search>
-
-<p>Lade ... {{ (bibList$ | async)?.subjects.length }} von {{ nhits }} Einträgen</p>
-
-@if (isBibListLoaded && (bibList$ | async); as bibList) {
-    <awg-bibliography-list [bibList]="bibList.subjects" (selectItemRequest)="onItemSelect($event)">
-    </awg-bibliography-list>
-}

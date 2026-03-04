@@ -1,9 +1,0 @@
-@if (searchRouterLinkButtons) {
-    <awg-router-link-button-group
-        [routerLinkButtons]="searchRouterLinkButtons"
-        [queryParamsHandling]="'preserve'"
-        (selectButtonRequest)="onButtonSelect($event)">
-    </awg-router-link-button-group>
-}
-
-<router-outlet />

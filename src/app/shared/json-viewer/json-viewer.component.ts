@@ -1,8 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
-import { ResourceDetail } from '@awg-views/data-view/models';
-
 /**
  * The JsonViewer component.
  *
@@ -28,7 +25,7 @@ export class JsonViewerComponent {
      * It keeps the data for the json viewer.
      */
     @Input()
-    jsonViewerData: ResourceDetail | ResourceFullResponseJson;
+    jsonViewerData: any;
 
     /**
      * Input variable: jsonViewerHeader.
