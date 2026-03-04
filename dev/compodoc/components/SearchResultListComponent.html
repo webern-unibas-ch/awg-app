@@ -172,7 +172,7 @@ and the results in table or grid view.</p>
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.Eager</code></td>
             </tr>
 
 
@@ -1985,7 +1985,7 @@ import { SearchParams, SearchResponseWithQuery } from &#x27;@awg-views/data-view
     selector: &#x27;awg-search-result-list&#x27;,
     templateUrl: &#x27;./search-result-list.component.html&#x27;,
     styleUrls: [&#x27;./search-result-list.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {

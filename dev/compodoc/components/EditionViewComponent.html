@@ -170,7 +170,7 @@ another router outlet for the edition routes.</p>
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.Eager</code></td>
             </tr>
 
 
@@ -783,7 +783,7 @@ import { EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;
     selector: &#x27;awg-edition-view&#x27;,
     templateUrl: &#x27;./edition-view.component.html&#x27;,
     styleUrls: [&#x27;./edition-view.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false,
 })
 export class EditionViewComponent implements OnInit {
