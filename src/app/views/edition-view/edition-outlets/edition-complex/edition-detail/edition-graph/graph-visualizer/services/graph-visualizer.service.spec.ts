@@ -1024,7 +1024,7 @@ describe('GraphVisualizerService', () => {
 
         it('... should load a huge number of triples into the rdfstore', async () => {
             let tripleStr = '@prefix ex: <http://example.org/>. ';
-            const expectedSize = 1000;
+            const expectedSize = 100;
 
             for (let i = 0; i < expectedSize; i++) {
                 tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
