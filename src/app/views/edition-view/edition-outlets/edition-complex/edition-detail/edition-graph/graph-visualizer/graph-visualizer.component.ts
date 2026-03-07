@@ -194,7 +194,15 @@ export class GraphVisualizerComponent implements OnInit {
         if (!node) {
             return;
         }
-        console.info('GraphVisualizerComponent# graphClick on node', node);
+
+        this.showToastMessage(
+            new ToastMessage(
+                node.id,
+                `GraphVisualizerComponent# graphClick on node ${node.id}\n\n Label: ${node.label}`,
+                5000
+            ),
+            'info'
+        );
     }
 
     /**
@@ -220,27 +228,32 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: showErrorMessage.
+     * Public method: showToastMessage.
      *
-     * It shows a given error message for a given duration.
+     * It shows a given toast message with the specified type.
      *
      * @param {ToastMessage} toastMessage The given toast message.
+     * @param {'error' | 'info'} type The type of message to display.
      *
-     * @returns {void} Shows the error message.
+     * @returns {void} Shows the message.
      */
-    showErrorMessage(toastMessage: ToastMessage): void {
+    showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
         if (!toastMessage?.message) {
             return;
         }
 
         const toast = new Toast(toastMessage.message, {
             header: toastMessage.name,
-            classname: 'bg-danger text-light',
+            classname: type === 'error' ? 'bg-danger text-light' : 'bg-info text-light',
             delay: toastMessage.duration,
         });
         this._toastService.add(toast);
 
-        console.error(toastMessage.name, ':', toastMessage.message);
+        if (type === 'error') {
+            console.error(toastMessage.name, ':', toastMessage.message);
+        } else {
+            console.info(toastMessage.name, ':', toastMessage.message);
+        }
     }
 
     /**
@@ -271,9 +284,12 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage(new ToastMessage(err.name, 'The query did not return any results.', 5000));
+                    this.showToastMessage(
+                        new ToastMessage(err.name, 'The query did not return any results.', 5000),
+                        'error'
+                    );
                 }
-                this.showErrorMessage(new ToastMessage(err.name, err.message, 5000));
+                this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
             }
 
             // Capture query time

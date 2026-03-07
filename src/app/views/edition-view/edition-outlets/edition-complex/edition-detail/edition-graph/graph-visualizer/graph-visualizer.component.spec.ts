@@ -132,10 +132,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let consoleSpy: Spy;
     let serviceCheckNamespacesInQuerySpy: Spy;
     let serviceGetQueryTypeSpy: Spy;
-    let queryLocalStoreSpy: Spy;
+    let onTableNodeClickSpy: Spy;
     let performQuerySpy: Spy;
+    let queryLocalStoreSpy: Spy;
     let resetQuerySpy: Spy;
     let resetTriplesSpy: Spy;
+    let showToastMessageSpy: Spy;
     let toastServiceAddSpy: Spy;
 
     beforeEach(waitForAsync(() => {
@@ -205,10 +207,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
             mockGraphVisualizerService,
             'checkNamespacesInQuery'
         ).and.callThrough();
-        queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
+        onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
+        queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
         resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
         resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
+        showToastMessageSpy = spyOn(component, 'showToastMessage').and.callThrough();
         toastServiceAddSpy = spyOn(toastService, 'add').and.callThrough();
     });
 
@@ -714,14 +718,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('#_queryLocalStore()', () => {
-            let showErrorMessageSpy: Spy;
-
             beforeEach(() => {
                 // Set construct mode
                 component.query.queryType = 'construct';
                 detectChangesOnPush(fixture);
-
-                showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
             });
 
             it('... should have a method `_queryLocalStore`', () => {
@@ -809,7 +809,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(errorSpy, 1, ['#queryLocalstore got error:', expectedError]);
             });
 
-            it('... should trigger `showErrorMessage` on error', async () => {
+            it('... should trigger `showToastMessage` on error', async () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -829,14 +829,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
                 ).toBeRejectedWith(expectedError);
 
-                expectSpyCall(showErrorMessageSpy, 1);
-                expect(showErrorMessageSpy.calls.any()).toBeTruthy();
-                expectToBe(showErrorMessageSpy.calls.count(), 1);
-                expectToEqual(showErrorMessageSpy.calls.first().args, [expectedToastMessage]);
-                expectToEqual(showErrorMessageSpy.calls.allArgs()[0], [expectedToastMessage]);
+                expectSpyCall(showToastMessageSpy, 1);
+                expect(showToastMessageSpy.calls.any()).toBeTruthy();
+                expectToBe(showToastMessageSpy.calls.count(), 1);
+                expectToEqual(showToastMessageSpy.calls.first().args, [expectedToastMessage, 'error']);
+                expectToEqual(showToastMessageSpy.calls.allArgs()[0], [expectedToastMessage, 'error']);
             });
 
-            it('... should trigger `showErrorMessage` 2x if error message contains `undefined`', async () => {
+            it('... should trigger `showToastMessage` 2x if error message contains `undefined`', async () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -858,30 +858,27 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
                 ).toBeRejectedWith(expectedError);
 
-                expectSpyCall(showErrorMessageSpy, 2);
-                expect(showErrorMessageSpy.calls.any()).toBeTruthy();
-                expectToBe(showErrorMessageSpy.calls.count(), 2);
-                expectToEqual(showErrorMessageSpy.calls.first().args, [expectedToastMessage1]);
-                expectToEqual(showErrorMessageSpy.calls.allArgs()[0], [expectedToastMessage1]);
-                expectToEqual(showErrorMessageSpy.calls.allArgs()[1], [expectedToastMessage2]);
-                expectToEqual(showErrorMessageSpy.calls.mostRecent().args, [expectedToastMessage2]);
+                expectSpyCall(showToastMessageSpy, 2);
+                expect(showToastMessageSpy.calls.any()).toBeTruthy();
+                expectToBe(showToastMessageSpy.calls.count(), 2);
+                expectToEqual(showToastMessageSpy.calls.first().args, [expectedToastMessage1, 'error']);
+                expectToEqual(showToastMessageSpy.calls.allArgs()[0], [expectedToastMessage1, 'error']);
+                expectToEqual(showToastMessageSpy.calls.allArgs()[1], [expectedToastMessage2, 'error']);
+                expectToEqual(showToastMessageSpy.calls.mostRecent().args, [expectedToastMessage2, 'error']);
             });
         });
 
-        describe('#showErrorMessage()', () => {
-            let showErrorMessageSpy: Spy;
-
+        describe('#showToastMessage()', () => {
             beforeEach(() => {
                 // Set construct mode
                 component.query.queryType = 'construct';
                 detectChangesOnPush(fixture);
 
-                showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
                 consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
             });
 
-            it('... should have a method `showErrorMessage`', () => {
-                expect(component.showErrorMessage).toBeDefined();
+            it('... should have a method `showToastMessage`', () => {
+                expect(component.showToastMessage).toBeDefined();
             });
 
             it('... should trigger on event from TriplesEditorComponent', () => {
@@ -891,7 +888,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set changed query
                 editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
 
-                expectSpyCall(showErrorMessageSpy, 1);
+                expectSpyCall(showToastMessageSpy, 1);
             });
 
             it('... should trigger on event from SparqlEditorComponent', () => {
@@ -901,16 +898,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Set changed query
                 editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
 
-                expectSpyCall(showErrorMessageSpy, 1);
+                expectSpyCall(showToastMessageSpy, 1);
             });
 
             describe('... should not do anything', () => {
                 it('... if no toastMessage is provided', () => {
                     const toastMessage = undefined;
 
-                    component.showErrorMessage(toastMessage);
+                    component.showToastMessage(toastMessage, 'error');
 
-                    expectSpyCall(showErrorMessageSpy, 1, [undefined]);
+                    expectSpyCall(showToastMessageSpy, 1, [undefined]);
                     expectSpyCall(toastServiceAddSpy, 0);
                     expectSpyCall(consoleSpy, 0);
                 });
@@ -918,61 +915,130 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... if no toastMessage.message is provided', () => {
                     const toastMessage = new ToastMessage('Error1', '', 500);
 
-                    component.showErrorMessage(toastMessage);
+                    component.showToastMessage(toastMessage, 'error');
 
-                    expectSpyCall(showErrorMessageSpy, 1, toastMessage);
+                    expectSpyCall(showToastMessageSpy, 1, toastMessage);
                     expectSpyCall(toastServiceAddSpy, 0);
                     expectSpyCall(consoleSpy, 0);
                 });
             });
 
-            it('... should log the provided name and message to console', () => {
-                const toastMessage = new ToastMessage('Error1', 'error message', 500);
-                component.showErrorMessage(toastMessage);
-
-                expectSpyCall(showErrorMessageSpy, 1, toastMessage);
-                expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
-            });
-
-            it('... should trigger toast service and add a toast message', () => {
-                const toastMessage = new ToastMessage('Error1', 'error message', 500);
-
+            it('... should use "info" as default type if not provided', () => {
+                const toastMessage = new ToastMessage('DefaultInfo', 'Default info message', 2000);
                 const expectedToast = new Toast(toastMessage.message, {
                     header: toastMessage.name,
-                    classname: 'bg-danger text-light',
+                    classname: 'bg-info text-light',
                     delay: toastMessage.duration,
                 });
+                consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
 
-                // Trigger error message
-                component.showErrorMessage(toastMessage);
-                detectChangesOnPush(fixture);
+                component.showToastMessage(toastMessage);
 
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-
-                expect(toastService.toasts).toBeDefined();
-                expectToBe(toastService.toasts.length, 1);
-                expectToEqual(toastService.toasts[0], expectedToast);
+                expectSpyCall(consoleSpy, 1, ['DefaultInfo', ':', 'Default info message']);
             });
 
-            it('... should set durationvValue = 3000 for the toast message if delay not given ', () => {
-                const toastMessage = new ToastMessage('Error1', 'error message');
-                const expectedDuration = 3000;
+            describe('... on error message', () => {
+                it('... should log the provided name and error message to console', () => {
+                    const toastMessage = new ToastMessage('Error1', 'error message', 500);
 
-                const expectedToast = new Toast(toastMessage.message, {
-                    header: toastMessage.name,
-                    classname: 'bg-danger text-light',
-                    delay: expectedDuration,
+                    component.showToastMessage(toastMessage, 'error');
+
+                    expectSpyCall(showToastMessageSpy, 1, toastMessage);
+                    expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
                 });
 
-                // Trigger error message without delay value
-                component.showErrorMessage(toastMessage);
-                detectChangesOnPush(fixture);
+                it('... should trigger toast service and add an error toast message', () => {
+                    const toastMessage = new ToastMessage('Error1', 'error message', 500);
+                    const expectedToast = new Toast(toastMessage.message, {
+                        header: toastMessage.name,
+                        classname: 'bg-danger text-light',
+                        delay: toastMessage.duration,
+                    });
 
-                expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+                    // Trigger error message
+                    component.showToastMessage(toastMessage, 'error');
+                    detectChangesOnPush(fixture);
 
-                expect(toastService.toasts).toBeDefined();
-                expectToBe(toastService.toasts.length, 1);
-                expectToEqual(toastService.toasts[0], expectedToast);
+                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+
+                    expect(toastService.toasts).toBeDefined();
+                    expectToBe(toastService.toasts.length, 1);
+                    expectToEqual(toastService.toasts[0], expectedToast);
+                });
+
+                it('... should set durationvValue = 3000 for the errortoast message if delay not given ', () => {
+                    const toastMessage = new ToastMessage('Error1', 'error message');
+                    const expectedDuration = 3000;
+                    const expectedToast = new Toast(toastMessage.message, {
+                        header: toastMessage.name,
+                        classname: 'bg-danger text-light',
+                        delay: expectedDuration,
+                    });
+
+                    // Trigger error message without delay value
+                    component.showToastMessage(toastMessage, 'error');
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+
+                    expect(toastService.toasts).toBeDefined();
+                    expectToBe(toastService.toasts.length, 1);
+                    expectToEqual(toastService.toasts[0], expectedToast);
+                });
+            });
+
+            describe('... on info message', () => {
+                it('... should log the provided name and info message to console', () => {
+                    const toastMessage = new ToastMessage('Info1', 'info message', 500);
+                    consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+
+                    component.showToastMessage(toastMessage, 'info');
+
+                    expectSpyCall(showToastMessageSpy, 1, toastMessage);
+                    expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
+                });
+
+                it('... should trigger toast service and add an info toast message', () => {
+                    const toastMessage = new ToastMessage('Info1', 'info message', 500);
+                    const expectedToast = new Toast(toastMessage.message, {
+                        header: toastMessage.name,
+                        classname: 'bg-info text-light',
+                        delay: toastMessage.duration,
+                    });
+                    spyOn(console, 'info').and.callFake(mockConsole.log); // Catch console output
+
+                    // Trigger info message
+                    component.showToastMessage(toastMessage, 'info');
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+
+                    expect(toastService.toasts).toBeDefined();
+                    expectToBe(toastService.toasts.length, 1);
+                    expectToEqual(toastService.toasts[0], expectedToast);
+                });
+
+                it('... should set durationValue = 3000 for the info toast message if delay not given ', () => {
+                    const toastMessage = new ToastMessage('Info1', 'info message');
+                    const expectedDuration = 3000;
+                    const expectedToast = new Toast(toastMessage.message, {
+                        header: toastMessage.name,
+                        classname: 'bg-info text-light',
+                        delay: expectedDuration,
+                    });
+                    spyOn(console, 'info').and.callFake(mockConsole.log); // Catch console output
+
+                    // Trigger info message without delay value
+                    component.showToastMessage(toastMessage, 'info');
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+
+                    expect(toastService.toasts).toBeDefined();
+                    expectToBe(toastService.toasts.length, 1);
+                    expectToEqual(toastService.toasts[0], expectedToast);
+                });
             });
         });
 
@@ -1022,7 +1088,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
             });
 
-            it('... should log the provided node to console', () => {
+            it('... should show the provided node in a ToastMessage', () => {
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(
                     ConstructResultsStubComponent
@@ -1031,20 +1097,29 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
                 resultsCmp.clickedNodeRequest.emit(expectedNode);
 
-                expectSpyCall(consoleSpy, 1, ['GraphVisualizerComponent# graphClick on node', expectedNode]);
+                // Check ToastMessage
+                const expectedMessage = `GraphVisualizerComponent# graphClick on node ${expectedNode.id}\n\n Label: ${expectedNode.label}`;
+                const toastMessage = new ToastMessage(expectedNode.id, expectedMessage, 5000);
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-info text-light',
+                    delay: toastMessage.duration,
+                });
+
+                expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
+                expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'info']);
+                expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+                expectSpyCall(consoleSpy, 1, ['Test', ':', expectedMessage]);
             });
         });
 
         describe('#onTableNodeClick()', () => {
-            let onTableNodeClickSpy: Spy;
-
             beforeEach(() => {
                 // Set select mode
                 component.query = expectedGraphRDFData.queryList[0];
                 component.query.queryType = 'select';
                 detectChangesOnPush(fixture);
 
-                onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
                 consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
             });
 
@@ -1378,7 +1453,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
                     consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
-                    const onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
 
                     const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                     const resultsCmp = resultsDes[0].injector.get(
