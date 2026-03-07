@@ -330,6 +330,162 @@ describe('GraphVisualizerService', () => {
         });
     });
 
+    describe('#extractLabelsFromTriples()', () => {
+        it('... should have a method `extractLabelsFromTriples`', () => {
+            expect(graphVisualizerService.extractLabelsFromTriples).toBeDefined();
+        });
+
+        it('... should return an empty Map if no triples are given', () => {
+            const result1 = graphVisualizerService.extractLabelsFromTriples(null);
+            const result2 = graphVisualizerService.extractLabelsFromTriples(undefined);
+            const result3 = graphVisualizerService.extractLabelsFromTriples([]);
+
+            expectToBe(result1 instanceof Map, true);
+            expectToBe(result2 instanceof Map, true);
+            expectToBe(result3 instanceof Map, true);
+            expectToBe(result1.size, 0);
+            expectToBe(result2.size, 0);
+            expectToBe(result3.size, 0);
+        });
+
+        it('... should extract rdfs:label triples with short form predicates', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://example.org/person1',
+                    predicate: 'rdfs:label',
+                    object: 'John Doe',
+                },
+                {
+                    subject: 'http://example.org/person2',
+                    predicate: 'rdfs:label',
+                    object: 'Jane Smith',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.size, 2);
+            expectToBe(result.has('http://example.org/person1'), true);
+            expectToBe(result.has('http://example.org/person2'), true);
+        });
+
+        it('... should extract rdfs:label triples with long form predicates', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://example.org/concept1',
+                    predicate: 'http://www.w3.org/2000/01/rdf-schema#label',
+                    object: 'Important Concept',
+                },
+                {
+                    subject: 'http://example.org/concept2',
+                    predicate: 'http://www.w3.org/2000/01/rdf-schema#label',
+                    object: 'Another Concept',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.size, 2);
+            expectToBe(result.has('http://example.org/concept1'), true);
+            expectToBe(result.has('http://example.org/concept2'), true);
+        });
+
+        it('... should handle mixed triples with both short and long form rdfs:label predicates', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://example.org/resource1',
+                    predicate: 'rdfs:label',
+                    object: 'Resource One',
+                },
+                {
+                    subject: 'http://example.org/resource2',
+                    predicate: 'http://www.w3.org/2000/01/rdf-schema#label',
+                    object: 'Resource Two',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.size, 2);
+            expectToBe(result.has('http://example.org/resource1'), true);
+            expectToBe(result.has('http://example.org/resource2'), true);
+        });
+
+        it('... should store labels using PrefixPipe transformation of subjects', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://xmlns.com/foaf/0.1/Person',
+                    predicate: 'rdfs:label',
+                    object: 'Person Class',
+                },
+                {
+                    subject: 'http://example.org/resource',
+                    predicate: 'rdfs:label',
+                    object: 'Resource Label',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.size, 2);
+            // Subject with default prefix gets shortened by PrefixPipe
+            expectToBe(result.has('foaf:Person'), true);
+            // Subject without default prefix remains as full URI
+            expectToBe(result.has('http://example.org/resource'), true);
+        });
+
+        it('... should store and retrieve correct label values for subjects', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://xmlns.com/foaf/0.1/Person',
+                    predicate: 'rdfs:label',
+                    object: 'Person Class',
+                },
+                {
+                    subject: 'http://example.org/resource',
+                    predicate: 'rdfs:label',
+                    object: 'Resource Label',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.get('foaf:Person'), 'Person Class');
+            expectToBe(result.get('http://example.org/resource'), 'Resource Label');
+        });
+
+        it('... should ignore non-label predicates', () => {
+            const triples: Triple[] = [
+                {
+                    subject: 'http://example.org/person1',
+                    predicate: 'rdfs:label',
+                    object: 'John Doe',
+                },
+                {
+                    subject: 'http://example.org/person1',
+                    predicate: 'http://example.org/age',
+                    object: '30',
+                },
+                {
+                    subject: 'http://example.org/person1',
+                    predicate: 'rdf:type',
+                    object: 'http://example.org/Person',
+                },
+                {
+                    subject: 'http://example.org/person2',
+                    predicate: 'http://xmlns.com/foaf/0.1/name',
+                    object: 'Jane Smith',
+                },
+            ];
+
+            const result = graphVisualizerService.extractLabelsFromTriples(triples);
+
+            expectToBe(result.size, 1);
+            expectToBe(result.has('http://example.org/person1'), true);
+            expectToBe(result.has('http://example.org/person2'), false);
+        });
+    });
+
     describe('#getQuerytype()', () => {
         it('... should have a method `getQuerytype`', () => {
             expect(graphVisualizerService.getQuerytype).toBeDefined();

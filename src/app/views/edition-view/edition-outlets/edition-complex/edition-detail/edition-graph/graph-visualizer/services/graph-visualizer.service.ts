@@ -136,6 +136,39 @@ export class GraphVisualizerService {
     }
 
     /**
+     * Public method: extractLabelsFromTriples.
+     *
+     * It extracts any existing labels from the RDF triples data.
+     * Subject URIs are transformed using PrefixPipe - only those matching
+     * default prefixes get shortened to prefix form, others remain as full URIs.
+     *
+     * @param {Triple[]} triples The given triple array.
+     *
+     * @returns {Map<string, string>} A map of URI (shortened or full) to label mappings.
+     */
+    extractLabelsFromTriples(triples: Triple[]): Map<string, string> {
+        const labelMap = new Map<string, string>();
+
+        if (!triples) {
+            return labelMap;
+        }
+
+        const rdfsLabelShort = 'rdfs:label';
+        const rdfsLabelLong = this._prefixPipe.transform('rdfs:label', PrefixForm.LONG);
+
+        triples.forEach(triple => {
+            const predId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+
+            if (predId === rdfsLabelShort || triple.predicate === rdfsLabelLong) {
+                const subjId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
+                labelMap.set(subjId, triple.object);
+            }
+        });
+
+        return labelMap;
+    }
+
+    /**
      * Public method: getQuerytype.
      *
      * It gets the query type from a given query.

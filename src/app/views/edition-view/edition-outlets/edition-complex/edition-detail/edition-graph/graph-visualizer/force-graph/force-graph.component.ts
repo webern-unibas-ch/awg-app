@@ -141,6 +141,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     sliderConfig = new SliderConfig(1, 0.1, 3, 0.01, 1);
 
     /**
+     * Private variable: _labelMap.
+     * It caches the label map extracted from the currentQueryResultTriples.
+     */
+    private _labelMap: Map<string, string> = new Map();
+
+    /**
      * Private variable: _svg.
      *
      * It keeps the D3 svg selection.
@@ -250,6 +256,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             },
         });
 
+        // Ensure label extraction happens on initialization
+        if (this.currentQueryResultTriples) {
+            this._labelMap = this._graphVisualizerService.extractLabelsFromTriples(this.currentQueryResultTriples);
+        }
         this._redraw();
     }
 
@@ -265,6 +275,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         if (queryResultTriples?.currentValue && !queryResultTriples.isFirstChange()) {
             this.currentQueryResultTriples = queryResultTriples.currentValue;
+            this._labelMap = this._graphVisualizerService.extractLabelsFromTriples(this.currentQueryResultTriples);
             this._redraw();
         }
     }
@@ -427,9 +438,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _attachData(): void {
         const triples: Triple[] = this._graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
-
-        this._simulationData = this._triplesToD3GraphData(triples);
-
+        this._simulationData = this._triplesToD3GraphData(triples, this._labelMap);
         this._setupForceSimulation();
         this._updateSVG();
     }
@@ -734,20 +743,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _filterNodesById.
-     *
-     * It filters an array of simulations nodes by a given id.
-     *
-     * @param {D3SimulationNode[]} nodes The given nodes array.
-     * @param {string} id The given node id.
-     *
-     * @returns {D3SimulationNode} The filtered node.
-     */
-    private _filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
-        return nodes.filter(node => node.id === id)[0];
-    }
-
-    /**
      * Private method: _filterNodesByType.
      *
      * It filters an array of simulations nodes by a given type.
@@ -842,16 +837,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * It calculates the D3 simulation data from an array of triples.
      *
      * @param {Triple[]} triples The given triple array.
+     * @param {Map<string, string>} labelMap The label map extracted from the full triple set.
      *
      * @returns {D3SimulationData} The D3 graph data.
      */
-    private _triplesToD3GraphData(triples: Triple[]): D3SimulationData {
+    private _triplesToD3GraphData(triples: Triple[], labelMap: Map<string, string>): D3SimulationData {
         if (!triples) {
             return undefined;
         }
 
         // Graph
         const graphData: D3SimulationData = new D3SimulationData();
+
+        const nodeMap = new Map<string, D3SimulationNode>();
 
         // Initial Graph from triples
         triples.forEach((triple: Triple) => {
@@ -860,28 +858,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             let objId = this._prefixPipe.transform(triple.object, PrefixForm.SHORT);
 
             // Check if object is number & round decimal numbers to 2 decimals
-            if (!isNaN(objId)) {
-                objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
+            const objAsNumber = Number(objId);
+            if (!isNaN(objAsNumber)) {
+                objId = objAsNumber % 1 === 0 ? String(objAsNumber) : objAsNumber.toFixed(2);
             }
 
+            // Create new predicate node for each triple (predicates should NOT be deduplicated)
             const predNode: D3SimulationNode = new D3SimulationNode(predId, D3SimulationNodeType.link);
+            predNode.label = labelMap.get(predId) || predId;
             graphData.nodes.push(predNode);
 
-            let subjNode: D3SimulationNode = this._filterNodesById(graphData.nodes, subjId);
-
-            if (subjNode == null) {
-                subjNode = new D3SimulationNode(subjId, D3SimulationNodeType.node);
-
-                graphData.nodes.push(subjNode);
-            }
-
-            // Look up objNode only after subjNode has been created to avoid unwanted duplication of self linking nodes
-            let objNode: D3SimulationNode = this._filterNodesById(graphData.nodes, objId);
-            if (objNode == null) {
-                objNode = new D3SimulationNode(objId, D3SimulationNodeType.node);
-
-                graphData.nodes.push(objNode);
-            }
+            // Get or create subject and object nodes (deduplicated)
+            const subjNode = this._getOrCreateNode(subjId, nodeMap, labelMap, graphData);
+            const objNode = this._getOrCreateNode(objId, nodeMap, labelMap, graphData);
 
             // Check if predicate is "rdf:type"
             // Then subjNode is an instance and objNode is a Class
@@ -899,6 +888,40 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         });
 
         return graphData;
+    }
+
+    /**
+     * Private method: _getOrCreateNode.
+     *
+     * It gets an existing node from the nodeMap or creates a new one if it doesn't exist.
+     *
+     * @param {string} nodeId The node identifier.
+     * @param {Map<string, D3SimulationNode>} nodeMap The map of existing nodes.
+     * @param {Map<string, string>} labelMap The map of labels.
+     * @param {D3SimulationData} graphData The graph data to add the node to.
+     *
+     * @returns {D3SimulationNode} The existing or newly created node.
+     */
+    private _getOrCreateNode(
+        nodeId: string,
+        nodeMap: Map<string, D3SimulationNode>,
+        labelMap: Map<string, string>,
+        graphData: D3SimulationData
+    ): D3SimulationNode {
+        let node = nodeMap.get(nodeId);
+        if (node == null) {
+            node = new D3SimulationNode(nodeId, D3SimulationNodeType.node);
+
+            // Set label from labelMap if available, otherwise use nodeId
+            node.label = labelMap.get(nodeId) || nodeId;
+
+            // Store node in map for future reference
+            nodeMap.set(nodeId, node);
+
+            // Add new node to graph data
+            graphData.nodes.push(node);
+        }
+        return node;
     }
 
     /**
