@@ -550,7 +550,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .enter()
             .append('text')
             .attr('class', 'node-text')
-            .text((d: D3SimulationNode) => d.label);
+            .text((d: D3SimulationNode) => d.id);
 
         // ==================== Add Nodes =====================
         const nodes: D3Selection = this._zoomGroup
