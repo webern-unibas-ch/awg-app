@@ -418,16 +418,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": [
-                {
-                    "svgGroupId": "g-lb-m35_42_sk2-to-m35_42_tf1a",
-                    "linkTo": {
-                        "complexId": "m35_42",
-                        "sheetId": "M35_42_TF1a"
-                    }
-                }
-            ]
+            }
         }
     ]
 }
