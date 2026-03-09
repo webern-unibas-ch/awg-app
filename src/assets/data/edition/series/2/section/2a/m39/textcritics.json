@@ -15,21 +15,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4257",
+                                "svgGroupId": "g-tkk-m39_tf1-1",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "16/16",
                                 "comment": "Ende der Crescendogabel versetzt von zwischen vierter und letzter Note in Klav. o."
                             },
                             {
-                                "svgGroupId": "g2991",
+                                "svgGroupId": "g-tkk-m39_tf1-2",
                                 "measure": "13",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
                                 "comment": "Zusätzlichen Augmentationspunkt auf der Höhe von a<sup>1</sup> weggelassen."
                             },
                             {
-                                "svgGroupId": "g2995",
+                                "svgGroupId": "g-tkk-m39_tf1-3",
                                 "measure": "19",
                                 "system": "Klav. u.",
                                 "position": "(3/4)",
@@ -55,56 +55,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4779",
+                                "svgGroupId": "g-tkk-m39_tf2-1",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "16/16",
                                 "comment": "Ende der Crescendogabel versetzt von zwischen vierter und letzter Note in Klav. o."
                             },
                             {
-                                "svgGroupId": "g4783",
+                                "svgGroupId": "g-tkk-m39_tf2-2",
                                 "measure": "9",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C<sub>1</sub>/Es korrigiert zu Es<sub>1</sub>/Es mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4791",
+                                "svgGroupId": "g-tkk-m39_tf2-3",
                                 "measure": "10",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C<sub>1</sub>/E korrigiert zu E<sub>1</sub>/E mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g4806",
+                                "svgGroupId": "g-tkk-m39_tf2-4",
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
-                                "svgGroupId": "g3099",
+                                "svgGroupId": "g-tkk-m39_tf2-5",
                                 "measure": "12",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "C<sub>1</sub>/E korrigiert zu E<sub>1</sub>/E mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3102",
+                                "svgGroupId": "g-tkk-m39_tf2-6",
                                 "measure": "12 <br />bis 13",
                                 "system": "Klav. o.",
                                 "position": "12/16 <br />1. Note",
                                 "comment": "Legatobogen ergänzt mit Blick auf Textfassung 1 und Einschubstelle zwischen T. 12 und 13 (vgl. Quellenbewertung)."
                             },
                             {
-                                "svgGroupId": "g4183",
+                                "svgGroupId": "g-tkk-m39_tf2-7",
                                 "measure": "16 <br />bis 19",
                                 "system": "",
                                 "position": "6/8 <br />letzte Note",
                                 "comment": "Kleinstich: Noten ergänzt gemäß Bleistiftschicht (vgl. Quellenbewertung)."
                             },
                             {
-                                "svgGroupId": "g3823",
+                                "svgGroupId": "g-tkk-m39_tf2-8",
                                 "measure": "19",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
@@ -128,245 +128,245 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1096",
+                                "svgGroupId": "g-tkk-m39_sk1-1",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Halbe Note überschreibt punktierte Achtelnote mit zusammengebalkter Sechzehntelnote (Notenkopf dort nicht mehr entzifferbar)."
                             },
                             {
-                                "svgGroupId": "g1041",
+                                "svgGroupId": "g-tkk-m39_sk1-2",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "(8/16)",
                                 "comment": "f überschreibt g."
                             },
                             {
-                                "svgGroupId": "g1056",
+                                "svgGroupId": "g-tkk-m39_sk1-3",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "(3/4)",
                                 "comment": "c<sup>1</sup> überschreibt e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1062 ",
+                                "svgGroupId": "g-tkk-m39_sk1-4",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "(12/16)",
                                 "comment": "h<sup>1</sup>/d<sup>2</sup> überschreibt g<sup>1</sup>/e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1067",
+                                "svgGroupId": "g-tkk-m39_sk1-5",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "vorletzte Note",
                                 "comment": "c<sup>2</sup>/e<sup>2</sup> überschreibt g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1072",
+                                "svgGroupId": "g-tkk-m39_sk1-6",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "letzte Note",
                                 "comment": "d<sup>2</sup>/f<sup>2</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1024",
+                                "svgGroupId": "g-tkk-m39_sk1-7",
                                 "measure": "{2A}",
                                 "system": "2–3",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1116",
+                                "svgGroupId": "g-tkk-m39_sk1-8",
                                 "measure": "{2B}",
                                 "system": "5–6",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1092",
+                                "svgGroupId": "g-tkk-m39_sk1-9",
                                 "measure": "{2B}",
                                 "system": "5",
                                 "position": "3/4",
                                 "comment": "c<sup>2</sup> ersetzt g<sup>2</sup>; Viertelnote überschreibt mit gestrichener Sechzehntelnote zusammengebalkte Achtelnote."
                             },
                             {
-                                "svgGroupId": "g1101",
+                                "svgGroupId": "g-tkk-m39_sk1-10",
                                 "measure": "{2B}",
                                 "system": "6",
                                 "position": "3/4",
                                 "comment": "g/e<sup>1</sup> überschreibt e/c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1112",
+                                "svgGroupId": "g-tkk-m39_sk1-11",
                                 "measure": "{2B}",
                                 "system": "6",
                                 "position": "4/4",
                                 "comment": "E<sub>1</sub>/G [sic] überschreibt H."
                             },
                             {
-                                "svgGroupId": "g1125",
+                                "svgGroupId": "g-tkk-m39_sk1-12",
                                 "measure": "3",
                                 "system": "5",
                                 "position": "1/4",
                                 "comment": "e<sup>2</sup>/c<sup>3</sup> überschreibt a<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1153",
+                                "svgGroupId": "g-tkk-m39_sk1-13",
                                 "measure": "3",
                                 "system": "6",
                                 "position": "(6/8)",
                                 "comment": "Metrisch falsch gesetzte Viertelnote gestrichen und versetzt nach 4/4."
                             },
                             {
-                                "svgGroupId": "g1138",
+                                "svgGroupId": "g-tkk-m39_sk1-14",
                                 "measure": "4",
                                 "system": "5",
                                 "position": "3/4",
                                 "comment": "Viertelnote d<sup>1</sup>/f<sup>1</sup> überschreibt Viertelpause."
                             },
                             {
-                                "svgGroupId": "g988",
+                                "svgGroupId": "g-tkk-m39_sk1-15",
                                 "measure": "5B",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Halbe Note c<sup>1</sup>/a<sup>1</sup> überschreibt Achtelnoten c<sup>1</sup>/a<sup>1</sup>–e<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g992",
+                                "svgGroupId": "g-tkk-m39_sk1-16",
                                 "measure": "5B",
                                 "system": "9",
                                 "position": "3/4",
                                 "comment": "c überschreibt A."
                             },
                             {
-                                "svgGroupId": "g1023",
+                                "svgGroupId": "g-tkk-m39_sk1-17",
                                 "measure": "6A",
                                 "system": "11",
                                 "position": "7/8",
                                 "comment": "c<sup>3</sup> überschreibt c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1027",
+                                "svgGroupId": "g-tkk-m39_sk1-18",
                                 "measure": "{7A–8A}",
                                 "system": "11–12",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1149",
+                                "svgGroupId": "g-tkk-m39_sk1-19",
                                 "measure": "7B",
                                 "system": "13",
                                 "position": "(3/4)",
                                 "comment": "c<sup>1</sup>/a<sup>1</sup>–h/g<sup>1</sup>–a/f<sup>1</sup> überschreibt d<sup>1</sup>/h<sup>1</sup>–c<sup>1</sup>/a<sup>1</sup>–h/g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1169",
+                                "svgGroupId": "g-tkk-m39_sk1-20",
                                 "measure": "8B",
                                 "system": "13–14",
                                 "position": "2.–3. Note",
                                 "comment": "e/c<sup>1</sup>–f/d<sup>1</sup> überschreibt e<sup>1</sup>/g<sup>1</sup>–f<sup>1</sup>/a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1174",
+                                "svgGroupId": "g-tkk-m39_sk1-21",
                                 "measure": "8B",
                                 "system": "13",
                                 "position": "3/4",
                                 "comment": "Viertelnote g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g999",
+                                "svgGroupId": "g-tkk-m39_sk1-22",
                                 "measure": "{9A–13A}",
                                 "system": "16–17",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1019",
+                                "svgGroupId": "g-tkk-m39_sk1-23",
                                 "measure": "{11A}",
                                 "system": "16–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1009",
+                                "svgGroupId": "g-tkk-m39_sk1-24",
                                 "measure": "{11A}",
                                 "system": "16",
                                 "position": "1.–2. Note",
                                 "comment": "e<sup>1</sup>/g<sup>1</sup> überschreibt g<sup>1</sup>/d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1016",
+                                "svgGroupId": "g-tkk-m39_sk1-25",
                                 "measure": "{11A}",
                                 "system": "16",
                                 "position": "6/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g970",
+                                "svgGroupId": "g-tkk-m39_sk1-26",
                                 "measure": "{9B}",
                                 "system": "9–10",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g966",
+                                "svgGroupId": "g-tkk-m39_sk1-27",
                                 "measure": "{9B}",
                                 "system": "9–10",
                                 "position": "8/8",
                                 "comment": "f<sup>1</sup> überschreibt g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1062",
+                                "svgGroupId": "g-tkk-m39_sk1-28",
                                 "measure": "10B",
                                 "system": "11",
                                 "position": "(3/4)",
                                 "comment": "Balkierung für [punktierte] Achtelnote mit Sechzehntelnote überschreibt Achtelfähnchen zu g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1066",
+                                "svgGroupId": "g-tkk-m39_sk1-29",
                                 "measure": "10B",
                                 "system": "11",
                                 "position": "4/4",
                                 "comment": "a<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1036",
+                                "svgGroupId": "g-tkk-m39_sk1-30",
                                 "measure": "11C",
                                 "system": "14",
                                 "position": "4/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für cis gestrichen? Entzifferung unklar."
                             },
                             {
-                                "svgGroupId": "g1103",
+                                "svgGroupId": "g-tkk-m39_sk1-31",
                                 "measure": "13B",
                                 "system": "7",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g1109",
+                                "svgGroupId": "g-tkk-m39_sk1-32",
                                 "measure": "13B",
                                 "system": "8",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote f/a gestrichen."
                             },
                             {
-                                "svgGroupId": "g1120",
+                                "svgGroupId": "g-tkk-m39_sk1-33",
                                 "measure": "14",
                                 "system": "7",
                                 "position": "2. Note",
                                 "comment": "c<sup>1</sup> überschreibt h."
                             },
                             {
-                                "svgGroupId": "g1017",
+                                "svgGroupId": "g-tkk-m39_sk1-34",
                                 "measure": "19",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g1008",
+                                "svgGroupId": "g-tkk-m39_sk1-35",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "2/4    ",
@@ -378,73 +378,136 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1a"
-                    }
-                },
-                {
-                    "svgGroupId": "g3",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1c"
-                    }
-                },
-                {
-                    "svgGroupId": "g4",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1d"
-                    }
-                },
-                {
-                    "svgGroupId": "g5",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1e"
-                    }
-                },
-                {
-                    "svgGroupId": "g7",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1g"
-                    }
-                },
-                {
-                    "svgGroupId": "g8",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1h"
-                    }
-                },
-                {
-                    "svgGroupId": "g9",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1i"
-                    }
-                },
-                {
-                    "svgGroupId": "g10",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_Sk1j"
-                    }
-                },
-                {
-                    "svgGroupId": "g11",
+                    "svgGroupId": "g-lb-m39_sk1a-to-m39_sk1k",
                     "linkTo": {
                         "complexId": "m39",
                         "sheetId": "M39_Sk1k"
                     }
                 },
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "g-lb-m39_sk1c-to-m39_sk1_1",
                     "linkTo": {
                         "complexId": "m39",
                         "sheetId": "M39_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1c-to-m39_sk1g",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1g"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1c-to-m39_sk1j",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1j"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1d-to-m39_sk1h",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1h"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1e-to-m39_sk1i",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1g-to-m39_sk1_1",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1g-to-m39_sk1c",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1g-to-m39_sk1i",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1g-to-m39_sk1j",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1j"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1h-to-m39_sk1d",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1h-to-m39_sk1i",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1h-to-m39_sk1j",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1j"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1i-to-m39_sk1e",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1i-to-m39_sk1j",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1j"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1j-to-m39_sk1_1",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1j-to-m39_sk1c",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1j-to-m39_sk1i",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m39_sk1k-to-m39_sk1a",
+                    "linkTo": {
+                        "complexId": "m39",
+                        "sheetId": "M39_Sk1a"
                     }
                 }
             ]
@@ -462,7 +525,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g997",
+                                "svgGroupId": "g-tkk-m39_sk1_1-1",
                                 "measure": "2",
                                 "system": "9",
                                 "position": "4/4",
@@ -474,21 +537,21 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1749",
+                    "svgGroupId": "g-lb-m39_sk1_1-to-m39_sk1c",
                     "linkTo": {
                         "complexId": "m39",
                         "sheetId": "M39_Sk1c"
                     }
                 },
                 {
-                    "svgGroupId": "g3211",
+                    "svgGroupId": "g-lb-m39_sk1_1-to-m39_sk1g",
                     "linkTo": {
                         "complexId": "m39",
                         "sheetId": "M39_Sk1g"
                     }
                 },
                 {
-                    "svgGroupId": "g1006",
+                    "svgGroupId": "g-lb-m39_sk1_1-to-m39_sk1j",
                     "linkTo": {
                         "complexId": "m39",
                         "sheetId": "M39_Sk1j"
@@ -509,21 +572,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1239",
+                                "svgGroupId": "g-tkk-m39_sk2-1",
                                 "measure": "10",
                                 "system": "16",
                                 "position": "3/8",
                                 "comment": "Augmentationspunkte gestrichen."
                             },
                             {
-                                "svgGroupId": "g1109",
+                                "svgGroupId": "g-tkk-m39_sk2-2",
                                 "measure": "11",
                                 "system": "2",
                                 "position": "2.–4. Note",
                                 "comment": "c/a–d/h–c/a überschreibt c<sup>1</sup>–d<sup>1</sup>–c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1124",
+                                "svgGroupId": "g-tkk-m39_sk2-3",
                                 "measure": "12",
                                 "system": "2",
                                 "position": "1. Note",
@@ -532,16 +595,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": [
-                {
-                    "svgGroupId": "g13319",
-                    "linkTo": {
-                        "complexId": "m39",
-                        "sheetId": "M39_TF2b"
-                    }
-                }
-            ]
+            }
         }
     ]
 }
