@@ -8,7 +8,7 @@
                     <awg-triples-editor
                         [triples]="triples"
                         [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showErrorMessage($event)"
+                        (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetTriplesRequest)="resetTriples()"
                         (updateTriplesRequest)="triples = $event"></awg-triples-editor>
@@ -19,7 +19,7 @@
                         [queryList]="queryList"
                         [query]="query"
                         [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showErrorMessage($event)"
+                        (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetQueryRequest)="resetQuery($event)"
                         (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>
