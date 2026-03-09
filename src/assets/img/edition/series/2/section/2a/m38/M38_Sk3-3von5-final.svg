@@ -155,7 +155,7 @@
   </g>
   <path id="line48510" d="M805.07 300.005v-49.656" style="fill:none;stroke:#000;stroke-width:.64399803"/>
   <path id="path48512" d="M708.931 248.982h96.462v2.733h-96.462z" style="fill:#000;fill-rule:nonzero;stroke:none;stroke-width:1.30982006"/>
-  <g id="g1110" class="tkk" transform="translate(36.677)">
+  <g id="g-tkk-m38_sk3-6" class="tkk" transform="translate(36.677)">
     <path id="polyline48404" d="m586.3 151.346 15.888 7.687" style="fill:none;stroke:#000;stroke-width:.55220115" transform="matrix(1.19115 0 0 1.14185 81.87 30.73)"/>
     <g id="text48516" aria-label="œ" style="font-size:21.86661148px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path1125" d="M786.955 207.988c-.59 1.552.438 2.842 2.275 2.864s3.782-1.224 4.373-2.799c.568-1.552-.437-2.82-2.296-2.842-1.837-.022-3.783 1.224-4.352 2.777" style="font-size:21.86661148px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
@@ -274,7 +274,7 @@
     </g>
   </g>
   <path id="path48656" d="M861.46 280.415c5.238 5.012 20.954 5.012 26.192 0l-.157-.164c-5.081 3.81-20.797 3.81-25.879 0z" style="fill:#000;stroke:none;stroke-width:1.33333004"/>
-  <g id="g2" class="link-box">
+  <g id="g2" class="link-box-todo">
     <path id="rect48414" d="M173.8 173.816h166.504v65.6H173.8Z" style="fill:none;stroke:#777;stroke-width:.910664;stroke-opacity:1"/>
     <g id="text48658" aria-label="M* 404 Sk1 T. 16" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333" transform="translate(36.677)">
       <path id="path1237" d="M177.403 200.362v-15.27h4.614l2.771 10.416 2.74-10.416h4.624v15.27h-2.864v-12.02l-3.031 12.02h-2.969l-3.02-12.02v12.02z"/>
@@ -291,7 +291,7 @@
       <path id="path1259" d="m265 215.496-2.832.312q-.105-.875-.542-1.291-.437-.417-1.135-.417-.927 0-1.573.833-.636.834-.802 3.469 1.093-1.292 2.718-1.292 1.834 0 3.136 1.396 1.312 1.396 1.312 3.604 0 2.343-1.375 3.76t-3.53 1.417q-2.313 0-3.803-1.792-1.49-1.802-1.49-5.895 0-4.198 1.553-6.052t4.03-1.854q1.74 0 2.875.98 1.146.968 1.459 2.822m-6.634 6.385q0 1.427.656 2.208.656.77 1.5.77.812 0 1.354-.635t.542-2.083q0-1.49-.584-2.177-.583-.698-1.458-.698-.844 0-1.427.667-.583.656-.583 1.948"/>
     </g>
   </g>
-  <g id="g3" class="link-box">
+  <g id="g3" class="link-box-todo">
     <path id="rect48428" d="M423.67 175.638h197.028v63.55H423.671z" style="fill:none;stroke:#777;stroke-width:.910664;stroke-opacity:1"/>
     <g id="text48660" aria-label="M* 404 Sk1.4" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333" transform="translate(36.677)">
       <path id="path1263" d="M426.698 214.415v-15.27h4.614l2.771 10.417 2.74-10.416h4.624v15.27h-2.864v-12.02l-3.031 12.02h-2.969l-3.02-12.02v12.02z" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333"/>
@@ -362,7 +362,7 @@
       <path id="path1579-0-4" d="M240.15 37.311h-1.273V24.614h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g1104" class="tkk" transform="translate(36.677)">
+  <g id="g-tkk-m38_sk3-7" class="tkk" transform="translate(36.677)">
     <g id="text48528" aria-label="œ" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004">
       <path id="path1334" d="M798.196 205.265c-.443 1.165.328 2.132 1.705 2.149s2.838-.919 3.28-2.1c.427-1.164-.328-2.115-1.722-2.132-1.377-.016-2.837.919-3.263 2.083" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004"/>
     </g>
