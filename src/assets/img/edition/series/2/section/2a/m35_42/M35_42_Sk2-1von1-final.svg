@@ -159,7 +159,7 @@
   <g id="text234" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002" transform="translate(20.96 37.401)">
     <path id="path50667" d="M571.212 239.665q.219-.59.656-1.093.46-.503 1.05-.875.59-.393 1.268-.59.678-.219 1.378-.219.7 0 1.224.24.525.22.831.613.306.372.372.897.087.502-.131 1.093-.22.59-.678 1.093-.46.525-1.05.897-.59.393-1.29.59-.678.219-1.356.219-.7 0-1.224-.24-.503-.22-.831-.613-.306-.394-.372-.918-.065-.503.153-1.094"/>
   </g>
-  <g id="g50343" class="tkk" transform="translate(37.212 37.401)">
+  <g id="g-tkk-m35_42_sk2-1" class="tkk" transform="translate(37.212 37.401)">
     <path id="polyline154" d="m488.413 148.954.341-22.208" style="fill:none;stroke:#000;stroke-width:.362251" transform="translate(0 .267)scale(1.33333)"/>
     <g id="text238" aria-label="." style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
       <path id="path50661" d="M651.21 176.796q0-.46.328-.766.328-.328.809-.328.48 0 .809.328.328.306.328.766 0 .459-.328.787t-.81.328q-.48 0-.808-.328-.328-.328-.328-.787"/>
@@ -188,7 +188,7 @@
   <g id="text270" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002" transform="translate(37.212 37.401)">
     <path id="path50640" d="M693.984 258.799q.219-.59.656-1.094.46-.503 1.05-.874.59-.394 1.268-.59.678-.22 1.377-.22.7 0 1.225.241.525.219.83.612.307.372.373.897.087.503-.132 1.093-.218.59-.678 1.094-.459.524-1.05.896-.59.394-1.29.59-.677.22-1.355.22-.7 0-1.225-.241-.502-.22-.83-.613-.307-.393-.372-.918-.066-.503.153-1.093"/>
   </g>
-  <g id="g50355" class="tkk" transform="translate(0 -7.56)">
+  <g id="g-tkk-m35_42_sk2-2" class="tkk" transform="translate(0 -7.56)">
     <path id="line256" d="M708.21 313.76v-29.156" style="fill:none;stroke:#000;stroke-width:.483"/>
     <path id="line258" d="M700.5 311.937h9.338" style="fill:none;stroke:#000;stroke-width:.678"/>
     <path id="line260" d="M700.5 306.47h9.338" style="fill:none;stroke:#000;stroke-width:.678"/>
@@ -222,7 +222,7 @@
       <path id="path50623" d="m627.79 70.255.885-.088q.088.64.364.911t.656.271q.542 0 1.006-.469.682-.687 1.005-1.974-.474.355-.844.506-.364.15-.75.15-.698 0-1.25-.468-.73-.61-.73-1.75 0-1.292.845-2.214.724-.791 1.776-.791.948 0 1.573.703.625.698.625 1.979 0 1.245-.417 2.458-.495 1.427-1.339 2.105-.687.552-1.546.552-.792 0-1.297-.49-.5-.495-.563-1.39m1.254-3.02q0 .718.38 1.145.386.427.912.427.39 0 .776-.265.386-.266.662-.792.276-.531.276-1.088 0-.438-.183-.813-.182-.375-.5-.562-.312-.193-.635-.193-.313 0-.615.167-.302.166-.562.49-.255.322-.386.744-.125.417-.125.74"/>
     </g>
   </g>
-  <g id="g5" class="link-box">
+  <g id="g-lb-m35_42_sk2-to-m35_42_tf1a" class="link-box">
     <path id="rect168" d="M175.473 180.466h301.35v125.505h-301.35z" style="fill:#fff;stroke:#777;stroke-width:.683"/>
     <g id="text286" aria-label="M 35 Tintenniederschrift T. 8–9" style="font-weight:700;font-size:16px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.750002" transform="translate(53.678 3.885)">
         <path id="path10714" d="M145.824 233.63v-15.269h4.614l2.77 10.416 2.74-10.416h4.625v15.27h-2.865v-12.02l-3.03 12.02h-2.97l-3.02-12.02v12.02z" style="font-style:normal;font-size:21.3317px;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667"/>

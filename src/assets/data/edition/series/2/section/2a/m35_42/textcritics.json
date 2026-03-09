@@ -15,35 +15,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g3402",
+                                "svgGroupId": "g-tkk-m35_42_tf1-1",
                                 "measure": "23 <br />bis 24",
                                 "system": "Klav. o.",
                                 "position": "3/4 <br />1. Note",
                                 "comment": "Ligatur zu T. 23 3/4 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm35_42', fragmentId: 'source_D'})\"><strong>D</strong></a>: Seitenwechsel nach T. 23."
                             },
                             {
-                                "svgGroupId": "g3405",
+                                "svgGroupId": "g-tkk-m35_42_tf1-2",
                                 "measure": "25",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Ces<sub>1</sub>/Es korrigiert zu Es<sub>1</sub>/Es mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3408",
+                                "svgGroupId": "g-tkk-m35_42_tf1-3",
                                 "measure": "25",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "H<sub>2</sub>/D korrigiert zu D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3411",
+                                "svgGroupId": "g-tkk-m35_42_tf1-4",
                                 "measure": "26",
                                 "system": "Klav. u.",
                                 "position": "1/4",
                                 "comment": "E<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g7117",
+                                "svgGroupId": "g-tkk-m35_42_tf1-5",
                                 "measure": "26",
                                 "system": "Klav. o.",
                                 "position": "3/4",
@@ -65,168 +65,168 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5408",
+                                "svgGroupId": "g-tkk-m35_42_sk1-1",
                                 "measure": "4",
                                 "system": "11",
                                 "position": "2/4",
                                 "comment": "e<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g5399",
+                                "svgGroupId": "g-tkk-m35_42_sk1-2",
                                 "measure": "4",
                                 "system": "10",
                                 "position": "3/4",
                                 "comment": "a<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g5166",
+                                "svgGroupId": "g-tkk-m35_42_sk1-3",
                                 "measure": "8(1–2/4)",
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis."
                             },
                             {
-                                "svgGroupId": "g5183",
+                                "svgGroupId": "g-tkk-m35_42_sk1-4",
                                 "measure": "{8(3/4)A–10}",
                                 "system": "13–14",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g5172",
+                                "svgGroupId": "g-tkk-m35_42_sk1-5",
                                 "measure": "{8(3/4)A}",
                                 "system": "14",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es überschreibt d."
                             },
                             {
-                                "svgGroupId": "g5177",
+                                "svgGroupId": "g-tkk-m35_42_sk1-6",
                                 "measure": "{9A}",
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "D gestrichen."
                             },
                             {
-                                "svgGroupId": "g5201",
+                                "svgGroupId": "g-tkk-m35_42_sk1-7",
                                 "measure": "{10}",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Halbe Note h/g<sup>1</sup> überschreibt Viertelnote h/d<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5190",
+                                "svgGroupId": "g-tkk-m35_42_sk1-8",
                                 "measure": "9B",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Halbe Note g<sup>1</sup>/h<sup>1</sup> überschreibt Viertelnote h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g35163",
+                                "svgGroupId": "g-tkk-m35_42_sk1-9",
                                 "measure": "11",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Halbe Note a/c<sup>1</sup> überschreibt Viertelnoten a–H."
                             },
                             {
-                                "svgGroupId": "g35181",
+                                "svgGroupId": "g-tkk-m35_42_sk1-10",
                                 "measure": "14",
                                 "system": "13",
                                 "position": "1/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g35206",
+                                "svgGroupId": "g-tkk-m35_42_sk1-11",
                                 "measure": "15",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "Halbe Note [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup> überschreibt Viertelnoten [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g37650",
+                                "svgGroupId": "g-tkk-m35_42_sk1-12",
                                 "measure": "{16A–17A}",
                                 "system": "15–16",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1508",
+                                "svgGroupId": "g-tkk-m35_42_sk1-13",
                                 "measure": "{16A}",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "Achtelpause überschreibt Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1629",
+                                "svgGroupId": "g-tkk-m35_42_sk1-14",
                                 "measure": "16B",
                                 "system": "15",
                                 "position": "1. Pause",
                                 "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g37705",
+                                "svgGroupId": "g-tkk-m35_42_sk1-15",
                                 "measure": "16B",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "h<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b/d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g37731",
+                                "svgGroupId": "g-tkk-m35_42_sk1-16",
                                 "measure": "{17B}",
                                 "system": "15",
                                 "position": "1/4",
                                 "comment": "Viertelpause überschreibt gestrichene Viertelnote h/g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g2798",
+                                "svgGroupId": "g-tkk-m35_42_sk1-17",
                                 "measure": "{17B}",
                                 "system": "15–16",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g38561",
+                                "svgGroupId": "g-tkk-m35_42_sk1-18",
                                 "measure": "17C",
                                 "system": "15",
                                 "position": "3/4",
                                 "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt a<sup>1</sup>/g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g37753",
+                                "svgGroupId": "g-tkk-m35_42_sk1-19",
                                 "measure": "18",
                                 "system": "15–16",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen und in System 12–13 neu gesetzt."
                             },
                             {
-                                "svgGroupId": "g42457",
+                                "svgGroupId": "g-tkk-m35_42_sk1-20",
                                 "measure": "19",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "h<sup>1</sup>/d<sup>2</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g42480",
+                                "svgGroupId": "g-tkk-m35_42_sk1-21",
                                 "measure": "21",
                                 "system": "17",
                                 "position": "3/4",
                                 "comment": "[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]ais/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g42786",
+                                "svgGroupId": "g-tkk-m35_42_sk1-22",
                                 "measure": "{22}",
                                 "system": "17–18",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g42497",
+                                "svgGroupId": "g-tkk-m35_42_sk1-23",
                                 "measure": "{22}",
                                 "system": "17",
                                 "position": "2/4",
                                 "comment": "fis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g4507",
+                                "svgGroupId": "g-tkk-m35_42_sk1-24",
                                 "measure": "{22}",
                                 "system": "17",
                                 "position": "3/4",
@@ -238,49 +238,98 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1",
+                    "svgGroupId": "g-lb-m35_42_sk1b-to-m36_sk1c",
                     "linkTo": {
                         "complexId": "m36",
                         "sheetId": "M36_Sk1c"
                     }
                 },
                 {
-                    "svgGroupId": "g2",
-                    "linkTo": {
-                        "complexId": "m35_42",
-                        "sheetId": "M35_42_Sk1c"
-                    }
-                },
-                {
-                    "svgGroupId": "g6",
-                    "linkTo": {
-                        "complexId": "m35_42",
-                        "sheetId": "M35_42_Sk1d"
-                    }
-                },
-                {
-                    "svgGroupId": "g7",
-                    "linkTo": {
-                        "complexId": "m35_42",
-                        "sheetId": "M35_42_Sk1e"
-                    }
-                },
-                {
-                    "svgGroupId": "g8",
-                    "linkTo": {
-                        "complexId": "m35_42",
-                        "sheetId": "M35_42_Sk1f"
-                    }
-                },
-                {
-                    "svgGroupId": "g9",
+                    "svgGroupId": "g-lb-m35_42_sk1c-to-m35_42_sk1_1",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M35_42_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g43928",
+                    "svgGroupId": "g-lb-m35_42_sk1c-to-m35_42_sk1d",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1c-to-m35_42_sk1e",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1c-to-m35_42_sk1f",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1d-to-m35_42_sk1_1",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1d-to-m35_42_sk1c",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1d-to-m35_42_sk1e",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1d-to-m35_42_sk1f",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1e-to-m35_42_sk1_1",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1e-to-m35_42_sk1f",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1f-to-m35_42_sk1_1",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1f-to-m35_42_sk1e",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1f-to-m40_sk1_1",
                     "linkTo": {
                         "complexId": "m40",
                         "sheetId": "M40_Sk1_1"
@@ -301,14 +350,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g44424",
+                                "svgGroupId": "g-tkk-m35_42_sk1_1-1",
                                 "measure": "22",
                                 "system": "10",
                                 "position": "1/4",
                                 "comment": "Viertelnote fis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g6997",
+                                "svgGroupId": "g-tkk-m35_42_sk1_1-2",
                                 "measure": "22",
                                 "system": "10",
                                 "position": "4/8",
@@ -320,24 +369,24 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1",
-                    "linkTo": {
-                        "complexId": "m40",
-                        "sheetId": "M40_Sk1_1"
-                    }
-                },
-                {
-                    "svgGroupId": "g559",
+                    "svgGroupId": "g-lb-m35_42_sk1_1-to-m35_42_sk1e",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M35_42_Sk1e"
                     }
                 },
                 {
-                    "svgGroupId": "g44389",
+                    "svgGroupId": "g-lb-m35_42_sk1_1-to-m35_42_sk1f",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m35_42_sk1_1-to-m40_sk1_1",
+                    "linkTo": {
+                        "complexId": "m40",
+                        "sheetId": "M40_Sk1_1"
                     }
                 }
             ]
@@ -353,14 +402,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g50343",
+                                "svgGroupId": "g-tkk-m35_42_sk2-1",
                                 "measure": "9",
                                 "system": "10",
                                 "position": "1. Note",
                                 "comment": "Augmentationspunkte gestrichen."
                             },
                             {
-                                "svgGroupId": "g50355",
+                                "svgGroupId": "g-tkk-m35_42_sk2-2",
                                 "measure": "9",
                                 "system": "11",
                                 "position": "2/4",
@@ -372,7 +421,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5",
+                    "svgGroupId": "g-lb-m35_42_sk2-to-m35_42_tf1a",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M35_42_TF1a"
