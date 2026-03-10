@@ -72,7 +72,7 @@
                             "complexId": "m31",
                             "sheetId": "M31_Sk4a",
                             "sigle": "M 31 Sk4",
-                            "sigleAddendum": "T. 12–15, {16A–18A}",
+                            "sigleAddendum": "T. 12–{18A}",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -87,7 +87,7 @@
                             "sheetId": "M31_Sk4b",
                             "sigle": "M 31 Sk4",
                             "sigleAddendum": "T. {19A, 19B}",
-                            "segmentSplit": 1,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -129,8 +129,8 @@
                         {
                             "complexId": "mx403",
                             "sheetId": "Mx403_Sk1b",
-                            "sigle": "M* 403 Sk1",
-                            "sigleAddendum": "T. 11–15",
+                            "sigle": "M* 403 Sk1 T. 11–15",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "VOL_2A_EDITION_COMING_SOON",
                             "segmentSplit": 1,
@@ -191,7 +191,7 @@
                                 {
                                     "position": 1,
                                     "startSystem": 7,
-                                    "endSystem": 9
+                                    "endSystem": 8
                                 }
                             ]
                         },
@@ -199,7 +199,7 @@
                             "complexId": "m30",
                             "sheetId": "M30_Sk1d",
                             "sigle": "M 30 Sk1",
-                            "sigleAddendum": "T. 7B–8B, 9C–10C",
+                            "sigleAddendum": "T. 7B–10C",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -212,8 +212,8 @@
                         {
                             "complexId": "m30",
                             "sheetId": "M30_Sk1e",
-                            "sigle": "M 30 Sk1",
-                            "sigleAddendum": "T. {9D–12B}",
+                            "sigle": "M 30 Sk1 T. {9D–12B}",
+                            "sigleAddendum": "",
                             "segmentSplit": 1,
                             "segments": [
                                 {
@@ -437,8 +437,8 @@
                         {
                             "complexId": "m31",
                             "sheetId": "M31_Sk1a",
-                            "sigle": "M 31 Sk1",
-                            "sigleAddendum": "T. 1–4",
+                            "sigle": "M 31 Sk1 T. 1–4",
+                            "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -451,8 +451,8 @@
                         {
                             "complexId": "m31",
                             "sheetId": "M31_Sk1b",
-                            "sigle": "M 31 Sk1",
-                            "sigleAddendum": "T. 5–9",
+                            "sigle": "M 31 Sk1 T. 5–9",
+                            "sigleAddendum": "",
                             "segmentSplit": 2,
                             "segments": [
                                 {
@@ -465,8 +465,8 @@
                         {
                             "complexId": "m31",
                             "sheetId": "M31_Sk2",
-                            "sigle": "M 31 Sk2",
-                            "sigleAddendum": "T. x+1 bis x+4",
+                            "sigle": "M 31 Sk2 T. x+1 bis x+4",
+                            "sigleAddendum": "",
                             "segmentSplit": 1,
                             "segments": [
                                 {

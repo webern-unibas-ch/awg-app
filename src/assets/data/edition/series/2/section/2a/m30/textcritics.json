@@ -15,42 +15,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g2815",
+                                "svgGroupId": "g-tkk-m30_tf1-1",
                                 "measure": "8",
                                 "system": "Klav. u.",
                                 "position": "2/8",
                                 "comment": "Oberstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g6275",
+                                "svgGroupId": "g-tkk-m30_tf1-2",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: Hilfslinie unter dem Notenkopf weggelassen (vgl. auch Korrekturen mit Bleistift)."
                             },
                             {
-                                "svgGroupId": "g6279",
+                                "svgGroupId": "g-tkk-m30_tf1-3",
                                 "measure": "15",
                                 "system": "Klav. u.",
                                 "position": "4/8",
                                 "comment": "Gemeinsamer Notenkopf für Ober- und Unterstimmenschicht korrigiert zu zwei separate Notenköpfe."
                             },
                             {
-                                "svgGroupId": "g6283",
+                                "svgGroupId": "g-tkk-m30_tf1-4",
                                 "measure": "20",
                                 "system": "Klav. u.",
                                 "position": "1–2/8",
                                 "comment": "Oberstimmenschicht: Viertelnoten b/es<sup>1</sup>–a/es<sup>1</sup> korrigiert zu Achtelnoten mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g6318",
+                                "svgGroupId": "g-tkk-m30_tf1-5",
                                 "measure": "22",
                                 "system": "Klav. u.",
                                 "position": "1–3/8",
                                 "comment": "sic."
                             },
                             {
-                                "svgGroupId": "g6321",
+                                "svgGroupId": "g-tkk-m30_tf1-6",
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "Taktende",
@@ -74,399 +74,399 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1187",
+                                "svgGroupId": "g-tkk-m30_sk1-1",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "5/8",
                                 "comment": "Oberstimmenschicht: sic. Hilfslinien unterhalb von vermutlich als b/d<sup>1</sup> gedachter Viertelnote."
                             },
                             {
-                                "svgGroupId": "g1186",
+                                "svgGroupId": "g-tkk-m30_sk1-2",
                                 "measure": "4",
                                 "system": "1",
                                 "position": "3. Note",
                                 "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g1174",
+                                "svgGroupId": "g-tkk-m30_sk1-3",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: es überschreibt f."
                             },
                             {
-                                "svgGroupId": "g1178",
+                                "svgGroupId": "g-tkk-m30_sk1-4",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g1182",
+                                "svgGroupId": "g-tkk-m30_sk1-5",
                                 "measure": "6",
                                 "system": "2",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Achtelpause überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b."
                             },
                             {
-                                "svgGroupId": "g1058",
+                                "svgGroupId": "g-tkk-m30_sk1-6",
                                 "measure": "{7A–10B}",
                                 "system": "4–5",
                                 "position": "",
                                 "comment": "Akkolade pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1067",
+                                "svgGroupId": "g-tkk-m30_sk1-7",
                                 "measure": "{8A}",
                                 "system": "5",
                                 "position": "3/8",
                                 "comment": "e überschreibt c."
                             },
                             {
-                                "svgGroupId": "g1075",
+                                "svgGroupId": "g-tkk-m30_sk1-8",
                                 "measure": "{8A}",
                                 "system": "5",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: C radiert und ersetzt durch c."
                             },
                             {
-                                "svgGroupId": "g1062",
+                                "svgGroupId": "g-tkk-m30_sk1-9",
                                 "measure": "{9A–10B}",
                                 "system": "4–5",
                                 "position": "1–3/4",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g827",
+                                "svgGroupId": "g-tkk-m30_sk1-10",
                                 "measure": "{11A–16A}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Akkolade pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1116",
+                                "svgGroupId": "g-tkk-m30_sk1-11",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "3/8",
                                 "comment": "as<sup>2</sup> gestrichen und ersetzt durch f<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "text1949",
+                                "svgGroupId": "g-tkk-m30_sk1-12",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "(3/8)",
                                 "comment": "Nicht entzifferbare, gestrichene Schicht über dem System."
                             },
                             {
-                                "svgGroupId": "g1122",
+                                "svgGroupId": "g-tkk-m30_sk1-13",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder as<sup>1</sup>?)."
                             },
                             {
-                                "svgGroupId": "g1137",
+                                "svgGroupId": "g-tkk-m30_sk1-14",
                                 "measure": "8B",
                                 "system": "11",
                                 "position": "1–3/8",
                                 "comment": "Oberstimmenschicht: b–a–g überschreibt as–g–f."
                             },
                             {
-                                "svgGroupId": "g1151",
+                                "svgGroupId": "g-tkk-m30_sk1-15",
                                 "measure": "8B",
                                 "system": "11",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: As–G überschreibt B–As und punktierte Viertelnote F."
                             },
                             {
-                                "svgGroupId": "g1161",
+                                "svgGroupId": "g-tkk-m30_sk1-16",
                                 "measure": "9C",
                                 "system": "10",
                                 "position": "(1/4)",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1157",
+                                "svgGroupId": "g-tkk-m30_sk1-17",
                                 "measure": "9C",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Des gestrichen."
                             },
                             {
-                                "svgGroupId": "g998",
+                                "svgGroupId": "g-tkk-m30_sk1-18",
                                 "measure": "9D",
                                 "system": "13",
                                 "position": "",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–f<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g2571",
+                                "svgGroupId": "g-tkk-m30_sk1-19",
                                 "measure": "{9D–12B}",
                                 "system": "13",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1132",
+                                "svgGroupId": "g-tkk-m30_sk1-20",
                                 "measure": "9E–10E",
                                 "system": "14",
                                 "position": "letzte Note bis 1. Note",
                                 "comment": "Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g1140",
+                                "svgGroupId": "g-tkk-m30_sk1-21",
                                 "measure": "10E",
                                 "system": "14",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: ges<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1156",
+                                "svgGroupId": "g-tkk-m30_sk1-22",
                                 "measure": "10E",
                                 "system": "14",
                                 "position": "4–6/8",
                                 "comment": "ges<sup>1</sup>–b<sup>1</sup>–ges<sup>1</sup> überschreibt b<sup>1</sup>–ges<sup>1</sup>–b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1179",
+                                "svgGroupId": "g-tkk-m30_sk1-23",
                                 "measure": "12C",
                                 "system": "14",
                                 "position": "3/8",
                                 "comment": "des<sup>3</sup>/f<sup>3</sup> überschreibt c<sup>2</sup>/es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1162",
+                                "svgGroupId": "g-tkk-m30_sk1-24",
                                 "measure": "12C",
                                 "system": "15",
                                 "position": "3/8",
                                 "comment": "b überschreibt B."
                             },
                             {
-                                "svgGroupId": "g1188",
+                                "svgGroupId": "g-tkk-m30_sk1-25",
                                 "measure": "12C",
                                 "system": "14",
                                 "position": "3. Note",
                                 "comment": "d<sup>2</sup> überschreibt es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1166",
+                                "svgGroupId": "g-tkk-m30_sk1-26",
                                 "measure": "12C",
                                 "system": "15",
                                 "position": "4–6/8",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g1197",
+                                "svgGroupId": "g-tkk-m30_sk1-27",
                                 "measure": "{13B–15B}",
                                 "system": "14–15",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1193",
+                                "svgGroupId": "g-tkk-m30_sk1-28",
                                 "measure": "{13B}",
                                 "system": "14",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: h<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1213",
+                                "svgGroupId": "g-tkk-m30_sk1-29",
                                 "measure": "{14B}",
                                 "system": "15",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: c<sup>2</sup>–es<sup>2</sup>–c<sup>2</sup> überschreibt es<sup>2</sup>–c<sup>2</sup>–es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1123",
+                                "svgGroupId": "g-tkk-m30_sk1-30",
                                 "measure": "16B",
                                 "system": "17",
                                 "position": "3. Note",
                                 "comment": "g<sup>1</sup> ersetzt durch b<sup>1</sup>/g<sup>2</sup>/b<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1117",
+                                "svgGroupId": "g-tkk-m30_sk1-31",
                                 "measure": "{13C}",
                                 "system": "16–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1112",
+                                "svgGroupId": "g-tkk-m30_sk1-32",
                                 "measure": "{13C}",
                                 "system": "16",
                                 "position": "3. Note",
                                 "comment": "f<sup>2</sup> überschreibt des<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1134",
+                                "svgGroupId": "g-tkk-m30_sk1-33",
                                 "measure": "14C",
                                 "system": "16",
                                 "position": "5–6/8",
                                 "comment": "dis<sup>1</sup>–h überschreibt dis<sup>2</sup>–h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1120",
+                                "svgGroupId": "g-tkk-m30_sk1-34",
                                 "measure": "18",
                                 "system": "1",
                                 "position": "2. Note",
                                 "comment": "Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g1135",
+                                "svgGroupId": "g-tkk-m30_sk1-35",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "3.–4. Note",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g1131",
+                                "svgGroupId": "g-tkk-m30_sk1-36",
                                 "measure": "19",
                                 "system": "1",
                                 "position": "6/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1172",
+                                "svgGroupId": "g-tkk-m30_sk1-37",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "<i>b</i> über dem System gestrichen."
                             },
                             {
-                                "svgGroupId": "g1233",
+                                "svgGroupId": "g-tkk-m30_sk1-38",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "(1/4)",
                                 "comment": "Viertelnote gestrichen (Tonhöhe undeutlich)."
                             },
                             {
-                                "svgGroupId": "g1167",
+                                "svgGroupId": "g-tkk-m30_sk1-39",
                                 "measure": "21",
                                 "system": "2",
                                 "position": "1/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B ersetzt durch B<sub>1</sub>."
                             },
                             {
-                                "svgGroupId": "g1160",
+                                "svgGroupId": "g-tkk-m30_sk1-40",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "2. Note",
                                 "comment": "g<sup>1</sup> gestrichen und ersetzt durch b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1121",
+                                "svgGroupId": "g-tkk-m30_sk1-41",
                                 "measure": "22",
                                 "system": "5",
                                 "position": "4. Note",
                                 "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des gestrichen."
                             },
                             {
-                                "svgGroupId": "g1129",
+                                "svgGroupId": "g-tkk-m30_sk1-42",
                                 "measure": "{23A}",
                                 "system": "4",
                                 "position": "",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g1107",
+                                "svgGroupId": "g-tkk-m30_sk1-43",
                                 "measure": "23B",
                                 "system": "4",
                                 "position": "2/8",
                                 "comment": "f<sup>1</sup> überschreibt des<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1113",
+                                "svgGroupId": "g-tkk-m30_sk1-44",
                                 "measure": "23B",
                                 "system": "4",
                                 "position": "3/8",
                                 "comment": "es<sup>1</sup> überschreibt c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1144",
+                                "svgGroupId": "g-tkk-m30_sk1-45",
                                 "measure": "{24A}",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "heses<sup>1</sup> überschreibt as<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1148",
+                                "svgGroupId": "g-tkk-m30_sk1-46",
                                 "measure": "{24A}",
                                 "system": "24–5",
                                 "position": "Taktmitte",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g1155",
+                                "svgGroupId": "g-tkk-m30_sk1-47",
                                 "measure": "{24A}",
                                 "system": "4",
                                 "position": "letzte Note",
                                 "comment": "Viertelnote überschreibt Achtelnote."
                             },
                             {
-                                "svgGroupId": "g1159",
+                                "svgGroupId": "g-tkk-m30_sk1-48",
                                 "measure": "{24A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1164",
+                                "svgGroupId": "g-tkk-m30_sk1-49",
                                 "measure": "24B",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "e<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1168",
+                                "svgGroupId": "g-tkk-m30_sk1-50",
                                 "measure": "24B",
                                 "system": "5",
                                 "position": "2/8",
                                 "comment": "Notenkopf c<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g1071",
+                                "svgGroupId": "g-tkk-m30_sk1-51",
                                 "measure": "25(4–6/8)",
                                 "system": "7",
                                 "position": "1.–2. Note",
                                 "comment": "ges<sup>2</sup>–fes<sup>2</sup> überschreibt b<sup>2</sup>–as<sup>2</sup>. "
                             },
                             {
-                                "svgGroupId": "g1101",
+                                "svgGroupId": "g-tkk-m30_sk1-52",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "1/8",
                                 "comment": " c<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1108",
+                                "svgGroupId": "g-tkk-m30_sk1-53",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "4. Note",
                                 "comment": "a<sup>1</sup> überschreibt ges<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1114",
+                                "svgGroupId": "g-tkk-m30_sk1-54",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "6/8",
                                 "comment": "h<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g37",
+                                "svgGroupId": "g-tkk-m30_sk1-55",
                                 "measure": "{28A–29A}",
                                 "system": "7",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1118",
+                                "svgGroupId": "g-tkk-m30_sk1-56",
                                 "measure": "{28A}",
                                 "system": "7",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1125",
+                                "svgGroupId": "g-tkk-m30_sk1-57",
                                 "measure": "28B",
                                 "system": "8",
                                 "position": "(1/4)",
@@ -478,14 +478,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g2",
+                    "svgGroupId": "g-lb-m30_sk1k-to-m31_sk1a",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk1a"
                     }
                 },
                 {
-                    "svgGroupId": "g4",
+                    "svgGroupId": "g-lb-m30_sk1k-to-m31_sk1b",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk1b"
