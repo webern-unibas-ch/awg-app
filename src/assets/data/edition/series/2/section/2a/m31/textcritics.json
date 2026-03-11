@@ -15,56 +15,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-1",
+                                "svgGroupId": "g-tkk-m31_tf1-001",
                                 "measure": "1",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-2",
+                                "svgGroupId": "g-tkk-m31_tf1-002",
                                 "measure": "5",
                                 "system": "Klav. u.",
                                 "position": "3/16",
                                 "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-3",
+                                "svgGroupId": "g-tkk-m31_tf1-003",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-4",
+                                "svgGroupId": "g-tkk-m31_tf1-004",
                                 "measure": "15",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-5",
+                                "svgGroupId": "g-tkk-m31_tf1-005",
                                 "measure": "16",
                                 "system": "Klav.",
                                 "position": "Taktende",
                                 "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-6",
+                                "svgGroupId": "g-tkk-m31_tf1-006",
                                 "measure": "18",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von zwischen 3/8 und 4/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-7",
+                                "svgGroupId": "g-tkk-m31_tf1-007",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 3/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_tf1-8",
+                                "svgGroupId": "g-tkk-m31_tf1-008",
                                 "measure": "28",
                                 "system": "Klav.",
                                 "position": "8/16",
@@ -88,7 +88,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk1-1",
+                                "svgGroupId": "g-tkk-m31_sk1-001",
                                 "measure": "1",
                                 "system": "10",
                                 "position": "(2/4)",
@@ -128,7 +128,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk2-1",
+                                "svgGroupId": "g-tkk-m31_sk2-001",
                                 "measure": "x+2",
                                 "system": "10",
                                 "position": "1. Note",
@@ -152,70 +152,70 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-1",
+                                "svgGroupId": "g-tkk-m31_sk3-001",
                                 "measure": "2",
                                 "system": "16",
                                 "position": "1/4",
                                 "comment": "Im Bassschlüssel zu lesende Viertelnote as/c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-2",
+                                "svgGroupId": "g-tkk-m31_sk3-002",
                                 "measure": "3",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-3",
+                                "svgGroupId": "g-tkk-m31_sk3-003",
                                 "measure": "3",
                                 "system": "16",
                                 "position": "2/4",
                                 "comment": "g gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-4",
+                                "svgGroupId": "g-tkk-m31_sk3-004",
                                 "measure": "4",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-5",
+                                "svgGroupId": "g-tkk-m31_sk3-005",
                                 "measure": "4",
                                 "system": "15",
                                 "position": "letzte Note",
                                 "comment": "g<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> überschreibt f<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-6",
+                                "svgGroupId": "g-tkk-m31_sk3-006",
                                 "measure": "8",
                                 "system": "17",
                                 "position": "2/8",
                                 "comment": "a<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-7",
+                                "svgGroupId": "g-tkk-m31_sk3-007",
                                 "measure": "10",
                                 "system": "18",
                                 "position": "(2–3/4)",
                                 "comment": "Punktierte Viertelnote G/d mit Achtelnote g überschreibt Halbe Note G/d; Augmentationspunkte gestrichen und Achtelnote d auf 5/8 hinzugefügt und mit g auf 6/8 zusammengebalkt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-8",
+                                "svgGroupId": "g-tkk-m31_sk3-008",
                                 "measure": "10",
                                 "system": "17",
                                 "position": "3/4",
                                 "comment": "h<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-9",
+                                "svgGroupId": "g-tkk-m31_sk3-009",
                                 "measure": "11",
                                 "system": "2",
                                 "position": "",
                                 "comment": "Violinschlüssel und Noten radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk3-10",
+                                "svgGroupId": "g-tkk-m31_sk3-010",
                                 "measure": "15",
                                 "system": "1",
                                 "position": "3–6/8",
@@ -255,7 +255,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk3_1-1",
+                                "svgGroupId": "g-tkk-m31_sk3_1-001",
                                 "measure": "10+1",
                                 "system": "6",
                                 "position": "1. Note",
@@ -295,7 +295,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk3_2-1",
+                                "svgGroupId": "g-tkk-m31_sk3_2-001",
                                 "measure": "17",
                                 "system": "5",
                                 "position": "3/4",
@@ -335,91 +335,91 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-1",
+                                "svgGroupId": "g-tkk-m31_sk4-001",
                                 "measure": "12",
                                 "system": "9",
                                 "position": "4–5/8",
                                 "comment": "H–H überschreibt e–gis."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-2",
+                                "svgGroupId": "g-tkk-m31_sk4-002",
                                 "measure": "15",
                                 "system": "8",
                                 "position": "1–6/8",
                                 "comment": "Sechs Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu drei Achtelnoten, Viertelnote und Achtelnote; Achtelnote e<sup>2</sup> auf 5/8 aufgrund der Änderung getilgt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-3",
+                                "svgGroupId": "g-tkk-m31_sk4-003",
                                 "measure": "{16A–18A}",
                                 "system": "8–9",
                                 "position": "",
                                 "comment": "Takte zusammen mit T. {{ '{' }}19B{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-4",
+                                "svgGroupId": "g-tkk-m31_sk4-004",
                                 "measure": "{17A}",
                                 "system": "8",
                                 "position": "2/4",
                                 "comment": "f<sup>3</sup> überschreibt c<sup>3</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-5",
+                                "svgGroupId": "g-tkk-m31_sk4-005",
                                 "measure": "{17A}",
                                 "system": "8",
                                 "position": "2/4–6/8",
                                 "comment": "Drei Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu Viertelnote und zwei Achtelnoten."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-6",
+                                "svgGroupId": "g-tkk-m31_sk4-006",
                                 "measure": "{18A}",
                                 "system": "8",
                                 "position": "",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-7",
+                                "svgGroupId": "g-tkk-m31_sk4-007",
                                 "measure": "{19A}",
                                 "system": "11",
                                 "position": "",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-8",
+                                "svgGroupId": "g-tkk-m31_sk4-008",
                                 "measure": "{19B}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Takt zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-9",
+                                "svgGroupId": "g-tkk-m31_sk4-009",
                                 "measure": "{19B}",
                                 "system": "11",
                                 "position": "5/8",
                                 "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-10",
+                                "svgGroupId": "g-tkk-m31_sk4-010",
                                 "measure": "{16B–18B}",
                                 "system": "13–14",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-11",
+                                "svgGroupId": "g-tkk-m31_sk4-011",
                                 "measure": "{16B–18B}",
                                 "system": "13–14",
                                 "position": "",
                                 "comment": "Takte zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}19B{{ '}' }} durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-12",
+                                "svgGroupId": "g-tkk-m31_sk4-012",
                                 "measure": "16C",
                                 "system": "13",
                                 "position": "4/8",
                                 "comment": "f<sup>1</sup> überschreibt d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk4-13",
+                                "svgGroupId": "g-tkk-m31_sk4-013",
                                 "measure": "16C",
                                 "system": "14",
                                 "position": "5–6/8",
@@ -487,56 +487,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-1",
+                                "svgGroupId": "g-tkk-m31_sk5-001",
                                 "measure": "{20–24}",
                                 "system": "1–2",
                                 "position": "6/8",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-2",
+                                "svgGroupId": "g-tkk-m31_sk5-002",
                                 "measure": "{21}",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Viertelnote G gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-3",
+                                "svgGroupId": "g-tkk-m31_sk5-003",
                                 "measure": "{25–29}",
                                 "system": "4–5",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-4",
+                                "svgGroupId": "g-tkk-m31_sk5-004",
                                 "measure": "{25}",
                                 "system": "5",
                                 "position": "1/4",
                                 "comment": "Viertelnote d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-5",
+                                "svgGroupId": "g-tkk-m31_sk5-005",
                                 "measure": "{27A}",
                                 "system": "4–5",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-6",
+                                "svgGroupId": "g-tkk-m31_sk5-006",
                                 "measure": "{27B}",
                                 "system": "5",
                                 "position": "1. Pause",
                                 "comment": "Achtelpause gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-7",
+                                "svgGroupId": "g-tkk-m31_sk5-007",
                                 "measure": "{28}",
                                 "system": "4",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelpause überschreibt Achtelpause."
                             },
                             {
-                                "svgGroupId": "g-tkk-m31_sk5-8",
+                                "svgGroupId": "g-tkk-m31_sk5-008",
                                 "measure": "{28}",
                                 "system": "4",
                                 "position": "5–6/8",
