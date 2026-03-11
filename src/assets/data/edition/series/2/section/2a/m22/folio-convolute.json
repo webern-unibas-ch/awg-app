@@ -531,7 +531,7 @@
                             "sheetId": "Mx414_Sk2",
                             "sigle": "M* 414 Sk2",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -573,10 +573,10 @@
                             "sheetId": "M22_Sk23c",
                             "sigle": "M 22 Sk23",
                             "sigleAddendum": "T. 5–6 (Var. XVI)",
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 5,
                                     "startSystem": 7,
                                     "endSystem": 8
                                 }
