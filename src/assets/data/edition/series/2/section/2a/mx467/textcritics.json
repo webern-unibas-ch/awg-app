@@ -15,7 +15,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "g-tkk-mx467_tf1-001",
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "1/2",
@@ -39,7 +39,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "g-tkk-mx467_sk1-001",
                                 "measure": "7",
                                 "system": "1",
                                 "position": "2/2",
@@ -63,49 +63,49 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "g-tkk-mx467_sk2-001",
                                 "measure": "2",
                                 "system": "18",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt mit Mittelstimme zusammengehalste Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "g-tkk-mx467_sk2-002",
                                 "measure": "2",
                                 "system": "18",
                                 "position": "3/4",
                                 "comment": "Unterstimmenschicht: Viertelnote a<sup>1</sup> überschreibt mit Oberstimme zusammengehalste Halbe Note <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "g-tkk-mx467_sk2-003",
                                 "measure": "3",
                                 "system": "18",
                                 "position": "3. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "g-tkk-mx467_sk2-004",
                                 "measure": "3",
                                 "system": "17",
                                 "position": "2/2",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "g-tkk-mx467_sk2-005",
                                 "measure": "6",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "Viertelnote g gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "g-tkk-mx467_sk2-006",
                                 "measure": "7",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Viertelnote g überschreibt Viertelnote G."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "g-tkk-mx467_sk2-007",
                                 "measure": "8",
                                 "system": "17",
                                 "position": "1. Note",
