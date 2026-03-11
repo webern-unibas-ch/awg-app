@@ -267,17 +267,17 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m31_sk3_1-to-m31_sk3d",
-                    "linkTo": {
-                        "complexId": "m31",
-                        "sheetId": "M31_Sk3d"
-                    }
-                },
-                {
                     "svgGroupId": "g-lb-m31_sk3_1-to-m31_sk3_2",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk3_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m31_sk3_1-to-m31_sk3d",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M31_Sk3d"
                     }
                 }
             ]
@@ -307,17 +307,17 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m31_sk3_2-to-m31_sk3d",
-                    "linkTo": {
-                        "complexId": "m31",
-                        "sheetId": "M31_Sk3d"
-                    }
-                },
-                {
                     "svgGroupId": "g-lb-m31_sk3_2-to-m31_sk3_1",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g-lb-m31_sk3_2-to-m31_sk3d",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M31_Sk3d"
                     }
                 }
             ]
