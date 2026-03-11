@@ -510,7 +510,7 @@
       <path id="path1579" d="M40.735 40.408H39.46V27.144h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g1122" class="tkk" transform="translate(34.052 25.78)">
+  <g id="g-tkk-m22_sk18-002" class="tkk" transform="translate(34.052 25.78)">
     <path id="line502" d="M912.526 231.671h7.972" style="fill:none;stroke:#777;stroke-width:.678"/>
     <g id="text504" aria-label="œ" style="font-size:16.4px;font-family:Maestro;fill:#777;stroke-width:.750002">
       <path id="path308" d="M914.024 231.688q.164-.443.492-.82.344-.377.787-.656.443-.295.951-.443.508-.164 1.033-.164t.919.18q.393.164.623.46.23.278.279.672.065.377-.099.82t-.508.82q-.345.394-.787.672-.443.296-.968.443-.508.164-1.017.164-.525 0-.918-.18-.377-.164-.623-.46-.23-.295-.28-.688-.048-.377.116-.82"/>
@@ -526,7 +526,7 @@
     <path id="path304" d="M746.99 315.516q.5.542.73 1.016.234.474.234.948 0 .849-.646 1.484-.646.63-1.594.63-.85 0-1.386-.515-.53-.516-.53-1.203 0-.589.432-1.157.437-.567 1.645-1.093-.463-.568-.63-.938-.161-.37-.161-.734 0-.693.515-1.193.521-.5 1.308-.5.75 0 1.224.432.474.433.474 1.01 0 .574-.386 1.042-.38.47-1.229.771m-.203-.219q.562-.192.87-.63.312-.437.312-1.005 0-.531-.302-.833-.297-.308-.781-.308-.464 0-.75.292-.287.292-.287.755 0 .35.151.646.22.438.787 1.084m-.719.542q-.776.323-1.177.938-.396.61-.396 1.312 0 .568.35.917.353.344.926.344.594 0 1-.417t.406-.995q0-.437-.24-.917-.234-.484-.869-1.182" style="font-style:italic;font-size:10.6667px;font-family:&quot;Times New Roman&quot;;-inkscape-font-specification:&quot;Times New Roman, Italic&quot;"/>
   </g>
   <path id="path1095" d="m749.157 314.638 64.402-.223v-1.56" style="fill:none;stroke:#000;stroke-width:.64252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
-  <g id="g1143" class="tkk" transform="translate(34.052 25.78)">
+  <g id="g-tkk-m22_sk18-001" class="tkk" transform="translate(34.052 25.78)">
     <path id="line156" d="M308.955 264.471h9.339" style="fill:none;stroke:#000;stroke-width:.678"/>
     <g id="text158" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
       <path id="path293" d="M310.497 264.493q.218-.59.656-1.093.459-.503 1.05-.875.59-.393 1.268-.59.678-.219 1.377-.219.7 0 1.225.24.525.22.83.613.307.372.372.896.088.503-.13 1.094-.22.59-.679 1.093-.459.525-1.05.897-.59.393-1.29.59-.677.219-1.355.219-.7 0-1.225-.24-.502-.22-.83-.613-.307-.394-.372-.918-.066-.503.153-1.094"/>

@@ -220,10 +220,10 @@
                             "sigle": "M 22 Sk3",
                             "sigleAddendum": "T. 7–8",
                             "reversed": true,
-                            "segmentSplit": 1,
+                            "segmentSplit": "2",
                             "segments": [
                                 {
-                                    "position": 1,
+                                    "position": 2,
                                     "startSystem": 23,
                                     "endSystem": 24
                                 }
@@ -250,10 +250,10 @@
                             "sigle": "M 22 Sk4",
                             "sigleAddendum": "T. 6(3/4)–8",
                             "reversed": true,
-                            "segmentSplit": 1,
+                            "segmentSplit": 2,
                             "segments": [
                                 {
-                                    "position": 1,
+                                    "position": 2,
                                     "startSystem": 19,
                                     "endSystem": 20
                                 }
@@ -280,10 +280,10 @@
                             "sigle": "M 22 Sk6",
                             "sigleAddendum": "",
                             "reversed": true,
-                            "segmentSplit": 2,
+                            "segmentSplit": 1,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 1,
                                     "startSystem": 15,
                                     "endSystem": 16
                                 }
@@ -325,7 +325,7 @@
                             "sigle": "M 22 Sk22",
                             "sigleAddendum": "T. 5(3/4)–6",
                             "reversed": true,
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
                                     "position": 1,
@@ -340,27 +340,12 @@
                             "sigle": "M 22 Sk22",
                             "sigleAddendum": "T. 7–8",
                             "reversed": true,
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 17,
                                     "endSystem": 18
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m22",
-                            "sheetId": "M22_Sk8",
-                            "sigle": "M 22 Sk8",
-                            "sigleAddendum": "",
-                            "reversed": true,
-                            "segmentSplit": 1,
-                            "segments": [
-                                {
-                                    "position": 1,
-                                    "startSystem": 11,
-                                    "endSystem": 12
                                 }
                             ]
                         },
@@ -375,7 +360,22 @@
                                 {
                                     "position": 1,
                                     "startSystem": 9,
-                                    "endSystem": 10
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m22",
+                            "sheetId": "M22_Sk8",
+                            "sigle": "M 22 Sk8",
+                            "sigleAddendum": "",
+                            "reversed": true,
+                            "segmentSplit": 5,
+                            "segments": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 11,
+                                    "endSystem": 12
                                 }
                             ]
                         },

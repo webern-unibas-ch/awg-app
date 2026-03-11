@@ -114,7 +114,7 @@
   </g>
   <path id="line160" d="M309.624 215.17v-27.79" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="path162" d="m289.129 184.647 20.495 2.733v2.733l-20.495-2.733z" style="fill:#000;fill-rule:nonzero;stroke:none;stroke-width:.750002"/>
-  <g id="g1082" class="tkk" transform="translate(34.052 29.78)">
+  <g id="g-tkk-m22_sk16-001" class="tkk" transform="translate(34.052 29.78)">
     <path id="polyline124" d="m117.533 116.325 26.138-10.25" style="fill:none;stroke:#000;stroke-width:.292136" transform="matrix(1.05112 0 0 2.6006 56.42 -122.945)"/>
     <g id="text164" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
       <path id="path547" d="M182.264 172.655q.219-.59.656-1.094.46-.502 1.05-.874.59-.394 1.268-.59.678-.22 1.377-.22.7 0 1.225.241.525.219.83.613.307.371.373.896.087.503-.132 1.093-.218.59-.678 1.094-.459.525-1.05.896-.59.394-1.29.59-.677.22-1.355.22-.7 0-1.225-.241-.502-.219-.83-.612-.307-.394-.372-.919-.066-.503.153-1.093"/>
@@ -285,7 +285,7 @@
   </g>
   <path id="line346" d="M832.605 215.17v-27.79" style="fill:none;stroke:#000;stroke-width:.483"/>
   <path id="path348" d="m801.305 183.28 31.623 2.733v2.734l-31.623-2.734z" style="fill:#000;fill-rule:nonzero;stroke:none;stroke-width:.750002"/>
-  <g id="g1102" class="tkk" transform="translate(34.052 29.78)">
+  <g id="g-tkk-m22_sk16-004" class="tkk" transform="translate(34.052 29.78)">
     <path id="line350" d="M831.16 161.016v-10.934" style="fill:none;stroke:#777;stroke-width:.483"/>
     <g id="text352" aria-label="œ" style="font-size:16.4px;font-family:Maestro;fill:#777;stroke-width:.750002">
       <path id="path387" d="M826.28 161.716q.164-.443.492-.82.344-.377.787-.656.443-.295.951-.443.509-.164 1.033-.164.525 0 .919.18.393.165.623.46.23.279.279.672.065.377-.099.82t-.508.82q-.344.394-.787.673-.443.295-.968.442-.508.164-1.017.164-.524 0-.918-.18-.377-.164-.623-.46-.23-.294-.279-.688-.05-.377.115-.82"/>
@@ -392,7 +392,7 @@
     <path id="path291" d="M179.5 87.239h-2.195v-8.273q-1.203 1.125-2.836 1.664v-1.993q.86-.28 1.867-1.062 1.008-.79 1.383-1.836h1.781z" style="font-style:normal;font-weight:700;font-size:16px;-inkscape-font-specification:&quot;Arial, Bold&quot;"/>
     <path id="path293" d="m190.22 78.59-2.126.235q-.078-.656-.406-.969t-.852-.312q-.695 0-1.18.625-.476.625-.6 2.601.82-.969 2.038-.969 1.375 0 2.352 1.047.984 1.047.984 2.703 0 1.758-1.031 2.82-1.031 1.063-2.649 1.063-1.734 0-2.851-1.343-1.117-1.352-1.117-4.422 0-3.149 1.164-4.54 1.164-1.39 3.023-1.39 1.305 0 2.156.734.86.727 1.094 2.118m-4.977 4.79q0 1.07.492 1.656.492.578 1.125.578.61 0 1.015-.477.407-.476.407-1.562 0-1.117-.438-1.633-.437-.523-1.094-.523-.632 0-1.07.5-.437.492-.437 1.46" style="font-style:normal;font-weight:700;font-size:16px;-inkscape-font-specification:&quot;Arial, Bold&quot;"/>
   </g>
-  <g id="g1095" class="tkk" transform="translate(34.052 29.78)">
+  <g id="g-tkk-m22_sk16-003" class="tkk" transform="translate(34.052 29.78)">
     <path id="polyline122" d="m460.225 163.133 14.521-7.175" style="fill:none;stroke:#000;stroke-width:.257169" transform="matrix(1.89983 0 0 1.8567 -262.257 -63.03)"/>
     <path id="line330" d="M623.288 233.677v18.222" style="fill:none;stroke:#000;stroke-width:.483"/>
     <g id="text332" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
@@ -402,7 +402,7 @@
       <path id="path276" d="M617.848 231.529v3.258l2.143-.7v-3.258zm-.634-2.056v-3.564h.634v3.346l2.143-.7v-3.193h.634v2.996l.853-.284v2.274l-.853.284v3.236l.853-.262v2.252l-.853.285v3.564h-.634v-3.368l-2.143.7v3.236h-.634v-3.017l-.94.306v-2.274l.94-.306v-3.258l-.94.306v-2.253z"/>
     </g>
   </g>
-  <g id="g1089" class="tkk" transform="translate(34.052 29.78)">
+  <g id="g-tkk-m22_sk16-002" class="tkk" transform="translate(34.052 29.78)">
     <path id="line290" d="M628.31 166.256v-14.579" style="fill:none;stroke:#000;stroke-width:.483"/>
     <g id="text292" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
       <path id="path263" d="M622.14 167.188q.219-.59.656-1.093.46-.503 1.05-.875.59-.393 1.268-.59.678-.219 1.378-.219t1.224.24q.525.22.831.613.306.372.372.896.087.503-.131 1.094-.22.59-.678 1.093-.46.525-1.05.897-.59.393-1.29.59-.678.219-1.356.219-.7 0-1.224-.24-.503-.22-.831-.613-.306-.394-.372-.918-.066-.503.153-1.094"/>

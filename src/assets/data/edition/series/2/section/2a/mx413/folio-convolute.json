@@ -74,7 +74,7 @@
                             "sheetId": "M22_Sk15",
                             "sigle": "M 22 Sk15",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -116,10 +116,10 @@
                             "sheetId": "M22_Sk23b",
                             "sigle": "M 22 Sk23",
                             "sigleAddendum": "T. 3–4 (Var. XVI)",
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 5,
                                     "startSystem": 5,
                                     "endSystem": 6
                                 }
@@ -184,7 +184,7 @@
                             "sheetId": "M22_Sk17",
                             "sigle": "M 22 Sk17",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -211,10 +211,10 @@
                             "sheetId": "M22_Sk18b",
                             "sigle": "M 22 Sk18",
                             "sigleAddendum": "T. 7 (Var. XIII)",
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 5,
                                     "startSystem": 13,
                                     "endSystem": 14
                                 }
