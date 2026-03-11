@@ -78,7 +78,7 @@
                             "sheetId": "M22_Sk1",
                             "sigle": "M 22 Sk1",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -151,10 +151,10 @@
                             "sheetId": "Mx412_Sk1b",
                             "sigle": "M* 412 Sk1",
                             "sigleAddendum": "T. 9–11",
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 5,
                                     "startSystem": 22,
                                     "endSystem": 23
                                 }

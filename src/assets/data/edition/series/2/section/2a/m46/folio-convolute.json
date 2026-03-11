@@ -61,10 +61,10 @@
                             "sigle": "M 27 Sk1.1",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "segmentSplit": 4,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 4,
+                                    "position": 5,
                                     "startSystem": 14,
                                     "endSystem": 13
                                 }
