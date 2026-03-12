@@ -15,70 +15,70 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "awg-tkk-m76_tf1-001",
                                 "measure": "6",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von zwischen 1/4 und 2/4."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "awg-tkk-m76_tf1-002",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m76_tf1-003",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "awg-tkk-m76_tf1-004",
                                 "measure": "9",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt zu G weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "awg-tkk-m76_tf1-005",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>/c<sup>2</sup> ergänzt mit Blick auf Textfassung 2."
                             },
                             {
-                                "svgGroupId": "g2646",
+                                "svgGroupId": "awg-tkk-m76_tf1-006",
                                 "measure": "14–17",
                                 "system": "Klav.",
                                 "position": "",
                                 "comment": "Unterstimmenschicht in <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br />##Abbildung##"
                             },
                             {
-                                "svgGroupId": "g2650",
+                                "svgGroupId": "awg-tkk-m76_tf1-007",
                                 "measure": "16",
                                 "system": "Klav.",
                                 "position": "3/8",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen 2/8 und 3/8."
                             },
                             {
-                                "svgGroupId": "g2654",
+                                "svgGroupId": "awg-tkk-m76_tf1-008",
                                 "measure": "17",
                                 "system": "Klav.",
                                 "position": "3/8",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen 2/8 und 3/8."
                             },
                             {
-                                "svgGroupId": "g2662",
+                                "svgGroupId": "awg-tkk-m76_tf1-009",
                                 "measure": "18",
                                 "system": "Klav.",
                                 "position": "4/8",
                                 "comment": "Beginn der Decrescendogabel versetzt von zwischen 4/8 und 5/8."
                             },
                             {
-                                "svgGroupId": "g2666",
+                                "svgGroupId": "awg-tkk-m76_tf1-010",
                                 "measure": "20",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
