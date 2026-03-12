@@ -1067,21 +1067,6 @@
                         },
                         {
                             "complexId": "mx408",
-                            "sheetId": "Mx408_Sk1_1",
-                            "sigle": "M* 408 Sk1.1",
-                            "sigleAddendum": "",
-                            "selectable": false,
-                            "segmentSplit": 2,
-                            "segments": [
-                                {
-                                    "position": 1,
-                                    "startSystem": 3,
-                                    "endSystem": 4
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "mx408",
                             "sheetId": "Mx408_Sk2a",
                             "sigle": "M* 408 Sk2",
                             "sigleAddendum": "T. 5–10",

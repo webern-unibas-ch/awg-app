@@ -220,7 +220,7 @@
                             "sigle": "M 22 Sk3",
                             "sigleAddendum": "T. 7–8",
                             "reversed": true,
-                            "segmentSplit": "2",
+                            "segmentSplit": 2,
                             "segments": [
                                 {
                                     "position": 2,
