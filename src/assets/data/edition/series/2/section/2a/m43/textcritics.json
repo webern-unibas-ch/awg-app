@@ -15,42 +15,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-001",
+                                "svgGroupId": "g-tkk-m43_tf1-001",
                                 "measure": "vor 1",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Note."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-002",
+                                "svgGroupId": "g-tkk-m43_tf1-002",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "5/8",
                                 "comment": "Ende der Decrescendogabel versetzt von zwischen 2/4 und 5/8."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-003",
+                                "svgGroupId": "g-tkk-m43_tf1-003",
                                 "measure": "6",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "e korrigiert zu g mit Blick auf Stimmführung."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-004",
+                                "svgGroupId": "g-tkk-m43_tf1-004",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "8. Note",
                                 "comment": "Achtelnote es<sup>2</sup> ergänzt mit Blick auf Ligaturbogen von 7. Note."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-005",
+                                "svgGroupId": "g-tkk-m43_tf1-005",
                                 "measure": "10",
                                 "system": "Klav. u.",
                                 "position": "7–8/8",
                                 "comment": "Achtelnoten dis<sup>1</sup>–e<sup>1</sup> nach oben gehalst mit Blick auf Stimmführung."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_tf1-006",
+                                "svgGroupId": "g-tkk-m43_tf1-006",
                                 "measure": "11",
                                 "system": "Klav.",
                                 "position": "Taktende",
@@ -74,42 +74,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-001",
+                                "svgGroupId": "g-tkk-m43_sk1-001",
                                 "measure": "7",
                                 "system": "16",
                                 "position": "1–4/8",
                                 "comment": "Vier Achtelnoten überschreiben drei Triolenachtelnoten."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-002",
+                                "svgGroupId": "g-tkk-m43_sk1-002",
                                 "measure": "7",
                                 "system": "16",
                                 "position": "(4/4)",
                                 "comment": "Drei Triolenachtelnoten überschreiben vier Achtelnoten."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-003",
+                                "svgGroupId": "g-tkk-m43_sk1-003",
                                 "measure": "{8A}",
                                 "system": "17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-004",
+                                "svgGroupId": "g-tkk-m43_sk1-004",
                                 "measure": "8B",
                                 "system": "17",
                                 "position": "6/8",
                                 "comment": "sic. Lies: Viertelnote."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-005",
+                                "svgGroupId": "g-tkk-m43_sk1-005",
                                 "measure": "10",
                                 "system": "17",
                                 "position": "1–2/8",
                                 "comment": "Zwei Achtelnoten überschreiben drei Triolenachtelnoten."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m43_sk1-006",
+                                "svgGroupId": "g-tkk-m43_sk1-006",
                                 "measure": "10",
                                 "system": "17",
                                 "position": "2/4",

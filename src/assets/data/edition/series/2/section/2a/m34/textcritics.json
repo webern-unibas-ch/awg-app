@@ -15,7 +15,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m34_tf1-001",
+                                "svgGroupId": "g-tkk-m34_tf1-001",
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
@@ -39,91 +39,91 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-001",
+                                "svgGroupId": "g-tkk-m34_sk1-001",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "2/4",
                                 "comment": "B<sub>1</sub> überschreibt f."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-002",
+                                "svgGroupId": "g-tkk-m34_sk1-002",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "Viertelnote gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-003",
+                                "svgGroupId": "g-tkk-m34_sk1-003",
                                 "measure": "4",
                                 "system": "1",
                                 "position": "",
                                 "comment": "Oberstimmenschicht: Halbe Note c<sup>3</sup> und Viertelnote a<sup>1</sup>/f<sup>2</sup> überschreiben punktierte Viertelnote a<sup>2</sup>/c<sup>3</sup> und Achtelnoten f<sup>2</sup>/a<sup>2</sup>–f<sup>2</sup>–e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-004",
+                                "svgGroupId": "g-tkk-m34_sk1-004",
                                 "measure": "4",
                                 "system": "1",
                                 "position": "1–2/4",
                                 "comment": "Unterstimmenschicht: Achtelnoten a<sup>1</sup>/c<sup>2</sup>–g<sup>1</sup>/b<sup>2</sup> und Viertelnote f<sup>1</sup>/a<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-005",
+                                "svgGroupId": "g-tkk-m34_sk1-005",
                                 "measure": "4",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "Viertelnote f/c<sup>1</sup> gestrichen und ersetzt durch f/a."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-006",
+                                "svgGroupId": "g-tkk-m34_sk1-006",
                                 "measure": "8–16",
                                 "system": "4–5, 7–8",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-007",
+                                "svgGroupId": "g-tkk-m34_sk1-007",
                                 "measure": "13",
                                 "system": "5",
                                 "position": "1. Pause",
                                 "comment": "Viertelpause überschreibt Achtelpause."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-008",
+                                "svgGroupId": "g-tkk-m34_sk1-008",
                                 "measure": "14",
                                 "system": "4",
                                 "position": "3/8",
                                 "comment": "b überschreibt es<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-009",
+                                "svgGroupId": "g-tkk-m34_sk1-009",
                                 "measure": "15–16",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-010",
+                                "svgGroupId": "g-tkk-m34_sk1-010",
                                 "measure": "15",
                                 "system": "7",
                                 "position": "4/8",
                                 "comment": "f<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-011",
+                                "svgGroupId": "g-tkk-m34_sk1-011",
                                 "measure": "15",
                                 "system": "8",
                                 "position": "3/4",
                                 "comment": "Notenkopf F radiert."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-012",
+                                "svgGroupId": "g-tkk-m34_sk1-012",
                                 "measure": "15",
                                 "system": "7",
                                 "position": "6/8",
                                 "comment": "f<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1-013",
+                                "svgGroupId": "g-tkk-m34_sk1-013",
                                 "measure": "16",
                                 "system": "7–8",
                                 "position": "1. Note",
@@ -135,7 +135,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "awg-lb-m34_sk1c-to-m34_sk1_1",
+                    "svgGroupId": "g-lb-m34_sk1c-to-m34_sk1_1",
                     "linkTo": {
                         "complexId": "m34",
                         "sheetId": "M34_Sk1_1"
@@ -156,28 +156,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1_1-001",
+                                "svgGroupId": "g-tkk-m34_sk1_1-001",
                                 "measure": "5",
                                 "system": "7",
                                 "position": "3/4",
                                 "comment": "f<sup>2</sup> überschreibt g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1_1-002",
+                                "svgGroupId": "g-tkk-m34_sk1_1-002",
                                 "measure": "5",
                                 "system": "8",
                                 "position": "3/4",
                                 "comment": "D überschreibt G."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1_1-003",
+                                "svgGroupId": "g-tkk-m34_sk1_1-003",
                                 "measure": "6",
                                 "system": "8",
                                 "position": "3–4/8",
                                 "comment": "Oberstimmenschicht: Zwei Achtelnoten überschreiben punktierte Viertelnote und Achtelnote? Entzifferung unklar."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m34_sk1_1-004",
+                                "svgGroupId": "g-tkk-m34_sk1_1-004",
                                 "measure": "7",
                                 "system": "6",
                                 "position": "",
@@ -189,7 +189,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "awg-lb-m34_sk1_1-to-m34_sk1c",
+                    "svgGroupId": "g-lb-m34_sk1_1-to-m34_sk1c",
                     "linkTo": {
                         "complexId": "m34",
                         "sheetId": "M34_Sk1c"

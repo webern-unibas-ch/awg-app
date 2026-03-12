@@ -15,63 +15,63 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-001",
+                                "svgGroupId": "g-tkk-m44_tf1-001",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3/8",
                                 "comment": "Unterstimmenschicht: Zusammenhalsung mit Achtelbalken von 4/8–8/8 aufgehoben zugunsten besserer Lesbarkeit."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-002",
+                                "svgGroupId": "g-tkk-m44_tf1-002",
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-003",
+                                "svgGroupId": "g-tkk-m44_tf1-003",
                                 "measure": "5",
                                 "system": "Klav.",
                                 "position": "1/8",
                                 "comment": "sic: gis in beiden Systemen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-004",
+                                "svgGroupId": "g-tkk-m44_tf1-004",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "1/8",
                                 "comment": "Augmentationspunkt zu fis<sup>1</sup> weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-005",
+                                "svgGroupId": "g-tkk-m44_tf1-005",
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "4/16",
                                 "comment": "<em>cresc.</em> versetzt von zwischen 4/16 und (2/4)"
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-006",
+                                "svgGroupId": "g-tkk-m44_tf1-006",
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "8/8",
                                 "comment": "Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-007",
+                                "svgGroupId": "g-tkk-m44_tf1-007",
                                 "measure": "18",
                                 "system": "Klav.",
                                 "position": "3/4",
                                 "comment": "sic: cis<sup>1</sup> in beiden Systemen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-008",
+                                "svgGroupId": "g-tkk-m44_tf1-008",
                                 "measure": "21",
                                 "system": "Klav. u.",
                                 "position": "1.–3. Note",
                                 "comment": "Ces<sub>1</sub>/Es–Ces<sub>1</sub>/Es–H<sub>2</sub>/D korrigiert zu Es<sub>1</sub>/Es–Es<sub>1</sub>/Es–D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m44_tf1-009",
+                                "svgGroupId": "g-tkk-m44_tf1-009",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "Taktende",

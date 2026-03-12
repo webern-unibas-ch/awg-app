@@ -26,35 +26,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-mx415_sk1-001",
+                                "svgGroupId": "g-tkk-mx415_sk1-001",
                                 "measure": "{1A}",
                                 "system": "18–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-mx415_sk1-002",
+                                "svgGroupId": "g-tkk-mx415_sk1-002",
                                 "measure": "5",
                                 "system": "17",
                                 "position": "1/4",
                                 "comment": "Viertelnote H/h gestrichen."
                             },
                             {
-                                "svgGroupId": "awg-tkk-mx415_sk1-003",
+                                "svgGroupId": "g-tkk-mx415_sk1-003",
                                 "measure": "6",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "Fis: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "awg-tkk-mx415_sk1-004",
+                                "svgGroupId": "g-tkk-mx415_sk1-004",
                                 "measure": "7",
                                 "system": "18",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "awg-tkk-mx415_sk1-005",
+                                "svgGroupId": "g-tkk-mx415_sk1-005",
                                 "measure": "8",
                                 "system": "18–17",
                                 "position": "(1/4)",
