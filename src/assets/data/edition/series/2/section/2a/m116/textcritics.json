@@ -15,35 +15,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m116_tf1-001",
+                                "svgGroupId": "awg-tkk-m116_tf1-001",
                                 "measure": "3",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Notenhals zu d ergänzt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_tf1-002",
+                                "svgGroupId": "awg-tkk-m116_tf1-002",
                                 "measure": "4",
                                 "system": "Klav.",
                                 "position": "letzte Note",
                                 "comment": "Ende der Crescendogabel versetzt von zwischen vorletzter und letzter Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_tf1-003",
+                                "svgGroupId": "awg-tkk-m116_tf1-003",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a: Ligatur zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a in T. 4 Klav. u. ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm116', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 4."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_tf1-004",
+                                "svgGroupId": "awg-tkk-m116_tf1-004",
                                 "measure": "8",
                                 "system": "Klav.",
                                 "position": "11/16",
                                 "comment": "Beginn der Crescendogabel versetzt von zwischen 11/16 und 12/16."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_tf1-005",
+                                "svgGroupId": "awg-tkk-m116_tf1-005",
                                 "measure": "9",
                                 "system": "Klav.",
                                 "position": "5/8",
@@ -67,133 +67,133 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-001",
+                                "svgGroupId": "awg-tkk-m116_sk1-001",
                                 "measure": "vor 1",
                                 "system": "1",
                                 "position": "",
                                 "comment": "Bassschlüssel überschreibt Violinschlüssel."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-002",
+                                "svgGroupId": "awg-tkk-m116_sk1-002",
                                 "measure": "1",
                                 "system": "1",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis überschreibt es."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-003",
+                                "svgGroupId": "awg-tkk-m116_sk1-003",
                                 "measure": "2",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-004",
+                                "svgGroupId": "awg-tkk-m116_sk1-004",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]Ges<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Ges überschreibt [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]Fis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-005",
+                                "svgGroupId": "awg-tkk-m116_sk1-005",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "4/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Ges<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Ges."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-006",
+                                "svgGroupId": "awg-tkk-m116_sk1-006",
                                 "measure": "4",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-007",
+                                "svgGroupId": "awg-tkk-m116_sk1-007",
                                 "measure": "5",
                                 "system": "1–2",
                                 "position": "1/8",
                                 "comment": "Achtelnote f<sup>1</sup> überschrieben zu Achtelpause und ersetzt durch a im unteren System."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-008",
+                                "svgGroupId": "awg-tkk-m116_sk1-008",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "letzte Note",
                                 "comment": "F mit Legatobogen überschreibt des mit Ligatur."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-009",
+                                "svgGroupId": "awg-tkk-m116_sk1-009",
                                 "measure": "6",
                                 "system": "4",
                                 "position": "5–8/16",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-010",
+                                "svgGroupId": "awg-tkk-m116_sk1-010",
                                 "measure": "6",
                                 "system": "4",
                                 "position": "zweitletzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]as<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-011",
+                                "svgGroupId": "awg-tkk-m116_sk1-011",
                                 "measure": "7",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "f<sup>3</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-012",
+                                "svgGroupId": "awg-tkk-m116_sk1-012",
                                 "measure": "7",
                                 "system": "4",
                                 "position": "(1–3/8)",
                                 "comment": "Entzifferung unklar: Tonhöhe wegen fehlender Hilfslinien nicht eindeutig; Augmentationspunkt aufgrund der Größe auch als frei schwebender Notenkopf lesbar."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-013",
+                                "svgGroupId": "awg-tkk-m116_sk1-013",
                                 "measure": "7",
                                 "system": "4",
                                 "position": "(4/8)",
                                 "comment": "Achtelnote b<sup>2</sup> überschrieben zu Sechzehntelnote, anschließend überschrieben zu as<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-014",
+                                "svgGroupId": "awg-tkk-m116_sk1-014",
                                 "measure": "8B <br />bis 9",
                                 "system": "8–9",
                                 "position": "",
                                 "comment": "Pfeil gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-015",
+                                "svgGroupId": "awg-tkk-m116_sk1-015",
                                 "measure": "9",
                                 "system": "8",
                                 "position": "Taktanfang",
                                 "comment": "<em>moll</em> überschreibt <em>dur</em>; <em>F moll</em> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-016",
+                                "svgGroupId": "awg-tkk-m116_sk1-016",
                                 "measure": "9",
                                 "system": "7",
                                 "position": "Taktende",
                                 "comment": "<em>moll</em> überschreibt <em>dur</em>; <em>F moll</em> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-017",
+                                "svgGroupId": "awg-tkk-m116_sk1-017",
                                 "measure": "10A",
                                 "system": "8",
                                 "position": "(4/4)",
                                 "comment": "Sechzehntelnote gestrichen, [punktierte] Achtelnote geändert zu Viertelnote und Taktstrich hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-018",
+                                "svgGroupId": "awg-tkk-m116_sk1-018",
                                 "measure": "10B",
                                 "system": "12",
                                 "position": "1/4",
                                 "comment": "<em>D</em> von <em>Dominante</em> überschreibt <em>E</em>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1-019",
+                                "svgGroupId": "awg-tkk-m116_sk1-019",
                                 "measure": "nach 11",
                                 "system": "10",
                                 "position": "",
@@ -205,42 +205,42 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m116_sk1b-to-m116_sk1_1",
+                    "svgGroupId": "awg-lb-m116_sk1b-to-m116_sk1_1",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1b-to-m116_sk1_2",
+                    "svgGroupId": "awg-lb-m116_sk1b-to-m116_sk1_2",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_2"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1b-to-m116_sk1_3",
+                    "svgGroupId": "awg-lb-m116_sk1b-to-m116_sk1_3",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1b-to-m116_sk1c",
+                    "svgGroupId": "awg-lb-m116_sk1b-to-m116_sk1c",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1c"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1c-to-m116_sk1_3",
+                    "svgGroupId": "awg-lb-m116_sk1c-to-m116_sk1_3",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1c-to-m116_sk1b",
+                    "svgGroupId": "awg-lb-m116_sk1c-to-m116_sk1b",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1b"
@@ -261,28 +261,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m116_sk1_1-001",
+                                "svgGroupId": "awg-tkk-m116_sk1_1-001",
                                 "measure": "1+1",
                                 "system": "4",
                                 "position": "5/8",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen und Augmentationspunkt hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1_1-002",
+                                "svgGroupId": "awg-tkk-m116_sk1_1-002",
                                 "measure": "1+1",
                                 "system": "5",
                                 "position": "3/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1_1-003",
+                                "svgGroupId": "awg-tkk-m116_sk1_1-003",
                                 "measure": "1+1",
                                 "system": "4",
                                 "position": "6. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk1_1-004",
+                                "svgGroupId": "awg-tkk-m116_sk1_1-004",
                                 "measure": "1+2",
                                 "system": "5",
                                 "position": "5/8",
@@ -294,28 +294,28 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m116_sk1_1-to-m116_sk1_2",
+                    "svgGroupId": "awg-lb-m116_sk1_1-to-m116_sk1_2",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_2"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_1-to-m116_sk1_3",
+                    "svgGroupId": "awg-lb-m116_sk1_1-to-m116_sk1_3",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_1-to-m116_sk1b",
+                    "svgGroupId": "awg-lb-m116_sk1_1-to-m116_sk1b",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1b"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_1-to-m116_sk1c",
+                    "svgGroupId": "awg-lb-m116_sk1_1-to-m116_sk1c",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1c"
@@ -335,28 +335,28 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m116_sk1_2-to-m116_sk1_1",
+                    "svgGroupId": "awg-lb-m116_sk1_2-to-m116_sk1_1",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_2-to-m116_sk1_3",
+                    "svgGroupId": "awg-lb-m116_sk1_2-to-m116_sk1_3",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_2-to-m116_sk1b",
+                    "svgGroupId": "awg-lb-m116_sk1_2-to-m116_sk1b",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1b"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_2-to-m116_sk1c",
+                    "svgGroupId": "awg-lb-m116_sk1_2-to-m116_sk1c",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1c"
@@ -376,28 +376,28 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m116_sk1_3-to-m116_sk1_1",
+                    "svgGroupId": "awg-lb-m116_sk1_3-to-m116_sk1_1",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_3-to-m116_sk1_2",
+                    "svgGroupId": "awg-lb-m116_sk1_3-to-m116_sk1_2",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1_2"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_3-to-m116_sk1b",
+                    "svgGroupId": "awg-lb-m116_sk1_3-to-m116_sk1b",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1b"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-m116_sk1_3-to-m116_sk1c",
+                    "svgGroupId": "awg-lb-m116_sk1_3-to-m116_sk1c",
                     "linkTo": {
                         "complexId": "m116",
                         "sheetId": "M116_Sk1c"
@@ -418,140 +418,140 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-001",
+                                "svgGroupId": "awg-tkk-m116_sk2-001",
                                 "measure": "4",
                                 "system": "14",
                                 "position": "2/2",
                                 "comment": "Unterstimmenschicht: Halbe Note <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-002",
+                                "svgGroupId": "awg-tkk-m116_sk2-002",
                                 "measure": "5",
                                 "system": "14",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-003",
+                                "svgGroupId": "awg-tkk-m116_sk2-003",
                                 "measure": "6",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "D: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-004",
+                                "svgGroupId": "awg-tkk-m116_sk2-004",
                                 "measure": "6",
                                 "system": "14",
                                 "position": "7. Note",
                                 "comment": "c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-005",
+                                "svgGroupId": "awg-tkk-m116_sk2-005",
                                 "measure": "7",
                                 "system": "15",
                                 "position": "6/8",
                                 "comment": "c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup>; c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-006",
+                                "svgGroupId": "awg-tkk-m116_sk2-006",
                                 "measure": "8",
                                 "system": "17",
                                 "position": "9–11/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>–c<sup>3</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>a<sup>2</sup>–[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]a<sup>2</sup>–b<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-007",
+                                "svgGroupId": "awg-tkk-m116_sk2-007",
                                 "measure": "8",
                                 "system": "18",
                                 "position": "3/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>; <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-008",
+                                "svgGroupId": "awg-tkk-m116_sk2-008",
                                 "measure": "11A",
                                 "system": "17",
                                 "position": "1. Note",
                                 "comment": "gis<sup>2</sup> gestrichen? Entzifferung unklar."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-009",
+                                "svgGroupId": "awg-tkk-m116_sk2-009",
                                 "measure": "11B",
                                 "system": "1",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-010",
+                                "svgGroupId": "awg-tkk-m116_sk2-010",
                                 "measure": "11B",
                                 "system": "1",
                                 "position": "7/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-011",
+                                "svgGroupId": "awg-tkk-m116_sk2-011",
                                 "measure": "11B",
                                 "system": "2",
                                 "position": "vor 3/4",
                                 "comment": "Bassschlüssel überschreibt Violinschlüssel."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-012",
+                                "svgGroupId": "awg-tkk-m116_sk2-012",
                                 "measure": "12",
                                 "system": "1",
                                 "position": "2/16",
                                 "comment": "c<sup>4</sup> überschreibt d<sup>4</sup>? Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-013",
+                                "svgGroupId": "awg-tkk-m116_sk2-013",
                                 "measure": "12",
                                 "system": "2",
                                 "position": "2/4",
                                 "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des/f radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-014",
+                                "svgGroupId": "awg-tkk-m116_sk2-014",
                                 "measure": "12",
                                 "system": "1",
                                 "position": "15/16",
                                 "comment": "Notenkopf überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-015",
+                                "svgGroupId": "awg-tkk-m116_sk2-015",
                                 "measure": "12",
                                 "system": "2",
                                 "position": "15/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-016",
+                                "svgGroupId": "awg-tkk-m116_sk2-016",
                                 "measure": "13",
                                 "system": "1",
                                 "position": "7/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-017",
+                                "svgGroupId": "awg-tkk-m116_sk2-017",
                                 "measure": "13",
                                 "system": "1",
                                 "position": "8/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu fiktivem ges<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-018",
+                                "svgGroupId": "awg-tkk-m116_sk2-018",
                                 "measure": "14A",
                                 "system": "5",
                                 "position": "1/2",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Ges überschreibt As."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-019",
+                                "svgGroupId": "awg-tkk-m116_sk2-019",
                                 "measure": "15A",
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es? Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-m116_sk2-020",
+                                "svgGroupId": "awg-tkk-m116_sk2-020",
                                 "measure": "14B",
                                 "system": "4",
                                 "position": "3. Note",

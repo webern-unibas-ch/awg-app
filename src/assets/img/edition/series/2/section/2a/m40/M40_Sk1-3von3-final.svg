@@ -108,7 +108,7 @@
   <g id="text8606" aria-label="#" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
     <path id="path1083" d="M297.189 245.788v3.258l-2.143.7v-3.258zm-3.718-1.05v2.253l.94-.307v3.259l-.94.306v2.274l.94-.306v3.017h.635v-3.236l2.143-.7v3.368h.634V251.1l.852-.284v-2.252l-.852.262v-3.236l.852-.284v-2.274l-.852.284v-2.996h-.634v3.193l-2.143.7v-3.346h-.635v3.564z" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
   </g>
-  <g id="g-tkk-m40_sk1-022" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-022" class="tkk" transform="translate(37.677)">
     <path id="line8594" d="M171.61 259.689v14.577" style="fill:none;stroke:#000;stroke-width:.64399803"/>
     <g id="text8596" aria-label="˙" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path1087" d="M178.286 256.83c-.415-.743-1.443-.852-1.902-.896-1.225-.153-2.23.153-2.887.525-.656.393-1.53 1.137-1.946 2.23-.153.438-.459 1.312-.022 2.056.438.7 1.51.896 2.1.94.984.087 1.88-.066 2.558-.416.678-.328 1.618-1.224 2.034-2.34.153-.415.415-1.486.065-2.098m-.503.372c.416.722-.415 1.444-1.027 1.837a16 16 0 0 1-1.269.765c-.437.241-.83.46-1.334.7-.677.35-1.705.7-2.142-.022-.416-.721.415-1.443 1.05-1.837.458-.306.852-.546 1.29-.787.437-.24.786-.459 1.29-.7.677-.327 1.705-.677 2.142.044" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
@@ -221,7 +221,7 @@
   <g id="text8722" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
     <path id="path1191" d="M538.05 258.799c-.59 1.552.438 2.842 2.275 2.864s3.783-1.224 4.373-2.799c.569-1.552-.437-2.82-2.296-2.843-1.836-.021-3.783 1.225-4.351 2.778" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
   </g>
-  <g id="g-tkk-m40_sk1-027" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-027" class="tkk" transform="translate(37.677)">
     <path id="line8714" d="M443.348 259.689v14.577" style="fill:none;stroke:#000;stroke-width:.64399803"/>
     <g id="text8716" aria-label="˙" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path1195" d="M450.024 256.83c-.415-.743-1.443-.852-1.902-.896-1.225-.153-2.23.153-2.887.525-.656.393-1.53 1.137-1.946 2.23-.153.438-.459 1.312-.022 2.056.438.7 1.51.896 2.1.94.984.087 1.88-.066 2.558-.416.678-.328 1.618-1.224 2.034-2.34.153-.415.415-1.486.065-2.098m-.503.372c.416.722-.415 1.444-1.027 1.837a16 16 0 0 1-1.269.765c-.437.241-.83.46-1.334.7-.677.35-1.705.7-2.143-.022-.415-.721.416-1.443 1.05-1.837.46-.306.853-.546 1.29-.787.438-.24.787-.459 1.29-.7.678-.327 1.706-.677 2.143.044" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
@@ -249,7 +249,7 @@
   <g id="text8756" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
     <path id="path1221" d="M639.184 283.398c-.59 1.553.437 2.843 2.274 2.865s3.783-1.225 4.373-2.799c.569-1.552-.437-2.82-2.296-2.843-1.836-.021-3.783 1.225-4.351 2.777" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
   </g>
-  <g id="g-tkk-m40_sk1-029" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-029" class="tkk" transform="translate(37.677)">
     <path id="polyline8534" d="m399.579 208.062 11.617-11.104" style="fill:none;stroke:#000;stroke-width:.48300001" transform="translate(-.877 1.015)scale(1.33333)"/>
     <path id="line8758" d="M538.019 270.393v14.053" style="fill:none;stroke:#000;stroke-width:.64399803"/>
     <path id="line8760" d="M535.631 269.71h10.63" style="fill:none;stroke:#000;stroke-width:.90399802;stroke-opacity:1"/>
@@ -311,7 +311,7 @@
     <path id="path1326" d="M250.547 77.981v-2.039h7.508v1.594q-.93.914-1.89 2.625-.961 1.71-1.47 3.64-.5 1.922-.491 3.438h-2.118q.055-2.375.977-4.844.93-2.469 2.476-4.414z" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal"/>
     <path id="path1328" d="M259.946 75.786h4.578q1.36 0 2.023.117.672.11 1.196.469.53.36.882.96.352.594.352 1.337 0 .804-.438 1.476-.43.672-1.171 1.008 1.046.305 1.609 1.04.562.733.562 1.726 0 .78-.367 1.523-.36.734-.992 1.18-.625.437-1.547.539-.578.062-2.789.078h-3.898zm2.312 1.906v2.649h1.516q1.351 0 1.68-.04.593-.07.93-.406.343-.344.343-.898 0-.531-.297-.86-.289-.336-.867-.406-.344-.039-1.977-.039zm0 4.555v3.062h2.14q1.25 0 1.587-.07.515-.094.836-.453.328-.367.328-.977 0-.515-.25-.875t-.727-.523q-.468-.164-2.047-.164z" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal"/>
   </g>
-  <g id="g-tkk-m40_sk1-023" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-023" class="tkk" transform="translate(37.677)">
     <g id="text8542" aria-label="œ" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004">
       <path id="path1331" d="M185.883 200.689c-.443 1.164.328 2.132 1.706 2.148s2.837-.918 3.28-2.099c.426-1.164-.328-2.115-1.722-2.132-1.378-.016-2.837.919-3.264 2.083" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004"/>
     </g>
@@ -327,7 +327,7 @@
     </g>
     <path id="line8550-0" d="M190.922 200.416v-17.517" style="fill:none;stroke:#777;stroke-width:.64399803;stroke-opacity:1"/>
   </g>
-  <g id="g-tkk-m40_sk1-024" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-024" class="tkk" transform="translate(37.677)">
     <path id="line8554" d="M229.11 200.466V179.51" style="fill:none;stroke:#000;stroke-width:.64399803"/>
     <g id="text8556" aria-label="œ" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004">
       <path id="path1346" d="M216.82 198.66c-.443 1.164.328 2.132 1.706 2.148s2.837-.918 3.28-2.099c.426-1.164-.328-2.116-1.722-2.132-1.378-.016-2.838.918-3.264 2.083" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004"/>
@@ -337,7 +337,7 @@
     </g>
     <path id="line8550-0-1" d="M221.478 198.65v-14.693" style="fill:none;stroke:#777;stroke-width:.64399803;stroke-opacity:1"/>
   </g>
-  <g id="g-tkk-m40_sk1-025" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-025" class="tkk" transform="translate(37.677)">
     <path id="line8576" d="M228.96 244.992v-19.015" style="fill:none;stroke:#000;stroke-width:.64399803"/>
     <g id="text8578" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path1354" d="M222.713 245.132c-.59 1.552.437 2.843 2.274 2.864 1.837.022 3.783-1.224 4.374-2.798.568-1.553-.438-2.821-2.296-2.843-1.837-.022-3.783 1.224-4.352 2.777" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
@@ -353,7 +353,7 @@
   <g id="text8604-0" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
     <path id="path1364" d="M300.36 242.52c-.59 1.552.438 2.843 2.275 2.864 1.837.022 3.783-1.224 4.373-2.799.569-1.552-.437-2.82-2.296-2.842-1.837-.022-3.783 1.224-4.351 2.777" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
   </g>
-  <g id="g-tkk-m40_sk1-026" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-026" class="tkk" transform="translate(37.677)">
     <path id="polyline8530" d="m192.7 138.021 18.621-4.784" style="fill:none;stroke:#000;stroke-width:.37096786" transform="matrix(.93213 0 0 3.2331 76.458 -251.927)"/>
     <path id="line8584" d="M267.544 187.528v-18.431" style="fill:none;stroke:#000;stroke-width:.64399797"/>
     <g id="text8562-4" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
@@ -383,7 +383,7 @@
       <path id="path1579-9-8" d="M140.673 40.405h-1.274V27.142h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g-tkk-m40_sk1-028" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m40_sk1-028" class="tkk" transform="translate(37.677)">
     <g id="g1236">
       <path id="polyline8532" d="m348.842 202.767 7.175-13.155" style="fill:none;stroke:#000;stroke-width:.48300001" transform="translate(3.082 -1.175)scale(1.33333)"/>
       <path id="line8714-1" d="M470.896 259.407v14.577" style="fill:none;stroke:#000;stroke-width:.64399803"/>
@@ -392,7 +392,7 @@
       </g>
     </g>
   </g>
-  <g id="g-lb-m40_sk1c-to-m40_sk1b" class="link-box">
+  <g id="awg-lb-m40_sk1c-to-m40_sk1b" class="link-box">
     <path id="rect8766" d="M590.948 151.949v69.7h322.988v-69.7" style="fill:#fff;stroke:#777;stroke-width:.910664;stroke-opacity:.86666667"/>
     <g id="text1" aria-label="Sk1 T. 10–15" style="font-weight:700;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.88">
       <path id="path1384" d="m686.027 189.267 3-.291q.27 1.51 1.094 2.218.833.709 2.24.709 1.489 0 2.239-.625.76-.636.76-1.48 0-.541-.323-.916-.312-.386-1.104-.667-.542-.187-2.469-.667-2.479-.614-3.479-1.51-1.406-1.26-1.406-3.073 0-1.166.656-2.177.667-1.02 1.906-1.552 1.25-.531 3.01-.531 2.876 0 4.324 1.26 1.458 1.26 1.531 3.365l-3.083.135q-.198-1.177-.855-1.687-.645-.521-1.947-.521-1.344 0-2.105.552-.49.354-.49.948 0 .542.46.927.582.49 2.832 1.02 2.25.532 3.323 1.105 1.084.562 1.688 1.552.614.98.614 2.427 0 1.313-.729 2.458t-2.062 1.709q-1.334.552-3.323.552-2.896 0-4.448-1.334-1.552-1.343-1.854-3.906m14.885 4.969v-15.27h2.927v8.103l3.427-3.895h3.605l-3.782 4.041 4.052 7.021h-3.156l-2.781-4.969-1.365 1.427v3.542zm18.834 0h-2.928v-11.031q-1.604 1.5-3.78 2.219v-2.657q1.145-.375 2.489-1.416 1.344-1.052 1.844-2.448h2.375zm14.385 0v-12.687H729.6v-2.584h12.135v2.584h-4.52v12.687zm7.208 0v-2.927h2.927v2.927zm18.719 0h-2.927v-11.031q-1.604 1.5-3.781 2.219v-2.657q1.145-.375 2.49-1.416 1.343-1.052 1.843-2.448h2.375zm9.323-15.333q2.219 0 3.469 1.583 1.49 1.875 1.49 6.219 0 4.333-1.5 6.229-1.24 1.562-3.46 1.562-2.228 0-3.593-1.708-1.364-1.719-1.364-6.115 0-4.312 1.5-6.208 1.24-1.562 3.458-1.562m0 2.427q-.531 0-.948.344-.417.333-.646 1.208-.302 1.135-.302 3.823t.27 3.698q.272 1 .678 1.333.417.333.948.333t.948-.333q.416-.344.646-1.219.302-1.125.302-3.812 0-2.688-.271-3.688-.271-1.01-.688-1.343-.406-.344-.937-.344m5.969 8.468v-2.187h11.864v2.187zm20.302 4.438h-2.927v-11.031q-1.605 1.5-3.782 2.219v-2.657q1.146-.375 2.49-1.416 1.344-1.052 1.844-2.448h2.375zm4.416-3.927 2.917-.302q.125.99.74 1.573.614.573 1.416.573.917 0 1.552-.74.636-.75.636-2.25 0-1.406-.636-2.104-.625-.708-1.635-.708-1.26 0-2.26 1.114l-2.376-.344 1.5-7.947h7.74v2.74h-5.52l-.46 2.593q.98-.49 2-.49 1.949 0 3.303 1.417t1.354 3.677q0 1.885-1.094 3.365-1.49 2.02-4.135 2.02-2.115 0-3.448-1.135t-1.594-3.052"/>

@@ -15,7 +15,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-mx412_tf1-001",
+                                "svgGroupId": "awg-tkk-mx412_tf1-001",
                                 "measure": "16",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
@@ -39,56 +39,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-001",
+                                "svgGroupId": "awg-tkk-mx412_sk1-001",
                                 "measure": "1",
                                 "system": "26",
                                 "position": "5/8",
                                 "comment": "Oberstimmenschicht: e<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-002",
+                                "svgGroupId": "awg-tkk-mx412_sk1-002",
                                 "measure": "2",
                                 "system": "26",
                                 "position": "(3/4)",
                                 "comment": "Oberstimmenschicht: Viertelnote e<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-003",
+                                "svgGroupId": "awg-tkk-mx412_sk1-003",
                                 "measure": "3",
                                 "system": "27",
                                 "position": "(1/4)",
                                 "comment": "Triolenachteloten e<sup>1</sup>–h–g gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-004",
+                                "svgGroupId": "awg-tkk-mx412_sk1-004",
                                 "measure": "4",
                                 "system": "26",
                                 "position": "1. Note",
                                 "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-005",
+                                "svgGroupId": "awg-tkk-mx412_sk1-005",
                                 "measure": "5",
                                 "system": "26",
                                 "position": "(5/8)",
                                 "comment": "Nicht entzifferbare Streichung im System."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-006",
+                                "svgGroupId": "awg-tkk-mx412_sk1-006",
                                 "measure": "10",
                                 "system": "23",
                                 "position": "letzte Note",
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-007",
+                                "svgGroupId": "awg-tkk-mx412_sk1-007",
                                 "measure": "11",
                                 "system": "22",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx412_sk1-008",
+                                "svgGroupId": "awg-tkk-mx412_sk1-008",
                                 "measure": "11",
                                 "system": "23",
                                 "position": "1/4",
@@ -100,7 +100,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-mx412_sk1b-to-m22_sk1",
+                    "svgGroupId": "awg-lb-mx412_sk1b-to-m22_sk1",
                     "linkTo": {
                         "complexId": "m22",
                         "sheetId": "M22_Sk1"

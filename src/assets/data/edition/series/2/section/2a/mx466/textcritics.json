@@ -26,42 +26,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-001",
+                                "svgGroupId": "awg-tkk-mx466_sk1-001",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "3/8",
                                 "comment": "Unterstimmenschicht: Achtelnote g<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-002",
+                                "svgGroupId": "awg-tkk-mx466_sk1-002",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "3/4",
                                 "comment": "Unterstimmenschicht: c<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-003",
+                                "svgGroupId": "awg-tkk-mx466_sk1-003",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "4/4",
                                 "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> überschreibt Achtelnoten e<sup>1</sup>–d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-004",
+                                "svgGroupId": "awg-tkk-mx466_sk1-004",
                                 "measure": "2 <br />bis 3",
                                 "system": "3",
                                 "position": "letzte Note <br />1. Note",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-005",
+                                "svgGroupId": "awg-tkk-mx466_sk1-005",
                                 "measure": "5",
                                 "system": "3",
                                 "position": "3/8",
                                 "comment": "Oberstimmenschicht: a<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-mx466_sk1-006",
+                                "svgGroupId": "awg-tkk-mx466_sk1-006",
                                 "measure": "7",
                                 "system": "2",
                                 "position": "1/2",

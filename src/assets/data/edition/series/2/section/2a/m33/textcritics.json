@@ -15,28 +15,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m33_tf1-001",
+                                "svgGroupId": "awg-tkk-m33_tf1-001",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Oberstimmenschicht: Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf1-002",
+                                "svgGroupId": "awg-tkk-m33_tf1-002",
                                 "measure": "18",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf1-003",
+                                "svgGroupId": "awg-tkk-m33_tf1-003",
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Unterstimmenschicht: Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf1-004",
+                                "svgGroupId": "awg-tkk-m33_tf1-004",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
@@ -62,35 +62,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m33_tf2-001",
+                                "svgGroupId": "awg-tkk-m33_tf2-001",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "4/8",
                                 "comment": "Unterstimmenschicht: Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext und mit Achtelnoten auf 5–6/8 zusammengebalkt."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf2-002",
+                                "svgGroupId": "awg-tkk-m33_tf2-002",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Oberstimmenschicht: Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf2-003",
+                                "svgGroupId": "awg-tkk-m33_tf2-003",
                                 "measure": "18",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf2-004",
+                                "svgGroupId": "awg-tkk-m33_tf2-004",
                                 "measure": "24",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Unterstimmenschicht: Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_tf2-005",
+                                "svgGroupId": "awg-tkk-m33_tf2-005",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
@@ -112,189 +112,189 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-001",
+                                "svgGroupId": "awg-tkk-m33_sk1-001",
                                 "measure": "1",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-002",
+                                "svgGroupId": "awg-tkk-m33_sk1-002",
                                 "measure": "1",
                                 "system": "13",
                                 "position": "2. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote mit gestrichenem Achtelfähnchen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-003",
+                                "svgGroupId": "awg-tkk-m33_sk1-003",
                                 "measure": "3",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-004",
+                                "svgGroupId": "awg-tkk-m33_sk1-004",
                                 "measure": "4",
                                 "system": "13",
                                 "position": "1/8",
                                 "comment": "Oberstimmenschicht: Achtelpause überschreibt Viertelnote H."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-005",
+                                "svgGroupId": "awg-tkk-m33_sk1-005",
                                 "measure": "4",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-006",
+                                "svgGroupId": "awg-tkk-m33_sk1-006",
                                 "measure": "5",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-007",
+                                "svgGroupId": "awg-tkk-m33_sk1-007",
                                 "measure": "5",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: G überschreibt Fis."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-008",
+                                "svgGroupId": "awg-tkk-m33_sk1-008",
                                 "measure": "9",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-009",
+                                "svgGroupId": "awg-tkk-m33_sk1-009",
                                 "measure": "11",
                                 "system": "11",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: h überschreibt c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-010",
+                                "svgGroupId": "awg-tkk-m33_sk1-010",
                                 "measure": "12",
                                 "system": "12",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-011",
+                                "svgGroupId": "awg-tkk-m33_sk1-011",
                                 "measure": "16",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "e überschreibt g."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-012",
+                                "svgGroupId": "awg-tkk-m33_sk1-012",
                                 "measure": "18",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-013",
+                                "svgGroupId": "awg-tkk-m33_sk1-013",
                                 "measure": "18",
                                 "system": "12",
                                 "position": "1.–3. Note",
                                 "comment": "Unterstimmenschicht: 1. Note: Viertelnote überschreibt Achtelnote; 1.–3. Note: sic."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-014",
+                                "svgGroupId": "awg-tkk-m33_sk1-014",
                                 "measure": "19",
                                 "system": "11",
                                 "position": "1/4",
                                 "comment": "Viertelpause überschreibt punktierte Halbe Note G."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-015",
+                                "svgGroupId": "awg-tkk-m33_sk1-015",
                                 "measure": "19",
                                 "system": "12",
                                 "position": "3/4",
                                 "comment": "Oberstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-016",
+                                "svgGroupId": "awg-tkk-m33_sk1-016",
                                 "measure": "20",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-017",
+                                "svgGroupId": "awg-tkk-m33_sk1-017",
                                 "measure": "20",
                                 "system": "11",
                                 "position": "1/4",
                                 "comment": "c gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-018",
+                                "svgGroupId": "awg-tkk-m33_sk1-018",
                                 "measure": "23",
                                 "system": "9",
                                 "position": "4–6/8",
                                 "comment": "e–g–c<sup>1</sup> überschreibt c–e–g."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-019",
+                                "svgGroupId": "awg-tkk-m33_sk1-019",
                                 "measure": "25",
                                 "system": "10",
                                 "position": "1/8–6/8",
                                 "comment": "Unterstimmenschicht: Achtelpause, zwei Viertelnoten und Achtelnote h/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-020",
+                                "svgGroupId": "awg-tkk-m33_sk1-020",
                                 "measure": "29",
                                 "system": "10",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: Achtelpause überschreibt Viertelnote g<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-021",
+                                "svgGroupId": "awg-tkk-m33_sk1-021",
                                 "measure": "29",
                                 "system": "9",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-022",
+                                "svgGroupId": "awg-tkk-m33_sk1-022",
                                 "measure": "29",
                                 "system": "9",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-023",
+                                "svgGroupId": "awg-tkk-m33_sk1-023",
                                 "measure": "30",
                                 "system": "10",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: Achtelpause überschreibt Viertelnote g<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-024",
+                                "svgGroupId": "awg-tkk-m33_sk1-024",
                                 "measure": "30",
                                 "system": "10",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: a<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-025",
+                                "svgGroupId": "awg-tkk-m33_sk1-025",
                                 "measure": "30",
                                 "system": "10",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-026",
+                                "svgGroupId": "awg-tkk-m33_sk1-026",
                                 "measure": "30",
                                 "system": "10",
                                 "position": "3/4",
                                 "comment": "h<sup>1</sup> überschreibt e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-m33_sk1-027",
+                                "svgGroupId": "awg-tkk-m33_sk1-027",
                                 "measure": "32",
                                 "system": "7",
                                 "position": "1/8",
@@ -306,7 +306,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-m33_sk1d-to-m32_sk2_2",
+                    "svgGroupId": "awg-lb-m33_sk1d-to-m32_sk2_2",
                     "linkTo": {
                         "complexId": "m32",
                         "sheetId": "M32_Sk2_2"
