@@ -15,42 +15,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4545",
+                                "svgGroupId": "awg-tkk-m75_tf1-001",
                                 "measure": "7",
                                 "system": "Klav. o.",
                                 "position": "12/16",
                                 "comment": "Sechzehntelpausen der Ober- und Unterstimmenschicht zu einer Pause zusammengefasst."
                             },
                             {
-                                "svgGroupId": "g4549",
+                                "svgGroupId": "awg-tkk-m75_tf1-002",
                                 "measure": "9",
                                 "system": "Klav.",
                                 "position": "(4/8)",
                                 "comment": "Beginn der Decrescendogabel versetzt von zwischen 5. und 6. Note in Klav. o."
                             },
                             {
-                                "svgGroupId": "g4553",
+                                "svgGroupId": "awg-tkk-m75_tf1-003",
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3. Note der Oberstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g4557",
+                                "svgGroupId": "awg-tkk-m75_tf1-004",
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "8/16",
                                 "comment": "Sechzehntelpausen der Ober- und Unterstimmenschicht zu einer Pause zusammengefasst."
                             },
                             {
-                                "svgGroupId": "g4561",
+                                "svgGroupId": "awg-tkk-m75_tf1-005",
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "12/16",
                                 "comment": "Sechzehntelpausen der Ober- und Unterstimmenschicht zu einer Pause zusammengefasst."
                             },
                             {
-                                "svgGroupId": "g4569",
+                                "svgGroupId": "awg-tkk-m75_tf1-006",
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "3/4",
@@ -74,112 +74,112 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "awg-tkk-m75_sk1-001",
                                 "measure": "vor 1",
                                 "system": "8–9",
                                 "position": "Taktanfang",
                                 "comment": "Tonartvorzeichnung gestrichen."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "awg-tkk-m75_sk1-002",
                                 "measure": "2",
                                 "system": "9",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "awg-tkk-m75_sk1-003",
                                 "measure": "2",
                                 "system": "8",
                                 "position": "5/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>/d<sup>2</sup> überschreibt e<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "awg-tkk-m75_sk1-004",
                                 "measure": "2",
                                 "system": "9",
                                 "position": "6/8",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis überschreibt f."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "awg-tkk-m75_sk1-005",
                                 "measure": "4",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "awg-tkk-m75_sk1-006",
                                 "measure": "4",
                                 "system": "9",
                                 "position": "1.–2. Note",
                                 "comment": "Balken gestrichen."
                             },
                             {
-                                "svgGroupId": "g10",
+                                "svgGroupId": "awg-tkk-m75_sk1-007",
                                 "measure": "5",
                                 "system": "9",
                                 "position": "3/8",
                                 "comment": "Achtelpause überschreibt Achtelnote d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g12",
+                                "svgGroupId": "awg-tkk-m75_sk1-008",
                                 "measure": "6",
                                 "system": "9",
                                 "position": "1/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e überschreibt f."
                             },
                             {
-                                "svgGroupId": "g13",
+                                "svgGroupId": "awg-tkk-m75_sk1-009",
                                 "measure": "6",
                                 "system": "8",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: e<sup>2</sup> überschreibt fis<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g11",
+                                "svgGroupId": "awg-tkk-m75_sk1-010",
                                 "measure": "6",
                                 "system": "9",
                                 "position": "2/4",
                                 "comment": "e gestrichen."
                             },
                             {
-                                "svgGroupId": "g15",
+                                "svgGroupId": "awg-tkk-m75_sk1-011",
                                 "measure": "{7A}",
                                 "system": "8",
                                 "position": "1–2/8",
                                 "comment": "Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup>–d<sup>3</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g16",
+                                "svgGroupId": "awg-tkk-m75_sk1-012",
                                 "measure": "{7A}",
                                 "system": "8",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen und auf System 6 neu notiert."
                             },
                             {
-                                "svgGroupId": "g21",
+                                "svgGroupId": "awg-tkk-m75_sk1-013",
                                 "measure": "10",
                                 "system": "11",
                                 "position": "(1/4)",
                                 "comment": "Oberstimmenschicht: Achtelpause überschreibt mit 1/8 zusammengebalkte Triolenachtelnoten c<sup>2</sup>–g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g26",
+                                "svgGroupId": "awg-tkk-m75_sk1-014",
                                 "measure": "12",
                                 "system": "12",
                                 "position": "3/4",
                                 "comment": "Unterstimmenschicht: Notenkopf E radiert."
                             },
                             {
-                                "svgGroupId": "g27",
+                                "svgGroupId": "awg-tkk-m75_sk1-015",
                                 "measure": "12",
                                 "system": "11",
                                 "position": "5.–6. Note",
                                 "comment": "h–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b überschreibt g–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis."
                             },
                             {
-                                "svgGroupId": "g210",
+                                "svgGroupId": "awg-tkk-m75_sk1-016",
                                 "measure": "13",
                                 "system": "11",
                                 "position": "1/4",
@@ -203,7 +203,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "awg-tkk-m75_sk1_1-001",
                                 "measure": "5",
                                 "system": "15",
                                 "position": "1/8",

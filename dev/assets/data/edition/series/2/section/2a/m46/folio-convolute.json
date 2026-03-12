@@ -46,7 +46,7 @@
                             "sheetId": "M46_Sk9",
                             "sigle": "M 46 Sk9",
                             "sigleAddendum": "",
-                            "segmentSplit": 2,
+                            "segmentSplit": 1.25,
                             "segments": [
                                 {
                                     "position": 1,
@@ -61,10 +61,10 @@
                             "sigle": "M 27 Sk1.1",
                             "sigleAddendum": "",
                             "selectable": false,
-                            "segmentSplit": 2,
+                            "segmentSplit": 5,
                             "segments": [
                                 {
-                                    "position": 2,
+                                    "position": 5,
                                     "startSystem": 14,
                                     "endSystem": 13
                                 }

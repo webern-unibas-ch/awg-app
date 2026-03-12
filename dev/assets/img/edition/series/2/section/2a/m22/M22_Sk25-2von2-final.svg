@@ -70,7 +70,7 @@
   <path id="line104" d="M163.166 256.441h834.347" style="fill:none;stroke:#000;stroke-width:.643998"/>
   <path id="path106" fill="#000" stroke="none" d="M160.433 168.975c-11.71 18.681 5.01 35.529-5.923 43.733h.456c13.205-10.943-3.152-25.052 5.457-43.27z" style="stroke-width:1.33333"/>
   <path id="path108" fill="#000" stroke="none" d="M160.433 256.441c-11.71-18.681 5.01-35.53-5.923-43.733h.456c13.205 10.941-3.152 25.052 5.457 43.268z" style="stroke-width:1.33333"/>
-  <g id="g2" class="tkk">
+  <g id="awg-tkk-m22_sk25-006" class="tkk">
     <path id="polyline110" d="m219.179 182.608 161.779-86.954" style="fill:none;stroke:#000;stroke-width:.483" transform="translate(34.016 30.047)scale(1.33333)"/>
   </g>
   <g id="text112" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333">
@@ -172,7 +172,7 @@
       <path id="path1155" d="m488.696 113.729-.183.849q-.395.01-.698.213-.296.203-.463.568t-.36 1.24q-.187.87-.28 1.16-.147.444-.344.714-.198.271-.428.417-.223.151-.546.23-.177.041-.6.041h-.291l.177-.818h.162q.442 0 .635-.11.198-.108.318-.369.088-.193.255-.98.213-.983.364-1.364.204-.53.521-.854t.802-.51q-.406-.214-.573-.485-.161-.276-.161-.77 0-.402.234-1.48.167-.755.167-.958 0-.266-.146-.38-.14-.115-.599-.115h-.161l.177-.817h.286q.49 0 .688.067.307.104.474.35.172.244.172.655 0 .344-.172 1.157-.25 1.203-.25 1.494 0 .417.208.63t.615.225"/>
     </g>
   </g>
-  <g id="g3" class="link-box">
+  <g id="awg-lb-m22_sk25b-to-m22_sk26a" class="link-box">
     <g id="g9" class="link-box">
       <path id="rect198" d="M797.98 152.119h134.161v114.8h-134.16Z" style="fill:#fff;stroke:#777;stroke-width:.910664"/>
       <text xml:space="preserve" id="text1" x="808.066" y="217.149" style="font-weight:700;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.944882;stroke-opacity:.866667"><tspan id="tspan1" x="808.066" y="217.149">Sk26 T. 1–5</tspan></text>

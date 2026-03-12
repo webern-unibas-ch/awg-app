@@ -73,7 +73,7 @@
   <path id="line15179" d="M166.038 252.705h797.905" style="fill:none;stroke:#000;stroke-width:.64399803"/>
   <path id="line15181" d="M166.038 258.171h797.905" style="fill:none;stroke:#000;stroke-width:.64399803"/>
   <path id="line15183" d="M166.038 263.638h797.905" style="fill:none;stroke:#000;stroke-width:.64399803"/>
-  <g id="g1027" class="tkk" transform="translate(36.661)">
+  <g id="awg-tkk-m39_sk1-018" class="tkk" transform="translate(36.661)">
     <path id="polyline15185" d="m270.942 191.833 193.725-90.541" style="fill:none;stroke:#000;stroke-width:.48300001" transform="translate(0 34.282)scale(1.33333)"/>
     <path id="polyline15187" d="m300.838 100.608 220.204 87.638" style="fill:none;stroke:#000;stroke-width:.48300001" transform="translate(0 34.282)scale(1.33333)"/>
   </g>
@@ -107,7 +107,7 @@
   <g id="text15215" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
     <path id="path1053" d="M292.63 184.393c-.59 1.553.438 2.843 2.274 2.865s3.783-1.225 4.374-2.8c.568-1.552-.438-2.82-2.296-2.842-1.837-.022-3.783 1.225-4.352 2.777" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
   </g>
-  <g id="g1023" class="tkk" transform="translate(36.661)">
+  <g id="awg-tkk-m39_sk1-017" class="tkk" transform="translate(36.661)">
     <path id="line15217" d="M295.2 170.705h9.338" style="fill:none;stroke:#000;stroke-width:.90399802"/>
     <path id="line15219" d="M295.2 165.238h9.338" style="fill:none;stroke:#000;stroke-width:.90399802"/>
     <g id="text15221" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
@@ -337,7 +337,7 @@
     </g>
   </g>
   <path id="rect15445" d="M772.006 158.401h185v123.78h-185Z" style="fill:#fff;stroke:none;stroke-width:1.19415998"/>
-  <g id="g8" class="link-box" transform="translate(36.661)">
+  <g id="awg-lb-m39_sk1d-to-m39_sk1h" class="link-box" transform="translate(36.661)">
     <path id="rect15447" d="M734.752 157.901h186.093v125.372H734.752Z" style="fill:none;stroke:#777;stroke-width:.81612998;stroke-opacity:1"/>
     <g id="text15449" aria-label="Sk1 T. 9C–10B" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.14687157px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33332992" transform="scale(1.00333 .99668)">
       <path id="path1282" d="m755.602 221.747 2.974-.29q.269 1.498 1.084 2.2.826.702 2.22.702 1.477 0 2.22-.62.754-.63.754-1.466 0-.537-.32-.908-.31-.382-1.094-.661-.537-.186-2.448-.661-2.457-.61-3.448-1.497-1.394-1.25-1.394-3.046 0-1.157.65-2.158.661-1.012 1.89-1.539 1.239-.527 2.984-.527 2.85 0 4.285 1.25 1.446 1.25 1.518 3.335l-3.057.134q-.196-1.167-.846-1.672-.64-.517-1.931-.517-1.332 0-2.086.547-.485.352-.485.94 0 .537.454.92.578.484 2.809 1.011 2.23.527 3.294 1.095 1.073.557 1.672 1.538.61.97.61 2.406 0 1.3-.723 2.437t-2.045 1.693q-1.321.547-3.294.547-2.87 0-4.409-1.321-1.538-1.332-1.838-3.872" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.14687157px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33332992"/>
