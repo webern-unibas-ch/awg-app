@@ -21,24 +21,27 @@
                 <ng-template>
                     <div class="row">
                         <div
-                            class="awg-svg-sheet-nav-container mb-4"
+                            class="awg-svg-sheet-facet-container mb-4"
                             [ngClass]="{
-                                'col-auto': isSheetNavMinimized,
-                                'col-12 col-lg-4 col-xl-3': !isSheetNavMinimized,
+                                'col-auto': isSheetFacetMinimized,
+                                'col-12 col-lg-4 col-xl-3': !isSheetFacetMinimized,
                             }">
-                            <!-- svg sheet navigation -->
-                            <awg-edition-svg-sheet-nav
+                            <!-- svg sheet facet -->
+                            <awg-edition-svg-sheet-facet
                                 [svgSheetsData]="svgSheetsData"
-                                [isMinimized]="isSheetNavMinimized"
+                                [isMinimized]="isSheetFacetMinimized"
                                 [selectedSvgSheet]="selectedSvgSheet"
                                 (selectSvgSheetRequest)="selectSvgSheet($event)"
-                                (toggleSheetNavRequest)="toggleSheetNav($event)">
-                            </awg-edition-svg-sheet-nav>
+                                (toggleSheetFacetRequest)="toggleSheetFacet($event)">
+                            </awg-edition-svg-sheet-facet>
                         </div>
 
                         <div
                             class="awg-svg-sheet-viewer-container"
-                            [ngClass]="{ col: isSheetNavMinimized, 'col-12 col-lg-8 col-xl-9': !isSheetNavMinimized }">
+                            [ngClass]="{
+                                col: isSheetFacetMinimized,
+                                'col-12 col-lg-8 col-xl-9': !isSheetFacetMinimized,
+                            }">
                             <!-- svg sheet -->
                             @if (selectedSvgSheet) {
                                 <awg-edition-svg-sheet-viewer

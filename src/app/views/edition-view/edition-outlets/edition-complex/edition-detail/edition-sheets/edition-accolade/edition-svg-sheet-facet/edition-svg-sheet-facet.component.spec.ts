@@ -20,17 +20,17 @@ import { mockEditionData } from '@testing/mock-data';
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 import { click } from '@testing/click-helper';
-import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
+import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.component';
 
 // Mock components
 @Component({
-    selector: 'awg-edition-svg-sheet-nav-item',
+    selector: 'awg-edition-svg-sheet-facet-item',
     template: '',
     standalone: false,
 })
-class EditionSvgSheetNavItemStubComponent {
+class EditionSvgSheetFacetItemStubComponent {
     @Input()
-    navItemLabel: string;
+    facetItemLabel: string;
 
     @Input()
     svgSheets: EditionSvgSheet[];
@@ -42,9 +42,9 @@ class EditionSvgSheetNavItemStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-describe('EditionSvgSheetNavComponent (DONE)', () => {
-    let component: EditionSvgSheetNavComponent;
-    let fixture: ComponentFixture<EditionSvgSheetNavComponent>;
+describe('EditionSvgSheetFacetComponent (DONE)', () => {
+    let component: EditionSvgSheetFacetComponent;
+    let fixture: ComponentFixture<EditionSvgSheetFacetComponent>;
     let compDe: DebugElement;
 
     let expectedComplexId: string;
@@ -61,18 +61,18 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
 
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
-    let toggleSheetNavSpy: Spy;
-    let toggleSheetNavRequestEmitSpy: Spy;
+    let toggleSheetFacetSpy: Spy;
+    let toggleSheetFacetRequestEmitSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
-            declarations: [EditionSvgSheetNavComponent, EditionSvgSheetNavItemStubComponent],
+            declarations: [EditionSvgSheetFacetComponent, EditionSvgSheetFacetItemStubComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgSheetNavComponent);
+        fixture = TestBed.createComponent(EditionSvgSheetFacetComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -100,8 +100,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleSheetNavSpy = spyOn(component, 'toggleSheetNav').and.callThrough();
-        toggleSheetNavRequestEmitSpy = spyOn(component.toggleSheetNavRequest, 'emit').and.callThrough();
+        toggleSheetFacetSpy = spyOn(component, 'toggleSheetFacet').and.callThrough();
+        toggleSheetFacetRequestEmitSpy = spyOn(component.toggleSheetFacetRequest, 'emit').and.callThrough();
     });
 
     it('... should create', () => {
@@ -135,8 +135,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'button.btn', 0, 0);
             });
 
-            it('... should contain no EditionSvgSheetNavItemComponent (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 0, 0);
+            it('... should contain no EditionSvgSheetFacetItemComponent (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFacetItemStubComponent, 0, 0);
             });
         });
     });
@@ -177,10 +177,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
-                expectToContain(cardEl.classList, 'awg-svg-sheet-nav');
+                expectToContain(cardEl.classList, 'awg-svg-sheet-facet');
             });
 
-            it('... should contain a button for toggling the sheet navigation', () => {
+            it('... should contain a button for toggling the sheet facet', () => {
                 const toggleButtonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                 const toggleButtonEl: HTMLButtonElement = toggleButtonDes[0].nativeElement;
 
@@ -215,68 +215,68 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
                     });
 
-                    it('... should contain 3 EditionSvgSheetNavItemComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 3, 3);
+                    it('... should contain 3 EditionSvgSheetFacetItemComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFacetItemStubComponent, 3, 3);
                     });
 
-                    it('... should pass down navItemLabels to EditionSvgSheetNavItemComponent', () => {
-                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down facetItemLabels to EditionSvgSheetFacetItemComponent', () => {
+                        const sheetFacetItemDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSvgSheetNavItemStubComponent,
+                            EditionSvgSheetFacetItemStubComponent,
                             3,
                             3
                         );
-                        const sheetNavItemCmp = sheetNavItemDes.map(
+                        const sheetFacetItemCmp = sheetFacetItemDes.map(
                             de =>
                                 de.injector.get(
-                                    EditionSvgSheetNavItemStubComponent
-                                ) as EditionSvgSheetNavItemStubComponent
+                                    EditionSvgSheetFacetItemStubComponent
+                                ) as EditionSvgSheetFacetItemStubComponent
                         );
 
-                        expectToBe(sheetNavItemCmp.length, 3);
-                        expectToBe(sheetNavItemCmp[0].navItemLabel, 'Werkeditionen');
-                        expectToBe(sheetNavItemCmp[1].navItemLabel, 'Texteditionen');
-                        expectToBe(sheetNavItemCmp[2].navItemLabel, 'Skizzeneditionen');
+                        expectToBe(sheetFacetItemCmp.length, 3);
+                        expectToBe(sheetFacetItemCmp[0].facetItemLabel, 'Werkeditionen');
+                        expectToBe(sheetFacetItemCmp[1].facetItemLabel, 'Texteditionen');
+                        expectToBe(sheetFacetItemCmp[2].facetItemLabel, 'Skizzeneditionen');
                     });
 
-                    it('... should pass down selectedSvgSheet to EditionSvgSheetNavItemComponent', () => {
-                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down selectedSvgSheet to EditionSvgSheetFacetItemComponent', () => {
+                        const sheetFacetItemDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSvgSheetNavItemStubComponent,
+                            EditionSvgSheetFacetItemStubComponent,
                             3,
                             3
                         );
-                        const sheetNavItemCmp = sheetNavItemDes.map(
+                        const sheetFacetItemCmp = sheetFacetItemDes.map(
                             de =>
                                 de.injector.get(
-                                    EditionSvgSheetNavItemStubComponent
-                                ) as EditionSvgSheetNavItemStubComponent
+                                    EditionSvgSheetFacetItemStubComponent
+                                ) as EditionSvgSheetFacetItemStubComponent
                         );
 
-                        expectToBe(sheetNavItemCmp.length, 3);
-                        expectToEqual(sheetNavItemCmp[0].selectedSvgSheet, expectedSvgSheet);
-                        expectToEqual(sheetNavItemCmp[1].selectedSvgSheet, expectedSvgSheet);
-                        expectToEqual(sheetNavItemCmp[2].selectedSvgSheet, expectedSvgSheet);
+                        expectToBe(sheetFacetItemCmp.length, 3);
+                        expectToEqual(sheetFacetItemCmp[0].selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetFacetItemCmp[1].selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetFacetItemCmp[2].selectedSvgSheet, expectedSvgSheet);
                     });
 
-                    it('... should pass down svgSheets to EditionSvgSheetNavItemComponent', () => {
-                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down svgSheets to EditionSvgSheetFacetItemComponent', () => {
+                        const sheetFacetItemDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSvgSheetNavItemStubComponent,
+                            EditionSvgSheetFacetItemStubComponent,
                             3,
                             3
                         );
-                        const sheetNavItemCmp = sheetNavItemDes.map(
+                        const sheetFacetItemCmp = sheetFacetItemDes.map(
                             de =>
                                 de.injector.get(
-                                    EditionSvgSheetNavItemStubComponent
-                                ) as EditionSvgSheetNavItemStubComponent
+                                    EditionSvgSheetFacetItemStubComponent
+                                ) as EditionSvgSheetFacetItemStubComponent
                         );
 
-                        expectToBe(sheetNavItemCmp.length, 3);
-                        expectToEqual(sheetNavItemCmp[0].svgSheets, expectedSvgSheetsData.sheets.workEditions);
-                        expectToEqual(sheetNavItemCmp[1].svgSheets, expectedSvgSheetsData.sheets.textEditions);
-                        expectToEqual(sheetNavItemCmp[2].svgSheets, expectedSvgSheetsData.sheets.sketchEditions);
+                        expectToBe(sheetFacetItemCmp.length, 3);
+                        expectToEqual(sheetFacetItemCmp[0].svgSheets, expectedSvgSheetsData.sheets.workEditions);
+                        expectToEqual(sheetFacetItemCmp[1].svgSheets, expectedSvgSheetsData.sheets.textEditions);
+                        expectToEqual(sheetFacetItemCmp[2].svgSheets, expectedSvgSheetsData.sheets.sketchEditions);
                     });
                 });
             });
@@ -311,8 +311,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 0, 0);
                     });
 
-                    it('... should contain no EditionSvgSheetNavItemComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 0, 0);
+                    it('... should contain no EditionSvgSheetFacetItemComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFacetItemStubComponent, 0, 0);
                     });
                 });
             });
@@ -323,28 +323,29 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavItemComponent', () => {
-                const sheetNavItemDes = getAndExpectDebugElementByDirective(
+            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetFacetItemComponent', () => {
+                const sheetFacetItemDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    EditionSvgSheetNavItemStubComponent,
+                    EditionSvgSheetFacetItemStubComponent,
                     3,
                     3
                 );
-                const sheetNavItemCmp = sheetNavItemDes.map(
-                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
+                const sheetFacetItemCmp = sheetFacetItemDes.map(
+                    de =>
+                        de.injector.get(EditionSvgSheetFacetItemStubComponent) as EditionSvgSheetFacetItemStubComponent
                 );
 
                 let expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                sheetNavItemCmp[0].selectSvgSheetRequest.emit(expectedSheetIds);
+                sheetFacetItemCmp[0].selectSvgSheetRequest.emit(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
 
                 expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                sheetNavItemCmp[1].selectSvgSheetRequest.emit(expectedSheetIds);
+                sheetFacetItemCmp[1].selectSvgSheetRequest.emit(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetSpy, 2, expectedSheetIds);
 
-                sheetNavItemCmp[2].selectSvgSheetRequest.emit(expectedSheetIds);
+                sheetFacetItemCmp[2].selectSvgSheetRequest.emit(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetSpy, 3, expectedSheetIds);
             });
@@ -406,9 +407,9 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
         });
 
-        describe('#toggleSheetNav()', () => {
-            it('... should have a method `toggleSheetNav`', () => {
-                expect(component.toggleSheetNav).toBeDefined();
+        describe('#toggleSheetFacet()', () => {
+            it('... should have a method `toggleSheetFacet`', () => {
+                expect(component.toggleSheetFacet).toBeDefined();
             });
 
             it('... should trigger on click on button', () => {
@@ -419,24 +420,24 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(toggleSheetNavSpy, 1);
+                expectSpyCall(toggleSheetFacetSpy, 1);
             });
 
-            it('... should emit the toggle state of the sheet navigation', () => {
+            it('... should emit the toggle state of the sheet facet', () => {
                 expectToBe(component.isMinimized, false);
 
-                component.toggleSheetNav();
+                component.toggleSheetFacet();
 
-                expectSpyCall(toggleSheetNavRequestEmitSpy, 1, true);
+                expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, true);
 
                 component.isMinimized = true;
                 detectChangesOnPush(fixture);
 
                 expectToBe(component.isMinimized, true);
 
-                component.toggleSheetNav();
+                component.toggleSheetFacet();
 
-                expectSpyCall(toggleSheetNavRequestEmitSpy, 2, false);
+                expectSpyCall(toggleSheetFacetRequestEmitSpy, 2, false);
             });
         });
     });

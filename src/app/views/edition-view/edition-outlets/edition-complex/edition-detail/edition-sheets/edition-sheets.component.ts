@@ -72,11 +72,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     isFullscreen = false;
 
     /**
-     * Public variable: isSheetNavMinimized.
+     * Public variable: isSheetFacetMinimized.
      *
-     * It keeps the toggle state of the sheet navigation.
+     * It keeps the toggle state of the sheet facet.
      */
-    isSheetNavMinimized = false;
+    isSheetFacetMinimized = false;
 
     /**
      * Public variable: selectedConvolute.
@@ -271,7 +271,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It evaluates the id of the previous or next SVG sheet
      * based on the given direction and calls it with onSvgSheetSelect.
      *
-     * @param {number} direction - A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {number} direction - A number indicating the direction of browsing. -1 for previous and 1 for next.
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
@@ -381,15 +381,15 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onToggleSheetNav.
+     * Public method: onToggleSheetFacet.
      *
-     * It toggles the sheet navigation and sets the isSheetNavMinimized flag.
+     * It sets/updates the sheet facet state and the isSheetFacetMinimized flag.
      *
-     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet navigation.
-     * @returns {void} Toggles the sheet navigation and sets the isSheetNavMinimized flag.
+     * @param {boolean} isMinimized A boolean indicating the minimized state of the sheet facet.
+     * @returns {void} Sets/updates the sheet facet state and the isSheetFacetMinimized flag.
      */
-    onToggleSheetNav(isMinimized: boolean): void {
-        this.isSheetNavMinimized = isMinimized;
+    onToggleSheetFacet(isMinimized: boolean): void {
+        this.isSheetFacetMinimized = isMinimized;
     }
 
     /**

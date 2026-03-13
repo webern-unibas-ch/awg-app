@@ -15,7 +15,7 @@
                 <!-- accolade view -->
                 <awg-edition-accolade
                     [isFullscreen]="isFullscreen"
-                    [isSheetNavMinimized]="isSheetNavMinimized"
+                    [isSheetFacetMinimized]="isSheetFacetMinimized"
                     [svgSheetsData]="svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet"
                     [selectedTextcritics]="selectedTextcritics"
@@ -28,7 +28,7 @@
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectOverlaysRequest)="onOverlaySelect($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-                    (toggleSheetNavRequest)="onToggleSheetNav($event)">
+                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)">
                 </awg-edition-accolade>
 
                 <!-- convolute view -->

@@ -4,27 +4,27 @@ import { UtilityService } from '@awg-core/services';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 /**
- * The EditionSvgSheetNavItem component.
+ * The EditionSvgSheetFacetItem component.
  *
- * It contains an item of the svg sheet navigation section
+ * It contains an item of the svg sheet facet section
  * of the edition view of the app
  * and lets the user select an SVG sheet of a specific edition type.
  */
 @Component({
-    selector: 'awg-edition-svg-sheet-nav-item',
-    templateUrl: './edition-svg-sheet-nav-item.component.html',
-    styleUrls: ['./edition-svg-sheet-nav-item.component.scss'],
+    selector: 'awg-edition-svg-sheet-facet-item',
+    templateUrl: './edition-svg-sheet-facet-item.component.html',
+    styleUrls: ['./edition-svg-sheet-facet-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionSvgSheetNavItemComponent {
+export class EditionSvgSheetFacetItemComponent {
     /**
-     * Input variable: navItemLabel.
+     * Input variable: facetItemLabel.
      *
-     * It keeps the label of the nav item.
+     * It keeps the label of the facet item.
      */
     @Input()
-    navItemLabel: string;
+    facetItemLabel: string;
 
     /**
      * Input variable: svgSheets.

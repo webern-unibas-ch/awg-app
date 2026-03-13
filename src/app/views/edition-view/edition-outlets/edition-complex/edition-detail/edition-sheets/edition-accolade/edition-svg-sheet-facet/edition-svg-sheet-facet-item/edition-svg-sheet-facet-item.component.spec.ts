@@ -16,7 +16,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
-import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav-item.component';
+import { EditionSvgSheetFacetItemComponent } from './edition-svg-sheet-facet-item.component';
 
 // Mock components
 @Component({
@@ -26,9 +26,9 @@ import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav-item.co
 })
 class DisclaimerWorkeditionsStubComponent {}
 
-describe('EditionSvgSheetNavItemComponent (DONE)', () => {
-    let component: EditionSvgSheetNavItemComponent;
-    let fixture: ComponentFixture<EditionSvgSheetNavItemComponent>;
+describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
+    let component: EditionSvgSheetFacetItemComponent;
+    let fixture: ComponentFixture<EditionSvgSheetFacetItemComponent>;
     let compDe: DebugElement;
 
     let selectSvgSheetSpy: Spy;
@@ -37,7 +37,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     let expectedComplexId: string;
 
     let expectedNextComplexId: string;
-    let expectedNavItemLabel: string;
+    let expectedFacetItemLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
     let expectedSheetsWithoutPartials: EditionSvgSheet[];
     let expectedSheetsWithPartials: EditionSvgSheet[];
@@ -48,17 +48,17 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionSvgSheetNavItemComponent, DisclaimerWorkeditionsStubComponent],
+            declarations: [EditionSvgSheetFacetItemComponent, DisclaimerWorkeditionsStubComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgSheetNavItemComponent);
+        fixture = TestBed.createComponent(EditionSvgSheetFacetItemComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
-        expectedNavItemLabel = 'Testeditionslabel';
+        expectedFacetItemLabel = 'Testeditionslabel';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedSvgSheets = mockEditionData.mockSvgSheetList.sheets['sketchEditions'];
@@ -83,8 +83,8 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have navItemLabel', () => {
-            expect(component.navItemLabel).toBeUndefined();
+        it('... should not have facetItemLabel', () => {
+            expect(component.facetItemLabel).toBeUndefined();
         });
 
         it('... should not have svgSheets', () => {
@@ -96,7 +96,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 h6.card-title without navItemLabel (yet)', () => {
+            it('... should contain 1 h6.card-title without facetItemLabel (yet)', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
@@ -112,7 +112,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.navItemLabel = expectedNavItemLabel;
+            component.facetItemLabel = expectedFacetItemLabel;
             component.svgSheets = expectedSvgSheets;
             component.selectedSvgSheet = expectedSvgSheet;
 
@@ -120,8 +120,8 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `navItemLabel` input', () => {
-            expectToBe(component.navItemLabel, expectedNavItemLabel);
+        it('... should have `facetItemLabel` input', () => {
+            expectToBe(component.facetItemLabel, expectedFacetItemLabel);
         });
 
         it('... should have `svgSheets` input', () => {
@@ -134,15 +134,15 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 h6.card-title with navItemLabel', () => {
+            it('... should contain 1 h6.card-title with facetItemLabel', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(hEl.textContent.trim(), expectedNavItemLabel + ':');
+                expectToBe(hEl.textContent.trim(), expectedFacetItemLabel + ':');
             });
 
-            it('... should contain a DisclaimerWorkeditions component if navItemLabel=`Werkeditionen` ', () => {
-                component.navItemLabel = 'Werkeditionen';
+            it('... should contain a DisclaimerWorkeditions component if facetItemLabel=`Werkeditionen` ', () => {
+                component.facetItemLabel = 'Werkeditionen';
                 detectChangesOnPush(fixture);
 
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
@@ -170,7 +170,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 );
             });
 
-            it('... should have `awg-svg-sheet-nav-link` class on direct anchors (no partials)', () => {
+            it('... should have `awg-svg-sheet-facet-link` class on direct anchors (no partials)', () => {
                 const aDes = getAndExpectDebugElementByCss(
                     compDe,
                     'a.btn.btn-default',
@@ -180,8 +180,8 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                 const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                expectToContain(aEl0.classList, 'awg-svg-sheet-nav-link');
-                expectToContain(aEl1.classList, 'awg-svg-sheet-nav-link');
+                expectToContain(aEl0.classList, 'awg-svg-sheet-facet-link');
+                expectToContain(aEl1.classList, 'awg-svg-sheet-facet-link');
             });
 
             it('... should have `active` class on direct anchors with selected svg sheet and `text-muted` on others (no partials)', () => {
@@ -218,34 +218,34 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             it('... should contain as many dropdowns as svgSheets with partials', () => {
                 getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
             });
 
-            it('... should have one header anchor (#dropDownSheetNav) in dropdown for partials', () => {
+            it('... should have one header anchor (#dropDownSheetFacet) in dropdown for partials', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
                 dropdownDes.forEach(dropdownDe => {
-                    getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetNav', 1, 1);
+                    getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetFacet', 1, 1);
                 });
             });
 
             it('... should have sheet label in dropdown header anchor for partials', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
 
                 dropdownDes.forEach((dropdownDe, index) => {
-                    const spanDes = getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetNav > span', 1, 1);
+                    const spanDes = getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetFacet > span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToContain(spanEl.textContent, expectedSheetsWithPartials[index].label);
@@ -255,7 +255,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             it('... should have another span with badge class on dropdown header anchor for partials', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -263,7 +263,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 dropdownDes.forEach(dropdownDe => {
                     const innerSpanDes = getAndExpectDebugElementByCss(
                         dropdownDe,
-                        'a#dropDownSheetNav > span > span.badge',
+                        'a#dropDownSheetFacet > span > span.badge',
                         1,
                         1
                     );
@@ -276,7 +276,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             it('... should have sheet partials count in badge on dropdown header anchor for partials', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -284,7 +284,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 dropdownDes.forEach((dropdownDe, index) => {
                     const innerSpanDes = getAndExpectDebugElementByCss(
                         dropdownDe,
-                        'a#dropDownSheetNav > span > span.badge',
+                        'a#dropDownSheetFacet > span > span.badge',
                         1,
                         1
                     );
@@ -300,7 +300,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 const aDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'a#dropDownSheetNav',
+                    'a#dropDownSheetFacet',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -318,7 +318,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 let aDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'a#dropDownSheetNav',
+                    'a#dropDownSheetFacet',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -336,7 +336,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 aDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'a#dropDownSheetNav',
+                    'a#dropDownSheetFacet',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -353,7 +353,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             it('... should have as many item anchors (.dropdown-item) in dropdown as partials in sheet content', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -374,7 +374,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 const aDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'a#dropDownSheetNav',
+                    'a#dropDownSheetFacet',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -392,7 +392,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             it('... should display sheet labels in dropdown item anchors (with numbered partials)', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-svg-sheet-nav-link-dropdown',
+                    'div.awg-svg-sheet-facet-link-dropdown',
                     expectedSheetsWithPartials.length,
                     expectedSheetsWithPartials.length
                 );
@@ -465,7 +465,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 it('... on direct anchors', fakeAsync(() => {
                     const aDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'a.awg-svg-sheet-nav-link',
+                        'a.awg-svg-sheet-facet-link',
                         expectedSheetsWithoutPartials.length,
                         expectedSheetsWithoutPartials.length
                     );
@@ -484,7 +484,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 it('... on dropdown anchors', fakeAsync(() => {
                     const dropdownDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-svg-sheet-nav-link-dropdown',
+                        'div.awg-svg-sheet-facet-link-dropdown',
                         expectedSheetsWithPartials.length,
                         expectedSheetsWithPartials.length
                     );

@@ -13,7 +13,7 @@ import {
  *
  * It contains the edition accolade section
  * of the edition view of the app
- * with the {@link EditionSvgSheetNavComponent},
+ * with the {@link EditionSvgSheetFacetComponent},
  * the {@link EditionSvgSheetListComponent}
  * and the {@link EditionTkaTableComponent}.
  */
@@ -34,12 +34,12 @@ export class EditionAccoladeComponent {
     isFullscreen: boolean;
 
     /**
-     * Input variable: isSheetNavMinimized.
+     * Input variable: isSheetFacetMinimized.
      *
-     * It keeps the toggle state of the sheet navigation.
+     * It keeps the toggle state of the sheet facet.
      */
     @Input()
-    isSheetNavMinimized: boolean;
+    isSheetFacetMinimized: boolean;
 
     /**
      * Input variable: svgSheetsData.
@@ -139,12 +139,12 @@ export class EditionAccoladeComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Output variable: toggleSheetNavRequest.
+     * Output variable: toggleSheetFacetRequest.
      *
-     * It keeps an event emitter for the toggle state of the sheet navigation.
+     * It keeps an event emitter for the toggle state of the sheet facet.
      */
     @Output()
-    toggleSheetNavRequest: EventEmitter<boolean> = new EventEmitter();
+    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 
     /**
      * Public method: browseSvgSheet.
@@ -152,7 +152,7 @@ export class EditionAccoladeComponent {
      * It emits a given direction to the {@link browseSvgSheetRequest}
      * to browse to the previous or next sheet of the selected svg sheet.
      *
-     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {number} direction A number indicating the direction of browsing. -1 for previous and 1 for next.
      *
      * @returns {void} Emits the direction.
      */
@@ -256,18 +256,18 @@ export class EditionAccoladeComponent {
     }
 
     /**
-     * Public method: toggleSheetNav.
+     * Public method: toggleSheetFacet.
      *
-     * It emits the given boolean to the {@link toggleSheetNavRequest}
-     * to toggle the sheet navigation.
+     * It emits the given boolean to the {@link toggleSheetFacetRequest}
+     * to toggle the sheet facet.
      *
-     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet navigation.
+     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet facet.
      * @returns {void} Emits the boolean.
      */
-    toggleSheetNav(isMinimized: boolean): void {
+    toggleSheetFacet(isMinimized: boolean): void {
         if (isMinimized === undefined) {
             return;
         }
-        this.toggleSheetNavRequest.emit(isMinimized);
+        this.toggleSheetFacetRequest.emit(isMinimized);
     }
 }
