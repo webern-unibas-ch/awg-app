@@ -36,11 +36,15 @@ import { EditionAccoladeComponent } from './edition-accolade.component';
 })
 class EditionSvgSheetNavStubComponent {
     @Input()
+    isMinimized = false;
+    @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    @Output()
+    toggleSheetNavRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -114,6 +118,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let selectOverlaysRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let toggleSheetNavSpy: Spy;
+    let toggleSheetNavRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
     let expectedIsFullscreen: boolean;
@@ -128,6 +134,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let expectedShowTkA: boolean;
     let expectedModalSnippet: string;
     let expectedLinkBoxId: string;
+    let expectedIsSheetNavMinimized: boolean;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -178,6 +185,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedOverlays = [overlay];
         expectedLinkBoxId = 'link-box-1';
         expectedShowTkA = true;
+        expectedIsSheetNavMinimized = false;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -199,6 +207,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        toggleSheetNavSpy = spyOn(component, 'toggleSheetNav').and.callThrough();
+        toggleSheetNavRequestEmitSpy = spyOn(component.toggleSheetNavRequest, 'emit').and.callThrough();
     });
 
     afterAll(() => {
@@ -212,6 +222,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `isFullscreen`', () => {
             expect(component.isFullscreen).toBeUndefined();
+        });
+
+        it('... should not have `isSheetNavMinimized`', () => {
+            expect(component.isSheetNavMinimized).toBeUndefined();
         });
 
         it('... should not have `svgSheetsData`', () => {
@@ -257,6 +271,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.isFullscreen = expectedIsFullscreen;
+            component.isSheetNavMinimized = expectedIsSheetNavMinimized;
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
@@ -269,6 +284,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         it('... should have `isFullscreen` input', () => {
             expectToEqual(component.isFullscreen, expectedIsFullscreen);
+        });
+
+        it('... should have `isSheetNavMinimized` input', () => {
+            expectToEqual(component.isSheetNavMinimized, expectedIsSheetNavMinimized);
         });
 
         it('... should have `svgSheetsData` input', () => {
@@ -404,6 +423,75 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     const accRef = accDes[0].references['accoladeAcc'];
 
                     expectToEqual(fsToggleCmp.fsElement, accRef);
+                });
+            });
+
+            describe('... accordion body', () => {
+                it('... should contain one div.accordion-body in div.accordion-item', () => {
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                });
+
+                it('... should apply col-auto to sheet nav container div when minimized', () => {
+                    component.isSheetNavMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const navDivDes = getAndExpectDebugElementByCss(compDe, 'div.awg-svg-sheet-nav-container', 1, 1);
+                    const navDivEl: HTMLDivElement = navDivDes[0].nativeElement;
+
+                    expectToContain(navDivEl.classList, 'col-auto');
+                    expect(navDivEl.classList).not.toContain('col-12');
+                    expect(navDivEl.classList).not.toContain('col-lg-4');
+                    expect(navDivEl.classList).not.toContain('col-xl-3');
+                });
+
+                it('... should apply col-12 col-lg-4 col-xl-3 to sheet nav container div when not minimized', () => {
+                    component.isSheetNavMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const navDivDes = getAndExpectDebugElementByCss(compDe, 'div.awg-svg-sheet-nav-container', 1, 1);
+                    const navDivEl: HTMLDivElement = navDivDes[0].nativeElement;
+
+                    expectToContain(navDivEl.classList, 'col-12');
+                    expectToContain(navDivEl.classList, 'col-lg-4');
+                    expectToContain(navDivEl.classList, 'col-xl-3');
+                    expect(navDivEl.classList).not.toContain('col-auto');
+                });
+
+                it('... should apply col to sheet viewer container div when minimized', () => {
+                    component.isSheetNavMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const viewerDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-viewer-container',
+                        1,
+                        1
+                    );
+                    const viewerDivEl: HTMLDivElement = viewerDivDes[0].nativeElement;
+
+                    expectToContain(viewerDivEl.classList, 'col');
+                    expect(viewerDivEl.classList).not.toContain('col-12');
+                    expect(viewerDivEl.classList).not.toContain('col-lg-8');
+                    expect(viewerDivEl.classList).not.toContain('col-xl-9');
+                });
+
+                it('... should apply col-12 col-lg-8 col-xl-9 to sheet viewer container div when not minimized', () => {
+                    component.isSheetNavMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const viewerDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-viewer-container',
+                        1,
+                        1
+                    );
+                    const viewerDivEl: HTMLDivElement = viewerDivDes[0].nativeElement;
+
+                    expectToContain(viewerDivEl.classList, 'col-12');
+                    expectToContain(viewerDivEl.classList, 'col-lg-8');
+                    expectToContain(viewerDivEl.classList, 'col-xl-9');
+                    expect(viewerDivEl.classList).not.toContain('col');
                 });
             });
 
@@ -622,7 +710,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.fullscreenToggle).toBeDefined();
             });
 
-            it('... should trigger on fullscreenToggleRequest event from FullscreenToggleComponent', () => {
+            it('... should trigger on toggleFullscreenRequest event from FullscreenToggleComponent', () => {
                 const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
                 const fsToggleCmp = fsToggleDes[0].injector.get(
                     FullscreenToggleStubComponent
@@ -930,6 +1018,68 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+        });
+
+        describe('#toggleSheetNav()', () => {
+            it('... should have a method `toggleSheetNav`', () => {
+                expect(component.toggleSheetNav).toBeDefined();
+            });
+
+            describe('... should trigger on toggleSheetNavRequest event from EditionSvgSheetNavComponent', () => {
+                it('... when sheet nav is not minimized', () => {
+                    component.isSheetNavMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const sheetNavDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetNavStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetNavCmp = sheetNavDes[0].injector.get(
+                        EditionSvgSheetNavStubComponent
+                    ) as EditionSvgSheetNavStubComponent;
+
+                    sheetNavCmp.toggleSheetNavRequest.emit();
+
+                    expectSpyCall(toggleSheetNavSpy, 1);
+                });
+
+                it('... when sheet nav is minimized', () => {
+                    component.isSheetNavMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const sheetNavDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetNavStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetNavCmp = sheetNavDes[0].injector.get(
+                        EditionSvgSheetNavStubComponent
+                    ) as EditionSvgSheetNavStubComponent;
+
+                    sheetNavCmp.toggleSheetNavRequest.emit();
+
+                    expectSpyCall(toggleSheetNavSpy, 1);
+                });
+            });
+
+            it('... should not emit anything if no value is provided', () => {
+                component.toggleSheetNav(undefined);
+
+                expectSpyCall(toggleSheetNavRequestEmitSpy, 0, undefined);
+            });
+
+            it('... should emit toggleSheetNavRequest with correct value', () => {
+                component.toggleSheetNav(false);
+
+                expectSpyCall(toggleSheetNavRequestEmitSpy, 1, false);
+
+                component.toggleSheetNav(true);
+
+                expectSpyCall(toggleSheetNavRequestEmitSpy, 2, true);
             });
         });
     });

@@ -2,6 +2,10 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
+
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -15,6 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
+import { click } from '@testing/click-helper';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
 // Mock components
@@ -49,12 +54,19 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     let expectedSvgSheetWithPartials: EditionSvgSheet;
     let expectedSvgSheetWithPartialA: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedIsMinimized: boolean;
+
+    let expectedAnglesLeft: IconDefinition;
+    let expectedListUl: IconDefinition;
 
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let toggleSheetNavSpy: Spy;
+    let toggleSheetNavRequestEmitSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule],
             declarations: [EditionSvgSheetNavComponent, EditionSvgSheetNavItemStubComponent],
         }).compileComponents();
     }));
@@ -78,12 +90,18 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 sketchEditions: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials],
             },
         };
+        expectedIsMinimized = false;
+
+        expectedAnglesLeft = faAnglesLeft;
+        expectedListUl = faListUl;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        toggleSheetNavSpy = spyOn(component, 'toggleSheetNav').and.callThrough();
+        toggleSheetNavRequestEmitSpy = spyOn(component.toggleSheetNavRequest, 'emit').and.callThrough();
     });
 
     it('... should create', () => {
@@ -99,9 +117,22 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
+        it('... should have isMinimized set to false by default', () => {
+            expectToBe(component.isMinimized, expectedIsMinimized);
+        });
+
+        it('... should have fontawesome icons', () => {
+            expectToEqual(component.faAnglesLeft, expectedAnglesLeft);
+            expectToEqual(component.faListUl, expectedListUl);
+        });
+
         describe('VIEW', () => {
             it('... should contain no div (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 0, 0);
+            });
+
+            it('... should contain no button (yet)', () => {
+                getAndExpectDebugElementByCss(compDe, 'button.btn', 0, 0);
             });
 
             it('... should contain no EditionSvgSheetNavItemComponent (stubbed) yet', () => {
@@ -113,6 +144,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
+            component.isMinimized = expectedIsMinimized;
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
 
@@ -148,63 +180,141 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 expectToContain(cardEl.classList, 'awg-svg-sheet-nav');
             });
 
-            it('... should have one inner div.card-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+            it('... should contain a button for toggling the sheet navigation', () => {
+                const toggleButtonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                const toggleButtonEl: HTMLButtonElement = toggleButtonDes[0].nativeElement;
+
+                expectToContain(toggleButtonEl.classList, 'btn');
+                expectToContain(toggleButtonEl.classList, 'btn-sm');
+                expectToContain(toggleButtonEl.classList, 'border');
+                expectToContain(toggleButtonEl.classList, 'rounded');
+                expectToContain(toggleButtonEl.classList, 'm-2');
             });
 
-            it('... should contain 3 EditionSvgSheetNavItemComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 3, 3);
+            describe('... if not minimized', () => {
+                describe('... toggle button', () => {
+                    it('... should display anglesLeft icon in button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+
+                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const faIconIns = faIconDes[0].componentInstance.icon;
+
+                        expectToBe(faIconIns(), expectedAnglesLeft);
+                    });
+
+                    it('... should have title "Minimize" in button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.title, 'Minimize');
+                    });
+                });
+
+                describe('... card body', () => {
+                    it('... should have one inner div.card-body', () => {
+                        getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+                    });
+
+                    it('... should contain 3 EditionSvgSheetNavItemComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 3, 3);
+                    });
+
+                    it('... should pass down navItemLabels to EditionSvgSheetNavItemComponent', () => {
+                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetNavItemStubComponent,
+                            3,
+                            3
+                        );
+                        const sheetNavItemCmp = sheetNavItemDes.map(
+                            de =>
+                                de.injector.get(
+                                    EditionSvgSheetNavItemStubComponent
+                                ) as EditionSvgSheetNavItemStubComponent
+                        );
+
+                        expectToBe(sheetNavItemCmp.length, 3);
+                        expectToBe(sheetNavItemCmp[0].navItemLabel, 'Werkeditionen');
+                        expectToBe(sheetNavItemCmp[1].navItemLabel, 'Texteditionen');
+                        expectToBe(sheetNavItemCmp[2].navItemLabel, 'Skizzeneditionen');
+                    });
+
+                    it('... should pass down selectedSvgSheet to EditionSvgSheetNavItemComponent', () => {
+                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetNavItemStubComponent,
+                            3,
+                            3
+                        );
+                        const sheetNavItemCmp = sheetNavItemDes.map(
+                            de =>
+                                de.injector.get(
+                                    EditionSvgSheetNavItemStubComponent
+                                ) as EditionSvgSheetNavItemStubComponent
+                        );
+
+                        expectToBe(sheetNavItemCmp.length, 3);
+                        expectToEqual(sheetNavItemCmp[0].selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetNavItemCmp[1].selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetNavItemCmp[2].selectedSvgSheet, expectedSvgSheet);
+                    });
+
+                    it('... should pass down svgSheets to EditionSvgSheetNavItemComponent', () => {
+                        const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetNavItemStubComponent,
+                            3,
+                            3
+                        );
+                        const sheetNavItemCmp = sheetNavItemDes.map(
+                            de =>
+                                de.injector.get(
+                                    EditionSvgSheetNavItemStubComponent
+                                ) as EditionSvgSheetNavItemStubComponent
+                        );
+
+                        expectToBe(sheetNavItemCmp.length, 3);
+                        expectToEqual(sheetNavItemCmp[0].svgSheets, expectedSvgSheetsData.sheets.workEditions);
+                        expectToEqual(sheetNavItemCmp[1].svgSheets, expectedSvgSheetsData.sheets.textEditions);
+                        expectToEqual(sheetNavItemCmp[2].svgSheets, expectedSvgSheetsData.sheets.sketchEditions);
+                    });
+                });
             });
 
-            it('... should pass down navItemLabels to EditionSvgSheetNavItemComponent', () => {
-                const sheetNavItemDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionSvgSheetNavItemStubComponent,
-                    3,
-                    3
-                );
-                const sheetNavItemCmp = sheetNavItemDes.map(
-                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
-                );
+            describe('... if minimized', () => {
+                beforeEach(() => {
+                    component.isMinimized = true;
 
-                expectToBe(sheetNavItemCmp.length, 3);
-                expectToBe(sheetNavItemCmp[0].navItemLabel, 'Werkeditionen');
-                expectToBe(sheetNavItemCmp[1].navItemLabel, 'Texteditionen');
-                expectToBe(sheetNavItemCmp[2].navItemLabel, 'Skizzeneditionen');
-            });
+                    detectChangesOnPush(fixture);
+                });
 
-            it('... should pass down selectedSvgSheet to EditionSvgSheetNavItemComponent', () => {
-                const sheetNavItemDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionSvgSheetNavItemStubComponent,
-                    3,
-                    3
-                );
-                const sheetNavItemCmp = sheetNavItemDes.map(
-                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
-                );
+                describe('... toggle button', () => {
+                    it('... should display listUl icon in button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
 
-                expectToBe(sheetNavItemCmp.length, 3);
-                expectToEqual(sheetNavItemCmp[0].selectedSvgSheet, expectedSvgSheet);
-                expectToEqual(sheetNavItemCmp[1].selectedSvgSheet, expectedSvgSheet);
-                expectToEqual(sheetNavItemCmp[2].selectedSvgSheet, expectedSvgSheet);
-            });
+                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const faIconIns = faIconDes[0].componentInstance.icon;
 
-            it('... should pass down svgSheets to EditionSvgSheetNavItemComponent', () => {
-                const sheetNavItemDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionSvgSheetNavItemStubComponent,
-                    3,
-                    3
-                );
-                const sheetNavItemCmp = sheetNavItemDes.map(
-                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
-                );
+                        expectToBe(faIconIns(), expectedListUl);
+                    });
 
-                expectToBe(sheetNavItemCmp.length, 3);
-                expectToEqual(sheetNavItemCmp[0].svgSheets, expectedSvgSheetsData.sheets.workEditions);
-                expectToEqual(sheetNavItemCmp[1].svgSheets, expectedSvgSheetsData.sheets.textEditions);
-                expectToEqual(sheetNavItemCmp[2].svgSheets, expectedSvgSheetsData.sheets.sketchEditions);
+                    it('... should have title "Maximize" in button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.title, 'Maximize');
+                    });
+                });
+
+                describe('... card body', () => {
+                    it('... should have no inner div.card-body', () => {
+                        getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 0, 0);
+                    });
+
+                    it('... should contain no EditionSvgSheetNavItemComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 0, 0);
+                    });
+                });
             });
         });
 
@@ -293,6 +403,40 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+            });
+        });
+
+        describe('#toggleSheetNav()', () => {
+            it('... should have a method `toggleSheetNav`', () => {
+                expect(component.toggleSheetNav).toBeDefined();
+            });
+
+            it('... should trigger on click on button', () => {
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+
+                // Click button
+                click(btnEl as HTMLElement);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(toggleSheetNavSpy, 1);
+            });
+
+            it('... should emit the toggle state of the sheet navigation', () => {
+                expectToBe(component.isMinimized, false);
+
+                component.toggleSheetNav();
+
+                expectSpyCall(toggleSheetNavRequestEmitSpy, 1, true);
+
+                component.isMinimized = true;
+                detectChangesOnPush(fixture);
+
+                expectToBe(component.isMinimized, true);
+
+                component.toggleSheetNav();
+
+                expectSpyCall(toggleSheetNavRequestEmitSpy, 2, false);
             });
         });
     });

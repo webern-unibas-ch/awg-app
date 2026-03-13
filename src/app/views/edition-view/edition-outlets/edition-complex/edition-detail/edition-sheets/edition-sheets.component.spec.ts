@@ -49,6 +49,8 @@ class EditionAccoladeStubComponent {
     @Input()
     isFullscreen: boolean;
     @Input()
+    isSheetNavMinimized: boolean;
+    @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
@@ -72,6 +74,8 @@ class EditionAccoladeStubComponent {
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    @Output()
+    toggleSheetNavRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -151,9 +155,11 @@ describe('EditionSheetsComponent (DONE)', () => {
     let onOverlaySelectSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
     let selectSvgSheetSpy: Spy;
+    let onToggleSheetNavSpy: Spy;
 
     let expectedConvolute: FolioConvolute;
     let expectedIsFullscreen: boolean;
+    let expectedIsSheetNavMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
@@ -242,6 +248,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         // Test data
         expectedIsFullscreen = false;
+        expectedIsSheetNavMinimized = false;
 
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
 
@@ -299,6 +306,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         onOverlaySelectSpy = spyOn(component, 'onOverlaySelect').and.callThrough();
         onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
+        onToggleSheetNavSpy = spyOn(component, 'onToggleSheetNav').and.callThrough();
 
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
         selectSvgSheetSpy = spyOn(component as any, '_selectSvgSheet').and.callThrough();
@@ -319,6 +327,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         it('... should have `isFullscreen` = false', () => {
             expectToBe(component.isFullscreen, false);
+        });
+
+        it('... should have `isSheetNavMinimized` = false', () => {
+            expectToBe(component.isSheetNavMinimized, false);
         });
 
         it('... should not have `folioConvoluteData`', () => {
@@ -496,6 +508,15 @@ describe('EditionSheetsComponent (DONE)', () => {
                     ) as EditionAccoladeStubComponent;
 
                     expectToEqual(accoladeCmp.isFullscreen, expectedIsFullscreen);
+                });
+
+                it('... should pass down `isSheetNavMinimized` to the EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.isSheetNavMinimized, expectedIsSheetNavMinimized);
                 });
 
                 it('... should pass down `svgSheetsData` to the EditionAccoladeComponent', () => {
@@ -1166,6 +1187,36 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectedNavigationExtras,
                     ]);
                 });
+            });
+        });
+
+        describe('#onToggleSheetNav()', () => {
+            it('... should have a method `onToggleSheetNav`', () => {
+                expect(component.onToggleSheetNav).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionAccoladeComponent', () => {
+                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                const accoladeCmp = accoladeDes[0].injector.get(
+                    EditionAccoladeStubComponent
+                ) as EditionAccoladeStubComponent;
+
+                expectedIsSheetNavMinimized = true;
+                accoladeCmp.toggleSheetNavRequest.emit(expectedIsSheetNavMinimized);
+
+                expectSpyCall(onToggleSheetNavSpy, 1, [expectedIsSheetNavMinimized]);
+            });
+
+            it('... should toggle `isSheetNavMinimized` variable', () => {
+                expectToBe(component.isSheetNavMinimized, false);
+
+                component.onToggleSheetNav(true);
+
+                expectToBe(component.isSheetNavMinimized, true);
+
+                component.onToggleSheetNav(false);
+
+                expectToBe(component.isSheetNavMinimized, false);
             });
         });
 

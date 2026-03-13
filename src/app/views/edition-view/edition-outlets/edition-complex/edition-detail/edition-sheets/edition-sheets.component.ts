@@ -72,6 +72,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     isFullscreen = false;
 
     /**
+     * Public variable: isSheetNavMinimized.
+     *
+     * It keeps the toggle state of the sheet navigation.
+     */
+    isSheetNavMinimized = false;
+
+    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -371,6 +378,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         };
 
         this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Public method: onToggleSheetNav.
+     *
+     * It toggles the sheet navigation and sets the isSheetNavMinimized flag.
+     *
+     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet navigation.
+     * @returns {void} Toggles the sheet navigation and sets the isSheetNavMinimized flag.
+     */
+    onToggleSheetNav(isMinimized: boolean): void {
+        this.isSheetNavMinimized = isMinimized;
     }
 
     /**

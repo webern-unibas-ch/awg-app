@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
+
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 /**
@@ -17,6 +19,14 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
     standalone: false,
 })
 export class EditionSvgSheetNavComponent {
+    /**
+     * Public variable: isMinimized.
+     *
+     * It keeps the toggle state of the sheet navigation.
+     */
+    @Input()
+    isMinimized = false;
+
     /**
      * Input variable: svgSheetsData.
      *
@@ -42,6 +52,28 @@ export class EditionSvgSheetNavComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Output variable: toggleSheetNavRequest.
+     *
+     * It keeps an event emitter for the toggle state of the sheet navigation.
+     */
+    @Output()
+    toggleSheetNavRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
+     * Public variable: faAnglesLeft.
+     *
+     * It instantiates fontawesome's faAnglesLeft icon.
+     */
+    faAnglesLeft = faAnglesLeft;
+
+    /**
+     * Public variable: faListUl.
+     *
+     * It instantiates fontawesome's faListUl icon.
+     */
+    faListUl = faListUl;
+
+    /**
      * Public method: selectSvgSheet.
      *
      * It emits the given ids of a selected edition complex
@@ -55,5 +87,17 @@ export class EditionSvgSheetNavComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleSheetNav.
+     *
+     * It emits the given boolean to the {@link toggleSheetNavRequest}
+     * to toggle the sheet navigation.
+     *
+     * @returns {void} Emits the boolean.
+     */
+    toggleSheetNav(): void {
+        this.toggleSheetNavRequest.emit(!this.isMinimized);
     }
 }

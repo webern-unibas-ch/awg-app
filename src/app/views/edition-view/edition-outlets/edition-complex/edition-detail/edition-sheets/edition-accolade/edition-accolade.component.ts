@@ -34,6 +34,14 @@ export class EditionAccoladeComponent {
     isFullscreen: boolean;
 
     /**
+     * Input variable: isSheetNavMinimized.
+     *
+     * It keeps the toggle state of the sheet navigation.
+     */
+    @Input()
+    isSheetNavMinimized: boolean;
+
+    /**
      * Input variable: svgSheetsData.
      *
      * It keeps the svg sheets data.
@@ -129,6 +137,14 @@ export class EditionAccoladeComponent {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+
+    /**
+     * Output variable: toggleSheetNavRequest.
+     *
+     * It keeps an event emitter for the toggle state of the sheet navigation.
+     */
+    @Output()
+    toggleSheetNavRequest: EventEmitter<boolean> = new EventEmitter();
 
     /**
      * Public method: browseSvgSheet.
@@ -237,5 +253,21 @@ export class EditionAccoladeComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleSheetNav.
+     *
+     * It emits the given boolean to the {@link toggleSheetNavRequest}
+     * to toggle the sheet navigation.
+     *
+     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet navigation.
+     * @returns {void} Emits the boolean.
+     */
+    toggleSheetNav(isMinimized: boolean): void {
+        if (isMinimized === undefined) {
+            return;
+        }
+        this.toggleSheetNavRequest.emit(isMinimized);
     }
 }
