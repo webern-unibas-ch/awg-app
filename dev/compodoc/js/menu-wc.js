@@ -177,13 +177,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionAccoladeModule.html" data-type="entity-link" >EditionAccoladeModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionAccoladeModule-77db2fe7e30b5380f06561329f9f622bf57309b8d1ecae47f7bc6b4f6ae75f92171ca01f5f98fd125e818a949884f94d13cd935a6c007a619598ea8c003af886"' : 'data-bs-target="#xs-components-links-module-EditionAccoladeModule-77db2fe7e30b5380f06561329f9f622bf57309b8d1ecae47f7bc6b4f6ae75f92171ca01f5f98fd125e818a949884f94d13cd935a6c007a619598ea8c003af886"' }>
+                                            'data-bs-target="#components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' : 'data-bs-target="#xs-components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionAccoladeModule-77db2fe7e30b5380f06561329f9f622bf57309b8d1ecae47f7bc6b4f6ae75f92171ca01f5f98fd125e818a949884f94d13cd935a6c007a619598ea8c003af886"' :
-                                            'id="xs-components-links-module-EditionAccoladeModule-77db2fe7e30b5380f06561329f9f622bf57309b8d1ecae47f7bc6b4f6ae75f92171ca01f5f98fd125e818a949884f94d13cd935a6c007a619598ea8c003af886"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' :
+                                            'id="xs-components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' }>
                                             <li class="link">
                                                 <a href="components/EditionAccoladeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionAccoladeComponent</a>
                                             </li>
@@ -401,6 +401,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionSheetsRoutingModule.html" data-type="entity-link" >EditionSheetsRoutingModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/EditionSvgSheetFacetModule.html" data-type="entity-link" >EditionSvgSheetFacetModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' :
+                                            'id="xs-components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' }>
+                                            <li class="link">
+                                                <a href="components/EditionSvgSheetFacetComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFacetComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/EditionSvgSheetFacetItemComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFacetItemComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/EditionSvgSheetFooterModule.html" data-type="entity-link" >EditionSvgSheetFooterModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -413,26 +433,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             'id="xs-components-links-module-EditionSvgSheetFooterModule-b6421ed0b2b4f4f8803de316c59179a233fac20beeb0e26af5f4606a3773a99527e9cfbc87ca0d82aa6f545827c7d9bed25ad4c206e4cf8560b22a0e5378be6e"' }>
                                             <li class="link">
                                                 <a href="components/EditionSvgSheetFooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFooterComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSvgSheetNavModule.html" data-type="entity-link" >EditionSvgSheetNavModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetNavModule-f5de5c4ccfc300b0d8f5d8c492f95a012ec7d2f5882a979eeffcfa75ecb4dd6b2e0a939bed2d32a8a1441a14736d3bda24bb8d17ac60ef569fa43d8e175027d5"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetNavModule-f5de5c4ccfc300b0d8f5d8c492f95a012ec7d2f5882a979eeffcfa75ecb4dd6b2e0a939bed2d32a8a1441a14736d3bda24bb8d17ac60ef569fa43d8e175027d5"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetNavModule-f5de5c4ccfc300b0d8f5d8c492f95a012ec7d2f5882a979eeffcfa75ecb4dd6b2e0a939bed2d32a8a1441a14736d3bda24bb8d17ac60ef569fa43d8e175027d5"' :
-                                            'id="xs-components-links-module-EditionSvgSheetNavModule-f5de5c4ccfc300b0d8f5d8c492f95a012ec7d2f5882a979eeffcfa75ecb4dd6b2e0a939bed2d32a8a1441a14736d3bda24bb8d17ac60ef569fa43d8e175027d5"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetNavComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetNavItemComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetNavItemComponent</a>
                                             </li>
                                         </ul>
                                     </li>
