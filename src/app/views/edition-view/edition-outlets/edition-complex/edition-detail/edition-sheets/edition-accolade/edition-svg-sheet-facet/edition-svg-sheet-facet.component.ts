@@ -1,22 +1,32 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
+
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 /**
- * The EditionSvgSheetNav component.
+ * The EditionSvgSheetFacet component.
  *
- * It contains the svg sheet navigation section
+ * It contains the svg sheet facet section
  * of the edition view of the app
  * and lets the user select an SVG sheet.
  */
 @Component({
-    selector: 'awg-edition-svg-sheet-nav',
-    templateUrl: './edition-svg-sheet-nav.component.html',
-    styleUrls: ['./edition-svg-sheet-nav.component.scss'],
+    selector: 'awg-edition-svg-sheet-facet',
+    templateUrl: './edition-svg-sheet-facet.component.html',
+    styleUrls: ['./edition-svg-sheet-facet.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionSvgSheetNavComponent {
+export class EditionSvgSheetFacetComponent {
+    /**
+     * Public variable: isMinimized.
+     *
+     * It keeps the toggle state of the sheet facet.
+     */
+    @Input()
+    isMinimized = false;
+
     /**
      * Input variable: svgSheetsData.
      *
@@ -42,6 +52,28 @@ export class EditionSvgSheetNavComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Output variable: toggleSheetFacetRequest.
+     *
+     * It keeps an event emitter for the toggle state of the sheet facet.
+     */
+    @Output()
+    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
+     * Public variable: faAnglesLeft.
+     *
+     * It instantiates fontawesome's faAnglesLeft icon.
+     */
+    faAnglesLeft = faAnglesLeft;
+
+    /**
+     * Public variable: faListUl.
+     *
+     * It instantiates fontawesome's faListUl icon.
+     */
+    faListUl = faListUl;
+
+    /**
      * Public method: selectSvgSheet.
      *
      * It emits the given ids of a selected edition complex
@@ -55,5 +87,17 @@ export class EditionSvgSheetNavComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleSheetFacet.
+     *
+     * It emits the next toggle state (the negation of {@link isMinimized})
+     * to the {@link toggleSheetFacetRequest} to toggle the sheet facet.
+     *
+     * @returns {void} Emits the updated toggle state.
+     */
+    toggleSheetFacet(): void {
+        this.toggleSheetFacetRequest.emit(!this.isMinimized);
     }
 }

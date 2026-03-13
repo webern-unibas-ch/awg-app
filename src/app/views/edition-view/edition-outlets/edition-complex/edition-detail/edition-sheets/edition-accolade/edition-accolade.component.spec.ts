@@ -30,17 +30,21 @@ import { EditionAccoladeComponent } from './edition-accolade.component';
 
 // Mock components
 @Component({
-    selector: 'awg-edition-svg-sheet-nav',
+    selector: 'awg-edition-svg-sheet-facet',
     template: '',
     standalone: false,
 })
-class EditionSvgSheetNavStubComponent {
+class EditionSvgSheetFacetStubComponent {
+    @Input()
+    isMinimized = false;
     @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    @Output()
+    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -114,6 +118,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let selectOverlaysRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let toggleSheetFacetSpy: Spy;
+    let toggleSheetFacetRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
     let expectedIsFullscreen: boolean;
@@ -128,6 +134,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let expectedShowTkA: boolean;
     let expectedModalSnippet: string;
     let expectedLinkBoxId: string;
+    let expectedIsSheetFacetMinimized: boolean;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -146,7 +153,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             declarations: [
                 EditionAccoladeComponent,
                 EditionSvgSheetViewerStubComponent,
-                EditionSvgSheetNavStubComponent,
+                EditionSvgSheetFacetStubComponent,
                 EditionSvgSheetFooterStubComponent,
                 FullscreenToggleStubComponent,
             ],
@@ -178,6 +185,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedOverlays = [overlay];
         expectedLinkBoxId = 'link-box-1';
         expectedShowTkA = true;
+        expectedIsSheetFacetMinimized = false;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -199,6 +207,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        toggleSheetFacetSpy = spyOn(component, 'toggleSheetFacet').and.callThrough();
+        toggleSheetFacetRequestEmitSpy = spyOn(component.toggleSheetFacetRequest, 'emit').and.callThrough();
     });
 
     afterAll(() => {
@@ -212,6 +222,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `isFullscreen`', () => {
             expect(component.isFullscreen).toBeUndefined();
+        });
+
+        it('... should not have `isSheetFacetMinimized`', () => {
+            expect(component.isSheetFacetMinimized).toBeUndefined();
         });
 
         it('... should not have `svgSheetsData`', () => {
@@ -257,6 +271,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.isFullscreen = expectedIsFullscreen;
+            component.isSheetFacetMinimized = expectedIsSheetFacetMinimized;
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
@@ -269,6 +284,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         it('... should have `isFullscreen` input', () => {
             expectToEqual(component.isFullscreen, expectedIsFullscreen);
+        });
+
+        it('... should have `isSheetFacetMinimized` input', () => {
+            expectToEqual(component.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
         });
 
         it('... should have `svgSheetsData` input', () => {
@@ -407,40 +426,119 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
             });
 
-            describe('EditionSvgSheetNavComponent', () => {
-                it('... should contain one EditionSvgSheetNavComponent (stubbed) in the item body (div.accordion-body)', () => {
+            describe('... accordion body', () => {
+                it('... should contain one div.accordion-body in div.accordion-item', () => {
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                });
+
+                it('... should apply col-auto to sheet facet container div when minimized', () => {
+                    component.isSheetFacetMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const facetDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-facet-container',
+                        1,
+                        1
+                    );
+                    const facetDivEl: HTMLDivElement = facetDivDes[0].nativeElement;
+
+                    expectToContain(facetDivEl.classList, 'col-auto');
+                    expect(facetDivEl.classList).not.toContain('col-12');
+                    expect(facetDivEl.classList).not.toContain('col-lg-4');
+                    expect(facetDivEl.classList).not.toContain('col-xl-3');
+                });
+
+                it('... should apply col-12 col-lg-4 col-xl-3 to sheet facet container div when not minimized', () => {
+                    component.isSheetFacetMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const facetDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-facet-container',
+                        1,
+                        1
+                    );
+                    const facetDivEl: HTMLDivElement = facetDivDes[0].nativeElement;
+
+                    expectToContain(facetDivEl.classList, 'col-12');
+                    expectToContain(facetDivEl.classList, 'col-lg-4');
+                    expectToContain(facetDivEl.classList, 'col-xl-3');
+                    expect(facetDivEl.classList).not.toContain('col-auto');
+                });
+
+                it('... should apply col to sheet viewer container div when minimized', () => {
+                    component.isSheetFacetMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const viewerDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-viewer-container',
+                        1,
+                        1
+                    );
+                    const viewerDivEl: HTMLDivElement = viewerDivDes[0].nativeElement;
+
+                    expectToContain(viewerDivEl.classList, 'col');
+                    expect(viewerDivEl.classList).not.toContain('col-12');
+                    expect(viewerDivEl.classList).not.toContain('col-lg-8');
+                    expect(viewerDivEl.classList).not.toContain('col-xl-9');
+                });
+
+                it('... should apply col-12 col-lg-8 col-xl-9 to sheet viewer container div when not minimized', () => {
+                    component.isSheetFacetMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const viewerDivDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-svg-sheet-viewer-container',
+                        1,
+                        1
+                    );
+                    const viewerDivEl: HTMLDivElement = viewerDivDes[0].nativeElement;
+
+                    expectToContain(viewerDivEl.classList, 'col-12');
+                    expectToContain(viewerDivEl.classList, 'col-lg-8');
+                    expectToContain(viewerDivEl.classList, 'col-xl-9');
+                    expect(viewerDivEl.classList).not.toContain('col');
+                });
+            });
+
+            describe('EditionSvgSheetFacetComponent', () => {
+                it('... should contain one EditionSvgSheetFacetComponent (stubbed) in the item body (div.accordion-body)', () => {
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFacetStubComponent, 1, 1);
                 });
 
-                it('... should pass down svgSheetsData to the EditionSvgSheetNavComponent', () => {
-                    const sheetNavDes = getAndExpectDebugElementByDirective(
+                it('... should pass down svgSheetsData to the EditionSvgSheetFacetComponent', () => {
+                    const sheetFacetDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSvgSheetNavStubComponent,
+                        EditionSvgSheetFacetStubComponent,
                         1,
                         1
                     );
-                    const sheetNavCmp = sheetNavDes[0].injector.get(
-                        EditionSvgSheetNavStubComponent
-                    ) as EditionSvgSheetNavStubComponent;
+                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                        EditionSvgSheetFacetStubComponent
+                    ) as EditionSvgSheetFacetStubComponent;
 
-                    expectToEqual(sheetNavCmp.svgSheetsData, expectedSvgSheetsData);
+                    expectToEqual(sheetFacetCmp.svgSheetsData, expectedSvgSheetsData);
                 });
 
-                it('... should pass down selectedSvgSheet to the EditionSvgSheetNavComponent', () => {
-                    const sheetNavDes = getAndExpectDebugElementByDirective(
+                it('... should pass down selectedSvgSheet to the EditionSvgSheetFacetComponent', () => {
+                    const sheetFacetDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSvgSheetNavStubComponent,
+                        EditionSvgSheetFacetStubComponent,
                         1,
                         1
                     );
-                    const sheetNavCmp = sheetNavDes[0].injector.get(
-                        EditionSvgSheetNavStubComponent
-                    ) as EditionSvgSheetNavStubComponent;
+                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                        EditionSvgSheetFacetStubComponent
+                    ) as EditionSvgSheetFacetStubComponent;
 
-                    expectToEqual(sheetNavCmp.selectedSvgSheet, expectedSvgSheet);
+                    expectToEqual(sheetFacetCmp.selectedSvgSheet, expectedSvgSheet);
                 });
             });
 
@@ -622,7 +720,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.fullscreenToggle).toBeDefined();
             });
 
-            it('... should trigger on fullscreenToggleRequest event from FullscreenToggleComponent', () => {
+            it('... should trigger on toggleFullscreenRequest event from FullscreenToggleComponent', () => {
                 const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
                 const fsToggleCmp = fsToggleDes[0].injector.get(
                     FullscreenToggleStubComponent
@@ -863,19 +961,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('... should trigger on selectSvgSheetRequest event from ...', () => {
-                it('... EditionSvgSheetNavComponent', () => {
-                    const sheetNavDes = getAndExpectDebugElementByDirective(
+                it('... EditionSvgSheetFacetComponent', () => {
+                    const sheetFacetDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSvgSheetNavStubComponent,
+                        EditionSvgSheetFacetStubComponent,
                         1,
                         1
                     );
-                    const sheetNavCmp = sheetNavDes[0].injector.get(
-                        EditionSvgSheetNavStubComponent
-                    ) as EditionSvgSheetNavStubComponent;
+                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                        EditionSvgSheetFacetStubComponent
+                    ) as EditionSvgSheetFacetStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                    sheetNavCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    sheetFacetCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
@@ -930,6 +1028,68 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+        });
+
+        describe('#toggleSheetFacet()', () => {
+            it('... should have a method `toggleSheetFacet`', () => {
+                expect(component.toggleSheetFacet).toBeDefined();
+            });
+
+            describe('... should trigger on toggleSheetFacetRequest event from EditionSvgSheetFacetComponent', () => {
+                it('... when sheet facet is not minimized', () => {
+                    component.isSheetFacetMinimized = false;
+                    detectChangesOnPush(fixture);
+
+                    const sheetFacetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFacetStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                        EditionSvgSheetFacetStubComponent
+                    ) as EditionSvgSheetFacetStubComponent;
+
+                    sheetFacetCmp.toggleSheetFacetRequest.emit(true);
+
+                    expectSpyCall(toggleSheetFacetSpy, 1, true);
+                });
+
+                it('... when sheet facet is minimized', () => {
+                    component.isSheetFacetMinimized = true;
+                    detectChangesOnPush(fixture);
+
+                    const sheetFacetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFacetStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                        EditionSvgSheetFacetStubComponent
+                    ) as EditionSvgSheetFacetStubComponent;
+
+                    sheetFacetCmp.toggleSheetFacetRequest.emit(false);
+
+                    expectSpyCall(toggleSheetFacetSpy, 1, false);
+                });
+            });
+
+            it('... should not emit anything if no value is provided', () => {
+                component.toggleSheetFacet(undefined);
+
+                expectSpyCall(toggleSheetFacetRequestEmitSpy, 0, undefined);
+            });
+
+            it('... should emit toggleSheetFacetRequest with correct value', () => {
+                component.toggleSheetFacet(false);
+
+                expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, false);
+
+                component.toggleSheetFacet(true);
+
+                expectSpyCall(toggleSheetFacetRequestEmitSpy, 2, true);
             });
         });
     });

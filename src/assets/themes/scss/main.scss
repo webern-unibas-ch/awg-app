@@ -29,15 +29,15 @@ a[role='link'][tabindex='0']:hover {
     text-decoration: none;
 }
 a.dropdown-item,
-a.awg-svg-sheet-nav-link:hover,
+a.awg-svg-sheet-facet-link:hover,
 .nav-tabs > li > a {
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
 a.awg-edition-intro-nav-link:hover,
-a.awg-svg-sheet-nav-link,
-a.awg-svg-sheet-nav-link:hover,
+a.awg-svg-sheet-facet-link,
+a.awg-svg-sheet-facet-link:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
     border-bottom: none !important;
@@ -45,19 +45,18 @@ a.awg-svg-sheet-nav-link:hover,
 }
 a.dropdown-item:hover,
 button.dropdown-item:hover,
-a.awg-svg-sheet-nav-link.active,
+a.awg-svg-sheet-facet-link.active,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-nav > li.nav-item.dropdown.active > a,
 .navbar-nav > li > a:focus:not(#dropdownNavEdition),
 .navbar-nav > li > a:active:not(#dropdownNavEdition) {
     color: $link-color !important;
 }
-/* no border color for svg-sheet-nav-link */
-a.awg-svg-sheet-nav-link.active,
-a.awg-svg-sheet-nav-link:active,
-a.awg-svg-sheet-nav-link:hover,
-a.awg-svg-sheet-nav-link:focus,
-a.awg-svg-sheet-nav-link:active {
+/* no border color for svg-sheet-facet-link */
+a.awg-svg-sheet-facet-link.active,
+a.awg-svg-sheet-facet-link:active,
+a.awg-svg-sheet-facet-link:hover,
+a.awg-svg-sheet-facet-link:focus {
     border-color: transparent !important;
 }
 

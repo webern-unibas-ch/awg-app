@@ -1,0 +1,32 @@
+@if (svgSheetsData) {
+    <div class="card awg-svg-sheet-facet">
+        <button
+            type="button"
+            class="btn btn-sm border rounded m-2"
+            [title]="isMinimized ? 'Maximize' : 'Minimize'"
+            (click)="toggleSheetFacet()">
+            <fa-icon [icon]="isMinimized ? faListUl : faAnglesLeft"></fa-icon>
+        </button>
+        @if (!isMinimized) {
+            <div class="card-body">
+                <awg-edition-svg-sheet-facet-item
+                    [facetItemLabel]="'Werkeditionen'"
+                    [svgSheets]="svgSheetsData.sheets.workEditions"
+                    [selectedSvgSheet]="selectedSvgSheet"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-facet-item>
+                <hr />
+                <awg-edition-svg-sheet-facet-item
+                    [facetItemLabel]="'Texteditionen'"
+                    [svgSheets]="svgSheetsData.sheets.textEditions"
+                    [selectedSvgSheet]="selectedSvgSheet"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-facet-item>
+                <hr />
+                <awg-edition-svg-sheet-facet-item
+                    [facetItemLabel]="'Skizzeneditionen'"
+                    [svgSheets]="svgSheetsData.sheets.sketchEditions"
+                    [selectedSvgSheet]="selectedSvgSheet"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-facet-item>
+            </div>
+        }
+    </div>
+}

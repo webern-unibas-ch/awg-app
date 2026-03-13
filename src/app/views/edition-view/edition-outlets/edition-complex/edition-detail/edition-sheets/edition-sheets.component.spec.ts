@@ -49,6 +49,8 @@ class EditionAccoladeStubComponent {
     @Input()
     isFullscreen: boolean;
     @Input()
+    isSheetFacetMinimized: boolean;
+    @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
@@ -72,6 +74,8 @@ class EditionAccoladeStubComponent {
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    @Output()
+    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -151,9 +155,11 @@ describe('EditionSheetsComponent (DONE)', () => {
     let onOverlaySelectSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
     let selectSvgSheetSpy: Spy;
+    let onToggleSheetFacetSpy: Spy;
 
     let expectedConvolute: FolioConvolute;
     let expectedIsFullscreen: boolean;
+    let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
@@ -242,6 +248,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         // Test data
         expectedIsFullscreen = false;
+        expectedIsSheetFacetMinimized = false;
 
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
 
@@ -299,6 +306,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         onOverlaySelectSpy = spyOn(component, 'onOverlaySelect').and.callThrough();
         onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
+        onToggleSheetFacetSpy = spyOn(component, 'onToggleSheetFacet').and.callThrough();
 
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
         selectSvgSheetSpy = spyOn(component as any, '_selectSvgSheet').and.callThrough();
@@ -319,6 +327,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         it('... should have `isFullscreen` = false', () => {
             expectToBe(component.isFullscreen, false);
+        });
+
+        it('... should have `isSheetFacetMinimized` = false', () => {
+            expectToBe(component.isSheetFacetMinimized, false);
         });
 
         it('... should not have `folioConvoluteData`', () => {
@@ -496,6 +508,15 @@ describe('EditionSheetsComponent (DONE)', () => {
                     ) as EditionAccoladeStubComponent;
 
                     expectToEqual(accoladeCmp.isFullscreen, expectedIsFullscreen);
+                });
+
+                it('... should pass down `isSheetFacetMinimized` to the EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
                 });
 
                 it('... should pass down `svgSheetsData` to the EditionAccoladeComponent', () => {
@@ -1166,6 +1187,36 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectedNavigationExtras,
                     ]);
                 });
+            });
+        });
+
+        describe('#onToggleSheetFacet()', () => {
+            it('... should have a method `onToggleSheetFacet`', () => {
+                expect(component.onToggleSheetFacet).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionAccoladeComponent', () => {
+                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                const accoladeCmp = accoladeDes[0].injector.get(
+                    EditionAccoladeStubComponent
+                ) as EditionAccoladeStubComponent;
+
+                expectedIsSheetFacetMinimized = true;
+                accoladeCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
+
+                expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
+            });
+
+            it('... should toggle `isSheetFacetMinimized` variable', () => {
+                expectToBe(component.isSheetFacetMinimized, false);
+
+                component.onToggleSheetFacet(true);
+
+                expectToBe(component.isSheetFacetMinimized, true);
+
+                component.onToggleSheetFacet(false);
+
+                expectToBe(component.isSheetFacetMinimized, false);
             });
         });
 

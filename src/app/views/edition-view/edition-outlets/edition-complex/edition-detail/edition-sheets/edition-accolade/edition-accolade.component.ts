@@ -13,7 +13,7 @@ import {
  *
  * It contains the edition accolade section
  * of the edition view of the app
- * with the {@link EditionSvgSheetNavComponent},
+ * with the {@link EditionSvgSheetFacetComponent},
  * the {@link EditionSvgSheetListComponent}
  * and the {@link EditionTkaTableComponent}.
  */
@@ -32,6 +32,14 @@ export class EditionAccoladeComponent {
      */
     @Input()
     isFullscreen: boolean;
+
+    /**
+     * Input variable: isSheetFacetMinimized.
+     *
+     * It keeps the toggle state of the sheet facet.
+     */
+    @Input()
+    isSheetFacetMinimized: boolean;
 
     /**
      * Input variable: svgSheetsData.
@@ -131,12 +139,20 @@ export class EditionAccoladeComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Output variable: toggleSheetFacetRequest.
+     *
+     * It keeps an event emitter for the toggle state of the sheet facet.
+     */
+    @Output()
+    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
      * Public method: browseSvgSheet.
      *
      * It emits a given direction to the {@link browseSvgSheetRequest}
      * to browse to the previous or next sheet of the selected svg sheet.
      *
-     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {number} direction A number indicating the direction of browsing. -1 for previous and 1 for next.
      *
      * @returns {void} Emits the direction.
      */
@@ -237,5 +253,21 @@ export class EditionAccoladeComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: toggleSheetFacet.
+     *
+     * It emits the given boolean to the {@link toggleSheetFacetRequest}
+     * to toggle the sheet facet.
+     *
+     * @param {boolean} isMinimized A boolean indicating the toggle state of the sheet facet.
+     * @returns {void} Emits the boolean.
+     */
+    toggleSheetFacet(isMinimized: boolean): void {
+        if (isMinimized === undefined) {
+            return;
+        }
+        this.toggleSheetFacetRequest.emit(isMinimized);
     }
 }

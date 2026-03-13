@@ -20,15 +20,28 @@
             <div ngbAccordionBody>
                 <ng-template>
                     <div class="row">
-                        <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">
-                            <!-- svg sheet navigation -->
-                            <awg-edition-svg-sheet-nav
+                        <div
+                            class="awg-svg-sheet-facet-container mb-4"
+                            [ngClass]="{
+                                'col-auto': isSheetFacetMinimized,
+                                'col-12 col-lg-4 col-xl-3': !isSheetFacetMinimized,
+                            }">
+                            <!-- svg sheet facet -->
+                            <awg-edition-svg-sheet-facet
                                 [svgSheetsData]="svgSheetsData"
+                                [isMinimized]="isSheetFacetMinimized"
                                 [selectedSvgSheet]="selectedSvgSheet"
-                                (selectSvgSheetRequest)="selectSvgSheet($event)">
-                            </awg-edition-svg-sheet-nav>
+                                (selectSvgSheetRequest)="selectSvgSheet($event)"
+                                (toggleSheetFacetRequest)="toggleSheetFacet($event)">
+                            </awg-edition-svg-sheet-facet>
                         </div>
-                        <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">
+
+                        <div
+                            class="awg-svg-sheet-viewer-container"
+                            [ngClass]="{
+                                col: isSheetFacetMinimized,
+                                'col-12 col-lg-8 col-xl-9': !isSheetFacetMinimized,
+                            }">
                             <!-- svg sheet -->
                             @if (selectedSvgSheet) {
                                 <awg-edition-svg-sheet-viewer
