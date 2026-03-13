@@ -1051,9 +1051,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         EditionSvgSheetFacetStubComponent
                     ) as EditionSvgSheetFacetStubComponent;
 
-                    sheetFacetCmp.toggleSheetFacetRequest.emit();
+                    sheetFacetCmp.toggleSheetFacetRequest.emit(true);
 
-                    expectSpyCall(toggleSheetFacetSpy, 1);
+                    expectSpyCall(toggleSheetFacetSpy, 1, true);
                 });
 
                 it('... when sheet facet is minimized', () => {
@@ -1070,9 +1070,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         EditionSvgSheetFacetStubComponent
                     ) as EditionSvgSheetFacetStubComponent;
 
-                    sheetFacetCmp.toggleSheetFacetRequest.emit();
+                    sheetFacetCmp.toggleSheetFacetRequest.emit(false);
 
-                    expectSpyCall(toggleSheetFacetSpy, 1);
+                    expectSpyCall(toggleSheetFacetSpy, 1, false);
                 });
             });
 
