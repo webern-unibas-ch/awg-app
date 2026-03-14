@@ -173,7 +173,7 @@ export class EditionSvgDrawingService {
         // Get D3 selection of target overlay group
         const targetOverlayGroupSelection: D3Selection = targetGroupSelection.select(`g.${type}-overlay-group`);
 
-        // Create overlay box for tka-overlay-group
+        // Create overlay box for tkk-overlay-group
         return targetOverlayGroupSelection
             .append('rect')
             .attr('width', dim.width + this._overlayBoxAdditionalSpace * 2)

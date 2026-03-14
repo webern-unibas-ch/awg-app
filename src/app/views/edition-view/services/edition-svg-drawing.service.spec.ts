@@ -53,8 +53,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
         // Test data
         expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', true),
         ];
 
         expectedLinkBoxes = [

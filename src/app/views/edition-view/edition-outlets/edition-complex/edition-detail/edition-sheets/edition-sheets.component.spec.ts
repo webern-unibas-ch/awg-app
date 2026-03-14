@@ -917,7 +917,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     EditionAccoladeStubComponent
                 ) as EditionAccoladeStubComponent;
 
-                const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'g1114', true)];
+                const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true)];
 
                 accoladeCmp.selectOverlaysRequest.emit(expectedOverlays);
 
@@ -928,7 +928,12 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectedSelectedTextcriticalCommentary.comments.forEach(comment => {
                     comment.blockComments.forEach(blockComment => {
                         const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true),
+                            new EditionSvgOverlay(
+                                EditionSvgOverlayTypes.tkk,
+                                blockComment.svgGroupId,
+                                blockComment.svgGroupId,
+                                true
+                            ),
                         ];
                         const expectedCommentary = {
                             preamble: expectedSelectedTextcriticalCommentary.preamble,

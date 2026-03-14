@@ -45,7 +45,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let expectedClass1: string;
     let expectedClass2: string;
     let expectedSuppliedClasses: Map<string, boolean>;
-    let expectedHasAvailableTkaOverlays: boolean;
+    let expectedhasAvailableTkkOverlays: boolean;
     let expectedAllClassesVisible: boolean;
     let expectedTkkHighlightingVisible: boolean;
 
@@ -69,7 +69,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         expectedSuppliedClasses.set(expectedClass1, true);
         expectedSuppliedClasses.set(expectedClass2, true);
 
-        expectedHasAvailableTkaOverlays = true;
+        expectedhasAvailableTkkOverlays = true;
         expectedAllClassesVisible = true;
         expectedTkkHighlightingVisible = true;
 
@@ -108,8 +108,8 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             expect(component.suppliedClasses).toBeUndefined();
         });
 
-        it('... should have no `hasAvailableTkaOverlays` yet', () => {
-            expect(component.hasAvailableTkaOverlays).toBeUndefined();
+        it('... should have no `hasAvailableTkkOverlays` yet', () => {
+            expect(component.hasAvailableTkkOverlays).toBeUndefined();
         });
 
         it('... should have allClassesVisible = `true`', () => {
@@ -180,7 +180,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.id = expectedId;
             component.suppliedClasses = expectedSuppliedClasses;
-            component.hasAvailableTkaOverlays = expectedHasAvailableTkaOverlays;
+            component.hasAvailableTkkOverlays = expectedhasAvailableTkkOverlays;
 
             fixture.detectChanges();
         });
@@ -193,8 +193,8 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             expectToEqual(component.suppliedClasses, expectedSuppliedClasses);
         });
 
-        it('... should have `hasAvailableTkaOverlays`', () => {
-            expectToEqual(component.hasAvailableTkaOverlays, expectedHasAvailableTkaOverlays);
+        it('... should have `hasAvailableTkkOverlays`', () => {
+            expectToEqual(component.hasAvailableTkkOverlays, expectedhasAvailableTkkOverlays);
         });
 
         it('... should have allClassesVisible = `true`', () => {
@@ -347,7 +347,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 });
             }));
 
-            it('... should have a form-switch for tkk if hasAvailableTkaOverlays is true', () => {
+            it('... should have a form-switch for tkk if hasAvailableTkkOverlays is true', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 getAndExpectDebugElementByCss(
                     cardBodyDes[0],
@@ -358,8 +358,8 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'input.form-check-input#tkk', 1, 1);
             });
 
-            it('... should not have a form-switch for tkk if hasAvailableTkaOverlays is false', async () => {
-                component.hasAvailableTkaOverlays = false;
+            it('... should not have a form-switch for tkk if hasAvailableTkkOverlays is false', async () => {
+                component.hasAvailableTkkOverlays = false;
                 await detectChangesOnPush(fixture);
 
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
