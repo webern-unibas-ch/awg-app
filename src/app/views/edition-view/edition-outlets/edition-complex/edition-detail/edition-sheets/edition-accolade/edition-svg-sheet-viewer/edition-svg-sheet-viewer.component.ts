@@ -640,7 +640,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
      * @param {string} dataId The given data id.
      *
-     * @returns {EditionSvgOverlay | undefined } The found overlays or undefined.
+     * @returns {EditionSvgOverlay[] | undefined } The found overlays or undefined.
      */
     private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] | undefined {
         if (!Array.isArray(overlays)) {

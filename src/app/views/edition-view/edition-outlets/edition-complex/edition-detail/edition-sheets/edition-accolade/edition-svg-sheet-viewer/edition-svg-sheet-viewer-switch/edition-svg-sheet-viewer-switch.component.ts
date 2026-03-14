@@ -38,7 +38,7 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     /**
      * Input variable: hasAvailableTkkOverlays.
      *
-     * It keeps the information whether there are available tka overlays.
+     * It keeps the information whether there are available tkk overlays.
      */
     @Input() hasAvailableTkkOverlays: boolean;
 

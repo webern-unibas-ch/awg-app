@@ -45,7 +45,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let expectedClass1: string;
     let expectedClass2: string;
     let expectedSuppliedClasses: Map<string, boolean>;
-    let expectedhasAvailableTkkOverlays: boolean;
+    let expectedHasAvailableTkkOverlays: boolean;
     let expectedAllClassesVisible: boolean;
     let expectedTkkHighlightingVisible: boolean;
 
@@ -69,7 +69,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         expectedSuppliedClasses.set(expectedClass1, true);
         expectedSuppliedClasses.set(expectedClass2, true);
 
-        expectedhasAvailableTkkOverlays = true;
+        expectedHasAvailableTkkOverlays = true;
         expectedAllClassesVisible = true;
         expectedTkkHighlightingVisible = true;
 
@@ -180,7 +180,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.id = expectedId;
             component.suppliedClasses = expectedSuppliedClasses;
-            component.hasAvailableTkkOverlays = expectedhasAvailableTkkOverlays;
+            component.hasAvailableTkkOverlays = expectedHasAvailableTkkOverlays;
 
             fixture.detectChanges();
         });
@@ -194,7 +194,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         });
 
         it('... should have `hasAvailableTkkOverlays`', () => {
-            expectToEqual(component.hasAvailableTkkOverlays, expectedhasAvailableTkkOverlays);
+            expectToEqual(component.hasAvailableTkkOverlays, expectedHasAvailableTkkOverlays);
         });
 
         it('... should have allClassesVisible = `true`', () => {

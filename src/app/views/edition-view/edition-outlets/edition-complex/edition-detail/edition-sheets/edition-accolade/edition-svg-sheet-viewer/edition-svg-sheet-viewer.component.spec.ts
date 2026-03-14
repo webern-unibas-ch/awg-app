@@ -1000,7 +1000,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             }));
 
             it('... should reset `_selectedOverlays`', fakeAsync(() => {
-                (component as any)._availbleTkaOverlays = expectedTkkOverlays;
+                (component as any)._availableTkkOverlays = expectedTkkOverlays;
                 (component as any)._selectedTkkOverlays = expectedTkkOverlays.filter(overlay => overlay.isSelected);
 
                 component.renderSheet();
@@ -1796,7 +1796,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 const overlaysWithDuplicates = [
                     { ...expectedTkkOverlays[0], dataId: duplicateDataId },
                     { ...expectedTkkOverlays[1], dataId: duplicateDataId },
-                    { ...expectedTkkOverlays[2], dataId: 'other-id' },
+                    { ...expectedTkkOverlays[0], id: 'other-id', dataId: 'other-id' },
                 ];
 
                 const result = (component as any)._getOverlaysById(overlaysWithDuplicates, duplicateDataId);

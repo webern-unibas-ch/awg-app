@@ -387,10 +387,23 @@ export class EditionSvgDrawingService {
         if (!overlays || overlays.length === 0 || !overlayGroupRectSelection || !overlayActionType) {
             return;
         }
-        overlays.forEach(overlay => {
-            const color = this._getTkkOverlayColor(overlay, overlayActionType);
-            this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-        });
+
+        // Compute the color for each overlay
+        const colors = overlays.map(overlay => this._getTkkOverlayColor(overlay, overlayActionType));
+
+        // Overlays for the same group should not have different colors
+        const uniqueColors = Array.from(new Set(colors));
+        if (uniqueColors.length > 1) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
+                uniqueColors,
+                overlays
+            );
+        }
+        const finalColor = uniqueColors[0];
+
+        this.fillD3SelectionWithColor(overlayGroupRectSelection, finalColor);
     }
 
     /**

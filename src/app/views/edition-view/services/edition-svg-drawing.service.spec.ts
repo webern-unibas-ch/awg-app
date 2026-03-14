@@ -867,7 +867,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             });
         });
 
-        describe('... should call the fillD3Selection method with the correct color when', () => {
+        describe('... should trigger `fillD3SelectionWithColor` with the correct color when', () => {
             let d3selections: D3Selection;
 
             beforeEach(() => {
@@ -888,10 +888,43 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlaySelectionFillColor]);
             });
 
-            it('... there are multiple overlays given', () => {
+            it('... there are multiple overlays given (all with the same color)', () => {
                 service.updateTkkOverlayColor(expectedOverlays, d3selections, EditionSvgOverlayActionTypes.fill);
 
-                expectSpyCall(fillD3SelectionWithColorSpy, 2, [d3selections, expectedOverlaySelectionFillColor]);
+                // Only one call, color from first overlay
+                expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlaySelectionFillColor]);
+            });
+
+            it('... there are multiple overlays given (with different colors; log a warning)', () => {
+                const overlays = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-10', 'data-tkk-1', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-20', 'data-tkk-1', false),
+                ];
+                const expectedUniqueColors = [expectedOverlaySelectionFillColor, 'blue'];
+
+                // Return different colors for each overlay
+                const colorSpy = spyOn(service as any, '_getTkkOverlayColor').and.callFake(
+                    (overlay: EditionSvgOverlay) => {
+                        if (overlay && overlay.id === 'tkk-20') {
+                            return expectedUniqueColors[1];
+                        }
+                        return expectedUniqueColors[0];
+                    }
+                );
+                const consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log); // Catch console output
+
+                service.updateTkkOverlayColor(overlays, d3selections, EditionSvgOverlayActionTypes.fill);
+
+                expectSpyCall(consoleSpy, 1, [
+                    '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
+                    expectedUniqueColors,
+                    overlays,
+                ]);
+
+                // Should still trigger fillD3SelectionWithColor with the first unique color
+                expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedUniqueColors[0]]);
+
+                colorSpy.and.callThrough();
             });
 
             it('... overlayActionType is `transparent`', () => {
