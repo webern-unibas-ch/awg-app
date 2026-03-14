@@ -18,6 +18,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { mockConsole } from '@testing/mock-helper';
 import {
     createD3TestLinkBoxGroups,
     createD3TestRootGroup,
@@ -73,7 +74,7 @@ class EditionSvgSheetViewerSwitchStubComponent {
         new EventEmitter();
 }
 
-describe('EditionSvgSheetViewerComponent', () => {
+describe('EditionSvgSheetViewerComponent (DONE)', () => {
     let component: EditionSvgSheetViewerComponent;
     let fixture: ComponentFixture<EditionSvgSheetViewerComponent>;
     let compDe: DebugElement;
@@ -85,16 +86,23 @@ describe('EditionSvgSheetViewerComponent', () => {
     let browseSvgSheetRequestEmitSpy: Spy;
     let clearSvgSpy: Spy;
     let createSvgSpy: Spy;
+    let createTkkOverlayHandlersSpy: Spy;
     let emitSelectLinkBoxRequestSpy: Spy;
     let emitSelectOverlaysRequestSpy: Spy;
-    let getOverlayAndSelectionSpy: Spy;
+    let getContainerDimensionsSpy: Spy;
+    let getOverlaysAndSelectionSpy: Spy;
     let onSuppliedClassesOpacityToggleSpy: Spy;
     let onZoomChangeSpy: Spy;
     let renderSheetSpy: Spy;
     let rescaleZoomSpy: Spy;
     let resetZoomSpy: Spy;
     let resetZoomTranslationSpy: Spy;
+    let zoomHandlerSpy: Spy;
 
+    let serviceCreateSvgSpy: Spy;
+    let serviceCreateOverlayGroupSpy: Spy;
+    let serviceFillD3SelectionWithColorSpy: Spy;
+    let serviceGetD3SelectionByIdSpy: Spy;
     let serviceGetGroupsBySelectorSpy: Spy;
     let serviceGetSuppliedClassesSpy: Spy;
     let serviceToggleSuppliedClassOpacitySpy: Spy;
@@ -120,7 +128,23 @@ describe('EditionSvgSheetViewerComponent', () => {
                 new Promise(resolve => {
                     resolve(D3_SELECTION.select(svgEl));
                 }),
+            createOverlayGroup: (
+                _svgRootGroup: D3Selection | undefined,
+                _id: string,
+                dim: DOMRect,
+                type: string
+            ): D3Selection => {
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('class', `${type}-overlay-group-box`);
+                rect.setAttribute('width', (dim.width + 3).toString());
+                rect.setAttribute('height', (dim.height + 3).toString());
+                rect.setAttribute('x', (dim.x - 1.5).toString());
+                rect.setAttribute('y', (dim.y - 1.5).toString());
+                return D3_SELECTION.select(rect);
+            },
+            fillD3SelectionWithColor: (): void => {},
             getContainerDimensions: (): { width: number; height: number } => ({ width: 100, height: 100 }),
+            getD3SelectionById: (svgRootGroup: D3Selection, id: string): D3Selection => svgRootGroup.select(`#${id}`),
             getGroupsBySelector: (svgRootGroup: D3Selection, selector: string): D3Selection =>
                 svgRootGroup.selectAll(selector),
             getOverlayGroupRectSelection: (svgRootGroup: D3Selection, overlayId: string, type: string): D3Selection =>
@@ -175,24 +199,34 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedSuppliedClassMap.set(expectedSuppliedClassNames[0].split(' ')[1], true);
         expectedSuppliedClassMap.set(expectedSuppliedClassNames[1].split(' ')[1], true);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
-        clearSvgSpy = spyOn<any>(component, '_clearSvg').and.callThrough();
-        createSvgSpy = spyOn<any>(component, '_createSvg').and.callThrough();
         emitSelectLinkBoxRequestSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
         emitSelectOverlaysRequestSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
-        getOverlayAndSelectionSpy = spyOn<any>(component, '_getOverlayAndSelection').and.callThrough();
         onSuppliedClassesOpacityToggleSpy = spyOn(component, 'onSuppliedClassesOpacityToggle').and.callThrough();
         onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
         renderSheetSpy = spyOn(component, 'renderSheet').and.callThrough();
         resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
+
+        // Spies on private functions
+        clearSvgSpy = spyOn<any>(component, '_clearSvg').and.callThrough();
+        createSvgSpy = spyOn<any>(component, '_createSvg').and.callThrough();
+        createTkkOverlayHandlersSpy = spyOn<any>(component, '_createTkkOverlayHandlers').and.callThrough();
+        getContainerDimensionsSpy = spyOn<any>(component, '_getContainerDimensions').and.callThrough();
+        getOverlaysAndSelectionSpy = spyOn<any>(component, '_getOverlaysAndSelection').and.callThrough();
         rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callThrough();
         resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
+        zoomHandlerSpy = spyOn<any>(component, '_zoomHandler').and.callThrough();
 
         // Spies for service methods
+        serviceCreateSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
+        serviceCreateOverlayGroupSpy = spyOn(mockEditionSvgDrawingService, 'createOverlayGroup').and.callThrough();
+        serviceFillD3SelectionWithColorSpy = spyOn(
+            mockEditionSvgDrawingService,
+            'fillD3SelectionWithColor'
+        ).and.callThrough();
+        serviceGetD3SelectionByIdSpy = spyOn(mockEditionSvgDrawingService, 'getD3SelectionById').and.callThrough();
         serviceGetGroupsBySelectorSpy = spyOn(mockEditionSvgDrawingService, 'getGroupsBySelector').and.callThrough();
         serviceGetSuppliedClassesSpy = spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses').and.returnValue(
             expectedSuppliedClassMap
@@ -205,6 +239,11 @@ describe('EditionSvgSheetViewerComponent', () => {
             mockEditionSvgDrawingService,
             'updateTkkOverlayColor'
         ).and.callThrough();
+    });
+
+    afterEach(() => {
+        // Clear storages and mock objects after each test
+        mockConsole.clear();
     });
 
     afterAll(() => {
@@ -603,6 +642,59 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
         });
 
+        describe('@HostListener("window:resize") onResize', () => {
+            let previousSpyCallCount: number;
+            let resizeSubjectNextSpy: Spy;
+
+            beforeEach(() => {
+                // Record spy call count before current call
+                previousSpyCallCount = getContainerDimensionsSpy.calls.count();
+                resizeSubjectNextSpy = spyOn<any>((component as any)._resize$, 'next').and.callThrough();
+            });
+
+            describe('... should do nothing if ...', () => {
+                it('... svgSheetRootGroupSelection is not set', () => {
+                    component.svgSheetSelection = {} as any;
+                    component.svgSheetRootGroupSelection = undefined;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, previousSpyCallCount);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+
+                it('... svgSheetSelection is not set', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = {} as any;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, previousSpyCallCount);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+
+                it('... svgSheetSelection and svgSheetRootGroupSelection are not set', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = undefined;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, previousSpyCallCount);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+            });
+
+            it('... should trigger `_getContainerDimensions` and emit on `_resize$` if both selections are set', () => {
+                component.svgSheetSelection = {} as any;
+                component.svgSheetRootGroupSelection = {} as any;
+
+                (component as any).onResize();
+
+                expectSpyCall(getContainerDimensionsSpy, previousSpyCallCount + 1, component.svgSheetContainerRef);
+                expect(resizeSubjectNextSpy).toHaveBeenCalledWith(true);
+            });
+        });
+
         describe('#browseSvgSheet()', () => {
             it('... should have a method `browseSvgSheet`  ', () => {
                 expect(component.browseSvgSheet).toBeDefined();
@@ -698,7 +790,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                 serviceGetGroupsBySelectorSpy.and.returnValue(expectedOverlayGroups);
 
-                getOverlayAndSelectionSpy.and.callFake((id: string, overlayType: string) => {
+                getOverlaysAndSelectionSpy.and.callFake((id: string, overlayType: string) => {
                     const overlay = expectedTkkOverlays.find(node => node.id === id);
                     const overlayGroupRectSelection = expectedOverlayGroups.select(`#${id} .${overlayType}`);
 
@@ -732,8 +824,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                     component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
 
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
                         const overlay = expectedTkkOverlays[index];
@@ -757,8 +848,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                     component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
 
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
                         expectToBe(
@@ -773,8 +863,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                     component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
 
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
                         expectToBe(
@@ -1026,49 +1115,713 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
         });
 
-        describe('#_getOverlayById()', () => {
-            it('... should have a method `_getOverlayById`', () => {
-                expect((component as any)._getOverlayById).toBeDefined();
+        describe('#_clearSvg()', () => {
+            let removeRootGroupSpy: Spy;
+            let removeSheetSpy: Spy;
+            let selectAllRootGroupSpy: Spy;
+            let selectAllSheetSpy: Spy;
+
+            beforeEach(() => {
+                removeRootGroupSpy = jasmine.createSpy('removeRootGroup');
+                removeSheetSpy = jasmine.createSpy('removeSheet');
+                selectAllRootGroupSpy = jasmine
+                    .createSpy('selectAllRootGroup')
+                    .and.returnValue({ remove: removeRootGroupSpy });
+                selectAllSheetSpy = jasmine.createSpy('selectAllSheet').and.returnValue({ remove: removeSheetSpy });
             });
 
-            describe('... should return undefined', () => {
-                it('... if no overlays are given', () => {
-                    const noOverlays = [];
-
-                    const overlay = (component as any)._getOverlayById(noOverlays, expectedTkkOverlays[0].id);
-
-                    expect(overlay).toBeUndefined();
-                });
-
-                it('... if no overlay with given id is found', () => {
-                    const overlay = (component as any)._getOverlayById(expectedTkkOverlays, 'unkown-id');
-
-                    expect(overlay).toBeUndefined();
-                });
+            it('... should have a method `_clearSvg`', () => {
+                expect((component as any)._clearSvg).toBeDefined();
             });
 
-            it('... should return an overlay with given id', () => {
-                const overlay = (component as any)._getOverlayById(expectedTkkOverlays, expectedTkkOverlays[0].id);
+            it('... should remove all children from both svgSheetRootGroupSelection and svgSheetSelection', () => {
+                component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
+                component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
 
-                expectToEqual(overlay, expectedTkkOverlays[0]);
+                (component as any)._clearSvg();
+
+                expectSpyCall(selectAllRootGroupSpy, 1, '*');
+                expectSpyCall(removeRootGroupSpy, 1);
+
+                expectSpyCall(selectAllSheetSpy, 1, '*');
+                expectSpyCall(removeSheetSpy, 1);
+            });
+
+            describe('... should not throw if', () => {
+                it('... svgSheetRootGroupSelection is undefined', () => {
+                    component.svgSheetRootGroupSelection = undefined;
+                    component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 0);
+                    expectSpyCall(removeRootGroupSpy, 0);
+
+                    expectSpyCall(selectAllSheetSpy, 1, '*');
+                    expectSpyCall(removeSheetSpy, 1);
+                });
+
+                it('... svgSheetSelection is undefined', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 1, '*');
+                    expectSpyCall(removeRootGroupSpy, 1);
+
+                    expectSpyCall(selectAllSheetSpy, 0);
+                    expectSpyCall(removeSheetSpy, 0);
+                });
+
+                it('...both selections are undefined', () => {
+                    component.svgSheetRootGroupSelection = undefined;
+                    component.svgSheetSelection = undefined;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 0);
+                    expectSpyCall(removeRootGroupSpy, 0);
+
+                    expectSpyCall(selectAllSheetSpy, 0);
+                    expectSpyCall(removeSheetSpy, 0);
+                });
             });
         });
 
-        describe('#_getOverlayAndSelection()', () => {
-            it('... should have a method `_getOverlayAndSelection`', () => {
-                expect((component as any)._getOverlayAndSelection).toBeDefined();
+        describe('#_createSvg()', () => {
+            let mockSvgSelection: any;
+            let mockRootGroupSelection: any;
+
+            beforeEach(() => {
+                // Mock D3 selection and service
+                mockRootGroupSelection = { dummy: 'rootGroup', attr: jasmine.createSpy('attr') };
+                const selectSpy = jasmine.createSpy('select').and.returnValue(mockRootGroupSelection);
+                const callSpy = jasmine.createSpy('call');
+                mockSvgSelection = { select: selectSpy, call: callSpy };
+                serviceCreateSvgSpy.and.resolveTo(mockSvgSelection);
+
+                // Provide required refs using real DOM elements from the fixture
+                const svgSheetContainerDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-container',
+                    1,
+                    1
+                );
+                const svgSheetDes = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
+                const svgRootGroupDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'g#awg-edition-svg-sheet-root-group',
+                    1,
+                    1
+                );
+                component.svgSheetContainerRef = svgSheetContainerDes[0].nativeElement;
+                component.svgSheetElementRef = svgSheetDes[0].nativeElement;
+                component.svgSheetRootGroupRef = svgRootGroupDes[0].nativeElement;
             });
 
-            it('... should call `_getOverlayById` method with correct parameters', () => {
-                const expectedOverlayType = 'tkk';
-                const expectedOverlayId = expectedTkkOverlays[0].id;
+            it('... should have a method `_createSvg`', () => {
+                expect((component as any)._createSvg).toBeDefined();
+            });
+
+            it('... should not throw and should warn if svgSheetContainerRef is missing', async () => {
+                component.svgSheetContainerRef = undefined;
+                const consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log);
+
+                await (component as any)._createSvg();
+
+                expectSpyCall(consoleSpy, 1, 'No svg sheet container ref');
+            });
+
+            it('... should set svgSheetSelection and svgSheetRootGroupSelection', async () => {
+                await (component as any)._createSvg();
+
+                expect(serviceCreateSvgSpy).toHaveBeenCalledWith(
+                    component.svgSheetFilePath,
+                    component.svgSheetElementRef.nativeElement,
+                    component.svgSheetRootGroupRef.nativeElement
+                );
+                expect(component.svgSheetSelection).toBe(mockSvgSelection);
+                expect(component.svgSheetRootGroupSelection).toBe(mockRootGroupSelection);
+            });
+
+            it('... should trigger `_getContainerDimensions` with svgSheetContainerRef', async () => {
+                await (component as any)._createSvg();
+
+                // Probably called once first with onResize
+                expectSpyCall(getContainerDimensionsSpy, 2, component.svgSheetContainerRef);
+            });
+
+            it('... should trigger `_zoomHandler` with correct arguments', async () => {
+                await (component as any)._createSvg();
+
+                // Probably called once first with onResize
+                expectSpyCall(zoomHandlerSpy, 2, [mockRootGroupSelection, mockSvgSelection]);
+            });
+        });
+
+        describe('#_createSvgOverlays()', () => {
+            it('... should have a method `_createSvgOverlays`', () => {
+                expect((component as any)._createSvgOverlays).toBeDefined();
+            });
+
+            it('... should not throw if svgSheetRootGroupSelection is undefined', () => {
+                component.svgSheetRootGroupSelection = undefined;
+
+                expect(() => (component as any)._createSvgOverlays()).not.toThrow();
+            });
+
+            it('... should set hasAvailableTkkOverlays to true if overlays exist', () => {
+                component.svgSheetRootGroupSelection = expectedSvgSheetRootGroupSelection;
+                (component as any)._availableTkkOverlays = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'id', 'dataId', false),
+                ];
+
+                (component as any)._createSvgOverlays();
+
+                expectToBe(component.hasAvailableTkkOverlays, true);
+            });
+
+            it('... should set hasAvailableTkkOverlays to false if no overlays exist', () => {
+                component.svgSheetRootGroupSelection = expectedSvgSheetRootGroupSelection;
+                (component as any)._availableTkkOverlays = [];
+
+                (component as any)._createSvgOverlays();
+
+                expectToBe(component.hasAvailableTkkOverlays, false);
+            });
+
+            it('... should trigger _createOverlays for both overlay types', () => {
+                component.svgSheetRootGroupSelection = expectedSvgSheetRootGroupSelection;
+
+                const createOverlaysSpy = spyOn<any>(component, '_createOverlays').and.stub();
+
+                (component as any)._createSvgOverlays();
+
+                expectSpyCall(createOverlaysSpy, 2);
+
+                expectToEqual(createOverlaysSpy.calls.all()[0].args[0], 'link-box');
+                expectToEqual(createOverlaysSpy.calls.all()[0].args[1], jasmine.any(Function));
+                expectToEqual(createOverlaysSpy.calls.all()[1].args[0], 'tkk');
+                expectToEqual(createOverlaysSpy.calls.all()[1].args[1], jasmine.any(Function));
+            });
+
+            it('... should trigger _getSuppliedClasses', () => {
+                const getSuppliedClassesSpy = spyOn<any>(component, '_getSuppliedClasses').and.stub();
+
+                (component as any)._createSvgOverlays();
+
+                expectSpyCall(getSuppliedClassesSpy, 1);
+            });
+        });
+
+        describe('#_createOverlays()', () => {
+            it('... should have a method `_createOverlays`', () => {
+                expect((component as any)._createOverlays).toBeDefined();
+            });
+
+            it('... should trigger `getGroupsBySelector` with the correct overlayType (link-box or tkk', () => {
+                const createOverlayTestCases = [
+                    { overlayType: 'link-box', mockGroups: [{ id: 'g-lb-1' }] },
+                    { overlayType: 'tkk', mockGroups: [{ id: 'g-tkk-1' }] },
+                ];
+
+                createOverlayTestCases.forEach(({ overlayType, mockGroups }) => {
+                    const createOverlayFnSpy = jasmine.createSpy('createOverlayFn');
+                    const mockD3Selection = {
+                        nodes: () => mockGroups,
+                    };
+                    serviceGetGroupsBySelectorSpy.and.returnValue(mockD3Selection);
+
+                    // Record spy call count before current call
+                    const previousSpyCallCount = serviceGetGroupsBySelectorSpy.calls.count();
+
+                    (component as any)._createOverlays(overlayType, createOverlayFnSpy);
+
+                    expectSpyCall(serviceGetGroupsBySelectorSpy, previousSpyCallCount + 1, [
+                        component.svgSheetRootGroupSelection,
+                        overlayType,
+                    ]);
+                });
+            });
+
+            it('... should do nothing if `getGroupsBySelector` returns no overlayGroups', () => {
+                const overlayType = 'link-box';
+                const createOverlayFnSpy = jasmine.createSpy('createOverlayFn');
+                serviceGetGroupsBySelectorSpy.and.returnValue(undefined);
+
+                // Should not throw or call createOverlayFn
+                expect(() => (component as any)._createOverlays(overlayType, createOverlayFnSpy)).not.toThrow();
+                expect(createOverlayFnSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should trigger `createOverlayFn` for each overlayGroup', () => {
+                const createOverlayTestCases = [
+                    { overlayType: 'link-box', mockGroups: [{ id: 'g-lb-1' }] },
+                    { overlayType: 'tkk', mockGroups: [{ id: 'g-tkk-1' }, { id: 'g-tkk-2' }] },
+                ];
+
+                createOverlayTestCases.forEach(({ overlayType, mockGroups }) => {
+                    const createOverlayFnSpy = jasmine.createSpy('createOverlayFn');
+                    const mockD3Selection = {
+                        nodes: () => mockGroups,
+                    };
+                    serviceGetGroupsBySelectorSpy.and.returnValue(mockD3Selection);
+
+                    // Record spy call count before current call
+                    const previousSpyCallCount = serviceGetGroupsBySelectorSpy.calls.count();
+
+                    (component as any)._createOverlays(overlayType, createOverlayFnSpy);
+
+                    expectSpyCall(serviceGetGroupsBySelectorSpy, previousSpyCallCount + 1, [
+                        component.svgSheetRootGroupSelection,
+                        overlayType,
+                    ]);
+
+                    expectSpyCall(createOverlayFnSpy, mockGroups.length);
+                    mockGroups.forEach(group => {
+                        expect(createOverlayFnSpy).toHaveBeenCalledWith(group, overlayType);
+                    });
+                });
+            });
+
+            it('... should trigger `_createTkkOverlayHandlers` if overlayType is `tkk`', () => {
+                const overlayType = 'tkk';
+                const mockGroups = [{ id: 'g-tkk-1' }];
+                const mockD3Selection = {
+                    nodes: () => mockGroups,
+                };
+                const createOverlayFnSpy = jasmine.createSpy('createOverlayFn');
+                serviceGetGroupsBySelectorSpy.and.returnValue(mockD3Selection);
+
+                const previousSpyCallCount = createTkkOverlayHandlersSpy.calls.count();
+
+                (component as any)._createOverlays(overlayType, createOverlayFnSpy);
+
+                expectSpyCall(createTkkOverlayHandlersSpy, previousSpyCallCount + 1, overlayType);
+            });
+
+            it('... should not trigger `_createTkkOverlayHandlers` for non-tkk overlayType', () => {
+                const overlayType = 'link-box';
+                const mockGroups = [{ id: 'g-lb-1' }];
+                const mockD3Selection = {
+                    nodes: () => mockGroups,
+                };
+                const createOverlayFn = jasmine.createSpy('createOverlayFn');
+                serviceGetGroupsBySelectorSpy.and.returnValue(mockD3Selection);
+
+                const previousSpyCallCount = createTkkOverlayHandlersSpy.calls.count();
+
+                (component as any)._createOverlays(overlayType, createOverlayFn);
+
+                expectSpyCall(createTkkOverlayHandlersSpy, previousSpyCallCount);
+            });
+        });
+
+        describe('#_createLinkBoxOverlay()', () => {
+            let mockGroup: any;
+            let mockLinkBoxGroupPathSelection: any;
+            let mockLinkBoxGroupSelection: any;
+
+            beforeEach(() => {
+                mockGroup = { id: 'link-box-1' } as any;
+                mockLinkBoxGroupPathSelection = { style: jasmine.createSpy('style') };
+                mockLinkBoxGroupSelection = {
+                    select: jasmine.createSpy('select').and.returnValue(mockLinkBoxGroupPathSelection),
+                    on: jasmine.createSpy('on').and.callFake(function (event, handler) {
+                        this._handlers = this._handlers || {};
+                        this._handlers[event] = handler;
+                        return this;
+                    }),
+                    style: jasmine.createSpy('style'),
+                };
+                serviceGetD3SelectionByIdSpy.and.returnValue(mockLinkBoxGroupSelection);
+                component.svgSheetRootGroupSelection = {} as any;
+                mockEditionSvgDrawingService.linkBoxFillColor = '#abc';
+                mockEditionSvgDrawingService.linkBoxHoverFillColor = '#def';
+            });
+
+            it('... should have a method `_createLinkBoxOverlay`', () => {
+                expect((component as any)._createLinkBoxOverlay).toBeDefined();
+            });
+
+            it('... should trigger `getD3SelectionById` and set fill color', () => {
+                (component as any)._createLinkBoxOverlay(mockGroup);
+
+                expect(serviceGetD3SelectionByIdSpy).toHaveBeenCalledWith(
+                    component.svgSheetRootGroupSelection,
+                    'link-box-1'
+                );
+                expect(mockLinkBoxGroupSelection.select).toHaveBeenCalledWith('path');
+                expect(mockLinkBoxGroupPathSelection.style).toHaveBeenCalledWith('fill', '#abc');
+            });
+
+            it('... should set up mouseover, mouseout, and click handlers', () => {
+                const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect');
+
+                (component as any)._createLinkBoxOverlay(mockGroup);
+
+                // Simulate mouseover
+                mockLinkBoxGroupSelection._handlers['mouseover']();
+                expect(serviceFillD3SelectionWithColorSpy).toHaveBeenCalledWith(mockLinkBoxGroupPathSelection, '#def');
+                expect(mockLinkBoxGroupSelection.style).toHaveBeenCalledWith('cursor', 'pointer');
+
+                // Simulate mouseout
+                mockLinkBoxGroupSelection._handlers['mouseout']();
+                expect(serviceFillD3SelectionWithColorSpy).toHaveBeenCalledWith(mockLinkBoxGroupPathSelection, '#abc');
+
+                // Simulate click
+                mockLinkBoxGroupSelection._handlers['click']();
+                expect(onLinkBoxSelectSpy).toHaveBeenCalledWith('link-box-1');
+            });
+        });
+
+        describe('#_createTkkOverlay()', () => {
+            it('... should have a method `_createTkkOverlay`', () => {
+                expect((component as any)._createTkkOverlay).toBeDefined();
+            });
+
+            it('... should add a new overlay to availableTkkOverlays', () => {
+                const overlays = (component as any)._availableTkkOverlays;
+                const mockGroup = {
+                    id: 'tkk-simple',
+                    getAttribute: () => null,
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+                expectToBe(overlays.length, 0);
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                expectToBe(overlays.length, 1);
+            });
+
+            it('... should not add another overlay to availableTkkOverlays if id already exists', () => {
+                (component as any)._availableTkkOverlays = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-unique', 'data-unique', false),
+                ];
+                const overlays = (component as any)._availableTkkOverlays;
+                const mockGroup = {
+                    id: 'tkk-unique',
+                    getAttribute: (attr: string) => (attr === 'data-tkk' ? 'data-unique' : null),
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+                expectToBe(overlays.length, 1);
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                expectToBe(overlays.length, 1);
+            });
+
+            it('... should use id as dataId if data-tkk attribute is missing (default)', () => {
+                const mockGroup = {
+                    id: 'tkk-no-data-id',
+                    getAttribute: () => null,
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                const overlays = (component as any)._availableTkkOverlays;
+                expectToBe(overlays.length, 1);
+                expectToEqual(overlays[0].id, 'tkk-no-data-id');
+                expectToEqual(overlays[0].dataId, 'tkk-no-data-id');
+            });
+
+            it('... should use data-tkk attribute as dataId if present (edge case)', () => {
+                const overlays = (component as any)._availableTkkOverlays;
+                const mockGroup = {
+                    id: 'tkk-unique',
+                    getAttribute: (attr: string) => (attr === 'data-tkk' ? 'data-unique' : null),
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                expectToBe(overlays.length, 1);
+                expectToEqual(overlays[0].id, 'tkk-unique');
+                expectToEqual(overlays[0].dataId, 'data-unique');
+            });
+
+            it('... should trigger `createOverlayGroup` with correct arguments', () => {
+                const mockGroup = {
+                    id: 'tkk-call',
+                    getAttribute: () => 'data-call',
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                expectSpyCall(serviceCreateOverlayGroupSpy, 1, [
+                    expectedSvgSheetRootGroupSelection,
+                    'tkk-call',
+                    { width: 10, height: 10, x: 0, y: 0 },
+                    'tkk',
+                ]);
+            });
+        });
+
+        describe('#_createTkkOverlayHandlers()', () => {
+            let mockOverlayGroupRectSelection: any;
+            let expectedOverlayType: string;
+
+            beforeEach(() => {
+                expectedOverlayType = 'tkk';
+                mockOverlayGroupRectSelection = {
+                    on: jasmine.createSpy('on').and.callFake(function (event, handler) {
+                        this._handlers = this._handlers || {};
+                        this._handlers[event] = handler;
+                        return this;
+                    }),
+                    style: jasmine.createSpy('style'),
+                };
+
                 (component as any)._availableTkkOverlays = expectedTkkOverlays;
 
-                const getOverlayByIdSpy = spyOn(component as any, '_getOverlayById').and.callThrough();
+                getOverlaysAndSelectionSpy.and.callFake(dataId => [
+                    [expectedTkkOverlays.find(o => o.dataId === dataId)],
+                    mockOverlayGroupRectSelection,
+                ]);
+            });
 
-                (component as any)._getOverlayAndSelection(expectedOverlayId, expectedOverlayType);
+            it('... should use default overlayType argument ("tkk") if not provided', () => {
+                // Call without argument, should use default 'tkk'
+                (component as any)._createTkkOverlayHandlers();
 
-                expectSpyCall(getOverlayByIdSpy, 1, [expectedTkkOverlays, expectedOverlayId]);
+                expect(getOverlaysAndSelectionSpy).toHaveBeenCalledWith('tkk-1', 'tkk');
+                expect(getOverlaysAndSelectionSpy).toHaveBeenCalledWith('tkk-2', 'tkk');
+            });
+
+            it('... should set up mouseover, mouseout, and click handlers for each unique dataId', () => {
+                (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                // Should set up handlers for both overlays
+                expect(mockOverlayGroupRectSelection.on).toHaveBeenCalledWith('mouseover', jasmine.any(Function));
+                expect(mockOverlayGroupRectSelection.on).toHaveBeenCalledWith('mouseout', jasmine.any(Function));
+                expect(mockOverlayGroupRectSelection.on).toHaveBeenCalledWith('click', jasmine.any(Function));
+                expectToBe(typeof mockOverlayGroupRectSelection._handlers['mouseover'], 'function');
+                expectToBe(typeof mockOverlayGroupRectSelection._handlers['mouseout'], 'function');
+                expectToBe(typeof mockOverlayGroupRectSelection._handlers['click'], 'function');
+            });
+
+            describe('... on `mouseover`', () => {
+                it('... should trigger service to update color`', () => {
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    mockOverlayGroupRectSelection._handlers['mouseover']();
+
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, 1, [
+                        [expectedTkkOverlays[1]],
+                        mockOverlayGroupRectSelection,
+                        EditionSvgOverlayActionTypes.hover,
+                    ]);
+                });
+
+                it('... should update cursor style`', () => {
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    mockOverlayGroupRectSelection._handlers['mouseover']();
+
+                    expectSpyCall(mockOverlayGroupRectSelection.style, 1, ['cursor', 'pointer']);
+                });
+            });
+
+            describe('... on `mouseout`', () => {
+                it('... should trigger service to update color', () => {
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    mockOverlayGroupRectSelection._handlers['mouseout']();
+
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, 1, [
+                        [expectedTkkOverlays[1]],
+                        mockOverlayGroupRectSelection,
+                        EditionSvgOverlayActionTypes.fill,
+                    ]);
+                });
+            });
+
+            describe('... on `click`', () => {
+                it('... should toggle selection', () => {
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    expect(expectedTkkOverlays[0].isSelected).toBe(true);
+                    expect(expectedTkkOverlays[1].isSelected).toBe(true);
+
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    expect(expectedTkkOverlays[0].isSelected).toBe(true);
+                    expect(expectedTkkOverlays[1].isSelected).toBe(false);
+                });
+
+                it('... should trigger service to update color', () => {
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, 1, [
+                        [expectedTkkOverlays[1]],
+                        mockOverlayGroupRectSelection,
+                        EditionSvgOverlayActionTypes.hover,
+                    ]);
+                });
+
+                it('... should emit selected overlays on `click`', () => {
+                    const onOverlaySelectSpy = spyOn(component as any, '_onOverlaySelect');
+                    const expectedSelectedOverlays = [expectedTkkOverlays[0]];
+
+                    (component as any)._createTkkOverlayHandlers(expectedOverlayType);
+
+                    expect(expectedTkkOverlays[0].isSelected).toBe(true);
+                    expect(expectedTkkOverlays[1].isSelected).toBe(true);
+
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    expect(expectedTkkOverlays[0].isSelected).toBe(true);
+                    expect(expectedTkkOverlays[1].isSelected).toBe(false);
+
+                    expectToEqual((component as any)._selectedTkkOverlays, expectedSelectedOverlays);
+
+                    expectSpyCall(onOverlaySelectSpy, 1, [expectedSelectedOverlays]);
+                });
+            });
+
+            describe('... with multiple overlays sharing the same dataId', () => {
+                let overlays: EditionSvgOverlay[];
+
+                beforeEach(() => {
+                    const dataId = 'shared-id';
+                    overlays = [
+                        new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', dataId, false),
+                        new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', dataId, false),
+                    ];
+
+                    (component as any)._availableTkkOverlays = overlays;
+
+                    getOverlaysAndSelectionSpy.and.returnValue([overlays, mockOverlayGroupRectSelection]);
+                });
+
+                it('... should toggle selection for all overlays with the same data-id', () => {
+                    (component as any)._createTkkOverlayHandlers('tkk');
+
+                    // Simulate click event
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    // Both overlays should have toggled selection
+                    expect(overlays[0].isSelected).toBe(true);
+                    expect(overlays[1].isSelected).toBe(true);
+                });
+
+                it('... should update color for all overlays with the same data-id', () => {
+                    (component as any)._createTkkOverlayHandlers('tkk');
+
+                    // Simulate click event
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    // Should update color for both overlays
+                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledWith(
+                        overlays,
+                        mockOverlayGroupRectSelection,
+                        EditionSvgOverlayActionTypes.hover
+                    );
+                });
+
+                it('... should emit all selected overlays', () => {
+                    const onOverlaySelectSpy = spyOn(component as any, '_onOverlaySelect');
+
+                    (component as any)._createTkkOverlayHandlers('tkk');
+
+                    // Simulate click event
+                    mockOverlayGroupRectSelection._handlers['click']();
+
+                    expect(overlays[0].isSelected).toBe(true);
+                    expect(overlays[1].isSelected).toBe(true);
+
+                    // Should emit both overlays as selected
+                    expect(onOverlaySelectSpy).toHaveBeenCalledWith(overlays);
+                });
+            });
+        });
+
+        describe('#_getOverlaysById()', () => {
+            it('... should have a method `_getOverlaysById`', () => {
+                expect((component as any)._getOverlaysById).toBeDefined();
+            });
+
+            describe('... should return empty array', () => {
+                it('... if no overlays are given', () => {
+                    const noOverlays = [];
+                    const overlay = (component as any)._getOverlaysById(noOverlays, expectedTkkOverlays[0].dataId);
+
+                    expectToEqual(overlay, []);
+                });
+
+                it('... if overlays is undefined', () => {
+                    const overlay = (component as any)._getOverlaysById(undefined, expectedTkkOverlays[0].dataId);
+
+                    expectToEqual(overlay, []);
+                });
+
+                it('... if overlays is null', () => {
+                    const overlay = (component as any)._getOverlaysById(null, expectedTkkOverlays[0].dataId);
+
+                    expectToEqual(overlay, []);
+                });
+
+                it('... if no overlay with given dataId is found', () => {
+                    const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, 'unkown-id');
+
+                    expectToEqual(overlay, []);
+                });
+
+                it('... if dataId is undefined', () => {
+                    const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, undefined);
+
+                    expectToEqual(overlay, []);
+                });
+
+                it('... if dataId is null', () => {
+                    const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, null);
+
+                    expectToEqual(overlay, []);
+                });
+            });
+
+            it('... should return an overlay with given dataId', () => {
+                const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, expectedTkkOverlays[0].dataId);
+
+                expectToEqual(overlay, [expectedTkkOverlays[0]]);
+            });
+
+            it('... should return multiple overlays with the same dataId', () => {
+                const duplicateDataId = 'duplicate-id';
+                const overlaysWithDuplicates = [
+                    { ...expectedTkkOverlays[0], dataId: duplicateDataId },
+                    { ...expectedTkkOverlays[1], dataId: duplicateDataId },
+                    { ...expectedTkkOverlays[2], dataId: 'other-id' },
+                ];
+
+                const result = (component as any)._getOverlaysById(overlaysWithDuplicates, duplicateDataId);
+
+                expectToBe(result.length, 2);
+                expectToEqual(result[0].dataId, duplicateDataId);
+                expectToEqual(result[1].dataId, duplicateDataId);
+            });
+        });
+
+        describe('#_getOverlaysAndSelection()', () => {
+            it('... should have a method `_getOverlaysAndSelection`', () => {
+                expect((component as any)._getOverlaysAndSelection).toBeDefined();
+            });
+
+            it('... should call `_getOverlaysById` method with correct parameters', () => {
+                const expectedOverlayType = 'tkk';
+                const expectedOverlayId = expectedTkkOverlays[0].dataId;
+                (component as any)._availableTkkOverlays = expectedTkkOverlays;
+
+                const getOverlaysByIdSpy = spyOn(component as any, '_getOverlaysById').and.callThrough();
+
+                (component as any)._getOverlaysAndSelection(expectedOverlayId, expectedOverlayType);
+
+                expectSpyCall(getOverlaysByIdSpy, 1, [expectedTkkOverlays, expectedOverlayId]);
             });
 
             it('... should call `getOverlayGroupRectSelection` method from service with correct parameters', () => {
@@ -1084,7 +1837,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                     'getOverlayGroupRectSelection'
                 ).and.returnValue(expectedOverlayGroupRectSelection);
 
-                (component as any)._getOverlayAndSelection(expectedOverlay.id, expectedOverlayType);
+                (component as any)._getOverlaysAndSelection(expectedOverlay.id, expectedOverlayType);
 
                 expectSpyCall(getOverlayGroupRectSelectionSpy, 1, [
                     expectedSvgSheetRootGroupSelection,
@@ -1093,7 +1846,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                 ]);
             });
 
-            it('... should return an overlay and a selection', () => {
+            it('... should return an overlay array and a selection', () => {
                 const expectedOverlayType = 'tkk';
                 const expectedOverlay = expectedTkkOverlays[0];
                 const expectedOverlayGroupRectSelection = expectedSvgSheetRootGroupSelection.select(
@@ -1105,12 +1858,12 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expectedOverlayGroupRectSelection
                 );
 
-                const [resultOverlay, resultSelection] = (component as any)._getOverlayAndSelection(
-                    expectedOverlay.id,
+                const [resultOverlays, resultSelection] = (component as any)._getOverlaysAndSelection(
+                    expectedOverlay.dataId,
                     expectedOverlayType
                 );
 
-                expectToEqual(resultOverlay, expectedOverlay);
+                expectToEqual(resultOverlays, [expectedOverlay]);
                 expectToEqual(resultSelection, expectedOverlayGroupRectSelection);
             });
         });

@@ -1,7 +1,10 @@
 import { DOCUMENT, ElementRef } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
+import Spy = jasmine.Spy;
+
 import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
+import { mockConsole } from '@testing/mock-helper';
 import {
     createD3TestLinkBoxGroups,
     createD3TestRootGroup,
@@ -26,6 +29,9 @@ describe('EditionSvgDrawingService (DONE)', () => {
     let service: EditionSvgDrawingService;
 
     let mockDocument: Document;
+
+    let fillD3SelectionWithColorSpy: Spy;
+    let getD3SelectionByIdSpy: Spy;
 
     let expectedSvg: D3Selection;
     let expectedSvgRootGroup: D3Selection;
@@ -53,8 +59,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
         // Test data
         expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2', true),
         ];
 
         expectedLinkBoxes = [
@@ -102,10 +108,17 @@ describe('EditionSvgDrawingService (DONE)', () => {
         createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
         createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
         createD3TestSuppliedClassesGroups(expectedSvgRootGroup, expectedSuppliedClassNames);
+
+        // Spies
+        fillD3SelectionWithColorSpy = spyOn(service, 'fillD3SelectionWithColor').and.callThrough();
+        getD3SelectionByIdSpy = spyOn(service, 'getD3SelectionById').and.callThrough();
     }));
 
     afterEach(function () {
         expectedSvgRootGroup.remove();
+
+        // Clear storages and mock objects after each test
+        mockConsole.clear();
     });
 
     it('... should create', () => {
@@ -385,6 +398,79 @@ describe('EditionSvgDrawingService (DONE)', () => {
         });
     });
 
+    describe('#getD3SelectionByDataId()', () => {
+        it('... should have a method `getD3SelectionByDataId`', () => {
+            expect(service.getD3SelectionByDataId).toBeDefined();
+        });
+
+        describe('... should return undefined if', () => {
+            it('... no svgRootGroup is provided', () => {
+                let d3selections = service.getD3SelectionByDataId(null, 'tkk-1');
+                expect(d3selections).toBeUndefined();
+
+                d3selections = service.getD3SelectionByDataId(undefined, 'tkk-1');
+                expect(d3selections).toBeUndefined();
+            });
+
+            it('... no dataId is provided', () => {
+                let d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, '');
+                expect(d3selections).toBeUndefined();
+
+                d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, null);
+                expect(d3selections).toBeUndefined();
+
+                d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, undefined);
+                expect(d3selections).toBeUndefined();
+            });
+        });
+
+        it('... should return an empty array if svgRootGroup is provided, but given dataId is not found', () => {
+            const d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, 'tkk-unknown');
+
+            expect(d3selections).toBeDefined();
+            expect(d3selections.nodes()).toBeInstanceOf(Array);
+            expectToBe(d3selections.nodes().length, 0);
+        });
+
+        it('... should get element by dataId attribute if present (not by actual id)', () => {
+            expectedSvgRootGroup
+                .append('g')
+                .attr('data-tkk', 'custom-data-id')
+                .attr('id', 'actual-id')
+                .attr('class', 'tkk');
+
+            const d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, 'custom-data-id');
+
+            expectSpyCall(getD3SelectionByIdSpy, 0);
+
+            expect(d3selections).toBeDefined();
+            expect(d3selections.nodes()).toBeInstanceOf(Array);
+            expectToBe(d3selections.nodes().length, 1);
+            expect(d3selections.nodes()[0].getAttribute('data-tkk')).toBe('custom-data-id');
+            expectToBe(d3selections.nodes()[0].id, 'actual-id');
+        });
+
+        it('... should get element by actual id (via `getD3SelectionById`) if dataId is not present', () => {
+            const d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, 'tkk-1');
+
+            expectSpyCall(getD3SelectionByIdSpy, 1, [expectedSvgRootGroup, 'tkk-1']);
+
+            expect(d3selections).toBeDefined();
+            expect(d3selections.nodes()).toBeInstanceOf(Array);
+            expectToBe(d3selections.nodes().length, 1);
+            expect(d3selections.nodes()[0].id).toBe('tkk-1');
+
+            const d3selections2 = service.getD3SelectionByDataId(expectedSvgRootGroup, 'tkk-2');
+
+            expectSpyCall(getD3SelectionByIdSpy, 2, [expectedSvgRootGroup, 'tkk-2']);
+
+            expect(d3selections2).toBeDefined();
+            expect(d3selections2.nodes()).toBeInstanceOf(Array);
+            expectToBe(d3selections2.nodes().length, 1);
+            expectToBe(d3selections2.nodes()[0].id, 'tkk-2');
+        });
+    });
+
     describe('#getGroupsBySelector()', () => {
         it('... should have a method `getGroupsBySelector`', () => {
             expect(service.getGroupsBySelector).toBeDefined();
@@ -562,21 +648,92 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expect(d3selections.nodes()).toBeInstanceOf(Array);
                 expectToBe(d3selections.nodes().length, 0);
             });
+
+            it('... no matching group exists', () => {
+                const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'nonexistent', 'tkk');
+
+                expect(d3selections).toBeDefined();
+                expect(d3selections.nodes()).toBeInstanceOf(Array);
+                expect(d3selections.nodes().length).toBe(0);
+            });
         });
 
-        it('... should return an array of D3 selections if all inputs are provided and has overlay group box with given type', () => {
-            const tkkGroups = service.getGroupsBySelector(expectedSvgRootGroup, 'tkk');
-            const expectedDimensions = tkkGroups.nodes()[0].getBBox();
-            const expectedType = 'tkk';
+        describe('... should return an array of D3 selections if ...', () => {
+            it('... all inputs are provided and has overlay group box with given type', () => {
+                const tkkGroups = service.getGroupsBySelector(expectedSvgRootGroup, 'tkk');
+                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+                const expectedType = 'tkk';
 
-            service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
+                service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
 
-            const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
+                const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
 
-            expect(d3selections).toBeDefined();
-            expect(d3selections.nodes()).toBeInstanceOf(Array);
-            expectToBe(d3selections.nodes().length, 1);
-            expectToContain(d3selections.nodes()[0].classList, `${expectedType}-overlay-group-box`);
+                expect(d3selections).toBeDefined();
+                expect(d3selections.nodes()).toBeInstanceOf(Array);
+                expectToBe(d3selections.nodes().length, 1);
+                expectToContain(d3selections.nodes()[0].classList, `${expectedType}-overlay-group-box`);
+            });
+
+            it('... should return the overlay group box if found by id', () => {
+                const tkkGroups = service.getGroupsBySelector(expectedSvgRootGroup, 'tkk');
+                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+                const expectedType = 'tkk';
+
+                service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
+
+                const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
+
+                expect(d3selections).toBeDefined();
+                expect(d3selections.nodes()).toBeInstanceOf(Array);
+                expect(d3selections.nodes().length).toBe(1);
+                expectToContain(d3selections.nodes()[0].classList, 'tkk-overlay-group-box');
+            });
+
+            it('... a single selection matches the data id', () => {
+                const expectedType = 'tkk';
+                const group = expectedSvgRootGroup.append('g').attr('data-tkk', 'custom-data-id').attr('class', 'tkk');
+                group.append('rect').attr('class', 'tkk-overlay-group-box');
+
+                const d3Selections = service.getOverlayGroupRectSelection(
+                    expectedSvgRootGroup,
+                    'custom-data-id',
+                    expectedType
+                );
+
+                expect(d3Selections).toBeDefined();
+                expect(d3Selections.nodes()).toBeInstanceOf(Array);
+                expect(d3Selections.nodes().length).toBe(1);
+                expectToContain(d3Selections.nodes()[0].classList, `${expectedType}-overlay-group-box`);
+            });
+
+            it('... multiple selections match the data id', () => {
+                const expectedType = 'tkk';
+                const group1 = expectedSvgRootGroup
+                    .append('g')
+                    .attr('data-tkk', 'duplicate-data-id')
+                    .attr('class', 'tkk')
+                    .attr('id', 'group1');
+                group1.append('rect').attr('class', 'tkk-overlay-group-box');
+                const group2 = expectedSvgRootGroup
+                    .append('g')
+                    .attr('data-tkk', 'duplicate-data-id')
+                    .attr('class', 'tkk')
+                    .attr('id', 'group2');
+                group2.append('rect').attr('class', 'tkk-overlay-group-box');
+
+                const d3Selections = service.getOverlayGroupRectSelection(
+                    expectedSvgRootGroup,
+                    'duplicate-data-id',
+                    expectedType
+                );
+
+                expect(d3Selections).toBeDefined();
+                expect(d3Selections.nodes()).toBeInstanceOf(Array);
+                expect(d3Selections.nodes().length).toBe(2);
+                const nodeIds = d3Selections.nodes().map(node => node.parentNode.id);
+                expectToContain(nodeIds, 'group1');
+                expectToContain(nodeIds, 'group2');
+            });
         });
     });
 
@@ -676,13 +833,10 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(service.updateTkkOverlayColor).toBeDefined();
         });
 
-        describe('... should call the fillD3Selection method with the correct color when', () => {
-            let d3selections;
-            let fillD3SelectionWithColorSpy;
+        describe('... should do nothing if', () => {
+            let d3selections: D3Selection;
 
             beforeEach(() => {
-                fillD3SelectionWithColorSpy = spyOn(service, 'fillD3SelectionWithColor');
-
                 const expectedType = 'tkk';
                 const tkkGroups = service.getGroupsBySelector(expectedSvgRootGroup, expectedType);
                 const expectedDimensions = tkkGroups.nodes()[0].getBBox();
@@ -692,40 +846,88 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
             });
 
-            it('... overlay is not provided', () => {
-                service.updateTkkOverlayColor(undefined, d3selections, EditionSvgOverlayActionTypes.fill);
+            it('... no overlays are provided', () => {
+                service.updateTkkOverlayColor([], d3selections, EditionSvgOverlayActionTypes.fill);
 
-                expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlayFillColor]);
+                expectSpyCall(fillD3SelectionWithColorSpy, 0);
+            });
+
+            it('... no D3 selection is provided', () => {
+                const overlay = expectedOverlays[0];
+                service.updateTkkOverlayColor([overlay], null, EditionSvgOverlayActionTypes.fill);
+
+                expectSpyCall(fillD3SelectionWithColorSpy, 0);
+            });
+
+            it('... no overlayActionType is provided', () => {
+                const overlay = expectedOverlays[0];
+                service.updateTkkOverlayColor([overlay], d3selections, null);
+
+                expectSpyCall(fillD3SelectionWithColorSpy, 0);
+            });
+        });
+
+        describe('... should call the fillD3Selection method with the correct color when', () => {
+            let d3selections: D3Selection;
+
+            beforeEach(() => {
+                const expectedType = 'tkk';
+                const tkkGroups = service.getGroupsBySelector(expectedSvgRootGroup, expectedType);
+                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+
+                service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
+
+                d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
+            });
+
+            it('... there is only a single overlay given', () => {
+                const overlay = expectedOverlays[0];
+
+                service.updateTkkOverlayColor([overlay], d3selections, EditionSvgOverlayActionTypes.fill);
+
+                expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlaySelectionFillColor]);
+            });
+
+            it('... there are multiple overlays given', () => {
+                service.updateTkkOverlayColor(expectedOverlays, d3selections, EditionSvgOverlayActionTypes.fill);
+
+                expectSpyCall(fillD3SelectionWithColorSpy, 2, [d3selections, expectedOverlaySelectionFillColor]);
             });
 
             it('... overlayActionType is `transparent`', () => {
                 const overlay = expectedOverlays[0];
-                service.updateTkkOverlayColor(overlay, d3selections, EditionSvgOverlayActionTypes.transparent);
+
+                service.updateTkkOverlayColor([overlay], d3selections, EditionSvgOverlayActionTypes.transparent);
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlayTransparentFillColor]);
             });
 
-            it('... overlay is selected no matter no matter if overlayActionType is `hover` or `fill`, but not for `transparent`', () => {
+            it('... overlay is selected no matter if overlayActionType is `hover` or `fill`, but not for `transparent`', () => {
                 const selectedOverlay = expectedOverlays[0];
 
-                service.updateTkkOverlayColor(selectedOverlay, d3selections, EditionSvgOverlayActionTypes.fill);
+                service.updateTkkOverlayColor([selectedOverlay], d3selections, EditionSvgOverlayActionTypes.fill);
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlaySelectionFillColor]);
 
-                service.updateTkkOverlayColor(selectedOverlay, d3selections, EditionSvgOverlayActionTypes.hover);
+                service.updateTkkOverlayColor([selectedOverlay], d3selections, EditionSvgOverlayActionTypes.hover);
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 2, [d3selections, expectedOverlaySelectionFillColor]);
 
-                service.updateTkkOverlayColor(selectedOverlay, d3selections, EditionSvgOverlayActionTypes.transparent);
+                service.updateTkkOverlayColor(
+                    [selectedOverlay],
+                    d3selections,
+                    EditionSvgOverlayActionTypes.transparent
+                );
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 3, [d3selections, expectedOverlayTransparentFillColor]);
             });
 
             it('... overlay is not selected and overlayActionType is `hover`', () => {
                 const notSelectedOverlay = expectedOverlays[0];
+
                 notSelectedOverlay.isSelected = false;
 
-                service.updateTkkOverlayColor(notSelectedOverlay, d3selections, EditionSvgOverlayActionTypes.hover);
+                service.updateTkkOverlayColor([notSelectedOverlay], d3selections, EditionSvgOverlayActionTypes.hover);
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlayHoverFillColor]);
             });
@@ -734,7 +936,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 const notSelectedOverlay = expectedOverlays[0];
                 notSelectedOverlay.isSelected = false;
 
-                service.updateTkkOverlayColor(notSelectedOverlay, d3selections, EditionSvgOverlayActionTypes.fill);
+                service.updateTkkOverlayColor([notSelectedOverlay], d3selections, EditionSvgOverlayActionTypes.fill);
 
                 expectSpyCall(fillD3SelectionWithColorSpy, 1, [d3selections, expectedOverlayFillColor]);
             });
@@ -747,7 +949,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
         });
 
         it('... should call through to D3_FETCH.svg and return a promise', async () => {
-            // Call with invalid path to test method execution without requiring real files
+            spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
+
             const promise = service['_fetchSvgFile']('invalid-path-for-coverage.svg');
 
             // Should return a Promise (even if it rejects)
