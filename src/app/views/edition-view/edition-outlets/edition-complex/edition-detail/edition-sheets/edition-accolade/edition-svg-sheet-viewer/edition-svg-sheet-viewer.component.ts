@@ -359,7 +359,8 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             overlayType
         );
         overlayGroups.nodes().forEach(overlayGroup => {
-            const [overlays, overlayGroupRectSelection] = this._getOverlaysAndSelection(overlayGroup.id, overlayType);
+            const dataId = overlayGroup.getAttribute('data-tkk') || overlayGroup.id;
+            const [overlays, overlayGroupRectSelection] = this._getOverlaysAndSelection(dataId, overlayType);
             const color = isCurrentlyHighlighted
                 ? EditionSvgOverlayActionTypes.fill
                 : EditionSvgOverlayActionTypes.transparent;

@@ -790,10 +790,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 serviceGetGroupsBySelectorSpy.and.returnValue(expectedOverlayGroups);
 
-                getOverlaysAndSelectionSpy.and.callFake((id: string, overlayType: string) => {
-                    const overlay = expectedTkkOverlays.find(node => node.id === id);
-                    const overlayGroupRectSelection = expectedOverlayGroups.select(`#${id} .${overlayType}`);
-
+                getOverlaysAndSelectionSpy.and.callFake((dataId: string, overlayType: string) => {
+                    const overlay = expectedTkkOverlays.find(node => node.dataId === dataId);
+                    const overlayGroupRectSelection = expectedOverlayGroups.select(`#${overlay?.id} .${overlayType}`);
                     return [overlay, overlayGroupRectSelection];
                 });
             });
@@ -819,18 +818,28 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... with correct parameters for each overlay', () => {
+                it('... with correct dataId for each overlay (data-tkk or id)', () => {
+                    // Simulate: first node has data-tkk, second only id
+                    const overlayNodes = expectedOverlayGroups.nodes();
+                    overlayNodes[0].setAttribute('data-tkk', 'custom-data-id-1');
+                    overlayNodes[1].removeAttribute('data-tkk');
+                    overlayNodes[1].id = 'g-tkk-2';
+
+                    expectedTkkOverlays[0].dataId = 'custom-data-id-1';
+                    expectedTkkOverlays[1].dataId = 'g-tkk-2';
+
                     const isCurrentlyHighlighted = true;
 
                     component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
 
-                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, expectedOverlayGroups.nodes().length);
-
-                    expectedOverlayGroups.nodes().forEach((_node, index) => {
+                    expectSpyCall(serviceUpdateTkkOverlayColorSpy, overlayNodes.length);
+                    overlayNodes.forEach((_node, index) => {
                         const overlay = expectedTkkOverlays[index];
                         const overlayGroupRectSelection = expectedOverlayGroups.select(
                             `#${overlay.id} rect.${expectedOverlayType}`
                         );
+
+                        expectToBe(getOverlaysAndSelectionSpy.calls.argsFor(index)[0], overlay.dataId);
                         expectToEqual(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0], overlay);
                         expectToEqual(
                             serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1],
@@ -1767,7 +1776,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 });
 
                 it('... if no overlay with given dataId is found', () => {
-                    const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, 'unkown-id');
+                    const overlay = (component as any)._getOverlaysById(expectedTkkOverlays, 'unknown-id');
 
                     expectToEqual(overlay, []);
                 });
