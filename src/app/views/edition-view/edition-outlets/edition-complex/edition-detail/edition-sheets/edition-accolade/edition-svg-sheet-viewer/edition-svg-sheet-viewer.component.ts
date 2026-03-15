@@ -359,7 +359,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             overlayType
         );
         overlayGroups.nodes().forEach(overlayGroup => {
-            const dataId = overlayGroup.getAttribute('data-tkk-id') || overlayGroup.id;
+            const dataId = this._getSvgGroupDataId(overlayGroup);
             const [overlays, overlayGroupRectSelection] = this._getOverlaysAndSelection(dataId, overlayType);
             const color = isCurrentlyHighlighted
                 ? EditionSvgOverlayActionTypes.fill
@@ -562,7 +562,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
         const actualId: string = group['id'];
-        const dataId: string = group.getAttribute('data-tkk-id') ? group.getAttribute('data-tkk-id') : actualId;
+        const dataId: string = this._getSvgGroupDataId(group);
         const dim: DOMRect = group.getBBox();
 
         if (!this._availableTkkOverlays.some(o => o.id === actualId)) {
@@ -578,6 +578,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * Creates event handlers for each unique dataId in tkk overlays.
      *
      * @param {string} overlayType The overlay type (should be 'tkk').
+     *
      * @returns {void}
      */
     private _createTkkOverlayHandlers(overlayType: string = 'tkk'): void {
@@ -696,12 +697,28 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Private helper: _getSvgGroupDataId.
+     *
+     * Returns the dataId for a given SVG group.
+     * Uses data-tkk-id if present (for multiple SVG refs to the same tkk entry),
+     * otherwise uses group id (default).
+     *
+     * @param {SVGGElement} group The SVG group element.
+     *
+     * @returns {string} The resolved data id.
+     */
+    private _getSvgGroupDataId(group: SVGGElement): string {
+        return group.getAttribute('data-tkk-id') || group.id;
+    }
+
+    /**
      * Private method: _onLinkBoxSelect.
      *
      * It emits the given link box id
      * to the {@link selectLinkBoxRequest}.
      *
      * @param {string} linkBoxId The given link box id.
+     *
      * @returns {void} Emits the id.
      */
     private _onLinkBoxSelect(linkBoxId: string): void {
@@ -763,6 +780,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
+     *
      * @returns {number} The rounded value.
      */
     private _roundToScaleStepDecimalPrecision(value: number): number {

@@ -91,6 +91,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     let emitSelectOverlaysRequestSpy: Spy;
     let getContainerDimensionsSpy: Spy;
     let getOverlaysAndSelectionSpy: Spy;
+    let getSvgGroupDataIdSpy: Spy;
     let onSuppliedClassesOpacityToggleSpy: Spy;
     let onZoomChangeSpy: Spy;
     let renderSheetSpy: Spy;
@@ -215,6 +216,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         createTkkOverlayHandlersSpy = spyOn<any>(component, '_createTkkOverlayHandlers').and.callThrough();
         getContainerDimensionsSpy = spyOn<any>(component, '_getContainerDimensions').and.callThrough();
         getOverlaysAndSelectionSpy = spyOn<any>(component, '_getOverlaysAndSelection').and.callThrough();
+        getSvgGroupDataIdSpy = spyOn(component as any, '_getSvgGroupDataId').and.callThrough();
         rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callThrough();
         resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
         zoomHandlerSpy = spyOn<any>(component, '_zoomHandler').and.callThrough();
@@ -1521,22 +1523,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expectToBe(overlays.length, 1);
             });
 
-            it('... should use id as dataId if data-tkk-id attribute is missing (default)', () => {
-                const mockGroup = {
-                    id: 'tkk-no-data-id',
-                    getAttribute: () => null,
-                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-                };
-
-                (component as any)._createTkkOverlay(mockGroup, 'tkk');
-
-                const overlays = (component as any)._availableTkkOverlays;
-                expectToBe(overlays.length, 1);
-                expectToEqual(overlays[0].id, 'tkk-no-data-id');
-                expectToEqual(overlays[0].dataId, 'tkk-no-data-id');
-            });
-
-            it('... should use data-tkk-id attribute as dataId if present (edge case)', () => {
+            it('... should use data-tkk-id attribute as dataId if present (via `getSvgGroupDataId`)', () => {
                 const overlays = (component as any)._availableTkkOverlays;
                 const mockGroup = {
                     id: 'tkk-unique-id',
@@ -1546,9 +1533,26 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 (component as any)._createTkkOverlay(mockGroup, 'tkk');
 
+                expectSpyCall(getSvgGroupDataIdSpy, 1, mockGroup);
                 expectToBe(overlays.length, 1);
                 expectToEqual(overlays[0].id, 'tkk-unique-id');
                 expectToEqual(overlays[0].dataId, 'data-unique-id');
+            });
+
+            it('... should use id as default dataId if no data-tkk-id attribute is present (via `getSvgGroupDataId`)', () => {
+                const overlays = (component as any)._availableTkkOverlays;
+                const mockGroup = {
+                    id: 'tkk-no-data-id',
+                    getAttribute: () => null,
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (component as any)._createTkkOverlay(mockGroup, 'tkk');
+
+                expectSpyCall(getSvgGroupDataIdSpy, 1, mockGroup);
+                expectToBe(overlays.length, 1);
+                expectToEqual(overlays[0].id, 'tkk-no-data-id');
+                expectToEqual(overlays[0].dataId, 'tkk-no-data-id');
             });
 
             it('... should trigger `createOverlayGroup` with correct arguments', () => {
@@ -1923,6 +1927,42 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 (component as any)._getSuppliedClasses();
 
                 expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
+            });
+        });
+
+        describe('_getSvgGroupDataId', () => {
+            it('... should have a method `_getSvgGroupDataId`', () => {
+                expect((component as any)._getSvgGroupDataId).toBeDefined();
+            });
+
+            it('should return data-tkk-id if present', () => {
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g') as SVGGElement;
+                group.setAttribute('id', 'g-tkk-1');
+                group.setAttribute('data-tkk-id', 'custom-tkk-id');
+
+                const result = (component as any)._getSvgGroupDataId(group);
+
+                expectToBe(result, 'custom-tkk-id');
+            });
+
+            it('should return id if data-tkk-id is not present', () => {
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g') as SVGGElement;
+                group.setAttribute('id', 'g-tkk-2');
+                group.removeAttribute('data-tkk-id');
+
+                const result = (component as any)._getSvgGroupDataId(group);
+
+                expectToBe(result, 'g-tkk-2');
+            });
+
+            it('should return empty string if neither id nor data-tkk-id is present', () => {
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g') as SVGGElement;
+                group.removeAttribute('id');
+                group.removeAttribute('data-tkk-id');
+
+                const result = (component as any)._getSvgGroupDataId(group);
+
+                expectToBe(result, '');
             });
         });
 
