@@ -359,7 +359,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             overlayType
         );
         overlayGroups.nodes().forEach(overlayGroup => {
-            const dataId = overlayGroup.getAttribute('data-tkk') || overlayGroup.id;
+            const dataId = overlayGroup.getAttribute('data-tkk-id') || overlayGroup.id;
             const [overlays, overlayGroupRectSelection] = this._getOverlaysAndSelection(dataId, overlayType);
             const color = isCurrentlyHighlighted
                 ? EditionSvgOverlayActionTypes.fill
@@ -562,7 +562,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
         const actualId: string = group['id'];
-        const dataId: string = group.getAttribute('data-tkk') ? group.getAttribute('data-tkk') : actualId;
+        const dataId: string = group.getAttribute('data-tkk-id') ? group.getAttribute('data-tkk-id') : actualId;
         const dim: DOMRect = group.getBBox();
 
         if (!this._availableTkkOverlays.some(o => o.id === actualId)) {

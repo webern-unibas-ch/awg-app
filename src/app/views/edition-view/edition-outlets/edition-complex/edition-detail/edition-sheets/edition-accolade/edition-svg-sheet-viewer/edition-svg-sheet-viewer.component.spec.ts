@@ -818,11 +818,11 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... with correct dataId for each overlay (data-tkk or id)', () => {
-                    // Simulate: first node has data-tkk, second only id
+                it('... with correct dataId for each overlay (data-tkk-id or id)', () => {
+                    // Simulate: first node has data-tkk-id, second only id
                     const overlayNodes = expectedOverlayGroups.nodes();
-                    overlayNodes[0].setAttribute('data-tkk', 'custom-data-id-1');
-                    overlayNodes[1].removeAttribute('data-tkk');
+                    overlayNodes[0].setAttribute('data-tkk-id', 'custom-data-id-1');
+                    overlayNodes[1].removeAttribute('data-tkk-id');
                     overlayNodes[1].id = 'g-tkk-2';
 
                     expectedTkkOverlays[0].dataId = 'custom-data-id-1';
@@ -1493,7 +1493,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should add a new overlay to availableTkkOverlays', () => {
                 const overlays = (component as any)._availableTkkOverlays;
                 const mockGroup = {
-                    id: 'tkk-simple',
+                    id: 'tkk-simple-id',
                     getAttribute: () => null,
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 };
@@ -1506,12 +1506,12 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
             it('... should not add another overlay to availableTkkOverlays if id already exists', () => {
                 (component as any)._availableTkkOverlays = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-unique', 'data-unique', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-unique-id', 'data-unique-id', false),
                 ];
                 const overlays = (component as any)._availableTkkOverlays;
                 const mockGroup = {
-                    id: 'tkk-unique',
-                    getAttribute: (attr: string) => (attr === 'data-tkk' ? 'data-unique' : null),
+                    id: 'tkk-unique-id',
+                    getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-unique-id' : null),
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 };
                 expectToBe(overlays.length, 1);
@@ -1521,7 +1521,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expectToBe(overlays.length, 1);
             });
 
-            it('... should use id as dataId if data-tkk attribute is missing (default)', () => {
+            it('... should use id as dataId if data-tkk-id attribute is missing (default)', () => {
                 const mockGroup = {
                     id: 'tkk-no-data-id',
                     getAttribute: () => null,
@@ -1536,25 +1536,25 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expectToEqual(overlays[0].dataId, 'tkk-no-data-id');
             });
 
-            it('... should use data-tkk attribute as dataId if present (edge case)', () => {
+            it('... should use data-tkk-id attribute as dataId if present (edge case)', () => {
                 const overlays = (component as any)._availableTkkOverlays;
                 const mockGroup = {
-                    id: 'tkk-unique',
-                    getAttribute: (attr: string) => (attr === 'data-tkk' ? 'data-unique' : null),
+                    id: 'tkk-unique-id',
+                    getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-unique-id' : null),
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 };
 
                 (component as any)._createTkkOverlay(mockGroup, 'tkk');
 
                 expectToBe(overlays.length, 1);
-                expectToEqual(overlays[0].id, 'tkk-unique');
-                expectToEqual(overlays[0].dataId, 'data-unique');
+                expectToEqual(overlays[0].id, 'tkk-unique-id');
+                expectToEqual(overlays[0].dataId, 'data-unique-id');
             });
 
             it('... should trigger `createOverlayGroup` with correct arguments', () => {
                 const mockGroup = {
-                    id: 'tkk-call',
-                    getAttribute: () => 'data-call',
+                    id: 'tkk-call-id',
+                    getAttribute: () => 'data-call-id',
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 };
 
@@ -1562,7 +1562,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 expectSpyCall(serviceCreateOverlayGroupSpy, 1, [
                     expectedSvgSheetRootGroupSelection,
-                    'tkk-call',
+                    'tkk-call-id',
                     { width: 10, height: 10, x: 0, y: 0 },
                     'tkk',
                 ]);

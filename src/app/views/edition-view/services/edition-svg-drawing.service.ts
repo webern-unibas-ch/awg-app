@@ -246,15 +246,15 @@ export class EditionSvgDrawingService {
     /**
      * Public method: getD3SelectionByDataId.
      *
-     * Selects elements by a data attribute (default: data-tkk) or falls back to id.
+     * Selects elements by a data attribute (default: data-tkk-id) or falls back to id.
      *
      * @param svgRootGroup The D3 selection of the SVG root group.
      * @param dataId The data id to select.
-     * @param attr The data attribute name (default: 'data-tkk').
+     * @param attr The data attribute name (default: 'data-tkk-id').
      *
      * @returns {D3Selection} The D3 selection of the found element(s).
      */
-    getD3SelectionByDataId(svgRootGroup: D3Selection, dataId: string, attr: string = 'data-tkk'): D3Selection {
+    getD3SelectionByDataId(svgRootGroup: D3Selection, dataId: string, attr: string = 'data-tkk-id'): D3Selection {
         if (!svgRootGroup || !dataId) {
             return undefined;
         }

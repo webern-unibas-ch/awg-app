@@ -435,7 +435,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
         it('... should get element by dataId attribute if present (not by actual id)', () => {
             expectedSvgRootGroup
                 .append('g')
-                .attr('data-tkk', 'custom-data-id')
+                .attr('data-tkk-id', 'custom-data-id')
                 .attr('id', 'actual-id')
                 .attr('class', 'tkk');
 
@@ -446,7 +446,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(d3selections).toBeDefined();
             expect(d3selections.nodes()).toBeInstanceOf(Array);
             expectToBe(d3selections.nodes().length, 1);
-            expect(d3selections.nodes()[0].getAttribute('data-tkk')).toBe('custom-data-id');
+            expect(d3selections.nodes()[0].getAttribute('data-tkk-id')).toBe('custom-data-id');
             expectToBe(d3selections.nodes()[0].id, 'actual-id');
         });
 
@@ -691,7 +691,10 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             it('... a single selection matches the data id', () => {
                 const expectedType = 'tkk';
-                const group = expectedSvgRootGroup.append('g').attr('data-tkk', 'custom-data-id').attr('class', 'tkk');
+                const group = expectedSvgRootGroup
+                    .append('g')
+                    .attr('data-tkk-id', 'custom-data-id')
+                    .attr('class', 'tkk');
                 group.append('rect').attr('class', 'tkk-overlay-group-box');
 
                 const d3Selections = service.getOverlayGroupRectSelection(
@@ -710,13 +713,13 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 const expectedType = 'tkk';
                 const group1 = expectedSvgRootGroup
                     .append('g')
-                    .attr('data-tkk', 'duplicate-data-id')
+                    .attr('data-tkk-id', 'duplicate-data-id')
                     .attr('class', 'tkk')
                     .attr('id', 'group1');
                 group1.append('rect').attr('class', 'tkk-overlay-group-box');
                 const group2 = expectedSvgRootGroup
                     .append('g')
-                    .attr('data-tkk', 'duplicate-data-id')
+                    .attr('data-tkk-id', 'duplicate-data-id')
                     .attr('class', 'tkk')
                     .attr('id', 'group2');
                 group2.append('rect').attr('class', 'tkk-overlay-group-box');
@@ -897,8 +900,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             it('... there are multiple overlays given (with different colors; log a warning)', () => {
                 const overlays = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-10', 'data-tkk-1', true),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-20', 'data-tkk-1', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-10', 'data-tkk-id-1', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-20', 'data-tkk-id-1', false),
                 ];
                 const expectedUniqueColors = [expectedOverlaySelectionFillColor, 'blue'];
 

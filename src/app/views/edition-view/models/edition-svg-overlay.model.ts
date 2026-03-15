@@ -33,7 +33,7 @@ export class EditionSvgOverlay {
     id: string;
 
     /**
-     * The data id of an svg overlay (e.g., data-tkk value).
+     * The data id of an svg overlay (e.g., data-tkk-id value).
      */
     dataId: string;
 
@@ -59,7 +59,7 @@ export class EditionSvgOverlay {
      *
      * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
      * @param {string} actualId The actual id of the SVG element (unique per element, if present).
-     * @param {string} dataId The data id of the overlay (e.g., data-tkk value).
+     * @param {string} dataId The data id of the overlay (e.g., data-tkk-id value).
      * @param {boolean} [isSelected] The given boolean value indicating whether the overlay is selected.
      *
      */
