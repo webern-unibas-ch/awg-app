@@ -242,6 +242,9 @@
                                 <a href="#getContainerDimensions" >getContainerDimensions</a>
                             </li>
                             <li>
+                                <a href="#getD3SelectionByDataId" >getD3SelectionByDataId</a>
+                            </li>
+                            <li>
                                 <a href="#getD3SelectionById" >getD3SelectionById</a>
                             </li>
                             <li>
@@ -299,8 +302,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="380"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:380</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="418"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:418</a></div>
                         </td>
                     </tr>
 
@@ -377,8 +380,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="394"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:394</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="432"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:432</a></div>
                         </td>
                     </tr>
 
@@ -471,8 +474,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="421"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:421</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="459"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:459</a></div>
                         </td>
                     </tr>
 
@@ -936,6 +939,122 @@ and returns a promise of the selection.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getD3SelectionByDataId"></a>
+                    <span class="name">
+                        <span ><b>getD3SelectionByDataId</b></span>
+                        <a href="#getD3SelectionByDataId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getD3SelectionByDataId(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getD3SelectionByDataId.</p>
+<p>Selects elements by a data attribute (default: data-tkk-id) or falls back to id.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgRootGroup</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>The D3 selection of the SVG root group.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>dataId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>The data id to select.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>attr</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;data-tkk-id&#x27;</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The data attribute name (default: &#39;data-tkk-id&#39;).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The D3 selection of the found element(s).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getD3SelectionById"></a>
                     <span class="name">
                         <span ><b>getD3SelectionById</b></span>
@@ -1044,8 +1163,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="256"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:256</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:276</a></div>
                         </td>
                     </tr>
 
@@ -1129,15 +1248,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getOverlayGroupRectSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getOverlayGroupRectSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="274"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:274</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="294"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:294</a></div>
                         </td>
                     </tr>
 
@@ -1145,7 +1264,7 @@ and returns a promise of the selection.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getOverlayGroupRectSelection.</p>
-<p>It selects an overlay group box (rect) with a given type from an element identified by the given id in the given svgRootGroup.</p>
+<p>It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.</p>
 </div>
 
                             <div class="io-description">
@@ -1178,7 +1297,7 @@ and returns a promise of the selection.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dataId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -1189,7 +1308,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given id.</p>
+                                                    <p>The given dataId.</p>
 
                                             </td>
                                         </tr>
@@ -1244,8 +1363,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="293"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:293</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="313"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:313</a></div>
                         </td>
                     </tr>
 
@@ -1320,8 +1439,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="332"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:332</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="352"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:352</a></div>
                         </td>
                     </tr>
 
@@ -1421,15 +1540,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateTkkOverlayColor(overlay: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay</a>, overlayGroupRectSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlayActionType: <a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self">EditionSvgOverlayActionTypes</a>)</code>
+<code>updateTkkOverlayColor(overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>, overlayGroupRectSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlayActionType: <a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self">EditionSvgOverlayActionTypes</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="362"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:362</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="382"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:382</a></div>
                         </td>
                     </tr>
 
@@ -1437,7 +1556,7 @@ and returns a promise of the selection.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateTkkOverlayColor.</p>
-<p>It updates the color of the given tkk overlay.</p>
+<p>It updates the color of the given tkk overlays.</p>
 </div>
 
                             <div class="io-description">
@@ -1454,9 +1573,9 @@ and returns a promise of the selection.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>overlay</td>
+                                                <td>overlays</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay</a></code>
+                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
                                             </td>
 
                                             <td>
@@ -1465,7 +1584,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given overlay.</p>
+                                                    <p>The given overlays.</p>
 
                                             </td>
                                         </tr>
@@ -1509,7 +1628,7 @@ and returns a promise of the selection.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Updates the color of the given tkk overlay.</p>
+                                <p>Updates the color of the given tkk overlays.</p>
 
                             </div>
                 </td>
@@ -2139,7 +2258,7 @@ export class EditionSvgDrawingService {
         // Get D3 selection of target overlay group
         const targetOverlayGroupSelection: D3Selection &#x3D; targetGroupSelection.select(&#x60;g.${type}-overlay-group&#x60;);
 
-        // Create overlay box for tka-overlay-group
+        // Create overlay box for tkk-overlay-group
         return targetOverlayGroupSelection
             .append(&#x27;rect&#x27;)
             .attr(&#x27;width&#x27;, dim.width + this._overlayBoxAdditionalSpace * 2)
@@ -2210,6 +2329,26 @@ export class EditionSvgDrawingService {
     }
 
     /**
+     * Public method: getD3SelectionByDataId.
+     *
+     * Selects elements by a data attribute (default: data-tkk-id) or falls back to id.
+     *
+     * @param svgRootGroup The D3 selection of the SVG root group.
+     * @param dataId The data id to select.
+     * @param attr The data attribute name (default: &#x27;data-tkk-id&#x27;).
+     *
+     * @returns {D3Selection} The D3 selection of the found element(s).
+     */
+    getD3SelectionByDataId(svgRootGroup: D3Selection, dataId: string, attr: string &#x3D; &#x27;data-tkk-id&#x27;): D3Selection {
+        if (!svgRootGroup || !dataId) {
+            return undefined;
+        }
+        const selector &#x3D; &#x60;[${attr}&#x3D;&quot;${dataId}&quot;]&#x60;;
+        const selection &#x3D; svgRootGroup.selectAll(selector);
+        return selection.empty() ? this.getD3SelectionById(svgRootGroup, dataId) : selection;
+    }
+
+    /**
      * Public method: getGroupsBySelector.
      *
      * It selects all groups with the &quot;given selector class, if available, from the given svgRootGroup.
@@ -2229,22 +2368,22 @@ export class EditionSvgDrawingService {
     /**
      * Public method: getOverlayGroupRectSelection.
      *
-     * It selects an overlay group box (rect) with a given type from an element identified by the given id in the given svgRootGroup.
+     * It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} id The given id.
+     * @param {string} dataId The given dataId.
      * @param {string} type The given type.
      *
      * @returns {D3Selection} The D3 selection of the found element.
      */
-    getOverlayGroupRectSelection(svgRootGroup: D3Selection, id: string, type: string): D3Selection {
-        if (!svgRootGroup || !id || !type) {
+    getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, type: string): D3Selection {
+        if (!svgRootGroup || !dataId || !type) {
             return undefined;
         }
         // Get D3 selection of target group
-        const targetGroupSelection: D3Selection &#x3D; this.getD3SelectionById(svgRootGroup, id);
+        const targetGroupSelection: D3Selection &#x3D; this.getD3SelectionByDataId(svgRootGroup, dataId);
         // Get D3 selection of overlay group box
-        return targetGroupSelection.select(&#x60;rect.${type}-overlay-group-box&#x60;);
+        return targetGroupSelection.selectAll(&#x60;rect.${type}-overlay-group-box&#x60;);
     }
 
     /**
@@ -2317,21 +2456,39 @@ export class EditionSvgDrawingService {
     /**
      * Public method: updateTkkOverlayColor.
      *
-     * It updates the color of the given tkk overlay.
+     * It updates the color of the given tkk overlays.
      *
-     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {EditionSvgOverlay[]} overlays The given overlays.
      * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
      * @param {string} overlayActionType The type of the overlay action (&#x60;fill&#x60; or &#x60;hover&#x60;).
      *
-     * @returns {void} Updates the color of the given tkk overlay.
+     * @returns {void} Updates the color of the given tkk overlays.
      */
     updateTkkOverlayColor(
-        overlay: EditionSvgOverlay,
+        overlays: EditionSvgOverlay[],
         overlayGroupRectSelection: D3Selection,
         overlayActionType: EditionSvgOverlayActionTypes
     ): void {
-        const color &#x3D; this._getTkkOverlayColor(overlay, overlayActionType);
-        this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
+        if (!overlays || overlays.length &#x3D;&#x3D;&#x3D; 0 || !overlayGroupRectSelection || !overlayActionType) {
+            return;
+        }
+
+        // Compute the color for each overlay
+        const colors &#x3D; overlays.map(overlay &#x3D;&gt; this._getTkkOverlayColor(overlay, overlayActionType));
+
+        // Overlays for the same group should not have different colors
+        const uniqueColors &#x3D; Array.from(new Set(colors));
+        if (uniqueColors.length &gt; 1) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                &#x27;[EditionSvgDrawingService] Multiple overlays for the same group have different colors:&#x27;,
+                uniqueColors,
+                overlays
+            );
+        }
+        const finalColor &#x3D; uniqueColors[0];
+
+        this.fillD3SelectionWithColor(overlayGroupRectSelection, finalColor);
     }
 
     /**
