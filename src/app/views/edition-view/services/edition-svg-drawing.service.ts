@@ -173,7 +173,7 @@ export class EditionSvgDrawingService {
         // Get D3 selection of target overlay group
         const targetOverlayGroupSelection: D3Selection = targetGroupSelection.select(`g.${type}-overlay-group`);
 
-        // Create overlay box for tka-overlay-group
+        // Create overlay box for tkk-overlay-group
         return targetOverlayGroupSelection
             .append('rect')
             .attr('width', dim.width + this._overlayBoxAdditionalSpace * 2)
@@ -244,6 +244,26 @@ export class EditionSvgDrawingService {
     }
 
     /**
+     * Public method: getD3SelectionByDataId.
+     *
+     * Selects elements by a data attribute (default: data-tkk-id) or falls back to id.
+     *
+     * @param svgRootGroup The D3 selection of the SVG root group.
+     * @param dataId The data id to select.
+     * @param attr The data attribute name (default: 'data-tkk-id').
+     *
+     * @returns {D3Selection} The D3 selection of the found element(s).
+     */
+    getD3SelectionByDataId(svgRootGroup: D3Selection, dataId: string, attr: string = 'data-tkk-id'): D3Selection {
+        if (!svgRootGroup || !dataId) {
+            return undefined;
+        }
+        const selector = `[${attr}="${dataId}"]`;
+        const selection = svgRootGroup.selectAll(selector);
+        return selection.empty() ? this.getD3SelectionById(svgRootGroup, dataId) : selection;
+    }
+
+    /**
      * Public method: getGroupsBySelector.
      *
      * It selects all groups with the "given selector class, if available, from the given svgRootGroup.
@@ -263,22 +283,22 @@ export class EditionSvgDrawingService {
     /**
      * Public method: getOverlayGroupRectSelection.
      *
-     * It selects an overlay group box (rect) with a given type from an element identified by the given id in the given svgRootGroup.
+     * It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} id The given id.
+     * @param {string} dataId The given dataId.
      * @param {string} type The given type.
      *
      * @returns {D3Selection} The D3 selection of the found element.
      */
-    getOverlayGroupRectSelection(svgRootGroup: D3Selection, id: string, type: string): D3Selection {
-        if (!svgRootGroup || !id || !type) {
+    getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, type: string): D3Selection {
+        if (!svgRootGroup || !dataId || !type) {
             return undefined;
         }
         // Get D3 selection of target group
-        const targetGroupSelection: D3Selection = this.getD3SelectionById(svgRootGroup, id);
+        const targetGroupSelection: D3Selection = this.getD3SelectionByDataId(svgRootGroup, dataId);
         // Get D3 selection of overlay group box
-        return targetGroupSelection.select(`rect.${type}-overlay-group-box`);
+        return targetGroupSelection.selectAll(`rect.${type}-overlay-group-box`);
     }
 
     /**
@@ -351,21 +371,39 @@ export class EditionSvgDrawingService {
     /**
      * Public method: updateTkkOverlayColor.
      *
-     * It updates the color of the given tkk overlay.
+     * It updates the color of the given tkk overlays.
      *
-     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {EditionSvgOverlay[]} overlays The given overlays.
      * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
      * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
      *
-     * @returns {void} Updates the color of the given tkk overlay.
+     * @returns {void} Updates the color of the given tkk overlays.
      */
     updateTkkOverlayColor(
-        overlay: EditionSvgOverlay,
+        overlays: EditionSvgOverlay[],
         overlayGroupRectSelection: D3Selection,
         overlayActionType: EditionSvgOverlayActionTypes
     ): void {
-        const color = this._getTkkOverlayColor(overlay, overlayActionType);
-        this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
+        if (!overlays || overlays.length === 0 || !overlayGroupRectSelection || !overlayActionType) {
+            return;
+        }
+
+        // Compute the color for each overlay
+        const colors = overlays.map(overlay => this._getTkkOverlayColor(overlay, overlayActionType));
+
+        // Overlays for the same group should not have different colors
+        const uniqueColors = Array.from(new Set(colors));
+        if (uniqueColors.length > 1) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
+                uniqueColors,
+                overlays
+            );
+        }
+        const finalColor = uniqueColors[0];
+
+        this.fillD3SelectionWithColor(overlayGroupRectSelection, finalColor);
     }
 
     /**
