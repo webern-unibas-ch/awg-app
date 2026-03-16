@@ -539,8 +539,8 @@ describe('EditionSvgOverlayService', () => {
             expectSpyCall(createTkkOverlayHandlersSpy, countBefore + 1, [
                 expectedSvgRootGroup,
                 overlaysState,
-                overlayType,
                 onTkkOverlaySelectFnSpy,
+                overlayType,
             ]);
         });
 
@@ -951,8 +951,8 @@ describe('EditionSvgOverlayService', () => {
             (service as any)._createTkkOverlayHandlers(
                 expectedSvgRootGroup,
                 expectedOverlaysState,
-                undefined, // Omit overlayType to use default
                 onOverlaySelectSpy
+                // Omit overlayType to use default
             );
 
             expect(getOverlaysAndSelectionSpy).toHaveBeenCalledWith(
@@ -973,8 +973,8 @@ describe('EditionSvgOverlayService', () => {
             (service as any)._createTkkOverlayHandlers(
                 expectedSvgRootGroup,
                 expectedOverlaysState,
-                expectedOverlayType,
-                onOverlaySelectSpy
+                onOverlaySelectSpy,
+                expectedOverlayType
             );
 
             // Should set up handlers for both overlays
@@ -991,8 +991,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 mockOverlayGroupRectSelection._handlers['mouseover']();
@@ -1008,8 +1008,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 mockOverlayGroupRectSelection._handlers['mouseover']();
@@ -1023,8 +1023,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 mockOverlayGroupRectSelection._handlers['mouseout']();
@@ -1042,8 +1042,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 expect(expectedTkkOverlays[0].isSelected).toBe(true);
@@ -1059,8 +1059,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 mockOverlayGroupRectSelection._handlers['click']();
@@ -1078,8 +1078,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 expect(expectedTkkOverlays[0].isSelected).toBe(true);
@@ -1116,8 +1116,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 // Simulate click event
@@ -1132,8 +1132,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 // Simulate click event
@@ -1151,8 +1151,8 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._createTkkOverlayHandlers(
                     expectedSvgRootGroup,
                     expectedOverlaysState,
-                    expectedOverlayType,
-                    onOverlaySelectSpy
+                    onOverlaySelectSpy,
+                    expectedOverlayType
                 );
 
                 // Simulate click event
