@@ -979,7 +979,7 @@ export class FolioCalculationSystems {
      * @param {number} factor The given zoom factor.
      */
     constructor(sheet: FolioCalculationSheet, systems: string, systemsReversed: boolean = false, factor: number) {
-        this.NUMBER_OF_SYSTEMS = systems ? parseInt(systems, 10) : 0;
+        this.NUMBER_OF_SYSTEMS = systems ? Number.parseInt(systems, 10) : 0;
         this.SYSTEMS_REVERSED = systemsReversed;
         this.ZOOM_FACTOR = factor;
 

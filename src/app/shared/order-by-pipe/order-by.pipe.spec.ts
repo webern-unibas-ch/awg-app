@@ -388,7 +388,7 @@ describe('OrderByPipe (DONE)', () => {
             const arr = ['$10,0', '$2,0', '$100,0'];
             const res = ['$2,0', '$10,0', '$100,0'];
 
-            const parse = value => parseInt(value.replace(/[^0-9]/g, ''), 10);
+            const parse = value => Number.parseInt(value.replace(/[^0-9]/g, ''), 10);
 
             expectToEqual(
                 pipe.transform(arr, null, false, true, (a, b) => {
