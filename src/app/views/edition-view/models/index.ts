@@ -27,7 +27,12 @@ import {
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
-import { EditionSvgOverlay, EditionSvgOverlayActionTypes, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
+import {
+    EditionSvgOverlay,
+    EditionSvgOverlayActionTypes,
+    EditionSvgOverlayState,
+    EditionSvgOverlayTypes,
+} from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
 import {
@@ -87,6 +92,7 @@ export {
     EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgOverlayActionTypes,
+    EditionSvgOverlayState,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,

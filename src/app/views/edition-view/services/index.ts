@@ -14,6 +14,7 @@ import { EditionOutlineService } from './edition-outline.service';
 import { EditionSheetsService } from './edition-sheets.service';
 import { EditionStateService } from './edition-state.service';
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
+import { EditionSvgOverlayService } from './edition-svg-overlay.service';
 
 export {
     EditionComplexesService,
@@ -23,4 +24,5 @@ export {
     EditionSheetsService,
     EditionStateService,
     EditionSvgDrawingService,
+    EditionSvgOverlayService,
 };

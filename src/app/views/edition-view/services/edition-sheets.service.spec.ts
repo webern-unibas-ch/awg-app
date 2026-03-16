@@ -309,7 +309,9 @@ describe('EditionSheetsService (DONE)', () => {
 
             it('... if no comments match the given overlay', () => {
                 const expectedResult = { preamble: 'This is a preamble.', comments: [] };
-                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'notExistingId', true)];
+                expectedOverlays = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
+                ];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
@@ -325,7 +327,12 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     expectedOverlays.push(
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+                        new EditionSvgOverlay(
+                            EditionSvgOverlayTypes.tkk,
+                            blockComment.svgGroupId,
+                            blockComment.svgGroupId,
+                            true
+                        )
                     );
                 });
             });
@@ -344,7 +351,12 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     expectedOverlays = [
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true),
+                        new EditionSvgOverlay(
+                            EditionSvgOverlayTypes.tkk,
+                            blockComment.svgGroupId,
+                            blockComment.svgGroupId,
+                            true
+                        ),
                     ];
 
                     const expectedResult = {
@@ -374,7 +386,13 @@ describe('EditionSheetsService (DONE)', () => {
             ];
 
             expectedOverlays = selectedBlockComments.map(
-                blockComment => new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+                blockComment =>
+                    new EditionSvgOverlay(
+                        EditionSvgOverlayTypes.tkk,
+                        blockComment.svgGroupId,
+                        blockComment.svgGroupId,
+                        true
+                    )
             );
 
             const expectedResult = {

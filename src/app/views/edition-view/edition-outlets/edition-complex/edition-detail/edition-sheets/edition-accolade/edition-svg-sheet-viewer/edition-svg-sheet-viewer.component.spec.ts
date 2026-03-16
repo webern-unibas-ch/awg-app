@@ -18,6 +18,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { mockConsole } from '@testing/mock-helper';
 import {
     createD3TestLinkBoxGroups,
     createD3TestRootGroup,
@@ -31,11 +32,10 @@ import {
     D3Selection,
     EditionSvgLinkBox,
     EditionSvgOverlay,
-    EditionSvgOverlayActionTypes,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
 } from '@awg-views/edition-view/models';
-import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
+import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
 
 import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.component';
 
@@ -66,20 +66,21 @@ class EditionSvgSheetViewerNavStubComponent {
 class EditionSvgSheetViewerSwitchStubComponent {
     @Input() id?: string;
     @Input() suppliedClasses?: Map<string, boolean>;
-    @Input() hasAvailableTkaOverlays?: boolean;
+    @Input() hasAvailableTkkOverlays?: boolean;
 
     @Output()
     toggleSuppliedClassesOpacityRequest: EventEmitter<{ className: string; isCurrentlyVisible: boolean }> =
         new EventEmitter();
 }
 
-describe('EditionSvgSheetViewerComponent', () => {
+describe('EditionSvgSheetViewerComponent (DONE)', () => {
     let component: EditionSvgSheetViewerComponent;
     let fixture: ComponentFixture<EditionSvgSheetViewerComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
     let mockEditionSvgDrawingService: Partial<EditionSvgDrawingService>;
+    let mockEditionSvgOverlayService: Partial<EditionSvgOverlayService>;
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
@@ -87,18 +88,21 @@ describe('EditionSvgSheetViewerComponent', () => {
     let createSvgSpy: Spy;
     let emitSelectLinkBoxRequestSpy: Spy;
     let emitSelectOverlaysRequestSpy: Spy;
-    let getOverlayAndSelectionSpy: Spy;
+    let getContainerDimensionsSpy: Spy;
     let onSuppliedClassesOpacityToggleSpy: Spy;
     let onZoomChangeSpy: Spy;
     let renderSheetSpy: Spy;
     let rescaleZoomSpy: Spy;
     let resetZoomSpy: Spy;
     let resetZoomTranslationSpy: Spy;
+    let zoomHandlerSpy: Spy;
 
-    let serviceGetGroupsBySelectorSpy: Spy;
+    let serviceClearSvgOverlaysSpy: Spy;
+    let serviceCreateSvgOverlaysSpy: Spy;
+    let serviceCreateSvgSpy: Spy;
     let serviceGetSuppliedClassesSpy: Spy;
     let serviceToggleSuppliedClassOpacitySpy: Spy;
-    let serviceUpdateTkkOverlayColorSpy: Spy;
+    let serviceToggleTkkOverlayHighlightsSpy: Spy;
 
     let expectedComplexId: string;
     let expectedCompressIcon: IconDefinition;
@@ -108,7 +112,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
     let expectedSvgSheetSelection: D3Selection;
     let expectedSvgSheetRootGroupSelection: D3Selection;
-    let expectedTkaOverlays: EditionSvgOverlay[];
+    let expectedTkkOverlays: EditionSvgOverlay[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
     let expectedSuppliedClassNames: string[];
     let expectedSuppliedClassMap: Map<string, boolean>;
@@ -120,14 +124,24 @@ describe('EditionSvgSheetViewerComponent', () => {
                 new Promise(resolve => {
                     resolve(D3_SELECTION.select(svgEl));
                 }),
+            fillD3SelectionWithColor: (): void => {},
             getContainerDimensions: (): { width: number; height: number } => ({ width: 100, height: 100 }),
+            getD3SelectionById: (svgRootGroup: D3Selection, id: string): D3Selection => svgRootGroup.select(`#${id}`),
             getGroupsBySelector: (svgRootGroup: D3Selection, selector: string): D3Selection =>
                 svgRootGroup.selectAll(selector),
-            getOverlayGroupRectSelection: (svgRootGroup: D3Selection, overlayId: string, type: string): D3Selection =>
-                svgRootGroup.select(`#${overlayId} rect.${type}`),
+
             getSuppliedClasses: (): Map<string, boolean> => new Map(),
             toggleSuppliedClassOpacity: (): void => {},
-            updateTkkOverlayColor: (): void => {},
+        };
+
+        // Mock EditionSvgOverlayService
+        mockEditionSvgOverlayService = {
+            get hasAvailableTkkOverlays() {
+                return false;
+            },
+            clearSvgOverlays: (): void => {},
+            createSvgOverlays: (): void => {},
+            toggleTkkOverlayHighlights: (): void => {},
         };
 
         TestBed.configureTestingModule({
@@ -138,7 +152,10 @@ describe('EditionSvgSheetViewerComponent', () => {
                 EditionSvgSheetViewerSwitchStubComponent,
                 LicenseStubComponent,
             ],
-            providers: [{ provide: EditionSvgDrawingService, useValue: mockEditionSvgDrawingService }],
+            providers: [
+                { provide: EditionSvgDrawingService, useValue: mockEditionSvgDrawingService },
+                { provide: EditionSvgOverlayService, useValue: mockEditionSvgOverlayService },
+            ],
         }).compileComponents();
     }));
 
@@ -157,9 +174,9 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
-        expectedTkaOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', true),
+        expectedTkkOverlays = [
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2', true),
         ];
         expectedLinkBoxes = [
             {
@@ -175,25 +192,28 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedSuppliedClassMap.set(expectedSuppliedClassNames[0].split(' ')[1], true);
         expectedSuppliedClassMap.set(expectedSuppliedClassNames[1].split(' ')[1], true);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
-        clearSvgSpy = spyOn<any>(component, '_clearSvg').and.callThrough();
-        createSvgSpy = spyOn<any>(component, '_createSvg').and.callThrough();
         emitSelectLinkBoxRequestSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
         emitSelectOverlaysRequestSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
-        getOverlayAndSelectionSpy = spyOn<any>(component, '_getOverlayAndSelection').and.callThrough();
         onSuppliedClassesOpacityToggleSpy = spyOn(component, 'onSuppliedClassesOpacityToggle').and.callThrough();
         onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
         renderSheetSpy = spyOn(component, 'renderSheet').and.callThrough();
         resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
+
+        // Spies on private functions
+        clearSvgSpy = spyOn<any>(component, '_clearSvg').and.callThrough();
+        createSvgSpy = spyOn<any>(component, '_createSvg').and.callThrough();
+        getContainerDimensionsSpy = spyOn<any>(component, '_getContainerDimensions').and.callThrough();
         rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callThrough();
         resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
+        zoomHandlerSpy = spyOn<any>(component, '_zoomHandler').and.callThrough();
 
         // Spies for service methods
-        serviceGetGroupsBySelectorSpy = spyOn(mockEditionSvgDrawingService, 'getGroupsBySelector').and.callThrough();
+        serviceClearSvgOverlaysSpy = spyOn(mockEditionSvgOverlayService, 'clearSvgOverlays').and.callThrough();
+        serviceCreateSvgOverlaysSpy = spyOn(mockEditionSvgOverlayService, 'createSvgOverlays').and.callThrough();
+        serviceCreateSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
         serviceGetSuppliedClassesSpy = spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses').and.returnValue(
             expectedSuppliedClassMap
         );
@@ -201,10 +221,15 @@ describe('EditionSvgSheetViewerComponent', () => {
             mockEditionSvgDrawingService,
             'toggleSuppliedClassOpacity'
         ).and.callThrough();
-        serviceUpdateTkkOverlayColorSpy = spyOn(
-            mockEditionSvgDrawingService,
-            'updateTkkOverlayColor'
+        serviceToggleTkkOverlayHighlightsSpy = spyOn(
+            mockEditionSvgOverlayService,
+            'toggleTkkOverlayHighlights'
         ).and.callThrough();
+    });
+
+    afterEach(() => {
+        // Clear storages and mock objects after each test
+        mockConsole.clear();
     });
 
     afterAll(() => {
@@ -237,8 +262,8 @@ describe('EditionSvgSheetViewerComponent', () => {
             expectToBe(component.faCompressArrowsAlt, expectedCompressIcon);
         });
 
-        it('... should have `hasAvailableTkaOverlays` set to false', () => {
-            expectToBe(component.hasAvailableTkaOverlays, false);
+        it('... should have `hasAvailableTkkOverlays` set to false', () => {
+            expectToBe(component.hasAvailableTkkOverlays, false);
         });
 
         it('... should have `sliderConfig`', () => {
@@ -280,7 +305,7 @@ describe('EditionSvgSheetViewerComponent', () => {
             expectedSvgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef.nativeElement);
             expectedSvgSheetRootGroupSelection = D3_SELECTION.select(component.svgSheetRootGroupRef.nativeElement);
 
-            createD3TestTkkGroups(expectedSvgSheetRootGroupSelection, expectedTkaOverlays);
+            createD3TestTkkGroups(expectedSvgSheetRootGroupSelection, expectedTkkOverlays);
             createD3TestLinkBoxGroups(expectedSvgSheetRootGroupSelection, expectedLinkBoxes);
             createD3TestSuppliedClassesGroups(expectedSvgSheetRootGroupSelection, expectedSuppliedClassNames);
 
@@ -468,9 +493,9 @@ describe('EditionSvgSheetViewerComponent', () => {
                 });
 
                 describe('EditionSvgSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkaOverlays are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
-                        component.hasAvailableTkaOverlays = false;
+                        component.hasAvailableTkkOverlays = false;
                         detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
@@ -488,9 +513,9 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
                     });
 
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkaOverlays, but no suppliedClasses are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', () => {
                         component.suppliedClasses = new Map();
-                        component.hasAvailableTkaOverlays = true;
+                        component.hasAvailableTkkOverlays = true;
                         detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
@@ -508,9 +533,9 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
                     });
 
-                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkaOverlays are available', () => {
+                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', () => {
                         component.suppliedClasses = new Map();
-                        component.hasAvailableTkaOverlays = false;
+                        component.hasAvailableTkkOverlays = false;
                         detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
@@ -556,7 +581,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         expectToEqual(switchCmp.suppliedClasses, expectedSuppliedClassMap);
                     });
 
-                    it('... should pass the default `hasAvailableTkaOverlays` flag (false) to the switch component', () => {
+                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', () => {
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSvgSheetViewerSwitchStubComponent,
@@ -567,11 +592,11 @@ describe('EditionSvgSheetViewerComponent', () => {
                             EditionSvgSheetViewerSwitchStubComponent
                         ) as EditionSvgSheetViewerSwitchStubComponent;
 
-                        expectToEqual(switchCmp.hasAvailableTkaOverlays, false);
+                        expectToEqual(switchCmp.hasAvailableTkkOverlays, false);
                     });
 
-                    it('... should pass the updated `hasAvailableTkaOverlays` flag (true) to the switch component', () => {
-                        component.hasAvailableTkaOverlays = true;
+                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', () => {
+                        component.hasAvailableTkkOverlays = true;
                         detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
@@ -584,7 +609,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                             EditionSvgSheetViewerSwitchStubComponent
                         ) as EditionSvgSheetViewerSwitchStubComponent;
 
-                        expectToEqual(switchCmp.hasAvailableTkaOverlays, true);
+                        expectToEqual(switchCmp.hasAvailableTkkOverlays, true);
                     });
                 });
             });
@@ -600,6 +625,59 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                     getAndExpectDebugElementByDirective(sheetViewerDes[0], EditionSvgSheetViewerNavStubComponent, 1, 1);
                 });
+            });
+        });
+
+        describe('@HostListener("window:resize") onResize', () => {
+            let countBefore: number;
+            let resizeSubjectNextSpy: Spy;
+
+            beforeEach(() => {
+                // Record spy call count before current call
+                countBefore = getContainerDimensionsSpy.calls.count();
+                resizeSubjectNextSpy = spyOn<any>((component as any)._resize$, 'next').and.callThrough();
+            });
+
+            describe('... should do nothing if ...', () => {
+                it('... svgSheetRootGroupSelection is not set', () => {
+                    component.svgSheetSelection = {} as any;
+                    component.svgSheetRootGroupSelection = undefined;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, countBefore);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+
+                it('... svgSheetSelection is not set', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = {} as any;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, countBefore);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+
+                it('... svgSheetSelection and svgSheetRootGroupSelection are not set', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = undefined;
+
+                    (component as any).onResize();
+
+                    expectSpyCall(getContainerDimensionsSpy, countBefore);
+                    expectSpyCall(resizeSubjectNextSpy, 0);
+                });
+            });
+
+            it('... should trigger `_getContainerDimensions` and emit on `_resize$` if both selections are set', () => {
+                component.svgSheetSelection = {} as any;
+                component.svgSheetRootGroupSelection = {} as any;
+
+                (component as any).onResize();
+
+                expectSpyCall(getContainerDimensionsSpy, countBefore + 1, component.svgSheetContainerRef);
+                expect(resizeSubjectNextSpy).toHaveBeenCalledWith(true);
             });
         });
 
@@ -689,100 +767,20 @@ describe('EditionSvgSheetViewerComponent', () => {
         });
 
         describe('#onTkkClassesHighlightToggle()', () => {
-            let expectedOverlayType: string;
-            let expectedOverlayGroups: D3Selection;
-
-            beforeEach(() => {
-                expectedOverlayType = 'tkk';
-                expectedOverlayGroups = expectedSvgSheetRootGroupSelection.selectAll(`.${expectedOverlayType}`);
-
-                serviceGetGroupsBySelectorSpy.and.returnValue(expectedOverlayGroups);
-
-                getOverlayAndSelectionSpy.and.callFake((id: string, overlayType: string) => {
-                    const overlay = expectedTkaOverlays.find(node => node.id === id);
-                    const overlayGroupRectSelection = expectedOverlayGroups.select(`#${id} .${overlayType}`);
-
-                    return [overlay, overlayGroupRectSelection];
-                });
-            });
-
             it('... should have a method `onTkkClassesHighlightToggle`', () => {
                 expect(component.onTkkClassesHighlightToggle).toBeDefined();
             });
 
-            describe('... should call getGroupsBySelector form service', () => {
-                it('... with correct parameters to get overlayGroups', () => {
-                    const isCurrentlyHighlighted = true;
+            it('... should trigger `toggleTkkOverlayHighlights` from service with correct arguments', () => {
+                const isCurrentlyHighlighted = false;
 
-                    expectSpyCall(serviceGetGroupsBySelectorSpy, 2, [
-                        expectedSvgSheetRootGroupSelection,
-                        expectedOverlayType,
-                    ]);
+                component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
 
-                    component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
-
-                    expectSpyCall(serviceGetGroupsBySelectorSpy, 3, [
-                        expectedSvgSheetRootGroupSelection,
-                        expectedOverlayType,
-                    ]);
-                });
-
-                it('... with correct parameters for each overlay', () => {
-                    const isCurrentlyHighlighted = true;
-
-                    component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
-
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
-
-                    expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        const overlay = expectedTkaOverlays[index];
-                        const overlayGroupRectSelection = expectedOverlayGroups.select(
-                            `#${overlay.id} rect.${expectedOverlayType}`
-                        );
-                        expectToEqual(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0], overlay);
-                        expectToEqual(
-                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1],
-                            overlayGroupRectSelection
-                        );
-                        expectToBe(
-                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
-                            EditionSvgOverlayActionTypes.fill
-                        );
-                    });
-                });
-
-                it('... with fill color if isCurrentlyHighlighted is true', () => {
-                    const isCurrentlyHighlighted = true;
-
-                    component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
-
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
-
-                    expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expectToBe(
-                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
-                            EditionSvgOverlayActionTypes.fill
-                        );
-                    });
-                });
-
-                it('... with transparent color if isCurrentlyHighlighted is false', () => {
-                    const isCurrentlyHighlighted = false;
-
-                    component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
-
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalled();
-                    expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
-
-                    expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expectToBe(
-                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
-                            EditionSvgOverlayActionTypes.transparent
-                        );
-                    });
-                });
+                expectSpyCall(serviceToggleTkkOverlayHighlightsSpy, 1, [
+                    expectedSvgSheetRootGroupSelection,
+                    EditionSvgOverlayTypes.tkk,
+                    isCurrentlyHighlighted,
+                ]);
             });
         });
 
@@ -902,23 +900,21 @@ describe('EditionSvgSheetViewerComponent', () => {
                 }));
             });
 
-            it('... should call `_clearSvg` method', fakeAsync(() => {
-                expectSpyCall(clearSvgSpy, 1);
+            it('... should trigger `_clearSvg` method', fakeAsync(() => {
+                const countBefore = clearSvgSpy.calls.count();
 
                 component.renderSheet();
 
-                expectSpyCall(clearSvgSpy, 2);
+                expectSpyCall(clearSvgSpy, countBefore + 1);
             }));
 
-            it('... should reset `_selectedOverlays`', fakeAsync(() => {
-                (component as any)._availbleTkaOverlays = expectedTkaOverlays;
-                (component as any)._selectedTkaOverlays = expectedTkaOverlays.filter(overlay => overlay.isSelected);
+            it('... should trigger `clearSvgOverlays` from service', fakeAsync(() => {
+                const countBefore = serviceClearSvgOverlaysSpy.calls.count();
 
                 component.renderSheet();
-
                 tick();
 
-                expectToEqual((component as any)._selectedTkaOverlays, []);
+                expectSpyCall(serviceClearSvgOverlaysSpy, countBefore + 1);
             }));
 
             it('... should set `svgSheetFilePath`', fakeAsync(() => {
@@ -933,7 +929,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
             }));
 
-            it('... should not call `_createSvgOverlays` method if `svgSheetFilePath` is not set', fakeAsync(() => {
+            it('... should not call `_createSvg` method if `svgSheetFilePath` is not set', fakeAsync(() => {
                 expectSpyCall(createSvgSpy, 1);
 
                 component.selectedSvgSheet.content[0].svg = '';
@@ -1026,123 +1022,201 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
         });
 
-        describe('#_getOverlayById()', () => {
-            it('... should have a method `_getOverlayById`', () => {
-                expect((component as any)._getOverlayById).toBeDefined();
+        describe('#_clearSvg()', () => {
+            let removeRootGroupSpy: Spy;
+            let removeSheetSpy: Spy;
+            let selectAllRootGroupSpy: Spy;
+            let selectAllSheetSpy: Spy;
+
+            beforeEach(() => {
+                removeRootGroupSpy = jasmine.createSpy('removeRootGroup');
+                removeSheetSpy = jasmine.createSpy('removeSheet');
+                selectAllRootGroupSpy = jasmine
+                    .createSpy('selectAllRootGroup')
+                    .and.returnValue({ remove: removeRootGroupSpy });
+                selectAllSheetSpy = jasmine.createSpy('selectAllSheet').and.returnValue({ remove: removeSheetSpy });
             });
 
-            describe('... should return undefined', () => {
-                it('... if no overlays are given', () => {
-                    const noOverlays = [];
-
-                    const overlay = (component as any)._getOverlayById(noOverlays, expectedTkaOverlays[0].id);
-
-                    expect(overlay).toBeUndefined();
-                });
-
-                it('... if no overlay with given id is found', () => {
-                    const overlay = (component as any)._getOverlayById(expectedTkaOverlays, 'unkown-id');
-
-                    expect(overlay).toBeUndefined();
-                });
+            it('... should have a method `_clearSvg`', () => {
+                expect((component as any)._clearSvg).toBeDefined();
             });
 
-            it('... should return an overlay with given id', () => {
-                const overlay = (component as any)._getOverlayById(expectedTkaOverlays, expectedTkaOverlays[0].id);
+            it('... should remove all children from both svgSheetRootGroupSelection and svgSheetSelection', () => {
+                component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
+                component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
 
-                expectToEqual(overlay, expectedTkaOverlays[0]);
+                (component as any)._clearSvg();
+
+                expectSpyCall(selectAllRootGroupSpy, 1, '*');
+                expectSpyCall(removeRootGroupSpy, 1);
+
+                expectSpyCall(selectAllSheetSpy, 1, '*');
+                expectSpyCall(removeSheetSpy, 1);
+            });
+
+            describe('... should not throw if', () => {
+                it('... svgSheetRootGroupSelection is undefined', () => {
+                    component.svgSheetRootGroupSelection = undefined;
+                    component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 0);
+                    expectSpyCall(removeRootGroupSpy, 0);
+
+                    expectSpyCall(selectAllSheetSpy, 1, '*');
+                    expectSpyCall(removeSheetSpy, 1);
+                });
+
+                it('... svgSheetSelection is undefined', () => {
+                    component.svgSheetSelection = undefined;
+                    component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 1, '*');
+                    expectSpyCall(removeRootGroupSpy, 1);
+
+                    expectSpyCall(selectAllSheetSpy, 0);
+                    expectSpyCall(removeSheetSpy, 0);
+                });
+
+                it('...both selections are undefined', () => {
+                    component.svgSheetRootGroupSelection = undefined;
+                    component.svgSheetSelection = undefined;
+
+                    expect(() => (component as any)._clearSvg()).not.toThrow();
+
+                    expectSpyCall(selectAllRootGroupSpy, 0);
+                    expectSpyCall(removeRootGroupSpy, 0);
+
+                    expectSpyCall(selectAllSheetSpy, 0);
+                    expectSpyCall(removeSheetSpy, 0);
+                });
             });
         });
 
-        describe('#_getOverlayAndSelection()', () => {
-            it('... should have a method `_getOverlayAndSelection`', () => {
-                expect((component as any)._getOverlayAndSelection).toBeDefined();
-            });
+        describe('#_createSvg()', () => {
+            let mockSvgSelection: any;
+            let mockRootGroupSelection: any;
 
-            it('... should call `_getOverlayById` method with correct parameters', () => {
-                const expectedOverlayType = 'tkk';
-                const expectedOverlayId = expectedTkaOverlays[0].id;
-                (component as any)._availableTkaOverlays = expectedTkaOverlays;
+            beforeEach(() => {
+                // Mock D3 selection and service
+                mockRootGroupSelection = { dummy: 'rootGroup', attr: jasmine.createSpy('attr') };
+                const selectSpy = jasmine.createSpy('select').and.returnValue(mockRootGroupSelection);
+                const callSpy = jasmine.createSpy('call');
+                mockSvgSelection = { select: selectSpy, call: callSpy };
+                serviceCreateSvgSpy.and.resolveTo(mockSvgSelection);
 
-                const getOverlayByIdSpy = spyOn(component as any, '_getOverlayById').and.callThrough();
-
-                (component as any)._getOverlayAndSelection(expectedOverlayId, expectedOverlayType);
-
-                expectSpyCall(getOverlayByIdSpy, 1, [expectedTkaOverlays, expectedOverlayId]);
-            });
-
-            it('... should call `getOverlayGroupRectSelection` method from service with correct parameters', () => {
-                const expectedOverlayType = 'tkk';
-                const expectedOverlay = expectedTkaOverlays[0];
-                (component as any)._availableTkaOverlays = expectedTkaOverlays;
-                const expectedOverlayGroupRectSelection = expectedSvgSheetRootGroupSelection.select(
-                    `#${expectedOverlay.id}`
+                // Provide required refs using real DOM elements from the fixture
+                const svgSheetContainerDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-container',
+                    1,
+                    1
                 );
+                const svgSheetDes = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
+                const svgRootGroupDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'g#awg-edition-svg-sheet-root-group',
+                    1,
+                    1
+                );
+                component.svgSheetContainerRef = svgSheetContainerDes[0].nativeElement;
+                component.svgSheetElementRef = svgSheetDes[0].nativeElement;
+                component.svgSheetRootGroupRef = svgRootGroupDes[0].nativeElement;
+            });
 
-                const getOverlayGroupRectSelectionSpy = spyOn(
-                    mockEditionSvgDrawingService,
-                    'getOverlayGroupRectSelection'
-                ).and.returnValue(expectedOverlayGroupRectSelection);
+            it('... should have a method `_createSvg`', () => {
+                expect((component as any)._createSvg).toBeDefined();
+            });
 
-                (component as any)._getOverlayAndSelection(expectedOverlay.id, expectedOverlayType);
+            it('... should not throw and should warn if svgSheetContainerRef is missing', async () => {
+                component.svgSheetContainerRef = undefined;
+                const consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log);
 
-                expectSpyCall(getOverlayGroupRectSelectionSpy, 1, [
+                await (component as any)._createSvg();
+
+                expectSpyCall(consoleSpy, 1, 'No svg sheet container ref');
+            });
+
+            it('... should set svgSheetSelection and svgSheetRootGroupSelection', async () => {
+                await (component as any)._createSvg();
+
+                expect(serviceCreateSvgSpy).toHaveBeenCalledWith(
+                    component.svgSheetFilePath,
+                    component.svgSheetElementRef.nativeElement,
+                    component.svgSheetRootGroupRef.nativeElement
+                );
+                expect(component.svgSheetSelection).toBe(mockSvgSelection);
+                expect(component.svgSheetRootGroupSelection).toBe(mockRootGroupSelection);
+            });
+
+            it('... should trigger `_getContainerDimensions` with svgSheetContainerRef', async () => {
+                await (component as any)._createSvg();
+
+                // Probably called once first with onResize
+                expectSpyCall(getContainerDimensionsSpy, 2, component.svgSheetContainerRef);
+            });
+
+            it('... should trigger `_zoomHandler` with correct arguments', async () => {
+                await (component as any)._createSvg();
+
+                // Probably called once first with onResize
+                expectSpyCall(zoomHandlerSpy, 2, [mockRootGroupSelection, mockSvgSelection]);
+            });
+        });
+
+        describe('#_createSvgOverlays()', () => {
+            it('... should have a method `_createSvgOverlays`', () => {
+                expect((component as any)._createSvgOverlays).toBeDefined();
+            });
+
+            it('... should trigger `createSvgOverlays` from service with correct arguments', () => {
+                const countBefore = serviceCreateSvgOverlaysSpy.calls.count();
+                const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect');
+                const onTkkOverlaySelectSpy = spyOn(component as any, '_onTkkOverlaySelect');
+
+                (component as any)._createSvgOverlays();
+
+                expectSpyCall(serviceCreateSvgOverlaysSpy, countBefore + 1, [
                     expectedSvgSheetRootGroupSelection,
-                    expectedOverlay.id,
-                    expectedOverlayType,
+                    jasmine.any(Function),
+                    jasmine.any(Function),
                 ]);
+                const callArgs = serviceCreateSvgOverlaysSpy.calls.mostRecent().args;
+                expectToEqual(callArgs[0], expectedSvgSheetRootGroupSelection);
+                expectToBe(typeof callArgs[1], 'function');
+                expectToBe(typeof callArgs[2], 'function');
+
+                // Simulate calling the wrapper functions
+                const testArg = 'test';
+
+                callArgs[1](testArg);
+                callArgs[2](testArg);
+
+                expectSpyCall(onLinkBoxSelectSpy, 1, testArg);
+                expectSpyCall(onTkkOverlaySelectSpy, 1, testArg);
             });
 
-            it('... should return an overlay and a selection', () => {
-                const expectedOverlayType = 'tkk';
-                const expectedOverlay = expectedTkaOverlays[0];
-                const expectedOverlayGroupRectSelection = expectedSvgSheetRootGroupSelection.select(
-                    `#${expectedOverlay.id}`
-                );
-                (component as any)._availableTkaOverlays = expectedTkaOverlays;
+            it('... should set hasAvailableTkkOverlays from the service getter', () => {
+                const getterSpy = spyOnProperty(
+                    mockEditionSvgOverlayService,
+                    'hasAvailableTkkOverlays',
+                    'get'
+                ).and.returnValue(true);
 
-                spyOn(mockEditionSvgDrawingService, 'getOverlayGroupRectSelection').and.returnValue(
-                    expectedOverlayGroupRectSelection
-                );
+                (component as any)._createSvgOverlays();
 
-                const [resultOverlay, resultSelection] = (component as any)._getOverlayAndSelection(
-                    expectedOverlay.id,
-                    expectedOverlayType
-                );
+                expectSpyCall(getterSpy, 1);
+                expect(component.hasAvailableTkkOverlays).toBe(true);
 
-                expectToEqual(resultOverlay, expectedOverlay);
-                expectToEqual(resultSelection, expectedOverlayGroupRectSelection);
-            });
-        });
+                getterSpy.and.returnValue(false);
 
-        describe('#_getSelectedOverlays()', () => {
-            it('... should have a method `_getSelectedOverlays`', () => {
-                expect((component as any)._getSelectedOverlays).toBeDefined();
-            });
+                (component as any)._createSvgOverlays();
 
-            it('... should return an empty array if no overlays are selected', () => {
-                const noSelectedOverlays: EditionSvgOverlay[] = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', false),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
-                ];
-
-                const selectedOverlays = (component as any)._getSelectedOverlays(noSelectedOverlays);
-
-                expectToEqual(selectedOverlays, []);
-            });
-
-            it('... should return only selected overlays', () => {
-                const selectableOverlays: EditionSvgOverlay[] = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-3', true),
-                ];
-
-                const selectedOverlays = (component as any)._getSelectedOverlays(selectableOverlays);
-
-                expectToBe(selectedOverlays.length, 2);
-                expectToEqual(selectedOverlays[0], selectableOverlays[0]);
-                expectToEqual(selectedOverlays[1], selectableOverlays[2]);
+                expectSpyCall(getterSpy, 2);
+                expect(component.hasAvailableTkkOverlays).toBe(false);
             });
         });
 
@@ -1201,23 +1275,23 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
         });
 
-        describe('#_onOverlaySelect()', () => {
-            it('... should have a method `_onOverlaySelect`', () => {
-                expect((component as any)._onOverlaySelect).toBeDefined();
+        describe('#_onTkkOverlaySelect()', () => {
+            it('... should have a method `_onTkkOverlaySelect`', () => {
+                expect((component as any)._onTkkOverlaySelect).toBeDefined();
             });
 
             it('... should not do anything if no overlay is provided', () => {
                 const selectedOverlays = undefined;
 
-                (component as any)._onOverlaySelect(selectedOverlays);
+                (component as any)._onTkkOverlaySelect(selectedOverlays);
 
                 expectSpyCall(emitSelectOverlaysRequestSpy, 0);
             });
 
             it('... should emit given overlays', () => {
-                const selectedOverlays = expectedTkaOverlays;
+                const selectedOverlays = expectedTkkOverlays;
 
-                (component as any)._onOverlaySelect(selectedOverlays);
+                (component as any)._onTkkOverlaySelect(selectedOverlays);
 
                 expectSpyCall(emitSelectOverlaysRequestSpy, 1, [selectedOverlays]);
             });
