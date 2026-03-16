@@ -172,7 +172,14 @@ export class EditionSvgOverlayService {
      * @returns {void}
      */
     toggleTkkOverlayHighlights(rootGroupSelection: D3Selection, overlayType: string, highlight: boolean): void {
+        if (!rootGroupSelection) {
+            return;
+        }
         const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
+        if (!overlayGroups) {
+            return;
+        }
+
         overlayGroups.nodes().forEach(overlayGroup => {
             const dataId = this._getSvgGroupDataId(overlayGroup as SVGGElement);
             const [overlays, overlayGroupRectSelection] = this._getOverlaysAndSelection(
@@ -306,6 +313,9 @@ export class EditionSvgOverlayService {
     ): void {
         const actualId: string = group.id;
         const dataId: string = this._getSvgGroupDataId(group);
+        if (!actualId || !dataId) {
+            return;
+        }
         const dim: DOMRect = group.getBBox();
 
         if (!availableOverlays.some(o => o.id === actualId)) {

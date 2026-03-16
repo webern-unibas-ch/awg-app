@@ -291,6 +291,11 @@ describe('EditionSvgOverlayService', () => {
             expect(service.toggleTkkOverlayHighlights).toBeDefined();
         });
 
+        it('... should do nothing if rootGroupSelection is undefined', () => {
+            service.toggleTkkOverlayHighlights(undefined, expectedOverlayType, true);
+            expectSpyCall(serviceGetGroupsBySelectorSpy, 0);
+        });
+
         it('... should trigger `getGroupsBySelector` from service with correct parameters', () => {
             const isCurrentlyHighlighted = true;
 
@@ -298,6 +303,17 @@ describe('EditionSvgOverlayService', () => {
 
             expectSpyCall(serviceGetGroupsBySelectorSpy, 1, [expectedSvgRootGroup, expectedOverlayType]);
         });
+
+        it('... should return early if `getGroupsBySelector` returns no overlayGroups', () => {
+            serviceGetGroupsBySelectorSpy.and.returnValue(null);
+
+            service.toggleTkkOverlayHighlights(expectedSvgRootGroup, expectedOverlayType, true);
+
+            expectSpyCall(getSvgGroupDataIdSpy, 0);
+            expectSpyCall(getOverlaysAndSelectionSpy, 0);
+            expectSpyCall(updateTkkOverlayColorSpy, 0);
+        });
+
         describe('... for each overlay group', () => {
             describe('... should get correct dataId from `_getSvgGroupDataId`', () => {
                 it('... with data-tkk-id attribute', () => {
@@ -389,9 +405,16 @@ describe('EditionSvgOverlayService', () => {
                     true,
                     EditionSvgOverlayActionTypes.fill
                 );
+
                 testToggleTkkOverlayHighlights(
                     '... with transparent color if `isCurrentlyHighlighted` is false',
                     false,
+                    EditionSvgOverlayActionTypes.transparent
+                );
+
+                testToggleTkkOverlayHighlights(
+                    '... with transparent color if `isCurrentlyHighlighted` is undefined',
+                    undefined,
                     EditionSvgOverlayActionTypes.transparent
                 );
             });
@@ -716,6 +739,55 @@ describe('EditionSvgOverlayService', () => {
     describe('#_createTkkOverlay()', () => {
         it('... should have a method `_createTkkOverlay`', () => {
             expect((service as any)._createTkkOverlay).toBeDefined();
+        });
+
+        describe('... should do nothing if ...', () => {
+            it('... group id is missing', () => {
+                const rootGroup: D3Selection = expectedSvgRootGroup;
+                const overlays = (service as any)._tkkOverlaysState.available;
+                const mockGroup = {
+                    id: null,
+                    getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-only-id' : null),
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (service as any)._createTkkOverlay(rootGroup, overlays, mockGroup);
+
+                expectSpyCall(createTkkOverlayGroupSpy, 0);
+                expectToBe(overlays.length, 0);
+            });
+
+            it('... dataId is missing', () => {
+                const rootGroup: D3Selection = expectedSvgRootGroup;
+                const overlays = (service as any)._tkkOverlaysState.available;
+                const mockGroup = {
+                    id: 'tkk-only-id',
+                    getAttribute: () => null,
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+                // Force missing dataId
+                getSvgGroupDataIdSpy.and.returnValue(null);
+
+                (service as any)._createTkkOverlay(rootGroup, overlays, mockGroup);
+
+                expectSpyCall(createTkkOverlayGroupSpy, 0);
+                expectToBe(overlays.length, 0);
+            });
+
+            it('... id and dataId are missing', () => {
+                const rootGroup: D3Selection = expectedSvgRootGroup;
+                const overlays = (service as any)._tkkOverlaysState.available;
+                const mockGroup = {
+                    id: null,
+                    getAttribute: () => null,
+                    getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
+                };
+
+                (service as any)._createTkkOverlay(rootGroup, overlays, mockGroup);
+
+                expectSpyCall(createTkkOverlayGroupSpy, 0);
+                expectToBe(overlays.length, 0);
+            });
         });
 
         it('... should add a new overlay to the available overlays state array', () => {
