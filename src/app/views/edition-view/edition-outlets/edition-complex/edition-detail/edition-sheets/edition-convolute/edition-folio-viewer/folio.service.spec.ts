@@ -1809,6 +1809,7 @@ describe('FolioService (DONE)', () => {
                     )
                 );
                 const reversedContentSegment = folioSvgData.contentSegments[0];
+                const expectedTransform = `rotate(${expectedReversedRotationAngle}, ${reversedContentSegment.centeredXPosition}, ${reversedContentSegment.centeredYPosition})`;
 
                 (folioService as any)._appendContentSegmentLinkLabel(
                     contentSegmentLinkReversed,
@@ -1817,10 +1818,7 @@ describe('FolioService (DONE)', () => {
 
                 const contentSegmentLinkLabel = contentSegmentLinkReversed.select('text');
 
-                expectToBe(
-                    contentSegmentLinkLabel.attr('transform'),
-                    `rotate(${expectedReversedRotationAngle}, ${reversedContentSegment.centeredXPosition}, ${reversedContentSegment.centeredYPosition})`
-                );
+                expectToBe(contentSegmentLinkLabel.attr('transform'), expectedTransform);
             });
         });
     });

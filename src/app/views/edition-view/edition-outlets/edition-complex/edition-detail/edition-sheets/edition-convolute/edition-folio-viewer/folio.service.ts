@@ -627,12 +627,17 @@ export class FolioService {
 
         const symbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
 
+        let transform = `translate(${centerX - 10}, ${centerY - 10}) scale(0.5)`;
+        if (systemsReversed) {
+            transform += ` rotate(${this._reversedRotationAngle}, 20, 20)`;
+        }
+
         const symbolAttributes = {
             class: 'trademark-symbol',
             d: symbolPath,
             fill: this._disabledColor,
             stroke: this._disabledColor,
-            transform: `translate(${centerX - 10}, ${centerY - 10}) scale(0.5)${systemsReversed ? ` rotate(${this._reversedRotationAngle}, 20, 20)` : ''}`,
+            transform: transform,
         };
         symbolAttributes['stroke-width'] = this._contentSegmentStrokeWidth;
 
