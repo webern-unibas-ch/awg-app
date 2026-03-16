@@ -1,6 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { D3Selection, EditionSvgOverlay, EditionSvgOverlayActionTypes, ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, EditionSvgOverlayTypes, ViewBox } from '@awg-views/edition-view/models';
 
 import * as D3_FETCH from 'd3-fetch';
 import * as D3_SELECTION from 'd3-selection';
@@ -15,74 +15,11 @@ import * as D3_SELECTION from 'd3-selection';
 @Injectable({ providedIn: 'root' })
 export class EditionSvgDrawingService {
     /**
-     * Public variable: overlayFillColor.
-     *
-     * It keeps the fill color for overlays.
-     */
-    overlayFillColor = 'tomato';
-
-    /**
-     * Public variable: overlayHoverFillColor.
-     *
-     * It keeps the fill color for hovered overlays.
-     */
-    overlayHoverFillColor = 'orange';
-
-    /**
-     * Public variable: overlayTransparentFillColor.
-     *
-     * It keeps the fill color for transparent overlays.
-     */
-    overlayTransparentFillColor = 'transparent';
-
-    /**
-     * Public variable: overlaySelectionFillColor.
-     *
-     * It keeps the fill color for selected overlays.
-     */
-    overlaySelectionFillColor = 'green';
-
-    /**
-     * Public variable: linkBoxFillColor.
-     *
-     * It keeps the fill color for link boxes.
-     */
-    linkBoxFillColor = '#dddddd';
-
-    /**
-     * Public variable: linkBoxHoverFillColor.
-     *
-     * It keeps the fill color for hovered link boxes.
-     */
-    linkBoxHoverFillColor = '#eeeeee';
-
-    /**
      * Private variable: _suppliedClasses
      *
      * It keeps a map of all supplied classes from the SVG sheet root group.
      */
     private _suppliedClasses: Map<string, boolean> = new Map();
-
-    /**
-     * Private readonly variable: _overlayBoxesOpacity.
-     *
-     * It keeps the default opacity for an overlay box.
-     */
-    private readonly _overlayBoxesOpacity = 0.3;
-
-    /**
-     * Private readonly variable: _overlayBoxAdditionalSpace.
-     *
-     * It keeps a magic number for (optional) additional space of an overlay box.
-     */
-    private readonly _overlayBoxAdditionalSpace = 1.5;
-
-    /**
-     * Private readonly variable: _overlayBoxCornerRadius.
-     *
-     * It keeps a magic number for (optional) corner radius of an overlay box.
-     */
-    private readonly _overlayBoxCornerRadius = 1;
 
     /**
      * Private readonly variable: _suppliedClassesLabelLookup
@@ -143,47 +80,6 @@ export class EditionSvgDrawingService {
             .attr('xlink', 'https://www.w3.org/1999/xlink');
 
         return svg;
-    }
-
-    /**
-     * Public method: createOverlayGroup.
-     *
-     * It creates a D3 selection representation of an overlay group (rect)
-     * with a given type for an element identified by the given id in the svgRootGroup
-     * and returns that selection.
-     *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} id The given id.
-     * @param {DOMRect} dim The given dimensions of the SVG element.
-     * @param {string} type The given type.
-     *
-     * @returns {D3Selection} The selection of the overlay group.
-     */
-    createOverlayGroup(svgRootGroup: D3Selection | undefined, id: string, dim: DOMRect, type: string): D3Selection {
-        if (!svgRootGroup || !id) {
-            return undefined;
-        }
-
-        // Get D3 selection of target group
-        const targetGroupSelection: D3Selection = this.getD3SelectionById(svgRootGroup, id);
-
-        // Append overlay group to target group
-        targetGroupSelection.append('g').attr('class', `${type}-overlay-group`);
-
-        // Get D3 selection of target overlay group
-        const targetOverlayGroupSelection: D3Selection = targetGroupSelection.select(`g.${type}-overlay-group`);
-
-        // Create overlay box for tkk-overlay-group
-        return targetOverlayGroupSelection
-            .append('rect')
-            .attr('width', dim.width + this._overlayBoxAdditionalSpace * 2)
-            .attr('height', dim.height + this._overlayBoxAdditionalSpace * 2)
-            .attr('x', dim.x - this._overlayBoxAdditionalSpace)
-            .attr('y', dim.y - this._overlayBoxAdditionalSpace)
-            .attr('rx', this._overlayBoxCornerRadius)
-            .attr('fill', this.overlayFillColor)
-            .attr('opacity', this._overlayBoxesOpacity)
-            .attr('class', `${type}-overlay-group-box`);
     }
 
     /**
@@ -254,7 +150,11 @@ export class EditionSvgDrawingService {
      *
      * @returns {D3Selection} The D3 selection of the found element(s).
      */
-    getD3SelectionByDataId(svgRootGroup: D3Selection, dataId: string, attr: string = 'data-tkk-id'): D3Selection {
+    getD3SelectionByDataId(
+        svgRootGroup: D3Selection,
+        dataId: string,
+        attr: string = EditionSvgOverlayTypes.dataTkkId
+    ): D3Selection {
         if (!svgRootGroup || !dataId) {
             return undefined;
         }
@@ -278,27 +178,6 @@ export class EditionSvgDrawingService {
             return undefined;
         }
         return svgRootGroup.selectAll('g.' + selector);
-    }
-
-    /**
-     * Public method: getOverlayGroupRectSelection.
-     *
-     * It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.
-     *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} dataId The given dataId.
-     * @param {string} type The given type.
-     *
-     * @returns {D3Selection} The D3 selection of the found element.
-     */
-    getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, type: string): D3Selection {
-        if (!svgRootGroup || !dataId || !type) {
-            return undefined;
-        }
-        // Get D3 selection of target group
-        const targetGroupSelection: D3Selection = this.getD3SelectionByDataId(svgRootGroup, dataId);
-        // Get D3 selection of overlay group box
-        return targetGroupSelection.selectAll(`rect.${type}-overlay-group-box`);
     }
 
     /**
@@ -369,44 +248,6 @@ export class EditionSvgDrawingService {
     }
 
     /**
-     * Public method: updateTkkOverlayColor.
-     *
-     * It updates the color of the given tkk overlays.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given overlays.
-     * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
-     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
-     *
-     * @returns {void} Updates the color of the given tkk overlays.
-     */
-    updateTkkOverlayColor(
-        overlays: EditionSvgOverlay[],
-        overlayGroupRectSelection: D3Selection,
-        overlayActionType: EditionSvgOverlayActionTypes
-    ): void {
-        if (!overlays || overlays.length === 0 || !overlayGroupRectSelection || !overlayActionType) {
-            return;
-        }
-
-        // Compute the color for each overlay
-        const colors = overlays.map(overlay => this._getTkkOverlayColor(overlay, overlayActionType));
-
-        // Overlays for the same group should not have different colors
-        const uniqueColors = Array.from(new Set(colors));
-        if (uniqueColors.length > 1) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
-                uniqueColors,
-                overlays
-            );
-        }
-        const finalColor = uniqueColors[0];
-
-        this.fillD3SelectionWithColor(overlayGroupRectSelection, finalColor);
-    }
-
-    /**
      * Private method; _fetchSvgFile.
      *
      * It fetches an SVG file from the given path via fetch method from D3 library.
@@ -417,34 +258,6 @@ export class EditionSvgDrawingService {
      */
     private _fetchSvgFile(path: string): Promise<Document> {
         return D3_FETCH.svg(path);
-    }
-
-    /**
-     * Private method: _getTkkOverlayColor.
-     *
-     * It returns the color of the given tkk overlay.
-     *
-     * @param {EditionSvgOverlay} overlay The given overlay.
-     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
-     *
-     * @returns {string} The color of the given tkk overlay.
-     */
-    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
-        if (!overlay) {
-            return this.overlayFillColor;
-        }
-
-        if (overlayActionType === EditionSvgOverlayActionTypes.transparent) {
-            return this.overlayTransparentFillColor;
-        }
-
-        if (overlay.isSelected) {
-            return this.overlaySelectionFillColor;
-        }
-
-        return overlayActionType === EditionSvgOverlayActionTypes.hover
-            ? this.overlayHoverFillColor
-            : this.overlayFillColor;
     }
 
     /**

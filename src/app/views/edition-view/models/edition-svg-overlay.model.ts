@@ -6,7 +6,9 @@
 export enum EditionSvgOverlayTypes {
     measure = 'Takt',
     system = 'System',
-    tkk = 'Anmerkung',
+    tkk = 'tkk',
+    dataTkkId = 'data-tkk-id',
+    linkBox = 'link-box',
 }
 
 /**
@@ -18,6 +20,24 @@ export enum EditionSvgOverlayActionTypes {
     hover = 'hover',
     fill = 'fill',
     transparent = 'transparent',
+}
+
+/**
+ * The EditionSvgOverlayState interface.
+ *
+ * It stores the state of the svg overlays,
+ * including the available and selected overlays.
+ */
+export interface EditionSvgOverlayState {
+    /**
+     * An array of available svg overlays.
+     */
+    available: EditionSvgOverlay[];
+
+    /**
+     * An array of selected svg overlays.
+     */
+    selected: EditionSvgOverlay[];
 }
 
 /**
