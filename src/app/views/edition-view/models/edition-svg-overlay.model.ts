@@ -4,11 +4,9 @@
  * It stores the possible svg overlay types.
  */
 export enum EditionSvgOverlayTypes {
-    measure = 'Takt',
-    system = 'System',
-    tkk = 'tkk',
     dataTkkId = 'data-tkk-id',
     linkBox = 'link-box',
+    tkk = 'tkk',
 }
 
 /**
