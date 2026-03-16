@@ -245,7 +245,7 @@ to calculate the values of the systems on the folio canvas.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(sheet: <a href="../classes/FolioCalculationSheet.html" target="_self">FolioCalculationSheet</a>, systems: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, systemsReversed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, factor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>constructor(sheet: <a href="../classes/FolioCalculationSheet.html" target="_self">FolioCalculationSheet</a>, factor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, systems: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, systemsReversed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -289,6 +289,22 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                                                         </td>
                                                 </tr>
                                                 <tr>
+                                                        <td>factor</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The given zoom factor.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
                                                         <td>systems</td>
                                                   
                                                         <td>
@@ -317,22 +333,6 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                                                     
                                                         <td>
                                                                 <p>The given reversed flag.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>factor</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>The given zoom factor.</p>
 
                                                         </td>
                                                 </tr>
@@ -1743,12 +1743,12 @@ export class FolioCalculationSystems {
      * from the calculated folio sheet, the systems string and the zoom factor.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     * @param {number} factor The given zoom factor.
      * @param {string} systems The given systems string.
      * @param {boolean} systemsReversed The given reversed flag.
-     * @param {number} factor The given zoom factor.
      */
-    constructor(sheet: FolioCalculationSheet, systems: string, systemsReversed: boolean &#x3D; false, factor: number) {
-        this.NUMBER_OF_SYSTEMS &#x3D; systems ? parseInt(systems, 10) : 0;
+    constructor(sheet: FolioCalculationSheet, factor: number, systems: string, systemsReversed: boolean &#x3D; false) {
+        this.NUMBER_OF_SYSTEMS &#x3D; systems ? Number.parseInt(systems, 10) : 0;
         this.SYSTEMS_REVERSED &#x3D; systemsReversed;
         this.ZOOM_FACTOR &#x3D; factor;
 
@@ -1832,9 +1832,9 @@ export class FolioCalculation {
         this.SHEET &#x3D; new FolioCalculationSheet(folioSettings, folioData.folioId, folioData.trademarkPosition);
         this.SYSTEMS &#x3D; new FolioCalculationSystems(
             this.SHEET,
+            folioSettings.factor,
             folioData.systems,
-            folioData.reversed,
-            folioSettings.factor
+            folioData.reversed
         );
         this.CONTENT_SEGMENTS &#x3D; folioData.content.map(
             (content: FolioContent) &#x3D;&gt;

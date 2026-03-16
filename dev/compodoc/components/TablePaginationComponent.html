@@ -789,7 +789,7 @@ export class TablePaginationComponent {
      * @returns {void} Selects the page.
      */
     selectPage(page: string): void {
-        this.page &#x3D; parseInt(page, 10) || 1;
+        this.page &#x3D; Number.parseInt(page, 10) || 1;
         this.onPageChange(this.page);
     }
 }
