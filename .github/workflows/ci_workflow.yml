@@ -94,9 +94,9 @@ jobs:
 
     sonar:
         # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
+        if: github.event_name != 'pull_request' && github.repository_owner == 'webern-unibas-ch'
         name: Sonar scanning (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
 
         strategy:
             matrix:
