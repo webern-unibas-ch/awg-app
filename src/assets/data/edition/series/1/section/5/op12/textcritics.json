@@ -476,21 +476,21 @@
                                 "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
                             },
                             {
-                                "svgGroupId": "",
+                                "svgGroupId": "awg-tkk-m212_tf1-012",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
                                 "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m212_tf1-012",
+                                "svgGroupId": "awg-tkk-m212_tf1-013",
                                 "measure": "22",
                                 "system": "Klav. o.",
                                 "position": "",
                                 "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                             },
                             {
-                                "svgGroupId": "awg-tkk-m212_tf1-013",
+                                "svgGroupId": "awg-tkk-m212_tf1-014",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "1/8",
