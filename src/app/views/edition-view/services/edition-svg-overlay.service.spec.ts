@@ -1676,7 +1676,7 @@ describe('EditionSvgOverlayService', () => {
                 (service as any)._updateTkkOverlayColor(overlays, d3selections, EditionSvgOverlayActionTypes.fill);
 
                 expectSpyCall(consoleSpy, 1, [
-                    '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
+                    '[EditionSvgOverlayService] Multiple overlays for the same group have different colors:',
                     expectedUniqueColors,
                     overlays,
                 ]);

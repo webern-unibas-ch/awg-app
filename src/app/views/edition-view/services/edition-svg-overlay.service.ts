@@ -8,7 +8,7 @@ import {
     EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models';
 
-import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
+import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
 /**
  * The EditionSvgOverlay service.
@@ -555,7 +555,7 @@ export class EditionSvgOverlayService {
         if (uniqueColors.length > 1) {
             // eslint-disable-next-line no-console
             console.warn(
-                '[EditionSvgDrawingService] Multiple overlays for the same group have different colors:',
+                '[EditionSvgOverlayService] Multiple overlays for the same group have different colors:',
                 uniqueColors,
                 overlays
             );
