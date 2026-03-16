@@ -1579,7 +1579,7 @@ describe('EditionSvgOverlayService', () => {
             const color = (service as any)._getTkkOverlayColor(undefined, EditionSvgOverlayActionTypes.fill);
 
             expect(color).toBeDefined();
-            expect(color).toBeInstanceOf(String);
+            expectToBe(typeof color, 'string');
         });
 
         it('... should return overlayFillColor if overlay is not given', () => {

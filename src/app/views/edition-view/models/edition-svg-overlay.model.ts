@@ -1,7 +1,8 @@
 /**
  * The EditionSvgOverlayTypes enumeration.
  *
- * It stores the possible svg overlay types.
+ * It stores the possible svg overlay type selectors and related
+ * attribute-name constants (e.g., data attributes used to identify overlays).
  */
 export enum EditionSvgOverlayTypes {
     dataTkkId = 'data-tkk-id',
