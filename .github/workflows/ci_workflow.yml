@@ -93,9 +93,10 @@ jobs:
                   yarn run lint
 
     sonar:
-        # perform SonarQube scan only for current node version and not with pull requests or forks (token issue)
+        # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
         name: Sonar scanning (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
+        if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
 
         strategy:
             matrix:
@@ -104,25 +105,21 @@ jobs:
 
         steps:
             - name: Harden Runner
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
               uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
                   fetch-depth: 0 # fetch all history, needed for SonarQube analysis
 
             - name: Common Node setup
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
               uses: ./.github/actions/common-node-setup
               with:
                   node-version: ${{ matrix.node-version }}
 
             - name: Perform SonarQube scan
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER
               uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # v7.0.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
