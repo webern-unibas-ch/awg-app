@@ -16,9 +16,6 @@ permissions:
 
 # globals
 env:
-    # general settings
-    MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
-
     # dev settings
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
@@ -94,7 +91,7 @@ jobs:
 
     sonar:
         # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
-        if: github.event_name != 'pull_request' && github.repository_owner == 'webern-unibas-ch'
+        if: github.event_name != 'pull_request' && github.repository_owner == vars.MAIN_REPO_OWNER
         name: Sonar scanning (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
 
