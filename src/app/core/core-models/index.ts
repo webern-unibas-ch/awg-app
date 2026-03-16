@@ -6,8 +6,5 @@
  * for the core app.
  *
  */
-
-import { Logo, Logos } from './logos.model';
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from './meta.model';
-
-export { Logo, Logos, Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure };
+export { Logo, Logos } from './logos.model';
+export { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from './meta.model';

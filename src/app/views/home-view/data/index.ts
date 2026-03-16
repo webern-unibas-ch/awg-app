@@ -6,6 +6,4 @@
  * for the Home view.
  *
  */
-import { HOME_VIEW_CARD_DATA } from './home-view-card.data';
-
-export { HOME_VIEW_CARD_DATA };
+export { HOME_VIEW_CARD_DATA } from './home-view-card.data';

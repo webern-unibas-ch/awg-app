@@ -6,7 +6,4 @@
  * for the Home view.
  *
  */
-
-import { HomeViewCard } from './home-view-card.model';
-
-export { HomeViewCard };
+export { HomeViewCard } from './home-view-card.model';
