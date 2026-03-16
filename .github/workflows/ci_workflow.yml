@@ -16,9 +16,6 @@ permissions:
 
 # globals
 env:
-    # general settings
-    MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
-
     # dev settings
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
@@ -93,6 +90,8 @@ jobs:
                   yarn run lint
 
     sonar:
+        # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
+        if: github.event_name != 'pull_request' && github.repository_owner == vars.MAIN_REPO_OWNER
         name: Sonar scanning (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
 
@@ -110,7 +109,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
-                  fetch-depth: 2
+                  fetch-depth: 0 # fetch all history, needed for SonarQube analysis
 
             - name: Common Node setup
               uses: ./.github/actions/common-node-setup
@@ -118,7 +117,6 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Perform SonarQube scan
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarQube scan only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # v7.0.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
