@@ -6,23 +6,11 @@
  * for the Edition view.
  *
  */
-
-import { EditionComplexesService } from './edition-complexes.service';
-import { EditionDataService } from './edition-data.service';
-import { EditionGlyphService } from './edition-glyph.service';
-import { EditionOutlineService } from './edition-outline.service';
-import { EditionSheetsService } from './edition-sheets.service';
-import { EditionStateService } from './edition-state.service';
-import { EditionSvgDrawingService } from './edition-svg-drawing.service';
-import { EditionSvgOverlayService } from './edition-svg-overlay.service';
-
-export {
-    EditionComplexesService,
-    EditionDataService,
-    EditionGlyphService,
-    EditionOutlineService,
-    EditionSheetsService,
-    EditionStateService,
-    EditionSvgDrawingService,
-    EditionSvgOverlayService,
-};
+export { EditionComplexesService } from './edition-complexes.service';
+export { EditionDataService } from './edition-data.service';
+export { EditionGlyphService } from './edition-glyph.service';
+export { EditionOutlineService } from './edition-outline.service';
+export { EditionSheetsService } from './edition-sheets.service';
+export { EditionStateService } from './edition-state.service';
+export { EditionSvgDrawingService } from './edition-svg-drawing.service';
+export { EditionSvgOverlayService } from './edition-svg-overlay.service';

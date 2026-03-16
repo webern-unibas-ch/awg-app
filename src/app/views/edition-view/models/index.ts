@@ -6,50 +6,45 @@
  * for the Edition view.
  *
  */
-
-import { D3Selection } from './d3-selection.model';
-import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
-
-import {
+export { D3Selection } from './d3-selection.model';
+export { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
+export {
     EditionComplex,
     EditionComplexesJsonData,
     EditionComplexesList,
     EditionComplexJsonData,
     EditionComplexTitleStatement,
 } from './edition-complex.model';
-import {
+export {
     EditionOutline,
     EditionOutlineComplexItem,
     EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from './edition-outline.model';
-import { EditionRouteConstant } from './edition-route-constant.model';
-import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
-import { EditionSvgLinkBox } from './edition-svg-link-box.model';
-import {
+export { EditionRouteConstant } from './edition-route-constant.model';
+export { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
+export { EditionSvgLinkBox } from './edition-svg-link-box.model';
+export {
     EditionSvgOverlay,
     EditionSvgOverlayActionTypes,
     EditionSvgOverlayState,
     EditionSvgOverlayTypes,
 } from './edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
-
-import {
+export { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
+export {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioCalculationRectangle,
 } from './folio-calculation.model';
-import { FolioSettings } from './folio-settings.model';
-import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
-import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
-
-import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
-import { Intro, IntroBlock, IntroList } from './intro.model';
-import { Preface, PrefaceList } from './preface.model';
-
-import {
+export { FolioSettings } from './folio-settings.model';
+export { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
+export { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
+export { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
+export { Intro, IntroBlock, IntroList } from './intro.model';
+export { Preface, PrefaceList } from './preface.model';
+export {
     SourceDescription,
     SourceDescriptionContent,
     SourceDescriptionList,
@@ -60,82 +55,14 @@ import {
     SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
-import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
-import { Source, SourceList } from './source-list.model';
-
-import {
+export { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
+export { Source, SourceList } from './source-list.model';
+export {
     TextcriticalComment,
     TextcriticalCommentary,
     TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from './textcritics.model';
-import { TkaTableHeaderColumn } from './tka-table-header.model';
-import { ViewBox } from './view-box.model';
-
-export {
-    D3Selection,
-    D3ZoomBehaviour,
-    EditionComplex,
-    EditionComplexesJsonData,
-    EditionComplexesList,
-    EditionComplexJsonData,
-    EditionComplexTitleStatement,
-    EditionOutline,
-    EditionOutlineComplexItem,
-    EditionOutlineJsonData,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionRouteConstant,
-    EditionRowTables,
-    EditionRowTablesList,
-    EditionSvgLinkBox,
-    EditionSvgOverlay,
-    EditionSvgOverlayActionTypes,
-    EditionSvgOverlayState,
-    EditionSvgOverlayTypes,
-    EditionSvgSheet,
-    EditionSvgSheetList,
-    Folio,
-    FolioCalculation,
-    FolioCalculationLine,
-    FolioCalculationPoint,
-    FolioCalculationRectangle,
-    FolioContent,
-    FolioConvolute,
-    FolioConvoluteList,
-    FolioDimensions,
-    FolioSegment,
-    FolioSettings,
-    FolioSvgContentSegment,
-    FolioSvgData,
-    Graph,
-    GraphList,
-    GraphRDFData,
-    GraphSparqlQuery,
-    Intro,
-    IntroBlock,
-    IntroList,
-    Preface,
-    PrefaceList,
-    Source,
-    SourceDescription,
-    SourceDescriptionContent,
-    SourceDescriptionList,
-    SourceDescriptionWritingInstruments,
-    SourceDescriptionWritingMaterial,
-    SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialDimensions,
-    SourceDescriptionWritingMaterialItemLocus,
-    SourceDescriptionWritingMaterialSystems,
-    SourceEvaluation,
-    SourceEvaluationList,
-    SourceList,
-    TextcriticalComment,
-    TextcriticalCommentary,
-    TextcriticalCommentBlock,
-    Textcritics,
-    TextcriticsList,
-    TkaTableHeaderColumn,
-    ViewBox,
-};
+export { TkaTableHeaderColumn } from './tka-table-header.model';
+export { ViewBox } from './view-box.model';

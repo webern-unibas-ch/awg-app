@@ -6,10 +6,7 @@
  * for the shared table.
  *
  */
-
-import { TableData } from './table-data.model';
-import { TableOptions } from './table-options.model';
-import { TablePaginatorOptions } from './table-paginator-options.model';
-import { TableRows } from './table-rows.model';
-
-export { TableData, TableOptions, TablePaginatorOptions, TableRows };
+export { TableData } from './table-data.model';
+export { TableOptions } from './table-options.model';
+export { TablePaginatorOptions } from './table-paginator-options.model';
+export { TableRows } from './table-rows.model';

@@ -6,6 +6,4 @@
  * for the data (search) view.
  *
  */
-import { httpInterceptorProviders } from './interceptor-providers';
-
-export { httpInterceptorProviders };
+export { httpInterceptorProviders } from './interceptor-providers';

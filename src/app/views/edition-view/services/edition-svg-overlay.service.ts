@@ -224,7 +224,7 @@ export class EditionSvgOverlayService {
         });
 
         if (overlayType === EditionSvgOverlayTypes.tkk) {
-            this._createTkkOverlayHandlers(rootGroupSelection, overlaysState, overlayType, onTkkOverlaySelectFn);
+            this._createTkkOverlayHandlers(rootGroupSelection, overlaysState, onTkkOverlaySelectFn, overlayType);
         }
     }
 
@@ -380,8 +380,8 @@ export class EditionSvgOverlayService {
     private _createTkkOverlayHandlers(
         rootGroupSelection: D3Selection,
         overlaysState: EditionSvgOverlayState,
-        overlayType: string = EditionSvgOverlayTypes.tkk,
-        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) => void
+        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) => void,
+        overlayType: string = EditionSvgOverlayTypes.tkk
     ): void {
         // Get all unique dataIds from overlays
         const dataIds = Array.from(new Set(overlaysState.available.map(o => o.dataId)));
