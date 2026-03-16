@@ -923,7 +923,7 @@ and returns the D3 selection of the created overlay group.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlayHandlers(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlaysState: <a href="../interfaces/EditionSvgOverlayState.html" target="_self">EditionSvgOverlayState</a>, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, onTkkOverlaySelectFn: (selectedOverlays: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay[]</a>) => void)</code>
+                    <code>_createTkkOverlayHandlers(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlaysState: <a href="../interfaces/EditionSvgOverlayState.html" target="_self">EditionSvgOverlayState</a>, onTkkOverlaySelectFn: (selectedOverlays: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay[]</a>) => void, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -993,25 +993,6 @@ and returns the D3 selection of the created overlay group.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                                    <code>EditionSvgOverlayTypes.tkk</code>
-                                            </td>
-
-                                            <td>
-                                                    <p>The overlay type (should be &#39;tkk&#39;).</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
                                                 <td>onTkkOverlaySelectFn</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
@@ -1027,6 +1008,25 @@ and returns the D3 selection of the created overlay group.</p>
                                             <td>
                                                     <p>The callback function for the click event of the tkk overlay,
 which receives the list of selected tkk overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>overlayType</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>EditionSvgOverlayTypes.tkk</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The overlay type (should be &#39;tkk&#39;).</p>
 
                                             </td>
                                         </tr>
@@ -2702,7 +2702,7 @@ export class EditionSvgOverlayService {
         });
 
         if (overlayType &#x3D;&#x3D;&#x3D; EditionSvgOverlayTypes.tkk) {
-            this._createTkkOverlayHandlers(rootGroupSelection, overlaysState, overlayType, onTkkOverlaySelectFn);
+            this._createTkkOverlayHandlers(rootGroupSelection, overlaysState, onTkkOverlaySelectFn, overlayType);
         }
     }
 
@@ -2858,8 +2858,8 @@ export class EditionSvgOverlayService {
     private _createTkkOverlayHandlers(
         rootGroupSelection: D3Selection,
         overlaysState: EditionSvgOverlayState,
-        overlayType: string &#x3D; EditionSvgOverlayTypes.tkk,
-        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) &#x3D;&gt; void
+        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) &#x3D;&gt; void,
+        overlayType: string &#x3D; EditionSvgOverlayTypes.tkk
     ): void {
         // Get all unique dataIds from overlays
         const dataIds &#x3D; Array.from(new Set(overlaysState.available.map(o &#x3D;&gt; o.dataId)));

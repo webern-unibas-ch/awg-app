@@ -4242,7 +4242,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
             // Check if object is number &amp; round decimal numbers to 2 decimals
             const objAsNumber &#x3D; Number(objId);
-            if (!isNaN(objAsNumber)) {
+            if (!Number.isNaN(objAsNumber)) {
                 objId &#x3D; objAsNumber % 1 &#x3D;&#x3D;&#x3D; 0 ? String(objAsNumber) : objAsNumber.toFixed(2);
             }
 
