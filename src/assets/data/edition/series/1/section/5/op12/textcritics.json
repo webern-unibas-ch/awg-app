@@ -399,77 +399,77 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "text200",
+                                "svgGroupId": "awg-tkk-m212_tf1-001",
                                 "measure": "1",
                                 "system": "Klav.",
                                 "position": "2/8 bis 2/4",
                                 "comment": "Crescendogabel versetzt von über Klav. o."
                             },
                             {
-                                "svgGroupId": "text262",
+                                "svgGroupId": "awg-tkk-m212_tf1-002",
                                 "measure": "2",
                                 "system": "Klav.",
                                 "position": "1–4/8",
                                 "comment": "Decrescendogabel versetzt von über Klav. o."
                             },
                             {
-                                "svgGroupId": "g5702",
+                                "svgGroupId": "awg-tkk-m212_tf1-003",
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
-                                "svgGroupId": "text748",
+                                "svgGroupId": "awg-tkk-m212_tf1-004",
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "(1/4)",
                                 "comment": "Triolenklammer versetzt von über Klav. u."
                             },
                             {
-                                "svgGroupId": "text766",
+                                "svgGroupId": "awg-tkk-m212_tf1-005",
                                 "measure": "5",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von unter Klav. u."
                             },
                             {
-                                "svgGroupId": "g5708",
+                                "svgGroupId": "awg-tkk-m212_tf1-006",
                                 "measure": "5",
                                 "system": "Ges.",
                                 "position": "3/8",
                                 "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
                             },
                             {
-                                "svgGroupId": "text902",
+                                "svgGroupId": "awg-tkk-m212_tf1-007",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Ende der Crescendogabel versetzt von Ende T. 5."
                             },
                             {
-                                "svgGroupId": "g5714",
+                                "svgGroupId": "awg-tkk-m212_tf1-008",
                                 "measure": "9",
                                 "system": "Ges.",
                                 "position": "2. Note",
                                 "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
                             },
                             {
-                                "svgGroupId": "text318",
+                                "svgGroupId": "awg-tkk-m212_tf1-009",
                                 "measure": "13",
                                 "system": "Ges.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span>: Entzifferung unsicher, Tinte stark verschmiert."
                             },
                             {
-                                "svgGroupId": "text484",
+                                "svgGroupId": "awg-tkk-m212_tf1-010",
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "1/8",
                                 "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
                             },
                             {
-                                "svgGroupId": "g6096",
+                                "svgGroupId": "awg-tkk-m212_tf1-011",
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "2. Note",
@@ -483,14 +483,14 @@
                                 "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
-                                "svgGroupId": "text1556",
+                                "svgGroupId": "awg-tkk-m212_tf1-012",
                                 "measure": "22",
                                 "system": "Klav. o.",
                                 "position": "",
                                 "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                             },
                             {
-                                "svgGroupId": "text1600",
+                                "svgGroupId": "awg-tkk-m212_tf1-013",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "1/8",
@@ -516,42 +516,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g445",
+                                "svgGroupId": "awg-tkk-m212_tf2-001",
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "6/8",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
                             },
                             {
-                                "svgGroupId": "g446",
+                                "svgGroupId": "awg-tkk-m212_tf2-002",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Ende der Crescendogabel versetzt von Ende T. 5. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 5."
                             },
                             {
-                                "svgGroupId": "g447",
+                                "svgGroupId": "awg-tkk-m212_tf2-003",
                                 "measure": "7",
                                 "system": "Ges.",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1. Pause gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
                             },
                             {
-                                "svgGroupId": "g445b",
+                                "svgGroupId": "awg-tkk-m212_tf2-004",
                                 "measure": "13",
                                 "system": "Ges.",
                                 "position": "2/8",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>. <br /><em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
-                                "svgGroupId": "g457b",
+                                "svgGroupId": "awg-tkk-m212_tf2-005",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
                                 "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
-                                "svgGroupId": "g458b",
+                                "svgGroupId": "awg-tkk-m212_tf2-006",
                                 "measure": "19",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
@@ -577,21 +577,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g434",
+                                "svgGroupId": "awg-tkk-m216_tf1-001",
                                 "measure": "1",
                                 "system": "",
                                 "position": "Taktanfang",
                                 "comment": "<em>Sehr fließend und leicht (</em><span class='glyph note'>{{ref.getGlyph('[Punktierte Halbe Note]')}}</span><em> = circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
                             },
                             {
-                                "svgGroupId": "g435",
+                                "svgGroupId": "awg-tkk-m216_tf1-002",
                                 "measure": "2",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
                                 "comment": "Staccatopunkt ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a>."
                             },
                             {
-                                "svgGroupId": "g416",
+                                "svgGroupId": "awg-tkk-m216_tf1-003",
                                 "measure": "15",
                                 "system": "Klav. o.",
                                 "position": "2/8",
@@ -615,147 +615,147 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1141",
+                                "svgGroupId": "awg-tkk-m212_sk1-001",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>?)."
                             },
                             {
-                                "svgGroupId": "g1153",
+                                "svgGroupId": "awg-tkk-m212_sk1-002",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
-                                "svgGroupId": "g1320",
+                                "svgGroupId": "awg-tkk-m212_sk1-003",
                                 "measure": "8",
                                 "system": "6",
                                 "position": "1/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> gestrichen und geändert zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1389",
+                                "svgGroupId": "awg-tkk-m212_sk1-004",
                                 "measure": "8",
                                 "system": "6",
                                 "position": "vorletzte und letzte Note",
                                 "comment": "Text: <em>Gute</em> zusammengeschrieben."
                             },
                             {
-                                "svgGroupId": "g1306",
+                                "svgGroupId": "awg-tkk-m212_sk1-005",
                                 "measure": "11",
                                 "system": "7",
                                 "position": "1.–2. Note",
                                 "comment": "Bogen gestrichen."
                             },
                             {
-                                "svgGroupId": "g1314",
+                                "svgGroupId": "awg-tkk-m212_sk1-006",
                                 "measure": "11",
                                 "system": "9",
                                 "position": "",
                                 "comment": "Entzifferung und Bezug nicht eindeutig."
                             },
                             {
-                                "svgGroupId": "g1302",
+                                "svgGroupId": "awg-tkk-m212_sk1-007",
                                 "measure": "12",
                                 "system": "8",
                                 "position": "1.–3. Note",
                                 "comment": "Bogen gestrichen."
                             },
                             {
-                                "svgGroupId": "g6001",
+                                "svgGroupId": "awg-tkk-m212_sk1-008",
                                 "measure": "13",
                                 "system": "11",
                                 "position": "2.–3. Note",
                                 "comment": "Zwei triolische Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen und geändert zu Achtelpause."
                             },
                             {
-                                "svgGroupId": "g5850",
+                                "svgGroupId": "awg-tkk-m212_sk1-009",
                                 "measure": "15",
                                 "system": "11–12",
                                 "position": "Taktanfang",
                                 "comment": "Taktartvorzeichnung 2/4 gestrichen."
                             },
                             {
-                                "svgGroupId": "g2068",
+                                "svgGroupId": "awg-tkk-m212_sk1-010",
                                 "measure": "15",
                                 "system": "10",
                                 "position": "1.–2. Note",
                                 "comment": "Text: [ver-]<em>gangen</em> zusammengeschrieben."
                             },
                             {
-                                "svgGroupId": "g6136",
+                                "svgGroupId": "awg-tkk-m212_sk1-011",
                                 "measure": "15",
                                 "system": "11",
                                 "position": "",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>3</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
                             },
                             {
-                                "svgGroupId": "g911",
+                                "svgGroupId": "awg-tkk-m212_sk1-012",
                                 "measure": "16",
                                 "system": "10",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> ersetzt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g5891",
+                                "svgGroupId": "awg-tkk-m212_sk1-013",
                                 "measure": "16",
                                 "system": "11",
                                 "position": "3–4/16",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> nach <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
                             },
                             {
-                                "svgGroupId": "g5905",
+                                "svgGroupId": "awg-tkk-m212_sk1-014",
                                 "measure": "16",
                                 "system": "10",
                                 "position": "3.–4. Note",
                                 "comment": "Zwei Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
                             },
                             {
-                                "svgGroupId": "g1256",
+                                "svgGroupId": "awg-tkk-m212_sk1-015",
                                 "measure": "20",
                                 "system": "8",
                                 "position": "",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g1276",
+                                "svgGroupId": "awg-tkk-m212_sk1-016",
                                 "measure": "21",
                                 "system": "6",
                                 "position": "3. Note",
                                 "comment": "d<sup>1</sup> gestrichen und geändert zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1194",
+                                "svgGroupId": "awg-tkk-m212_sk1-017",
                                 "measure": "22",
                                 "system": "9–10",
                                 "position": "1. Note",
                                 "comment": "Notenköpfe gestrichen und geändert zu Achtelpause (System 10)."
                             },
                             {
-                                "svgGroupId": "g1243",
+                                "svgGroupId": "awg-tkk-m212_sk1-018",
                                 "measure": "nach 22",
                                 "system": "",
                                 "position": "",
                                 "comment": "Schlusstaktstrich gestrichen (siehe T. 23–24)."
                             },
                             {
-                                "svgGroupId": "g2767",
+                                "svgGroupId": "awg-tkk-m212_sk1-019",
                                 "measure": "23",
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g1094",
+                                "svgGroupId": "awg-tkk-m212_sk1-020",
                                 "measure": "23",
                                 "system": "13",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
                             },
                             {
-                                "svgGroupId": "g1104",
+                                "svgGroupId": "awg-tkk-m212_sk1-021",
                                 "measure": "24",
                                 "system": "14",
                                 "position": "",
@@ -780,28 +780,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1438",
+                                "svgGroupId": "awg-tkk-m212_sk2-001",
                                 "measure": "10",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g1454",
+                                "svgGroupId": "awg-tkk-m212_sk2-002",
                                 "measure": "10",
                                 "system": "12",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                             },
                             {
-                                "svgGroupId": "g1006",
+                                "svgGroupId": "awg-tkk-m212_sk2-003",
                                 "measure": "11",
                                 "system": "14",
                                 "position": "(1/4)",
                                 "comment": "Punktierte Achtelpause, Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b radiert."
                             },
                             {
-                                "svgGroupId": "g1405",
+                                "svgGroupId": "awg-tkk-m212_sk2-004",
                                 "measure": "12",
                                 "system": "13",
                                 "position": "",
@@ -813,7 +813,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g3816",
+                    "svgGroupId": "awg-lb-m212_sk2-to-m212_sk3",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk3"
@@ -834,21 +834,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1477",
+                                "svgGroupId": "awg-tkk-m212_sk3-001",
                                 "measure": "10",
                                 "system": "9",
                                 "position": "2/4",
                                 "comment": "c gestrichen; <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?)."
                             },
                             {
-                                "svgGroupId": "g1543",
+                                "svgGroupId": "awg-tkk-m212_sk3-002",
                                 "measure": "11",
                                 "system": "10",
                                 "position": "1.–2. Note",
                                 "comment": "Triole aus Viertelnote und Achtelnote überschreibt zwei zusammengebalkte Achtelnoten."
                             },
                             {
-                                "svgGroupId": "g1020",
+                                "svgGroupId": "awg-tkk-m212_sk3-003",
                                 "measure": "11",
                                 "system": "10",
                                 "position": "nach 2/4",
@@ -860,14 +860,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g4399",
+                    "svgGroupId": "awg-lb-m212_sk3-to-m212_sk2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk2"
                     }
                 },
                 {
-                    "svgGroupId": "g4410",
+                    "svgGroupId": "awg-lb-m212_sk3-to-m212_sk5",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk5"
@@ -888,14 +888,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1344",
+                                "svgGroupId": "awg-tkk-m212_sk4-001",
                                 "measure": "10",
                                 "system": "6",
                                 "position": "",
                                 "comment": "Achtelfähnchen gestrichen."
                             },
                             {
-                                "svgGroupId": "g1422",
+                                "svgGroupId": "awg-tkk-m212_sk4-002",
                                 "measure": "10",
                                 "system": "5",
                                 "position": "3. Note",
@@ -907,7 +907,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g4957",
+                    "svgGroupId": "awg-lb-m212_sk4-to-m212_sk5",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk5"
@@ -928,14 +928,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1447",
+                                "svgGroupId": "awg-tkk-m212_sk5-001",
                                 "measure": "10",
                                 "system": "9",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>. (Oder: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h?)."
                             },
                             {
-                                "svgGroupId": "g1434",
+                                "svgGroupId": "awg-tkk-m212_sk5-002",
                                 "measure": "11",
                                 "system": "9",
                                 "position": "1/4",
@@ -947,14 +947,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5508",
+                    "svgGroupId": "awg-lb-m212_sk5-to-m212_sk3",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk3"
                     }
                 },
                 {
-                    "svgGroupId": "g5497",
+                    "svgGroupId": "awg-lb-m212_sk5-to-m212_sk4",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M212_Sk4"
@@ -975,224 +975,224 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4a",
+                                "svgGroupId": "awg-tkk-m213_sk1-001",
                                 "measure": "{4A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Einkreisung in System 3–4 pauschal getilgt."
                             },
                             {
-                                "svgGroupId": "g5a",
+                                "svgGroupId": "awg-tkk-m213_sk1-002",
                                 "measure": "6",
                                 "system": "6",
                                 "position": "",
                                 "comment": "Bezug unklar. Möglicherweise alternative Formulierung für T. 6 Klav. u. (System 4)."
                             },
                             {
-                                "svgGroupId": "g6a",
+                                "svgGroupId": "awg-tkk-m213_sk1-003",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (?) gestrichen und ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g4b",
+                                "svgGroupId": "awg-tkk-m213_sk1-004",
                                 "measure": "{7A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Einkreisung in System 9–10 pauschal getilgt."
                             },
                             {
-                                "svgGroupId": "g4c",
+                                "svgGroupId": "awg-tkk-m213_sk1-005",
                                 "measure": "15",
                                 "system": "13",
                                 "position": "2/8",
                                 "comment": "Unklare Überschreibung: c<sup>1</sup> überschreibt f<sup>1</sup> (und Tonbuchstabe <em>f</em>) oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5c",
+                                "svgGroupId": "awg-tkk-m213_sk1-006",
                                 "measure": "15",
                                 "system": "13",
                                 "position": "3/8",
                                 "comment": "Unklare Überschreibung: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (undeutlich) zu h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g6c",
+                                "svgGroupId": "awg-tkk-m213_sk1-007",
                                 "measure": "{18A–20A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Verweiszeichen vor T. {{ '{' }}18A{{ '}' }} (zu T. 18B) und pauschale Streichung in T. {{ '{' }}18A{{ '}' }} getilgt."
                             },
                             {
-                                "svgGroupId": "g7c",
+                                "svgGroupId": "awg-tkk-m213_sk1-008",
                                 "measure": "{19A}",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "Halbe Note a<sup>2</sup> überschreibt Viertelnote, vermutlich pauschal für d<sup>2</sup>/a<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g8c",
+                                "svgGroupId": "awg-tkk-m213_sk1-009",
                                 "measure": "{19A} <br />bis {20A}",
                                 "system": "15",
                                 "position": "3/4 <br />1/4",
                                 "comment": "Durch Einkreisungen getilgt."
                             },
                             {
-                                "svgGroupId": "g6d",
+                                "svgGroupId": "awg-tkk-m213_sk1-010",
                                 "measure": "20B",
                                 "system": "1",
                                 "position": "2. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu dis<sup>2</sup>?)."
                             },
                             {
-                                "svgGroupId": "g4d",
+                                "svgGroupId": "awg-tkk-m213_sk1-011",
                                 "measure": "{22A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "sic: leerer Takt gestrichen. Vermutlich nach bereits gezogenem schließenden Taktstrich und auf Grund veränderter grafischer Disposition. Siehe T. 22B."
                             },
                             {
-                                "svgGroupId": "g5d",
+                                "svgGroupId": "awg-tkk-m213_sk1-012",
                                 "measure": "22B",
                                 "system": "",
                                 "position": "nach 4/16",
                                 "comment": "Gestrichelter Taktstrich hinzugefügt. Siehe Taktdisposition in <span class='link-todo'>einzige Textfassung</span> T. 22–23."
                             },
                             {
-                                "svgGroupId": "g8d",
+                                "svgGroupId": "awg-tkk-m213_sk1-013",
                                 "measure": "22B",
                                 "system": "1",
                                 "position": "6/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu gis<sup>1</sup>?)."
                             },
                             {
-                                "svgGroupId": "g4e",
+                                "svgGroupId": "awg-tkk-m213_sk1-014",
                                 "measure": "vor 23",
                                 "system": "",
                                 "position": "",
                                 "comment": "Taktartvorzeichnung <em>4/8</em> überschreibt <em>2/8</em>."
                             },
                             {
-                                "svgGroupId": "g5e",
+                                "svgGroupId": "awg-tkk-m213_sk1-015",
                                 "measure": "23",
                                 "system": "7",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> (?)."
                             },
                             {
-                                "svgGroupId": "g6e",
+                                "svgGroupId": "awg-tkk-m213_sk1-016",
                                 "measure": "24",
                                 "system": "7, 9–10",
                                 "position": "nach (2/8)",
                                 "comment": "Gestrichelter Taktstrich hinzugefügt. Siehe Taktdisposition in <span class='link-todo'>einzige Textfassung</span> nach T. 26."
                             },
                             {
-                                "svgGroupId": "g7e",
+                                "svgGroupId": "awg-tkk-m213_sk1-017",
                                 "measure": "24",
                                 "system": "9",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> (?)."
                             },
                             {
-                                "svgGroupId": "g8e",
+                                "svgGroupId": "awg-tkk-m213_sk1-018",
                                 "measure": "24",
                                 "system": "9–10",
                                 "position": "letzte Note",
                                 "comment": "Durch Einkreisung getilgt. Siehe Änderungen in System 11 (ebenfalls durch Einkreisung getilgt) und in System 12–13."
                             },
                             {
-                                "svgGroupId": "g4f",
+                                "svgGroupId": "awg-tkk-m213_sk1-019",
                                 "measure": "29A",
                                 "system": "13",
                                 "position": "3/8",
                                 "comment": "e<sup>2</sup> gestrichen und geändert zu e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5f",
+                                "svgGroupId": "awg-tkk-m213_sk1-020",
                                 "measure": "30A",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Gestrichen und (tonhöhenunspezifisch) weitergeführt in System 12."
                             },
                             {
-                                "svgGroupId": "g6f",
+                                "svgGroupId": "awg-tkk-m213_sk1-021",
                                 "measure": "32A",
                                 "system": "12",
                                 "position": "",
                                 "comment": "Gestrichen und geändert in System 13."
                             },
                             {
-                                "svgGroupId": "g4g",
+                                "svgGroupId": "awg-tkk-m213_sk1-022",
                                 "measure": "{29B–31B}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Einkreisung pauschal getilgt."
                             },
                             {
-                                "svgGroupId": "g5g",
+                                "svgGroupId": "awg-tkk-m213_sk1-023",
                                 "measure": "vor 29C",
                                 "system": "1",
                                 "position": "",
                                 "comment": "Taktartvorzeichnung <em>2/4</em> (?) gestrichen. Siehe Änderung in System 3–4."
                             },
                             {
-                                "svgGroupId": "g6g",
+                                "svgGroupId": "awg-tkk-m213_sk1-024",
                                 "measure": "29C",
                                 "system": "1",
                                 "position": "2/4 bzw. 3/8",
                                 "comment": "Viertelpause gestrichen und geändert zu Achtelnote c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g7g",
+                                "svgGroupId": "awg-tkk-m213_sk1-025",
                                 "measure": "vor 30C",
                                 "system": "",
                                 "position": "",
                                 "comment": "Taktartvorzeichnung <em>6/8</em> überschreibt <em>3/4</em>."
                             },
                             {
-                                "svgGroupId": "g8g",
+                                "svgGroupId": "awg-tkk-m213_sk1-026",
                                 "measure": "30C",
                                 "system": "",
                                 "position": "nach (3/8)",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g9g",
+                                "svgGroupId": "awg-tkk-m213_sk1-027",
                                 "measure": "31C",
                                 "system": "3",
                                 "position": "1/16",
                                 "comment": "Durch Einkreisung getilgt. Siehe vermutliche Änderung in System 2."
                             },
                             {
-                                "svgGroupId": "g4h",
+                                "svgGroupId": "awg-tkk-m213_sk1-028",
                                 "measure": "33",
                                 "system": "8",
                                 "position": "(3/8)",
                                 "comment": "Nicht identifizierbares Zeichen gestrichen."
                             },
                             {
-                                "svgGroupId": "g5h",
+                                "svgGroupId": "awg-tkk-m213_sk1-029",
                                 "measure": "38 <br />bis nach 38",
                                 "system": "",
                                 "position": "nach 4/16",
                                 "comment": "Taktstrich nach 4/16 ansatzweise radiert. Vermutlich danach vorgezeichneter Taktstrich am Ende der Akkolade gestrichen und Taktstrich nach 6/16 hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g4i",
+                                "svgGroupId": "awg-tkk-m213_sk1-030",
                                 "measure": "39–40",
                                 "system": "",
                                 "position": "",
                                 "comment": "sic: unklare Disposition. Entweder ist T. 39 ein gegenüber der <span class='link-todo'>einzigen Textfassung</span> zusätzlicher Takt. Oder T. 40 ersetzt den (nicht explizit getilgten) T. 39."
                             },
                             {
-                                "svgGroupId": "g5i",
+                                "svgGroupId": "awg-tkk-m213_sk1-031",
                                 "measure": "40",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "Gestrichen."
                             },
                             {
-                                "svgGroupId": "g6i",
+                                "svgGroupId": "awg-tkk-m213_sk1-032",
                                 "measure": "40",
                                 "system": "13",
                                 "position": "2.–4. Note",
@@ -1204,80 +1204,80 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g11e",
+                    "svgGroupId": "awg-lb-m213_sk1e-to-m213_sk1_2",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1e-to-m213_sk1_3",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1e-to-m213_sk1_5",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_5"
                     }
                 },
                 {
-                    "svgGroupId": "g12e",
+                    "svgGroupId": "awg-lb-m213_sk1e-to-m213_sk1_6",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_6"
                     }
                 },
                 {
-                    "svgGroupId": "g13e",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_3"
-                    }
-                },
-                {
-                    "svgGroupId": "g14e",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_2"
-                    }
-                },
-                {
-                    "svgGroupId": "g15e",
+                    "svgGroupId": "awg-lb-m213_sk1e-to-m213_sk1f",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1f"
                     }
                 },
                 {
-                    "svgGroupId": "g12f",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1e"
-                    }
-                },
-                {
-                    "svgGroupId": "g13f",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_3"
-                    }
-                },
-                {
-                    "svgGroupId": "g14f",
+                    "svgGroupId": "awg-lb-m213_sk1f-to-m213_sk1_2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_2"
                     }
                 },
                 {
-                    "svgGroupId": "g13i",
+                    "svgGroupId": "awg-lb-m213_sk1f-to-m213_sk1_3",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M213_Sk1_4_3"
+                        "sheetId": "M213_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g14i",
+                    "svgGroupId": "awg-lb-m213_sk1f-to-m213_sk1e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1i-to-m213_sk1_4_1",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1i-to-m213_sk1_4_2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_4_2"
                     }
                 },
                 {
-                    "svgGroupId": "g15i",
+                    "svgGroupId": "awg-lb-m213_sk1i-to-m213_sk1_4_3",
                     "linkTo": {
                         "complexId": "op12",
-                        "sheetId": "M213_Sk1_4_1"
+                        "sheetId": "M213_Sk1_4_3"
                     }
                 }
             ]
@@ -1295,21 +1295,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m213_sk1_1-001",
                                 "measure": "18C",
                                 "system": "3",
                                 "position": "3/8",
                                 "comment": "Nicht identifizierbare Note gestrichen und geändert zu C."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "awg-tkk-m213_sk1_1-002",
                                 "measure": "19C",
                                 "system": "1",
                                 "position": "2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "awg-tkk-m213_sk1_1-003",
                                 "measure": "19C",
                                 "system": "2",
                                 "position": "3/8",
@@ -1334,21 +1334,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m213_sk1_2-001",
                                 "measure": "24",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "Sechzehntelnote <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt Ansatz zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> oder <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "awg-tkk-m213_sk1_2-002",
                                 "measure": "25",
                                 "system": "14",
                                 "position": "1–2/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "awg-tkk-m213_sk1_2-003",
                                 "measure": "26",
                                 "system": "14",
                                 "position": "1. Note",
@@ -1360,21 +1360,21 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g12",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1e"
-                    }
-                },
-                {
-                    "svgGroupId": "g13",
+                    "svgGroupId": "awg-lb-m213_sk1_2-to-m213_sk1_3",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_3"
                     }
                 },
                 {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_2-to-m213_sk1e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1_2-to-m213_sk1f",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1f"
@@ -1395,7 +1395,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m213_sk1_3-001",
                                 "measure": "vor 34",
                                 "system": "12",
                                 "position": "",
@@ -1407,24 +1407,24 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "awg-lb-m213_sk1_3-to-m213_sk1_2",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1_3-to-m213_sk1e",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1e"
                     }
                 },
                 {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_3-to-m213_sk1f",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1f"
-                    }
-                },
-                {
-                    "svgGroupId": "g14",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_2"
                     }
                 }
             ]
@@ -1441,21 +1441,21 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g13",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_4_3"
-                    }
-                },
-                {
-                    "svgGroupId": "g14",
+                    "svgGroupId": "awg-lb-m213_sk1_4_1-to-m213_sk1_4_2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_4_2"
                     }
                 },
                 {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_4_1-to-m213_sk1_4_3",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1_4_1-to-m213_sk1i",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1i"
@@ -1476,14 +1476,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "awg-tkk-m213_sk1_4_2-001",
                                 "measure": "",
                                 "system": "12",
                                 "position": "2. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "awg-tkk-m213_sk1_4_2-002",
                                 "measure": "",
                                 "system": "12",
                                 "position": "3. Note",
@@ -1495,21 +1495,21 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g13",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_4_3"
-                    }
-                },
-                {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_4_2-to-m213_sk1_4_1",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_4_1"
                     }
                 },
                 {
-                    "svgGroupId": "g14",
+                    "svgGroupId": "awg-lb-m213_sk1_4_2-to-m213_sk1_4_3",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1_4_2-to-m213_sk1i",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1i"
@@ -1530,14 +1530,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m213_sk1_4_3-001",
                                 "measure": "",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "awg-tkk-m213_sk1_4_3-002",
                                 "measure": "",
                                 "system": "12–13",
                                 "position": "",
@@ -1549,21 +1549,21 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g14",
-                    "linkTo": {
-                        "complexId": "op12",
-                        "sheetId": "M213_Sk1_4_2"
-                    }
-                },
-                {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_4_3-to-m213_sk1_4_1",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_4_1"
                     }
                 },
                 {
-                    "svgGroupId": "g16",
+                    "svgGroupId": "awg-lb-m213_sk1_4_3-to-m213_sk1_4_2",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M213_Sk1_4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m213_sk1_4_3-to-m213_sk1i",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1i"
@@ -1583,14 +1583,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "awg-lb-m213_sk1_5-to-m213_sk1_6",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_6"
                     }
                 },
                 {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_5-to-m213_sk1e",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1e"
@@ -1610,14 +1610,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g11",
+                    "svgGroupId": "awg-lb-m213_sk1_6-to-m213_sk1_5",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1_5"
                     }
                 },
                 {
-                    "svgGroupId": "g15",
+                    "svgGroupId": "awg-lb-m213_sk1_6-to-m213_sk1e",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M213_Sk1e"
@@ -1638,161 +1638,161 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "awg-tkk-m216_sk1-001",
                                 "measure": "2",
                                 "system": "3–4",
                                 "position": "1/8",
                                 "comment": "e/c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "awg-tkk-m216_sk1-002",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1b",
+                                "svgGroupId": "awg-tkk-m216_sk1-003",
                                 "measure": "6",
                                 "system": "7",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: h durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g2b",
+                                "svgGroupId": "awg-tkk-m216_sk1-004",
                                 "measure": "6",
                                 "system": "8",
                                 "position": "3/8",
                                 "comment": "g durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g6b",
+                                "svgGroupId": "awg-tkk-m216_sk1-005",
                                 "measure": "6",
                                 "system": "8",
                                 "position": "5/8",
                                 "comment": "es durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g7b",
+                                "svgGroupId": "awg-tkk-m216_sk1-006",
                                 "measure": "8",
                                 "system": "7",
                                 "position": "1/4",
                                 "comment": "e<sup>2</sup> durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g8b",
+                                "svgGroupId": "awg-tkk-m216_sk1-007",
                                 "measure": "8",
                                 "system": "8",
                                 "position": "",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu G), <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu gis)."
                             },
                             {
-                                "svgGroupId": "g9b",
+                                "svgGroupId": "awg-tkk-m216_sk1-008",
                                 "measure": "8 <br />bis 9",
                                 "system": "7",
                                 "position": "3/4 <br />1/8",
                                 "comment": "Ligaturbogen zu T. 9 1/8 gestrichen und Achtelnote ersetzt durch Achtelpause."
                             },
                             {
-                                "svgGroupId": "g10b",
+                                "svgGroupId": "awg-tkk-m216_sk1-009",
                                 "measure": "9",
                                 "system": "7",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g11b",
+                                "svgGroupId": "awg-tkk-m216_sk1-010",
                                 "measure": "10",
                                 "system": "7",
                                 "position": "3. bis letzte Note",
                                 "comment": "Zwei zusammengebalkte Achtelnoten a<sup>1</sup>–as<sup>1</sup> geändert zu Viertelnote a<sup>1</sup>, Achtelnote gis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1c",
+                                "svgGroupId": "awg-tkk-m216_sk1-011",
                                 "measure": "12",
                                 "system": "2",
                                 "position": "6/8",
                                 "comment": "Achtelnote d<sup>1</sup> geändert zu Achtelpause."
                             },
                             {
-                                "svgGroupId": "g2c",
+                                "svgGroupId": "awg-tkk-m216_sk1-012",
                                 "measure": "{13A–14A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Zunächst T. {{'{'}}14A{{'}'}} 2–3/4 zwei Viertelnoten fis<sup>1</sup> durch Einkreisung getilgt. Dann T. {{'{'}}13A–14A{{'}'}} pauschal durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g1d",
+                                "svgGroupId": "awg-tkk-m216_sk1-013",
                                 "measure": "{15A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g2d",
+                                "svgGroupId": "awg-tkk-m216_sk1-014",
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3.–5. Note",
                                 "comment": "f<sup>1</sup>–f<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt e<sup>1</sup>–e<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup> (?)."
                             },
                             {
-                                "svgGroupId": "g33d",
+                                "svgGroupId": "awg-tkk-m216_sk1-015",
                                 "measure": "14B",
                                 "system": "4",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> (zu b<sup>1</sup>)."
                             },
                             {
-                                "svgGroupId": "g1e",
+                                "svgGroupId": "awg-tkk-m216_sk1-016",
                                 "measure": "17",
                                 "system": "2",
                                 "position": "letzte Note",
                                 "comment": "sic: Achtelfähnchen fehlt. c<sup>2</sup> gestrichen (?)."
                             },
                             {
-                                "svgGroupId": "g2e",
+                                "svgGroupId": "awg-tkk-m216_sk1-017",
                                 "measure": "18",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> (siehe Textfassung 1) fehlt."
                             },
                             {
-                                "svgGroupId": "g33e",
+                                "svgGroupId": "awg-tkk-m216_sk1-018",
                                 "measure": "18",
                                 "system": "3",
                                 "position": "5–6/8",
                                 "comment": "Zunächst: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>G überschreibt G–E. Dann 5/8: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> (zu e)."
                             },
                             {
-                                "svgGroupId": "g44e",
+                                "svgGroupId": "awg-tkk-m216_sk1-019",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "1/8",
                                 "comment": "Achtelpause ersetzt Achtelnote cis<sup>1</sup>/e<sup>1</sup>/c<sup>2</sup>. Siehe TkK zu T. 18 3/4."
                             },
                             {
-                                "svgGroupId": "g55e",
+                                "svgGroupId": "awg-tkk-m216_sk1-020",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "3/8, (4–5/8)",
                                 "comment": "Achtelnote, Viertelnote überschreibt zwei zusammengebalkte Achtelnoten."
                             },
                             {
-                                "svgGroupId": "g6e",
+                                "svgGroupId": "awg-tkk-m216_sk1-021",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "letzte Note",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> (siehe Textfassung 1) fehlt."
                             },
                             {
-                                "svgGroupId": "g1f",
+                                "svgGroupId": "awg-tkk-m216_sk1-022",
                                 "measure": "20 <br />bis 21",
                                 "system": "5",
                                 "position": "6/8 <br />1. Note",
                                 "comment": "cis<sup>2</sup>–g<sup>2</sup> durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g2f",
+                                "svgGroupId": "awg-tkk-m216_sk1-023",
                                 "measure": "21",
                                 "system": "6",
                                 "position": "2/4",
@@ -1817,140 +1817,140 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4a",
+                                "svgGroupId": "awg-tkk-m217_sk1-001",
                                 "measure": "1",
                                 "system": "4",
                                 "position": "(1/4)",
                                 "comment": "Punktierung zu a bei 1. Note pars pro toto gestrichen, Achtelpause vor 1. Note und Triolenklammer hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g5a",
+                                "svgGroupId": "awg-tkk-m217_sk1-002",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g6a",
+                                "svgGroupId": "awg-tkk-m217_sk1-003",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "2.–4. Note",
                                 "comment": "e<sup>2</sup>–es<sup>2</sup>–d<sup>2</sup> durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g7a",
+                                "svgGroupId": "awg-tkk-m217_sk1-004",
                                 "measure": "5",
                                 "system": "3",
                                 "position": "4/16",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5b",
+                                "svgGroupId": "awg-tkk-m217_sk1-005",
                                 "measure": "7",
                                 "system": "8",
                                 "position": "",
                                 "comment": "2. Note durch Einkreisung getilgt, Punktierung zu 1. Note sowie 4/8 vermutlich hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g4b",
+                                "svgGroupId": "awg-tkk-m217_sk1-006",
                                 "measure": "7",
                                 "system": "9",
                                 "position": "",
                                 "comment": "Durch Einkreisung teilweise getilgt. Siehe Änderung in System 10."
                             },
                             {
-                                "svgGroupId": "g6b",
+                                "svgGroupId": "awg-tkk-m217_sk1-007",
                                 "measure": "7",
                                 "system": "7",
                                 "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g7b",
+                                "svgGroupId": "awg-tkk-m217_sk1-008",
                                 "measure": "8",
                                 "system": "7",
                                 "position": "1/4",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
                             },
                             {
-                                "svgGroupId": "g8b",
+                                "svgGroupId": "awg-tkk-m217_sk1-009",
                                 "measure": "8",
                                 "system": "8",
                                 "position": "2/8",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g4c",
+                                "svgGroupId": "awg-tkk-m217_sk1-010",
                                 "measure": "11",
                                 "system": "3",
                                 "position": "3–6/8",
                                 "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
                             },
                             {
-                                "svgGroupId": "g5c",
+                                "svgGroupId": "awg-tkk-m217_sk1-011",
                                 "measure": "14",
                                 "system": "2",
                                 "position": "1. Pause",
                                 "comment": "Achtelpause überschreibt unausgefüllten Notenkopf g<sup>1</sup> (?)."
                             },
                             {
-                                "svgGroupId": "g4d",
+                                "svgGroupId": "awg-tkk-m217_sk1-012",
                                 "measure": "16",
                                 "system": "6",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note a/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt Viertelnote a/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g5d",
+                                "svgGroupId": "awg-tkk-m217_sk1-013",
                                 "measure": "19",
                                 "system": "6",
                                 "position": "1/4",
                                 "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
                             },
                             {
-                                "svgGroupId": "g5e",
+                                "svgGroupId": "awg-tkk-m217_sk1-014",
                                 "measure": "{20A–23A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {{'{'}}23A{{'}'}} getilgt."
                             },
                             {
-                                "svgGroupId": "g4e",
+                                "svgGroupId": "awg-tkk-m217_sk1-015",
                                 "measure": "{23A}",
                                 "system": "10",
                                 "position": "2/4",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g15e",
+                                "svgGroupId": "awg-tkk-m217_sk1-016",
                                 "measure": "21B",
                                 "system": "10–11",
                                 "position": "",
                                 "comment": "sic: Wiederholungskürzel."
                             },
                             {
-                                "svgGroupId": "g4f",
+                                "svgGroupId": "awg-tkk-m217_sk1-017",
                                 "measure": "23B",
                                 "system": "4",
                                 "position": "1.–2. Note",
                                 "comment": "Durch Einkreisung getilgt."
                             },
                             {
-                                "svgGroupId": "g5f",
+                                "svgGroupId": "awg-tkk-m217_sk1-018",
                                 "measure": "23B",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Notenkopf c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g15f",
+                                "svgGroupId": "awg-tkk-m217_sk1-019",
                                 "measure": "25",
                                 "system": "4",
                                 "position": "3. Note",
                                 "comment": "Unklare Überschreibung."
                             },
                             {
-                                "svgGroupId": "g6f",
+                                "svgGroupId": "awg-tkk-m217_sk1-020",
                                 "measure": "26",
                                 "system": "3",
                                 "position": "(3/4)",
@@ -1962,42 +1962,42 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g11c",
+                    "svgGroupId": "awg-lb-m217_sk1c-to-m217_sk1d",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1d"
                     }
                 },
                 {
-                    "svgGroupId": "g11d",
+                    "svgGroupId": "awg-lb-m217_sk1d-to-m217_sk1c",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1c"
                     }
                 },
                 {
-                    "svgGroupId": "g11d-6",
+                    "svgGroupId": "awg-lb-m217_sk1d-to-m217_sk1e",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1e"
                     }
                 },
                 {
-                    "svgGroupId": "g11e",
+                    "svgGroupId": "awg-lb-m217_sk1e-to-m217_sk1d",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1d"
                     }
                 },
                 {
-                    "svgGroupId": "g11g",
+                    "svgGroupId": "awg-lb-m217_sk1g-to-m217_sk1_1",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g12g",
+                    "svgGroupId": "awg-lb-m217_sk1g-to-m217_sk1_2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1_2"
@@ -2018,7 +2018,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m217_sk1_1-001",
                                 "measure": "11",
                                 "system": "8c",
                                 "position": "",
@@ -2030,14 +2030,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g11",
+                    "svgGroupId": "awg-lb-m217_sk1_1-to-m217_sk1_2",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1_2"
                     }
                 },
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "awg-lb-m217_sk1_1-to-m217_sk1g",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1g"
@@ -2058,14 +2058,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "awg-tkk-m217_sk1_2-001",
                                 "measure": "27B 3/4",
                                 "system": "7b, 9b",
                                 "position": "3/4",
                                 "comment": "sic: disparater Untersatz zwischen Ges. und Klav."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "awg-tkk-m217_sk1_2-002",
                                 "measure": "28",
                                 "system": "9b",
                                 "position": "2. Note",
@@ -2077,14 +2077,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g11",
+                    "svgGroupId": "awg-lb-m217_sk1_2-to-m217_sk1_1",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "awg-lb-m217_sk1_2-to-m217_sk1g",
                     "linkTo": {
                         "complexId": "op12",
                         "sheetId": "M217_Sk1g"
