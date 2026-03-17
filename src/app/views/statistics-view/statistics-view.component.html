@@ -1,0 +1,300 @@
+<div class="awg-statistics-view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <!-- Page Header -->
+                <div class="awg-statistics-view-header mb-4">
+                    <h1 class="h2">Edition Statistics</h1>
+                    <p class="lead text-muted">
+                        Overview of available edition complexes in the Anton Webern Gesamtausgabe
+                    </p>
+                </div>
+
+                <!-- Overall Statistics Cards -->
+                @if (statistics && statisticsCards.length) {
+                    <div class="row mb-4">
+                        @for (card of statisticsCards; track card.title) {
+                            <div class="col-md-3 mb-3">
+                                <awg-statistics-card
+                                    [title]="card.title"
+                                    [value]="card.value"
+                                    [icon]="card.icon"
+                                    [bgClass]="card.bgClass">
+                                </awg-statistics-card>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <!-- Overall Progress -->
+                @if (statistics) {
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title mb-0">Overall Progress</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Edition Completion</span>
+                                <span>{{ statistics.availabilityRate }}%</span>
+                            </div>
+                            <awg-progress-bar
+                                [percentage]="statistics.availabilityRate"
+                                [height]="'20px'"
+                                [showLabel]="false">
+                            </awg-progress-bar>
+                            <div class="text-center fw-bold">{{ statistics.availabilityRate }}%</div>
+                            <small class="text-muted">
+                                {{ statistics.availableComplexes }} of {{ statistics.totalComplexes }} currently enabled
+                                edition complexes available
+                            </small>
+                        </div>
+                    </div>
+                }
+                <!-- Complex Types Breakdown -->
+                @if (statistics) {
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">Complex Types Distribution</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Opus Complexes</span>
+                                            <span>{{ statistics.complexTypeBreakdown.opus }}</span>
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.complexTypeBreakdown.opus,
+                                                    statistics.totalComplexes
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false"
+                                            [customClasses]="'bg-primary'"
+                                            [useCustomClassesOnly]="true">
+                                        </awg-progress-bar>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>M-number Complexes</span>
+                                            <span>{{ statistics.complexTypeBreakdown.mnr }}</span>
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.complexTypeBreakdown.mnr,
+                                                    statistics.totalComplexes
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false"
+                                            [customClasses]="'bg-secondary'"
+                                            [useCustomClassesOnly]="true">
+                                        </awg-progress-bar>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>M*-number Complexes</span>
+                                            <span>{{ statistics.complexTypeBreakdown.mnrX }}</span>
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.complexTypeBreakdown.mnrX,
+                                                    statistics.totalComplexes
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false"
+                                            [customClasses]="'bg-info'"
+                                            [useCustomClassesOnly]="true">
+                                        </awg-progress-bar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">Available Complex Types</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Available Opus</span>
+                                            <span
+                                                >{{ statistics.availableComplexTypeBreakdown.opus }} /
+                                                {{ statistics.complexTypeBreakdown.opus }}</span
+                                            >
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.availableComplexTypeBreakdown.opus,
+                                                    statistics.complexTypeBreakdown.opus
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false">
+                                        </awg-progress-bar>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Available M-numbers</span>
+                                            <span
+                                                >{{ statistics.availableComplexTypeBreakdown.mnr }} /
+                                                {{ statistics.complexTypeBreakdown.mnr }}</span
+                                            >
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.availableComplexTypeBreakdown.mnr,
+                                                    statistics.complexTypeBreakdown.mnr
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false">
+                                        </awg-progress-bar>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Available M*-numbers</span>
+                                            <span
+                                                >{{ statistics.availableComplexTypeBreakdown.mnrX }} /
+                                                {{ statistics.complexTypeBreakdown.mnrX }}</span
+                                            >
+                                        </div>
+                                        <awg-progress-bar
+                                            [percentage]="
+                                                getProgressBarWidth(
+                                                    statistics.availableComplexTypeBreakdown.mnrX,
+                                                    statistics.complexTypeBreakdown.mnrX
+                                                )
+                                            "
+                                            [height]="'15px'"
+                                            [showLabel]="false">
+                                        </awg-progress-bar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- Series Breakdown -->
+                @if (statistics?.seriesBreakdown?.length) {
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title mb-0">Series & Sections Breakdown</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 25%">Series / Section</th>
+                                            <th class="text-center" style="width: 10%">Total Complexes</th>
+                                            <th class="text-center">Distribution</th>
+                                            <th class="text-center">Available</th>
+                                            <th class="text-center" style="width: 50%">Progress</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (series of statistics.seriesBreakdown; track series.series) {
+                                            <!-- Series Row -->
+                                            <tr class="table-primary">
+                                                <td>
+                                                    <strong>Series {{ series.series }}</strong>
+                                                    <small class="text-muted ms-2"
+                                                        >({{ series.sections }} available
+                                                        {{ series.sections === 1 ? 'section' : 'sections' }})</small
+                                                    >
+                                                </td>
+                                                <td class="text-center">
+                                                    <strong>{{ series.complexes }}</strong>
+                                                </td>
+                                                <td class="text-center">
+                                                    @if (series.complexes > 0) {
+                                                        <awg-statistics-breakdown-badge
+                                                            [breakdown]="series.complexTypeBreakdown">
+                                                        </awg-statistics-breakdown-badge>
+                                                    }
+                                                </td>
+                                                <td class="text-center">
+                                                    <strong>{{ series.available }}</strong>
+                                                </td>
+                                                <td>
+                                                    <awg-progress-bar
+                                                        [percentage]="series.availabilityRate"
+                                                        [height]="'20px'"
+                                                        [minWidth]="'120px'"
+                                                        [boldLabel]="true">
+                                                    </awg-progress-bar>
+                                                </td>
+                                            </tr>
+                                            <!-- Section Rows -->
+                                            @for (section of series.sectionBreakdown; track section.section) {
+                                                <tr class="table-light">
+                                                    <td class="ps-4">
+                                                        <span class="text-muted">└</span> Section
+                                                        {{ section.section }}
+                                                        @if (section.disabled) {
+                                                            <small class="badge bg-secondary ms-2">Disabled</small>
+                                                        }
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ section.complexes }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if (section.complexes > 0) {
+                                                            <awg-statistics-breakdown-badge
+                                                                [breakdown]="section.complexTypeBreakdown">
+                                                            </awg-statistics-breakdown-badge>
+                                                        }
+                                                    </td>
+                                                    <td class="text-center">{{ section.available }}</td>
+                                                    <td>
+                                                        @if (section.complexes > 0) {
+                                                            <awg-progress-bar
+                                                                [percentage]="section.availabilityRate"
+                                                                [height]="'16px'"
+                                                                [minWidth]="'120px'">
+                                                            </awg-progress-bar>
+                                                        } @else {
+                                                            <div class="d-flex align-items-center">
+                                                                <div
+                                                                    class="progress flex-grow-1 me-2"
+                                                                    style="height: 16px; min-width: 120px">
+                                                                    <div
+                                                                        class="progress-bar bg-light"
+                                                                        role="progressbar"
+                                                                        style="width: 100%"
+                                                                        aria-valuenow="0"
+                                                                        aria-valuemin="0"
+                                                                        aria-valuemax="100"></div>
+                                                                </div>
+                                                                <small class="text-nowrap text-muted">0%</small>
+                                                            </div>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

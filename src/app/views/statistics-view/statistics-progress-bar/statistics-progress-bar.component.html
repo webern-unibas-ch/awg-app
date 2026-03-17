@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center">
+    <div class="progress flex-grow-1" [class.me-2]="showLabel" [style.height]="height" [style.min-width]="minWidth">
+        <div
+            class="progress-bar {{ useCustomClassesOnly ? '' : getProgressBarClass(percentage) }} {{ customClasses }}"
+            role="progressbar"
+            [style.width.%]="percentage"
+            [attr.aria-valuenow]="percentage"
+            aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+    @if (showLabel) {
+        <small class="text-nowrap" [class.fw-bold]="boldLabel">{{ percentage }}%</small>
+    }
+</div>
