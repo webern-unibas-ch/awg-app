@@ -33,7 +33,8 @@ const APP_ROUTES: Routes = [
     },
     {
         path: 'statistics',
-        loadChildren: () => import('@awg-views/statistics-view/statistics-view.module').then(m => m.StatisticsViewModule),
+        loadChildren: () =>
+            import('@awg-views/statistics-view/statistics-view.module').then(m => m.StatisticsViewModule),
     },
     {
         path: 'structure',
