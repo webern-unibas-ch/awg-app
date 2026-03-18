@@ -5,7 +5,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { EditionStatisticsComplexTypeBreakdown } from '@awg-views/statistics-view/models';
+import { StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
 
 import { StatisticsBreakdownBadgeComponent } from './statistics-breakdown-badge.component';
 
@@ -14,9 +14,9 @@ describe('StatisticsBreakdownBadgeComponent', () => {
     let fixture: ComponentFixture<StatisticsBreakdownBadgeComponent>;
     let compDe: DebugElement;
 
-    let expectedBreakdown: EditionStatisticsComplexTypeBreakdown;
+    let expectedBreakdown: StatisticsComplexBreakdown;
     let expectedContainerClasses: string;
-    let expectedHideEmpty: boolean;
+    let expectedhideEmptyBadges: boolean;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -28,9 +28,9 @@ describe('StatisticsBreakdownBadgeComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedBreakdown = { opus: 5, mnr: 10, mnrX: 3 };
+        expectedBreakdown = new StatisticsComplexBreakdown({ opus: 5, mnr: 10, mnrX: 3 });
         expectedContainerClasses = 'custom-container-classes';
-        expectedHideEmpty = true;
+        expectedhideEmptyBadges = true;
     });
 
     afterAll(() => {
@@ -43,15 +43,17 @@ describe('StatisticsBreakdownBadgeComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have default `breakdown`', () => {
-            expectToEqual(component.breakdown, { opus: 0, mnr: 0, mnrX: 0 });
+            expectToBe(component.breakdown.opus, 0);
+            expectToBe(component.breakdown.mnr, 0);
+            expectToBe(component.breakdown.mnrX, 0);
         });
 
         it('... should have default `containerClasses`', () => {
             expectToEqual(component.containerClasses, 'small text-muted');
         });
 
-        it('... should have default `hideEmpty`', () => {
-            expectToBe(component.hideEmpty, true);
+        it('... should have default `hideEmptyBadges`', () => {
+            expectToBe(component.hideEmptyBadges, true);
         });
 
         describe('VIEW', () => {
@@ -84,7 +86,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
             // Simulate the parent component setting the input properties
             component.breakdown = expectedBreakdown;
             component.containerClasses = expectedContainerClasses;
-            component.hideEmpty = expectedHideEmpty;
+            component.hideEmptyBadges = expectedhideEmptyBadges;
 
             fixture.detectChanges();
         });
@@ -97,8 +99,8 @@ describe('StatisticsBreakdownBadgeComponent', () => {
             expectToEqual(component.containerClasses, expectedContainerClasses);
         });
 
-        it('... should have updated hideEmpty input properties', () => {
-            expectToBe(component.hideEmpty, expectedHideEmpty);
+        it('... should have updated hideEmptyBadges input properties', () => {
+            expectToBe(component.hideEmptyBadges, expectedhideEmptyBadges);
         });
 
         describe('VIEW', () => {
@@ -119,14 +121,14 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 expectToContain(containerEl.className, expectedContainerClasses);
             });
 
-            it('... should contain 3 badge elements if all breakdown values are > 0 and hideEmpty is false', () => {
-                component.hideEmpty = false;
+            it('... should contain 3 badge elements if all breakdown values are > 0 and hideEmptyBadges is false', () => {
+                component.hideEmptyBadges = false;
                 detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'span.awg-statistics-breakdown-badge', 3, 3);
             });
 
-            it('... should contain 3 badge elements if all breakdown values are > 0 and hideEmpty is true', () => {
+            it('... should contain 3 badge elements if all breakdown values are > 0 and hideEmptyBadges is true', () => {
                 getAndExpectDebugElementByCss(compDe, 'span.awg-statistics-breakdown-badge', 3, 3);
             });
 
@@ -148,23 +150,41 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 expectToContain(badgeEls[2].className, 'bg-info');
             });
 
-            it('... should systematically show only non-empty badges when hideEmpty is true', () => {
+            it('... should systematically show only non-empty badges when hideEmptyBadges is true', () => {
                 const scenarios: {
-                    breakdown: EditionStatisticsComplexTypeBreakdown;
+                    breakdown: StatisticsComplexBreakdown;
                     expectedTexts: string[];
                 }[] = [
-                    { breakdown: { opus: 0, mnr: 0, mnrX: 0 }, expectedTexts: [] }, // All-zero case
-                    { breakdown: { opus: 6, mnr: 0, mnrX: 0 }, expectedTexts: ['Op: 6'] },
-                    { breakdown: { opus: 0, mnr: 5, mnrX: 0 }, expectedTexts: ['M: 5'] },
-                    { breakdown: { opus: 0, mnr: 0, mnrX: 3 }, expectedTexts: ['M*: 3'] },
-                    { breakdown: { opus: 6, mnr: 5, mnrX: 0 }, expectedTexts: ['Op: 6', 'M: 5'] },
-                    { breakdown: { opus: 6, mnr: 0, mnrX: 3 }, expectedTexts: ['Op: 6', 'M*: 3'] },
-                    { breakdown: { opus: 0, mnr: 5, mnrX: 3 }, expectedTexts: ['M: 5', 'M*: 3'] },
+                    { breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }), expectedTexts: [] }, // All-zero case
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 0, mnrX: 0 }),
+                        expectedTexts: ['Op: 6'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 5, mnrX: 0 }),
+                        expectedTexts: ['M: 5'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 3 }),
+                        expectedTexts: ['M*: 3'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 5, mnrX: 0 }),
+                        expectedTexts: ['Op: 6', 'M: 5'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 0, mnrX: 3 }),
+                        expectedTexts: ['Op: 6', 'M*: 3'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 5, mnrX: 3 }),
+                        expectedTexts: ['M: 5', 'M*: 3'],
+                    },
                 ];
 
                 scenarios.forEach(scenario => {
                     component.breakdown = scenario.breakdown;
-                    component.hideEmpty = expectedHideEmpty;
+                    component.hideEmptyBadges = expectedhideEmptyBadges;
                     detectChangesOnPush(fixture);
 
                     const badgeDes = getAndExpectDebugElementByCss(
@@ -181,23 +201,44 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 });
             });
 
-            it('... should systematically show non-empty badges when hideEmpty is false', () => {
+            it('... should systematically show non-empty badges when hideEmptyBadges is false', () => {
                 const scenarios: {
-                    breakdown: EditionStatisticsComplexTypeBreakdown;
+                    breakdown: StatisticsComplexBreakdown;
                     expectedTexts: string[];
                 }[] = [
-                    { breakdown: { opus: 0, mnr: 0, mnrX: 0 }, expectedTexts: ['Op: 0', 'M: 0', 'M*: 0'] }, // All-zero case
-                    { breakdown: { opus: 6, mnr: 0, mnrX: 0 }, expectedTexts: ['Op: 6', 'M: 0', 'M*: 0'] },
-                    { breakdown: { opus: 0, mnr: 5, mnrX: 0 }, expectedTexts: ['Op: 0', 'M: 5', 'M*: 0'] },
-                    { breakdown: { opus: 0, mnr: 0, mnrX: 3 }, expectedTexts: ['Op: 0', 'M: 0', 'M*: 3'] },
-                    { breakdown: { opus: 6, mnr: 5, mnrX: 0 }, expectedTexts: ['Op: 6', 'M: 5', 'M*: 0'] },
-                    { breakdown: { opus: 6, mnr: 0, mnrX: 3 }, expectedTexts: ['Op: 6', 'M: 0', 'M*: 3'] },
-                    { breakdown: { opus: 0, mnr: 5, mnrX: 3 }, expectedTexts: ['Op: 0', 'M: 5', 'M*: 3'] },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }),
+                        expectedTexts: ['Op: 0', 'M: 0', 'M*: 0'],
+                    }, // All-zero case
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 0, mnrX: 0 }),
+                        expectedTexts: ['Op: 6', 'M: 0', 'M*: 0'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 5, mnrX: 0 }),
+                        expectedTexts: ['Op: 0', 'M: 5', 'M*: 0'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 3 }),
+                        expectedTexts: ['Op: 0', 'M: 0', 'M*: 3'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 5, mnrX: 0 }),
+                        expectedTexts: ['Op: 6', 'M: 5', 'M*: 0'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 6, mnr: 0, mnrX: 3 }),
+                        expectedTexts: ['Op: 6', 'M: 0', 'M*: 3'],
+                    },
+                    {
+                        breakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 5, mnrX: 3 }),
+                        expectedTexts: ['Op: 0', 'M: 5', 'M*: 3'],
+                    },
                 ];
 
                 scenarios.forEach(scenario => {
                     component.breakdown = scenario.breakdown;
-                    component.hideEmpty = false;
+                    component.hideEmptyBadges = false;
                     detectChangesOnPush(fixture);
 
                     const badgeDes = getAndExpectDebugElementByCss(

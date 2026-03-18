@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { EditionStatisticsComplexTypeBreakdown } from '@awg-views/statistics-view/models';
+import { StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
 
 /**
  * The StatisticsBreakdownBadge component.
@@ -16,17 +16,23 @@ import { EditionStatisticsComplexTypeBreakdown } from '@awg-views/statistics-vie
 })
 export class StatisticsBreakdownBadgeComponent {
     /**
-     * The complex type breakdown data to display as badges.
+     * Input variable: breakdown.
+     *
+     * It keeps the breakdown data for the complex types to be displayed in the badges.
      */
-    @Input() breakdown: EditionStatisticsComplexTypeBreakdown = { opus: 0, mnr: 0, mnrX: 0 };
+    @Input() breakdown: StatisticsComplexBreakdown = new StatisticsComplexBreakdown();
 
     /**
-     * Additional CSS classes to apply to the container.
+     * Input variable: containerClasses.
+     *
+     * It keeps additional CSS classes to apply to the container.
      */
-    @Input() containerClasses: string = 'small text-muted';
+    @Input() containerClasses = 'small text-muted';
 
     /**
-     * Whether to show badges only when there are complexes (hide empty badges).
+     * Input variable: hideEmptyBadges.
+     *
+     * It keeps a flag whether to hide badges when they are empty.
      */
-    @Input() hideEmpty: boolean = true;
+    @Input() hideEmptyBadges = true;
 }

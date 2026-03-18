@@ -1,98 +1,25 @@
 /**
- * The EditionStatisticsSectionBreakdown interface.
+ * The StatisticsComplexType type.
  *
- * It is used to structure the breakdown statistics of a section within a series.
+ * It defines the valid complex types for statistics breakdowns.
  */
-export interface EditionStatisticsSectionBreakdown {
-    /**
-     * The section identifier.
-     */
-    section: string;
+export type StatisticsComplexType = 'opus' | 'mnr' | 'mnrX';
 
-    /**
-     * Boolean flag if the section is disabled.
-     */
-    disabled: boolean;
-
-    /**
-     * The total number of complexes in the section.
-     */
-    complexes: number;
-
-    /**
-     * The number of available complexes in the section.
-     */
-    available: number;
-
-    /**
-     * The availability rate for the section.
-     */
-    availabilityRate: number;
-
-    /**
-     * The breakdown by complex type in the section.
-     */
-    complexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
-
-    /**
-     * The breakdown of available complex types in the section.
-     */
-    availableComplexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
+/**
+ * The StatisticsComplexCounter type.
+ *
+ * It defines the structure for a counter function to register complexes in statistics models.
+ */
+export interface StatisticsComplexCounter {
+    registerComplex: (complexType: StatisticsComplexType, isAvailable: boolean) => void;
 }
 
 /**
- * The EditionStatisticsSeriesBreakdown interface.
+ * The StatisticsComplexBreakdown class.
  *
- * It is used to structure the breakdown statistics of an edition series.
+ * It provides default zero values for complex breakdown counters.
  */
-export interface EditionStatisticsSeriesBreakdown {
-    /**
-     * The series identifier.
-     */
-    series: string;
-
-    /**
-     * The number of sections in the series.
-     */
-    sections: number;
-
-    /**
-     * The total number of complexes in the series.
-     */
-    complexes: number;
-
-    /**
-     * The number of available complexes in the series.
-     */
-    available: number;
-
-    /**
-     * The availability rate for the series.
-     */
-    availabilityRate: number;
-
-    /**
-     * The breakdown by sections within the series.
-     */
-    sectionBreakdown: EditionStatisticsSectionBreakdown[];
-
-    /**
-     * The breakdown by complex type in the series.
-     */
-    complexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
-
-    /**
-     * The breakdown of available complex types in the series.
-     */
-    availableComplexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
-}
-
-/**
- * The EditionStatisticsComplexTypeBreakdown interface.
- *
- * It is used to structure the breakdown statistics by complex type.
- */
-export interface EditionStatisticsComplexTypeBreakdown {
+export class StatisticsComplexBreakdown {
     /**
      * The number of opus complexes.
      */
@@ -107,56 +34,176 @@ export interface EditionStatisticsComplexTypeBreakdown {
      * The number of mnr_x complexes (starting with 'mx').
      */
     mnrX: number;
+
+    /**
+     * Constructor of the StatisticsComplexBreakdown class.
+     *
+     * It initializes the complex breakdown with optional values, defaulting to zero.
+     *
+     * @param values Optional initial values for the breakdown.
+     */
+    constructor(values: Partial<StatisticsComplexBreakdown> = {}) {
+        this.opus = values.opus ?? 0;
+        this.mnr = values.mnr ?? 0;
+        this.mnrX = values.mnrX ?? 0;
+    }
 }
 
 /**
- * The EditionStatistics interface.
+ * The StatisticsBreakdownBase class.
  *
- * It is used to structure the complete statistics of the edition.
+ * It provides shared complex type breakdown counters for statistics models.
  */
-export interface EditionStatistics {
-    /**
-     * The total number of series.
-     */
-    totalSeries: number;
-
-    /**
-     * The number of active series (series with at least one active section or complex).
-     */
-    activeSeries: number;
-
-    /**
-     * The total number of sections.
-     */
-    totalSections: number;
-
+abstract class StatisticsBreakdownBase {
     /**
      * The total number of complexes.
      */
-    totalComplexes: number;
+    totalComplexes = 0;
 
     /**
      * The number of available complexes.
      */
-    availableComplexes: number;
+    availableComplexes = 0;
 
     /**
-     * The overall availability rate.
+     * The progress rate.
      */
-    availabilityRate: number;
+    progressRate = 0;
+
+    /**
+     * The breakdown by complex category.
+     */
+    complexBreakdown: StatisticsComplexBreakdown;
+
+    /**
+     * The breakdown of available complexes by category.
+     */
+    availableComplexBreakdown: StatisticsComplexBreakdown;
+
+    /**
+     * Constructor of the StatisticsBreakdownBase class.
+     *
+     * It initializes the shared complex breakdown counters.
+     */
+    protected constructor() {
+        this.complexBreakdown = new StatisticsComplexBreakdown();
+        this.availableComplexBreakdown = new StatisticsComplexBreakdown();
+    }
+
+    /**
+     * Registers one complex in statistics.
+     *
+     * @param complexType The complex type.
+     * @param isAvailable Flag indicating whether the complex is available.
+     */
+    registerComplex(complexType: StatisticsComplexType, isAvailable: boolean): void {
+        this.totalComplexes++;
+        this.complexBreakdown[complexType]++;
+
+        if (isAvailable) {
+            this.availableComplexes++;
+            this.availableComplexBreakdown[complexType]++;
+        }
+    }
+}
+
+/**
+ * The StatisticsSectionBreakdown class.
+ *
+ * It provides default zero values for section breakdown counters.
+ */
+export class StatisticsSectionBreakdown extends StatisticsBreakdownBase {
+    /**
+     * The section identifier.
+     */
+    section: string;
+
+    /**
+     * Boolean flag if the section is disabled.
+     */
+    disabled: boolean;
+
+    /**
+     * Constructor of the StatisticsSectionBreakdown class.
+     *
+     * It initializes the section breakdown with the given section identifier and disabled flag.
+     *
+     * @param section The section identifier.
+     * @param disabled Boolean flag if the section is disabled.
+     */
+    constructor(section: string, disabled: boolean) {
+        super();
+        this.section = section;
+        this.disabled = disabled;
+    }
+}
+
+/**
+ * The StatisticsSeriesBreakdown class.
+ *
+ * It provides default zero values for series breakdown counters.
+ */
+export class StatisticsSeriesBreakdown extends StatisticsBreakdownBase {
+    /**
+     * The series identifier.
+     */
+    series: string;
+
+    /**
+     * The number of sections in the series.
+     */
+    sections = 0;
+
+    /**
+     * The breakdown by sections within the series.
+     */
+    sectionBreakdown: StatisticsSectionBreakdown[] = [];
+
+    /**
+     * Constructor of the StatisticsSeriesBreakdown class.
+     *
+     * It initializes the series breakdown with the given series identifier.
+     *
+     * @param series The series identifier.
+     */
+    constructor(series: string) {
+        super();
+        this.series = series;
+    }
+}
+
+/**
+ * The EditionStatistics class.
+ *
+ * It provides default zero values for the complete edition statistics.
+ */
+export class EditionStatistics extends StatisticsBreakdownBase {
+    /**
+     * The total number of series.
+     */
+    totalSeries = 0;
+
+    /**
+     * The number of active series (series with at least one active section or complex).
+     */
+    activeSeries = 0;
+
+    /**
+     * The total number of sections.
+     */
+    totalSections = 0;
 
     /**
      * The breakdown by series.
      */
-    seriesBreakdown: EditionStatisticsSeriesBreakdown[];
+    seriesBreakdown: StatisticsSeriesBreakdown[] = [];
 
     /**
-     * The breakdown by complex type.
+     * Constructor of the EditionStatistics class.
+     *
+     * It initializes the edition statistics with default zero values and empty breakdowns.
      */
-    complexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
-
-    /**
-     * The breakdown of available complex types.
-     */
-    availableComplexTypeBreakdown: EditionStatisticsComplexTypeBreakdown;
+    constructor() {
+        super();
+    }
 }

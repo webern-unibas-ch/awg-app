@@ -34,41 +34,41 @@ describe('StatisticsViewComponent', () => {
             totalSections: 5,
             totalComplexes: 100,
             availableComplexes: 75,
-            availabilityRate: 75,
+            progressRate: 75,
             seriesBreakdown: [
                 {
                     series: '1',
                     sections: 2,
-                    complexes: 50,
-                    available: 40,
-                    availabilityRate: 40, // (0 + 80) / 2 = 40%
+                    totalComplexes: 50,
+                    availableComplexes: 40,
+                    progressRate: 40, // (0 + 80) / 2 = 40%
                     sectionBreakdown: [
                         {
                             section: '1',
                             disabled: true,
-                            complexes: 0,
-                            available: 0,
-                            availabilityRate: 0,
-                            complexTypeBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                            availableComplexTypeBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                            totalComplexes: 0,
+                            availableComplexes: 0,
+                            progressRate: 0,
+                            complexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                            availableComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
                         },
                         {
                             section: '5',
                             disabled: false,
-                            complexes: 50,
-                            available: 40,
-                            availabilityRate: 80,
-                            complexTypeBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                            availableComplexTypeBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                            totalComplexes: 50,
+                            availableComplexes: 40,
+                            progressRate: 80,
+                            complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
+                            availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                         },
                     ],
-                    complexTypeBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                    availableComplexTypeBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                    complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
+                    availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                 },
             ],
-            complexTypeBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
-            availableComplexTypeBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-        });
+            complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
+            availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
+        } as any);
 
         fixture.detectChanges();
     });
@@ -113,41 +113,41 @@ describe('StatisticsViewComponent', () => {
                 totalSections: 5,
                 totalComplexes: 100,
                 availableComplexes: 75,
-                availabilityRate: 75,
+                progressRate: 75,
                 seriesBreakdown: [
                     {
                         series: '1',
                         sections: 2,
-                        complexes: 50,
-                        available: 40,
-                        availabilityRate: 40, // (0 + 80) / 2 = 40%
+                        totalComplexes: 50,
+                        availableComplexes: 40,
+                        progressRate: 40, // (0 + 80) / 2 = 40%
                         sectionBreakdown: [
                             {
                                 section: '1',
                                 disabled: true,
-                                complexes: 0,
-                                available: 0,
-                                availabilityRate: 0,
-                                complexTypeBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                                availableComplexTypeBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                                totalComplexes: 0,
+                                availableComplexes: 0,
+                                progressRate: 0,
+                                complexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                                availableComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
                             },
                             {
                                 section: '5',
                                 disabled: false,
-                                complexes: 50,
-                                available: 40,
-                                availabilityRate: 80,
-                                complexTypeBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                                availableComplexTypeBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                                totalComplexes: 50,
+                                availableComplexes: 40,
+                                progressRate: 80,
+                                complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
+                                availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                             },
                         ],
-                        complexTypeBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                        availableComplexTypeBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                        complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
+                        availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                     },
                 ],
-                complexTypeBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
-                availableComplexTypeBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-            };
+                complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
+                availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
+            } as any;
         });
 
         it('... should populate statisticsCards array', () => {

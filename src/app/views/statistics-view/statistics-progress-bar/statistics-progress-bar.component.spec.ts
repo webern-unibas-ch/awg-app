@@ -13,6 +13,7 @@ describe('StatisticsProgressBarComponent', () => {
 
         fixture = TestBed.createComponent(StatisticsProgressBarComponent);
         component = fixture.componentInstance;
+
         fixture.detectChanges();
     });
 
