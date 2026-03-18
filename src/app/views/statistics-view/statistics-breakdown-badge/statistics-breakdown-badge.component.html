@@ -1,11 +1,11 @@
-<div class="awg-statistics-breakdown-badge" [class]="containerClasses">
+<div class="awg-statistics-breakdown-badge-container" [class]="containerClasses">
     @if (!hideEmpty || breakdown.opus > 0) {
-        <span class="badge bg-primary me-1">Op: {{ breakdown.opus }}</span>
+        <span class="awg-statistics-breakdown-badge badge bg-primary me-1">Op: {{ breakdown.opus }}</span>
     }
     @if (!hideEmpty || breakdown.mnr > 0) {
-        <span class="badge bg-secondary me-1">M: {{ breakdown.mnr }}</span>
+        <span class="awg-statistics-breakdown-badge badge bg-secondary me-1">M: {{ breakdown.mnr }}</span>
     }
     @if (!hideEmpty || breakdown.mnrX > 0) {
-        <span class="badge bg-info me-1">M*: {{ breakdown.mnrX }}</span>
+        <span class="awg-statistics-breakdown-badge badge bg-info me-1">M*: {{ breakdown.mnrX }}</span>
     }
 </div>
