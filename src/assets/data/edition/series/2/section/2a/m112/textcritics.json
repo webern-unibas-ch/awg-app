@@ -1282,7 +1282,7 @@
                                 "measure": "8",
                                 "system": "11",
                                 "position": "1/4",
-                                "comment": "Unterstimmenschicht: c<sup>1</sup> überschreibt a."
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt a."
                             }
                         ]
                     }
@@ -1535,7 +1535,7 @@
                                 "svgGroupId": "awg-tkk-m112_sk2-030",
                                 "measure": "71",
                                 "system": "20",
-                                "position": "",
+                                "position": "3/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt e<sup>2</sup>."
                             },
                             {
@@ -1585,7 +1585,7 @@
                                 "measure": "74",
                                 "system": "2",
                                 "position": "5/8",
-                                "comment": "Oberstimmenschicht: g<sup>1</sup> überschreibt d<sup>1</sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu möglichem des."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_sk2-038",
@@ -2196,10 +2196,10 @@
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_sk5-011",
-                                "measure": "",
-                                "system": "",
-                                "position": "",
-                                "comment": ""
+                                "measure": "70",
+                                "system": "10",
+                                "position": "Taktende",
+                                "comment": "Taktstrich gestrichen."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_sk5-012",
