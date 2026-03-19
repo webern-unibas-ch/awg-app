@@ -1098,7 +1098,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedNodeRequest.emit(expectedNode);
 
                 // Check ToastMessage
-                const expectedMessage = `GraphVisualizerComponent# graphClick on node ${expectedNode.id}\n\n Label: ${expectedNode.label}`;
+                const expectedMessage = `GraphVisualizerComponent# graphClick on node ${expectedNode.id}\n\nLabel: ${expectedNode.label}`;
                 const toastMessage = new ToastMessage(expectedNode.id, expectedMessage, 5000);
                 const expectedToast = new Toast(toastMessage.message, {
                     header: toastMessage.name,
@@ -1110,6 +1110,162 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'info']);
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
                 expectSpyCall(consoleSpy, 1, ['Test', ':', expectedMessage]);
+            });
+
+            it('... should include source type and location in the ToastMessage if source details are available', () => {
+                const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                const resultsCmp = resultsDes[0].injector.get(
+                    ConstructResultsStubComponent
+                ) as ConstructResultsStubComponent;
+
+                const expectedNode = new D3SimulationNode('awg:M312_Sk1', D3SimulationNodeType.node);
+                expectedNode.label = 'M 312 Sk1 [A]';
+                expectedNode.sourceDetails = [
+                    {
+                        id: 'awg:source_A',
+                        label: 'A',
+                        type: 'Skizzen (in: Skizzenbuch 3).',
+                        location: 'CH-Bps, Sammlung Anton Webern.',
+                    },
+                ];
+
+                resultsCmp.clickedNodeRequest.emit(expectedNode);
+
+                const expectedMessage =
+                    'GraphVisualizerComponent# graphClick on node awg:M312_Sk1\n\n' +
+                    'Label: M 312 Sk1 [A]\n\n' +
+                    'Source: A\n' +
+                    'Type: Skizzen (in: Skizzenbuch 3).\n' +
+                    'Location: CH-Bps, Sammlung Anton Webern.';
+                const toastMessage = new ToastMessage(expectedNode.id, expectedMessage, 5000);
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-info text-light',
+                    delay: toastMessage.duration,
+                });
+
+                expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
+                expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'info']);
+                expectSpyCall(toastServiceAddSpy, 1, expectedToast);
+                expectSpyCall(consoleSpy, 1, ['awg:M312_Sk1', ':', expectedMessage]);
+            });
+
+            it('... should persist selected node details in a side panel', () => {
+                const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                const resultsCmp = resultsDes[0].injector.get(
+                    ConstructResultsStubComponent
+                ) as ConstructResultsStubComponent;
+
+                const expectedNode = new D3SimulationNode('awg:M312_Sk1', D3SimulationNodeType.node);
+                expectedNode.label = 'M 312 Sk1 [A]';
+                expectedNode.sourceDetails = [
+                    {
+                        id: 'awg:source_A',
+                        label: 'A',
+                        type: 'Skizzen (in: Skizzenbuch 3).',
+                        location: 'CH-Bps, Sammlung Anton Webern.',
+                    },
+                ];
+
+                resultsCmp.clickedNodeRequest.emit(expectedNode);
+                detectChangesOnPush(fixture);
+
+                const detailsPanel = fixture.nativeElement.querySelector('.awg-node-details') as HTMLElement;
+
+                expect(component.nodeDetailsPanels.length).toBe(1);
+                expect(component.nodeDetailsPanels[0].node.id).toBe('awg:M312_Sk1');
+                expect(detailsPanel).toBeTruthy();
+                expect(detailsPanel.textContent).toContain('Ausgewaehlter Knoten');
+                expect(detailsPanel.textContent).toContain('M 312 Sk1 [A]');
+                expect(detailsPanel.textContent).toContain('A');
+                expect(detailsPanel.textContent).toContain('Typ: Skizzen (in: Skizzenbuch 3).');
+                expect(detailsPanel.textContent).toContain('Standort: CH-Bps, Sammlung Anton Webern.');
+            });
+
+            it('... should show a hint before a node is selected', () => {
+                const detailsHint = fixture.nativeElement.querySelector('.awg-node-details__hint') as HTMLElement;
+
+                expect(detailsHint).toBeTruthy();
+                expect(detailsHint.textContent).toContain(
+                    'Klicken Sie im Graphen auf einen Knoten, um das Detailpanel zu oeffnen.'
+                );
+            });
+
+            it('... should pin and close the selected node details panel', () => {
+                const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                const resultsCmp = resultsDes[0].injector.get(
+                    ConstructResultsStubComponent
+                ) as ConstructResultsStubComponent;
+
+                const expectedNode = new D3SimulationNode('awg:M312_Sk1', D3SimulationNodeType.node);
+                expectedNode.label = 'M 312 Sk1 [A]';
+                expectedNode.sourceDetails = [
+                    {
+                        id: 'awg:source_A',
+                        label: 'A',
+                        type: 'Skizzen (in: Skizzenbuch 3).',
+                        location: 'CH-Bps, Sammlung Anton Webern.',
+                    },
+                ];
+
+                resultsCmp.clickedNodeRequest.emit(expectedNode);
+                detectChangesOnPush(fixture);
+
+                const pinButton = fixture.nativeElement.querySelector('.awg-node-details__pin-button') as HTMLButtonElement;
+                const closeButton = fixture.nativeElement.querySelector('.awg-node-details__close-button') as HTMLButtonElement;
+
+                expect(pinButton).toBeTruthy();
+                expect(closeButton).toBeTruthy();
+                expect(component.nodeDetailsPanels[0].isPinned).toBeFalse();
+
+                pinButton.click();
+                detectChangesOnPush(fixture);
+
+                const pinnedPanel = fixture.nativeElement.querySelector('.awg-node-details') as HTMLElement;
+                const pinnedButton = fixture.nativeElement.querySelector('.awg-node-details__pin-button') as HTMLButtonElement;
+
+                expect(component.nodeDetailsPanels[0].isPinned).toBeTrue();
+                expect(pinnedPanel.classList.contains('awg-node-details--pinned')).toBeTrue();
+                expect(pinnedButton.textContent).toContain('Lösen');
+
+                closeButton.click();
+                detectChangesOnPush(fixture);
+
+                expect(component.nodeDetailsPanels.length).toBe(0);
+                expect(fixture.nativeElement.querySelector('.awg-node-details')).toBeFalsy();
+            });
+
+            it('... should keep pinned panels and open a new unpinned panel for another node', () => {
+                const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                const resultsCmp = resultsDes[0].injector.get(
+                    ConstructResultsStubComponent
+                ) as ConstructResultsStubComponent;
+
+                const firstNode = new D3SimulationNode('awg:M312_Sk1', D3SimulationNodeType.node);
+                firstNode.label = 'M 312 Sk1 [A]';
+
+                const secondNode = new D3SimulationNode('awg:M313_Sk2', D3SimulationNodeType.node);
+                secondNode.label = 'M 313 Sk2 [B]';
+
+                resultsCmp.clickedNodeRequest.emit(firstNode);
+                detectChangesOnPush(fixture);
+
+                let pinButtons = fixture.nativeElement.querySelectorAll('.awg-node-details__pin-button') as NodeListOf<HTMLButtonElement>;
+                pinButtons[0].click();
+                detectChangesOnPush(fixture);
+
+                resultsCmp.clickedNodeRequest.emit(secondNode);
+                detectChangesOnPush(fixture);
+
+                const allPanels = fixture.nativeElement.querySelectorAll('.awg-node-details') as NodeListOf<HTMLElement>;
+
+                expect(component.nodeDetailsPanels.length).toBe(2);
+                expect(component.nodeDetailsPanels.filter(panel => panel.isPinned).length).toBe(1);
+                expect(component.nodeDetailsPanels.some(panel => panel.node.id === 'awg:M312_Sk1' && panel.isPinned)).toBeTrue();
+                expect(component.nodeDetailsPanels.some(panel => panel.node.id === 'awg:M313_Sk2' && !panel.isPinned)).toBeTrue();
+                expect(allPanels.length).toBe(2);
+                expect(allPanels[0].textContent).toContain('M 312 Sk1 [A]');
+                expect(allPanels[1].textContent).toContain('M 313 Sk2 [B]');
             });
         });
 

@@ -1,6 +1,33 @@
 import * as D3_FORCE from 'd3-force';
 
 /**
+ * The D3SimulationNodeSourceDetails interface.
+ *
+ * It stores source metadata attached to a graph node.
+ */
+export interface D3SimulationNodeSourceDetails {
+    /**
+     * The id of the source node.
+     */
+    id: string;
+
+    /**
+     * The label of the source node.
+     */
+    label: string;
+
+    /**
+     * The type description of the source.
+     */
+    type?: string;
+
+    /**
+     * The physical location of the source.
+     */
+    location?: string;
+}
+
+/**
  * The D3SimulationNodeType enumeration.
  *
  * It stores the possible node types.
@@ -26,6 +53,11 @@ export class D3SimulationNode implements D3_FORCE.SimulationNodeDatum {
      * The label of the simulation node.
      */
     label: string;
+
+    /**
+     * Related source details for the simulation node.
+     */
+    sourceDetails?: D3SimulationNodeSourceDetails[];
 
     /**
      * The weigth of the simulation node.

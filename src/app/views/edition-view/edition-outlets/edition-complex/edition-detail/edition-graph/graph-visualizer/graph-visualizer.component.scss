@@ -1,4 +1,81 @@
 :host {
+    .awg-node-details-list {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .awg-node-details {
+        border: 1px solid var(--bs-border-color, #dee2e6);
+        box-shadow: 0 0.5rem 1.5rem rgba(33, 37, 41, 0.08);
+    }
+
+    .awg-node-details--pinned {
+        border-color: var(--bs-primary, #0d6efd);
+    }
+
+    .awg-node-details__hint {
+        color: var(--bs-secondary-color, #6c757d);
+        font-size: 0.9rem;
+    }
+
+    .awg-node-details__header {
+        align-items: flex-start;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .awg-node-details__actions {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+        gap: 0.5rem;
+    }
+
+    .awg-node-details__pin-button {
+        white-space: nowrap;
+    }
+
+    .awg-node-details__eyebrow {
+        color: var(--bs-secondary-color, #6c757d);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .awg-node-details__meta {
+        dt {
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        dd {
+            overflow-wrap: anywhere;
+        }
+    }
+
+    .awg-node-details__sources {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .awg-node-details__source {
+        background: rgba(248, 249, 250, 0.9);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    @media (max-width: 1199.98px) {
+        .awg-node-details__header {
+            flex-direction: column;
+        }
+
+        .awg-node-details__actions {
+            width: 100%;
+        }
+    }
+
     &::ng-deep {
         .awg-fullscreen {
             .collapse.show {
