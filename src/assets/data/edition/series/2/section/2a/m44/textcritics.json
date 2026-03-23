@@ -68,7 +68,7 @@
                                 "measure": "21",
                                 "system": "Klav. u.",
                                 "position": "1.–3. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>Ces<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>Es–Ces<sub>1</sub>/Es–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>H<sub>2</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>D korrigiert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span>Es<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>Es–Es<sub>1</sub>/Es–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>D<sub>1</sub>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>D mit Blick auf harmonischen Kontext."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Ces<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Es–Ces<sub>1</sub>/Es–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>H<sub>2</sub>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>D korrigiert zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Es<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Es–Es<sub>1</sub>/Es–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>D<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>D mit Blick auf harmonischen Kontext."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m44_tf1-009",

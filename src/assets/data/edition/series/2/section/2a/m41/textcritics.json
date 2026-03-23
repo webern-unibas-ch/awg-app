@@ -190,7 +190,7 @@
                                 "measure": "14",
                                 "system": "7",
                                 "position": "3/4",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m41-sk1-015_4",
@@ -226,7 +226,7 @@
                                 "system": "7",
                                 "position": "2/4",
                                 "comment": "Viertelnote c<sup>2</sup> radiert."
-                            },                                                                                                                                                                                                    
+                            },
                             {
                                 "svgGroupId": "awg-tkk-m41_sk1-016",
                                 "measure": "18",
