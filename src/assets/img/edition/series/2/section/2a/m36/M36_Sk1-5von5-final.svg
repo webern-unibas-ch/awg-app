@@ -142,11 +142,11 @@
     <path id="path1492" d="M602.5 224.849h-1.948v-29.224h1.947" style="fill:none;stroke:#777;stroke-width:.653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     <path id="path1494" d="M630.448 195.625h1.947v29.224h-1.947" style="fill:none;stroke:#777;stroke-width:.653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
   </g>
-  <g id="g913" class="tkk" transform="translate(36.677)">
-    <path id="line22009" d="M628.053 231.993h9.338" style="fill:none;stroke:#777;stroke-width:.90399802;stroke-opacity:1"/>
-    <path id="line22011" d="M628.053 226.527h9.338" style="fill:none;stroke:#777;stroke-width:.90399802;stroke-opacity:1"/>
-    <g id="text22015" aria-label="˙" style="font-size:21.86660004px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004">
-      <path id="path1031" d="M636.417 230.047c-.416-.743-1.443-.853-1.903-.897-1.224-.153-2.23.154-2.886.525-.656.394-1.53 1.137-1.946 2.23-.153.438-.46 1.313-.022 2.056.437.7 1.509.897 2.1.94.983.088 1.88-.065 2.558-.415.677-.328 1.618-1.225 2.033-2.34.153-.415.416-1.487.066-2.099m-.503.372c.415.721-.416 1.443-1.028 1.837-.459.306-.83.524-1.268.765-.437.24-.831.46-1.334.7-.678.35-1.706.7-2.143-.022-.415-.722.416-1.443 1.05-1.837a17 17 0 0 1 1.29-.787c.437-.24.787-.46 1.29-.7.678-.328 1.706-.678 2.143.044" style="font-size:21.86660004px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004"/>
+  <g id="awg-tkk-m36_sk1-010" class="tkk">
+    <path id="line22009" d="M664.73 231.993h9.338" style="fill:none;stroke:#777;stroke-width:.903998;stroke-opacity:1"/>
+    <path id="line22011" d="M664.73 226.527h9.338" style="fill:none;stroke:#777;stroke-width:.903998;stroke-opacity:1"/>
+    <g id="text22015" aria-label="˙" style="font-size:21.8666px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333" transform="translate(36.677)">
+      <path id="path1031" d="M636.417 230.047c-.416-.743-1.443-.853-1.903-.897-1.224-.153-2.23.154-2.886.525-.656.394-1.53 1.137-1.946 2.23-.153.438-.46 1.313-.022 2.056.437.7 1.509.897 2.1.94.983.088 1.88-.065 2.558-.415.677-.328 1.618-1.225 2.033-2.34.153-.415.416-1.487.066-2.099m-.503.372c.415.721-.416 1.443-1.028 1.837-.459.306-.83.524-1.268.765-.437.24-.831.46-1.334.7-.678.35-1.706.7-2.143-.022-.415-.722.416-1.443 1.05-1.837a17 17 0 0 1 1.29-.787c.437-.24.787-.46 1.29-.7.678-.328 1.706-.678 2.143.044" style="font-size:21.8666px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333"/>
     </g>
   </g>
 </svg>
