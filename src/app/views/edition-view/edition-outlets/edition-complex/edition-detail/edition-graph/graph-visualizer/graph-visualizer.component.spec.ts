@@ -1187,7 +1187,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expect(detailsHint).toBeTruthy();
                 expect(detailsHint.textContent).toContain(
-                    'Klicken Sie im Graphen auf einen Knoten, um das Detailpanel zu oeffnen.'
+                    'Klicken Sie im Graphen auf einen Knoten, um das Detailpanel zu öffnen.'
                 );
             });
 
