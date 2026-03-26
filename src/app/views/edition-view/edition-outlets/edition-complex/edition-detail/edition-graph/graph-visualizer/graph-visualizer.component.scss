@@ -1,5 +1,153 @@
 :host {
+    .awg-graph-results {
+        position: relative;
+    }
+
+    .awg-node-details-overlay {
+        background: transparent;
+        bottom: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: clamp(4rem, 24vw, 16rem);
+        max-width: calc(100vw - 1rem);
+        z-index: 2;
+    }
+
+    .awg-node-details-list {
+        display: grid;
+        gap: 0.75rem;
+        pointer-events: none;
+        position: sticky;
+        top: 1.5rem;
+        width: 100%;
+    }
+
+    .awg-node-details {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid var(--bs-border-color, #dee2e6);
+        box-shadow: 0 0.5rem 1.5rem rgba(33, 37, 41, 0.08);
+        pointer-events: auto;
+    }
+
+    .awg-node-details--pinned {
+        border-color: var(--bs-primary, #0d6efd);
+    }
+
+    .awg-node-details__hint {
+        color: var(--bs-secondary-color, #6c757d);
+        font-size: 0.9rem;
+    }
+
+    .awg-node-details__header {
+        align-items: flex-start;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+
+        h3 {
+            font-size: 0.875rem;
+        }
+    }
+
+    .awg-node-details__actions {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+        gap: 0.5rem;
+    }
+
+    .awg-node-details__pin-button {
+        white-space: nowrap;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.35rem;
+    }
+
+    .awg-node-details__close-button {
+        width: 0.65em;
+        height: 0.65em;
+    }
+
+    .awg-node-details__eyebrow {
+        color: var(--bs-secondary-color, #6c757d);
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .awg-node-details__meta {
+        dt {
+            font-size: 0.7rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        dd {
+            font-size: 0.85rem;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    .awg-node-details__sources {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .awg-node-details__source {
+        background: rgba(248, 249, 250, 0.9);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+
+        h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media (max-width: 1199.98px) {
+        .awg-node-details-overlay {
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: clamp(3.5rem, 36vw, 14rem);
+            max-width: calc(100vw - 0.5rem);
+        }
+
+        .awg-node-details-list {
+            pointer-events: none;
+            position: sticky;
+            top: 1.5rem;
+        }
+
+        .awg-node-details__header {
+            flex-direction: column;
+        }
+
+        .awg-node-details__actions {
+            width: 100%;
+        }
+    }
+
     &::ng-deep {
+        .awg-panel-open .awg-force-graph-node-limit-container {
+            margin-right: calc(clamp(4rem, 24vw, 16rem) + 0.35rem);
+        }
+
         .awg-fullscreen {
             .collapse.show {
                 height: 100vh;

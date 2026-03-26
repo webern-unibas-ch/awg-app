@@ -31,6 +31,7 @@ import {
     D3SimulationData,
     D3SimulationLink,
     D3SimulationNode,
+    D3SimulationNodeSourceDetails,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
     PrefixForm,
@@ -550,7 +551,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .enter()
             .append('text')
             .attr('class', 'node-text')
-            .text((d: D3SimulationNode) => d.id);
+            .text((d: D3SimulationNode) => d.label);
 
         // ==================== Add Nodes =====================
         const nodes: D3Selection = this._zoomGroup
@@ -850,9 +851,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         const graphData: D3SimulationData = new D3SimulationData();
 
         const nodeMap = new Map<string, D3SimulationNode>();
+        const nodeSourceDetailsMap = this._extractNodeSourceDetails(triples, labelMap);
+        const visibleTriples = triples.filter(triple => !this._isNodeMetadataTriple(triple));
 
         // Initial Graph from triples
-        triples.forEach((triple: Triple) => {
+        visibleTriples.forEach((triple: Triple) => {
             const subjId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
             const predId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
             let objId = this._prefixPipe.transform(triple.object, PrefixForm.SHORT);
@@ -869,8 +872,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             graphData.nodes.push(predNode);
 
             // Get or create subject and object nodes (deduplicated)
-            const subjNode = this._getOrCreateNode(subjId, nodeMap, labelMap, graphData);
-            const objNode = this._getOrCreateNode(objId, nodeMap, labelMap, graphData);
+            const subjNode = this._getOrCreateNode(subjId, nodeMap, labelMap, graphData, nodeSourceDetailsMap);
+            const objNode = this._getOrCreateNode(objId, nodeMap, labelMap, graphData, nodeSourceDetailsMap);
 
             // Check if predicate is "rdf:type"
             // Then subjNode is an instance and objNode is a Class
@@ -891,6 +894,99 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
+     * Private method: _extractNodeSourceDetails.
+     *
+     * It collects source metadata for source nodes and nodes that reference sources.
+     *
+     * @param {Triple[]} triples The given triple array.
+     * @param {Map<string, string>} labelMap The label map extracted from the triple set.
+     *
+     * @returns {Map<string, D3SimulationNodeSourceDetails[]>} A map of node ids to source details.
+     */
+    private _extractNodeSourceDetails(
+        triples: Triple[],
+        labelMap: Map<string, string>
+    ): Map<string, D3SimulationNodeSourceDetails[]> {
+        const sourceTypeMap = new Map<string, string>();
+        const sourceLocationMap = new Map<string, string>();
+        const nodeSourceIdsMap = new Map<string, Set<string>>();
+        const sourceIds = new Set<string>();
+
+        triples.forEach(triple => {
+            const subjectId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
+            const predicateId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+
+            if (predicateId === 'awg:sourceType') {
+                sourceTypeMap.set(subjectId, triple.object);
+                sourceIds.add(subjectId);
+                return;
+            }
+
+            if (predicateId === 'awg:sourceLocation') {
+                sourceLocationMap.set(subjectId, triple.object);
+                sourceIds.add(subjectId);
+                return;
+            }
+
+            if (predicateId === 'awg:hasSource') {
+                const sourceId = this._prefixPipe.transform(triple.object, PrefixForm.SHORT);
+
+                sourceIds.add(sourceId);
+
+                if (!nodeSourceIdsMap.has(subjectId)) {
+                    nodeSourceIdsMap.set(subjectId, new Set<string>());
+                }
+
+                nodeSourceIdsMap.get(subjectId).add(sourceId);
+            }
+        });
+
+        const sourceDetailsMap = new Map<string, D3SimulationNodeSourceDetails>();
+
+        sourceIds.forEach(sourceId => {
+            sourceDetailsMap.set(sourceId, {
+                id: sourceId,
+                label: labelMap.get(sourceId) || sourceId,
+                type: sourceTypeMap.get(sourceId),
+                location: sourceLocationMap.get(sourceId),
+            });
+        });
+
+        const nodeSourceDetailsMap = new Map<string, D3SimulationNodeSourceDetails[]>();
+
+        sourceDetailsMap.forEach((sourceDetails, sourceId) => {
+            nodeSourceDetailsMap.set(sourceId, [sourceDetails]);
+        });
+
+        nodeSourceIdsMap.forEach((linkedSourceIds, nodeId) => {
+            const sourceDetails = Array.from(linkedSourceIds)
+                .map(sourceId => sourceDetailsMap.get(sourceId) || { id: sourceId, label: labelMap.get(sourceId) || sourceId })
+                .sort((firstSource, secondSource) => firstSource.label.localeCompare(secondSource.label));
+
+            if (sourceDetails.length) {
+                nodeSourceDetailsMap.set(nodeId, sourceDetails);
+            }
+        });
+
+        return nodeSourceDetailsMap;
+    }
+
+    /**
+     * Private method: _isNodeMetadataTriple.
+     *
+     * It checks if a triple only adds click metadata and should be hidden from the visible graph.
+     *
+     * @param {Triple} triple The given triple.
+     *
+     * @returns {boolean} True if the triple should not be rendered as graph edge.
+     */
+    private _isNodeMetadataTriple(triple: Triple): boolean {
+        const predicateId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+
+        return predicateId === 'awg:sourceType' || predicateId === 'awg:sourceLocation';
+    }
+
+    /**
      * Private method: _getOrCreateNode.
      *
      * It gets an existing node from the nodeMap or creates a new one if it doesn't exist.
@@ -906,7 +1002,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         nodeId: string,
         nodeMap: Map<string, D3SimulationNode>,
         labelMap: Map<string, string>,
-        graphData: D3SimulationData
+        graphData: D3SimulationData,
+        nodeSourceDetailsMap: Map<string, D3SimulationNodeSourceDetails[]>
     ): D3SimulationNode {
         let node = nodeMap.get(nodeId);
         if (node == null) {
@@ -914,6 +1011,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
             // Set label from labelMap if available, otherwise use nodeId
             node.label = labelMap.get(nodeId) || nodeId;
+
+            const sourceDetails = nodeSourceDetailsMap.get(nodeId);
+            if (sourceDetails?.length) {
+                node.sourceDetails = sourceDetails;
+            }
 
             // Store node in map for future reference
             nodeMap.set(nodeId, node);
@@ -1043,6 +1145,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It updates the positions of the link texts
      * on a force simulation's tick.
+     * Positions text labels ON the edges (between subject and object nodes),
+     * rotated parallel to the edge direction.
      *
      * @param {D3Selection} linkTexts The given linkTexts selection.
      *
@@ -1050,18 +1154,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
-            .attr('x', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return 20 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
-                }
+            .attr('text-anchor', 'middle')
+            .attr('dy', '-0.5em')
+            .attr('transform', (d: D3SimulationNodeTriple) => {
+                // Calculate angle between subject and object nodes
+                const dx = d.nodeObject.x - d.nodeSubject.x;
+                const dy = d.nodeObject.y - d.nodeSubject.y;
+                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
 
-                return 10 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
-            })
-            .attr('y', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return -40 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
-                }
-                return 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+                // Rotate text to be parallel with edge, avoid upside-down text
+                const rotation = angle > 90 || angle < -90 ? angle + 180 : angle;
+
+                const x = (d.nodeSubject.x + d.nodeObject.x) / 2;
+                const y = (d.nodeSubject.y + d.nodeObject.y) / 2;
+
+                return `translate(${x},${y}) rotate(${rotation})`;
             });
     }
 }

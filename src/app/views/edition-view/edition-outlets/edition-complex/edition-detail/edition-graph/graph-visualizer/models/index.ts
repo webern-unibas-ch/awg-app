@@ -12,7 +12,7 @@ import { D3ForceSimulation, D3ForceSimulationOptions, D3Simulation } from './d3-
 import { D3SimulationData } from './d3-simulation-data';
 import { D3SimulationLink } from './d3-simulation-link.model';
 import { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
-import { D3SimulationNode, D3SimulationNodeType } from './d3-simulation-node.model';
+import { D3SimulationNode, D3SimulationNodeSourceDetails, D3SimulationNodeType } from './d3-simulation-node.model';
 import { Namespace, NamespaceType } from './namespace.model';
 import { Prefix, PrefixForm } from './prefix.model';
 import { QueryResult, QueryResultBindings } from './query-result.model';
@@ -33,6 +33,7 @@ export {
     D3SimulationData,
     D3SimulationLink,
     D3SimulationNode,
+    D3SimulationNodeSourceDetails,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
     Namespace,

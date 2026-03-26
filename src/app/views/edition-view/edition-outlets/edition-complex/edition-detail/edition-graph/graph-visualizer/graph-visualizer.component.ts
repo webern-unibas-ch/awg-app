@@ -12,6 +12,12 @@ import { D3SimulationNode, QueryResult, Triple } from './models';
 
 import { GraphVisualizerService } from './services';
 
+interface GraphNodeDetailsPanel {
+    id: string;
+    node: D3SimulationNode;
+    isPinned: boolean;
+}
+
 /**
  * The GraphVisualizer component.
  *
@@ -83,6 +89,35 @@ export class GraphVisualizerComponent implements OnInit {
      * It keeps the duration time of the query.
      */
     queryTime: number;
+
+    /**
+     * Public variable: nodeDetailsPanels.
+     *
+     * It keeps the currently open node details panels.
+     */
+    nodeDetailsPanels: GraphNodeDetailsPanel[] = [];
+
+    /**
+     * Private variable: _lastClickedNodeId.
+     *
+     * It keeps track of the last clicked node to prevent duplicate clicks.
+     */
+    private _lastClickedNodeId: string | null = null;
+
+    /**
+     * Private variable: _lastClickTime.
+     *
+     * It keeps track of the timestamp of the last node click.
+     */
+    private _lastClickTime: number = 0;
+
+    /**
+     * Private variable: _lastQueryPerformedTime.
+     *
+     * It keeps track of when performQuery was last called.
+     * Used to suppress auto-emitted clicks during D3 render from showing toasts.
+     */
+    private _lastQueryPerformedTime: number = 0;
 
     /**
      * Public variable: triples.
@@ -164,6 +199,16 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
+        // Clear any pending toasts from the previous graph to prevent stacking
+        // Create a copy of the toasts array since remove() mutates it
+        const pendingToasts = [...this._toastService.toasts];
+        pendingToasts.forEach(toast => this._toastService.remove(toast));
+
+        this.nodeDetailsPanels = [];
+        this._lastClickedNodeId = null;
+        this._lastClickTime = 0;
+        this._lastQueryPerformedTime = Date.now();
+
         // If no namespace is defined in the query, get it from the turtle file
         this.query.queryString = this._graphVisualizerService.checkNamespacesInQuery(
             this.query.queryString,
@@ -195,13 +240,81 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
 
+        const now = Date.now();
+
+        // Prevent duplicate clicks on the same node within 300ms
+        if (node.id === this._lastClickedNodeId && now - this._lastClickTime < 300) {
+            return;
+        }
+
+        // Suppress toasts only during D3 initial render (1 second)
+        // After that, nodes are fully clickable and functional
+        if (now - this._lastQueryPerformedTime < 1000) {
+            this._lastClickedNodeId = node.id;
+            this._lastClickTime = now;
+            return;
+        }
+
+        this._lastClickedNodeId = node.id;
+        this._lastClickTime = now;
+        const clickedNode = this._cloneGraphNode(node);
+        this._upsertNodeDetailsPanel(clickedNode);
+
         this.showToastMessage(
-            new ToastMessage(
-                node.id,
-                `GraphVisualizerComponent# graphClick on node ${node.id}\n\n Label: ${node.label}`,
-                5000
-            ),
+            new ToastMessage(clickedNode.id, this._createGraphNodeClickMessage(clickedNode), 5000),
             'info'
+        );
+    }
+
+    /**
+     * Public method: closeNodeDetailsPanel.
+     *
+     * It closes a node details panel.
+     *
+     * @param {string} panelId The id of the panel.
+     *
+     * @returns {void} Closes the node details panel.
+     */
+    closeNodeDetailsPanel(panelId: string): void {
+        this.nodeDetailsPanels = this.nodeDetailsPanels.filter(panel => panel.id !== panelId);
+    }
+
+    /**
+     * Public method: toggleNodeDetailsPinned.
+     *
+     * It toggles the pin state of a node details panel.
+     *
+     * @param {string} panelId The id of the panel.
+     *
+     * @returns {void} Toggles the pin state.
+     */
+    toggleNodeDetailsPinned(panelId: string): void {
+        const panel = this.nodeDetailsPanels.find(nodeDetailsPanel => nodeDetailsPanel.id === panelId);
+
+        if (!panel) {
+            return;
+        }
+
+        const updatedPanels = this.nodeDetailsPanels.map(nodeDetailsPanel => {
+            if (nodeDetailsPanel.id !== panelId) {
+                return nodeDetailsPanel;
+            }
+
+            return {
+                ...nodeDetailsPanel,
+                isPinned: !nodeDetailsPanel.isPinned,
+            };
+        });
+
+        const toggledPanel = updatedPanels.find(nodeDetailsPanel => nodeDetailsPanel.id === panelId);
+
+        if (toggledPanel?.isPinned) {
+            this.nodeDetailsPanels = updatedPanels;
+            return;
+        }
+
+        this.nodeDetailsPanels = updatedPanels.filter(
+            nodeDetailsPanel => nodeDetailsPanel.isPinned || nodeDetailsPanel.id === panelId
         );
     }
 
@@ -254,6 +367,126 @@ export class GraphVisualizerComponent implements OnInit {
         } else {
             console.info(toastMessage.name, ':', toastMessage.message);
         }
+    }
+
+    /**
+     * Private method: _createGraphNodeClickMessage.
+     *
+     * It formats the message shown when clicking on a graph node.
+     *
+     * @param {D3SimulationNode} node The clicked node.
+     *
+     * @returns {string} The formatted toast message.
+     */
+    private _createGraphNodeClickMessage(node: D3SimulationNode): string {
+        const messageLines = [`GraphVisualizerComponent# graphClick on node ${node.id}`, '', `Label: ${node.label}`];
+        const sourceDetails = this._getUniqueSourceDetails(node);
+
+        sourceDetails.forEach((sourceDetail, index) => {
+            messageLines.push('');
+            messageLines.push(sourceDetails.length === 1 ? `Source: ${sourceDetail.label}` : `Source ${index + 1}: ${sourceDetail.label}`);
+
+            if (sourceDetail.type) {
+                messageLines.push(`Type: ${sourceDetail.type}`);
+            }
+
+            if (sourceDetail.location) {
+                messageLines.push(`Location: ${sourceDetail.location}`);
+            }
+        });
+
+        return messageLines.join('\n');
+    }
+
+    /**
+     * Private method: _getUniqueSourceDetails.
+     *
+     * It removes duplicate source details before formatting the toast message.
+     *
+     * @param {D3SimulationNode} node The clicked node.
+     *
+     * @returns {D3SimulationNode['sourceDetails']} The unique source details.
+     */
+    private _getUniqueSourceDetails(node: D3SimulationNode): D3SimulationNode['sourceDetails'] {
+        const seenSourceIds = new Set<string>();
+
+        return (node.sourceDetails || []).filter(sourceDetail => {
+            const sourceKey = sourceDetail.id || sourceDetail.label;
+
+            if (seenSourceIds.has(sourceKey)) {
+                return false;
+            }
+
+            seenSourceIds.add(sourceKey);
+            return true;
+        });
+    }
+
+    /**
+     * Private method: _cloneGraphNode.
+     *
+     * It creates a detached copy of the clicked graph node for the side panel.
+     *
+     * @param {D3SimulationNode} node The clicked node.
+     *
+     * @returns {D3SimulationNode} The cloned node.
+     */
+    private _cloneGraphNode(node: D3SimulationNode): D3SimulationNode {
+        return {
+            ...node,
+            sourceDetails: node.sourceDetails?.map(sourceDetail => ({ ...sourceDetail })),
+        } as D3SimulationNode;
+    }
+
+    /**
+     * Private method: _upsertNodeDetailsPanel.
+     *
+     * It keeps pinned panels and opens one additional unpinned panel for the clicked node.
+     *
+     * @param {D3SimulationNode} node The clicked node.
+     *
+     * @returns {void} Updates the node details panel list.
+     */
+    private _upsertNodeDetailsPanel(node: D3SimulationNode): void {
+        const panelId = this._createNodeDetailsPanelId(node);
+        const pinnedPanel = this.nodeDetailsPanels.find(panel => panel.id === panelId && panel.isPinned);
+
+        if (pinnedPanel) {
+            this.nodeDetailsPanels = this.nodeDetailsPanels.map(panel => {
+                if (panel.id !== panelId || !panel.isPinned) {
+                    return panel;
+                }
+
+                return {
+                    ...panel,
+                    node,
+                };
+            });
+            return;
+        }
+
+        const pinnedPanels = this.nodeDetailsPanels.filter(panel => panel.isPinned && panel.id !== panelId);
+        this.nodeDetailsPanels = [
+            ...pinnedPanels,
+            {
+                id: panelId,
+                node,
+                isPinned: false,
+            },
+        ];
+    }
+
+    /**
+     * Private method: _createNodeDetailsPanelId.
+     *
+     * It creates a stable id for a node details panel.
+     *
+     * @param {D3SimulationNode} node The clicked node.
+     *
+     * @returns {string} The panel id.
+     */
+    private _createNodeDetailsPanelId(node: D3SimulationNode): string {
+        return node.id;
     }
 
     /**

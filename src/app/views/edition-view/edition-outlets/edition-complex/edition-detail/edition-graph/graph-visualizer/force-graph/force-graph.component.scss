@@ -168,14 +168,18 @@ input[type='range'].awg-force-graph-zoom-slider {
 
 :host ::ng-deep .node-text {
     font:
-        15px 'Roboto',
+        13px 'Roboto',
         sans-serif;
     fill: black;
 }
 
 :host ::ng-deep .link-text {
     font:
-        13px 'Roboto',
+        10px 'Roboto',
         sans-serif;
-    fill: grey;
+    fill: #333;
+    stroke: white;
+    stroke-width: 3px;
+    paint-order: stroke;
+    pointer-events: none;
 }

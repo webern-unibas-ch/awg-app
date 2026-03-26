@@ -26,17 +26,90 @@
                 </div>
             </div>
         </div>
+
         <!-- Results -->
         <div [ngClass]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
             <!-- CONSTRUCT -->
             <!-- awg-graph-construct-result -->
             @if (query.queryType === 'construct') {
-                <awg-construct-results
-                    #queryConstructResultAcc
-                    [queryResult$]="queryResult$"
-                    [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
-                    [isFullscreen]="isFullscreen"
-                    (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
+                <div class="row g-3 awg-graph-results">
+                    <div class="col-12">
+                        <awg-construct-results
+                            [class.awg-panel-open]="nodeDetailsPanels.length"
+                            #queryConstructResultAcc
+                            [queryResult$]="queryResult$"
+                            [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
+                            [isFullscreen]="isFullscreen"
+                            (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
+
+                        @if (!nodeDetailsPanels.length) {
+                            <p class="awg-node-details__hint mb-0 mt-3">
+                                Klicken Sie im Graphen auf einen Knoten, um das Detailpanel zu öffnen.
+                            </p>
+                        }
+                        @if (nodeDetailsPanels.length) {
+                            <div class="awg-node-details-overlay">
+                            <div class="awg-node-details-list">
+                                @for (nodePanel of nodeDetailsPanels; track nodePanel.id) {
+                                    <aside class="card awg-node-details" [class.awg-node-details--pinned]="nodePanel.isPinned">
+                                        <div class="card-body">
+                                            <div class="awg-node-details__header mb-3">
+                                                <div>
+                                                    <p class="awg-node-details__eyebrow mb-2">selected node</p>
+                                                    <h3 class="h5 mb-0">{{ nodePanel.node.label }}</h3>
+                                                </div>
+
+                                                <div class="awg-node-details__actions">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-sm awg-node-details__pin-button"
+                                                        [ngClass]="nodePanel.isPinned ? 'btn-secondary' : 'btn-outline-secondary'"
+                                                        (click)="toggleNodeDetailsPinned(nodePanel.id)">
+                                                        {{ nodePanel.isPinned ? 'unpin' : 'pin' }}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close awg-node-details__close-button"
+                                                        aria-label="Details schliessen"
+                                                        (click)="closeNodeDetailsPanel(nodePanel.id)"></button>
+                                                </div>
+                                            </div>
+
+                                            <dl class="row mb-0 awg-node-details__meta">
+                                                <dt class="col-sm-3">ID</dt>
+                                                <dd class="col-sm-9">{{ nodePanel.node.id }}</dd>
+
+                                                <dt class="col-12 mt-2">Quellen</dt>
+                                                @if (nodePanel.node.sourceDetails?.length) {
+                                                    <dd class="col-12 mb-0">
+                                                        <div class="awg-node-details__sources">
+                                                            @for (sourceDetail of nodePanel.node.sourceDetails; track sourceDetail.id) {
+                                                                <section class="awg-node-details__source">
+                                                                    <h4 class="h6 mb-2">{{ sourceDetail.label }}</h4>
+
+                                                                    @if (sourceDetail.type) {
+                                                                        <p class="mb-1"><span class="fw-semibold">Typ:</span> {{ sourceDetail.type }}</p>
+                                                                    }
+
+                                                                    @if (sourceDetail.location) {
+                                                                        <p class="mb-0"><span class="fw-semibold">Standort:</span> {{ sourceDetail.location }}</p>
+                                                                    }
+                                                                </section>
+                                                            }
+                                                        </div>
+                                                    </dd>
+                                                } @else {
+                                                    <dd class="col-12 mb-0 text-body-secondary">Keine Quelldetails verfügbar.</dd>
+                                                }
+                                            </dl>
+                                        </div>
+                                    </aside>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
             } @else {
                 @if (query.queryType === 'select') {
                     <awg-select-results
