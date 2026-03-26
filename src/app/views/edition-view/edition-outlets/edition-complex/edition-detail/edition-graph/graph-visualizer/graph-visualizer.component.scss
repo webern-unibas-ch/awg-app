@@ -23,6 +23,10 @@
         display: flex;
         gap: 1rem;
         justify-content: space-between;
+
+        h3 {
+            font-size: 0.95rem;
+        }
     }
 
     .awg-node-details__actions {
@@ -38,19 +42,20 @@
 
     .awg-node-details__eyebrow {
         color: var(--bs-secondary-color, #6c757d);
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
     }
 
     .awg-node-details__meta {
         dt {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
         }
 
         dd {
+            font-size: 0.85rem;
             overflow-wrap: anywhere;
         }
     }
@@ -64,6 +69,20 @@
         background: rgba(248, 249, 250, 0.9);
         border-radius: 0.5rem;
         padding: 0.75rem;
+
+        h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 
     @media (max-width: 1199.98px) {

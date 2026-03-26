@@ -33,7 +33,7 @@
             <!-- awg-graph-construct-result -->
             @if (query.queryType === 'construct') {
                 <div class="row g-3 awg-graph-results">
-                    <div [ngClass]="nodeDetailsPanels.length ? 'col-12 col-xl-8' : 'col-12'">
+                    <div [ngClass]="nodeDetailsPanels.length ? 'col-12 col-xl-9' : 'col-12'">
                         <awg-construct-results
                             #queryConstructResultAcc
                             [queryResult$]="queryResult$"
@@ -49,7 +49,7 @@
                     </div>
 
                     @if (nodeDetailsPanels.length) {
-                        <div class="col-12 col-xl-4">
+                        <div class="col-12 col-xl-3">
                             <div class="awg-node-details-list">
                                 @for (nodePanel of nodeDetailsPanels; track nodePanel.id) {
                                     <aside class="card awg-node-details" [class.awg-node-details--pinned]="nodePanel.isPinned">
