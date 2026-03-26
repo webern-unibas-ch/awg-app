@@ -16,7 +16,7 @@ describe('EditionRdfGeneratorService', () => {
             series: { route: '1' },
             section: { route: '5' },
         },
-        complexId: { route: 'op23' },
+        complexId: { route: '/op23' },
     } as EditionComplex;
 
     const expectedGraphData = {

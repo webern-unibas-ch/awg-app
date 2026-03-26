@@ -1175,7 +1175,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expect(component.nodeDetailsPanels.length).toBe(1);
                 expect(component.nodeDetailsPanels[0].node.id).toBe('awg:M312_Sk1');
                 expect(detailsPanel).toBeTruthy();
-                expect(detailsPanel.textContent).toContain('Ausgewaehlter Knoten');
+                expect(detailsPanel.textContent).toContain('Ausgewählter Knoten');
                 expect(detailsPanel.textContent).toContain('M 312 Sk1 [A]');
                 expect(detailsPanel.textContent).toContain('A');
                 expect(detailsPanel.textContent).toContain('Typ: Skizzen (in: Skizzenbuch 3).');
