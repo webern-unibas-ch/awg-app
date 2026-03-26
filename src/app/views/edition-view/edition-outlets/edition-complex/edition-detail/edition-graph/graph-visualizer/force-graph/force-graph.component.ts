@@ -1145,6 +1145,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It updates the positions of the link texts
      * on a force simulation's tick.
+     * Positions text labels ON the edges (between subject and object nodes),
+     * rotated parallel to the edge direction.
      *
      * @param {D3Selection} linkTexts The given linkTexts selection.
      *
@@ -1152,18 +1154,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
-            .attr('x', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return 20 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
-                }
+            .attr('text-anchor', 'middle')
+            .attr('dy', '-0.5em')
+            .attr('transform', (d: D3SimulationNodeTriple) => {
+                // Calculate angle between subject and object nodes
+                const dx = d.nodeObject.x - d.nodeSubject.x;
+                const dy = d.nodeObject.y - d.nodeSubject.y;
+                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
 
-                return 10 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
-            })
-            .attr('y', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return -40 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
-                }
-                return 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+                // Rotate text to be parallel with edge, avoid upside-down text
+                const rotation = angle > 90 || angle < -90 ? angle + 180 : angle;
+
+                const x = (d.nodeSubject.x + d.nodeObject.x) / 2;
+                const y = (d.nodeSubject.y + d.nodeObject.y) / 2;
+
+                return `translate(${x},${y}) rotate(${rotation})`;
             });
     }
 }
