@@ -25,7 +25,7 @@
         justify-content: space-between;
 
         h3 {
-            font-size: 0.95rem;
+            font-size: 0.875rem;
         }
     }
 
@@ -38,6 +38,13 @@
 
     .awg-node-details__pin-button {
         white-space: nowrap;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.35rem;
+    }
+
+    .awg-node-details__close-button {
+        width: 0.65em;
+        height: 0.65em;
     }
 
     .awg-node-details__eyebrow {

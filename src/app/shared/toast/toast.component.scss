@@ -1,6 +1,38 @@
 :host {
     position: fixed;
     bottom: 0;
-    margin: auto;
+    left: 1rem;
+    right: auto;
+    margin: 0;
     z-index: 1200;
+    width: min(500px, calc(100vw - 2rem));
+    max-width: 500px;
+
+    ::ng-deep {
+        ngb-toast {
+            display: block;
+            width: 100%;
+        }
+
+        .toast {
+            padding: 0.35rem 0.5rem;
+            font-size: 0.75rem;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .toast-header {
+            padding: 0.3rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .toast-body {
+            padding: 0.35rem 0.5rem;
+            font-size: 0.7rem;
+            line-height: 0.9;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }
 }

@@ -56,7 +56,7 @@
                                         <div class="card-body">
                                             <div class="awg-node-details__header mb-3">
                                                 <div>
-                                                    <p class="awg-node-details__eyebrow mb-2">Ausgewählter Knoten</p>
+                                                    <p class="awg-node-details__eyebrow mb-2">selected node</p>
                                                     <h3 class="h5 mb-0">{{ nodePanel.node.label }}</h3>
                                                 </div>
 
@@ -66,7 +66,7 @@
                                                         class="btn btn-sm awg-node-details__pin-button"
                                                         [ngClass]="nodePanel.isPinned ? 'btn-secondary' : 'btn-outline-secondary'"
                                                         (click)="toggleNodeDetailsPinned(nodePanel.id)">
-                                                        {{ nodePanel.isPinned ? 'Lösen' : 'Anheften' }}
+                                                        {{ nodePanel.isPinned ? 'unpin' : 'pin' }}
                                                     </button>
                                                     <button
                                                         type="button"
@@ -80,7 +80,7 @@
                                                 <dt class="col-sm-3">ID</dt>
                                                 <dd class="col-sm-9">{{ nodePanel.node.id }}</dd>
 
-                                                <dt class="col-12 mt-3">Quellen</dt>
+                                                <dt class="col-12 mt-2">Quellen</dt>
                                                 @if (nodePanel.node.sourceDetails?.length) {
                                                     <dd class="col-12 mb-0">
                                                         <div class="awg-node-details__sources">
