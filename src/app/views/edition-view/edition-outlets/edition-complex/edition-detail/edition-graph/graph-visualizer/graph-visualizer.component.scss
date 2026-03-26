@@ -1,12 +1,37 @@
 :host {
+    .awg-graph-results {
+        position: relative;
+    }
+
+    .awg-node-details-overlay {
+        background: transparent;
+        bottom: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: clamp(4rem, 24vw, 16rem);
+        max-width: calc(100vw - 1rem);
+        z-index: 2;
+    }
+
     .awg-node-details-list {
         display: grid;
         gap: 0.75rem;
+        pointer-events: none;
+        position: sticky;
+        top: 1.5rem;
+        width: 100%;
     }
 
     .awg-node-details {
+        background: rgba(255, 255, 255, 0.95);
         border: 1px solid var(--bs-border-color, #dee2e6);
         box-shadow: 0 0.5rem 1.5rem rgba(33, 37, 41, 0.08);
+        pointer-events: auto;
     }
 
     .awg-node-details--pinned {
@@ -93,6 +118,22 @@
     }
 
     @media (max-width: 1199.98px) {
+        .awg-node-details-overlay {
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: clamp(3.5rem, 36vw, 14rem);
+            max-width: calc(100vw - 0.5rem);
+        }
+
+        .awg-node-details-list {
+            pointer-events: none;
+            position: sticky;
+            top: 1.5rem;
+        }
+
         .awg-node-details__header {
             flex-direction: column;
         }
@@ -103,6 +144,10 @@
     }
 
     &::ng-deep {
+        .awg-panel-open .awg-force-graph-node-limit-container {
+            margin-right: calc(clamp(4rem, 24vw, 16rem) + 0.35rem);
+        }
+
         .awg-fullscreen {
             .collapse.show {
                 height: 100vh;

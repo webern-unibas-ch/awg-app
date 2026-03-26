@@ -33,8 +33,9 @@
             <!-- awg-graph-construct-result -->
             @if (query.queryType === 'construct') {
                 <div class="row g-3 awg-graph-results">
-                    <div [ngClass]="nodeDetailsPanels.length ? 'col-12 col-xl-9' : 'col-12'">
+                    <div class="col-12">
                         <awg-construct-results
+                            [class.awg-panel-open]="nodeDetailsPanels.length"
                             #queryConstructResultAcc
                             [queryResult$]="queryResult$"
                             [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
@@ -46,10 +47,8 @@
                                 Klicken Sie im Graphen auf einen Knoten, um das Detailpanel zu öffnen.
                             </p>
                         }
-                    </div>
-
-                    @if (nodeDetailsPanels.length) {
-                        <div class="col-12 col-xl-3">
+                        @if (nodeDetailsPanels.length) {
+                            <div class="awg-node-details-overlay">
                             <div class="awg-node-details-list">
                                 @for (nodePanel of nodeDetailsPanels; track nodePanel.id) {
                                     <aside class="card awg-node-details" [class.awg-node-details--pinned]="nodePanel.isPinned">
@@ -108,7 +107,8 @@
                                 }
                             </div>
                         </div>
-                    }
+                        }
+                    </div>
                 </div>
             } @else {
                 @if (query.queryType === 'select') {
