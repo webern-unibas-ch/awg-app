@@ -91,11 +91,33 @@ export class GraphVisualizerComponent implements OnInit {
     queryTime: number;
 
     /**
-      * Public variable: nodeDetailsPanels.
+     * Public variable: nodeDetailsPanels.
      *
-      * It keeps the currently open node details panels.
+     * It keeps the currently open node details panels.
      */
-     nodeDetailsPanels: GraphNodeDetailsPanel[] = [];
+    nodeDetailsPanels: GraphNodeDetailsPanel[] = [];
+
+    /**
+     * Private variable: _lastClickedNodeId.
+     *
+     * It keeps track of the last clicked node to prevent duplicate clicks.
+     */
+    private _lastClickedNodeId: string | null = null;
+
+    /**
+     * Private variable: _lastClickTime.
+     *
+     * It keeps track of the timestamp of the last node click.
+     */
+    private _lastClickTime: number = 0;
+
+    /**
+     * Private variable: _lastQueryPerformedTime.
+     *
+     * It keeps track of when performQuery was last called.
+     * Used to suppress auto-emitted clicks during D3 render from showing toasts.
+     */
+    private _lastQueryPerformedTime: number = 0;
 
     /**
      * Public variable: triples.
@@ -177,7 +199,15 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
+        // Clear any pending toasts from the previous graph to prevent stacking
+        // Create a copy of the toasts array since remove() mutates it
+        const pendingToasts = [...this._toastService.toasts];
+        pendingToasts.forEach(toast => this._toastService.remove(toast));
+
         this.nodeDetailsPanels = [];
+        this._lastClickedNodeId = null;
+        this._lastClickTime = 0;
+        this._lastQueryPerformedTime = Date.now();
 
         // If no namespace is defined in the query, get it from the turtle file
         this.query.queryString = this._graphVisualizerService.checkNamespacesInQuery(
@@ -210,6 +240,23 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
 
+        const now = Date.now();
+
+        // Prevent duplicate clicks on the same node within 300ms
+        if (node.id === this._lastClickedNodeId && now - this._lastClickTime < 300) {
+            return;
+        }
+
+        // Suppress toasts only during D3 initial render (1 second)
+        // After that, nodes are fully clickable and functional
+        if (now - this._lastQueryPerformedTime < 1000) {
+            this._lastClickedNodeId = node.id;
+            this._lastClickTime = now;
+            return;
+        }
+
+        this._lastClickedNodeId = node.id;
+        this._lastClickTime = now;
         const clickedNode = this._cloneGraphNode(node);
         this._upsertNodeDetailsPanel(clickedNode);
 
