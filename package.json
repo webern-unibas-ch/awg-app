@@ -164,5 +164,5 @@
         "npm": ">= 10.5.2",
         "yarn": "^4.3.0"
     },
-    "packageManager": "yarn@4.9.4"
+    "packageManager": "yarn@4.13.0"
 }
