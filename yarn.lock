@@ -4931,9 +4931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-cli-ghpages@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "angular-cli-ghpages@npm:3.0.2"
+"angular-cli-ghpages@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "angular-cli-ghpages@npm:3.0.3"
   dependencies:
     "@angular-devkit/architect": "npm:>=0.1800.0 <0.2200.0"
     "@angular-devkit/core": "npm:>=18.0.0 <22.0.0"
@@ -4944,7 +4944,7 @@ __metadata:
   bin:
     angular-cli-ghpages: angular-cli-ghpages
     ngh: angular-cli-ghpages
-  checksum: 10c0/a8214f92feebba6ab21666af0ca12a0517e5ba17a39ea83dc1ecd6b42bf068c751297d7c89bcb3ba8edc412e057a1113885c6a91309fe4459b1a6d993911b333
+  checksum: 10c0/92d8187b1045cec5e59504a4dab93c1ff6bfa8540ea594fce99976e668194b7138f00946dfd0c8c5a27b72d166473d339b0f56b241068722bee90d973048fa88
   languageName: node
   linkType: hard
 
@@ -5233,7 +5233,7 @@ __metadata:
     "@types/d3": "npm:^7.4.3"
     "@types/jasmine": "npm:~6.0.0"
     "@types/node": "npm:^25.6.0"
-    angular-cli-ghpages: "npm:^3.0.2"
+    angular-cli-ghpages: "npm:^3.0.3"
     angular-eslint: "npm:^21.3.1"
     bootstrap: "npm:^5.3.8"
     codemirror: "npm:^6.0.2"
