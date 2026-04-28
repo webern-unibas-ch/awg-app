@@ -33,11 +33,34 @@
                 margin-bottom: 0 !important;
             }
 
+            %noindent {
+                text-indent: 0;
+            }
+
+            .block-lead {
+                margin-top: 1em;
+                margin-left: 0;
+                @extend %noindent;
+            }
+
+            blockquote {
+                @extend .block-lead;
+                font-size: 0.875em;
+            }
+
+            div.table-responsive {
+                @extend .block-lead;
+                font-size: 0.875em;
+            }
+
             table {
                 text-wrap: nowrap;
 
                 > tbody > tr > td {
                     padding-right: 20px;
+                }
+                > tbody > tr.row-gap > td {
+                    padding-top: 1em;
                 }
 
                 &.awg-intro-table {
@@ -71,27 +94,13 @@
                 text-indent: 0;
             }
 
-            .small,
-            .no-indent {
-                text-indent: 0;
-            }
-
-            .spacebreak {
-                display: block;
-                margin-top: 1em;
-
-                &.list {
-                    text-indent: 0;
-                }
-
-                &.no-indent {
-                    margin-left: 0;
-                }
-            }
-
             .list {
                 margin-left: 1em;
                 text-indent: -1em;
+            }
+
+            .small {
+                @extend %noindent;
             }
         }
     }
