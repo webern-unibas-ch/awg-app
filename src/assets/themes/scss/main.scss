@@ -400,16 +400,8 @@ details[open] summary::before {
     font-variant: small-caps;
 }
 
-%inlineblock {
-    display: inline-block;
-}
-@mixin tab($margin) {
-    @extend %inlineblock;
-    margin-left: $margin;
-}
-
 .tab {
-    @include tab(25px);
+    padding-left: 25px;
 }
 
 .indent {
