@@ -317,17 +317,17 @@ export const mockEditionData = {
             {
                 id: 'de',
                 content: [
-                    "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
-                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
-                    "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                    "<p class='block-lead'>Die AWG gliedert sich in drei Serien:</p>",
+                    "<p>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</p>",
+                    "<p class='block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
                 ],
             },
             {
                 id: 'en',
                 content: [
-                    "<span class='no-indent'>The AWG is divided into three series:</span>",
-                    "<span class='no-indent spacebreak'>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
-                    "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                    "<p class='block-lead'>The AWG is divided into three series:</p>",
+                    "<p>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</p>",
+                    "<p class='block-lead small'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
                 ],
             },
         ],
