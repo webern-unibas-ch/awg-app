@@ -44,6 +44,11 @@
             @extend .small;
         }
 
+        figure {
+            @extend %block-style;
+            text-align: center;
+        }
+
         table {
             text-wrap: nowrap;
 
