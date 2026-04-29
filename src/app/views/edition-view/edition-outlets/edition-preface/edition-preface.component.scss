@@ -23,11 +23,6 @@
             @extend %no-indent;
         }
 
-        .list {
-            margin-left: 0;
-            @extend %no-indent;
-        }
-
         .small {
             @extend %no-indent;
             font-size: 0.875em;
@@ -56,6 +51,16 @@
             td {
                 padding-right: 20px;
                 font-weight: normal;
+            }
+        }
+
+        ul {
+            padding-left: 0;
+            list-style-position: inside;
+            list-style-type: '\2013\20';
+
+            li {
+                @extend %no-indent;
             }
         }
     }
