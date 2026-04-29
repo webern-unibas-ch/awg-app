@@ -24,55 +24,55 @@
 <title>cluster_EditionRowTablesModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-195 576,-195 576,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_EditionRowTablesModule_imports</title>
-<polygon fill="none" stroke="black" points="226,-78 226,-130 568,-130 568,-78 226,-78"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionRowTablesModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 218,-130 218,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="366,-78 366,-130 568,-130 568,-78 366,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_EditionRowTablesModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 358,-130 358,-78 16,-78"/>
 </g>
 <!-- EditionRowTablesComponent -->
 <g id="node1" class="node">
 <title>EditionRowTablesComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="210.32,-122 23.68,-122 23.68,-86 210.32,-86 210.32,-122"/>
-<text text-anchor="middle" x="117" y="-99.8" font-family="Times,serif" font-size="14.00">EditionRowTablesComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="560.32,-122 373.68,-122 373.68,-86 560.32,-86 560.32,-122"/>
+<text text-anchor="middle" x="467" y="-99.8" font-family="Times,serif" font-size="14.00">EditionRowTablesComponent</text>
 </g>
 <!-- EditionRowTablesModule -->
 <g id="node2" class="node">
 <title>EditionRowTablesModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="365.04,-187 362.04,-191 341.04,-191 338.04,-187 200.96,-187 200.96,-151 365.04,-151 365.04,-187"/>
-<text text-anchor="middle" x="283" y="-164.8" font-family="Times,serif" font-size="14.00">EditionRowTablesModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="327.04,-187 324.04,-191 303.04,-191 300.04,-187 162.96,-187 162.96,-151 327.04,-151 327.04,-187"/>
+<text text-anchor="middle" x="245" y="-164.8" font-family="Times,serif" font-size="14.00">EditionRowTablesModule</text>
 </g>
 <!-- EditionRowTablesComponent&#45;&gt;EditionRowTablesModule -->
 <g id="edge1" class="edge">
 <title>EditionRowTablesComponent&#45;&gt;EditionRowTablesModule</title>
-<path fill="none" stroke="black" d="M205.45,-122.11C205.45,-122.11 205.45,-140.99 205.45,-140.99"/>
-<polygon fill="black" stroke="black" points="201.95,-140.99 205.45,-150.99 208.95,-140.99 201.95,-140.99"/>
+<path fill="none" stroke="black" d="M467,-122.11C467,-141.34 467,-169 467,-169 467,-169 337.35,-169 337.35,-169"/>
+<polygon fill="black" stroke="black" points="337.35,-165.5 327.35,-169 337.35,-172.5 337.35,-165.5"/>
 </g>
 <!-- EditionRowTablesRoutingModule -->
 <g id="node3" class="node">
 <title>EditionRowTablesRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="559.65,-122 556.65,-126 535.65,-126 532.65,-122 350.35,-122 350.35,-86 559.65,-86 559.65,-122"/>
-<text text-anchor="middle" x="455" y="-99.8" font-family="Times,serif" font-size="14.00">EditionRowTablesRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="349.65,-122 346.65,-126 325.65,-126 322.65,-122 140.35,-122 140.35,-86 349.65,-86 349.65,-122"/>
+<text text-anchor="middle" x="245" y="-99.8" font-family="Times,serif" font-size="14.00">EditionRowTablesRoutingModule</text>
 </g>
 <!-- EditionRowTablesRoutingModule&#45;&gt;EditionRowTablesModule -->
 <g id="edge2" class="edge">
 <title>EditionRowTablesRoutingModule&#45;&gt;EditionRowTablesModule</title>
-<path fill="none" stroke="black" d="M357.72,-122.11C357.72,-122.11 357.72,-140.99 357.72,-140.99"/>
-<polygon fill="black" stroke="black" points="354.22,-140.99 357.72,-150.99 361.22,-140.99 354.22,-140.99"/>
+<path fill="none" stroke="black" d="M245,-122.11C245,-122.11 245,-140.99 245,-140.99"/>
+<polygon fill="black" stroke="black" points="241.5,-140.99 245,-150.99 248.5,-140.99 241.5,-140.99"/>
 </g>
 <!-- SharedModule -->
 <g id="node4" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="332.42,-122 329.42,-126 308.42,-126 305.42,-122 233.58,-122 233.58,-86 332.42,-86 332.42,-122"/>
-<text text-anchor="middle" x="283" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
+<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;EditionRowTablesModule -->
 <g id="edge3" class="edge">
 <title>SharedModule&#45;&gt;EditionRowTablesModule</title>
-<path fill="none" stroke="black" d="M283,-122.11C283,-122.11 283,-140.99 283,-140.99"/>
-<polygon fill="black" stroke="black" points="279.5,-140.99 283,-150.99 286.5,-140.99 279.5,-140.99"/>
+<path fill="none" stroke="black" d="M73,-122.11C73,-141.34 73,-169 73,-169 73,-169 152.78,-169 152.78,-169"/>
+<polygon fill="black" stroke="black" points="152.78,-172.5 162.78,-169 152.78,-165.5 152.78,-172.5"/>
 </g>
 </g>
 </svg>
