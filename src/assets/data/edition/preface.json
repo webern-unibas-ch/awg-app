@@ -7,11 +7,11 @@
 
                 "<p class='block-lead'>Die AWG gliedert sich in drei Serien:</p>",
 
-                "<div class='table-responsive'><table><tbody><tr><td>Serie I</td><td>Werke mit Opuszahlen</td></tr><tr><td>Serie II</td><td>Nachgelassene Kompositionen und Fragmente</td></tr><tr><td>Serie III</td><td>Bearbeitungen von Werken anderer Komponisten</td></tr></tbody></table></div>",
+                "<div class='table-responsive'><table><tbody><tr><th scope='row'>Serie I</th><td>Werke mit Opuszahlen</td></tr><tr><th scope='row'>Serie II</th><td>Nachgelassene Kompositionen und Fragmente</td></tr><tr><th scope='row'>Serie III</th><td>Bearbeitungen von Werken anderer Komponisten</td></tr></tbody></table></div>",
 
                 "<p class='block-lead'>Jede der Serien umfasst fünf Abteilungen:</p>",
 
-                "<div class='table-responsive'><table><tbody><tr><td>Abteilung 1</td><td>Orchestermusik</td></tr><tr><td>Abteilung 2</td><td>Kammer- und Klaviermusik</td></tr><tr><td>Abteilung 3</td><td>Chormusik</td></tr><tr><td>Abteilung 4</td><td>Vokalmusik mit Ensemblebegleitung</td></tr><tr><td>Abteilung 5</td><td>Klavierlieder (Serie III: Klavierauszüge)</td></tr></tbody></table></div>",
+                "<div class='table-responsive'><table><tbody><tr><th scope='row'>Abteilung 1</th><td>Orchestermusik</td></tr><tr><th scope='row'>Abteilung 2</th><td>Kammer- und Klaviermusik</td></tr><tr><th scope='row'>Abteilung 3</th><td>Chormusik</td></tr><tr><th scope='row'>Abteilung 4</th><td>Vokalmusik mit Ensemblebegleitung</td></tr><tr><th scope='row'>Abteilung 5</th><td>Klavierlieder (Serie III: Klavierauszüge)</td></tr></tbody></table></div>",
 
                 "<p class='block-lead'>Die Abteilungen präsentieren an der Besetzung orientierte Editionskomplexe, d. h. editorisch aufbereitete Textfassungen und Skizzen von einzelnen Kompositionen oder Zusammenstellungen mehrerer Sätze bzw. Stücke oder Lieder. Soweit möglich, werden chronologisch differenzierbare Stadien dieser Editionskomplexe als solche dargestellt und gemäß den in den Quellen erkennbaren Titeln, Nummerierungen und Opuszahlen benannt, auch wenn diese in späteren Stadien unter Umständen obsolet geworden sind.</p>",
                 "<p>Skizzen und Textfassungen eines Editionskomplexes werden jeweils im Sinne einer möglichen chronologischen Entstehung nummeriert, ohne dass die dadurch implizierte Reihenfolge beansprucht, einer in allen Aspekten textgenetischen Darstellung gerecht zu werden.</p>",
@@ -45,9 +45,9 @@
 
                 "<p class='block-lead'>Weberns Kompositionen werden auf der Grundlage der „Moldenhauer-Nummern“ identifiziert. (<a href='https://ark.dasch.swiss/ark:/72163/1/0806/OQuMlQB_QYCZA5wgvzmThAw.20230526T231228092746021Z' class='link' >Hans und Rosaleen Moldenhauer, <i>Anton von Webern. Chronik seines Lebens und Werkes</i>, Zürich: Atlantis, 1980</a>, S. 639–667. Das entsprechende Verzeichnis der englischen Originalausgabe [<a href='https://ark.dasch.swiss/ark:/72163/1/0806/FJTRpOMPRkCHC=UKQVQhng_.20230526T214449362846109Z' class='link'><i>Anton von Webern. A Chronicle of His Life and Work</i>, London: Gollancz, 1978 bzw. New York: Knopf, 1979</a>, S. 697–750] weist für M 10 bis M 21 eine in chronologischer Hinsicht fehlerhafte Nummerierung auf, die in der deutschen Übersetzung korrigiert wurde.) Die AWG hat trotz vereinzelter Zweifel an ihrer chronologischen Richtigkeit diese Nummerierung, die die Grundlage zur Strukturierung von Weberns kompositorischem Oeuvre bildet, als AWG-IDs übernommen, erweitert oder modifiziert sie jedoch bei Bedarf. Den von Moldenhauer nicht erfassten Stücken ordnet die AWG ungeachtet der Chronologie eine neue Nummer zu (gekennzeichnet durch ein vorangestelltes „M*“). Zur klaren Abgrenzung von den ursprünglichen 347 Moldenhauer-Nummern beginnen diese ab der Nummer 400. Einen Überblick über alle AWG-IDs bietet die Datenbank der AWG. Die Datenbank umfasst darüber hinaus Informationen zu Werken und zur Biographie Anton Weberns sowie zu weiteren Kontextmaterialien und Forschungsliteratur.</p>",
 
-                "<p class=' block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
+                "<p class='block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
 
-                "<p class=' block-lead small'> Zugang zur AWG-Datenbank: <a href='https://ark.dasch.swiss/ark:/72163/1/0806' class='link'>https://ark.dasch.swiss/ark:/72163/1/0806</a></p>"
+                "<p class='block-lead small'>Zugang zur AWG-Datenbank: <a href='https://ark.dasch.swiss/ark:/72163/1/0806' class='link'>https://ark.dasch.swiss/ark:/72163/1/0806</a></p>"
             ]
         },
         {
@@ -57,11 +57,11 @@
 
                 "<p class='block-lead'>The AWG is divided into three series:</p>",
 
-                "<div class='table-responsive'><table><tbody><tr><td>Series I</td><td>Works with Opus Number</td></tr><tr><td>Series II</td><td>Posthumous Compositions and Fragments</td></tr><tr><td>Series III</td><td>Arrangements of Works by Other Composers</td></tr></tbody></table></div>",
+                "<div class='table-responsive'><table><tbody><tr><th scope='row'>Series I</th><td>Works with Opus Number</td></tr><tr><th scope='row'>Series II</th><td>Posthumous Compositions and Fragments</td></tr><tr><th scope='row'>Series III</th><td>Arrangements of Works by Other Composers</td></tr></tbody></table></div>",
 
                 "<p class='block-lead'>Each Series comprises five Sections:</p>",
 
-                "<div class='table-responsive'><table><tbody><tr><td>Section 1</td><td>Music for Orchestra</td></tr><tr><td>Section 2</td><td>Chamber Music and Piano Music</td></tr><tr><td>Section 3</td><td>Choral Music</td></tr><tr><td>Section 4</td><td>Vocal Music with Ensemble Accompaniment</td></tr><tr><td>Section 5</td><td>Songs for Voice and Piano (Series III: Vocal Scores)</td></tr></tbody></table></div>",
+                "<div class='table-responsive'><table><tbody><tr><th scope='row'>Section 1</th><td>Music for Orchestra</td></tr><tr><th scope='row'>Section 2</th><td>Chamber Music and Piano Music</td></tr><tr><th scope='row'>Section 3</th><td>Choral Music</td></tr><tr><th scope='row'>Section 4</th><td>Vocal Music with Ensemble Accompaniment</td></tr><tr><th scope='row'>Section 5</th><td>Songs for Voice and Piano (Series III: Vocal Scores)</td></tr></tbody></table></div>",
 
                 "<p class='block-lead'>These five Sections present the different versions and sketches of individual compositions, or compilations of different movements, pieces or songs edited here as coherent clusters where appropriate, grouped overall according to their instrumentation. As far as possible, these clusters will present the different stages of composition inasmuch as the individual chronology can be determined. Titles, opus numbers and individual numberings will be retained as given in the sources, even when these identifying factors have become obsolete in the later stages of composition.</p>",
                 "<p>Sketches and the different versions of the musical text grouped together here in the aforementioned clusters will be numbered in line with their probable compositional chronology, without the resultant, implicit numbering having any unequivocal claim to describing all possible aspects of the work’s genesis.</p>",

@@ -47,8 +47,10 @@
         table {
             text-wrap: nowrap;
 
-            > tbody > tr > td {
+            th,
+            td {
                 padding-right: 20px;
+                font-weight: normal;
             }
         }
     }

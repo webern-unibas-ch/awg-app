@@ -73,8 +73,10 @@
             table {
                 text-wrap: nowrap;
 
-                > tbody > tr > td {
+                th,
+                td {
                     padding-right: 20px;
+                    font-weight: normal;
                 }
                 > tbody > tr.row-gap > td {
                     padding-top: 1em;
