@@ -33,24 +33,41 @@
                 margin-bottom: 0 !important;
             }
 
-            %noindent {
+            %block-style {
+                margin-top: 1em;
+                margin-left: 0;
+            }
+
+            %no-indent {
                 text-indent: 0;
             }
 
             .block-lead {
-                margin-top: 1em;
+                @extend %block-style;
+                @extend %no-indent;
+            }
+
+            .heading {
+                display: block;
+                font-weight: bold;
+                margin: 1.5em 0;
+                @extend %no-indent;
+            }
+
+            .list {
                 margin-left: 0;
-                @extend %noindent;
+                @extend %no-indent;
             }
 
-            blockquote {
-                @extend .block-lead;
+            .small {
+                @extend %no-indent;
                 font-size: 0.875em;
             }
 
+            blockquote,
             div.table-responsive {
-                @extend .block-lead;
-                font-size: 0.875em;
+                @extend %block-style;
+                @extend .small;
             }
 
             table {
@@ -85,22 +102,6 @@
                         }
                     }
                 }
-            }
-
-            .heading {
-                display: block;
-                font-weight: bold;
-                margin: 1.5em 0;
-                text-indent: 0;
-            }
-
-            .list {
-                margin-left: 1em;
-                text-indent: -1em;
-            }
-
-            .small {
-                @extend %noindent;
             }
         }
     }
