@@ -1233,11 +1233,48 @@ export class EditionIntroContentComponent {
                 margin-bottom: 0 !important;
             }
 
-            table {
-                text-wrap: nowrap;
+            %block-style {
+                margin-top: 1em;
+                margin-left: 0;
+            }
 
-                &gt; tbody &gt; tr &gt; td {
+            %no-indent {
+                text-indent: 0;
+            }
+
+            .block-lead {
+                @extend %block-style;
+                @extend %no-indent;
+            }
+
+            .heading {
+                display: block;
+                font-weight: bold;
+                margin: 1.5em 0;
+                @extend %no-indent;
+            }
+
+            .small {
+                @extend %no-indent;
+                font-size: 0.875em;
+            }
+
+            blockquote,
+            div.table-responsive {
+                @extend %block-style;
+                @extend .small;
+            }
+
+            table {
+                white-space: nowrap;
+
+                th,
+                td {
                     padding-right: 20px;
+                    font-weight: normal;
+                }
+                &gt; tbody &gt; tr.row-gap &gt; td {
+                    padding-top: 1em;
                 }
 
                 &amp;.awg-intro-table {
@@ -1264,34 +1301,14 @@ export class EditionIntroContentComponent {
                 }
             }
 
-            .heading {
-                display: block;
-                font-weight: bold;
-                margin: 1.5em 0;
-                text-indent: 0;
-            }
+            ul {
+                padding-left: 0;
+                list-style-position: inside;
+                list-style-type: &#x27;\2013\20&#x27;;
 
-            .small,
-            .no-indent {
-                text-indent: 0;
-            }
-
-            .spacebreak {
-                display: block;
-                margin-top: 1em;
-
-                &amp;.list {
-                    text-indent: 0;
+                li {
+                    @extend %no-indent;
                 }
-
-                &amp;.no-indent {
-                    margin-left: 0;
-                }
-            }
-
-            .list {
-                margin-left: 1em;
-                text-indent: -1em;
             }
         }
     }
