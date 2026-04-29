@@ -187,25 +187,25 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 expectToEqual(switcherCmp.currentLanguage, expectedCurrentLanguage);
             });
 
-            it('... should contain as many preface paragraph elements in div.awg-preface-view as content items in preview data (german)', () => {
+            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (german)', () => {
                 // Div debug element
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-preface-para',
+                    'div.awg-edition-preface-block',
                     expectedPrefaceData.preface[0].content.length,
                     expectedPrefaceData.preface[0].content.length
                 );
             });
 
-            it('... should contain as many preface paragraph elements in div.awg-preface-view as content items in preview data (english)', () => {
+            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (english)', () => {
                 // Div debug element
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-preface-para',
+                    'div.awg-edition-preface-block',
                     expectedPrefaceData.preface[1].content.length,
                     expectedPrefaceData.preface[1].content.length
                 );

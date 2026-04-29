@@ -33,11 +33,48 @@
                 margin-bottom: 0 !important;
             }
 
-            table {
-                text-wrap: nowrap;
+            %block-style {
+                margin-top: 1em;
+                margin-left: 0;
+            }
 
-                > tbody > tr > td {
+            %no-indent {
+                text-indent: 0;
+            }
+
+            .block-lead {
+                @extend %block-style;
+                @extend %no-indent;
+            }
+
+            .heading {
+                display: block;
+                font-weight: bold;
+                margin: 1.5em 0;
+                @extend %no-indent;
+            }
+
+            .small {
+                @extend %no-indent;
+                font-size: 0.875em;
+            }
+
+            blockquote,
+            div.table-responsive {
+                @extend %block-style;
+                @extend .small;
+            }
+
+            table {
+                white-space: nowrap;
+
+                th,
+                td {
                     padding-right: 20px;
+                    font-weight: normal;
+                }
+                > tbody > tr.row-gap > td {
+                    padding-top: 1em;
                 }
 
                 &.awg-intro-table {
@@ -64,34 +101,14 @@
                 }
             }
 
-            .heading {
-                display: block;
-                font-weight: bold;
-                margin: 1.5em 0;
-                text-indent: 0;
-            }
+            ul {
+                padding-left: 0;
+                list-style-position: inside;
+                list-style-type: '\2013\20';
 
-            .small,
-            .no-indent {
-                text-indent: 0;
-            }
-
-            .spacebreak {
-                display: block;
-                margin-top: 1em;
-
-                &.list {
-                    text-indent: 0;
+                li {
+                    @extend %no-indent;
                 }
-
-                &.no-indent {
-                    margin-left: 0;
-                }
-            }
-
-            .list {
-                margin-left: 1em;
-                text-indent: -1em;
             }
         }
     }
