@@ -574,63 +574,63 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-001",
+                                "svgGroupId": "awg-tkk-op23_skrt-001",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1a",
                                 "position": "G<sub>gis</sub>",
                                 "comment": "Reihennummerierung <em>I</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-002",
+                                "svgGroupId": "awg-tkk-op23_skrt-002",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1b",
                                 "position": "K<sub>h</sub>",
                                 "comment": "Reihennummerierung <em>II</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-003",
+                                "svgGroupId": "awg-tkk-op23_skrt-003",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2a",
                                 "position": "U<sub>gis</sub>",
                                 "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-004",
+                                "svgGroupId": "awg-tkk-op23_skrt-004",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2b",
                                 "position": "KU<sub>f</sub>",
                                 "comment": "Reihennummerierung <em>IV</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-005",
+                                "svgGroupId": "awg-tkk-op23_skrt-005",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2b",
                                 "position": "KU<sub>f</sub>: 8. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> als Ansatz zu ges<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-006",
+                                "svgGroupId": "awg-tkk-op23_skrt-006",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3a",
                                 "position": "G<sub>d</sub>",
                                 "comment": "Reihennummerierung <em>V</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-007",
+                                "svgGroupId": "awg-tkk-op23_skrt-007",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3b",
                                 "position": "K<sub>f</sub>",
                                 "comment": "Reihennummerierung <em>VI</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-008",
+                                "svgGroupId": "awg-tkk-op23_skrt-008",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4a",
                                 "position": "U<sub>d</sub>",
                                 "comment": "Reihennummerierung <em>VII</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "awg-tkk-skrt_op23-009",
+                                "svgGroupId": "awg-tkk-op23_skrt-009",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4b",
                                 "position": "KU<sub>h</sub>",
