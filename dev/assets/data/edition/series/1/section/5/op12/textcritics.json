@@ -416,7 +416,7 @@
                                 "svgGroupId": "awg-tkk-m212_tf1-003",
                                 "measure": "2",
                                 "system": "Klav. o.",
-                                "position": "1. Note",
+                                "position": "3. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
