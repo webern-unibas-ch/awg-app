@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, DebugElement, DOCUMENT, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
@@ -112,6 +113,7 @@ describe('EditionViewComponent (DONE)', () => {
                 RouterLinkStubDirective,
                 ScrollToTopStubComponent,
             ],
+            imports: [DatePipe],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
@@ -480,7 +482,12 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
                     });
 
-                    expectToBe(versionSpanEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
+                    const datePipe = new DatePipe('de');
+                    const expectedLastModified = datePipe.transform(
+                        expectedSelectedEditionComplex.respStatement.lastModified,
+                        'longDate'
+                    );
+                    expectToBe(versionSpanEl.innerText, expectedLastModified);
                 });
 
                 it('... should have one MetaIdentifierBadgesComponent for each editor', () => {

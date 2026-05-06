@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -17,6 +18,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
+    const datePipe = new DatePipe('en');
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureInfoHeader = 'Strukturmodell';
 
@@ -26,6 +28,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
         TestBed.configureTestingModule({
             declarations: [StructureInfoComponent],
+            imports: [DatePipe],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
     }));
@@ -148,8 +151,8 @@ describe('StructureInfoComponent (DONE)', () => {
                 expectToBe(authorEl.innerHTML, expectedAuthor.name);
             });
 
-            it('... should render last modification date', () => {
-                const expectedLastModified = expectedStructureMetaData.lastModified;
+            it('... should render last modification date in correct format', () => {
+                const expectedLastModified = datePipe.transform(expectedStructureMetaData.lastModified, 'longDate');
 
                 const lastmodDes = getAndExpectDebugElementByCss(compDe, 'span#awg-structure-info-lastmodified', 1, 1);
                 const lastmodEl: HTMLSpanElement = lastmodDes[0].nativeElement;

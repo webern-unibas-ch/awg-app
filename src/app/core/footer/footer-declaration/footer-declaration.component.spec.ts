@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -30,6 +31,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
+            imports: [DatePipe],
         }).compileComponents();
     }));
 
@@ -98,7 +100,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should render version values', () => {
                 const expectedVersion = expectedPageMetaData.version;
-                const expectedVersionDate = expectedPageMetaData.versionReleaseDate;
+                const datePipe = new DatePipe('de');
+                const expectedVersionDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
 
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);

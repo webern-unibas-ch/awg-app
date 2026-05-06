@@ -32,8 +32,8 @@ const META_PAGE: MetaPage = {
  * It provides metadata used for the structure view.
  */
 const META_STRUCTURE: MetaStructure = {
-    lastModified: '29. Januar 2016',
     authors: [PERSONS_DATA['stefan_münnich']],
+    lastModified: '2016-01-29',
 };
 
 /**

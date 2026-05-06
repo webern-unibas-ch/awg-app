@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -32,6 +33,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailComplexCardComponent, RouterLinkStubDirective],
+            imports: [DatePipe],
         }).compileComponents();
     });
 
@@ -268,9 +270,10 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                         const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                         const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
+                        const datePipe = new DatePipe('de');
                         expectToBe(
                             versionSpanEl.textContent.trim(),
-                            expectedComplexes[index].complex.respStatement.lastModified
+                            datePipe.transform(expectedComplexes[index].complex.respStatement.lastModified, 'longDate')
                         );
                     } else {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 0, 0);

@@ -12,7 +12,8 @@
         </p>
         <p>&#9671;</p>
         <p>
-            Versionsdatum: <span id="awg-structure-info-lastmodified">{{ structureMetaData?.lastModified }}</span>
+            Versionsdatum:
+            <span id="awg-structure-info-lastmodified">{{ structureMetaData?.lastModified | date: 'longDate' }}</span>
         </p>
     </div>
 </div>
