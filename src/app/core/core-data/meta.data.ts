@@ -32,7 +32,7 @@ const META_PAGE: MetaPage = {
  * It provides metadata used for the structure view.
  */
 const META_STRUCTURE: MetaStructure = {
-    authors: [PERSONS_DATA['stefan_münnich']],
+    authors: [PERSONS_DATA['stefan_muennich']],
     lastModified: '2016-01-29',
 };
 
@@ -42,7 +42,7 @@ const META_STRUCTURE: MetaStructure = {
  * It provides metadata used for the contact view.
  */
 const META_CONTACT: MetaContact = {
-    developers: [PERSONS_DATA['stefan_münnich']],
+    developers: [PERSONS_DATA['stefan_muennich']],
     address: {
         institution: 'Musikwissenschaftliches Seminar der Universität Basel',
         street: 'Petersgraben 27/29',

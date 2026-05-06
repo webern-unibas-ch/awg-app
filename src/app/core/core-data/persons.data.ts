@@ -23,7 +23,7 @@ export const PERSONS_DATA: Record<string, MetaPerson> = {
             viaf: '256375308',
         },
     },
-    stefan_münnich: {
+    stefan_muennich: {
         name: 'Stefan Münnich',
         homepage: AppConfig.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
         identifiers: {
