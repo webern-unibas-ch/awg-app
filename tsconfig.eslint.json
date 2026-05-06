@@ -1,5 +1,8 @@
 {
     "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "types": ["jasmine", "node"]
+    },
     "include": [
         "src/app/**/*.ts",
         "src/environments/**/*.ts",
