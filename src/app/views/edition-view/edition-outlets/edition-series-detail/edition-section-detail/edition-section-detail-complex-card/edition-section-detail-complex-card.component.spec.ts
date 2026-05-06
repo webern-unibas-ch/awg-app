@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { click } from '@testing/click-helper';
@@ -28,12 +29,14 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
+        registerLocaleData(localeDeDE);
     });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailComplexCardComponent, RouterLinkStubDirective],
             imports: [DatePipe],
+            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
     });
 
@@ -264,7 +267,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     expectedComplexes.length,
                     expectedComplexes.length
                 );
-                const datePipe = new DatePipe('en');
+                const datePipe = new DatePipe('de-DE');
                 cardFooterDes.forEach((cardFooterDe, index) => {
                     const lastModified = expectedComplexes[index].complex.respStatement.lastModified;
                     if (!expectedComplexes[index].disabled && lastModified !== '---') {

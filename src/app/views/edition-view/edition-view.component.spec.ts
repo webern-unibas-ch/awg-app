@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { Component, DebugElement, DOCUMENT, Input } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { Component, DebugElement, DOCUMENT, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { delay, Observable, of as observableOf } from 'rxjs';
@@ -22,6 +23,8 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
+
+registerLocaleData(localeDeDE);
 
 // Mock components
 @Component({
@@ -115,7 +118,10 @@ describe('EditionViewComponent (DONE)', () => {
                 ScrollToTopStubComponent,
             ],
             imports: [DatePipe],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: EditionStateService, useValue: mockEditionStateService },
+            ],
         }).compileComponents();
     }));
 
@@ -483,7 +489,7 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
                     });
 
-                    const datePipe = new DatePipe('en');
+                    const datePipe = new DatePipe('de-DE');
                     const expectedLastModified = datePipe.transform(
                         expectedSelectedEditionComplex.respStatement.lastModified,
                         'longDate'

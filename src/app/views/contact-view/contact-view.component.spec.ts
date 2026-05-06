@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { Component, DebugElement, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
@@ -19,6 +20,8 @@ import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-c
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
+
+registerLocaleData(localeDeDE);
 
 // Mock heading component
 @Component({
@@ -50,7 +53,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
-    const datePipe = new DatePipe('en');
+    const datePipe = new DatePipe('de-DE');
     let dateSpy: Spy;
     let provideMetaDataSpy: Spy;
 
@@ -72,7 +75,10 @@ describe('ContactViewComponent (DONE)', () => {
 
         TestBed.configureTestingModule({
             declarations: [ContactViewComponent, HeadingStubComponent, MetaIdentifierBadgesStubComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: CoreService, useValue: mockCoreService },
+            ],
         }).compileComponents();
     }));
 

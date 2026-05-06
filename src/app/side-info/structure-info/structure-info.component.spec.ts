@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -11,6 +12,8 @@ import { CoreService } from '@awg-core/services';
 
 import { StructureInfoComponent } from './structure-info.component';
 
+registerLocaleData(localeDeDE);
+
 describe('StructureInfoComponent (DONE)', () => {
     let component: StructureInfoComponent;
     let fixture: ComponentFixture<StructureInfoComponent>;
@@ -18,7 +21,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
-    const datePipe = new DatePipe('en');
+    const datePipe = new DatePipe('de-DE');
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureInfoHeader = 'Strukturmodell';
 
@@ -29,7 +32,10 @@ describe('StructureInfoComponent (DONE)', () => {
         TestBed.configureTestingModule({
             declarations: [StructureInfoComponent],
             imports: [DatePipe],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: CoreService, useValue: mockCoreService },
+            ],
         }).compileComponents();
     }));
 

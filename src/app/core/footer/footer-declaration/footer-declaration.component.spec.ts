@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -18,6 +19,8 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
 
+registerLocaleData(localeDeDE);
+
 describe('FooterDeclarationComponent (DONE)', () => {
     let component: FooterDeclarationComponent;
     let fixture: ComponentFixture<FooterDeclarationComponent>;
@@ -32,6 +35,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         TestBed.configureTestingModule({
             declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
             imports: [DatePipe],
+            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
     }));
 
@@ -100,7 +104,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should render version values', () => {
                 const expectedVersion = expectedPageMetaData.version;
-                const datePipe = new DatePipe('en');
+                const datePipe = new DatePipe('de-DE');
                 const expectedVersionDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
 
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
