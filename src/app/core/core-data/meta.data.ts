@@ -34,6 +34,11 @@ const META_STRUCTURE: MetaStructure = {
         {
             name: 'Stefan Münnich',
             homepage: AppConfig.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
+            identifiers: {
+                gnd: '1068032472',
+                orcid: '0000-0002-0744-5374',
+                viaf: '314885087',
+            },
         },
     ],
     lastModified: '29. Januar 2016',

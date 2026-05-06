@@ -7,4 +7,4 @@
  *
  */
 export { Logo, Logos } from './logos.model';
-export { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from './meta.model';
+export { Meta, MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes, MetaStructure } from './meta.model';

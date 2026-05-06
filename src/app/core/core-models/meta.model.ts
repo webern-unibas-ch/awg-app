@@ -10,6 +10,28 @@ export enum MetaSectionTypes {
 }
 
 /**
+ * The MetaIdentifiers class.
+ *
+ * It is used to store authority identifiers for a person.
+ */
+export class MetaIdentifiers {
+    /**
+     * The GND (Gemeinsame Normdatei) identifier of a person.
+     */
+    gnd?: string;
+
+    /**
+     * The ORCID identifier of a person.
+     */
+    orcid?: string;
+
+    /**
+     * The VIAF (Virtual International Authority File) identifier of a person.
+     */
+    viaf?: string;
+}
+
+/**
  * The MetaPerson class.
  *
  * It is used to store the metadata about a Person.
@@ -24,6 +46,11 @@ export class MetaPerson {
      * The (FOAF) homepage of a person.
      */
     homepage: string;
+
+    /**
+     * The authority identifiers of a person.
+     */
+    identifiers?: MetaIdentifiers;
 }
 
 /**
