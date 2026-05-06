@@ -10,15 +10,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "21. März 2024"
+                    "lastModified": "2024-03-21"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -36,15 +31,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "29. Januar 2025"
+                    "lastModified": "2025-01-29"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -62,15 +52,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "8. Januar 2025"
+                    "lastModified": "2025-01-08"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -88,15 +73,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "19. Januar 2024"
+                    "lastModified": "2024-01-19"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -114,15 +94,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "19. Januar 2024"
+                    "lastModified": "2024-01-19"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -140,15 +115,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "24. Januar 2025"
+                    "lastModified": "2025-01-24"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -166,15 +136,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "27. Januar 2025"
+                    "lastModified": "2025-01-27"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -192,15 +157,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "6. Mai 2023"
+                    "lastModified": "2023-05-06"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -218,15 +178,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "8. Februar 2024"
+                    "lastModified": "2024-02-08"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -244,15 +199,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "14. August 2024"
+                    "lastModified": "2024-08-14"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -270,15 +220,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "19. Januar 2024"
+                    "lastModified": "2024-01-19"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -296,15 +241,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "15. August 2024"
+                    "lastModified": "2024-08-15"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -322,15 +262,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "9. Januar 2025"
+                    "lastModified": "2025-01-09"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -348,15 +283,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "8. Januar 2025"
+                    "lastModified": "2025-01-08"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -374,15 +304,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "8. Januar 2025"
+                    "lastModified": "2025-01-08"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -400,15 +325,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "8. Januar 2025"
+                    "lastModified": "2025-01-08"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -426,15 +346,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "9. Januar 2025"
+                    "lastModified": "2025-01-09"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -452,15 +367,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "27. Januar 2025"
+                    "lastModified": "2025-01-27"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -478,15 +388,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "27. Januar 2025"
+                    "lastModified": "2025-01-27"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -504,15 +409,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -530,15 +430,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "27. Januar 2025"
+                    "lastModified": "2025-01-27"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -556,15 +451,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "5. Februar 2025"
+                    "lastModified": "2025-02-05"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -582,15 +472,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "23. Januar 2025"
+                    "lastModified": "2025-01-23"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -608,15 +493,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "6. Februar 2025"
+                    "lastModified": "2025-02-06"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -634,15 +514,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "23. Januar 2025"
+                    "lastModified": "2025-01-23"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -660,15 +535,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -686,15 +556,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -712,15 +577,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -738,15 +598,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -764,15 +619,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -790,15 +640,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -816,15 +661,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -842,15 +682,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -868,15 +703,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -894,15 +724,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -920,15 +745,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -946,15 +766,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -972,15 +787,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -998,15 +808,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1024,12 +829,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1050,12 +850,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1076,12 +871,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1102,12 +892,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1128,15 +913,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1154,12 +934,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1180,12 +955,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1206,12 +976,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1232,12 +997,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1258,15 +1018,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "19. November 2024"
+                    "lastModified": "2024-11-19"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1284,15 +1039,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "7. November 2024"
+                    "lastModified": "2024-11-07"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1310,12 +1060,7 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
                     "lastModified": "---"
@@ -1336,15 +1081,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "7. November 2024"
+                    "lastModified": "2024-11-07"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1362,15 +1102,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1388,15 +1123,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1414,15 +1144,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1440,15 +1165,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "5. Februar 2025"
+                    "lastModified": "2025-02-05"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1466,15 +1186,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1492,15 +1207,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1518,15 +1228,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "30. Januar 2025"
+                    "lastModified": "2025-01-30"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1544,15 +1249,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "6. Februar 2025"
+                    "lastModified": "2025-02-06"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1570,15 +1270,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "6. Februar 2025"
+                    "lastModified": "2025-02-06"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1596,15 +1291,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Michael Matter",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "1069569267",
-                                "viaf": "256375308"
-                            }
+                            "$ref": "michael_matter"
                         }
                     ],
-                    "lastModified": "6. Februar 2025"
+                    "lastModified": "2025-02-06"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -1622,15 +1312,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1648,15 +1333,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Juni 2024"
+                    "lastModified": "2024-06-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1674,15 +1354,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "9. April 2024"
+                    "lastModified": "2024-04-09"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1700,15 +1375,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Mai 2023"
+                    "lastModified": "2023-05-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1726,15 +1396,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "20. Februar 2025"
+                    "lastModified": "2025-02-20"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1752,15 +1417,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Mai 2023"
+                    "lastModified": "2023-05-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1778,15 +1438,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "17. April 2024"
+                    "lastModified": "2024-04-17"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1804,15 +1459,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Mai 2023"
+                    "lastModified": "2023-05-06"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1830,15 +1480,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "17. April 2024"
+                    "lastModified": "2024-04-17"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -1856,15 +1501,10 @@
                 "respStatement": {
                     "editors": [
                         {
-                            "name": "Thomas Ahrend",
-                            "homepage": "https://anton-webern.ch/de/projekt/mitarbeitende.html",
-                            "identifiers": {
-                                "gnd": "129772429",
-                                "viaf": "74941235"
-                            }
+                            "$ref": "thomas_ahrend"
                         }
                     ],
-                    "lastModified": "6. Mai 2023"
+                    "lastModified": "2023-05-06"
                 },
                 "pubStatement": {
                     "series": "1",

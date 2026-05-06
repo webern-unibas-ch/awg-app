@@ -5,6 +5,7 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
+import { PERSONS_DATA } from '@awg-core/core-data';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexesService } from './edition-complexes.service';
@@ -73,6 +74,15 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['op3'].titleStatement).toBeDefined();
             expect(editionComplexesList['op3'].respStatement).toBeDefined();
             expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+        });
+
+        it('... should resolve $ref entries in respStatement.editors', () => {
+            EditionComplexesService.initializeEditionComplexesList();
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
+            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
         });
     });
 
@@ -267,6 +277,13 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['op3'].titleStatement).toBeDefined();
             expect(editionComplexesList['op3'].respStatement).toBeDefined();
             expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+        });
+
+        it('... should resolve $ref entries in respStatement.editors', () => {
+            const editionComplexesList = (EditionComplexesService as any)._fetchEditionComplexesData();
+
+            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
+            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
         });
     });
 });

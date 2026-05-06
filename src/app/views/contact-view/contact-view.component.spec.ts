@@ -15,7 +15,7 @@ import {
 } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
@@ -31,6 +31,16 @@ class HeadingStubComponent {
     title: string;
     @Input()
     id: string;
+}
+
+// Mock MetaIdentifierBadges component
+@Component({
+    selector: 'awg-meta-identifier-badges',
+    template: '',
+    standalone: false,
+})
+class MetaIdentifierBadgesStubComponent {
+    @Input() identifiers: MetaIdentifiers | undefined;
 }
 
 describe('ContactViewComponent (DONE)', () => {
@@ -61,7 +71,7 @@ describe('ContactViewComponent (DONE)', () => {
         mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         TestBed.configureTestingModule({
-            declarations: [ContactViewComponent, HeadingStubComponent],
+            declarations: [ContactViewComponent, HeadingStubComponent, MetaIdentifierBadgesStubComponent],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
     }));
@@ -268,6 +278,21 @@ describe('ContactViewComponent (DONE)', () => {
                 expectToContain(releaseEl.textContent, expectedPageMetaData.versionReleaseDate);
                 expectToContain(dateEl0.textContent, pipedToday);
                 expectToContain(dateEl1.textContent, pipedToday);
+            });
+
+            it('... should pass down `identifiers` to MetaIdentifierBadgesComponent for each developer', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
+                const badgeDes = getAndExpectDebugElementByDirective(
+                    divDes[0],
+                    MetaIdentifierBadgesStubComponent,
+                    expectedContactMetaData.developers.length,
+                    expectedContactMetaData.developers.length
+                );
+                const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                badgeCmps.forEach((badgeCmp, i) => {
+                    expectToEqual(badgeCmp.identifiers, expectedContactMetaData.developers[i].identifiers);
+                });
             });
         });
     });

@@ -162,6 +162,11 @@ export class MetaStructure {
  */
 export class MetaContact {
     /**
+     * The developers of the app.
+     */
+    developers: MetaPerson[];
+
+    /**
      * The address info of the contact info.
      */
     address: {

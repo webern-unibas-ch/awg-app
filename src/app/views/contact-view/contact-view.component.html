@@ -82,7 +82,10 @@
         </p>
         <p>
             <span class="smallcaps">Programmierung &amp; Webdesign:</span><br />
-            Stefan Münnich<br />
+            @for (developer of contactMetaData?.developers; track developer.name) {
+                {{ developer.name
+                }}<awg-meta-identifier-badges [identifiers]="developer.identifiers"></awg-meta-identifier-badges><br />
+            }
             Wissenschaftlicher Mitarbeiter der {{ pageMetaData.awgProjectName }}, Basel<br /><a
                 href="mailto:stefan.muennich@unibas.ch"
                 >stefan.muennich [at] unibas [dot] ch</a
