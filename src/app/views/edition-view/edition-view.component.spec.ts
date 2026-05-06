@@ -14,6 +14,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { MetaIdentifiers } from '@awg-core/core-models';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -39,6 +40,15 @@ class EditionJumbotronStubComponent {
     standalone: false,
 })
 class ScrollToTopStubComponent {}
+
+@Component({
+    selector: 'awg-meta-identifier-badges',
+    template: '',
+    standalone: false,
+})
+class MetaIdentifierBadgesStubComponent {
+    @Input() identifiers: MetaIdentifiers | undefined;
+}
 
 describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
@@ -97,6 +107,7 @@ describe('EditionViewComponent (DONE)', () => {
             declarations: [
                 EditionViewComponent,
                 EditionJumbotronStubComponent,
+                MetaIdentifierBadgesStubComponent,
                 RouterOutletStubComponent,
                 RouterLinkStubDirective,
                 ScrollToTopStubComponent,
@@ -470,6 +481,36 @@ describe('EditionViewComponent (DONE)', () => {
                     });
 
                     expectToBe(versionSpanEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
+                });
+
+                it('... should have one MetaIdentifierBadgesComponent for each editor', () => {
+                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+
+                    const badgeDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        MetaIdentifierBadgesStubComponent,
+                        expectedEditors.length,
+                        expectedEditors.length
+                    );
+                    const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                    expectToEqual(badgeCmps.length, expectedEditors.length);
+                });
+
+                it('... should pass identifiers to MetaIdentifierBadgesComponent for each editor', () => {
+                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+
+                    const badgeDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        MetaIdentifierBadgesStubComponent,
+                        expectedEditors.length,
+                        expectedEditors.length
+                    );
+                    const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                    badgeCmps.forEach((badgeCmp, i: number) => {
+                        expectToEqual(badgeCmp.identifiers, expectedEditors[i].identifiers);
+                    });
                 });
             });
 

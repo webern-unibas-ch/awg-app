@@ -70,6 +70,7 @@
                     @for (editor of selectedEditionComplex.respStatement.editors; track $index; let isLast = $last) {
                         <span class="editor">
                             <a href="{{ editor.homepage }}">{{ editor.name }}</a>
+                            <awg-meta-identifier-badges [identifiers]="editor.identifiers" />
                             @if (!isLast) {
                                 <span>&nbsp;&&nbsp;</span>
                             }

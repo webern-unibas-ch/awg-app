@@ -1,5 +1,3 @@
-import { MetaIdentifiers } from '@awg-core/core-models';
-
 import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 
 /**
@@ -209,48 +207,5 @@ export class AppConfig {
      */
     public static get AWG_APP_ZENODO_URL(): string {
         return 'https://doi.org/10.5281/zenodo.4717678';
-    }
-
-    /**
-     * Getter for the base URL of the GND (Gemeinsame Normdatei)
-     * ({@link https://d-nb.info/gnd/}).
-     *
-     * @returns {string}
-     */
-    public static get GND_BASE_URL(): string {
-        return 'https://d-nb.info/gnd/';
-    }
-
-    /**
-     * Getter for the base URL of ORCID
-     * ({@link https://orcid.org/}).
-     *
-     * @returns {string}
-     */
-    public static get ORCID_BASE_URL(): string {
-        return 'https://orcid.org/';
-    }
-
-    /**
-     * Getter for the base URL of VIAF (Virtual International Authority File)
-     * ({@link https://viaf.org/viaf/}).
-     *
-     * @returns {string}
-     */
-    public static get VIAF_BASE_URL(): string {
-        return 'https://viaf.org/viaf/';
-    }
-
-    /**
-     * Getter for the configuration of person authority identifiers.
-     *
-     * @returns {{ key: keyof MetaIdentifiers; label: string; baseUrl: string }[]}
-     */
-    public static get IDENTIFIER_CONFIGS(): { key: keyof MetaIdentifiers; label: string; baseUrl: string }[] {
-        return [
-            { key: 'gnd', label: 'GND', baseUrl: AppConfig.GND_BASE_URL },
-            { key: 'viaf', label: 'VIAF', baseUrl: AppConfig.VIAF_BASE_URL },
-            { key: 'orcid', label: 'ORCID', baseUrl: AppConfig.ORCID_BASE_URL },
-        ];
     }
 }

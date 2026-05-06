@@ -7,6 +7,7 @@
             Konzept/Grafik:
             <span class="awg-structure-info-author">
                 <a href="{{ (structureMetaData?.authors)[0].homepage }}">{{ (structureMetaData?.authors)[0].name }}</a>
+                <awg-meta-identifier-badges [identifiers]="(structureMetaData?.authors)[0].identifiers" />
             </span>
         </p>
         <p>&#9671;</p>
