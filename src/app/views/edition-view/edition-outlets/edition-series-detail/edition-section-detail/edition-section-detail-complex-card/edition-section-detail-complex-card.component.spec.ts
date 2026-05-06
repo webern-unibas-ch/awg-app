@@ -257,7 +257,27 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should display version date in span.version if complex is not disabled', () => {
+            it('... should display formatted date in span.version if complex is not disabled and lastModified is an ISO date', () => {
+                const cardFooterDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.card-footer',
+                    expectedComplexes.length,
+                    expectedComplexes.length
+                );
+                const datePipe = new DatePipe('en');
+                cardFooterDes.forEach((cardFooterDe, index) => {
+                    const lastModified = expectedComplexes[index].complex.respStatement.lastModified;
+                    if (!expectedComplexes[index].disabled && lastModified !== '---') {
+                        const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
+                        const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                        const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
+
+                        expectToBe(versionSpanEl.textContent.trim(), datePipe.transform(lastModified, 'longDate'));
+                    }
+                });
+            });
+
+            it('... should display "---" in span.version if complex is not disabled and lastModified is "---"', () => {
                 const cardFooterDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card-footer',
@@ -265,17 +285,14 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     expectedComplexes.length
                 );
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!expectedComplexes[index].disabled) {
+                    const lastModified = expectedComplexes[index].complex.respStatement.lastModified;
+                    if (!expectedComplexes[index].disabled && lastModified === '---') {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                         const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                         const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
-                        const datePipe = new DatePipe('de');
-                        expectToBe(
-                            versionSpanEl.textContent.trim(),
-                            datePipe.transform(expectedComplexes[index].complex.respStatement.lastModified, 'longDate')
-                        );
-                    } else {
+                        expectToBe(versionSpanEl.textContent.trim(), '---');
+                    } else if (expectedComplexes[index].disabled) {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 0, 0);
                         getAndExpectDebugElementByCss(cardFooterDe, 'span.version', 0, 0);
                     }

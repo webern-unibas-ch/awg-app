@@ -79,7 +79,9 @@
                     <br />
                     Versionsdatum:
                     <span class="version">{{
-                        selectedEditionComplex.respStatement.lastModified | date: 'longDate'
+                        selectedEditionComplex.respStatement.lastModified === '---'
+                            ? '---'
+                            : (selectedEditionComplex.respStatement.lastModified | date: 'longDate')
                     }}</span>
                 </p>
             </div>

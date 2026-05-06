@@ -6,6 +6,7 @@ import { delay, Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -482,13 +483,28 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
                     });
 
-                    const datePipe = new DatePipe('de');
+                    const datePipe = new DatePipe('en');
                     const expectedLastModified = datePipe.transform(
                         expectedSelectedEditionComplex.respStatement.lastModified,
                         'longDate'
                     );
                     expectToBe(versionSpanEl.innerText, expectedLastModified);
                 });
+
+                it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', fakeAsync(() => {
+                    const expectedComplexWithDash = EditionComplexesService.getEditionComplexById('m212');
+                    component.selectedEditionComplex$ = observableOf(expectedComplexWithDash).pipe(delay(0));
+
+                    // Trigger data binding
+                    detectChangesOnPush(fixture);
+                    tick(); // Process any pending async operations
+
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
+                    const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                    const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
+
+                    expectToBe(versionSpanEl.innerText, '---');
+                }));
 
                 it('... should have one MetaIdentifierBadgesComponent for each editor', () => {
                     const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;

@@ -54,7 +54,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
         });
 
         it('... should have `identifierConfigs`', () => {
-            expect(component.identifierConfigs).toEqual(expectedIdentifierConfigs);
+            expect(component.IDENTIFIER_CONFIGS).toEqual(expectedIdentifierConfigs);
         });
 
         describe('VIEW', () => {

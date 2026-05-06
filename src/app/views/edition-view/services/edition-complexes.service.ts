@@ -90,8 +90,8 @@ export class EditionComplexesService {
         complexesData.editionComplexes.forEach((complex: EditionComplexJsonData) => {
             Object.entries(complex).forEach(([complexKey, complexValue]) => {
                 if (complexValue.respStatement?.editors) {
-                    complexValue.respStatement.editors = complexValue.respStatement.editors.map(
-                        (e: any) => (e['$ref'] ? PERSONS_DATA[e['$ref']] : e) ?? e
+                    complexValue.respStatement.editors = complexValue.respStatement.editors.map((editor: any) =>
+                        EditionComplexesService._resolvePerson(editor)
                     );
                 }
                 editionComplexesList[complexKey] = new EditionComplex(
@@ -103,5 +103,20 @@ export class EditionComplexesService {
         });
 
         return editionComplexesList;
+    }
+
+    /**
+     * Private static method: _resolvePerson.
+     *
+     * It resolves a person entry: if the entry has a `$ref` key, it looks up
+     * the corresponding person in PERSONS_DATA. If the key is not found,
+     * it falls back to the raw person object.
+     *
+     * @param {any} person The raw person entry from JSON.
+     *
+     * @returns {any} The resolved person object.
+     */
+    private static _resolvePerson(person: any): any {
+        return (person['$ref'] ? PERSONS_DATA[person['$ref']] : person) ?? person;
     }
 }
