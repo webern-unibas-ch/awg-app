@@ -1,9 +1,23 @@
+import { PERSONS_DATA } from '@awg-core/core-data';
 import { MetaPerson } from '@awg-core/core-models/meta.model';
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
 } from '@awg-views/edition-view/edition-route-constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
+
+/**
+ * The EditionComplexJsonPersonRef interface.
+ *
+ * It is used in the context of the edition view
+ * to describe a `$ref` pointer to a person in the edition complexes JSON data.
+ */
+export interface EditionComplexJsonPersonRef {
+    /**
+     * The reference key of a person.
+     */
+    $ref: string;
+}
 
 /**
  * The EditionComplexJsonData interface.
@@ -17,7 +31,7 @@ export interface EditionComplexJsonData {
      */
     [key: string]: {
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
-        respStatement: { editors: { name: string; homepage: string }[]; lastModified: string };
+        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
         pubStatement: { series: string; section: string };
     };
 }
@@ -134,12 +148,12 @@ export class EditionComplex {
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
-     * @param {EditionComplexRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
+     * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given ResponsibilityStatement for the edition complex.
      * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
      */
     constructor(
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
-        respStatement: EditionComplexRespStatement,
+        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string },
         pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
@@ -156,7 +170,7 @@ export class EditionComplex {
             catalogueType: this._mapCatalogueType(titleStatement.catalogueType),
         };
 
-        this.respStatement = respStatement ?? new EditionComplexRespStatement();
+        this.respStatement = this._mapRespStatement(respStatement);
 
         this.pubStatement = {
             series: this._mapPubStatement('SERIES_', pubStatement?.series),
@@ -200,6 +214,25 @@ export class EditionComplex {
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
         return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`];
+    }
+
+    /**
+     * Private method: _mapRespStatement.
+     *
+     * It maps the responsibility statement by resolving `$ref` person entries
+     * to their corresponding MetaPerson from PERSONS_DATA.
+     *
+     * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given responsibility statement.
+     *
+     * @returns {EditionComplexRespStatement} The resolved EditionComplexRespStatement.
+     */
+    private _mapRespStatement(respStatement: {
+        editors: EditionComplexJsonPersonRef[];
+        lastModified: string;
+    }): EditionComplexRespStatement {
+        const editors: MetaPerson[] =
+            respStatement?.editors.map(editor => (PERSONS_DATA[editor.$ref] ?? editor) as MetaPerson) ?? [];
+        return { editors, lastModified: respStatement?.lastModified ?? '' };
     }
 }
 

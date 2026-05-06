@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { PERSONS_DATA } from '@awg-core/core-data';
 import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '@awg-views/edition-view/models';
 
 import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
@@ -89,11 +88,6 @@ export class EditionComplexesService {
 
         complexesData.editionComplexes.forEach((complex: EditionComplexJsonData) => {
             Object.entries(complex).forEach(([complexKey, complexValue]) => {
-                if (complexValue.respStatement?.editors) {
-                    complexValue.respStatement.editors = complexValue.respStatement.editors.map((editor: any) =>
-                        EditionComplexesService._resolvePerson(editor)
-                    );
-                }
                 editionComplexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,
@@ -103,20 +97,5 @@ export class EditionComplexesService {
         });
 
         return editionComplexesList;
-    }
-
-    /**
-     * Private static method: _resolvePerson.
-     *
-     * It resolves a person entry: if the entry has a `$ref` key, it looks up
-     * the corresponding person in PERSONS_DATA. If the key is not found,
-     * it falls back to the raw person object.
-     *
-     * @param {any} person The raw person entry from JSON.
-     *
-     * @returns {any} The resolved person object.
-     */
-    private static _resolvePerson(person: any): any {
-        return (person['$ref'] ? PERSONS_DATA[person['$ref']] : person) ?? person;
     }
 }

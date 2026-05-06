@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-core/core-data';
 import { EditionComplex } from '@awg-views/edition-view/models';
@@ -14,7 +14,6 @@ describe('EditionComplexesService (DONE)', () => {
     let initializeEditionComplexesListSpy: Spy;
     let setEditionComplexesListSpy: Spy;
     let fetchEditionComplexesDataSpy: Spy;
-    let resolvePersonSpy: Spy;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
@@ -29,7 +28,6 @@ describe('EditionComplexesService (DONE)', () => {
             EditionComplexesService as any,
             '_fetchEditionComplexesData'
         ).and.callThrough();
-        resolvePersonSpy = spyOn(EditionComplexesService as any, '_resolvePerson').and.callThrough();
     });
 
     afterAll(() => {
@@ -257,6 +255,37 @@ describe('EditionComplexesService (DONE)', () => {
 
             expectToEqual(editionComplexesList, expectedList);
         });
+
+        it('... should resolve $ref entries in respStatement.editors', () => {
+            EditionComplexesService.initializeEditionComplexesList();
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
+            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
+        });
+
+        it('... should fall back to raw ref object when editor $ref is not found in PERSONS_DATA', () => {
+            const unknownRef = { $ref: 'unknown_person' };
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [unknownRef],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            EditionComplexesService.setEditionComplexesList({ [testComplexId]: testComplex });
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList[testComplexId].respStatement.editors[0], unknownRef);
+        });
     });
 
     describe('#_fetchEditionComplexesData()', () => {
@@ -279,46 +308,6 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['op3'].titleStatement).toBeDefined();
             expect(editionComplexesList['op3'].respStatement).toBeDefined();
             expect(editionComplexesList['op3'].pubStatement).toBeDefined();
-        });
-
-        it('... should resolve $ref entries in respStatement.editors', () => {
-            const editionComplexesList = (EditionComplexesService as any)._fetchEditionComplexesData();
-
-            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
-            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
-        });
-
-        it('... should delegate person resolution to `_resolvePerson`', () => {
-            (EditionComplexesService as any)._fetchEditionComplexesData();
-
-            expect(resolvePersonSpy).toHaveBeenCalled();
-        });
-    });
-
-    describe('#_resolvePerson()', () => {
-        it('... should have a method `_resolvePerson`', () => {
-            expect((EditionComplexesService as any)._resolvePerson).toBeDefined();
-        });
-
-        it('... should return the person from PERSONS_DATA when $ref key exists', () => {
-            const person = { $ref: 'thomas_ahrend' };
-            const resolved = (EditionComplexesService as any)._resolvePerson(person);
-
-            expectToEqual(resolved, PERSONS_DATA['thomas_ahrend']);
-        });
-
-        it('... should fall back to the raw person object when $ref key is not found in PERSONS_DATA', () => {
-            const person = { $ref: 'nonexistent_key' };
-            const resolved = (EditionComplexesService as any)._resolvePerson(person);
-
-            expectToBe(resolved, person);
-        });
-
-        it('... should return the person object as-is when there is no $ref key', () => {
-            const person = { name: 'Direct Person', homepage: 'https://example.com' };
-            const resolved = (EditionComplexesService as any)._resolvePerson(person);
-
-            expectToBe(resolved, person);
         });
     });
 });
