@@ -265,7 +265,7 @@ describe('EditionComplexesService (DONE)', () => {
             expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
         });
 
-        it('... should fall back to raw ref object when editor $ref is not found in PERSONS_DATA', () => {
+        it('... should fall back to ref-based editor name when editor $ref is not found in PERSONS_DATA', () => {
             const unknownRef = { $ref: 'unknown_person' };
             const testComplex = new EditionComplex(
                 {
@@ -284,7 +284,48 @@ describe('EditionComplexesService (DONE)', () => {
 
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
 
-            expectToEqual(editionComplexesList[testComplexId].respStatement.editors[0], unknownRef);
+            expectToEqual(editionComplexesList[testComplexId].respStatement.editors[0], {
+                name: unknownRef.$ref,
+                homepage: '',
+            });
+        });
+
+        it('... should return empty editors and empty lastModified if respStatement is null', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                null,
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            EditionComplexesService.setEditionComplexesList({ [testComplexId]: testComplex });
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList[testComplexId].respStatement.editors, []);
+            expectToEqual(editionComplexesList[testComplexId].respStatement.lastModified, '');
+        });
+
+        it('... should return empty editors and preserve lastModified if respStatement.editors is null', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                { editors: null, lastModified: '2024-01-01' },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            EditionComplexesService.setEditionComplexesList({ [testComplexId]: testComplex });
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList[testComplexId].respStatement.editors, []);
+            expectToEqual(editionComplexesList[testComplexId].respStatement.lastModified, '2024-01-01');
         });
     });
 

@@ -231,7 +231,8 @@ export class EditionComplex {
         lastModified: string;
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] =
-            respStatement?.editors.map(editor => (PERSONS_DATA[editor.$ref] ?? editor) as MetaPerson) ?? [];
+            respStatement?.editors?.map(editor => PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: '' }) ??
+            [];
         return { editors, lastModified: respStatement?.lastModified ?? '' };
     }
 }
