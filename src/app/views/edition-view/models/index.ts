@@ -13,6 +13,7 @@ export {
     EditionComplexesJsonData,
     EditionComplexesList,
     EditionComplexJsonData,
+    EditionComplexJsonPersonRef,
     EditionComplexTitleStatement,
 } from './edition-complex.model';
 export {

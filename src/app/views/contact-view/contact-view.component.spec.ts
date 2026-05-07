@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { Component, DebugElement, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
@@ -15,10 +16,12 @@ import {
 } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
+
+registerLocaleData(localeDeDE);
 
 // Mock heading component
 @Component({
@@ -33,6 +36,16 @@ class HeadingStubComponent {
     id: string;
 }
 
+// Mock MetaIdentifierBadges component
+@Component({
+    selector: 'awg-meta-identifier-badges',
+    template: '',
+    standalone: false,
+})
+class MetaIdentifierBadgesStubComponent {
+    @Input() identifiers: MetaIdentifiers | undefined;
+}
+
 describe('ContactViewComponent (DONE)', () => {
     let component: ContactViewComponent;
     let fixture: ComponentFixture<ContactViewComponent>;
@@ -40,7 +53,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
-    const datePipe = new DatePipe('en');
+    const datePipe = new DatePipe('de-DE');
     let dateSpy: Spy;
     let provideMetaDataSpy: Spy;
 
@@ -61,8 +74,11 @@ describe('ContactViewComponent (DONE)', () => {
         mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         TestBed.configureTestingModule({
-            declarations: [ContactViewComponent, HeadingStubComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
+            declarations: [ContactViewComponent, HeadingStubComponent, MetaIdentifierBadgesStubComponent],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: CoreService, useValue: mockCoreService },
+            ],
         }).compileComponents();
     }));
 
@@ -268,6 +284,21 @@ describe('ContactViewComponent (DONE)', () => {
                 expectToContain(releaseEl.textContent, expectedPageMetaData.versionReleaseDate);
                 expectToContain(dateEl0.textContent, pipedToday);
                 expectToContain(dateEl1.textContent, pipedToday);
+            });
+
+            it('... should pass down `identifiers` to MetaIdentifierBadgesComponent for each developer', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
+                const badgeDes = getAndExpectDebugElementByDirective(
+                    divDes[0],
+                    MetaIdentifierBadgesStubComponent,
+                    expectedContactMetaData.developers.length,
+                    expectedContactMetaData.developers.length
+                );
+                const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                badgeCmps.forEach((badgeCmp, i) => {
+                    expectToEqual(badgeCmp.identifiers, expectedContactMetaData.developers[i].identifiers);
+                });
             });
         });
     });

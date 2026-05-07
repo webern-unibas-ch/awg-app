@@ -1628,6 +1628,20 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
             });
+
+            it('... should fall back to ViewHandleTypes.GRAPH if queryType is unknown', () => {
+                component.query = { ...expectedConstructQuery1, queryType: 'ask' } as any;
+                component.setViewType();
+
+                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
+            });
+
+            it('... should fall back to ViewHandleTypes.GRAPH if query is undefined', () => {
+                component.query = undefined;
+                component.setViewType();
+
+                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
+            });
         });
 
         describe('#switchQueryType()', () => {

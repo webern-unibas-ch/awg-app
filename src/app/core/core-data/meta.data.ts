@@ -1,6 +1,8 @@
 import { AppConfig } from '@awg-app/app.config';
 import { Meta, MetaContact, MetaPage, MetaStructure } from '@awg-core/core-models';
 
+import { PERSONS_DATA } from './persons.data';
+
 /**
  * Object constant for page metadata.
  *
@@ -30,13 +32,8 @@ const META_PAGE: MetaPage = {
  * It provides metadata used for the structure view.
  */
 const META_STRUCTURE: MetaStructure = {
-    authors: [
-        {
-            name: 'Stefan Münnich',
-            homepage: AppConfig.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
-        },
-    ],
-    lastModified: '29. Januar 2016',
+    authors: [PERSONS_DATA['stefan_muennich']],
+    lastModified: '2016-01-29',
 };
 
 /**
@@ -45,6 +42,7 @@ const META_STRUCTURE: MetaStructure = {
  * It provides metadata used for the contact view.
  */
 const META_CONTACT: MetaContact = {
+    developers: [PERSONS_DATA['stefan_muennich']],
     address: {
         institution: 'Musikwissenschaftliches Seminar der Universität Basel',
         street: 'Petersgraben 27/29',
@@ -52,14 +50,14 @@ const META_CONTACT: MetaContact = {
         city: 'Basel',
         country: 'Schweiz',
     },
-    phone: {
-        label: 'Telefon:',
-        number: '+41 (0)61 207 28 21',
-    },
     email: {
         label: 'E-Mail:',
         mailto: 'mailto:info-awg@unibas.ch',
         safeString: 'info-awg [at] unibas [dot] ch',
+    },
+    phone: {
+        label: 'Telefon:',
+        number: '+41 (0)61 207 28 21',
     },
 };
 

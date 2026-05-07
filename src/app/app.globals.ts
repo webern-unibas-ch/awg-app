@@ -9,7 +9,7 @@ export const appVersion = '1.6.0';
 /**
  * The release date of the latest version of the AWG App
  */
-export const appVersionReleaseDate = '02. März 2026';
+export const appVersionReleaseDate = '2026-03-02';
 
 /**
  * The URL of the AWG App

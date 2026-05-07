@@ -4,10 +4,7 @@ version_file=src/app/app.globals.ts
 CURRENT_VERSION=$(node -p "require('./package.json').version")
 CURRENT_HOMEPAGE=$(node -p "require('./package.json').homepage")
 
-CURRENT_DAY=$(date +"%d.")
-CURRENT_MONTH=$(LC_ALL=de_DE.UTF-8 date +"%B");
-CURRENT_YEAR=$(date +"%Y")
-CURRENT_DATE="$CURRENT_DAY $CURRENT_MONTH $CURRENT_YEAR"
+CURRENT_DATE=$(date +"%Y-%m-%d")
 
 
 echo "Updating app globals...

@@ -1,10 +1,13 @@
-import { Component, DebugElement, DOCUMENT, Input } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { Component, DebugElement, DOCUMENT, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { delay, Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -14,11 +17,14 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { MetaIdentifiers } from '@awg-core/core-models';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
+
+registerLocaleData(localeDeDE);
 
 // Mock components
 @Component({
@@ -39,6 +45,15 @@ class EditionJumbotronStubComponent {
     standalone: false,
 })
 class ScrollToTopStubComponent {}
+
+@Component({
+    selector: 'awg-meta-identifier-badges',
+    template: '',
+    standalone: false,
+})
+class MetaIdentifierBadgesStubComponent {
+    @Input() identifiers: MetaIdentifiers | undefined;
+}
 
 describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
@@ -97,11 +112,16 @@ describe('EditionViewComponent (DONE)', () => {
             declarations: [
                 EditionViewComponent,
                 EditionJumbotronStubComponent,
+                MetaIdentifierBadgesStubComponent,
                 RouterOutletStubComponent,
                 RouterLinkStubDirective,
                 ScrollToTopStubComponent,
             ],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            imports: [DatePipe],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: EditionStateService, useValue: mockEditionStateService },
+            ],
         }).compileComponents();
     }));
 
@@ -469,7 +489,57 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
                     });
 
-                    expectToBe(versionSpanEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
+                    const datePipe = new DatePipe('de-DE');
+                    const expectedLastModified = datePipe.transform(
+                        expectedSelectedEditionComplex.respStatement.lastModified,
+                        'longDate'
+                    );
+                    expectToBe(versionSpanEl.innerText, expectedLastModified);
+                });
+
+                it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', fakeAsync(() => {
+                    const expectedComplexWithDash = EditionComplexesService.getEditionComplexById('m212');
+                    component.selectedEditionComplex$ = observableOf(expectedComplexWithDash).pipe(delay(0));
+
+                    // Trigger data binding
+                    detectChangesOnPush(fixture);
+                    tick(); // Process any pending async operations
+
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
+                    const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                    const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
+
+                    expectToBe(versionSpanEl.innerText, '---');
+                }));
+
+                it('... should have one MetaIdentifierBadgesComponent for each editor', () => {
+                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+
+                    const badgeDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        MetaIdentifierBadgesStubComponent,
+                        expectedEditors.length,
+                        expectedEditors.length
+                    );
+                    const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                    expectToEqual(badgeCmps.length, expectedEditors.length);
+                });
+
+                it('... should pass identifiers to MetaIdentifierBadgesComponent for each editor', () => {
+                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+
+                    const badgeDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        MetaIdentifierBadgesStubComponent,
+                        expectedEditors.length,
+                        expectedEditors.length
+                    );
+                    const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+
+                    badgeCmps.forEach((badgeCmp, i: number) => {
+                        expectToEqual(badgeCmp.identifiers, expectedEditors[i].identifiers);
+                    });
                 });
             });
 

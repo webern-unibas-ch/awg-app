@@ -1,4 +1,6 @@
-import { DebugElement } from '@angular/core';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDeDE from '@angular/common/locales/de';
+import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -10,6 +12,8 @@ import { CoreService } from '@awg-core/services';
 
 import { StructureInfoComponent } from './structure-info.component';
 
+registerLocaleData(localeDeDE);
+
 describe('StructureInfoComponent (DONE)', () => {
     let component: StructureInfoComponent;
     let fixture: ComponentFixture<StructureInfoComponent>;
@@ -17,6 +21,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
+    const datePipe = new DatePipe('de-DE');
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureInfoHeader = 'Strukturmodell';
 
@@ -26,7 +31,11 @@ describe('StructureInfoComponent (DONE)', () => {
 
         TestBed.configureTestingModule({
             declarations: [StructureInfoComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
+            imports: [DatePipe],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: CoreService, useValue: mockCoreService },
+            ],
         }).compileComponents();
     }));
 
@@ -148,8 +157,8 @@ describe('StructureInfoComponent (DONE)', () => {
                 expectToBe(authorEl.innerHTML, expectedAuthor.name);
             });
 
-            it('... should render last modification date', () => {
-                const expectedLastModified = expectedStructureMetaData.lastModified;
+            it('... should render last modification date in correct format', () => {
+                const expectedLastModified = datePipe.transform(expectedStructureMetaData.lastModified, 'longDate');
 
                 const lastmodDes = getAndExpectDebugElementByCss(compDe, 'span#awg-structure-info-lastmodified', 1, 1);
                 const lastmodEl: HTMLSpanElement = lastmodDes[0].nativeElement;
