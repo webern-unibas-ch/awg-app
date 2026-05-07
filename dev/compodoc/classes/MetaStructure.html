@@ -211,7 +211,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/core/core-models/meta.model.ts:122</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/core/core-models/meta.model.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +243,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/core/core-models/meta.model.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/core/core-models/meta.model.ts:154</a></div>
                         </td>
                     </tr>
 
@@ -275,6 +275,28 @@ to store the metadata about the structure overview.</p>
 }
 
 /**
+ * The MetaIdentifiers class.
+ *
+ * It is used to store authority identifiers for a person.
+ */
+export class MetaIdentifiers {
+    /**
+     * The GND (Gemeinsame Normdatei) identifier of a person.
+     */
+    gnd?: string;
+
+    /**
+     * The ORCID identifier of a person.
+     */
+    orcid?: string;
+
+    /**
+     * The VIAF (Virtual International Authority File) identifier of a person.
+     */
+    viaf?: string;
+}
+
+/**
  * The MetaPerson class.
  *
  * It is used to store the metadata about a Person.
@@ -289,6 +311,11 @@ export class MetaPerson {
      * The (FOAF) homepage of a person.
      */
     homepage: string;
+
+    /**
+     * The authority identifiers of a person.
+     */
+    identifiers?: MetaIdentifiers;
 }
 
 /**
@@ -399,6 +426,11 @@ export class MetaStructure {
  * to store the metadata about contact information.
  */
 export class MetaContact {
+    /**
+     * The developers of the app.
+     */
+    developers: MetaPerson[];
+
     /**
      * The address info of the contact info.
      */

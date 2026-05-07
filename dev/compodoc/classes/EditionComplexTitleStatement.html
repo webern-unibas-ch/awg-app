@@ -214,7 +214,7 @@ to store information about the title statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@ to store information about the title statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@ to store information about the title statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -303,12 +303,26 @@ to store information about the title statement of an edition complex.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MetaPerson } from &#x27;@awg-core/core-models/meta.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PERSONS_DATA } from &#x27;@awg-core/core-data&#x27;;
+import { MetaPerson } from &#x27;@awg-core/core-models/meta.model&#x27;;
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
 } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionRouteConstant } from &#x27;./edition-route-constant.model&#x27;;
+
+/**
+ * The EditionComplexJsonPersonRef interface.
+ *
+ * It is used in the context of the edition view
+ * to describe a &#x60;$ref&#x60; pointer to a person in the edition complexes JSON data.
+ */
+export interface EditionComplexJsonPersonRef {
+    /**
+     * The reference key of a person.
+     */
+    $ref: string;
+}
 
 /**
  * The EditionComplexJsonData interface.
@@ -322,7 +336,7 @@ export interface EditionComplexJsonData {
      */
     [key: string]: {
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
-        respStatement: { editors: { name: string; homepage: string }[]; lastModified: string };
+        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
         pubStatement: { series: string; section: string };
     };
 }
@@ -439,12 +453,12 @@ export class EditionComplex {
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
-     * @param {EditionComplexRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
+     * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given ResponsibilityStatement for the edition complex.
      * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
      */
     constructor(
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
-        respStatement: EditionComplexRespStatement,
+        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string },
         pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
@@ -461,7 +475,7 @@ export class EditionComplex {
             catalogueType: this._mapCatalogueType(titleStatement.catalogueType),
         };
 
-        this.respStatement &#x3D; respStatement ?? new EditionComplexRespStatement();
+        this.respStatement &#x3D; this._mapRespStatement(respStatement);
 
         this.pubStatement &#x3D; {
             series: this._mapPubStatement(&#x27;SERIES_&#x27;, pubStatement?.series),
@@ -505,6 +519,26 @@ export class EditionComplex {
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
         return EDITION_ROUTE_CONSTANTS[&#x60;${prefix}${value?.toUpperCase()}&#x60;];
+    }
+
+    /**
+     * Private method: _mapRespStatement.
+     *
+     * It maps the responsibility statement by resolving &#x60;$ref&#x60; person entries
+     * to their corresponding MetaPerson from PERSONS_DATA.
+     *
+     * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given responsibility statement.
+     *
+     * @returns {EditionComplexRespStatement} The resolved EditionComplexRespStatement.
+     */
+    private _mapRespStatement(respStatement: {
+        editors: EditionComplexJsonPersonRef[];
+        lastModified: string;
+    }): EditionComplexRespStatement {
+        const editors: MetaPerson[] &#x3D;
+            respStatement?.editors?.map(editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27; }) ??
+            [];
+        return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }
 }
 
