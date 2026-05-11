@@ -44,7 +44,7 @@ export const LOGOS_DATA: Logos = {
     },
     sagw: {
         id: 'sagwlogo',
-        src: 'assets/img/logos/sagw.jpg',
+        src: 'assets/img/logos/sagw.svg',
         alt: 'Logo SAGW',
         href: 'https://sagw.ch/sagw/',
     },
