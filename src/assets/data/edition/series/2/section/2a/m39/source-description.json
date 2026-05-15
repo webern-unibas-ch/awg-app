@@ -1094,84 +1094,98 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-001",
                                             "measure": "vor 1",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Taktart auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-002",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Notenhals und Achtelfähnchen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-003",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "3/16",
                                             "comment": "Sechzehntelpause überschreibt Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-004",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "3. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-005",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "12/16",
                                             "comment": "e<sup>1</sup>/h<sup>1</sup> überschreibt d<sup>1</sup>/a<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-006",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "4/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As überschreibt G<sub>1</sub>/G."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-007",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "3/16",
                                             "comment": "Sechzehntelpause überschreibt Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-008",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-009",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-010",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "7/8",
                                             "comment": "g<sup>2</sup> überschreibt a<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-011",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "4/16",
                                             "comment": "c<sup>1</sup> überschreibt h: Ligatur zu d<sup>1</sup> auch als Streichung von d<sup>1</sup> lesbar."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-012",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Achtelfähnchen zu Viertelnote h/g<sup>1</sup> und Achtelpause auf 4/8 rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-013",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "8/16",
                                             "comment": "f überschreibt e."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_1-014",
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
@@ -1193,78 +1207,91 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-001",
                                             "measure": "3 <br />bis 4",
                                             "system": "Klav.",
                                             "position": "letzte Note <br />erste Note",
                                             "comment": "In beiden Systemen Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-002",
                                             "measure": "9 <br />bis 11",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte durch Einkreisung getilgt: Ersetzt durch Textfassung 2 T. 9–12."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-003",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]e<sup>1</sup>/g<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-004",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "(2/8)",
                                             "comment": "Notenköpfe D<sub>1</sub>/D hinzugefügt? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-005",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-006",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "8/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-007",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-008",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-009",
                                             "measure": "13 <br />bis 14",
                                             "system": "Klav. o.",
                                             "position": "1/4 <br />zweitletzte Note",
                                             "comment": "Bogen über dem System. Möglicherweise Teil der Tilgung durch Einkreisung für Textfassung 2 (vgl. Korrekturen zu T. 9–11)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-010",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "2.–3. Note",
                                             "comment": "Noten eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-011",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "f<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-012",
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: h<sup>1</sup>/h<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-013",
                                             "measure": "18",
                                             "system": "Klav.",
                                             "position": "2.–3. Note",
@@ -1286,24 +1313,28 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_1-001",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "4. Note",
                                             "comment": "c<sup>2</sup> ersetzt durch e<sup>3</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_1-002",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "h<sup>2</sup> ersetzt durch d<sup>3</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_1-003",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
                                             "comment": "Nicht entzifferbare Radierungen im System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_1-004",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "1–4/4",
@@ -1325,24 +1356,28 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_2-001",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Halbe Note überschreibt Viertelnote. Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]gis<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_2-002",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "(1–2/4)",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_2-003",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Cis/A/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis in Tinte überschreibt Viertelnote cis/a in Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_Bb_corr_2-004",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "7–8/8",
@@ -1932,18 +1967,21 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_D_corr-001",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_D_corr-002",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Ais<sub>1</sub> geändert zu Fis<sub>1</sub>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m39_tf2_D_corr-003",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "(6/8)",
