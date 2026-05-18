@@ -1571,54 +1571,63 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-001",
                                             "measure": "2–3",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Taktstrich auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-002",
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "e<sup>1</sup> überschreibt d<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-003",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-004",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-005",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-006",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "g<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-007",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "3–4/8",
                                             "comment": "Achtelbalken überschreibt Achtelfähnchen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-008",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "a<sup>1</sup>: Punktierte Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_1-009",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
@@ -1640,36 +1649,42 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-001",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Unterstimmenschicht: Noten gestrichen und ersetzt durch Halbe Note g und Viertelnote G"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-002",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "h gestrichen und ersetzt durch H."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-003",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1–2/4",
                                             "comment": "Halbe Note A als Unterstimmenschicht hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-004",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "3–6/8",
                                             "comment": "Noten gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-005",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Punktierte Halbe Note gestrichen und ersetzt durch Halbe Note d<sup>1</sup>/fis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx412_tf1_B_corr_2-006",
                                             "measure": "nach 16",
                                             "system": "",
                                             "position": "",
