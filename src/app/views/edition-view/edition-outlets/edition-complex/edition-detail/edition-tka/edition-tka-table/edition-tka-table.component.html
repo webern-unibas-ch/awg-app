@@ -27,7 +27,12 @@
                     textcriticalComment of textcriticalCommentBlock.blockComments;
                     track textcriticalComment.svgGroupId
                 ) {
-                    <tr>
+                    <tr
+                        [id]="textcriticalComment.svgGroupId"
+                        [ngbTooltip]="textcriticalComment.svgGroupId"
+                        tooltipClass="awg-group-id-tooltip"
+                        placement="left"
+                        class="awg-edition-tka-table-comment">
                         <td [awgAbbr]="textcriticalComment.measure"></td>
                         <td [awgAbbr]="textcriticalComment.system"></td>
                         <td [innerHTML]="textcriticalComment.position"></td>
