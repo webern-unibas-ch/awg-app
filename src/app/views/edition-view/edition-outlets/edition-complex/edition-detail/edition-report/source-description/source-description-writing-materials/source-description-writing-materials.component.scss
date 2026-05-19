@@ -1,0 +1,13 @@
+p {
+    display: flex;
+    align-items: baseline;
+
+    .awg-source-description-writing-materials-label {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .awg-source-description-writing-materials-content {
+        flex: 1;
+    }
+}
