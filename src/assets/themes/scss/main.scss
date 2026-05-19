@@ -367,6 +367,14 @@ span.facet-badge {
     background-color: rgba(119, 119, 119, 1) !important; /* rgba converted HEX #777 */
 }
 
+/****** TOOLTIPS ******/
+.awg-group-id-tooltip .tooltip-inner {
+    font-family: $font-family-monospace;
+    font-size: 0.75rem;
+    margin-right: 1em;
+    border: 1px solid var(--bs-border-color);
+}
+
 /****** DETAILS ******/
 details summary {
     list-style: none;
