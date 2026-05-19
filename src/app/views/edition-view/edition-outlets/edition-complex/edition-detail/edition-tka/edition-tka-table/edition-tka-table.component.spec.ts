@@ -2,6 +2,8 @@ import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -49,6 +51,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedCommentary: TextcriticalCommentary;
     let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
+    let expectedTotalCommentRows: number;
     let expectedTotalRows: number;
 
     beforeEach(waitForAsync(() => {
@@ -67,6 +70,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
+            imports: [NgbTooltip],
             providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
     }));
@@ -90,12 +94,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
             JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1).commentary)
         );
 
-        const totalBlockHeaders = expectedCommentary.comments.filter(block => block.blockHeader).length;
-        const totalBlockComments = expectedCommentary.comments.reduce(
+        const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
+        expectedTotalCommentRows = expectedCommentary.comments.reduce(
             (acc, block) => acc + block.blockComments.length,
             0
         );
-        expectedTotalRows = totalBlockHeaders + totalBlockComments;
+        expectedTotalRows = totalBlockHeaderRows + expectedTotalCommentRows;
 
         expectedIsRowTable = false;
         expectedTableHeaderStrings = {
@@ -388,6 +392,47 @@ describe('EditionTkaTableComponent (DONE)', () => {
                             getAndExpectDebugElementByDirective(tdDes[1], CompileHtmlComponent, 0, 0);
                             getAndExpectDebugElementByDirective(tdDes[2], CompileHtmlComponent, 0, 0);
                             getAndExpectDebugElementByDirective(tdDes[3], CompileHtmlComponent, 1, 1);
+
+                            rowIndex++;
+                        });
+                    });
+                });
+
+                it('... should have the svgGroupId as id on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            const trEl: HTMLTableRowElement = rowDes[rowIndex].nativeElement;
+                            expectToBe(trEl.getAttribute('id'), comment.svgGroupId);
+                            rowIndex++;
+                        });
+                    });
+                });
+
+                it('... should have a tooltip with the svgGroupId on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            // NgbTooltip is on the tr element itself, so get it directly from its injector
+                            const tooltipCmp = rowDes[rowIndex].injector.get(NgbTooltip) as NgbTooltip;
+
+                            expectToBe(tooltipCmp.ngbTooltip as string, comment.svgGroupId);
+                            expectToBe(tooltipCmp.tooltipClass, 'awg-group-id-tooltip');
+                            expectToBe(tooltipCmp.placement as string, 'left');
 
                             rowIndex++;
                         });

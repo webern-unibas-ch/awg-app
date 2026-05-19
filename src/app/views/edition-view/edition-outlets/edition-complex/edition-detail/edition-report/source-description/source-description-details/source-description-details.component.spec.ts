@@ -159,15 +159,29 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
             });
 
+            it('... should contain a span with class `awg-source-description-details-content`', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-details-content', 1, 1);
+            });
+
             it('... should contain twice as many spans as details after the first label span', () => {
                 // Expected length is the length of the details array times 2 (for the punctuation marks)
                 const expectedLength = expectedDetails.length * 2;
 
-                getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', expectedLength, expectedLength);
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    expectedLength,
+                    expectedLength
+                );
             });
 
             it('... should contain the details in the first spans', () => {
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    6,
+                    6
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -179,7 +193,12 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain the punctuation marks in the other spans', () => {
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    6,
+                    6
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -196,7 +215,12 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 component.detailsClass = 'conditions';
                 detectChangesOnPush(fixture);
 
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 3, 3);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    3,
+                    3
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -223,7 +247,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -312,7 +336,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -369,7 +393,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
