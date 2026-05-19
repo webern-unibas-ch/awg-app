@@ -845,196 +845,196 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-001",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis auf 6/8 hinzugefügt und mit Viertelnote cis auf 3/4 zu zwei Achtelnoten zusammengebalkt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-002",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-002",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2/4–5/8",
                                             "comment": "ais<sup>1</sup> und dis<sup>1</sup>/dis<sup>2</sup> mit Bleistift gestrichen; Viertelnote cis<sup>1</sup> auf 2/4 hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-003",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-003",
                                             "measure": "8–11",
                                             "system": "",
                                             "position": "",
                                             "comment": "Takte mit Bleistift pauschal gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-004",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-004",
                                             "measure": "12–17",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte mit Tinte pauschal gestrichen; Verweiszeichen über dem System in T. 12: Verweis auf Einschubstelle für Textfassung 2 (vgl. auch vorangehende Korrektur)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-005",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-005",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "3–6/8",
                                             "comment": "Unterstimmenschicht: Achtelnoten fis<sup>1</sup>/a<sup>1</sup>–e<sup>1</sup>/gis<sup>1</sup>–d<sup>1</sup>/fis<sup>1</sup>–cis<sup>1</sup>/e<sup>1</sup> rasiert (vgl. TkA)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-006",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-006",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note e rasiert (vgl. TkA)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-007",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-007",
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "2/4–6/8",
                                             "comment": "Noten mit Bleistift eingekreist."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-008",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-008",
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "5/8",
                                             "comment": "Mittelstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-009",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-009",
                                             "measure": "24 <br />bis 25",
                                             "system": "Klav. u.",
                                             "position": "3/4 <br />1/4",
                                             "comment": "Ligatur zu B<sub>1</sub>–B<sub>1</sub> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-010",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-010",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-011",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-011",
                                             "measure": "26 <br />bis 27",
                                             "system": "Klav. u.",
                                             "position": "6/8 <br />1/8",
                                             "comment": "Ligatur zu C–C mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-012",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-012",
                                             "measure": "27",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle für Textfassung 2 T. 27."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-013",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-013",
                                             "measure": "27",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Linie mit Bleistift unter dem System."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-014",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-014",
                                             "measure": "27",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "g<sup>1 </sup>mit Bleistift gestrichen und ersetzt durch fis<sup>1</sup>/a<sup>1</sup>/c<sup>2</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-015",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-015",
                                             "measure": "nach 27",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Einschubzeichen mit Bleistift in den Systemen (möglicherweise von Schönbergs Hand (vgl. Korrektur zu T. 27 Taktanfang)"
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-016",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-016",
                                             "measure": "28",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "Kreuz mit Bleistift unter dem System."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-017",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-017",
                                             "measure": "30",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Verweiszeichen über dem System (Bleistift, mit Tinte nachgezogen): Verweis auf vormalige Einschubstelle für Textfassung 2 (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_1'})\">Korrekturen 1 in <strong>C</strong></a>)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-018",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-018",
                                             "measure": "31",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Verweiszeichen mit Bleistift über dem System: Verweis auf Anschlussstelle für Sk6, die den entsprechenden Einschub für Textfassung 2 vorskizziert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-019",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-019",
                                             "measure": "33",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: Achtelnote fis auf 2/8 hinzugefügt und mit Viertelnote e/cis<sup>1</sup> auf 1/4 zu zwei Achtelnoten zusammengebalkt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-020",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-020",
                                             "measure": "36",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "Achtelnote fis<sup>1</sup> auf 2/8 in Klav. o. hinzugefügt und mit Viertelnote e/cis<sup>1</sup> auf 1/4 in Klav. u. zu zwei Achtelnoten zusammengebalkt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-021",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-021",
                                             "measure": "37",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Viertelnote Cis hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-022",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-022",
                                             "measure": "40–41",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal mit Bleistift gestrichen. Nach T. 41: Alternativer Schluss für Textfassung 2 T. 55–59 notiert (vgl. nachfolgende Korrekturen)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-023",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-023",
                                             "measure": "56",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht cis<sup>2</sup>: Viertelnote überschreibt mit Unterstimmenschicht zusammengehalste Achtelnote."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-024",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-024",
                                             "measure": "57",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "e<sup>1</sup> radiert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-025",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-025",
                                             "measure": "57",
                                             "system": "Klav. o.",
                                             "position": "vor 2/4",
                                             "comment": "Viertelnote eis<sup>1</sup> radiert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-026",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-026",
                                             "measure": "57",
                                             "system": "Klav. u.",
                                             "position": "(3/4)",
                                             "comment": "Oberstimmenschicht: Viertelnote a geändert zu Achteltriole a–gis–fis."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-027",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-027",
                                             "measure": "58",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m45_tf2_B_corr_2-028",
+                                            "svgGroupId": "awg-kv-m45_tf1_B_corr_2-028",
                                             "measure": "58",
                                             "system": "Klav. u.",
                                             "position": "2/4",

@@ -1207,91 +1207,91 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-001",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-001",
                                             "measure": "3 <br />bis 4",
                                             "system": "Klav.",
                                             "position": "letzte Note <br />erste Note",
                                             "comment": "In beiden Systemen Legatobogen hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-002",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-002",
                                             "measure": "9 <br />bis 11",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte durch Einkreisung getilgt: Ersetzt durch Textfassung 2 T. 9–12."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-003",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-003",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "[<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]e<sup>1</sup>/g<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-004",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-004",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "(2/8)",
                                             "comment": "Notenköpfe D<sub>1</sub>/D hinzugefügt? Entzifferung unsicher."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-005",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-005",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-006",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-006",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "8/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-007",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-007",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-008",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-008",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-009",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-009",
                                             "measure": "13 <br />bis 14",
                                             "system": "Klav. o.",
                                             "position": "1/4 <br />zweitletzte Note",
                                             "comment": "Bogen über dem System. Möglicherweise Teil der Tilgung durch Einkreisung für Textfassung 2 (vgl. Korrekturen zu T. 9–11)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-010",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-010",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "2.–3. Note",
                                             "comment": "Noten eingekreist."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-011",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-011",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "f<sup>2</sup> gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-012",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-012",
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: h<sup>1</sup>/h<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m39_tf2_Ba_corr_2-013",
+                                            "svgGroupId": "awg-kv-m39_tf1_Ba_corr_2-013",
                                             "measure": "18",
                                             "system": "Klav.",
                                             "position": "2.–3. Note",
