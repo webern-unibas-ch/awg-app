@@ -398,7 +398,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should have the svgGroupId as id on each comment row (tr)', () => {
+                it('... should have the suffixed svgGroupId as id on each comment row (tr)', () => {
                     const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'tr.awg-edition-tka-table-comment',
@@ -410,7 +410,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
                             const trEl: HTMLTableRowElement = rowDes[rowIndex].nativeElement;
-                            expectToBe(trEl.getAttribute('id'), comment.svgGroupId);
+                            expectToBe(trEl.getAttribute('id'), comment.svgGroupId + '-entry');
+                            rowIndex++;
+                        });
+                    });
+                });
+
+                it('... should have the raw svgGroupId in data-svg-group-id attribute on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            const trEl: HTMLTableRowElement = rowDes[rowIndex].nativeElement;
+                            expectToBe(trEl.getAttribute('data-svg-group-id'), comment.svgGroupId);
                             rowIndex++;
                         });
                     });

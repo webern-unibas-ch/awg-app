@@ -28,7 +28,8 @@
                     track textcriticalComment.svgGroupId
                 ) {
                     <tr
-                        [id]="textcriticalComment.svgGroupId"
+                        [id]="textcriticalComment.svgGroupId + '-entry'"
+                        [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
                         [ngbTooltip]="textcriticalComment.svgGroupId"
                         tooltipClass="awg-group-id-tooltip"
                         placement="left"
