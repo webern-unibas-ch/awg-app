@@ -1489,6 +1489,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_1-001",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
@@ -1510,36 +1511,42 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-001",
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: g<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-002",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "1/2",
                                             "comment": "a überschrieben zu c<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-003",
                                             "measure": "2 <br />bis 3",
                                             "system": "Klav. o.",
                                             "position": "letzte Note <br />1. Note",
                                             "comment": "Linie zwischen <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>1 </sup>und c<sup>2</sup> in Klav. o. sowie e und f im Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-004",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "1/2",
                                             "comment": "Unterstimmenschicht: Halbe Note c<sup>1</sup>/e<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-005",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "<em>II</em> (oder <em>V</em>?) unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx467_tf1_C_corr_2-006",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "",

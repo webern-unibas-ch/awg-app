@@ -1094,12 +1094,14 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_B_corr_1-001",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_B_corr_1-002",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1/4",
@@ -1121,18 +1123,21 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_B_corr_2-001",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Achtelnote gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_B_corr_2-002",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "D/d ersetzt durch <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>Es/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_B_corr_2-003",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "Taktende",
@@ -1736,6 +1741,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m35_42_tf1_D_corr-001",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "3/4",

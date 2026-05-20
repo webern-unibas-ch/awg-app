@@ -1618,24 +1618,28 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-001",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-002",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "a überschreibt g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-003",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-004",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "3/4",
@@ -1657,6 +1661,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_2-001",
                                             "measure": "6",
                                             "system": "Klav.",
                                             "position": "",

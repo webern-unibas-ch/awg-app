@@ -1068,48 +1068,56 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-001",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-002",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-003",
                                             "measure": "11",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Alternative Version unter den Systemen: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-004",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "a<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-005",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: Viertelpause überschreibt Ansatz zu Halber Note D? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-006",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "5/8",
                                             "comment": "Achtelpause überschreibt Viertelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-007",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
                                             "comment": "Unterstimmenschicht: auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx410_tf1_A_corr_1-008",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "2/4",
