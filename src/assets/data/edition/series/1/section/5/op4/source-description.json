@@ -2833,7 +2833,7 @@
                                         {
                                             "svgGroupId": "awg-kv-m142_tf2_GH_corr-006",
                                             "measure": "2 <br />bis 3",
-                                            "system": "Klav. u",
+                                            "system": "Klav. u.",
                                             "position": "letzte Note <br />2/8",
                                             "comment": "Unterstimmenschicht: Bogen hinzugefügt mit roter Tinte."
                                         },
@@ -3134,7 +3134,7 @@
                                         {
                                             "svgGroupId": "awg-kv-m142_tf2_GH_corr-049",
                                             "measure": "14",
-                                            "system": "Klav. o",
+                                            "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h/f<sup>1</sup> hinzugefügt mit roter Tinte."
                                         },
