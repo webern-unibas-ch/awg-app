@@ -178,66 +178,77 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-001",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: auf Rasur. Ante correcturam: vermutlich cis oder Cis/cis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-002",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Viertelnote e/ais überschreibt Ganze Note e/ais."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-003",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "3. Note",
                                             "comment": "Auf Rasur. Ante correcturam: vermutlich B/b."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-004",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Achtelfähnchen rasiert und geändert zu Achtelbalken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-005",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1–3/4",
                                             "comment": "Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-006",
                                             "measure": "21",
                                             "system": "Ges.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-007",
                                             "measure": "23",
                                             "system": "Klav. u.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-008",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "(2/2)",
                                             "comment": "Oberstimmenschicht: Halbe Note B überschreibt ausgefüllten Notenkopf. Unterstimmenschicht: 3/4 auf Rasur. Ante correcturam: vermutlich Halbe Note E."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-009",
                                             "measure": "28",
                                             "system": "Klav. u.",
                                             "position": "1/2",
                                             "comment": "Unterstimmenschicht: auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-010",
                                             "measure": "30",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_1-011",
                                             "measure": "nach 30",
                                             "system": "",
                                             "position": "",
@@ -259,90 +270,105 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-001",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "4/8–8/8",
                                             "comment": "Korrekturskizze am rechten Seitenrand: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-002",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-003",
                                             "measure": "14",
                                             "system": "Ges.",
                                             "position": "4/8, 3. Note",
                                             "comment": "Tonbuchstabe <em>g</em> am rechten Seitenrand. Bezug nicht eindeutig."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-004",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-005",
                                             "measure": "14 <br />bis 15",
                                             "system": "Klav. o.",
                                             "position": "4/4 <br />1/4",
                                             "comment": "Ligaturbögen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-006",
                                             "measure": "15–16",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Dynamik überschreibt: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-007",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[mf]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-008",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3.–4. Note",
                                             "comment": "Ligaturbogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-009",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-010",
                                             "measure": "16 <br />bis 17",
                                             "system": "Klav. o.",
                                             "position": "4/4 <br />1/4",
                                             "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen. <br />Dann: Crescendogabel wieder hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-011",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-012",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "4/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-013",
                                             "measure": "20",
                                             "system": "Ges.",
                                             "position": "4/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-014",
                                             "measure": "21",
                                             "system": "Ges.",
                                             "position": "2/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m143_A_corr_2-015",
                                             "measure": "24",
                                             "system": "Ges.",
                                             "position": "1/8",

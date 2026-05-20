@@ -127,72 +127,84 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-002",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-003",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-004",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-005",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-006",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-007",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Achtelfähnchen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-008",
                                             "measure": "17",
-                                            "system": "Klav. o",
+                                            "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-009",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "2/8",
                                             "comment": "G gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-010",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "Unterstimmenschicht: Achtelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-011",
                                             "measure": "21",
                                             "system": "Klav.",
                                             "position": "2.–3. Note",
                                             "comment": "Ligaturen zwischen den Viertelnoten rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_1-012",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "3.–4. Note",
@@ -214,66 +226,77 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-001",
                                             "measure": "1–5",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Takte unter dem System eingeklammert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-002",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Unterstimmenschicht: Viertelnote As gestrichen und Augmentationspunkt zu Halber Note G hinzugefügt. (Vgl. auch Korrektur in T. 5 1.–2. Note.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-003",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "5/8",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-004",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-005",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Unterstimmenschicht: Cis–D gestrichen und ersetzt durch punktierte Halbe Note G mit Ligatur zu punktierter Halber Note G in T. 4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-006",
                                             "measure": "nach 5",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Ganzer Takt hinzugefügt mit punktierter Halber Note d<sup>1</sup> in Klav. o. und punktierter Halber Note G in Klav. u."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-007",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "(2/8)",
                                             "comment": "Einschubzeichen in und über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-008",
                                             "measure": "6 <br />bis 9",
                                             "system": "Klav. u.",
                                             "position": "2/4 <br />1. Note",
                                             "comment": "Wellenförmige Linie unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-009",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-010",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m76_tf1_A_corr_2-011",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "1/8",

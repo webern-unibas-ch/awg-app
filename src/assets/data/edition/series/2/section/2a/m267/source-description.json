@@ -105,114 +105,133 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-001",
                                             "measure": "1 <br />bis 2",
                                             "system": "Klav.",
                                             "position": "6/8–1/4",
                                             "comment": "Rasuren im oberen System und zwischen den Systemen. Ante correcturam: Legatobogen von T. 1 5/8 zu rasierter, nicht entzifferbarer Note in T. 2 1/4 und Crescendogabel von T. 1 5/8 bis T. 2 1/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-002",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1/8–2/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-003",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-004",
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "3/8",
                                             "comment": "Rasur im System vor Bassschlüssel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-005",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Achtelfähnchen rasiert und überschrieben zu Achtelbalken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-006",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Viertelpause überschreibt Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-007",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "4/8–3/4",
                                             "comment": "Rasur oberhalb des Systems."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-008",
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-009",
                                             "measure": "8 <br />bis 9",
                                             "system": "Klav. o.",
                                             "position": "7/16 <br />1/4",
                                             "comment": "Rasur über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-010",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "Achtelfähnchen rasiert und überschrieben zu Achtelbalken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-011",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "Akzidenzien und Vorschlagsnote auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-012",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "3–4/8",
                                             "comment": "Legatobogen rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-013",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "3/8",
                                             "comment": "Rasur über der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-014",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "3/16",
                                             "comment": "Sechzehntelnote a rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-015",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "4/16–3/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-016",
                                             "measure": "15",
                                             "system": "Klav.",
                                             "position": "2–3/16",
                                             "comment": "Balken jeweils auf Rasur. Ante correcturam: Sechzehntelfähnchen zu 2/16."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-017",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Viertelpause überschreibt Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-018",
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "(3/8)",
                                             "comment": "Achtelpause in Klav. o. und u. rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_1-019",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "3/16",
@@ -234,48 +253,56 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-001",
                                             "measure": "nach 7",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-002",
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "1–3/8",
                                             "comment": "Diverse Eintragungen und Streichungen in beiden Systemen: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-003",
                                             "measure": "8 bis 9",
                                             "system": "Klav. o.",
                                             "position": "6/8 <br />2/4",
                                             "comment": "Alternative Skizze über dem System: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-004",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
                                             "comment": "Decrescendogabel vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-005",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "5/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-006",
                                             "measure": "15 bis nach 15",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Alternative Skizze über und nach der Akkolade: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-007",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "2–3/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>–cis<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m267_tf1_A_corr_2-008",
                                             "measure": "nach 17",
                                             "system": "",
                                             "position": "",
