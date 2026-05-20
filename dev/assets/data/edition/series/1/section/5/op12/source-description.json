@@ -1174,42 +1174,49 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-001",
                                             "measure": "3–4",
                                             "system": "",
                                             "position": "",
                                             "comment": "Auf Tektur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-002",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-003",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "2. Pause",
                                             "comment": "Auf Rasur. Ante correcturam: es/as."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-004",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> gestrichen oder Tinte zerlaufen?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-005",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-006",
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_1-007",
                                             "measure": "23",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
@@ -1231,36 +1238,42 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-001",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "g/cis<sup>1</sup>/fis<sup>1</sup> ersetzt b/des<sup>1</sup>/ges<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-002",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Kreis unter der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-003",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> (zu virtuellem cis) hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-004",
                                             "measure": "11",
                                             "system": "Klav.",
                                             "position": "nach 1/4",
                                             "comment": "Viertelpause ergänzt und damit implizit den 2/4-Takt zu einem 3/4-Takt erweitert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-005",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf1_B_corr_2-006",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "4/8",
@@ -1809,216 +1822,252 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-001",
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "5/8",
                                             "comment": "Rasur über System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-002",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-003",
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "3–4/8",
                                             "comment": "e<sup>1</sup> und fis<sup>1</sup> überschreiben nicht zu identifizierende Tonhöhen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-004",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-005",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "3/8",
                                             "comment": "Staccatopunkt auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-006",
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "3–4/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-007",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1.–3. Note",
                                             "comment": "Crescendogabel gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-008",
                                             "measure": "9",
                                             "system": "Klav.",
                                             "position": "4/8",
                                             "comment": "<em>Ped.</em> gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-009",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Rasuren unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-010",
                                             "measure": "10",
                                             "system": "Klav.",
                                             "position": "2/4",
                                             "comment": "Pedal-Aufhebung gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-011",
                                             "measure": "11 <br />bis 12",
                                             "system": "",
                                             "position": "",
                                             "comment": "<em>sehr langsam</em> in T. 11 3/4 gestrichen und geändert zu <em>rit.</em> (T. 11), <em>molto</em> (T. 12) und Geltungsstrichelung mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-012",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /><em>zögernd</em> gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-013",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Crescendogabel geändert zu Decrescendogabel mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-014",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu F/e gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-015",
                                             "measure": "13",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>I. Zeitmaß </em>geändert zu <em>tempo</em> mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-016",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "1/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-017",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Rasur über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-018",
                                             "measure": "14",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
                                             "comment": "Crescendogabel gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-019",
                                             "measure": "14",
                                             "system": "Ges.",
                                             "position": "1.–3. Note",
                                             "comment": "Triolenklammer hinzugefügt mit Bleistift (Hs.?)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-020",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "Auf Rasur. <br />(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-021",
                                             "measure": "14 <br />bis 15",
                                             "system": "Ges.",
                                             "position": "4. Note <br />2/8",
                                             "comment": "Crescendogabel ergänzt mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-022",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "(2/4)",
                                             "comment": "Triolenklammer hinzugefügt mit Bleistift (Hs.?)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-023",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-024",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "4/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-025",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: fis<sup>1</sup> geändert zu ges<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-026",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "cis geändert zu des."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-027",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Crescendogabel gestrichen mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-028",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Unterstimmenschicht: des<sup>1</sup>/ges<sup>1</sup> überschreibt cis<sup>1</sup>/fis<sup>1</sup>; Pfeil zu Notennamen <em>ges | <u>des</u></em><u> am rechten Seitenrand. </u>"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-029",
                                             "measure": "20",
                                             "system": "Klav. o.",
                                             "position": "(2/4)",
                                             "comment": "Decrescendogabel gestrichen mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-030",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-031",
                                             "measure": "21 <br />bis 22",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />2/4",
                                             "comment": "Legatobogen ergänzt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-032",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "(<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>) zu es<sup>1</sup> und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-033",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
                                             "comment": "Decrescendogabel gestrichen mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-034",
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-035",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit blauer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf2_Ca_corr-036",
                                             "measure": "22 <br />bis 23",
                                             "system": "Klav. o.",
                                             "position": "2/4",
@@ -2202,90 +2251,105 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-001",
                                             "measure": "1",
                                             "system": "",
                                             "position": "",
                                             "comment": "<em>circa</em> auf Rasur. Ante correcturam vermutlich: Metronomzahl."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-002",
                                             "measure": "3",
                                             "system": "",
                                             "position": "5/8",
                                             "comment": "<em>t</em>[empo] auf Rasur. Ante correcturam vermutlich: <em>Tempo</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-003",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-004",
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "1.–2. Note",
                                             "comment": "Ligaturbogen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-005",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "6/8",
                                             "comment": "Text: [i]<em>n</em> auf Rasur. Ante correcturam vermutlich: <em>im</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-006",
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "nach 3/4",
                                             "comment": "Rasur: Vermutlich Position des Taktstrichs korrigiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-007",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Ende des Legatobogens (nach Akkoladenwechsel) auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-008",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "2/8",
                                             "comment": "Text: <em>d</em>[a] auf Rasur. Ante correcturam vermutlich: <em>Da</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-009",
                                             "measure": "13",
                                             "system": "Klav.",
                                             "position": "1.–2. Note",
                                             "comment": "Legatobogen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-010",
                                             "measure": "16",
                                             "system": "",
                                             "position": "Taktanfang bis (3/8)",
                                             "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-011",
                                             "measure": "17",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>tempo</em> [...] auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-012",
                                             "measure": "18 <br />bis 20",
                                             "system": "Ges.",
                                             "position": "3. Note <br />1/8",
                                             "comment": "Legatobogen zunächst nur bis T. 19 1. Note (rasiert)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-013",
                                             "measure": "20",
                                             "system": "Klav. o.",
                                             "position": "4/16",
                                             "comment": "Fermate auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-014",
                                             "measure": "20",
                                             "system": "",
                                             "position": "2/4",
                                             "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: <em>rit. - - - tempo</em> über Klav."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf1_D_corr-015",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "5/8",
@@ -2388,432 +2452,504 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-001",
                                             "measure": "1",
                                             "system": "Klav.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-002",
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "1/8–2/4",
                                             "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-003",
                                             "measure": "1 <br />bis 2",
                                             "system": "Klav. o.",
                                             "position": "1/8 <br />4/8",
                                             "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-004",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).<br /><span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-005",
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "2–3/8",
                                             "comment": "Achtelfähnchen bei 2/8 geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-006",
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "6/8",
                                             "comment": "Tenutostrich hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-007",
                                             "measure": "3 <br />bis 5",
                                             "system": "Ges.",
                                             "position": "6/8 <br />3/8",
                                             "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-008",
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "2–4/8",
                                             "comment": "Crescendogabel gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-009",
                                             "measure": "4",
                                             "system": "Klav.",
                                             "position": "1.–2. Note",
                                             "comment": "Legatobogen und Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-010",
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "3–4/8",
                                             "comment": "Crescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-011",
                                             "measure": "4 <br />bis 5",
                                             "system": "Ges.",
                                             "position": "3/8 <br />3/8",
                                             "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-012",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "letzte Pause",
                                             "comment": "Viertelpause gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-013",
                                             "measure": "4",
                                             "system": "Klav.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-014",
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "3–4/8",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-015",
                                             "measure": "5 <br />bis 7",
                                             "system": "Ges.",
                                             "position": "4/8 <br />1/4",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-016",
                                             "measure": "6",
                                             "system": "Ges.",
                                             "position": "2.–4. Note",
                                             "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. <br />Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-017",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2–3/8",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-018",
                                             "measure": "7",
                                             "system": "Klav.",
                                             "position": "2–3/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-019",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "2–3/8",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-020",
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-021",
                                             "measure": "7 <br />bis 8",
                                             "system": "Ges.",
                                             "position": "2. Note <br />1. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-022",
                                             "measure": "7 <br />bis 8",
                                             "system": "Ges.",
                                             "position": "3. Note <br />nach 1/4",
                                             "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-023",
                                             "measure": "7 <br />bis 8",
                                             "system": "Ges.",
                                             "position": "3. Note <br />3/8",
                                             "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-024",
                                             "measure": "8",
                                             "system": "Klav. o. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-025",
                                             "measure": "8 <br />bis 9",
                                             "system": "Ges.",
                                             "position": "3/8 <br />2. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-026",
                                             "measure": "8 <br />bis 9",
                                             "system": "Ges.",
                                             "position": "4/8 <br />2. Note",
                                             "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-027",
                                             "measure": "9",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-028",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Drei Vierteltriolen geändert zu triolischer Viertel- und Achtelnote sowie triolischer Achtelpause und Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-029",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-030",
                                             "measure": "9 <br />bis 11",
                                             "system": "Ges.",
                                             "position": "3. Note <br />1/4",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-031",
                                             "measure": "9 <br />bis 10",
                                             "system": "Klav. u.",
                                             "position": "4/8 <br />1/4",
                                             "comment": "Legatobogen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-032",
                                             "measure": "9 <br />bis 11",
                                             "system": "Klav. u.",
                                             "position": "4/8 <br />1/4",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-033",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1., 2. Note",
                                             "comment": "Tenutostriche gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-034",
                                             "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />2. Note",
                                             "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-035",
                                             "measure": "10",
                                             "system": "Ges.",
                                             "position": "2–4/8",
                                             "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-036",
                                             "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
                                             "position": "2. Note <br />2. Note",
                                             "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-037",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Tenutostrich gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-038",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-039",
                                             "measure": "12",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>molto</em> (scil: „molto rit.“) gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-040",
                                             "measure": "12/13",
                                             "system": "",
                                             "position": "Taktstrich",
                                             "comment": "Fermaten über Ges. und Klav. o. hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-041",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "1/8",
                                             "comment": "Fermate gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-042",
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Fermate gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-043",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Fermate gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-044",
                                             "measure": "13 <br />bis 14",
                                             "system": "Ges.",
                                             "position": "2/8 <br />2. Note?",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-045",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "5–6/8",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-046",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-047",
                                             "measure": "14",
                                             "system": "Ges.",
                                             "position": "1.–3. Note",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-048",
                                             "measure": "14",
                                             "system": "Klav. (u.)",
                                             "position": "1/8",
                                             "comment": "<em>ohne Pedal</em> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-049",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-050",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Decrescendogabel gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-051",
                                             "measure": "14 <br />bis 15",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/8",
                                             "comment": "Anfang des Bogens geändert von T. 14 3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-052",
                                             "measure": "14 <br />bis 15",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/8",
                                             "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-053",
                                             "measure": "15",
                                             "system": "Ges.",
                                             "position": "2/8–8/16",
                                             "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. <br />Dann: Balken bei 2.–4. Note hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-054",
                                             "measure": "15",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-055",
                                             "measure": "15 <br />bis 16",
                                             "system": "Ges.",
                                             "position": "3. Note<br />2/4",
                                             "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-056",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> zu 1. Note gestrichen und Crescendogabel geändert zu Decrescendogabel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-057",
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "(3/4)",
                                             "comment": "Crescendogabel gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-058",
                                             "measure": "17",
                                             "system": "Klav.",
                                             "position": "Taktanfang bis 1/4",
                                             "comment": "Decrescendogabel von T. 16 hinzugefügt. (E: Akkoladenwechsel nach T. 16.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-059",
                                             "measure": "17",
                                             "system": "Ges.",
                                             "position": "1–4/8",
                                             "comment": "Achtelfähnchen geändert zu Balken."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-060",
                                             "measure": "17 <br />bis 18",
                                             "system": "Ges.",
                                             "position": "1/8 <br />2. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-061",
                                             "measure": "17",
                                             "system": "Ges.",
                                             "position": "2–3/8",
                                             "comment": "Crescendogabel gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-062",
                                             "measure": "17",
                                             "system": "Klav.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-063",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "Taktanfang <br />bis 2. Note",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-064",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as<sup>1</sup>–ges<sup>1</sup> unter einer Triolenklammer und Achtelpause, Viertelnote des<sup>1</sup> unter einer Triolenklammer."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-065",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-066",
                                             "measure": "18 <br />bis 21",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "Bogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-067",
                                             "measure": "19",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-068",
                                             "measure": "19",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Ansatz zu Bogen oder Crescendogabel (bis Taktende) gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-069",
                                             "measure": "20",
                                             "system": "Ges.",
                                             "position": "2.–3. Note",
                                             "comment": "Crescendogabel überschrieben zu Decrescendogabel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-070",
                                             "measure": "21",
                                             "system": "Klav.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-071",
                                             "measure": "21 <br />bis 22",
                                             "system": "Klav.",
                                             "position": "2/4",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-op12_tf1_EH_corr-072",
                                             "measure": "22",
                                             "system": "Klav.",
                                             "position": "2/4",
@@ -3253,117 +3389,136 @@
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Vier Lieder</em> op. 12</span>.",
                             "comments": [
                                 {
-                                    "blockHeader": "I „Der Tag ist vergangen“ M 212",
+                                    "blockHeader": "I „Der Tag ist vergangen“ M 212: Textfassung 3",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-001",
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Rasur über dem System. Ante correcturam: Tempobezeichnung?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-002",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Rasur über dem System. Ante correcturam: <em>rit.</em>?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-003",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Rasur über dem System. Ante correcturam: <em>tempo</em>?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-004",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-005",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1. Note bis Taktende",
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-006",
                                             "measure": "5 <br />bis 6",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-007",
                                             "measure": "5 <br />bis 7",
                                             "system": "Ges.",
                                             "position": "4/8 <br />1/4",
                                             "comment": "Zwei Bögen von T. 5 4/8 bis T. 6 4/16 und von T. 6 3. Note bis T. 7 1/4 über dem System rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-008",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-009",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "1. Pause, letzte Note",
                                             "comment": "Triolenklammer hinzugefügt mit rotem Buntstift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-010",
                                             "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />2. Note",
                                             "comment": "Legatobogen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-011",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Rasur unter dem System. Ende des Bogen von T. 9 letzte Note?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-012",
                                             "measure": "10 <br />bis 11",
                                             "system": "Klav. o.",
                                             "position": "2. Note <br />2. Note",
                                             "comment": "Decrescendogabel, <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-013",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Staccatopunkt hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-014",
                                             "measure": "12",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Ganze Pause hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-015",
                                             "measure": "13",
                                             "system": "Ges., Klav.",
                                             "position": "",
                                             "comment": "Fermaten rasiert über Ges. 1/8 und Klav. o. Ganze Pause. Fermaten über Taktstrich vor T. 13 vermutlich danach hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-016",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-017",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> verändert zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-018",
                                             "measure": "21",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Rasur rechts neben g. Ante correcturam: Punktierung?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m212_tf3_F_corr-019",
                                             "measure": "21 <br />bis 22",
                                             "system": "Klav. o.",
                                             "position": "2/4",
@@ -3372,255 +3527,297 @@
                                     ]
                                 },
                                 {
-                                    "blockHeader": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217",
+                                    "blockHeader": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-001",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-002",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "g<sup>2</sup> auf Rasur. <br />Ende der Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-003",
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "4/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur. <br />Rasur am Notenhals."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-004",
                                             "measure": "5",
                                             "system": "Ges.",
                                             "position": "6/8",
                                             "comment": "Auf Rasur. Ante correcturam: Untersatz angeglichen?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-005",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Rasur unter der Note. Ante correcturam: Dynamik?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-006",
                                             "measure": "6",
                                             "system": "Klav.",
                                             "position": "2/8–5/16",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-007",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> auf Rasur. Rasur unter dem System. Ante correcturam: Dynamik?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-008",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Rasur unter dem System. Ante correcturam: Dynamik?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-009",
                                             "measure": "7",
                                             "system": "Ges.",
                                             "position": "1. Note",
                                             "comment": "Rasur rechts neben dem Notenkopf. Ante correcturam: Augmentationspunkt?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-010",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Viertelpause hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-011",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "10/16",
                                             "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-012",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "3/16–2/4",
                                             "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelende zuerst bis Taktende?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-013",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst in T. 8 4/8?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-014",
                                             "measure": "12 <br />bis 13",
                                             "system": "Klav.",
                                             "position": "letzte Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel, <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> auf Rasur. Ante correcturam: Decrescendogabel zuerst über den Taktstrich?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-015",
                                             "measure": "13",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Gabeln auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-016",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Notenhals auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-017",
                                             "measure": "14 <br />bis 16",
                                             "system": "Klav. u.",
                                             "position": "2/4 <br />2/4",
                                             "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 16 bis 17.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-018",
                                             "measure": "16",
                                             "system": "Ges.",
                                             "position": "5/8 bis Taktende",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[mp]')}}</span>, Crescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-019",
                                             "measure": "16 <br />bis 17",
                                             "system": "Klav. u.",
                                             "position": "3/4 <br />2/4",
                                             "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 14 bis 16.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-020",
                                             "measure": "17",
                                             "system": "Ges.",
                                             "position": "2–3/4",
                                             "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst zu 1/4?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-021",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "9/16",
                                             "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-022",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "9–12/16",
                                             "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-023",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "5–6/8",
                                             "comment": "Rasur unter dem System. Ante correcturam: Dynamik und Gabel?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-024",
                                             "measure": "18",
                                             "system": "Ges.",
                                             "position": "1/4",
                                             "comment": "<em>?</em> mit rotem Buntstift: Text fehlt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-025",
                                             "measure": "18 <br />bis 19",
                                             "system": "Klav. u.",
                                             "position": "1/16 <br />3/4",
                                             "comment": "Rasur über dem System. Ante correcturam: Bogen?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-026",
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, mit schwarzer Tinte nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-027",
                                             "measure": "18 <br />bis 19",
                                             "system": "Klav. o.",
                                             "position": "3/4 <br />3. Note",
                                             "comment": "Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-028",
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "3.–4. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und Decrescendogabel mit schwarzer Tinte überschreiben Decrescendogabel mit Bleitstift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-029",
                                             "measure": "19 <br />bis 22",
                                             "system": "Ges.",
                                             "position": "3/4 <br />2/4",
                                             "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4. <br />(Decrescendogabel in T. 22 auf dieser Rasur.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-030",
                                             "measure": "20",
                                             "system": "Klav. o.",
                                             "position": "1/16–3/8",
                                             "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen 1/16–3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-031",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "Staccatopunkt auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-032",
                                             "measure": "21",
                                             "system": "Klav. o.",
                                             "position": "1.–4. Note",
                                             "comment": "Crescendogabel mit Bleistift, nachgezogen mit schwarzer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-033",
                                             "measure": "21",
                                             "system": "Ges.",
                                             "position": "letzte Note",
                                             "comment": "des<sup>2</sup> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-034",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur. (Untersatz geändert.) <br /><span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, nachgezogen mit schwarzer Tinte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-035",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "1.–3. Note",
                                             "comment": "Rasur unter dem System. Ante correcturam: Decrescendogabel bereits ab 1. Note?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-036",
                                             "measure": "22",
                                             "system": "Ges.",
                                             "position": "5/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift, mit schwarzer Tinte nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-037",
                                             "measure": "23 <br />bis 24",
                                             "system": "Ges., Klav.",
                                             "position": "Taktanfang",
                                             "comment": "Auf Rasur. (Untersatzkorrektur?)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-038",
                                             "measure": "25–27",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Rasuren unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-039",
                                             "measure": "25 <br />bis 26",
                                             "system": "Klav. o.",
                                             "position": "3/8 <br />2. Note",
                                             "comment": "Rasuren über dem System. Ante correcturam: Bogen bis T. 26 2. Note?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-040",
                                             "measure": "25 <br />bis 26",
                                             "system": "Klav.",
                                             "position": "2/4 <br />Taktende",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-041",
                                             "measure": "27",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m217_tf1_F_corr-042",
                                             "measure": "27",
                                             "system": "Klav. u.",
                                             "position": "",
@@ -3629,255 +3826,297 @@
                                     ]
                                 },
                                 {
-                                    "blockHeader": "III „Schien mir’s, als ich sah die Sonne“ M 213",
+                                    "blockHeader": "III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-001",
                                             "measure": "4",
                                             "system": "Ges.",
                                             "position": "5–6/16",
                                             "comment": "Sechzehntelpause auf Rasur. Ante correcturam: Achtelnote d<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-002",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "2/16–2/8",
                                             "comment": "Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-003",
                                             "measure": "5",
                                             "system": "Klav.",
                                             "position": "3–6/16",
                                             "comment": "Rasur über den Noten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-004",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Rasuren neben den Notenköpfen. Ante correcturam: punktierte Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-005",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "2–3/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-006",
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "6/16",
                                             "comment": "[Son-]<em>ne!</em> geändert zu [Son-]<em>ne,</em>, <em>!</em> rasiert, Komma mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-007",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "2/8–6/16",
                                             "comment": "Rasuren. Ante correcturam: vermutlich zwei zusammengebalkte Achtelnoten?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-008",
                                             "measure": "11",
                                             "system": "Ges.",
                                             "position": "3/8",
                                             "comment": "<em>:</em> (?) überschrieben zu <em>;</em> mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-009",
                                             "measure": "12",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>tempo</em> auf Rasur. Ante correcturam: Geltungsstrichelung von <em>rit.</em> in T. 11 bis Ende T. 12?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-010",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "1., 2. Note",
                                             "comment": "Rasuren über den Noten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-011",
                                             "measure": "15 <br />bis 16",
                                             "system": "Ges.",
                                             "position": "3/8 <br />Taktende",
                                             "comment": "Rasur unter den Noten. Ante correcturam: Bogen unter den Noten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-012",
                                             "measure": "16",
                                             "system": "",
                                             "position": "",
                                             "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-013",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Rasuren über der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-014",
                                             "measure": "17–18",
                                             "system": "",
                                             "position": "",
                                             "comment": "Taktartvorzeichnung vor T. 17: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 17 und Taktartvorzeichnung vor T. 18 (<em>3/8</em>) hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-015",
                                             "measure": "17",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Bassschlüssel auf Rasur. Ante correcturam: Violinschlüssel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-016",
                                             "measure": "20–21",
                                             "system": "",
                                             "position": "",
                                             "comment": "Taktartvorzeichnung vor T. 20: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 20 hinzugefügt und Untersatz am Anfang von T. 21 geändert auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-017",
                                             "measure": "21",
                                             "system": "Klav. u.",
                                             "position": "4/16",
                                             "comment": "Rasur über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-018",
                                             "measure": "22",
                                             "system": "Ges.",
                                             "position": "2/16",
                                             "comment": "dis<sup>2</sup> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-019",
                                             "measure": "23",
                                             "system": "Klav. o.",
                                             "position": "1–2/8",
                                             "comment": "Crescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-020",
                                             "measure": "23",
                                             "system": "Ges.",
                                             "position": "2/16–12/32",
                                             "comment": "Gabeln auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-021",
                                             "measure": "24",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-022",
                                             "measure": "24 <br />bis 25",
                                             "system": "Ges.",
                                             "position": "1. Note <br />letzte Note",
                                             "comment": "Rasuren über dem System. Decrescendogabel in T. 25 3.–4. Note auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-023",
                                             "measure": "25",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-024",
                                             "measure": "25",
                                             "system": "",
                                             "position": "(2/8)",
                                             "comment": "<em>rit.- - -</em> gestrichen mit Bleistift. (Siehe Korrektur in T. 26 Taktanfang.)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-025",
                                             "measure": "25",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-026",
                                             "measure": "26",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>. <br /><em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-027",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1–2/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-028",
                                             "measure": "26",
                                             "system": "Ges.",
                                             "position": "1.–4. Note",
                                             "comment": "Gabeln mit Bleistift, radiert und mit schwarzer Tinte nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-029",
                                             "measure": "26",
                                             "system": "Klav. o.",
                                             "position": "3.–4. Note",
                                             "comment": "Ende der Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-030",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "8/16",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-031",
                                             "measure": "27 <br />bis 28",
                                             "system": "Ges.",
                                             "position": "2/16 <br />2/8",
                                             "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 27 2/16 bis T. 28 2/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-032",
                                             "measure": "28",
                                             "system": "Ges.",
                                             "position": "1–2/8",
                                             "comment": "Bogen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-033",
                                             "measure": "28 <br />bis 29",
                                             "system": "Ges.",
                                             "position": "3. Note <br />2. Note",
                                             "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 28 3. Note bis T. 29 2. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-034",
                                             "measure": "30",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>accell.</em> auf Rasur. Ante correcturam: vermutlich durchgehende Geltungsstrichelung von <em>rit.</em> in T. 28 3/8 bis Ende T. 31?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-035",
                                             "measure": "30",
                                             "system": "Klav.",
                                             "position": "1/8",
                                             "comment": "Achtelpausen auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-036",
                                             "measure": "30",
                                             "system": "Klav. o.",
                                             "position": "vor 2/8",
                                             "comment": "Violinschlüssel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-037",
                                             "measure": "33",
                                             "system": "Klav.",
                                             "position": "4/32–4/16",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-038",
                                             "measure": "34",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>. <br />Geltungsstrichelung auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-039",
                                             "measure": "34",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: Viertelpause auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-040",
                                             "measure": "34–36",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Rasur zwischen den Stimmenschichten. Ante correcturam: Trillerwellenlinie über a aus Unterstimmenschicht?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-041",
                                             "measure": "35",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<em>sehr ruhig (</em>[Achtel] <em>= ca 100)</em> auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m213_tf1_F_corr-042",
                                             "measure": "38–40",
                                             "system": "",
                                             "position": "",
@@ -3886,111 +4125,129 @@
                                     ]
                                 },
                                 {
-                                    "blockHeader": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216",
+                                    "blockHeader": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 2",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-001",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "2.–4. Note",
                                             "comment": "Decrescendogabel hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-002",
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "1–2/4",
                                             "comment": "Viertelpausen und Fermate zu 2/4 hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-003",
                                             "measure": "8 <br />bis 9",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "e/g auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-004",
                                             "measure": "9 <br />bis 10",
                                             "system": "Klav. o.",
                                             "position": "2/8 <br />2/8",
                                             "comment": "Notenköpfe mit Bleistift nachgezogen. <br />Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-005",
                                             "measure": "9 <br />bis 10",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Bogen rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-006",
                                             "measure": "10 <br />bis 11",
                                             "system": "Ges.",
                                             "position": "2/4 <br />1. Note",
                                             "comment": "Rasur über dem System. Ante correcturam: Bogen und Decrescendogabel überschneiden sich."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-007",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "Rasur über der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-008",
                                             "measure": "11",
                                             "system": "",
                                             "position": "3/4",
                                             "comment": "<em>rit.</em> vermutlich versetzt von Anfang T. 12. (Dort Geltungsstrichelung auf Rasur)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-009",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-010",
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "g<sup>2</sup>/ges<sup>3</sup>/ais<sup>3</sup>, zweite Hilfslinie gestrichen und Tonnamen <em>fis</em> | <em>es</em> vor den beiden obersten Notenköpfen ergänzt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-011",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: Viertelpause auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-012",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "2/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit Bleistift, mit schwarzer Tinte nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-013",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "2–6/8",
                                             "comment": "Rasur unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-014",
                                             "measure": "16",
                                             "system": "Ges.",
                                             "position": "",
                                             "comment": "Ganze Pause hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-015",
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "1.–2. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span>, Decrescendogabel auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-016",
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Auf Rasur. Ante correcturam: Klav. u. und Klav. o. Unterstimmenschicht vermutlich Ligatur aus Viertelnote, punktierte Viertelnote C/A und e, Achtelpause. Klav. o. Oberstimmenschicht vermutlich Viertelnote cis<sup>1</sup>, Achtelpause"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-017",
                                             "measure": "18",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> hinzugefügt mit Bleistift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m216_tf2_F_corr-018",
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "2.–3. Note",

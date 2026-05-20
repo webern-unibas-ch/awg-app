@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 68 und Tintenniederschrift von Studienkomposition für Streichquartett M 68 Textfassung 1.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -306,7 +306,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 68 Textfassung 2, Tintenniederschrift von Studienkomposition für Streichquartett M 68 Textfassung 2→3→4, 3 und 4.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -511,7 +511,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 1 und 2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 33, Studienkomposition für Streichquartett M 68 Textfassung 1–3 und zu „Du bist mein, ich bin dein“ M 9 sowie nicht identifizierte Skizze M* 454.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -921,7 +921,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 1→2→3 (<strong>D<sup>a</sup></strong>), <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 2 (<strong>D<sup>b</sup></strong>).<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 33 Textfassung 1→2 und 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1155,240 +1155,280 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-001",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für dis überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für fis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-002",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Augmentationspunkt zu e<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-003",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-004",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-005",
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "1/4–3/8",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-006",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[x]')}}</span>fisis<sup>1</sup> überschreibt [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-007",
                                             "measure": "25",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-008",
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Unterstimmenschicht: c<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-009",
                                             "measure": "28",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-010",
                                             "measure": "29",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Halbe Note h<sup>1</sup> überschreibt Viertelnote a<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-011",
                                             "measure": "37",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für gis überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für fis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-012",
                                             "measure": "42",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-013",
                                             "measure": "42",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Achtelfähnchen zu h<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-014",
                                             "measure": "48",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-015",
                                             "measure": "48",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Oberstimmenschicht: Viertelnote h überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note h."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-016",
                                             "measure": "52",
                                             "system": "Klav. u.",
                                             "position": "2/8",
                                             "comment": "cis<sup>1</sup> überschreibt h."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-017",
                                             "measure": "53",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "cis<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-018",
                                             "measure": "53",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "h<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-019",
                                             "measure": "54",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Viertelnote cis<sup>2</sup> überschreibt mit Oberstimmenschicht zusammengehalste Halbe Note cis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-020",
                                             "measure": "55",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "cis<sup>2</sup> überschreibt dis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-021",
                                             "measure": "61",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-022",
                                             "measure": "63",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-023",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "dis<sup>1</sup>/fis<sup>1</sup>: Punktierte Viertelnote überschreibt Halbe Note; dis<sup>2</sup> überschreibt fis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-024",
                                             "measure": "65",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Achteltriole h<sup>2</sup> –gis<sup>2</sup> –e<sup>2</sup> geändert zu Viertelnote h<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-025",
                                             "measure": "65",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: E überschreibt Gis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-026",
                                             "measure": "67",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-027",
                                             "measure": "67",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-028",
                                             "measure": "70",
                                             "system": "Klav. o.",
                                             "position": "(2/4)",
                                             "comment": "Notenkopf zu fis<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-029",
                                             "measure": "73",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "gis<sup>1</sup>/h<sup>1</sup>: Punktierte Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-030",
                                             "measure": "73",
                                             "system": "Klav. u.",
                                             "position": "1. Pause",
                                             "comment": "Achtelpause überschreibt Viertelnote E."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-031",
                                             "measure": "73",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "fis<sup>1</sup>/a überschreibt gis<sup>1</sup>/h<sup>1</sup>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-032",
                                             "measure": "73",
                                             "system": "Klav. u.",
                                             "position": "5. Note",
                                             "comment": "a<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-033",
                                             "measure": "73",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "e<sup>1</sup>/gis<sup>1</sup>/e<sup>2</sup> überschreibt fis<sup>1</sup>/a<sup>1</sup>/fis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-034",
                                             "measure": "74",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-035",
                                             "measure": "76",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Als dritte Triolenachtelnote (parallel zu gis<sup>1</sup> in Klav. o.) notiertes cis gestrichen und versetzt nach 3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-036",
                                             "measure": "76",
                                             "system": "Klav. u.",
                                             "position": "4–6/8",
                                             "comment": "e–gis–cis<sup>1</sup> ersetzt gestrichenes gis–cis<sup>1</sup>–e<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-037",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Ansatz zu Notenkopf e<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-038",
                                             "measure": "82",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "fis<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-039",
                                             "measure": "83",
                                             "system": "Klav. o.",
                                             "position": "3–4/8",
                                             "comment": "Balkierung hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf1_D_corr_1-040",
                                             "measure": "83",
                                             "system": "Klav. u.",
                                             "position": "1–6/8",
@@ -1410,192 +1450,224 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-001",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-002",
                                             "measure": "12",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt mit braunem Buntstift eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-003",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "1–3/4",
                                             "comment": "Unterstimmenschicht: Viertelnoten gestrichen mit Bleistift und ersetzt durch punktierte Halbe Note dis<sup>1</sup>/fis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-004",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "2–3/4",
                                             "comment": "Unterstimmenschicht: H auf 2/4 mit Bleistift gestrichen und ersetzt durch Gis; A auf 3/4 überschrieben zu Gis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-005",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-006",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: Viertelnote gis mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-007",
                                             "measure": "21",
                                             "system": "Klav.",
                                             "position": "1–2/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-008",
                                             "measure": "21–22",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Taktstrich zwischen T. 21 und 22 mit braunem Buntstift markiert: Einschubstelle für Textfassung 2 (vgl. auch Korrektur in T. 49)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-009",
                                             "measure": "22",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-010",
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "1/8–3/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-011",
                                             "measure": "24",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Takt im unteren System mit Bleistift gestrichen? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-012",
                                             "measure": "26",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-013",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1/8–3/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen, dann Streichung radiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-014",
                                             "measure": "26–27",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Takte unterhalb des Systems mit braunem Buntstift markiert. Markierung unter T. 26 wieder radiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-015",
                                             "measure": "27",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-016",
                                             "measure": "29",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-017",
                                             "measure": "29",
                                             "system": "Klav.",
                                             "position": "(2–3/4)",
                                             "comment": "Wellenförmige Linie mit Bleistift zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-018",
                                             "measure": "30",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-019",
                                             "measure": "30",
                                             "system": "Klav.",
                                             "position": "(3/4)",
                                             "comment": "Wellenförmige Linie mit Bleistift zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-020",
                                             "measure": "33",
                                             "system": "Klav.",
                                             "position": "2. Note",
                                             "comment": "Halbe Noten fis und cis<sup>1</sup>/e<sup>1</sup> mit Bleistift eingeklammert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-021",
                                             "measure": "38–39",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang <br />Taktende",
                                             "comment": "Takte über dem System mit Bleistift eingeklammert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-022",
                                             "measure": "40",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Noten mit Bleistift gestrichen und ersetzt durch Viertelpause und Halbe Note gis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-023",
                                             "measure": "41",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt pauschal mit Bleistift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-024",
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-025",
                                             "measure": "45–48",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal mit Bleistift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-026",
                                             "measure": "49",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Verweiszeichen über dem System: Verweis für Ende der Einschubstelle für Textfassung 2 (vgl. auch Korrektur zu T. 21–22 und Korrekturen 1 in Textfassung 2)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-027",
                                             "measure": "65",
                                             "system": "Klav.",
                                             "position": "2–3/4",
                                             "comment": "Kreuz mit Bleistift zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-028",
                                             "measure": "67",
                                             "system": "Klav. o.",
                                             "position": "2.–3. Note",
                                             "comment": "Oberstimmenschicht: Noten mit Bleistift eingeklammert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-029",
                                             "measure": "75",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> mit braunem Buntstift hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-030",
                                             "measure": "83–84",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal gestrichen und ersetzt durch Alternative für Textfassung 2."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-031",
                                             "measure": "83B",
                                             "system": "Klav. u.",
                                             "position": "4. Note",
                                             "comment": "h ersetzt gestrichenes e<sup>1</sup> aus Klav. o."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_D_corr_2-032",
                                             "measure": "84B",
                                             "system": "Klav.",
                                             "position": "2. Note",
@@ -1617,18 +1689,21 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_D_corr_3-001",
                                             "measure": "55",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Pause und Noten durch Einkreisung getilgt. Halbe Note A auf 1–2/4 und Viertelnote d auf 3/4 hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_D_corr_3-002",
                                             "measure": "55–56",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Taktstrich mit Bleistift markiert: Einschubstelle für Textfassung 3."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_D_corr_3-003",
                                             "measure": "56–63",
                                             "system": "Klav.",
                                             "position": "",
@@ -1646,7 +1721,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 2 (<strong>E<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 3 (<strong>E<sup>b</sup></strong>).<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 22 und M* 413–414.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -2202,30 +2277,35 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_1-001",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "e überschreibt d."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_1-002",
                                             "measure": "32",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note e<sup>1</sup> überschreibt Viertelnote e<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_1-003",
                                             "measure": "33",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Viertelnote ais<sup>1</sup> überschreibt Halbe Note ais<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_1-004",
                                             "measure": "36",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Augmentationspunkt zu A gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_1-005",
                                             "measure": "nach 41",
                                             "system": "Klav. o.",
                                             "position": "Taktende",
@@ -2247,24 +2327,28 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_2-001",
                                             "measure": "33 <br />bis 34",
                                             "system": "Klav. u.",
                                             "position": "Taktstrich",
                                             "comment": "Einschubzeichen im System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_2-002",
                                             "measure": "34",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "<em>Moll </em>zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_2-003",
                                             "measure": "34 <br />bis 35",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "<em>Thema unten </em>unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf2_Ea_corr_2-004",
                                             "measure": "34 <br />bis 36",
                                             "system": "Klav. o.",
                                             "position": "",
@@ -2282,7 +2366,7 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -2374,114 +2458,133 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-001",
                                             "measure": "21",
                                             "system": "Klav. u.",
                                             "position": "2/8",
                                             "comment": "gis überschreibt e."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-002",
                                             "measure": "27",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-003",
                                             "measure": "nach 29",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte {{ '{' }}30A–31A{{ '}' }} pauschal gestrichen. <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-004",
                                             "measure": "{30A}",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "Achtelpause überschreibt Viertelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-005",
                                             "measure": "34",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Viertelnote überschreibt punktierte Halbe Note, Augmentationspunkte gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-006",
                                             "measure": "40",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-007",
                                             "measure": "49",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: Viertelpause und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu Gis überschreibt Achtelpause; Strich zwischen Achtelnote in Oberstimme und überschriebener Achtelpause zur Verdeutlichung des metrischen Untersatzes."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-008",
                                             "measure": "50",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />bis letzte Note",
                                             "comment": "Noten auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-009",
                                             "measure": "53",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Achtelfähnchen gestrichen (sic)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-010",
                                             "measure": "55",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "gis<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-011",
                                             "measure": "55",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "A/a überschreibt Fis/fis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-012",
                                             "measure": "56",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "fis<sup>2</sup>: Notenhals nach unten überschreibt Notenhals zu Oberstimmenschicht."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-013",
                                             "measure": "60",
                                             "system": "Klav. u.",
                                             "position": "4/8",
                                             "comment": "Achtelnote überschreibt Ansatz zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-014",
                                             "measure": "61",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Achtelfähnchen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-015",
                                             "measure": "62",
                                             "system": "Klav. o.",
                                             "position": "2.–3. Note",
                                             "comment": "e<sup>3</sup> überschreibt cis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-016",
                                             "measure": "63",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "h<sup>2</sup> überschreibt a<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-017",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-018",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m32_tf3_F_corr-019",
                                             "measure": "68",
                                             "system": "Klav. u.",
                                             "position": "1. Note",

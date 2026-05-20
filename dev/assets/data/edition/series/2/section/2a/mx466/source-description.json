@@ -1011,6 +1011,7 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_1-001",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
@@ -1032,36 +1033,42 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-001",
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Unterstimmenschicht: d<sup>1</sup> eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-002",
                                             "measure": "1",
                                             "system": "",
                                             "position": "3/4–4/4",
                                             "comment": "Linie zwischen c<sup>2</sup> und h<sup>1</sup> in Klav. o. sowie f und e in Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-003",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Unterstimmenschicht: f<sup>1</sup> eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-004",
                                             "measure": "5 <br />bis 6",
                                             "system": "Klav. u.",
                                             "position": "4/4 <br />2. Note",
                                             "comment": "Oberstimmenschicht: c<sup>1</sup>–d<sup>1</sup>–d<sup>1</sup> gestrichen und ersetzt durch g–g–g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-005",
                                             "measure": "6",
                                             "system": "",
                                             "position": "4/8 bis letzte Note",
                                             "comment": "Linie zwischen d<sup>2</sup> und g<sup>2</sup> in Klav. o. sowie H und g in Klav. u. zur Verdeutlichung der verdeckten Oktavparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx466_tf1_B_corr_2-006",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "2/2",
