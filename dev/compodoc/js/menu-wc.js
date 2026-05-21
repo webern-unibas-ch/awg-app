@@ -1285,6 +1285,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionSheetsService.html" data-type="entity-link" >EditionSheetsService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionSnippetService.html" data-type="entity-link" >EditionSnippetService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/EditionStateService.html" data-type="entity-link" >EditionStateService</a>
                                 </li>
                                 <li class="link">
