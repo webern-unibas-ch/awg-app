@@ -2,7 +2,7 @@ import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -19,9 +19,14 @@ import { mockEditionData } from '@testing/mock-data';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet, TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
-import { EditionGlyphService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-view/services';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
+
+// Mock class for NgbModalRef
+export class MockNgbModalRef {
+    result: Promise<any> = new Promise(resolve => resolve('x'));
+}
 
 describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
@@ -30,6 +35,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     let mockDocument: Document;
 
+    let ngbModal: NgbModal;
+    let ngbModalOpenSpy: Spy;
+    let getCommentSpy: Spy;
     let getGlyphSpy: Spy;
     let getTableHeaderStringsSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -39,12 +47,16 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
     let editionGlyphServiceGetGlyphSpy: Spy;
+    let editionSnippetServiceGetCommentSpy: Spy;
 
     let mockEditionGlyphService: Partial<EditionGlyphService>;
+    let mockEditionSnippetService: Partial<EditionSnippetService>;
 
     let expectedReportFragment: string;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
+    let expectedSnippetId: string;
+    let expectedSnippetSrc: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
@@ -68,10 +80,18 @@ describe('EditionTkaTableComponent (DONE)', () => {
             },
         };
 
+        mockEditionSnippetService = {
+            getComment: (comment: string): string => comment,
+        };
+
         TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
-            imports: [NgbTooltip],
-            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
+            imports: [NgbModalModule, NgbTooltip],
+            providers: [
+                NgbModal,
+                { provide: EditionGlyphService, useValue: mockEditionGlyphService },
+                { provide: EditionSnippetService, useValue: mockEditionSnippetService },
+            ],
         }).compileComponents();
     }));
 
@@ -82,11 +102,15 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         mockDocument = TestBed.inject(DOCUMENT);
         mockEditionGlyphService = TestBed.inject(EditionGlyphService);
+        mockEditionSnippetService = TestBed.inject(EditionSnippetService);
+        ngbModal = TestBed.inject(NgbModal);
 
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
+        expectedSnippetSrc = 'assets/img/edition/snippets/testGroup.png';
+        expectedSnippetId = 'testGroup';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
@@ -124,6 +148,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         };
 
         // Spies
+        getCommentSpy = spyOn(component, 'getComment').and.callThrough();
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
@@ -137,6 +162,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
 
         editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
+        editionSnippetServiceGetCommentSpy = spyOn(mockEditionSnippetService, 'getComment').and.callThrough();
+        ngbModalOpenSpy = spyOn(ngbModal, 'open').and.returnValue(new MockNgbModalRef() as any);
     });
 
     it('... should create', () => {
@@ -154,6 +181,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         it('... should have `ref`', () => {
             expectToBe(component.ref, component);
+        });
+
+        it('... should have `snippetId` as empty string', () => {
+            expectToBe(component.snippetId, '');
+        });
+
+        it('... should have `snippetSrc` as empty string', () => {
+            expectToBe(component.snippetSrc, '');
         });
 
         it('... should have tableHeaderStrings', () => {
@@ -459,6 +494,52 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
+        describe('#getComment()', () => {
+            it('... should have a method `getComment`', () => {
+                expect(component.getComment).toBeDefined();
+            });
+
+            it('... should trigger on change detection', () => {
+                // 6 blockComments in detected content
+                expectSpyCall(getCommentSpy, 6);
+
+                component.isRowTable = true;
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(getCommentSpy, 12);
+            });
+
+            it('... should call `getComment` method from EditionSnippetService with correct parameters', () => {
+                // 6 blockComments in detected content
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 6);
+
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+                const svgGroupId = 'testGroup';
+
+                component.getComment(comment, svgGroupId);
+
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 7, [comment, svgGroupId]);
+            });
+
+            it('... should return the result of `getComment` from EditionSnippetService', () => {
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+                const svgGroupId = 'testGroup';
+
+                const result = component.getComment(comment, svgGroupId);
+
+                expectToBe(result, mockEditionSnippetService.getComment(comment, svgGroupId));
+            });
+
+            it('... should forward undefined svgGroupId to EditionSnippetService', () => {
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+
+                const result = component.getComment(comment, undefined);
+
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 7, [comment, undefined]);
+                expectToBe(result, mockEditionSnippetService.getComment(comment, undefined));
+            });
+        });
+
         describe('#getGlyph()', () => {
             it('... should have a method `getGlyph`', () => {
                 expect(component.getGlyph).toBeDefined();
@@ -656,6 +737,47 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 component.navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+        });
+
+        describe('#openSnippet()', () => {
+            it('... should have a method `openSnippet`', () => {
+                expect(component.openSnippet).toBeDefined();
+            });
+
+            describe('... should not open modal if', () => {
+                it('... src is undefined', () => {
+                    component.openSnippet(undefined);
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+
+                it('... src is null', () => {
+                    component.openSnippet(null);
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+
+                it('... src is empty string', () => {
+                    component.openSnippet('');
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+            });
+
+            it('... should set snippetSrc and snippetId and open modal with correct options', () => {
+                component.openSnippet(expectedSnippetSrc, expectedSnippetId);
+
+                expectToBe(component.snippetSrc, expectedSnippetSrc);
+                expectToBe(component.snippetId, expectedSnippetId);
+                expectSpyCall(ngbModalOpenSpy, 1, [component.snippetModalTemplate, { size: 'xl', centered: true }]);
+            });
+
+            it('... should default snippetId to empty string if not provided', () => {
+                component.openSnippet(expectedSnippetSrc);
+
+                expectToBe(component.snippetId, '');
+                expectSpyCall(ngbModalOpenSpy, 1);
             });
         });
 

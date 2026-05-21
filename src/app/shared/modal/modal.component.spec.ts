@@ -161,6 +161,7 @@ describe('ModalComponent', () => {
             const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
             expectToBe(btnEl.textContent, '');
+            expectToBe(btnEl.getAttribute('aria-label'), 'Close modal');
         });
 
         it('... should have one div.modal-body', () => {

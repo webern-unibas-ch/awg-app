@@ -4340,7 +4340,7 @@
                                             "measure": "13",
                                             "system": "",
                                             "position": "Taktanfang",
-                                            "comment": "<em>ruhig (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span<em> = ca 72)</em> auf Rasur."
+                                            "comment": "<em>ruhig (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span><em> = ca 72)</em> auf Rasur."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m141_tf2_H_corr-008",
