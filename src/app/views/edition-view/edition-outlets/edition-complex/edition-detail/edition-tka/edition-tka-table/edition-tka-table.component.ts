@@ -174,13 +174,13 @@ export class EditionTkaTableComponent {
      * It replaces each placeholder
      * `##Abbildung##` in a comment string with an image tag,
      * deriving the asset path from the given svgGroupId.
-     * Multiple occurrences are disambiguated with a `_a`, `_b`, … suffix.
+     * Multiple occurrences are disambiguated with an `a`, `b`, … suffix.
      *
      * @param {string} comment The given comment string.
-     * @param {string} svgGroupId The given svgGroupId.
+     * @param {string | undefined} svgGroupId The given svgGroupId.
      * @returns {string} The comment string with placeholders replaced by image tags.
      */
-    getComment(comment: string, svgGroupId: string): string {
+    getComment(comment: string, svgGroupId?: string): string {
         return this._editionSnippetService.getComment(comment, svgGroupId);
     }
 

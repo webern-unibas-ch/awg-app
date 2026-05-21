@@ -529,6 +529,15 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 expectToBe(result, mockEditionSnippetService.getComment(comment, svgGroupId));
             });
+
+            it('... should forward undefined svgGroupId to EditionSnippetService', () => {
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+
+                const result = component.getComment(comment, undefined);
+
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 7, [comment, undefined]);
+                expectToBe(result, mockEditionSnippetService.getComment(comment, undefined));
+            });
         });
 
         describe('#getGlyph()', () => {

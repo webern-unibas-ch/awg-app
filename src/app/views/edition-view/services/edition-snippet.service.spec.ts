@@ -16,9 +16,35 @@ describe('EditionSnippetService (DONE)', () => {
         expect(editionSnippetService).toBeTruthy();
     });
 
+    it('... should have static `SAFE_SNIPPET_ID_PATTERN`', () => {
+        const pattern = (EditionSnippetService as any).SAFE_SNIPPET_ID_PATTERN as RegExp;
+
+        expect(pattern).toBeDefined();
+        expectToBe(pattern.source, '^[A-Za-z0-9_-]+$');
+        expectToBe(pattern.flags, '');
+    });
+
     describe('#getComment()', () => {
         it('... should have a method `getComment`', () => {
             expect(editionSnippetService.getComment).toBeDefined();
+        });
+
+        describe('... should keep comment unchanged if', () => {
+            it('... svgGroupId is missing', () => {
+                const comment = 'Text davor ##Abbildung## Text danach.';
+
+                const result = editionSnippetService.getComment(comment, undefined);
+
+                expectToBe(result, comment);
+            });
+
+            it('... svgGroupId has unsafe value', () => {
+                const comment = 'Text davor ##Abbildung## Text danach.';
+
+                const result = editionSnippetService.getComment(comment, 'bad\'group"><x>');
+
+                expectToBe(result, comment);
+            });
         });
 
         it('... should return comment unchanged if no `##Abbildung##` placeholder is present', () => {
@@ -31,11 +57,12 @@ describe('EditionSnippetService (DONE)', () => {
         });
 
         it('... should replace a single `##Abbildung##` placeholder without suffix', () => {
-            const svgGroupId = 'testGroup';
             const comment = 'Text davor ##Abbildung## Text danach.';
+            const svgGroupId = 'testGroup';
             const id = svgGroupId;
             const src = `assets/img/edition/snippets/${id}.png`;
-            const expectedImg = `<img src="${src}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${src}', '${id}')" />`;
+            const alt = `Abbildung: ${id}`;
+            const expectedImg = `<img src="${src}" alt="${alt}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)" />`;
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 
@@ -43,14 +70,16 @@ describe('EditionSnippetService (DONE)', () => {
         });
 
         it('... should replace two `##Abbildung##` placeholders with `a` and `b` suffixes', () => {
-            const svgGroupId = 'testGroup';
             const comment = '##Abbildung## and ##Abbildung##';
+            const svgGroupId = 'testGroup';
             const idA = `${svgGroupId}a`;
-            const srcA = `assets/img/edition/snippets/${idA}.png`;
             const idB = `${svgGroupId}b`;
+            const srcA = `assets/img/edition/snippets/${idA}.png`;
             const srcB = `assets/img/edition/snippets/${idB}.png`;
-            const expectedImgA = `<img src="${srcA}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${srcA}', '${idA}')" />`;
-            const expectedImgB = `<img src="${srcB}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${srcB}', '${idB}')" />`;
+            const altA = `Abbildung: ${idA}`;
+            const altB = `Abbildung: ${idB}`;
+            const expectedImgA = `<img src="${srcA}" alt="${altA}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcA}&quot;, &quot;${idA}&quot;)" />`;
+            const expectedImgB = `<img src="${srcB}" alt="${altB}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcB}&quot;, &quot;${idB}&quot;)" />`;
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 
@@ -58,21 +87,70 @@ describe('EditionSnippetService (DONE)', () => {
         });
 
         it('... should replace three `##Abbildung##` placeholders with `a`, `b` and `c` suffixes', () => {
-            const svgGroupId = 'testGroup';
             const comment = '##Abbildung## ##Abbildung## ##Abbildung##';
+            const svgGroupId = 'testGroup';
             const idA = `${svgGroupId}a`;
-            const srcA = `assets/img/edition/snippets/${idA}.png`;
             const idB = `${svgGroupId}b`;
-            const srcB = `assets/img/edition/snippets/${idB}.png`;
             const idC = `${svgGroupId}c`;
+            const srcA = `assets/img/edition/snippets/${idA}.png`;
+            const srcB = `assets/img/edition/snippets/${idB}.png`;
             const srcC = `assets/img/edition/snippets/${idC}.png`;
-            const expectedImgA = `<img src="${srcA}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${srcA}', '${idA}')" />`;
-            const expectedImgB = `<img src="${srcB}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${srcB}', '${idB}')" />`;
-            const expectedImgC = `<img src="${srcC}" alt="##Abbildung##" class="awg-edition-tkk-snippet" (click)="ref.openSnippet('${srcC}', '${idC}')" />`;
+            const altA = `Abbildung: ${idA}`;
+            const altB = `Abbildung: ${idB}`;
+            const altC = `Abbildung: ${idC}`;
+            const expectedImgA = `<img src="${srcA}" alt="${altA}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcA}&quot;, &quot;${idA}&quot;)" />`;
+            const expectedImgB = `<img src="${srcB}" alt="${altB}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcB}&quot;, &quot;${idB}&quot;)" />`;
+            const expectedImgC = `<img src="${srcC}" alt="${altC}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcC}&quot;, &quot;${idC}&quot;)" />`;
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 
             expectToBe(result, `${expectedImgA} ${expectedImgB} ${expectedImgC}`);
+        });
+    });
+
+    describe('#_isSafeSnippetId()', () => {
+        it('... should have a method `_isSafeSnippetId`', () => {
+            expect((editionSnippetService as any)._isSafeSnippetId).toBeDefined();
+        });
+
+        it('... should return true for safe snippet ids', () => {
+            const resultA = (editionSnippetService as any)._isSafeSnippetId('awg-tkk-m133_tf4-015');
+            const resultB = (editionSnippetService as any)._isSafeSnippetId('abc_123-XYZ');
+
+            expectToBe(resultA, true);
+            expectToBe(resultB, true);
+        });
+
+        it('... should return false for unsafe snippet ids', () => {
+            const resultA = (editionSnippetService as any)._isSafeSnippetId('bad id');
+            const resultB = (editionSnippetService as any)._isSafeSnippetId("bad'id");
+            const resultC = (editionSnippetService as any)._isSafeSnippetId('<bad>');
+
+            expectToBe(resultA, false);
+            expectToBe(resultB, false);
+            expectToBe(resultC, false);
+        });
+    });
+
+    describe('#_escapeHtmlAttribute()', () => {
+        it('... should have a method `_escapeHtmlAttribute`', () => {
+            expect((editionSnippetService as any)._escapeHtmlAttribute).toBeDefined();
+        });
+
+        it('... should escape html-sensitive characters', () => {
+            const value = '&"<>\'';
+
+            const result = (editionSnippetService as any)._escapeHtmlAttribute(value);
+
+            expectToBe(result, '&amp;&quot;&lt;&gt;&#39;');
+        });
+
+        it('... should return unchanged value if no escaping is needed', () => {
+            const value = 'awg-tkk-m133_tf4-015';
+
+            const result = (editionSnippetService as any)._escapeHtmlAttribute(value);
+
+            expectToBe(result, value);
         });
     });
 });
