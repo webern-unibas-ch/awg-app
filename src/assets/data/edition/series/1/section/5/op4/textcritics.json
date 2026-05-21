@@ -236,7 +236,7 @@
                                 "measure": "9",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Ende der Decresecendogabel versetzt von T. 10 nach 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Ende der Crescendogabel unspezifisch zwischen Ende T. 9 und Anfang T. 10."
+                                "comment": "Ende der <span class='corrigenda' title='olim: Decresecendogabel'>Decrescendogabel</span> versetzt von T. 10 nach 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Ende der Crescendogabel unspezifisch zwischen Ende T. 9 und Anfang T. 10."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m138_tf3-033",
@@ -783,7 +783,7 @@
                                 "measure": "13",
                                 "system": "Klav.",
                                 "position": "1/8",
-                                "comment": "Ende der Decresecendogabel versetzt von Ende T. 12 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
+                                "comment": "Ende der <span class='corrigenda' title='olim: Decresecendogabel'>Decrescendogabel</span> versetzt von Ende T. 12 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m141_tf2-014",
