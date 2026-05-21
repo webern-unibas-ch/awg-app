@@ -7,6 +7,15 @@ import { EditionSnippetService } from './edition-snippet.service';
 describe('EditionSnippetService (DONE)', () => {
     let editionSnippetService: EditionSnippetService;
 
+    const getExpectedSnippetImg = (src: string, id: string, alt: string): string =>
+        [
+            `<img src="${src}" alt="${alt}" class="awg-edition-tkk-snippet"`,
+            ` role="button" tabindex="0" aria-label="${alt}"`,
+            ` (click)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)"`,
+            ` (keydown.enter)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)"`,
+            ` (keydown.space)="$event.preventDefault();ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)" />`,
+        ].join('');
+
     beforeEach(() => {
         TestBed.configureTestingModule({});
         editionSnippetService = TestBed.inject(EditionSnippetService);
@@ -62,7 +71,7 @@ describe('EditionSnippetService (DONE)', () => {
             const id = svgGroupId;
             const src = `assets/img/edition/snippets/${id}.png`;
             const alt = `Abbildung: ${id}`;
-            const expectedImg = `<img src="${src}" alt="${alt}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)" />`;
+            const expectedImg = getExpectedSnippetImg(src, id, alt);
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 
@@ -78,8 +87,8 @@ describe('EditionSnippetService (DONE)', () => {
             const srcB = `assets/img/edition/snippets/${idB}.png`;
             const altA = `Abbildung: ${idA}`;
             const altB = `Abbildung: ${idB}`;
-            const expectedImgA = `<img src="${srcA}" alt="${altA}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcA}&quot;, &quot;${idA}&quot;)" />`;
-            const expectedImgB = `<img src="${srcB}" alt="${altB}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcB}&quot;, &quot;${idB}&quot;)" />`;
+            const expectedImgA = getExpectedSnippetImg(srcA, idA, altA);
+            const expectedImgB = getExpectedSnippetImg(srcB, idB, altB);
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 
@@ -98,9 +107,9 @@ describe('EditionSnippetService (DONE)', () => {
             const altA = `Abbildung: ${idA}`;
             const altB = `Abbildung: ${idB}`;
             const altC = `Abbildung: ${idC}`;
-            const expectedImgA = `<img src="${srcA}" alt="${altA}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcA}&quot;, &quot;${idA}&quot;)" />`;
-            const expectedImgB = `<img src="${srcB}" alt="${altB}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcB}&quot;, &quot;${idB}&quot;)" />`;
-            const expectedImgC = `<img src="${srcC}" alt="${altC}" class="awg-edition-tkk-snippet" (click)="ref.openSnippet(&quot;${srcC}&quot;, &quot;${idC}&quot;)" />`;
+            const expectedImgA = getExpectedSnippetImg(srcA, idA, altA);
+            const expectedImgB = getExpectedSnippetImg(srcB, idB, altB);
+            const expectedImgC = getExpectedSnippetImg(srcC, idC, altC);
 
             const result = editionSnippetService.getComment(comment, svgGroupId);
 

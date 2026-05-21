@@ -189,10 +189,10 @@ export class EditionTkaTableComponent {
      *
      * It opens the snippet image modal for the given image src.
      *
-     * @param {string} src The given image src.
+     * @param {string | null | undefined} src The given image src.
      * @returns {void} Opens the modal.
      */
-    openSnippet(src: string, id = ''): void {
+    openSnippet(src?: string | null, id = ''): void {
         if (!src) {
             return;
         }

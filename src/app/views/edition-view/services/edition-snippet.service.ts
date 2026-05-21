@@ -45,7 +45,20 @@ export class EditionSnippetService {
             const src = `assets/img/edition/snippets/${id}.png`;
             const alt = `Abbildung: ${id}`;
             const clickExpression = `ref.openSnippet(${JSON.stringify(src)}, ${JSON.stringify(id)})`;
-            return `<img src="${this._escapeHtmlAttribute(src)}" alt="${this._escapeHtmlAttribute(alt)}" class="awg-edition-tkk-snippet" (click)="${this._escapeHtmlAttribute(clickExpression)}" />`;
+            const keydownSpaceExpression = `$event.preventDefault();${clickExpression}`;
+
+            const escapedSrc = this._escapeHtmlAttribute(src);
+            const escapedAlt = this._escapeHtmlAttribute(alt);
+            const escapedClick = this._escapeHtmlAttribute(clickExpression);
+            const escapedKeydownSpace = this._escapeHtmlAttribute(keydownSpaceExpression);
+
+            return [
+                `<img src="${escapedSrc}" alt="${escapedAlt}" class="awg-edition-tkk-snippet"`,
+                ` role="button" tabindex="0" aria-label="${escapedAlt}"`,
+                ` (click)="${escapedClick}"`,
+                ` (keydown.enter)="${escapedClick}"`,
+                ` (keydown.space)="${escapedKeydownSpace}" />`,
+            ].join('');
         });
     }
 
