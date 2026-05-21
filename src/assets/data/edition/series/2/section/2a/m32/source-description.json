@@ -1503,7 +1503,7 @@
                                             "measure": "21–22",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Taktstrich zwischen T. 21 und 22 mit braunem Buntstift markiert: Einschubstelle für Textfassung 2 (vgl. auch Korrektur in T. 49)."
+                                            "comment": "Taktstrich zwischen T. 21 und 22 mit braunem Buntstift markiert: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a> (vgl. auch Korrektur in T. 49)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-009",
@@ -1629,7 +1629,7 @@
                                             "measure": "49",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Verweis für Ende der Einschubstelle für Textfassung 2 (vgl. auch Korrektur zu T. 21–22 und Korrekturen 1 in Textfassung 2)."
+                                            "comment": "Verweiszeichen über dem System: Verweis für Ende der Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a> (vgl. auch Korrektur zu T. 21–22 und Korrekturen 1 in Textfassung 2)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-027",
@@ -1657,7 +1657,7 @@
                                             "measure": "83–84",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte pauschal gestrichen und ersetzt durch Alternative für Textfassung 2."
+                                            "comment": "Takte pauschal gestrichen und ersetzt durch Alternative für <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-031",
@@ -1700,7 +1700,7 @@
                                             "measure": "55–56",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Taktstrich mit Bleistift markiert: Einschubstelle für Textfassung 3."
+                                            "comment": "Taktstrich mit Bleistift markiert: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF3'})\">Textfassung 3</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m32_tf1_Da_corr_3-003",
@@ -2338,7 +2338,7 @@
                                             "measure": "nach 41",
                                             "system": "Klav. o.",
                                             "position": "Taktende",
-                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle in T. 49 in Textfassung 1 (vgl. Korrekturen 2 in Textfassung 1)."
+                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle in T. 49 in <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF1'})\">Textfassung 1</a> (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm32', fragmentId: 'source_Da_corr_2'})\">Korrekturen 2</a> in Textfassung 1)."
                                         }
                                     ]
                                 }
