@@ -65,6 +65,15 @@ describe('EditionSnippetService (DONE)', () => {
             expectToBe(result, comment);
         });
 
+        it('... should not replace `###Abbildung###` pseudo placeholders', () => {
+            const comment = 'Text davor ###Abbildung### Text danach.';
+            const svgGroupId = 'testGroup';
+
+            const result = editionSnippetService.getComment(comment, svgGroupId);
+
+            expectToBe(result, comment);
+        });
+
         it('... should replace a single `##Abbildung##` placeholder without suffix', () => {
             const comment = 'Text davor ##Abbildung## Text danach.';
             const svgGroupId = 'testGroup';

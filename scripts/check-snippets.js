@@ -7,7 +7,7 @@
  *
  * The script now has two result categories:
  *   1) snippet file checks (runtime parity)
- *   2) data quality issues (missing/unsafe svgGroupId)
+ *   2) data quality issues (missing/unsafe svgGroupId, malformed placeholders)
  *
  * Suffix logic mirrors EditionSnippetService.getComment():
  *   - single placeholder  → id = svgGroupId          → svgGroupId.png
@@ -17,7 +17,8 @@
  *   - missing svgGroupId → comment is ignored for snippet rendering
  *   - unsafe svgGroupId  → comment is ignored for snippet rendering
  *
- * Unsafe IDs are tracked as data issues instead of snippet file misses.
+ * Unsafe IDs and malformed placeholder variants are tracked as data issues
+ * instead of snippet file misses.
  *
  * Usage:  node scripts/check-snippets.js
  *         yarn check:snippets
@@ -41,6 +42,8 @@ const DATA_PREFIX_REL = path.relative(ROOT, DATA_DIR).replace(/\\/g, '/');
 const STRICT_DATA = process.argv.includes('--strict-data');
 const VERBOSE = process.argv.includes('--verbose');
 const SAFE_SNIPPET_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
+const PLACEHOLDER_PATTERN = /(?<!#)##Abbildung##(?!#)/g;
+const MALFORMED_PLACEHOLDER_PATTERN = /#+Abbildung#+|#+Abbildung|Abbildung#+/g;
 
 // Results keyed by section label, e.g. "series/1/section/5"
 const sections = new Map();
@@ -132,12 +135,29 @@ function checkValue(value, filePath, jsonPath = '$') {
 // ── Check one block-comment entry ────────────────────────────────────────────
 
 function checkBlockComment(svgGroupId, comment, filePath, context) {
-    const matches = comment.match(/##Abbildung##/g);
+    const malformedMatches = comment.match(MALFORMED_PLACEHOLDER_PATTERN) ?? [];
+    const filteredMalformedMatches = malformedMatches.filter(match => match !== '##Abbildung##');
+    const matches = comment.match(PLACEHOLDER_PATTERN);
+
+    const section = sectionOf(filePath);
+    const relFile = path.relative(ROOT, filePath);
+
+    if (filteredMalformedMatches.length > 0) {
+        recordDataIssue(section, {
+            type: 'MALFORMED_PLACEHOLDER',
+            placeholders: filteredMalformedMatches.length,
+            malformedMatches: [...new Set(filteredMalformedMatches)],
+            file: relFile,
+            jsonPath: context.jsonPath,
+            measure: context.measure,
+            system: context.system,
+            position: context.position,
+        });
+    }
+
     if (!matches) return;
 
     const count = matches.length;
-    const section = sectionOf(filePath);
-    const relFile = path.relative(ROOT, filePath);
 
     // Runtime parity with EditionSnippetService.getComment():
     // skip snippet checks if svgGroupId is missing or unsafe.
@@ -235,6 +255,10 @@ for (const [section, issues] of [...dataIssuesBySection.entries()].sort()) {
         if (issue.type === 'MISSING_ID') {
             console.warn(
                 `      WARN   missing svgGroupId for ${issue.placeholders} placeholder(s)   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+            );
+        } else if (issue.type === 'MALFORMED_PLACEHOLDER') {
+            console.warn(
+                `      WARN   malformed placeholder ${issue.placeholders === 1 ? 'variant' : 'variants'} ${issue.malformedMatches.join(', ')}   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
             );
         } else {
             console.warn(

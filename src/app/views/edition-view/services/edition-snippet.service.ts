@@ -36,9 +36,10 @@ export class EditionSnippetService {
             return comment;
         }
 
-        const count = (comment.match(/##Abbildung##/g) ?? []).length;
+        const placeholderPattern = /(?<!#)##Abbildung##(?!#)/g;
+        const count = (comment.match(placeholderPattern) ?? []).length;
         let index = 0;
-        return comment.replace(/##Abbildung##/g, () => {
+        return comment.replace(placeholderPattern, () => {
             const suffix = count > 1 ? String.fromCharCode(97 + index) : '';
             index++;
             const id = `${svgGroupId}${suffix}`;
