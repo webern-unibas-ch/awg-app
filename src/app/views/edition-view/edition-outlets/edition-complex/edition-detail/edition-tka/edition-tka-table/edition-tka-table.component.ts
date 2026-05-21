@@ -1,7 +1,18 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    inject,
+    Input,
+    Output,
+    TemplateRef,
+    ViewChild,
+} from '@angular/core';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
-import { EditionGlyphService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionTkaTable component.
@@ -75,6 +86,28 @@ export class EditionTkaTableComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * ViewChild variable: snippetModalTemplate.
+     *
+     * It keeps the reference to the snippet image modal template.
+     */
+    @ViewChild('snippetModalTemplate')
+    snippetModalTemplate: TemplateRef<any>;
+
+    /**
+     * Public variable: snippetId.
+     *
+     * It keeps the id of the snippet image to be displayed in the modal.
+     */
+    snippetId = '';
+
+    /**
+     * Public variable: snippetSrc.
+     *
+     * It keeps the src of the snippet image to be displayed in the modal.
+     */
+    snippetSrc = '';
+
+    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionTkaTableComponent;
@@ -113,12 +146,59 @@ export class EditionTkaTableComponent {
     private readonly _editionGlyphService = inject(EditionGlyphService);
 
     /**
+     * Private readonly injection variable: _editionSnippetService.
+     *
+     * It keeps the instance of the injected EditionSnippetService.
+     */
+    private readonly _editionSnippetService = inject(EditionSnippetService);
+
+    /**
+     * Private readonly injection variable: _ngbModal.
+     *
+     * It keeps the instance of the injected NgbModal.
+     */
+    private readonly _ngbModal = inject(NgbModal);
+
+    /**
      * Constructor of the EditionTkaTableComponent.
      *
      * It initializes the self-referring ref variable needed for CompileHtml library.
      */
     constructor() {
         this.ref = this;
+    }
+
+    /**
+     * Public method: getComment.
+     *
+     * It replaces each placeholder
+     * `##Abbildung##` in a comment string with an image tag,
+     * deriving the asset path from the given svgGroupId.
+     * Multiple occurrences are disambiguated with a `_a`, `_b`, … suffix.
+     *
+     * @param {string} comment The given comment string.
+     * @param {string} svgGroupId The given svgGroupId.
+     * @returns {string} The comment string with placeholders replaced by image tags.
+     */
+    getComment(comment: string, svgGroupId: string): string {
+        return this._editionSnippetService.getComment(comment, svgGroupId);
+    }
+
+    /**
+     * Public method: openSnippet.
+     *
+     * It opens the snippet image modal for the given image src.
+     *
+     * @param {string} src The given image src.
+     * @returns {void} Opens the modal.
+     */
+    openSnippet(src: string, id = ''): void {
+        if (!src) {
+            return;
+        }
+        this.snippetSrc = src;
+        this.snippetId = id;
+        this._ngbModal.open(this.snippetModalTemplate, { size: 'xl', centered: true });
     }
 
     /**
