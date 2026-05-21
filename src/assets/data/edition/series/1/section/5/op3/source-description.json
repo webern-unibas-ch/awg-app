@@ -339,133 +339,133 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-001",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-001",
                                             "measure": "vor 1",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Violinschlüssel überschreibt Bassschlüssel."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-002",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-002",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "5/16",
                                             "comment": "f<sup>1</sup> gestrichen und geändert zu a<sup>1</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-003",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-003",
                                             "measure": "2",
                                             "system": "Klav.",
                                             "position": "9.–12. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-004",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-004",
                                             "measure": "3",
                                             "system": "Ges.",
                                             "position": "3. Note",
                                             "comment": "Text: Kleinschreibung <em>n</em>[ur] überschrieben zu <em>N</em>[ur]."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-005",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-005",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "4.–8. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-006",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-006",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "8.–9. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-007",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-007",
                                             "measure": "4",
                                             "system": "",
                                             "position": "Taktende",
                                             "comment": "Taktstrich rasiert und weiter rechts neu gezogen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-008",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-008",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>-Akzidenz auf Höhe zu as<sup>1</sup> überschrieben auf Höhe zu b<sup>1</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-009",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-009",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "5–8/16",
                                             "comment": "Fortsetzung des von T. 4 kommenden Legatobogens bis 8/16 rasiert und Ende versetzt zu 5/16, Bogen 5–8/16 hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-010",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-010",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "3.–5. Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-011",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-011",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "8.–10. Note",
                                             "comment": "Auf Rasur. Ante correcturam: vermutlich Notenhälse und Balken über den Noten."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-012",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-012",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "4/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-013",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-013",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "17–20/23",
                                             "comment": "Auf Rasur. Siehe TkA zu 19–20/32."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-014",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-014",
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "4/8",
                                             "comment": "Text: Kleinschreibung <em>n</em>[un] überschrieben zu <em>N</em>[un]."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-015",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-015",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "9/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschrieben zu <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-016",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-016",
                                             "measure": "8",
                                             "system": "Ges.",
                                             "position": "7. Note",
                                             "comment": "Text: Kleinschreibung <em>u</em>[m] überschrieben zu <em>U</em>[m]."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-017",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-017",
                                             "measure": "9",
                                             "system": "Ges.",
                                             "position": "7. Note",
                                             "comment": "Text: <em>tage</em>, Endsilbe [-]<em>ge</em> gestrichen und zu 8. Note versetzt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-018",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-018",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "10/16",
                                             "comment": "Sechzehntelpause gestrichen. Siehe TkA."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_1-019",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_1-019",
                                             "measure": "10",
                                             "system": "",
                                             "position": "4/4",
@@ -487,35 +487,35 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_2-001",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_2-001",
                                             "measure": "3–5",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Korrekturskizzen unter der Akkoalde (System 14–15): <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_2-002",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_2-002",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "5–11/16",
                                             "comment": "Korrekturskizzen unter der Akkoalde (System 16–18): <br />##Abbildung## <br />Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M134_TF2'})\">Textfassung 2</a>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_2-003",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_2-003",
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "9–16/16",
                                             "comment": "Korrekturskizzen unter und nach der Akkoalde (System 4, 6): <br />##Abbildung##"
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_2-004",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_2-004",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Es gestrichen und geändert zu G."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m134_tf1_Aa_corr_2-005",
+                                            "svgGroupId": "awg-kv-m134_tf1_Ab_corr_2-005",
                                             "measure": "10",
                                             "system": "Klav.",
                                             "position": "",
