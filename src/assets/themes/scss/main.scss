@@ -422,14 +422,6 @@ details[open] summary::before {
     text-overflow: ellipsis;
 }
 
-.unicode {
-    font-size: 3em;
-    line-height: 12px;
-    position: relative;
-    vertical-align: bottom;
-    top: 7.5px;
-}
-
 /****** COLOURS ******/
 .olivedrab {
     color: olivedrab;
@@ -467,4 +459,16 @@ details[open] summary::before {
 }
 .glyph.note {
     font-size: 16px;
+}
+.glyph.unicode {
+    position: relative;
+    vertical-align: bottom;
+    top: 7.5px;
+}
+
+/****** EDITION SNIPPET ******/
+.awg-edition-tkk-snippet {
+    max-height: 4em;
+    width: auto;
+    cursor: pointer;
 }
