@@ -82,6 +82,8 @@
         "wpanalyzer": "yarn pre_wpanalyzer && webpack-bundle-analyzer dist/awg-app/stats.json",
         "pre_sourcemap": "yarn build:prod --source-map",
         "sourcemap": "yarn pre_sourcemap && source-map-explorer dist/awg-app/*.js",
+        "-- CHECK --": "",
+        "check:snippets": "node scripts/check-snippets.js",
         "-- DEPLOY --": "",
         "pre-release": "commit-and-tag-version -a",
         "update-appversion": "sh ./version.sh",
