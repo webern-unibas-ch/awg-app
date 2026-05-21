@@ -54,7 +54,7 @@
 <ng-template #snippetModalTemplate let-modal>
     <div class="modal-header">
         <h5 class="modal-title">Abbildung: {{ snippetId }}</h5>
-        <button type="button" class="btn-close" aria-label="dismiss" (click)="modal.dismiss()"></button>
+        <button type="button" class="btn-close" aria-label="Close modal" (click)="modal.dismiss()"></button>
     </div>
     <div class="modal-body text-center">
         <img [src]="snippetSrc" alt="Abbildung: {{ snippetId }}" class="img-fluid" />
