@@ -1450,133 +1450,133 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-001",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-001",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-002",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-002",
                                             "measure": "12",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt mit braunem Buntstift eingekreist."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-003",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-003",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "1–3/4",
                                             "comment": "Unterstimmenschicht: Viertelnoten gestrichen mit Bleistift und ersetzt durch punktierte Halbe Note dis<sup>1</sup>/fis<sup>1</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-004",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-004",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "2–3/4",
                                             "comment": "Unterstimmenschicht: H auf 2/4 mit Bleistift gestrichen und ersetzt durch Gis; A auf 3/4 überschrieben zu Gis."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-005",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-005",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-006",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-006",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: Viertelnote gis mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-007",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-007",
                                             "measure": "21",
                                             "system": "Klav.",
                                             "position": "1–2/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-008",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-008",
                                             "measure": "21–22",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Taktstrich zwischen T. 21 und 22 mit braunem Buntstift markiert: Einschubstelle für Textfassung 2 (vgl. auch Korrektur in T. 49)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-009",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-009",
                                             "measure": "22",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-010",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-010",
                                             "measure": "22",
                                             "system": "Klav. u.",
                                             "position": "1/8–3/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-011",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-011",
                                             "measure": "24",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Takt im unteren System mit Bleistift gestrichen? Entzifferung unsicher."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-012",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-012",
                                             "measure": "26",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-013",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-013",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1/8–3/4",
                                             "comment": "Noten mit braunem Buntstift gestrichen, dann Streichung radiert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-014",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-014",
                                             "measure": "26–27",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Takte unterhalb des Systems mit braunem Buntstift markiert. Markierung unter T. 26 wieder radiert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-015",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-015",
                                             "measure": "27",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-016",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-016",
                                             "measure": "29",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> mit Bleistift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-017",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-017",
                                             "measure": "29",
                                             "system": "Klav.",
                                             "position": "(2–3/4)",
                                             "comment": "Wellenförmige Linie mit Bleistift zwischen den Systemen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-018",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-018",
                                             "measure": "30",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-019",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-019",
                                             "measure": "30",
                                             "system": "Klav.",
                                             "position": "(3/4)",
@@ -1590,84 +1590,84 @@
                                             "comment": "Halbe Noten fis und cis<sup>1</sup>/e<sup>1</sup> mit Bleistift eingeklammert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-021",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-021",
                                             "measure": "38–39",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang <br />Taktende",
                                             "comment": "Takte über dem System mit Bleistift eingeklammert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-022",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-022",
                                             "measure": "40",
                                             "system": "Klav. u.",
                                             "position": "1.–2. Note",
                                             "comment": "Noten mit Bleistift gestrichen und ersetzt durch Viertelpause und Halbe Note gis."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-023",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-023",
                                             "measure": "41",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt pauschal mit Bleistift gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-024",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-024",
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-025",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-025",
                                             "measure": "45–48",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal mit Bleistift gestrichen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-026",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-026",
                                             "measure": "49",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Verweiszeichen über dem System: Verweis für Ende der Einschubstelle für Textfassung 2 (vgl. auch Korrektur zu T. 21–22 und Korrekturen 1 in Textfassung 2)."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-027",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-027",
                                             "measure": "65",
                                             "system": "Klav.",
                                             "position": "2–3/4",
                                             "comment": "Kreuz mit Bleistift zwischen den Systemen."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-028",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-028",
                                             "measure": "67",
                                             "system": "Klav. o.",
                                             "position": "2.–3. Note",
                                             "comment": "Oberstimmenschicht: Noten mit Bleistift eingeklammert."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-029",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-029",
                                             "measure": "75",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> mit braunem Buntstift hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-030",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-030",
                                             "measure": "83–84",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal gestrichen und ersetzt durch Alternative für Textfassung 2."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-031",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-031",
                                             "measure": "83B",
                                             "system": "Klav. u.",
                                             "position": "4. Note",
                                             "comment": "h ersetzt gestrichenes e<sup>1</sup> aus Klav. o."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Da_corr_2-032",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_2-032",
                                             "measure": "84B",
                                             "system": "Klav.",
                                             "position": "2. Note",
@@ -1689,21 +1689,21 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf3_Da_corr_3-001",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_3-001",
                                             "measure": "55",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Pause und Noten durch Einkreisung getilgt. Halbe Note A auf 1–2/4 und Viertelnote d auf 3/4 hinzugefügt."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf3_Da_corr_3-002",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_3-002",
                                             "measure": "55–56",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Taktstrich mit Bleistift markiert: Einschubstelle für Textfassung 3."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf3_Da_corr_3-003",
+                                            "svgGroupId": "awg-kv-m32_tf1_Da_corr_3-003",
                                             "measure": "56–63",
                                             "system": "Klav.",
                                             "position": "",
@@ -1725,14 +1725,14 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Db_corr_3-001",
+                                            "svgGroupId": "awg-kv-m32_tf2_Db_corr-001",
                                             "measure": "76",
                                             "system": "Klav.",
                                             "position": "4. Note",
                                             "comment": "e<sup>1</sup> in Klav. o. gestrichen und ersetzt durch h in Klav. u."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-m32_tf2_Db_corr_3-002",
+                                            "svgGroupId": "awg-kv-m32_tf2_Db_corr-002",
                                             "measure": "76",
                                             "system": "Klav. o.",
                                             "position": "5. Note",
@@ -1745,7 +1745,7 @@
                     }
                 ]
             }
-        },        
+        },
         {
             "id": "source_E",
             "siglum": "E",
