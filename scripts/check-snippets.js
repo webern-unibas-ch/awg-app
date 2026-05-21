@@ -5,14 +5,28 @@
  * Scans all edition JSON data files for ##Abbildung## placeholders
  * and reports whether the corresponding snippet PNG images exist.
  *
+ * The script now has two result categories:
+ *   1) snippet file checks (runtime parity)
+ *   2) data quality issues (missing/unsafe svgGroupId)
+ *
  * Suffix logic mirrors EditionSnippetService.getComment():
  *   - single placeholder  → id = svgGroupId          → svgGroupId.png
  *   - multiple placeholders → id = svgGroupId + 'a'  → svgGroupIda.png, etc.
  *
+ * Safety logic mirrors EditionSnippetService.getComment():
+ *   - missing svgGroupId → comment is ignored for snippet rendering
+ *   - unsafe svgGroupId  → comment is ignored for snippet rendering
+ *
+ * Unsafe IDs are tracked as data issues instead of snippet file misses.
+ *
  * Usage:  node scripts/check-snippets.js
  *         yarn check:snippets
+ *         node scripts/check-snippets.js --strict-data
+ *         node scripts/check-snippets.js --verbose
  *
- * Exit code 0 = all images present, 1 = one or more missing.
+ * Exit code 0 = all renderable images present
+ * Exit code 1 = one or more renderable images missing
+ * With --strict-data, data issues also set exit code 1.
  */
 
 'use strict';
@@ -23,9 +37,14 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'src', 'assets', 'data', 'edition');
 const SNIPPETS_DIR = path.join(ROOT, 'src', 'assets', 'img', 'edition', 'snippets');
+const DATA_PREFIX_REL = path.relative(ROOT, DATA_DIR).replace(/\\/g, '/');
+const STRICT_DATA = process.argv.includes('--strict-data');
+const VERBOSE = process.argv.includes('--verbose');
+const SAFE_SNIPPET_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 
 // Results keyed by section label, e.g. "series/1/section/5"
 const sections = new Map();
+const dataIssuesBySection = new Map();
 
 // ── Convert series number to Roman numeral ───────────────────────────────────
 
@@ -38,9 +57,22 @@ function sectionOf(filePath) {
     return `AWG ${series}/${m[2]}`;
 }
 
+function displayDataPath(relFile) {
+    const normalized = relFile.replace(/\\/g, '/');
+    if (normalized.startsWith(`${DATA_PREFIX_REL}/`)) {
+        return normalized.slice(DATA_PREFIX_REL.length + 1);
+    }
+    return normalized;
+}
+
 function recordResult(section, entry) {
     if (!sections.has(section)) sections.set(section, []);
     sections.get(section).push(entry);
+}
+
+function recordDataIssue(section, entry) {
+    if (!dataIssuesBySection.has(section)) dataIssuesBySection.set(section, []);
+    dataIssuesBySection.get(section).push(entry);
 }
 
 // ── Recursive directory walk ─────────────────────────────────────────────────
@@ -72,29 +104,34 @@ function checkFile(filePath) {
 
 // ── Recursively inspect parsed JSON values ───────────────────────────────────
 
-function checkValue(value, filePath) {
+function checkValue(value, filePath, jsonPath = '$') {
     if (value === null || typeof value !== 'object') return;
 
     if (Array.isArray(value)) {
-        for (const item of value) checkValue(item, filePath);
+        value.forEach((item, index) => checkValue(item, filePath, `${jsonPath}[${index}]`));
         return;
     }
 
-    // An object with both svgGroupId and comment is a block-comment entry.
-    if (typeof value.svgGroupId === 'string' && typeof value.comment === 'string') {
-        checkBlockComment(value.svgGroupId, value.comment, filePath);
+    // A comment field with placeholders is treated like a block-comment entry.
+    if (typeof value.comment === 'string') {
+        checkBlockComment(value.svgGroupId, value.comment, filePath, {
+            jsonPath,
+            measure: value.measure,
+            system: value.system,
+            position: value.position,
+        });
     }
 
-    for (const child of Object.values(value)) {
+    for (const [key, child] of Object.entries(value)) {
         if (child !== null && typeof child === 'object') {
-            checkValue(child, filePath);
+            checkValue(child, filePath, `${jsonPath}.${key}`);
         }
     }
 }
 
 // ── Check one block-comment entry ────────────────────────────────────────────
 
-function checkBlockComment(svgGroupId, comment, filePath) {
+function checkBlockComment(svgGroupId, comment, filePath, context) {
     const matches = comment.match(/##Abbildung##/g);
     if (!matches) return;
 
@@ -102,12 +139,49 @@ function checkBlockComment(svgGroupId, comment, filePath) {
     const section = sectionOf(filePath);
     const relFile = path.relative(ROOT, filePath);
 
+    // Runtime parity with EditionSnippetService.getComment():
+    // skip snippet checks if svgGroupId is missing or unsafe.
+    if (typeof svgGroupId !== 'string' || svgGroupId.length === 0) {
+        recordDataIssue(section, {
+            type: 'MISSING_ID',
+            placeholders: count,
+            file: relFile,
+            jsonPath: context.jsonPath,
+            measure: context.measure,
+            system: context.system,
+            position: context.position,
+        });
+        return;
+    }
+
+    if (!SAFE_SNIPPET_ID_PATTERN.test(svgGroupId)) {
+        recordDataIssue(section, {
+            type: 'UNSAFE_ID',
+            svgGroupId,
+            placeholders: count,
+            file: relFile,
+            jsonPath: context.jsonPath,
+            measure: context.measure,
+            system: context.system,
+            position: context.position,
+        });
+        return;
+    }
+
     for (let i = 0; i < count; i++) {
         const suffix = count > 1 ? String.fromCharCode(97 + i) : '';
         const id = `${svgGroupId}${suffix}`;
         const imgPath = path.join(SNIPPETS_DIR, `${id}.png`);
         const ok = fs.existsSync(imgPath);
-        recordResult(section, { ok, id, file: relFile });
+        recordResult(section, {
+            ok,
+            id,
+            file: relFile,
+            jsonPath: context.jsonPath,
+            measure: context.measure,
+            system: context.system,
+            position: context.position,
+        });
     }
 }
 
@@ -117,7 +191,9 @@ walkDir(DATA_DIR);
 
 let totalFound = 0;
 let totalMissing = 0;
+let totalDataIssues = 0;
 const sectionSummaries = [];
+const dataSummaries = [];
 
 for (const [section, entries] of [...sections.entries()].sort()) {
     const sectionFound = entries.filter(e => e.ok).length;
@@ -132,11 +208,45 @@ for (const [section, entries] of [...sections.entries()].sort()) {
 
     for (const e of entries) {
         if (e.error) {
-            console.error(`       ERROR  ${e.file}: ${e.error}`);
+            console.error(`       ERROR  ${displayDataPath(e.file)}: ${e.error}`);
         } else if (e.ok) {
-            console.log(`         OK   ${e.id}.png`);
+            console.log(`         OK   ${e.id}.png   (${displayDataPath(e.file)})`);
         } else {
-            console.error(`       MISS   ${e.id}.png   (${path.basename(e.file)})`);
+            console.error(`       MISS   ${e.id}.png   (${displayDataPath(e.file)})`);
+            if (VERBOSE) {
+                const contextParts = [];
+                if (e.measure) contextParts.push(`measure=${e.measure}`);
+                if (e.system) contextParts.push(`system=${e.system}`);
+                if (e.position) contextParts.push(`position=${e.position}`);
+                const contextText = contextParts.length > 0 ? `; ${contextParts.join(', ')}` : '';
+                console.error(`             detail: ${e.jsonPath}${contextText}`);
+            }
+        }
+    }
+}
+
+for (const [section, issues] of [...dataIssuesBySection.entries()].sort()) {
+    totalDataIssues += issues.length;
+    const summaryLine = `[DATA] ${section}  (${issues.length} issue${issues.length === 1 ? '' : 's'})`;
+    dataSummaries.push(summaryLine);
+    console.log(`\n${summaryLine}`);
+
+    for (const issue of issues) {
+        if (issue.type === 'MISSING_ID') {
+            console.warn(
+                `      WARN   missing svgGroupId for ${issue.placeholders} placeholder(s)   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+            );
+        } else {
+            console.warn(
+                `      WARN   unsafe svgGroupId "${issue.svgGroupId}" for ${issue.placeholders} placeholder(s)   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+            );
+        }
+
+        if (VERBOSE && (issue.measure || issue.system || issue.position || issue.jsonPath)) {
+            console.warn(`             detail: ${issue.jsonPath}`);
+            console.warn(
+                `             context: measure=${issue.measure ?? ''}, system=${issue.system ?? ''}, position=${issue.position ?? ''}`
+            );
         }
     }
 }
@@ -146,7 +256,17 @@ console.log(`Total: ${totalFound + totalMissing} placeholder(s) — ${totalFound
 for (const line of sectionSummaries) {
     console.log(line);
 }
+if (totalDataIssues > 0) {
+    console.log(`Data issues: ${totalDataIssues}`);
+    for (const line of dataSummaries) {
+        console.log(line);
+    }
+}
 
 if (totalMissing > 0) {
+    process.exit(1);
+}
+
+if (STRICT_DATA && totalDataIssues > 0) {
     process.exit(1);
 }
