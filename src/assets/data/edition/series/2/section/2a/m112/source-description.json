@@ -621,7 +621,7 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -678,7 +678,7 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1340,7 +1340,7 @@
                         "label": "Korrekturen 1 in <strong>D<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1460,7 +1460,7 @@
                         "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1885,7 +1885,7 @@
                         "label": "Korrekturen 1 in <strong>F<sup>R1</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2256,7 +2256,7 @@
                         "label": "Korrekturen 1 in <strong>F<sup>R2</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2495,7 +2495,7 @@
                         "label": "Korrekturen 2 in <strong>F<sup>R2</sup></strong> (mit Kugelschreiber)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2650,7 +2650,7 @@
                         "label": "Korrekturen 3 in <strong>F<sup>R2</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

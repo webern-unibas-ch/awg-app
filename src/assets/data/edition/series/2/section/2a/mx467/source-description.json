@@ -1483,7 +1483,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 467: <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx467_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1505,7 +1505,7 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift und blauem Buntstift von der Hand Schönbergs)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 467: <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx467_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
