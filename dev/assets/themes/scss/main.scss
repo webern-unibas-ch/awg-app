@@ -471,4 +471,8 @@ details[open] summary::before {
     max-height: 4em;
     width: auto;
     cursor: pointer;
+    display: inline-block;
+}
+.awg-edition-tkk-snippet + br + .awg-edition-tkk-snippet {
+    margin-top: 0.25em; /* add margin between consecutive snippets */
 }
