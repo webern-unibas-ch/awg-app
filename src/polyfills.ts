@@ -51,6 +51,7 @@ import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+import { Buffer as NodeBuffer } from 'buffer';
 
 const w = window as any;
 
@@ -63,8 +64,7 @@ w.setImmediate = w.setTimeout;
 
 // Workaround for Uncaught ReferenceError: Buffer is not defined
 // cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
-// @ts-ignore
-w.Buffer = []; // w.Buffer || require('buffer').Buffer;
+w.Buffer = w.Buffer || NodeBuffer;
 
 // Workaround for Uncaught ReferenceError: process is not defined
 // cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691

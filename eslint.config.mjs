@@ -34,7 +34,7 @@ export default defineConfig(
             globals: {
                 ...globals.browser,
                 ...globals.node,
-                ...globals.jasmine,
+                ...globals.vitest,
             },
         },
     },

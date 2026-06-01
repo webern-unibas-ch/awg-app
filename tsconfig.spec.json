@@ -3,7 +3,8 @@
     "compilerOptions": {
         "baseUrl": "./src/",
         "outDir": "./out-tsc/spec",
-        "types": ["jasmine", "node"],
+        "typeRoots": ["./node_modules/@types", "./node_modules"],
+        "types": ["vitest/globals", "node"],
         "paths": {
             "@awg-app/*": ["app/*"],
             "@awg-core/*": ["app/core/*"],

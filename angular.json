@@ -107,30 +107,19 @@
                     }
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
-                        "main": "src/test.ts",
-                        "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
-                        "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js",
-                        "inlineStyleLanguage": "scss",
-                        "sourceMap": true,
-                        "styles": [
-                            "src/index.style.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "src/styles.scss"
-                        ],
-                        "stylePreprocessorOptions": {
-                            "includePaths": ["."]
-                        },
-                        "scripts": ["node_modules/rdfstore/dist/rdfstore_min.js"],
-                        "assets": ["src/favicon.ico", "src/assets"]
+                        "runner": "vitest",
+                        "reporters": ["default"],
+                        "coverageReporters": ["html", "text-summary", "lcovonly"]
                     },
                     "configurations": {
+                        "local-browser": {
+                            "browsers": ["Chromium"]
+                        },
                         "ci": {
                             "watch": false,
-                            "progress": false,
-                            "browsers": "ChromeHeadlessCI"
+                            "progress": false
                         }
                     }
                 },
