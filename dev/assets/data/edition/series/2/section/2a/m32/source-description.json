@@ -1149,7 +1149,7 @@
                         "label": "Korrekturen 1 in <strong>D<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1441,10 +1441,10 @@
                     },
                     {
                         "id": "source_Da_corr_2",
-                        "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift, braunem Buntstift und Tinte im Hinblick auf Textfassung 2)",
+                        "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift, braunem Buntstift und Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1680,10 +1680,10 @@
                     },
                     {
                         "id": "source_Da_corr_3",
-                        "label": "Korrekturen 3 in <strong>D<sup>a</sup></strong> (mit Bleistift im Hinblick auf Textfassung 3)",
+                        "label": "Korrekturen 3 in <strong>D<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1719,7 +1719,7 @@
                         "label": "Korrekturen in <strong>D<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2300,7 +2300,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2347,10 +2347,10 @@
                     },
                     {
                         "id": "source_Ea_corr_2",
-                        "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift im Hinblick auf Textfassung 3)",
+                        "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2481,7 +2481,7 @@
                         "label": "Korrekturen in <strong>F</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 32: <a (click)=\"ref.selectSvgSheet({complexId: 'm32', sheetId: 'M32_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

@@ -121,7 +121,7 @@
                         "label": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 76: <a (click)=\"ref.selectSvgSheet({complexId: 'm76', sheetId: 'M76_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -220,7 +220,7 @@
                         "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 76: <a (click)=\"ref.selectSvgSheet({complexId: 'm76', sheetId: 'M76_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
