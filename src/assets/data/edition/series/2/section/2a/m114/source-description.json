@@ -2818,7 +2818,7 @@
                                             "measure": "34",
                                             "system": "Klav. o.",
                                             "position": "2/8",
-                                            "comment": "Unterstimmenschicht: [&gt;] zu g<sup>1</sup> hinzugefügt."
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[>]')}}</span> zu g<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf4_Ea_corr_2-012",
