@@ -2693,7 +2693,7 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 23: <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "Thema",
@@ -2750,7 +2750,7 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 23: <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "Thema",
@@ -3284,7 +3284,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 23: <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "Thema",
@@ -3662,7 +3662,7 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 23: <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M23_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "Thema",
