@@ -1,6 +1,8 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -39,11 +41,17 @@ class EditionTkaEvaluationsStubComponent {
     @Input()
     evaluations: string[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -54,7 +62,8 @@ class EditionTkaEvaluationsStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'commentary';
+    @Input()
+    labelType: 'evaluation' | 'commentary';
 }
 
 @Component({
@@ -72,11 +81,17 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('TextcriticsListComponent (DONE)', () => {
@@ -112,8 +127,8 @@ describe('TextcriticsListComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 TextcriticsListComponent,
@@ -125,7 +140,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             ],
             providers: [UtilityService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TextcriticsListComponent);
@@ -144,15 +159,12 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
 
         // Spies
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     it('... should create', () => {
@@ -281,7 +293,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const expectedButtonLabel = mockDocument.createElement('span');
                     expectedButtonLabel.innerHTML = expectedTextcriticsData.textcritics[index].label;
 
-                    expect(btnEl).toHaveClass('text-start');
+                    expect(btnEl.classList.contains('text-start')).toBe(true);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
                 });
             });
@@ -309,7 +321,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     const expectedButtonLabel = 'Zum edierten Notentext';
 
-                    expect(btnEl).toHaveClass('btn-outline-info');
+                    expect(btnEl.classList.contains('btn-outline-info')).toBe(true);
                     expectToBe(btnEl.disabled, false);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel);
                 });
@@ -351,7 +363,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1).toHaveClass('btn-outline-info');
+                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
                 });
@@ -380,7 +392,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1).toHaveClass('btn-outline-info');
+                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
                         expectToBe(btnEl1.disabled, true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
@@ -579,7 +591,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl).toHaveClass('text-muted');
+                        expect(smallEl.classList.contains('text-muted')).toBe(true);
                     });
                 });
 
@@ -702,7 +714,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl).toHaveClass('text-muted');
+                        expect(smallEl.classList.contains('text-muted')).toBe(true);
                     });
                 });
 
@@ -827,32 +839,32 @@ describe('TextcriticsListComponent (DONE)', () => {
                 it('... id is undefined', () => {
                     const result = component.isWorkEditionId(undefined);
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is null', () => {
                     const result = component.isWorkEditionId(null);
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is empty string', () => {
                     const result = component.isWorkEditionId('');
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is not a work edition id', () => {
                     const result = component.isWorkEditionId('test_id');
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
             });
 
             it('... should return true if id is a work edition id', () => {
                 const result = component.isWorkEditionId('op12_WE');
 
-                expect(result).toBeTrue();
+                expect(result).toBe(true);
             });
         });
 

@@ -1,6 +1,8 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -26,7 +28,10 @@ class SourceDescriptionContentTableStubComponent {
     @Input()
     content: SourceDescriptionContent;
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('SourceDescriptionContentsComponent', () => {
@@ -45,8 +50,8 @@ describe('SourceDescriptionContentsComponent', () => {
     let selectSvgSheetRequestEmitSpy: Spy;
     let toggleAllContentDetailsSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [
                 SourceDescriptionContentsComponent,
                 SourceDescriptionContentTableStubComponent,
@@ -55,7 +60,7 @@ describe('SourceDescriptionContentsComponent', () => {
             ],
             providers: [UtilityService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionContentsComponent);
@@ -73,9 +78,9 @@ describe('SourceDescriptionContentsComponent', () => {
         expectedSheetId = 'test_item_id_1';
 
         // Spies
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleAllContentDetailsSpy = spyOn(component, 'toggleAllContentDetails').and.callThrough();
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleAllContentDetailsSpy = vi.spyOn(component, 'toggleAllContentDetails');
     });
 
     it('should create', () => {
@@ -106,7 +111,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('no-para-margin');
+                expect(pEl.classList.contains('no-para-margin')).toBe(true);
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -124,8 +129,8 @@ describe('SourceDescriptionContentsComponent', () => {
                 );
                 const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
 
-                expect(toggleSpanEl).toHaveClass('small');
-                expect(toggleSpanEl).toHaveClass('text-muted');
+                expect(toggleSpanEl.classList.contains('small')).toBe(true);
+                expect(toggleSpanEl.classList.contains('text-muted')).toBe(true);
             });
 
             it('... should not display a text in the toggle span yet', () => {
@@ -187,7 +192,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
             });
 
-            it('... should toggle the text in the toggle span on click', fakeAsync(() => {
+            it('... should toggle the text in the toggle span on click', async () => {
                 const toggleTextSpanDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-description-contents-toggle-text',
@@ -199,10 +204,10 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
-            }));
+            });
 
             describe('... the content details', () => {
                 let expectedContentsWithItems: SourceDescriptionContent[];
@@ -228,7 +233,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     detailDes.forEach(detailDe => {
                         const detailEl = detailDe.nativeElement;
 
-                        expect(detailEl).toHaveClass('half-para-margin');
+                        expect(detailEl.classList.contains('half-para-margin')).toBe(true);
                     });
                 });
 
@@ -291,7 +296,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     summaryDes.forEach(summaryDe => {
                         const summaryEl = summaryDe.nativeElement;
 
-                        expect(summaryEl).toHaveClass('no-para-margin');
+                        expect(summaryEl.classList.contains('no-para-margin')).toBe(true);
                     });
                 });
 
@@ -447,7 +452,7 @@ describe('SourceDescriptionContentsComponent', () => {
             });
 
             describe('... should trigger', () => {
-                it('... on click on content item', fakeAsync(() => {
+                it('... on click on content item', async () => {
                     // Get content item spans
                     const spanDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -459,11 +464,11 @@ describe('SourceDescriptionContentsComponent', () => {
                     // Get anchors
                     const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 1, 1);
 
-                    // CLick on anchor (with selectSvgSheet call)
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                    // Click on anchor (with selectSvgSheet call)
+                    await clickAndAwaitChanges(anchorDes[0], fixture);
 
                     expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-                }));
+                });
 
                 describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
                     let expectedContentsWithFolios: SourceDescriptionContent[];
@@ -552,7 +557,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 expect(component.toggleAllContentDetails).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const toggleTextSpanDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-description-contents-toggle-text',
@@ -561,15 +566,15 @@ describe('SourceDescriptionContentsComponent', () => {
                 );
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllContentDetailsSpy, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllContentDetailsSpy, 2);
-            }));
+            });
 
             it('... should toggle the openAllContentDetails flag', () => {
                 component.toggleAllContentDetails(true);

@@ -1,7 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -47,11 +48,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
         }).compileComponents();
-    }));
+    });
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceEvaluationComponent);
@@ -74,17 +79,12 @@ describe('SourceEvaluationComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     it('... should create', () => {
@@ -185,7 +185,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expectToEqual(pEl1.textContent.trim(), htmlEvaluationEntry.textContent.trim());
             });
 
-            it('... should contain a placeholder if content of evaluation data is empty', waitForAsync(() => {
+            it('... should contain a placeholder if content of evaluation data is empty', () => {
                 // Simulate the parent setting an empty content array
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
                 detectChangesOnPush(fixture);
@@ -199,9 +199,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-empty', 1, 1);
 
                 getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
-            }));
+            });
 
-            it('... should display placeholder in paragraph', waitForAsync(() => {
+            it('... should display placeholder in paragraph', () => {
                 // Simulate the parent setting an empty content array
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
                 detectChangesOnPush(fixture);
@@ -228,7 +228,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 
                 expectToBe(pEl.textContent.trim(), evaluationPlaceholder);
-            }));
+            });
         });
 
         describe('#navigateToReportFragment()', () => {
@@ -236,7 +236,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
                 // Find evaluation paragraphs
@@ -246,10 +246,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // CLick on first anchor (with navigateToReportFragment call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -311,7 +311,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
                 // Find evaluation paragraphs
@@ -321,10 +321,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // Click on second anchor with modal call
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                await clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -357,7 +357,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
                 // Find evaluation paragraphs
@@ -367,10 +367,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // CLick on third anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                await clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

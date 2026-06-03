@@ -1,6 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -56,8 +58,8 @@ describe('SourceDescriptionContentTableComponent', () => {
         expectedFolioId = 'test_folio_id_1';
 
         // Spies
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     it('should create', () => {
@@ -83,7 +85,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl).toHaveClass('half-para-margin');
+                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
             });
 
             it('... should contain no table rows (yet)', () => {
@@ -122,7 +124,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl).toHaveClass('half-para-margin');
+                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
             });
 
             it('... should contain as many table rows in the table as folio systemgroups in the given content item', () => {
@@ -346,7 +348,7 @@ describe('SourceDescriptionContentTableComponent', () => {
             });
 
             describe('... should trigger on click', () => {
-                it('... on content folio', fakeAsync(() => {
+                it('... on content folio', async () => {
                     // Get content folio colspans
                     const tableDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -367,10 +369,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                     const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
 
                     // CLick on anchor (with selectSvgSheet call)
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                    await clickAndAwaitChanges(anchorDes[0], fixture);
 
                     expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedFolioId });
-                }));
+                });
             });
 
             it('... should not emit anything if no id is provided', () => {

@@ -1,7 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionComplex } from '@awg-views/edition-view/models';
@@ -39,10 +40,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
         expectedEditionLabel = 'AWG';
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -66,8 +63,8 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('small');
+                expect(pEl.classList.contains('text-muted')).toBe(true);
+                expect(pEl.classList.contains('small')).toBe(true);
             });
         });
     });
@@ -96,8 +93,8 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('small');
+                expect(pEl.classList.contains('text-muted')).toBe(true);
+                expect(pEl.classList.contains('small')).toBe(true);
 
                 // Create intro placeholder
                 const fullComplexSpan = mockDocument.createElement('span');

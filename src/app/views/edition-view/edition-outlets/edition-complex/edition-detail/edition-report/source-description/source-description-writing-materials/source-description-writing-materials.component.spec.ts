@@ -1,5 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -24,11 +26,11 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
     let expectedTrademarks: typeof EDITION_TRADEMARKS_DATA;
     let expectedWritingMaterials: SourceDescriptionWritingMaterial[];
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [SourceDescriptionWritingMaterialsComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionWritingMaterialsComponent);
@@ -85,7 +87,7 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent.trim(), 'Beschreibstoff:');
-                expect(spanEl).toHaveClass('smallcaps');
+                expect(spanEl.classList.contains('smallcaps')).toBe(true);
             });
         });
     });

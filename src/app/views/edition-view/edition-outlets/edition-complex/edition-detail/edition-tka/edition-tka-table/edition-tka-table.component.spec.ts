@@ -1,6 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbModal, NgbModalModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
@@ -62,11 +64,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedCommentary: TextcriticalCommentary;
-    let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
+    let expectedTableHeaderStrings: {
+        [key: string]: TkaTableHeaderColumn[];
+    };
     let expectedTotalCommentRows: number;
     let expectedTotalRows: number;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         mockEditionGlyphService = {
             getGlyph: (glyphString: string): string => {
                 switch (glyphString) {
@@ -84,7 +88,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             getComment: (comment: string): string => comment,
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
             imports: [NgbModalModule, NgbTooltip],
             providers: [
@@ -93,7 +97,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 { provide: EditionSnippetService, useValue: mockEditionSnippetService },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionTkaTableComponent);
@@ -148,22 +152,23 @@ describe('EditionTkaTableComponent (DONE)', () => {
         };
 
         // Spies
-        getCommentSpy = spyOn(component, 'getComment').and.callThrough();
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        getCommentSpy = vi.spyOn(component, 'getComment');
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        getTableHeaderStringsSpy = vi.spyOn(component, 'getTableHeaderStrings');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
 
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
-        editionSnippetServiceGetCommentSpy = spyOn(mockEditionSnippetService, 'getComment').and.callThrough();
-        ngbModalOpenSpy = spyOn(ngbModal, 'open').and.returnValue(new MockNgbModalRef() as any);
+        editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
+        editionSnippetServiceGetCommentSpy = vi.spyOn(mockEditionSnippetService, 'getComment');
+        ngbModalOpenSpy = vi.spyOn(ngbModal, 'open').mockReturnValue(new MockNgbModalRef() as any);
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -664,7 +669,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -680,10 +685,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -786,7 +791,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -801,10 +806,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Click on first anchor with modal call
-                clickAndAwaitChanges(aDes[1], fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 component.openModal(undefined);
@@ -824,7 +829,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -840,10 +845,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(aDes[2], fixture);
+                await clickAndAwaitChanges(aDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

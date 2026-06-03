@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -38,9 +40,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
         expectedLabelType = 'evaluation';
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        isSketchIdSpy = spyOn(utils, 'isSketchId').and.callThrough();
+        isSketchIdSpy = vi.spyOn(utils, 'isSketchId');
     });
 
     it('should create', () => {

@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -80,23 +82,21 @@ describe('EditionIntroContentComponent (DONE)', () => {
         expectedNextSheetId = 'test-2';
 
         // Spies
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        navigateToIntroFragmentSpy = spyOn(component, 'navigateToIntroFragment').and.callThrough();
-        navigateToIntroFragmentRequestEmitSpy = spyOn(
-            component.navigateToIntroFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        navigateToIntroFragmentSpy = vi.spyOn(component, 'navigateToIntroFragment');
+        navigateToIntroFragmentRequestEmitSpy = vi.spyOn(component.navigateToIntroFragmentRequest, 'emit');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
 
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
+        editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -442,7 +442,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 expect(component.navigateToIntroFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const sectionDes = getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
@@ -461,13 +461,13 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(divDes[2], 'a', 3, 3);
 
                 // CLick on last anchor (with navigateToIntroFragment call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                await clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(navigateToIntroFragmentSpy, 1, {
                     complexId: expectedComplexId,
                     fragmentId: expectedIntroFragment,
                 });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -529,7 +529,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const sectionDes = getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
@@ -548,13 +548,13 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(divDes[1], 'a', 1, 1);
 
                 // CLick on first anchor (with navigateToReportFragment call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, {
                     complexId: expectedComplexId,
                     fragmentId: expectedReportFragment,
                 });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -616,7 +616,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const sectionDes = getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
@@ -635,10 +635,10 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(divDes[2], 'a', 3, 3);
 
                 // CLick on second anchor (with openModal call)
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                await clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -671,7 +671,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const sectionDes = getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
@@ -690,10 +690,10 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(divDes[2], 'a', 3, 3);
 
                 // CLick on first anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

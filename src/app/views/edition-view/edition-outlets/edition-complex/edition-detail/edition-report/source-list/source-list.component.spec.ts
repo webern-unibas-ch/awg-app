@@ -1,8 +1,9 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -30,12 +31,12 @@ describe('SourceListComponent (DONE)', () => {
     let openModalRequestEmitSpy: Spy;
     let openModalSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [RouterModule],
             declarations: [SourceListComponent, CompileHtmlComponent, AbbrDirective, RouterLinkStubDirective],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceListComponent);
@@ -47,16 +48,15 @@ describe('SourceListComponent (DONE)', () => {
         expectedFragment = 'source_A';
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        onSourceClickSpy = spyOn(component, 'onSourceClick').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component as any, '_openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
+        onSourceClickSpy = vi.spyOn(component, 'onSourceClick');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component as any, '_openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -208,7 +208,7 @@ describe('SourceListComponent (DONE)', () => {
 
                         expectToBe(aEl.textContent.trim(), expectedSiglum.trim());
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
                     });
                 });
 
@@ -255,10 +255,10 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
 
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-siglum-addendum');
+                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-siglum-addendum')).toBe(true);
                     });
                 });
 
@@ -308,7 +308,7 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
                     });
                 });
 
@@ -365,14 +365,14 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
 
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-siglum-addendum');
+                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-siglum-addendum')).toBe(true);
                     });
                 });
 
-                it('... should contain link to report fragment for sources with description and linkTo value', fakeAsync(() => {
+                it('... should contain link to report fragment for sources with description and linkTo value', async () => {
                     expectedSourceListData = {
                         sources: [
                             {
@@ -398,12 +398,12 @@ describe('SourceListComponent (DONE)', () => {
                         expectedSourcesLength
                     );
 
-                    clickAndAwaitChanges(aDes[0], fixture);
+                    await clickAndAwaitChanges(aDes[0], fixture);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: 'source_A' });
-                }));
+                });
 
-                it('... should contain link to openModal for sources without description but linkTo value', fakeAsync(() => {
+                it('... should contain link to openModal for sources without description but linkTo value', async () => {
                     expectedSourceListData = {
                         sources: [
                             {
@@ -429,10 +429,10 @@ describe('SourceListComponent (DONE)', () => {
                         expectedSourcesLength
                     );
 
-                    clickAndAwaitChanges(aDes[0], fixture);
+                    await clickAndAwaitChanges(aDes[0], fixture);
 
                     expectSpyCall(openModalSpy, 1, 'MODAL_TEXT');
-                }));
+                });
 
                 it('... should contain no link for missing sources without description and linkTo value', () => {
                     expectedSourceListData = {
@@ -486,7 +486,7 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
                     });
                 });
 
@@ -665,10 +665,12 @@ describe('SourceListComponent (DONE)', () => {
 
                         expectToBe(containerSpanEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                        expect(siglumSpanEl).toHaveClass('awg-source-list-text-siglum');
+                        expect(siglumSpanEl.classList.contains('awg-source-list-text-siglum')).toBe(true);
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-text-siglum-addendum');
+                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-text-siglum-addendum')).toBe(
+                            true
+                        );
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
                     });
                 });
@@ -706,7 +708,7 @@ describe('SourceListComponent (DONE)', () => {
                 expect(component.onSourceClick).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const expectedSourcesLength = expectedSourceListData.sources.length;
                 const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
@@ -717,12 +719,12 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourcesLength
                 );
 
-                aDes.forEach((anchorDe, index) => {
-                    clickAndAwaitChanges(anchorDe, fixture);
+                for (const [index, anchorDe] of aDes.entries()) {
+                    await clickAndAwaitChanges(anchorDe, fixture);
 
                     expectSpyCall(onSourceClickSpy, index + 1, expectedSourceListData.sources[index]);
-                });
-            }));
+                }
+            });
 
             it('... should call `navigateToReportFragment` if `source.hasDescription` is given', () => {
                 const source = expectedSourceListData.sources[0];
@@ -757,13 +759,13 @@ describe('SourceListComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+            it('... should trigger from `onSourceClick` method', () => {
                 const source = expectedSourceListData.sources[0];
 
                 component.onSourceClick(source);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedFragment });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -825,7 +827,7 @@ describe('SourceListComponent (DONE)', () => {
                 expect((component as any)._openModal).toBeDefined();
             });
 
-            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+            it('... should trigger from `onSourceClick` method', () => {
                 let source = expectedSourceListData.sources[1];
 
                 component.onSourceClick(source);
@@ -839,7 +841,7 @@ describe('SourceListComponent (DONE)', () => {
 
                 expectSpyCall(openModalSpy, 2, source.linkTo);
                 expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {

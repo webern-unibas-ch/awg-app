@@ -1,6 +1,10 @@
 import { Component, DebugElement, EventEmitter, inject as inject_1, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+
+import type { Mock } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
     EMPTY,
@@ -10,11 +14,9 @@ import {
     of as observableOf,
     throwError as observableThrowError,
 } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -69,7 +71,10 @@ class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -83,11 +88,17 @@ class SourceDescriptionStubComponent {
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -101,11 +112,17 @@ class SourceEvaluationStubComponent {
     @Input()
     sourceEvaluationListData: SourceEvaluationList;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -119,7 +136,10 @@ export class TextcriticsListStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -180,9 +200,11 @@ describe('EditionReportComponent', () => {
         EditionComplexesService.initializeEditionComplexesList();
     });
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock router with spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+        mockRouter = {
+            navigate: vi.fn().mockName('Router.navigate'),
+        };
 
         // Mock services
         mockEditionDataService = {
@@ -194,7 +216,7 @@ describe('EditionReportComponent', () => {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbModalModule],
             declarations: [
                 CompileHtmlComponent,
@@ -214,7 +236,7 @@ describe('EditionReportComponent', () => {
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);
@@ -247,24 +269,19 @@ describe('EditionReportComponent', () => {
         ];
 
         // Spies on service functions
-        editionDataServiceGetEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
-            observableOf(expectedEditionReportData)
-        );
-        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
-            editionStateService,
-            'getSelectedEditionComplex'
-        ).and.returnValue(observableOf(expectedEditionComplex));
-        getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
-        navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
-        navigationSpy = mockRouter.navigate as jasmine.Spy;
-        modalOpenSpy = spyOn(component.modal, 'open').and.callThrough();
-        onModalOpenSpy = spyOn(component, 'onModalOpen').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        editionDataServiceGetEditionReportDataSpy = vi
+            .spyOn(editionDataService, 'getEditionReportData')
+            .mockReturnValue(observableOf(expectedEditionReportData));
+        editionStateServiceGetSelectedEditionComplexSpy = vi
+            .spyOn(editionStateService, 'getSelectedEditionComplex')
+            .mockReturnValue(observableOf(expectedEditionComplex));
+        getEditionReportDataSpy = vi.spyOn(component, 'getEditionReportData');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'onReportFragmentNavigate');
+        navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
+        navigationSpy = mockRouter.navigate as Mock;
+        modalOpenSpy = vi.spyOn(component.modal, 'open');
+        onModalOpenSpy = vi.spyOn(component, 'onModalOpen');
+        selectSvgSheetSpy = vi.spyOn(component, 'onSvgSheetSelect');
     });
 
     it('... should create', () => {
@@ -352,10 +369,10 @@ describe('EditionReportComponent', () => {
             expectToEqual(component.editionComplex, expectedEditionComplex);
         });
 
-        it('... should have editionReportData$', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.editionReportData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.editionReportData$)).toBeResolvedTo(expectedEditionReportData);
-        }));
+        it('... should have editionReportData$', async () => {
+            await expect(lastValueFrom(component.editionReportData$)).resolves.not.toThrow();
+            await expect(lastValueFrom(component.editionReportData$)).resolves.toEqual(expectedEditionReportData);
+        });
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
@@ -420,31 +437,31 @@ describe('EditionReportComponent', () => {
             describe('on error', () => {
                 const expectedError = { status: 404, statusText: 'got Error' };
 
-                beforeEach(waitForAsync(() => {
+                beforeEach(() => {
                     // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionReportDataSpy.and.returnValue(
+                    editionDataServiceGetEditionReportDataSpy.mockReturnValue(
                         observableThrowError(() => expectedError)
                     );
 
                     component.getEditionReportData();
                     detectChangesOnPush(fixture);
-                }));
+                });
 
-                it('... should not contain report view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
+                it('... should not contain report view, but one AlertErrorComponent (stubbed)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
-                }));
+                });
 
-                it('... should pass down error object to AlertErrorComponent', waitForAsync(() => {
+                it('... should pass down error object to AlertErrorComponent', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
                     expectToEqual(alertErrorCmp.errorObject, expectedError);
-                }));
+                });
             });
 
             describe('on loading', () => {
@@ -501,20 +518,19 @@ describe('EditionReportComponent', () => {
                 expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
             });
 
-            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
+            it('... should return empty observable and set errorObject if switchMap fails', async () => {
                 const expectedError = { status: 404, statusText: 'error' };
                 // Spy on editionDataService to return an error
-                editionDataServiceGetEditionReportDataSpy.and.returnValue(observableThrowError(() => expectedError));
+                editionDataServiceGetEditionReportDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
                 // Init new switchMap
                 component.getEditionReportData();
                 detectChangesOnPush(fixture);
 
-                expectAsync(lastValueFrom(component.editionReportData$)).toBeRejected();
-                expectAsync(lastValueFrom(component.editionReportData$)).toBeRejectedWithError(EmptyError);
+                await expect(lastValueFrom(component.editionReportData$)).rejects.toThrow(EmptyError);
 
                 expectToEqual(component.errorObject, expectedError);
-            }));
+            });
         });
 
         describe('#onModalOpen()', () => {

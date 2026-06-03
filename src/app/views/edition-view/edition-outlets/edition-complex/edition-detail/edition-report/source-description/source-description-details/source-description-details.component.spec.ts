@@ -1,6 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -35,8 +37,8 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedReportFragment: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [SourceDescriptionDetailsComponent, CompileHtmlComponent],
         }).compileComponents();
 
@@ -58,18 +60,13 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-    }));
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();
@@ -235,7 +232,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
@@ -256,13 +253,13 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, {
                     complexId: expectedComplexId,
                     fragmentId: expectedReportFragment,
                 });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -324,7 +321,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
@@ -345,10 +342,10 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[2], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -381,7 +378,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
@@ -402,10 +399,10 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[4], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;
