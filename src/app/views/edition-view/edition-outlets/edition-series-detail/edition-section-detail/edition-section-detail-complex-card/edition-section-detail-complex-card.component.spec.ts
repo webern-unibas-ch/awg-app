@@ -3,7 +3,9 @@ import localeDeDE from '@angular/common/locales/de';
 import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { click } from '@testing/click-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -364,23 +366,22 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... can get routerLinks from template', () => {
                 expectToBe(routerLinks.length, expectedComplexes.length);
 
-                routerLinks.forEach((routerLink, index) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     expectToEqual(routerLink.linkParams, [expectedComplexes[index].complex.baseRoute]);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = [expectedComplexes[index].complex.baseRoute];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

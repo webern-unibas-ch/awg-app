@@ -2,8 +2,10 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
@@ -89,35 +91,39 @@ describe('EditionComplexComponent (DONE)', () => {
         expectedSelectedEditionComplexId = 'op12';
 
         // Spies
-        updateEditionComplexFromRouteSpy = spyOn(component, 'updateEditionComplexFromRoute').and.callThrough();
-        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+        updateEditionComplexFromRouteSpy = vi.spyOn(component, 'updateEditionComplexFromRoute');
+        editionStateServiceGetSelectedEditionComplexSpy = vi.spyOn(
             mockEditionStateService,
             'getSelectedEditionComplex'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionComplexSpy = spyOn(
+        );
+        editionStateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(
             mockEditionStateService,
             'updateSelectedEditionComplex'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSeriesSpy = spyOn(
+        );
+        editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
             mockEditionStateService,
             'updateSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSectionSpy = spyOn(
+        );
+        editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'updateSelectedEditionSection'
-        ).and.callThrough();
-        editionStateServiceClearSelectedEditionComplexSpy = spyOn(
+        );
+        editionStateServiceClearSelectedEditionComplexSpy = vi.spyOn(
             mockEditionStateService,
             'clearSelectedEditionComplex'
-        ).and.callThrough();
-        editionStateServiceClearSelectedEditionSeriesSpy = spyOn(
+        );
+        editionStateServiceClearSelectedEditionSeriesSpy = vi.spyOn(
             mockEditionStateService,
             'clearSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceClearSelectedEditionSectionSpy = spyOn(
+        );
+        editionStateServiceClearSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'clearSelectedEditionSection'
-        ).and.callThrough();
+        );
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -254,10 +260,7 @@ describe('EditionComplexComponent (DONE)', () => {
             });
 
             it('... should trigger `EditionComplexesService.getEditionComplexById`', () => {
-                const getEditionComplexByIdSpy = spyOn(
-                    EditionComplexesService,
-                    'getEditionComplexById'
-                ).and.callThrough();
+                const getEditionComplexByIdSpy = vi.spyOn(EditionComplexesService, 'getEditionComplexById');
 
                 component.updateEditionComplexFromRoute();
                 fixture.detectChanges();
@@ -267,10 +270,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
             describe('... if edition complex can be found', () => {
                 it('... should trigger `EditionOutlineService.getEditionSeriesById` (twice via getEditionSectionById)', () => {
-                    const getEditionSeriesByIdSpy = spyOn(
-                        EditionOutlineService,
-                        'getEditionSeriesById'
-                    ).and.callThrough();
+                    const getEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
@@ -279,10 +279,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 });
 
                 it('... should trigger `EditionOutlineService.getEditionSectionById`', () => {
-                    const getEditionSectionByIdSpy = spyOn(
-                        EditionOutlineService,
-                        'getEditionSectionById'
-                    ).and.callThrough();
+                    const getEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
@@ -373,7 +370,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     );
                     expectedSelectedEditionComplexId = 'op100';
 
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return opusComplex;
                         }
@@ -381,8 +378,6 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                    editionStateServiceUpdateSelectedEditionComplexSpy.and.callThrough();
-
                     // Apply changes
                     fixture.detectChanges();
 
@@ -409,7 +404,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectedSelectedEditionComplexId = 'm100';
 
                     // Spy on the static method and provide a custom implementation
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return mnrComplex;
                         }
@@ -417,8 +412,6 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                    editionStateServiceUpdateSelectedEditionComplexSpy.and.callThrough();
-
                     // Apply changes
                     fixture.detectChanges();
 
@@ -445,7 +438,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectedSelectedEditionComplexId = 'mx100';
 
                     // Spy on the static method and provide a custom implementation
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return mnrXComplex;
                         }
@@ -453,8 +446,6 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                    editionStateServiceUpdateSelectedEditionComplexSpy.and.callThrough();
-
                     // Apply changes
                     fixture.detectChanges();
 
@@ -478,7 +469,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectedSelectedEditionComplexId = 'op100';
 
                     // Spy on the static method and provide a custom implementation
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingRespComplex;
                         }
@@ -486,8 +477,6 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                    editionStateServiceUpdateSelectedEditionComplexSpy.and.callThrough();
-
                     // Apply changes
                     fixture.detectChanges();
 
@@ -501,76 +490,75 @@ describe('EditionComplexComponent (DONE)', () => {
 
             describe('... if edition complex cannot be found', () => {
                 it('... should not trigger `EditionOutlineService.getEditionSeriesById`', () => {
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
-                    const getEditionSeriesByIdSpy = spyOn(
-                        EditionOutlineService,
-                        'getEditionSeriesById'
-                    ).and.callThrough();
+                    const getEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
+                    const initialGetEditionSeriesByIdCalls = getEditionSeriesByIdSpy.mock.calls.length;
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
 
-                    expectSpyCall(getEditionSeriesByIdSpy, 0);
+                    expectSpyCall(getEditionSeriesByIdSpy, initialGetEditionSeriesByIdCalls);
                 });
 
                 it('... should not trigger `EditionOutlineService.getEditionSectionById`', () => {
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
-                    const getEditionSectionByIdSpy = spyOn(
-                        EditionOutlineService,
-                        'getEditionSectionById'
-                    ).and.callThrough();
+                    const getEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+                    const initialGetEditionSectionByIdCalls = getEditionSectionByIdSpy.mock.calls.length;
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
 
-                    expectSpyCall(getEditionSectionByIdSpy, 0);
+                    expectSpyCall(getEditionSectionByIdSpy, initialGetEditionSectionByIdCalls);
                 });
 
                 it('... should not have updated selectedEditionComplex$ (via EditionStateService)', () => {
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionComplexSpy, 1);
+                    const initialUpdateComplexCalls =
+                        editionStateServiceUpdateSelectedEditionComplexSpy.mock.calls.length;
 
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 2);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionComplexSpy, 1);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionComplexSpy, initialUpdateComplexCalls);
                 });
 
                 it('... should not have updated selectedEditionSeries (via EditionStateService)', () => {
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1);
+                    const initialUpdateSeriesCalls =
+                        editionStateServiceUpdateSelectedEditionSeriesSpy.mock.calls.length;
 
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 2);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, initialUpdateSeriesCalls);
                 });
 
                 it('... should not have updated selectedEditionSection (via EditionStateService)', () => {
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1);
+                    const initialUpdateSectionCalls =
+                        editionStateServiceUpdateSelectedEditionSectionSpy.mock.calls.length;
 
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 2);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, initialUpdateSectionCalls);
                 });
 
                 it('... should set selectedEditionComplex$ to EMPTY', () => {
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
 
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.returnValue(null);
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(null);
 
                     component.updateEditionComplexFromRoute();
                     fixture.detectChanges();
@@ -594,7 +582,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
 
                     // Spy on the static method and provide a custom implementation
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingTitleComplex;
                         }
@@ -625,7 +613,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
 
                     // Spy on the static method and provide a custom implementation
-                    spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
                         if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
                             return missingPubComplex;
                         }

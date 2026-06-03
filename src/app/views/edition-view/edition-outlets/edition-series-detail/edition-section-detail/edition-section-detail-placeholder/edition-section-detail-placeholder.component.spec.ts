@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -50,10 +51,6 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         const series = expectedSelectedSeries.series.short;
         const section = expectedSelectedSection.section.short;
         expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('should create', () => {
