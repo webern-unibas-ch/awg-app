@@ -118,7 +118,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             expectedFolioSvgDataArray.push(expectedFolioSvgData);
         });
 
-        // Spies on component functions
+        // Spies
         createSVGCanvasSpy = vi.spyOn(component, 'createSVGCanvas');
         d3SelectSpy = vi.spyOn(component as any, '_d3Select');
         isSelectedSvgSheetSpy = vi.spyOn(component, 'isSelectedSvgSheet');

@@ -1,7 +1,7 @@
 import { DOCUMENT, DebugElement, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -68,6 +68,10 @@ describe('TablePaginationComponent (DONE)', () => {
         onPageChangeSpy = vi.spyOn(component, 'onPageChange');
         replaceNonNumberInputSpy = vi.spyOn(component, 'replaceNonNumberInput');
         selectPageSpy = vi.spyOn(component, 'selectPage');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

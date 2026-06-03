@@ -32,7 +32,7 @@ describe('EditionSvgSheetViewerNavComponent', () => {
 
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // Spies on component functions
+        // Spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
     });

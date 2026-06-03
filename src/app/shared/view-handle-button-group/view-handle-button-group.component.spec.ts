@@ -2,7 +2,7 @@ import { DebugElement, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -59,6 +59,10 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         listenToUserInputChangeSpy = vi.spyOn(component as any, '_listenToUserInputChange');
         onViewChangeSpy = vi.spyOn(component as any, '_onViewChange');
         viewChangeRequestSpy = vi.spyOn(component.viewChangeRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

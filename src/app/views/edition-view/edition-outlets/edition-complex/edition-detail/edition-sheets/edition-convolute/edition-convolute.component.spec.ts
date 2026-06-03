@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -117,11 +117,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
             },
         ];
 
-        // Spies on component functions
+        // Spies
         openModalSpy = vi.spyOn(component, 'openModal');
         openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

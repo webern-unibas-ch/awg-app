@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
@@ -107,11 +107,15 @@ describe('SelectResultsComponent (DONE)', () => {
         expectedQueryTime = 5000;
         expectedIsFullscreen = false;
 
-        // Spies on component functions
+        // Spies
         emitClickedTableRequestSpy = vi.spyOn(component.clickedTableRequest, 'emit');
         isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
         isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');
         tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

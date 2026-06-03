@@ -34,7 +34,7 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         // Test data
         expectedLanguage = 0;
 
-        // Spies on component functions
+        // Spies
         setLanguageSpy = vi.spyOn(component, 'setLanguage');
         emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
     });

@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, ReplaySubject, lastValueFrom, of as observableOf } from 'rxjs';
@@ -75,10 +75,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
         // Test data
         expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
 
-        // Spies on component functions
+        // Spies
         editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');
         editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'updateIsRowTableView');
         editionStateServiceClearIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'clearIsRowTableView');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

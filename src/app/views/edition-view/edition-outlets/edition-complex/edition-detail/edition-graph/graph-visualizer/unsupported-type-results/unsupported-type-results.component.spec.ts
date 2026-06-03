@@ -1,7 +1,7 @@
 import { DebugElement, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -49,8 +49,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         expectedQueryType = 'ask';
         expectedIsFullscreen = false;
 
-        // Spies on component functions
+        // Spies
         isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

@@ -167,7 +167,7 @@ describe('NavbarComponent (DONE)', () => {
             structure: 'Strukturmodell',
         };
 
-        // Spies on component functions
+        // Spies
         coreServiceSpy = vi.spyOn(mockCoreService, 'getLogos');
         routerSpy = vi.spyOn(mockRouter, 'isActive');
         isActiveRouteSpy = vi.spyOn(component, 'isActiveRoute');

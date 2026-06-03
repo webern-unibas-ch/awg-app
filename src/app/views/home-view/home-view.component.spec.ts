@@ -129,7 +129,7 @@ describe('HomeViewComponent (DONE)', () => {
         ];
         expectedRouterlinks = getRouterlinks(expectedSections);
 
-        // Spies on component functions
+        // Spies
         provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
     });
 

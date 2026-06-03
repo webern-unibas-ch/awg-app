@@ -3,7 +3,7 @@ import localeDeDE from '@angular/common/locales/de';
 import { Component, DebugElement, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
@@ -92,8 +92,12 @@ describe('ContactViewComponent (DONE)', () => {
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
-        // Spies on component functions
+        // Spies
         provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

@@ -2,7 +2,7 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, lastValueFrom } from 'rxjs';
@@ -142,6 +142,10 @@ describe('TableComponent', () => {
         onTableRowClickSpy = vi.spyOn(component, 'onTableRowClick');
         clickedTableValueRequestSpy = vi.spyOn(component.clickedTableValueRequest, 'emit');
         clickedTableRowRequestSpy = vi.spyOn(component.clickedTableRowRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

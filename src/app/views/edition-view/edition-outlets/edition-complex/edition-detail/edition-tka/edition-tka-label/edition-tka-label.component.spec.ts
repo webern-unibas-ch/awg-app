@@ -41,7 +41,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
         expectedId = 'test-1';
         expectedLabelType = 'evaluation';
 
-        // Spies on component functions
+        // Spies
         isSketchIdSpy = vi.spyOn(utils, 'isSketchId');
     });
 

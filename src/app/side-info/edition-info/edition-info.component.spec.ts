@@ -155,7 +155,7 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
 
-        // Spies on component functions
+        // Spies
         setupEditionViewSpy = vi.spyOn(component, 'setupEditionView');
         editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,

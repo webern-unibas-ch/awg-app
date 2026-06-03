@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
@@ -88,7 +88,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         expectedTriples = 'example:Test example:has example:Success';
 
-        // Spies on component functions
+        // Spies
         onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
         performQuerySpy = vi.spyOn(component, 'performQuery');
         isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
@@ -98,6 +98,10 @@ describe('TriplesEditorComponent (DONE)', () => {
         emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
         emitResetTriplesRequestSpy = vi.spyOn(component.resetTriplesRequest, 'emit');
         emitUpdateTriplesRequestSpy = vi.spyOn(component.updateTriplesRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

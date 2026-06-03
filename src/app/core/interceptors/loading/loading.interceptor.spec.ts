@@ -72,6 +72,8 @@ describe('LoadingInterceptor (DONE)', () => {
     // After every test, assert that there are no more pending requests
     afterEach(() => {
         httpTestingController.verify();
+
+        vi.restoreAllMocks();
     });
 
     it('... should test if interceptor instance is created', () => {

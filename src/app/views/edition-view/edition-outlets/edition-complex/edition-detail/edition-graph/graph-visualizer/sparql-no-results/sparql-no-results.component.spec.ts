@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -40,8 +40,12 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         // Test data
         expectedLogos = LOGOS_DATA;
 
-        // Spies on component functions
+        // Spies
         vi.spyOn(component, 'provideMetaData');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

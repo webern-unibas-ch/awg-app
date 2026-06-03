@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
@@ -100,11 +100,15 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         expectedAnglesLeft = faAnglesLeft;
         expectedListUl = faListUl;
 
-        // Spies on component functions
+        // Spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
         toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

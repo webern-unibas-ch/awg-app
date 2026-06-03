@@ -45,7 +45,7 @@ describe('ScrollToTopComponent (DONE)', () => {
         expectedScrollThreshold = 300;
         expectedArrowIcon = faArrowUp;
 
-        // Spies on component functions
+        // Spies
         scrollToTopSpy = vi.spyOn(component, 'scrollToTop');
     });
 

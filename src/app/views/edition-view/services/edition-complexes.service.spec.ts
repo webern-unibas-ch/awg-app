@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
@@ -22,6 +22,10 @@ describe('EditionComplexesService (DONE)', () => {
         initializeEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'initializeEditionComplexesList');
         setEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'setEditionComplexesList');
         fetchEditionComplexesDataSpy = vi.spyOn(EditionComplexesService as any, '_fetchEditionComplexesData');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

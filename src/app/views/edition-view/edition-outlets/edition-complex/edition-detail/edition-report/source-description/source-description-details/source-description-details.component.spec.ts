@@ -61,7 +61,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         expectedReportFragment = 'source_G';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
 
-        // Spies on component functions
+        // Spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
         navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
         openModalSpy = vi.spyOn(component, 'openModal');

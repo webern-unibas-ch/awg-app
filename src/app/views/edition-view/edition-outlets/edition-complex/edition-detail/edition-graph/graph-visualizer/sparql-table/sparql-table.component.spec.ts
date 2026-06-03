@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -67,9 +67,13 @@ describe('SparqlTableComponent (DONE)', () => {
 
         expectedTableTitle = 'SELECT Anfrage';
 
-        // Spies on component functions
+        // Spies
         tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
         emitSpy = vi.spyOn(component.clickedTableRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

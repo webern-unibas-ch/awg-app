@@ -48,7 +48,7 @@ describe('CodemirrorComponent', () => {
         };
         expectedState = EditorState.create(config);
 
-        // Spies on component functions
+        // Spies
         initSpy = vi.spyOn(component, 'init');
         onContentChangeSpy = vi.spyOn(component, 'onContentChange');
         emitContentChangeSpy = vi.spyOn(component.contentChange, 'emit');

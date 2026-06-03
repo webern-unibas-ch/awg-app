@@ -145,7 +145,7 @@ describe('EditionViewComponent (DONE)', () => {
         expectedSelectedEditionSeries = EditionOutlineService.getEditionOutline()[0]; // Series 1
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
 
-        // Spies on component functions
+        // Spies
         setupEditionViewSpy = vi.spyOn(component, 'setupEditionView');
 
         // Spies for service methods

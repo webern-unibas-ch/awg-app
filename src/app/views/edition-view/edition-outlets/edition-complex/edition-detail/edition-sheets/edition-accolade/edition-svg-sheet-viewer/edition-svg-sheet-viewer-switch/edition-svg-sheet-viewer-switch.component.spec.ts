@@ -2,7 +2,7 @@ import { Component, DebugElement, Input, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -75,7 +75,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         expectedAllClassesVisible = true;
         expectedTkkHighlightingVisible = true;
 
-        // Spies on component functions
+        // Spies
         emitToggleSuppliedClassesOpacityRequestSpy = vi.spyOn(component.toggleSuppliedClassesOpacityRequest, 'emit');
         emitToggleTkkClassesHighlightRequestSpy = vi.spyOn(component.toggleTkkClassesHighlightRequest, 'emit');
         onSuppliedClassesOpacityToggleSpy = vi.spyOn(component as any, '_onSuppliedClassesOpacityToggle');
@@ -83,6 +83,10 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         toggleAllClassesOpacitySpy = vi.spyOn(component, 'toggleAllClassesOpacity');
         toggleTkkClassesHighlightSpy = vi.spyOn(component, 'toggleTkkClassesHighlight');
         toggleUpdateAllClassesVisibilitySpy = vi.spyOn(component as any, '_updateAllClassesVisibility');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -200,7 +200,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedShowTkA = true;
         expectedIsSheetFacetMinimized = false;
 
-        // Spies on component functions
+        // Spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
         fullscreenToggleSpy = vi.spyOn(component, 'fullscreenToggle');
@@ -217,6 +217,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
         toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

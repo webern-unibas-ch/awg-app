@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -48,8 +48,12 @@ describe('FooterLogoComponent (DONE)', () => {
         expectedRightMainFooterLogo = LOGOS_DATA['sagw'];
         expectedNonMainFooterLogo = LOGOS_DATA['angular'];
 
-        // Spies on component functions
+        // Spies
         getLogoClassSpy = vi.spyOn(component, 'getLogoClass');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

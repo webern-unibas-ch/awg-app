@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -68,9 +68,13 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         ];
         expectedQueryParamsHandling = 'preserve';
 
-        // Spies on component functions
+        // Spies
         selectButtonSpy = vi.spyOn(component, 'selectButton');
         emitSpy = vi.spyOn(component.selectButtonRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

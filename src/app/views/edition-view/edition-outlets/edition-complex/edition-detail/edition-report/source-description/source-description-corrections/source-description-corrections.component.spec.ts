@@ -96,7 +96,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
 
-        // Spies on component functions
+        // Spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
         navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
         openModalSpy = vi.spyOn(component, 'openModal');

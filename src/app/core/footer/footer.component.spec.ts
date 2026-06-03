@@ -1,7 +1,7 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
     expectToBe,
@@ -98,8 +98,12 @@ describe('FooterComponent (DONE)', () => {
         expectedLogos = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        // Spies on component functions
+        // Spies
         vi.spyOn(component, 'provideMetaData');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

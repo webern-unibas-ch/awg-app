@@ -47,7 +47,7 @@ describe('SourceListComponent (DONE)', () => {
         expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
         expectedFragment = 'source_A';
 
-        // Spies on component functions
+        // Spies
         onSourceClickSpy = vi.spyOn(component, 'onSourceClick');
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
         navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');

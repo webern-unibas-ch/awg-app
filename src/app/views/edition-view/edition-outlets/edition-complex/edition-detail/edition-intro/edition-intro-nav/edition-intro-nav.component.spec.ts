@@ -69,7 +69,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
         expectedLinkParam = '.';
         expectedNotesFragment = 'notes';
 
-        // Spies on component functions
+        // Spies
         setLanguageSpy = vi.spyOn(component, 'setLanguage');
         emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
     });

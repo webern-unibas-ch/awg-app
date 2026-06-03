@@ -105,7 +105,7 @@ describe('ConstructResultsComponent (DONE)', () => {
         };
         expectedQueryResult$ = observableOf([expectedQueryResult]);
 
-        // Spies on component functions
+        // Spies
         emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
         isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
         isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');

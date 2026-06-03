@@ -94,7 +94,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
         expectedCurrentLanguage = 0;
 
-        // Spies on component functions
+        // Spies
         getGlyphSpy = vi.spyOn(component, 'getGlyph');
         setLanguageSpy = vi.spyOn(component, 'setLanguage');
 

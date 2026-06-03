@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
@@ -150,7 +150,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             new ViewHandle('Table view', ViewHandleTypes.TABLE, component.faTable),
         ];
 
-        // Spies on component functions
+        // Spies
         isExampleQueriesEnabledSpy = vi.spyOn(component, 'isExampleQueriesEnabled');
         onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
         onQueryListChangeSpy = vi.spyOn(component, 'onQueryListChange');
@@ -165,6 +165,10 @@ describe('SparqlEditorComponent (DONE)', () => {
         emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
         emitResestQueryRequestSpy = vi.spyOn(component.resetQueryRequest, 'emit');
         emitUpdateQueryStringRequestSpy = vi.spyOn(component.updateQueryStringRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

@@ -65,7 +65,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
         expectedFsElement = mockDocument.createElement('div');
         expectedIsFullscreen = false;
 
-        // Spies on component functions
+        // Spies
         closeFullScreenSpy = vi.spyOn(component, 'closeFullscreen');
         openFullScreenSpy = vi.spyOn(component, 'openFullscreen');
         toggleFullscreenSpy = vi.spyOn(component, 'toggleFullscreen');

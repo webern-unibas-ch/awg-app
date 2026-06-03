@@ -97,7 +97,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             ),
         ];
 
-        // Spies on component functions
+        // Spies
         setButtonsSpy = vi.spyOn(component, 'setButtons');
     });
 

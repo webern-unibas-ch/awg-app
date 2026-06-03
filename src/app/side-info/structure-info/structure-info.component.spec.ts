@@ -3,7 +3,7 @@ import localeDeDE from '@angular/common/locales/de';
 import { Component, DebugElement, Input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
     expectToBe,
@@ -65,8 +65,12 @@ describe('StructureInfoComponent (DONE)', () => {
         // Test data
         expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
 
-        // Spies on component functions
+        // Spies
         vi.spyOn(component, 'provideMetaData');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
