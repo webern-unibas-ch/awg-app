@@ -1444,7 +1444,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
-            it('... should trigger from click on Query button', () => {
+            it('... should trigger from click on Query button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
@@ -1463,7 +1463,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
 
             describe('... should emit on click:', () => {
-                it('`performQueryRequest` if querystring is given', () => {
+                it('`performQueryRequest` if querystring is given', async () => {
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
@@ -1483,7 +1483,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectSpyCall(emitErrorMessageRequestSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
+                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
                     const expectedErrorMessage = new ToastMessage('Empty query', 'Please enter a SPARQL query.');
 
                     component.query.queryString = '';
@@ -1530,7 +1530,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.resetQuery).toBeDefined();
             });
 
-            it('... should trigger on click on Reset button', () => {
+            it('... should trigger on click on Reset button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
@@ -1548,7 +1548,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(resetQuerySpy, 1);
             });
 
-            it('... should not emit anything if no query is provided', () => {
+            it('... should not emit anything if no query is provided', async () => {
                 // Query is undefined
                 component.resetQuery(undefined);
                 await detectChangesOnPush(fixture);
@@ -1557,7 +1557,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(emitResestQueryRequestSpy, 0);
             });
 
-            it('... should emit request on click', () => {
+            it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',

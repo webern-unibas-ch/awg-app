@@ -323,7 +323,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... no results are available', () => {
+                    it('... no results are available', async () => {
                         // Mock empty response
                         component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
                         await detectChangesOnPush(fixture);
@@ -339,7 +339,7 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head is undefined', () => {
+                    it('... queryResult.head is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
                         component.queryResult$ = observableOf(undefinedQueryResult);
@@ -356,7 +356,7 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.body is undefined', () => {
+                    it('... queryResult.body is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
@@ -373,7 +373,7 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head and queryResult.body are undefined', () => {
+                    it('... queryResult.head and queryResult.body are undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
