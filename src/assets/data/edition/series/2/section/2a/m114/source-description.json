@@ -1077,7 +1077,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1180,10 +1180,10 @@
                     },
                     {
                         "id": "source_Ca_corr_2",
-                        "label": "Korrekturen 2 in <strong>C<sup>a</sup></strong> (mit Tinte, Bleistift und braunem Buntstift im Hinblick auf Textfassungen 2 und 3)",
+                        "label": "Korrekturen 2 in <strong>C<sup>a</sup></strong> (mit Tinte, Bleistift und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1282,7 +1282,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>b</sup></strong> (mit Tinte und Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1458,7 +1458,7 @@
                         "label": "Korrekturen 2 in <strong>C<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1482,7 +1482,7 @@
                                             "measure": "29–30",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br />##Abbildung##"
+                                            "comment": "Korrekturskizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf2_Cb_corr_2-004",
@@ -1501,7 +1501,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>c</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1607,7 +1607,7 @@
                         "label": "Korrekturen 2 in <strong>C<sup>c</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2527,7 +2527,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4'})\">Textfassung 4</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2735,10 +2735,10 @@
                     },
                     {
                         "id": "source_Ea_corr_2",
-                        "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift und blauem Buntstift im Hinblick auf Textfassung 5)",
+                        "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4'})\">Textfassung 4</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2818,7 +2818,7 @@
                                             "measure": "34",
                                             "system": "Klav. o.",
                                             "position": "2/8",
-                                            "comment": "Unterstimmenschicht: [&gt;] zu g<sup>1</sup> hinzugefügt."
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[>]')}}</span> zu g<sup>1</sup> hinzugefügt."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf4_Ea_corr_2-012",
@@ -2972,7 +2972,7 @@
                                             "measure": "92",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für Bassstimme unter dem System. <br />##Abbildung##"
+                                            "comment": "Korrekturskizze für Bassstimme unter dem System. <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf4_Ea_corr_2-034",
@@ -3012,7 +3012,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5'})\">Textfassung 5</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3276,10 +3276,10 @@
                     },
                     {
                         "id": "source_Eb_corr_2",
-                        "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift, blauem und braunem Buntstift im Hinblick auf Textfassung 6)",
+                        "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift, blauem und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5'})\">Textfassung 5</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3676,10 +3676,10 @@
                     },
                     {
                         "id": "source_Ec_corr_1",
-                        "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit Tinte, braunem und blauem Buntstift)",
+                        "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit Tinte, blauem und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF6'})\">Textfassung 6</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3722,7 +3722,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF6'})\">Textfassung 6</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

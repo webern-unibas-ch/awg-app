@@ -1088,7 +1088,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1117,7 +1117,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1735,7 +1735,7 @@
                         "label": "Korrekturen in <strong>D</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

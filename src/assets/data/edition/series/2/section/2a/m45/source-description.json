@@ -572,7 +572,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -836,10 +836,10 @@
                     },
                     {
                         "id": "source_B_corr_2",
-                        "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte und Bleistift im Hinblick auf Textfassung 2)",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte und Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1167,7 +1167,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1326,10 +1326,10 @@
                     },
                     {
                         "id": "source_C_corr_2",
-                        "label": "Korrekturen 2 in <strong>C</strong> (mit Tinte)",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1353,7 +1353,7 @@
                                             "measure": "40–42",
                                             "system": "Klav.",
                                             "position": "1–2/8",
-                                            "comment": "Alternative Skizze unter den Systemen notiert: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter den Systemen notiert: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf2_C_corr_2-004",
