@@ -1,11 +1,11 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -34,11 +34,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RouterLinkButtonGroupComponent);
@@ -69,14 +69,8 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         expectedQueryParamsHandling = 'preserve';
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        selectButtonSpy = spyOn(component, 'selectButton').and.callThrough();
-        emitSpy = spyOn(component.selectButtonRequest, 'emit').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        selectButtonSpy = vi.spyOn(component, 'selectButton');
+        emitSpy = vi.spyOn(component.selectButtonRequest, 'emit');
     });
 
     it('... should create', () => {
@@ -153,9 +147,9 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     if (expectedRouterLinkButtons[index].disabled) {
-                        expect(btnEl).toHaveClass('disabled');
+                        expect(btnEl.classList.contains('disabled')).toBe(true);
                     } else {
-                        expect(btnEl).not.toHaveClass('disabled');
+                        expect(btnEl.classList.contains('disabled')).toBe(false);
                     }
                 });
             });
@@ -194,35 +188,33 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from routerLinks', () => {
-                routerLinks.forEach((routerLink: { linkParams: any }, index: number) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
-                });
+                }
             });
 
-            it('... can click fulltext link in template', () => {
+            it('... can click fulltext link in template', async () => {
                 const fulltextLinkDe = linkDes[0]; // Fulltext link DebugElement
                 const fulltextLink = routerLinks[0]; // Fulltext link directive
 
                 expectToBe(fulltextLink.navigatedTo, null);
 
-                click(fulltextLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(fulltextLinkDe, fixture);
 
                 expectToEqual(fulltextLink.navigatedTo, ['/data/search', 'fulltext']);
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
 
@@ -261,30 +253,30 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 });
             });
 
-            it('... should trigger on click if enabled or disabled', fakeAsync(() => {
+            it('... should trigger on click if enabled or disabled', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-router-link-btn', 3, 3);
                 const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
                 const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
                 const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
-                expect(btnEl0).not.toHaveClass('disabled');
+                expect(btnEl0.classList.contains('disabled')).toBe(false);
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[1], fixture);
+                await clickAndAwaitChanges(btnDes[1], fixture);
 
-                expect(btnEl1).toHaveClass('disabled');
+                expect(btnEl1.classList.contains('disabled')).toBe(true);
                 expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[2], fixture);
+                await clickAndAwaitChanges(btnDes[2], fixture);
 
-                expect(btnEl2).toHaveClass('disabled');
+                expect(btnEl2.classList.contains('disabled')).toBe(true);
                 expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
-            }));
+            });
 
             it('... should emit if routerLinkButton is enabled', () => {
                 const enabledButton: RouterLinkButton = new RouterLinkButton(

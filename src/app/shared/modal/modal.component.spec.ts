@@ -8,12 +8,13 @@ import {
     TemplateRef,
     ViewChild,
 } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -32,7 +33,8 @@ import { ModalComponent } from './modal.component';
     standalone: false,
 })
 class WrapperComponent implements AfterViewInit {
-    @ViewChild(ModalComponent) modalComponentRef: ModalComponent;
+    @ViewChild(ModalComponent)
+    modalComponentRef: ModalComponent;
     modal: TemplateRef<any>;
     private _cdr = inject(ChangeDetectorRef);
 
@@ -48,7 +50,9 @@ export class MockNgbModalRef {
         title: undefined,
         content: undefined,
     };
-    result: Promise<any> = new Promise(resolve => resolve(''));
+    result: Promise<any> = new Promise(() => {
+        // Keep pending by default; individual tests set resolve/reject behavior explicitly.
+    });
 }
 
 describe('ModalComponent', () => {
@@ -75,13 +79,13 @@ describe('ModalComponent', () => {
     const expectedSnippetKey2 = 'OP12_SHEET_COMING_SOON';
     const expectedUnknownSnippetKey = 'UNKNOWN_SNIPPET_KEY';
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbModalModule],
             declarations: [WrapperComponent, ModalComponent, CompileHtmlComponent],
             providers: [NgbModal],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(WrapperComponent);
@@ -97,11 +101,12 @@ describe('ModalComponent', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on the modal service
-        ngbModalOpenSpy = spyOn(ngbModal, 'open').and.returnValue(mockModalRef as any);
+        ngbModalOpenSpy = vi.spyOn(ngbModal, 'open').mockReturnValue(mockModalRef as any);
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        // Clear mocks after each test
+        vi.clearAllMocks();
     });
 
     it('... should create the component', () => {
@@ -240,9 +245,9 @@ describe('ModalComponent', () => {
             component.open(expectedSnippetKey1);
             detectChangesOnPush(fixture);
 
-            await expectAsync(
+            await expect(
                 ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-            ).toBeResolvedTo(closeMessage);
+            ).resolves.toEqual(closeMessage);
 
             expectToBe(component.closeResult, expectedCloseResult);
         });
@@ -256,9 +261,9 @@ describe('ModalComponent', () => {
                 component.open(expectedSnippetKey1);
                 detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });
@@ -271,9 +276,9 @@ describe('ModalComponent', () => {
                 component.open(expectedSnippetKey1);
                 detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });
@@ -286,9 +291,9 @@ describe('ModalComponent', () => {
                 component.open(expectedSnippetKey1);
                 detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });

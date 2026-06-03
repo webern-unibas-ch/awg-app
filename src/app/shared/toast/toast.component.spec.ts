@@ -1,5 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -13,7 +15,8 @@ import { Toast, ToastService } from './toast.service';
     standalone: false,
 })
 class MockTemplateComponent {
-    @ViewChild('template', { static: true }) public template: TemplateRef<any>;
+    @ViewChild('template', { static: true })
+    public template: TemplateRef<any>;
 }
 
 // Mock ngb-toast component
@@ -44,12 +47,12 @@ describe('ToastComponent (DONE)', () => {
 
     let expectedToast: Toast;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [ToastComponent, MockTemplateComponent, NgbToastStubComponent],
             providers: [ToastService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ToastComponent);

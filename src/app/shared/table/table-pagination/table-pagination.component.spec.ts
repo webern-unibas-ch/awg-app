@@ -1,9 +1,12 @@
 import { DOCUMENT, DebugElement, NgModule, inject } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -60,11 +63,11 @@ describe('TablePaginationComponent (DONE)', () => {
         expectedPage = 1;
 
         // Spy on methods
-        emitPageChangeSpy = spyOn(component.pageChange, 'emit').and.callThrough();
-        emitPageChangeRequestSpy = spyOn(component.pageChangeRequest, 'emit').and.callThrough();
-        onPageChangeSpy = spyOn(component, 'onPageChange').and.callThrough();
-        replaceNonNumberInputSpy = spyOn(component, 'replaceNonNumberInput').and.callThrough();
-        selectPageSpy = spyOn(component, 'selectPage').and.callThrough();
+        emitPageChangeSpy = vi.spyOn(component.pageChange, 'emit');
+        emitPageChangeRequestSpy = vi.spyOn(component.pageChangeRequest, 'emit');
+        onPageChangeSpy = vi.spyOn(component, 'onPageChange');
+        replaceNonNumberInputSpy = vi.spyOn(component, 'replaceNonNumberInput');
+        selectPageSpy = vi.spyOn(component, 'selectPage');
     });
 
     it('... should create', () => {
@@ -144,10 +147,10 @@ describe('TablePaginationComponent (DONE)', () => {
                 const liEl2: HTMLLIElement = liDes[1].nativeElement;
 
                 expect(liEl1.classList.contains('disabled')).toBeTruthy();
-                expect(liEl1).toHaveClass('disabled');
+                expect(liEl1.classList.contains('disabled')).toBe(true);
 
                 expect(liEl2.classList.contains('disabled')).toBeTruthy();
-                expect(liEl2).toHaveClass('disabled');
+                expect(liEl2.classList.contains('disabled')).toBe(true);
             });
 
             it('... should have last two li.page-item not with class .disabled', () => {
@@ -158,10 +161,10 @@ describe('TablePaginationComponent (DONE)', () => {
                 const liEl4: HTMLLIElement = liDes[3].nativeElement;
 
                 expect(liEl3.classList.contains('disabled')).toBeFalsy();
-                expect(liEl3).not.toHaveClass('disabled');
+                expect(liEl3.classList.contains('disabled')).toBe(false);
 
                 expect(liEl4.classList.contains('disabled')).toBeFalsy();
-                expect(liEl4).not.toHaveClass('disabled');
+                expect(liEl4.classList.contains('disabled')).toBe(false);
             });
 
             it('... should have a.page-link in all li.page-item', () => {
@@ -274,7 +277,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expect(component.onPageChange).toBeDefined();
             });
 
-            it('... should trigger on pageChange event of NgbPagination', fakeAsync(() => {
+            it('... should trigger on pageChange event of NgbPagination', async () => {
                 const expectedNewPage = 3;
 
                 const ngbPaginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
@@ -283,10 +286,10 @@ describe('TablePaginationComponent (DONE)', () => {
                 expectSpyCall(onPageChangeSpy, 0);
 
                 ngbPaginationCmp.pageChange.emit(expectedNewPage);
-                tick(); // Wait for value to be emitted
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onPageChangeSpy, 1, expectedNewPage);
-            }));
+            });
 
             it('... should not do anything if newPage is not given', () => {
                 component.onPageChange(undefined);

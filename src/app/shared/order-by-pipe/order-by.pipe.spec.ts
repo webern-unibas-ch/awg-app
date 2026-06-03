@@ -9,6 +9,7 @@
  *
  *
  ************************************************/
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToEqual } from '@testing/expect-helper';
 
@@ -94,9 +95,9 @@ describe('OrderByPipe (DONE)', () => {
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('... should move `NaN` to the start', () => {
+        it('... should keep `NaN` in-between sorted numbers', () => {
             const array = [3, NaN, 1];
-            const sortedArray = [NaN, 3, 1];
+            const sortedArray = [1, NaN, 3];
 
             expectToEqual(pipe.transform(array, 'anything'), sortedArray);
         });

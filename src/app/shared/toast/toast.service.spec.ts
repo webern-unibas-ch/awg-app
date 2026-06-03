@@ -1,6 +1,8 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { Toast, ToastService } from './toast.service';
@@ -11,7 +13,8 @@ import { Toast, ToastService } from './toast.service';
     standalone: false,
 })
 class MockTemplateComponent {
-    @ViewChild('template', { static: true }) public template: TemplateRef<any>;
+    @ViewChild('template', { static: true })
+    public template: TemplateRef<any>;
 }
 
 describe('ToastService (DONE)', () => {

@@ -1,8 +1,9 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, lastValueFrom } from 'rxjs';
 
@@ -133,14 +134,14 @@ describe('TableComponent', () => {
         );
 
         // Spies on methods
-        initSpy = spyOn(component, 'initTable').and.callThrough();
-        onSortSpy = spyOn(component, 'onSort').and.callThrough();
-        onPageSizeChangeSpy = spyOn(component, 'onPageSizeChange').and.callThrough();
-        paginateRowsSpy = spyOn(component as any, '_paginateRows').and.callThrough();
-        onTableValueClickSpy = spyOn(component, 'onTableValueClick').and.callThrough();
-        onTableRowClickSpy = spyOn(component, 'onTableRowClick').and.callThrough();
-        clickedTableValueRequestSpy = spyOn(component.clickedTableValueRequest, 'emit').and.callThrough();
-        clickedTableRowRequestSpy = spyOn(component.clickedTableRowRequest, 'emit').and.callThrough();
+        initSpy = vi.spyOn(component, 'initTable');
+        onSortSpy = vi.spyOn(component, 'onSort');
+        onPageSizeChangeSpy = vi.spyOn(component, 'onPageSizeChange');
+        paginateRowsSpy = vi.spyOn(component as any, '_paginateRows');
+        onTableValueClickSpy = vi.spyOn(component, 'onTableValueClick');
+        onTableRowClickSpy = vi.spyOn(component, 'onTableRowClick');
+        clickedTableValueRequestSpy = vi.spyOn(component.clickedTableValueRequest, 'emit');
+        clickedTableRowRequestSpy = vi.spyOn(component.clickedTableRowRequest, 'emit');
     });
 
     it('... should create', () => {
@@ -275,25 +276,25 @@ describe('TableComponent', () => {
             });
 
             describe('should set tableData', () => {
-                it('... with headerInputData and rowInputData', waitForAsync(() => {
+                it('... with headerInputData and rowInputData', async () => {
                     expect(component.tableData).toBeDefined();
 
                     expectToEqual(component.tableData.header, expectedTableData.header);
                     expectToEqual(component.tableData.filteredRows, expectedTableData.filteredRows);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(
+                    await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual(
                         expectedTableData.filteredRows
                     );
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(
+                    await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual(
                         expectedTableData.filteredRows
                     );
-                }));
+                });
 
                 describe('... to empty object', () => {
-                    it('... if headerInputData is not given', waitForAsync(() => {
+                    it('... if headerInputData is not given', async () => {
                         component.headerInputData = undefined;
                         component.rowInputData = expectedRowInputData;
 
@@ -306,13 +307,13 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
+                        await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
-                    }));
+                        await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual([]);
+                    });
 
-                    it('... if rowInputData is not given', waitForAsync(() => {
+                    it('... if rowInputData is not given', async () => {
                         component.headerInputData = expectedHeaderInputData;
                         component.rowInputData = undefined;
 
@@ -325,13 +326,13 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
+                        await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
-                    }));
+                        await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual([]);
+                    });
 
-                    it('... if both headerInputData and rowInputData are not given', waitForAsync(() => {
+                    it('... if both headerInputData and rowInputData are not given', async () => {
                         component.headerInputData = undefined;
                         component.rowInputData = undefined;
 
@@ -344,11 +345,11 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
+                        await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
-                    }));
+                        await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual([]);
+                    });
                 });
             });
 
@@ -411,7 +412,7 @@ describe('TableComponent', () => {
                 expectToBe(component.searchFilter, otherSearchFilter);
             });
 
-            it('... should trigger on change of selectedPageSize in upper dropdown menu', fakeAsync(() => {
+            it('... should trigger on change of selectedPageSize in upper dropdown menu', async () => {
                 const expectedItemNumber = component.paginatorOptions.pageSizeOptions.length;
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
@@ -429,38 +430,38 @@ describe('TableComponent', () => {
                 );
 
                 // Click on first button
-                clickAndAwaitChanges(btnDes1[0], fixture);
+                await clickAndAwaitChanges(btnDes1[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onPageSizeChangeSpy, 2, ['', component.paginatorOptions.pageSizeOptions[0]]);
 
                 // Click on second button
-                clickAndAwaitChanges(btnDes1[1], fixture);
+                await clickAndAwaitChanges(btnDes1[1], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 3, ['', component.paginatorOptions.pageSizeOptions[1]]);
 
                 // Click on third button
-                clickAndAwaitChanges(btnDes1[2], fixture);
+                await clickAndAwaitChanges(btnDes1[2], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 4, ['', component.paginatorOptions.pageSizeOptions[2]]);
 
                 // Click on fourth button
-                clickAndAwaitChanges(btnDes1[3], fixture);
+                await clickAndAwaitChanges(btnDes1[3], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 5, ['', component.paginatorOptions.pageSizeOptions[3]]);
 
                 // Click on fifth button
-                clickAndAwaitChanges(btnDes1[4], fixture);
+                await clickAndAwaitChanges(btnDes1[4], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 6, ['', component.paginatorOptions.pageSizeOptions[4]]);
 
                 // Click on sixth button
-                clickAndAwaitChanges(btnDes1[5], fixture);
+                await clickAndAwaitChanges(btnDes1[5], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
-            }));
+            });
 
-            it('... should trigger on change of selectedPageSize in lower dropdown menu', fakeAsync(() => {
+            it('... should trigger on change of selectedPageSize in lower dropdown menu', async () => {
                 const expectedItemNumber = component.paginatorOptions.pageSizeOptions.length;
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
@@ -478,38 +479,38 @@ describe('TableComponent', () => {
                 );
 
                 // Click on first button
-                clickAndAwaitChanges(btnDes2[0], fixture);
+                await clickAndAwaitChanges(btnDes2[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onPageSizeChangeSpy, 2, ['', component.paginatorOptions.pageSizeOptions[0]]);
 
                 // Click on second button
-                clickAndAwaitChanges(btnDes2[1], fixture);
+                await clickAndAwaitChanges(btnDes2[1], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 3, ['', component.paginatorOptions.pageSizeOptions[1]]);
 
                 // Click on third button
-                clickAndAwaitChanges(btnDes2[2], fixture);
+                await clickAndAwaitChanges(btnDes2[2], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 4, ['', component.paginatorOptions.pageSizeOptions[2]]);
 
                 // Click on fourth button
-                clickAndAwaitChanges(btnDes2[3], fixture);
+                await clickAndAwaitChanges(btnDes2[3], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 5, ['', component.paginatorOptions.pageSizeOptions[3]]);
 
                 // Click on fifth button
-                clickAndAwaitChanges(btnDes2[4], fixture);
+                await clickAndAwaitChanges(btnDes2[4], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 6, ['', component.paginatorOptions.pageSizeOptions[4]]);
 
                 // Click on sixth button
-                clickAndAwaitChanges(btnDes2[5], fixture);
+                await clickAndAwaitChanges(btnDes2[5], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
-            }));
+            });
 
-            it('... should trigger on event from both TablePaginationComponents', fakeAsync(() => {
+            it('... should trigger on event from both TablePaginationComponents', () => {
                 component.searchFilter = 'test';
 
                 const tablePaginationDes = getAndExpectDebugElementByDirective(
@@ -530,7 +531,7 @@ describe('TableComponent', () => {
                 tablePaginationCmps[1].pageChangeRequest.emit(250);
 
                 expectSpyCall(onPageSizeChangeSpy, 3, 'test');
-            }));
+            });
 
             it('... should call paginateRows() with given searchfilter', () => {
                 component.onPageSizeChange('test');
@@ -597,14 +598,14 @@ describe('TableComponent', () => {
                     expectToEqual(component.tableData.filteredRows, []);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    await expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
+                    await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual([]);
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    await expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
+                    await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual([]);
                 });
             });
 
-            it('... should slice tableData by range of paginatorOptions.selectedPageSize', waitForAsync(() => {
+            it('... should slice tableData by range of paginatorOptions.selectedPageSize', async () => {
                 const expectedPageSize = component.paginatorOptions.pageSizeOptions[0];
                 const expectedPaginatedRows = expectedRowInputData.slice(0, expectedPageSize);
 
@@ -613,31 +614,31 @@ describe('TableComponent', () => {
                 fixture.detectChanges();
 
                 expect(component.tableData).toBeDefined();
-                expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolved();
-                expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(expectedPaginatedRows);
-            }));
+                await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.tableData.paginatedRows$)).resolves.toEqual(expectedPaginatedRows);
+            });
 
             describe('should not do anything', () => {
                 it('... if tableData is undefined', () => {
                     component.tableData = undefined;
+
                     component.onPageSizeChange('test');
-                    fixture.detectChanges();
 
                     expectSpyCall(paginateRowsSpy, 1);
                 });
 
                 it('... if headerInputData is undefined', () => {
                     component.headerInputData = undefined;
+
                     component.onPageSizeChange('test');
-                    fixture.detectChanges();
 
                     expectSpyCall(paginateRowsSpy, 1);
                 });
 
                 it('... if rowInputData is undefined', () => {
                     component.rowInputData = undefined;
+
                     component.onPageSizeChange('test');
-                    fixture.detectChanges();
 
                     expectSpyCall(paginateRowsSpy, 1);
                 });
@@ -653,25 +654,25 @@ describe('TableComponent', () => {
                 expectSpyCall(onSortSpy, 1);
             });
 
-            it('... should trigger on click on table header', fakeAsync(() => {
+            it('... should trigger on click on table header', async () => {
                 const tableHeaderDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr > th', 3, 3);
 
                 // Click on first header
-                clickAndAwaitChanges(tableHeaderDes[0], fixture);
+                await clickAndAwaitChanges(tableHeaderDes[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onSortSpy, 2, expectedHeaderInputData[0]);
 
                 // Click on second header
-                clickAndAwaitChanges(tableHeaderDes[1], fixture);
+                await clickAndAwaitChanges(tableHeaderDes[1], fixture);
 
                 expectSpyCall(onSortSpy, 3, expectedHeaderInputData[1]);
 
                 // Click on third header
-                clickAndAwaitChanges(tableHeaderDes[2], fixture);
+                await clickAndAwaitChanges(tableHeaderDes[2], fixture);
 
                 expectSpyCall(onSortSpy, 4, expectedHeaderInputData[2]);
-            }));
+            });
 
             it('... should set tableOptions.selectedKey to the given key', () => {
                 expectToBe(component.tableOptions.selectedKey, expectedHeaderInputData[0]);
@@ -789,7 +790,7 @@ describe('TableComponent', () => {
                 expect(component.onTableValueClick).not.toHaveBeenCalled();
             });
 
-            it('... should trigger on click if a row value has type===uri', fakeAsync(() => {
+            it('... should trigger on click if a row value has type===uri', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -800,15 +801,15 @@ describe('TableComponent', () => {
                 // Find anchors in rows with type===uri (first)
                 const anchorDes = getAndExpectDebugElementByCss(rowDes[0], 'a', 3, 3);
 
-                anchorDes.forEach((anchorDe, index) => {
-                    clickAndAwaitChanges(anchorDe, fixture);
+                for (const [index, anchorDe] of anchorDes.entries()) {
+                    await clickAndAwaitChanges(anchorDe, fixture);
                     expectSpyCall(
                         onTableValueClickSpy,
                         index + 1,
                         expectedRowInputData[0]['column' + (index + 1)].value
                     );
-                });
-            }));
+                }
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... event is undefined', () => {
@@ -846,7 +847,7 @@ describe('TableComponent', () => {
                 expect(component.onTableValueClick).not.toHaveBeenCalled();
             });
 
-            it('... should trigger on click on a row', fakeAsync(() => {
+            it('... should trigger on click on a row', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -855,12 +856,12 @@ describe('TableComponent', () => {
                 );
 
                 // Click through rows
-                rowDes.forEach((rowDe, index) => {
-                    clickAndAwaitChanges(rowDe, fixture);
+                for (const [index, rowDe] of rowDes.entries()) {
+                    await clickAndAwaitChanges(rowDe, fixture);
 
                     expectSpyCall(onTableRowClickSpy, index + 1, BUTTON_CLICK_EVENTS.left);
-                });
-            }));
+                }
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... event is undefined', () => {
