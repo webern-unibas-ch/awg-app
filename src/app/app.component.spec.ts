@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Router, RouterModule, Routes } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -28,7 +28,8 @@ class NavbarStubComponent {}
     standalone: false,
 })
 class ViewContainerStubComponent {
-    @Input() activateSideOutlet: boolean;
+    @Input()
+    activateSideOutlet: boolean;
 }
 
 @Component({
@@ -95,7 +96,7 @@ describe('AppComponent (DONE)', () => {
 
     let expectedActivateSideOutlet: boolean;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
         mockAnalyticsService = {
             initializeAnalytics: (): void => {
@@ -121,7 +122,7 @@ describe('AppComponent (DONE)', () => {
             },
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [RouterModule.forRoot(MOCK_ROUTES)],
             declarations: [
                 AppComponent,
@@ -140,16 +141,16 @@ describe('AppComponent (DONE)', () => {
         }).compileComponents();
 
         // Spies for service methods
-        getTitleSpy = spyOn(mockTitleService, 'getTitle').and.returnValue('Default Page Title');
-        setTitleSpy = spyOn(mockTitleService, 'setTitle').and.callThrough();
-        initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
-        initializeEditionSpy = spyOn(mockEditionInitService, 'initializeEdition').and.callThrough();
-        trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
-    }));
+        getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
+        setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
+        initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
+        initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
+        trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
+    });
 
     beforeEach(() => {
         // Window spy object (Analytics)
-        (window as any).gtag = jasmine.createSpy('gtag');
+        (window as any).gtag = vi.fn();
 
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
@@ -160,14 +161,6 @@ describe('AppComponent (DONE)', () => {
 
         // Test data
         expectedActivateSideOutlet = true;
-
-        // Workaround for ngZone issue;
-        // Cf. https://github.com/angular/angular/issues/25837
-        // Cf. https://github.com/ngneat/spectator/pull/334/files
-        fixture.ngZone.run(() => {
-            // Initial navigation
-            router.initialNavigation();
-        });
     });
 
     afterEach(() => {
@@ -175,13 +168,9 @@ describe('AppComponent (DONE)', () => {
         (window as any).gtag = undefined;
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
-    it('... should create the app', waitForAsync(() => {
+    it('... should create the app', () => {
         expect(component).toBeTruthy();
-    }));
+    });
 
     it('... injected services should use provided mockValues', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
@@ -195,9 +184,9 @@ describe('AppComponent (DONE)', () => {
     });
 
     describe('router setup (self-test)', () => {
-        it("... initial navigation should have detected empty route ''", waitForAsync(() => {
+        it('... should start with empty route before navigation', () => {
             expectToBe(location.path(), '');
-        }));
+        });
 
         it("... should redirect to /test1 from '' redirect", async () => {
             const success = await fixture.ngZone.run(() => router.navigate(['']));
@@ -269,37 +258,30 @@ describe('AppComponent (DONE)', () => {
         });
 
         describe('Analytics', () => {
-            it('... should call AnalyticsService to initialize Analytics', waitForAsync(() => {
+            it('... should call AnalyticsService to initialize Analytics', () => {
                 expectSpyCall(initialzeAnalyticsSpy, 1);
-            }));
+            });
 
-            it('... should not call AnalyticsService to track page view without navigation', waitForAsync(() => {
+            it('... should not call AnalyticsService to track page view without navigation', () => {
                 expectSpyCall(trackpageViewSpy, 0);
-            }));
+            });
 
-            it('... should call AnalyticsService to track page view after navigation', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test1');
-                    });
-                });
-            }));
+            it('... should call AnalyticsService to track page view after navigation', async () => {
+                await fixture.ngZone.run(() => router.navigate(['']));
 
-            it('... should call AnalyticsService to track page view after navigation changed', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test1');
+                expectSpyCall(trackpageViewSpy, 1, '/test1');
+            });
 
-                        router.navigate(['/test2']).then(() => {
-                            expectSpyCall(trackpageViewSpy, 2, '/test2');
+            it('... should call AnalyticsService to track page view after navigation changed', async () => {
+                await fixture.ngZone.run(() => router.navigate(['']));
+                expectSpyCall(trackpageViewSpy, 1, '/test1');
 
-                            router.navigate(['/test1']).then(() => {
-                                expectSpyCall(trackpageViewSpy, 3, '/test1');
-                            });
-                        });
-                    });
-                });
-            }));
+                await fixture.ngZone.run(() => router.navigate(['/test2']));
+                expectSpyCall(trackpageViewSpy, 2, '/test2');
+
+                await fixture.ngZone.run(() => router.navigate(['/test1']));
+                expectSpyCall(trackpageViewSpy, 3, '/test1');
+            });
         });
 
         describe('EditionInit', () => {
@@ -317,25 +299,19 @@ describe('AppComponent (DONE)', () => {
                 expectSpyCall(setTitleSpy, 0);
             });
 
-            it('... should set the custom page title from route data if available', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test1']).then(() => {
-                        expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
+            it('... should set the custom page title from route data if available', async () => {
+                await fixture.ngZone.run(() => router.navigate(['/test1']));
+                expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
 
-                        router.navigate(['/test2/test3']).then(() => {
-                            expectSpyCall(setTitleSpy, 2, 'Custom Page Title 3');
-                        });
-                    });
-                });
-            }));
+                await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
+                expectSpyCall(setTitleSpy, 2, 'Custom Page Title 3');
+            });
 
-            it('... should set the default page title if route data title is not available', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test2']).then(() => {
-                        expectSpyCall(setTitleSpy, 1, 'Default Page Title');
-                    });
-                });
-            }));
+            it('... should set the default page title if route data title is not available', async () => {
+                await fixture.ngZone.run(() => router.navigate(['/test2']));
+
+                expectSpyCall(setTitleSpy, 1, 'Default Page Title');
+            });
         });
 
         describe('SideOutlet', () => {

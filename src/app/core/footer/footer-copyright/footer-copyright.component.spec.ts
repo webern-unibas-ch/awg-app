@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
@@ -16,11 +17,11 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [FooterCopyrightComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterCopyrightComponent);
@@ -29,10 +30,6 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

@@ -1,9 +1,9 @@
 import { DOCUMENT } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
@@ -53,23 +53,20 @@ describe('AnalyticsService (DONE)', () => {
         };
 
         // Spy on service methods
-        initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
+        initializeAnalyticsSpy = vi.spyOn(analyticsService, 'initializeAnalytics');
 
-        gtagSpy = spyOn(window as any, 'gtag').and.callFake(mockAnalytics.gtag);
-        consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+        gtagSpy = vi.spyOn(window as any, 'gtag').mockImplementation(mockAnalytics.gtag);
+        consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
         // Clear mock stores after each test
         mockAnalytics.clear();
         mockConsole.clear();
+        vi.clearAllMocks();
 
         // Remove global function
         (window as any).gtag = undefined;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
@@ -141,7 +138,7 @@ describe('AnalyticsService (DONE)', () => {
             expect(mockConsole.get(0)).toBeUndefined();
 
             // Prevent setting of real gtag script to document head
-            spyOn<any>(mockDocument.head, 'prepend').and.callFake(() => {
+            vi.spyOn(mockDocument.head, 'prepend').mockImplementation(() => {
                 // Intentional empty test override
             });
 
@@ -157,10 +154,10 @@ describe('AnalyticsService (DONE)', () => {
             expectedScript.src = `${expectedAnalyticsEndpoint}?id=${expectedAnalyticsId}`;
 
             // Prevent setting of real gtag script to document head
-            const prependSpy = spyOn<any>(mockDocument.head, 'prepend').and.callFake(() => {
+            const prependSpy = vi.spyOn(mockDocument.head, 'prepend').mockImplementation(() => {
                 // Intentional empty test override
             });
-            const scriptSpy = spyOn<any>(analyticsService, '_prependAnalyticsScript').and.callThrough();
+            const scriptSpy = vi.spyOn(analyticsService as any, '_prependAnalyticsScript');
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
@@ -181,7 +178,7 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 0, null);
-            expectToBe(gtagSpy.calls.any(), false);
+            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
         });
 
         it('... should do nothing if isInitialized is set to false', () => {
@@ -190,7 +187,7 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 0, null);
-            expectToBe(gtagSpy.calls.any(), false);
+            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
         });
 
         it('... should run if analytics is initialized successfully', () => {
@@ -217,7 +214,7 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(null);
 
             expectSpyCall(gtagSpy, 0, null);
-            expectToBe(gtagSpy.calls.any(), false);
+            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
         });
 
         it('... should track the given page', () => {
@@ -258,12 +255,12 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(otherPage);
 
             expectSpyCall(gtagSpy, 2, otherAnalyticsEvent);
-            expect(gtagSpy.calls.any()).toBeTruthy();
-            expectToBe(gtagSpy.calls.count(), 2);
-            expectToEqual(gtagSpy.calls.first().args, expectedAnalyticsEvent);
-            expectToEqual(gtagSpy.calls.allArgs()[0], expectedAnalyticsEvent);
-            expectToEqual(gtagSpy.calls.allArgs()[1], otherAnalyticsEvent);
-            expectToEqual(gtagSpy.calls.mostRecent().args, otherAnalyticsEvent);
+            expect(vi.mocked(gtagSpy).mock.calls.length > 0).toBeTruthy();
+            expectToBe(vi.mocked(gtagSpy).mock.calls.length, 2);
+            expectToEqual(vi.mocked(gtagSpy).mock.calls[0], expectedAnalyticsEvent);
+            expectToEqual(vi.mocked(gtagSpy).mock.calls[0], expectedAnalyticsEvent);
+            expectToEqual(vi.mocked(gtagSpy).mock.calls[1], otherAnalyticsEvent);
+            expectToEqual(vi.mocked(gtagSpy).mock.lastCall, otherAnalyticsEvent);
 
             expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
             expectToEqual(mockAnalytics.getGtag(1), otherAnalyticsEvent);

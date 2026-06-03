@@ -2,18 +2,20 @@ import {
     HTTP_INTERCEPTORS,
     HttpClient,
     HttpInterceptor,
+    HttpRequest,
     HttpResponse,
     provideHttpClient,
     withInterceptorsFromDi,
 } from '@angular/common/http';
 import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
-import { of as observableOf, throwError as observableThrowError } from 'rxjs';
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { of as observableOf, throwError as observableThrowError } from 'rxjs';
+
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { getInterceptorInstance } from '@testing/interceptor-helper';
 
@@ -63,8 +65,8 @@ describe('LoadingInterceptor (DONE)', () => {
         );
 
         // Spies on service functions
-        updateLoadingStatusSpy = spyOn(loadingService, 'updateLoadingStatus').and.callThrough();
-        interceptSpy = spyOn(loadingInterceptor, 'intercept').and.callThrough();
+        updateLoadingStatusSpy = vi.spyOn(loadingService, 'updateLoadingStatus');
+        interceptSpy = vi.spyOn(loadingInterceptor, 'intercept');
     });
 
     // After every test, assert that there are no more pending requests
@@ -72,16 +74,12 @@ describe('LoadingInterceptor (DONE)', () => {
         httpTestingController.verify();
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
     it('... should test if interceptor instance is created', () => {
         expect(loadingInterceptor).toBeTruthy();
     });
 
     describe('httpTestingController', () => {
-        it('... should issue a mocked http get request', waitForAsync(() => {
+        it('... should issue a mocked http get request', () => {
             const testData: Data = { name: 'TestData' };
 
             httpClient.get<Data>('/foo/bar').subscribe({
@@ -100,7 +98,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
             // Respond with mocked data
             call.flush(testData);
-        }));
+        });
     });
 
     describe('loadingInterceptor', () => {
@@ -109,25 +107,25 @@ describe('LoadingInterceptor (DONE)', () => {
         const testData: Data = { name: 'TestData' };
         let call: TestRequest;
 
-        beforeEach(waitForAsync(() => {
+        beforeEach(() => {
             // Subscribe to GET Http Request
             httpClient.get<Data>(expectedUrl).subscribe({
                 next: data => {
                     expectToEqual(data, testData);
                 },
             });
-        }));
+        });
 
-        it('... should intercept HTTP requests', waitForAsync(() => {
+        it('... should intercept HTTP requests', () => {
             // Expect an HTTP request
             call = httpTestingController.expectOne({
                 url: expectedUrl,
             });
 
             expectSpyCall(interceptSpy, 1, call.request);
-        }));
+        });
 
-        it('... should call loadingService to update status (true) for pending HTTP requests', waitForAsync(() => {
+        it('... should call loadingService to update status (true) for pending HTTP requests', () => {
             // Expect an HTTP request
             call = httpTestingController.expectOne({
                 url: expectedUrl,
@@ -135,9 +133,9 @@ describe('LoadingInterceptor (DONE)', () => {
 
             expectSpyCall(interceptSpy, 1, call.request);
             expectSpyCall(updateLoadingStatusSpy, 1, true);
-        }));
+        });
 
-        it('... should call loadingService to update status (false) for resolved HTTP requests', waitForAsync(() => {
+        it('... should call loadingService to update status (false) for resolved HTTP requests', () => {
             // Expect an HTTP request
             call = httpTestingController.expectOne({
                 url: expectedUrl,
@@ -150,18 +148,20 @@ describe('LoadingInterceptor (DONE)', () => {
             call.flush(testData);
 
             expectSpyCall(updateLoadingStatusSpy, 2, false);
-        }));
+        });
 
-        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', waitForAsync(() => {
+        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', () => {
             // Spy on HTTP handler to handle another response
-            const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+            const httpHandlerSpy = {
+                handle: vi.fn().mockName('HttpHandler.handle'),
+            };
             const expectedHttpResponse = new HttpResponse({
                 status: 201,
                 statusText: 'Created',
                 body: 'anotherResponse',
                 url: expectedUrl,
             });
-            httpHandlerSpy.handle.and.returnValue(observableOf(expectedHttpResponse));
+            httpHandlerSpy.handle.mockReturnValue(observableOf(expectedHttpResponse));
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({
@@ -177,7 +177,7 @@ describe('LoadingInterceptor (DONE)', () => {
                     expectToEqual(response, expectedHttpResponse);
                 },
                 error: () => {
-                    fail('error should not have been called');
+                    throw new Error('error should not have been called');
                 },
                 complete: () => {
                     /* Intentionally left blank */
@@ -187,14 +187,16 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 additional call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        }));
+        });
 
-        it('... should call loadingService to update status (false) for failed HTTP requests', waitForAsync(() => {
+        it('... should call loadingService to update status (false) for failed HTTP requests', () => {
             // Spy on HTTP handler to throw a mocked error
             // Cf. https://stackoverflow.com/a/53688721
-            const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+            const httpHandlerSpy = {
+                handle: vi.fn().mockName('HttpHandler.handle'),
+            };
             const expectedError = { status: 401, statusText: 'error', message: 'test-error' };
-            httpHandlerSpy.handle.and.returnValue(observableThrowError(() => expectedError));
+            httpHandlerSpy.handle.mockReturnValue(observableThrowError(() => expectedError));
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({
@@ -206,18 +208,63 @@ describe('LoadingInterceptor (DONE)', () => {
 
             // Throw error via httpHandlerSpy
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
-                next: () => fail('should have been failed'),
+                next: () => {
+                    throw new Error('should have been failed');
+                },
                 error: err => {
                     expectToEqual(err, expectedError);
                 },
                 complete: () => {
-                    fail('should have been failed');
+                    throw new Error('should have been failed');
                 },
             });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 error call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        }));
+        });
+    });
+
+    describe('#_decreaseRequest()', () => {
+        it('... should have a private method `_decreaseRequest`', () => {
+            expect((loadingInterceptor as any)._decreaseRequest).toBeDefined();
+        });
+
+        it('... should remove a request from pending requests if it exists', () => {
+            const requestA = new HttpRequest('GET', '/a');
+            const requestB = new HttpRequest('GET', '/b');
+
+            (loadingInterceptor as any)._pendingRequests.push(requestA, requestB);
+
+            (loadingInterceptor as any)._decreaseRequest(requestA);
+
+            expectToBe((loadingInterceptor as any)._pendingRequests.length, 1);
+            expectToEqual((loadingInterceptor as any)._pendingRequests[0], requestB);
+            expectSpyCall(updateLoadingStatusSpy, 1, true);
+        });
+
+        it('... should update loading status to false if no pending requests remain', () => {
+            const request = new HttpRequest('GET', '/single');
+
+            (loadingInterceptor as any)._pendingRequests.push(request);
+
+            (loadingInterceptor as any)._decreaseRequest(request);
+
+            expectToBe((loadingInterceptor as any)._pendingRequests.length, 0);
+            expectSpyCall(updateLoadingStatusSpy, 1, false);
+        });
+
+        it('... should keep pending requests unchanged if request is not in the pending array', () => {
+            const pendingRequest = new HttpRequest('GET', '/pending');
+            const otherRequest = new HttpRequest('GET', '/other');
+
+            (loadingInterceptor as any)._pendingRequests.push(pendingRequest);
+
+            (loadingInterceptor as any)._decreaseRequest(otherRequest);
+
+            expectToBe((loadingInterceptor as any)._pendingRequests.length, 1);
+            expectToEqual((loadingInterceptor as any)._pendingRequests[0], pendingRequest);
+            expectSpyCall(updateLoadingStatusSpy, 1, true);
+        });
     });
 });

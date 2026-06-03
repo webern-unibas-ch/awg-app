@@ -1,9 +1,9 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -32,11 +32,11 @@ describe('FooterLogoComponent (DONE)', () => {
     const cssClassFloatEnd = 'float-end';
     const cssClassMarginY2 = 'my-2';
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [FooterLogoComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterLogoComponent);
@@ -49,13 +49,7 @@ describe('FooterLogoComponent (DONE)', () => {
         expectedNonMainFooterLogo = LOGOS_DATA['angular'];
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getLogoClassSpy = spyOn<any>(component, 'getLogoClass').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        getLogoClassSpy = vi.spyOn(component, 'getLogoClass');
     });
 
     it('... should create', () => {
