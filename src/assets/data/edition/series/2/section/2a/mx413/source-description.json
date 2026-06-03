@@ -565,7 +565,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1665,7 +1665,7 @@
                                             "measure": "6",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Version unter und über den Systemen: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter und über den Systemen: <br />##Abbildung##"
                                         }
                                     ]
                                 }

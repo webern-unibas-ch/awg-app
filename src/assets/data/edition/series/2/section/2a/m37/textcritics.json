@@ -26,7 +26,7 @@
                                 "measure": "10",
                                 "system": "Klav.",
                                 "position": "(2/4)",
-                                "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> verschobenen Untersatzes weggelassen.###Grafik###."
+                                "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> verschobenen Untersatzes weggelassen. <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "awg-tkk-m37_tf1-003",
