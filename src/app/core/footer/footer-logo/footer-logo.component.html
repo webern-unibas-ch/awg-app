@@ -1,3 +1,8 @@
-<a class="awg-logo-link" href="{{ logo.href }}">
-    <img [ngClass]="getLogoClass(logo.id)" id="{{ logo.id }}" src="{{ logo.src }}" alt="{{ logo.alt }}" width="200" />
+<a class="awg-logo-link" href="{{ logo?.href }}">
+    <img
+        [ngClass]="getLogoClass(logo?.id)"
+        id="{{ logo?.id }}"
+        src="{{ logo?.src }}"
+        alt="{{ logo?.alt }}"
+        width="200" />
 </a>

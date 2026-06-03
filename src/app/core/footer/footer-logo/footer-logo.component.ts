@@ -33,7 +33,7 @@ export class FooterLogoComponent {
      *
      * @returns {string} The class list for the logo.
      */
-    getLogoClass(id: string): string {
+    getLogoClass(id: string | undefined): string {
         const isSnfLogo = id === LOGOS_DATA['snf'].id;
         const isUnibasLogo = id === LOGOS_DATA['unibas'].id;
         const isSagwLogo = id === LOGOS_DATA['sagw'].id;
