@@ -14,5 +14,5 @@
             "@testing/*": ["testing/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/", "polyfills.ts"]
 }
