@@ -1,10 +1,13 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
     expectToContain,
@@ -16,8 +19,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { HomeViewCard } from '@awg-views/home-view/models';
 
-import { click } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { HomeViewCardComponent } from './home-view-card.component';
 
 describe('HomeViewCardComponent (DONE)', () => {
@@ -51,10 +52,6 @@ describe('HomeViewCardComponent (DONE)', () => {
             linkText: 'Test Link',
         };
         expectedFaArrowRight = faArrowRight;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('should create', () => {
@@ -268,14 +265,13 @@ describe('HomeViewCardComponent (DONE)', () => {
                 expectToEqual(routerLinks[0].linkParams, expectedRouterLink);
             });
 
-            it('... can click all links in template', () => {
+            it('... can click all links in template', async () => {
                 const linkDe = linkDes[0];
                 const expectedRouterLink = expectedCardData.linkRouter;
 
                 expectToBe(routerLinks[0].navigatedTo, null);
 
-                click(linkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(linkDe, fixture);
 
                 expectToEqual(routerLinks[0].navigatedTo, expectedRouterLink);
             });
