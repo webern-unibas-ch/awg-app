@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LicenseComponent } from './license.component';
@@ -10,7 +12,10 @@ describe('LicenseComponent', () => {
     let fixture: ComponentFixture<LicenseComponent>;
     let compDe: DebugElement;
 
-    let expectedLicenseIcons: Array<{ src: string; alt: string }>;
+    let expectedLicenseIcons: Array<{
+        src: string;
+        alt: string;
+    }>;
     let expectedLicenseLink: string;
     let expectedLicenseText: string;
 

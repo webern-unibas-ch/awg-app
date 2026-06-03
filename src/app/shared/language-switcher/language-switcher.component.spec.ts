@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -31,10 +33,12 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         expectedLanguage = 0;
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
-        emitLanguageChangeRequestSpy = spyOn(component.languageChangeRequest, 'emit').and.callThrough();
+        setLanguageSpy = vi.spyOn(component, 'setLanguage');
+        emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -81,40 +85,40 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should trigger `setLanguage` method on anchor click', fakeAsync(() => {
+            it('... should trigger `setLanguage` method on anchor click', async () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(setLanguageSpy, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(aDes[1], fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(setLanguageSpy, 2);
-            }));
+            });
 
-            it('... should trigger setLanguage method with 0 when clicking on first anchor', fakeAsync(() => {
+            it('... should trigger setLanguage method with 0 when clicking on first anchor', async () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
                 // Click on first anchor
-                clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(setLanguageSpy, 1, 0);
-            }));
+            });
 
-            it('... should trigger setLanguage method with 1 when clicking on second anchor', fakeAsync(() => {
+            it('... should trigger setLanguage method with 1 when clicking on second anchor', async () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
                 // Click on second anchor
-                clickAndAwaitChanges(aDes[1], fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(setLanguageSpy, 1, 1);
-            }));
+            });
 
             it('... should have .active class on first anchor element when currentLanguage is 0', () => {
                 component.currentLanguage = 0;
@@ -150,20 +154,20 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 expect(component.setLanguage).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(setLanguageSpy, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(aDes[1], fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(setLanguageSpy, 2);
-            }));
+            });
 
             it('... should emit 0 when called with 0', () => {
                 component.setLanguage(0);
