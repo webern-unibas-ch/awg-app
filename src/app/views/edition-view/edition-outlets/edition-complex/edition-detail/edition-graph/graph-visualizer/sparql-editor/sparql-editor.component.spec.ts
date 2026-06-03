@@ -1,5 +1,8 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange, inject } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import {
@@ -10,7 +13,6 @@ import {
     NgbDropdownModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
-import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -36,10 +38,14 @@ import { SparqlEditorComponent } from './sparql-editor.component';
     standalone: false,
 })
 class CodeMirrorStubComponent {
-    @Input() mode: CmMode;
-    @Input() content: string;
-    @Output() contentChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output() editor: EditorView;
+    @Input()
+    mode: CmMode;
+    @Input()
+    content: string;
+    @Output()
+    contentChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output()
+    editor: EditorView;
 }
 
 @Component({
@@ -96,12 +102,12 @@ describe('SparqlEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAnimationConfigModule, NgbAccordionDirective, NgbDropdown],
             declarations: [SparqlEditorComponent, CodeMirrorStubComponent, ViewHandleButtongGroupStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SparqlEditorComponent);
@@ -145,22 +151,20 @@ describe('SparqlEditorComponent (DONE)', () => {
         ];
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        isExampleQueriesEnabledSpy = spyOn(component, 'isExampleQueriesEnabled').and.callThrough();
-        onEditorInputChangeSpy = spyOn(component, 'onEditorInputChange').and.callThrough();
-        onQueryListChangeSpy = spyOn(component, 'onQueryListChange').and.callThrough();
-        onViewChangeSpy = spyOn(component, 'onViewChange').and.callThrough();
-        performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
-        isAccordionItemCollapsedSpy = spyOn(component, 'isAccordionItemCollapsed').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
-        setViewTypeSpy = spyOn(component, 'setViewType').and.callThrough();
-        switchQueryTypeSpy = spyOn(component, 'switchQueryType').and.callThrough();
-        emitErrorMessageRequestSpy = spyOn(component.errorMessageRequest, 'emit').and.callThrough();
-        emitPerformQueryRequestSpy = spyOn(component.performQueryRequest, 'emit').and.callThrough();
-        emitResestQueryRequestSpy = spyOn(component.resetQueryRequest, 'emit').and.callThrough();
-        emitUpdateQueryStringRequestSpy = spyOn(component.updateQueryStringRequest, 'emit').and.callThrough();
+        isExampleQueriesEnabledSpy = vi.spyOn(component, 'isExampleQueriesEnabled');
+        onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
+        onQueryListChangeSpy = vi.spyOn(component, 'onQueryListChange');
+        onViewChangeSpy = vi.spyOn(component, 'onViewChange');
+        performQuerySpy = vi.spyOn(component, 'performQuery');
+        isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        resetQuerySpy = vi.spyOn(component, 'resetQuery');
+        setViewTypeSpy = vi.spyOn(component, 'setViewType');
+        switchQueryTypeSpy = vi.spyOn(component, 'switchQueryType');
+        emitErrorMessageRequestSpy = vi.spyOn(component.errorMessageRequest, 'emit');
+        emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
+        emitResestQueryRequestSpy = vi.spyOn(component.resetQueryRequest, 'emit');
+        emitUpdateQueryStringRequestSpy = vi.spyOn(component.updateQueryStringRequest, 'emit');
     });
 
     it('... should create', () => {
@@ -384,7 +388,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     describe('Example query button group', () => {
                         it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', () => {
-                            isExampleQueriesEnabledSpy.and.returnValue(true);
+                            isExampleQueriesEnabledSpy.mockReturnValue(true);
 
                             detectChangesOnPush(fixture);
 
@@ -404,7 +408,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         });
 
                         it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', () => {
-                            isExampleQueriesEnabledSpy.and.returnValue(false);
+                            isExampleQueriesEnabledSpy.mockReturnValue(false);
 
                             detectChangesOnPush(fixture);
 
@@ -465,8 +469,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             expectToBe(btnEl.getAttribute('aria-label'), 'Toggle dropdown');
                         });
 
-                        it('... should contain one dropdown menu div with dropdown item links in example query btn-group dropdown', fakeAsync(() => {
-                            tick();
+                        it('... should contain one dropdown menu div with dropdown item links in example query btn-group dropdown', () => {
                             const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -487,7 +490,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 expectedQueryList.length,
                                 expectedQueryList.length
                             );
-                        }));
+                        });
 
                         it('... should display label on dropdown item links in example query btn-group', () => {
                             const menuDes = getAndExpectDebugElementByCss(
@@ -526,14 +529,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                             const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                            expect(aEl0).toHaveClass('disabled');
-                            expect(aEl1).not.toHaveClass('disabled');
+                            expect(aEl0.classList.contains('disabled')).toBe(true);
+                            expect(aEl1.classList.contains('disabled')).toBe(false);
 
                             component.query = expectedConstructQuery2;
                             detectChangesOnPush(fixture);
 
-                            expect(aEl0).not.toHaveClass('disabled');
-                            expect(aEl1).toHaveClass('disabled');
+                            expect(aEl0.classList.contains('disabled')).toBe(false);
+                            expect(aEl1.classList.contains('disabled')).toBe(true);
                         });
 
                         it('... should trigger `onQueryListChange()` by click on dropdown item links', () => {
@@ -549,7 +552,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                             const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                            expect(aEl1).not.toHaveClass('disabled');
+                            expect(aEl1.classList.contains('disabled')).toBe(false);
 
                             // Click on second item (first disabled)
                             click(aEl1 as HTMLElement);
@@ -561,7 +564,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             component.query = expectedConstructQuery2;
                             detectChangesOnPush(fixture);
 
-                            expect(aEl0).not.toHaveClass('disabled');
+                            expect(aEl0.classList.contains('disabled')).toBe(false);
 
                             // Click on first item (second disabled)
                             click(aEl0 as HTMLElement);
@@ -876,7 +879,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 describe('Example query button group', () => {
                     it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', () => {
-                        isExampleQueriesEnabledSpy.and.returnValue(true);
+                        isExampleQueriesEnabledSpy.mockReturnValue(true);
 
                         detectChangesOnPush(fixture);
 
@@ -897,7 +900,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
 
                     it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', () => {
-                        isExampleQueriesEnabledSpy.and.returnValue(false);
+                        isExampleQueriesEnabledSpy.mockReturnValue(false);
 
                         detectChangesOnPush(fixture);
 
@@ -1017,14 +1020,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                         const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                        expect(aEl0).toHaveClass('disabled');
-                        expect(aEl1).not.toHaveClass('disabled');
+                        expect(aEl0.classList.contains('disabled')).toBe(true);
+                        expect(aEl1.classList.contains('disabled')).toBe(false);
 
                         component.query = expectedConstructQuery2;
                         detectChangesOnPush(fixture);
 
-                        expect(aEl0).not.toHaveClass('disabled');
-                        expect(aEl1).toHaveClass('disabled');
+                        expect(aEl0.classList.contains('disabled')).toBe(false);
+                        expect(aEl1.classList.contains('disabled')).toBe(true);
                     });
 
                     it('... should trigger `onQueryListChange()` by click on dropdown item links', () => {
@@ -1040,7 +1043,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                         const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                        expect(aEl1).not.toHaveClass('disabled');
+                        expect(aEl1.classList.contains('disabled')).toBe(false);
 
                         // Click on second item (first disabled)
                         click(aEl1 as HTMLElement);
@@ -1052,7 +1055,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         component.query = expectedConstructQuery2;
                         detectChangesOnPush(fixture);
 
-                        expect(aEl0).not.toHaveClass('disabled');
+                        expect(aEl0.classList.contains('disabled')).toBe(false);
 
                         // Click on first item (second disabled)
                         click(aEl0 as HTMLElement);
@@ -1309,7 +1312,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query = expectedConstructQuery2;
                 await detectChangesOnPush(fixture);
 
-                expect(aEl0).not.toHaveClass('disabled');
+                expect(aEl0.classList.contains('disabled')).toBe(false);
 
                 // Click on first item (second disabled)
                 click(aEl0 as HTMLElement);
@@ -1387,7 +1390,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.onViewChange).toBeDefined();
             });
 
-            it('... should trigger on event from view handle button group', fakeAsync(() => {
+            it('... should trigger on event from view handle button group', () => {
                 // Header debug elements
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -1410,7 +1413,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 viewHandleButtongGroupCmp.viewChangeRequest.emit(ViewHandleTypes.GRAPH);
 
                 expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
-            }));
+            });
 
             it('... should trigger switchQueryType(), onEditorInputChange() with queryString and performQuery()', () => {
                 component.onViewChange(ViewHandleTypes.GRAPH);
@@ -1480,7 +1483,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectSpyCall(emitErrorMessageRequestSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
+                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
                     const expectedErrorMessage = new ToastMessage('Empty query', 'Please enter a SPARQL query.');
 
                     component.query.queryString = '';
@@ -1659,6 +1662,16 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(component.query.queryString, expectedSelectQuery1.queryString);
             });
 
+            it('... should not switch to `select` if requested view is `table` but queryString has no `CONSTRUCT`', () => {
+                component.query.queryType = 'construct';
+                component.query.queryString = 'ASK WHERE { ?test ?has ?success }';
+
+                component.switchQueryType(ViewHandleTypes.TABLE);
+
+                expectToBe(component.query.queryType, 'construct');
+                expectToBe(component.query.queryString, 'ASK WHERE { ?test ?has ?success }');
+            });
+
             it('... should switch querytype and string to `construct` if requested view is `graph`', () => {
                 // Switch to TABLE view
                 component.switchQueryType(ViewHandleTypes.TABLE);
@@ -1671,6 +1684,16 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 expectToBe(component.query.queryType, expectedConstructQuery1.queryType);
                 expectToBe(component.query.queryString, expectedConstructQuery1.queryString);
+            });
+
+            it('... should not switch to `construct` if requested view is `graph` but queryString has no `SELECT`', () => {
+                component.query.queryType = 'select';
+                component.query.queryString = 'ASK WHERE { ?test ?has ?success }';
+
+                component.switchQueryType(ViewHandleTypes.GRAPH);
+
+                expectToBe(component.query.queryType, 'select');
+                expectToBe(component.query.queryString, 'ASK WHERE { ?test ?has ?success }');
             });
 
             it('... should do nothing if requested view is `grid`', () => {
@@ -1687,7 +1710,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query.queryType = expectedConstructQuery1.queryType;
                 component.query.queryString = expectedConstructQuery1.queryString;
 
-                expect(() => component.switchQueryType(undefined)).toThrowError(
+                expect(() => component.switchQueryType(undefined)).toThrow(
                     `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: undefined.`
                 );
             });

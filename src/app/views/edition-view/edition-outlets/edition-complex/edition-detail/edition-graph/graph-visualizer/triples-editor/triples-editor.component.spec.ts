@@ -1,10 +1,12 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
-import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -28,10 +30,14 @@ import { TriplesEditorComponent } from './triples-editor.component';
     standalone: false,
 })
 class CodeMirrorStubComponent {
-    @Input() mode: CmMode;
-    @Input() content: string;
-    @Output() contentChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output() editor: EditorView;
+    @Input()
+    mode: CmMode;
+    @Input()
+    content: string;
+    @Output()
+    contentChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output()
+    editor: EditorView;
 }
 
 describe('TriplesEditorComponent (DONE)', () => {
@@ -64,12 +70,12 @@ describe('TriplesEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TriplesEditorComponent);
@@ -83,17 +89,15 @@ describe('TriplesEditorComponent (DONE)', () => {
         expectedTriples = 'example:Test example:has example:Success';
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        onEditorInputChangeSpy = spyOn(component, 'onEditorInputChange').and.callThrough();
-        performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
-        isAccordionItemCollapsedSpy = spyOn(component, 'isAccordionItemCollapsed').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
-        emitErrorMessageSpy = spyOn(component.errorMessageRequest, 'emit').and.callThrough();
-        emitPerformQueryRequestSpy = spyOn(component.performQueryRequest, 'emit').and.callThrough();
-        emitResetTriplesRequestSpy = spyOn(component.resetTriplesRequest, 'emit').and.callThrough();
-        emitUpdateTriplesRequestSpy = spyOn(component.updateTriplesRequest, 'emit').and.callThrough();
+        onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
+        performQuerySpy = vi.spyOn(component, 'performQuery');
+        isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        resetTriplesSpy = vi.spyOn(component, 'resetTriples');
+        emitErrorMessageSpy = vi.spyOn(component.errorMessageRequest, 'emit');
+        emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
+        emitResetTriplesRequestSpy = vi.spyOn(component.resetTriplesRequest, 'emit');
+        emitUpdateTriplesRequestSpy = vi.spyOn(component.updateTriplesRequest, 'emit');
     });
 
     it('... should create', () => {

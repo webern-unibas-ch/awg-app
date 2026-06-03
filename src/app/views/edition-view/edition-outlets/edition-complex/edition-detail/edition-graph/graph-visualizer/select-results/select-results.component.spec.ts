@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -34,9 +36,12 @@ class SparqlNoResultsStubComponent {}
     standalone: false,
 })
 class SparqlTableStubComponent {
-    @Input() queryResult: QueryResult;
-    @Input() queryTime: number;
-    @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    queryResult: QueryResult;
+    @Input()
+    queryTime: number;
+    @Output()
+    clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({
@@ -51,8 +56,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QueryResult;
-    let expectedQueryResult$: Observable<QueryResult>;
+    let expectedQueryResult: QueryResult | string;
+    let expectedQueryResult$: Observable<QueryResult | string>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
@@ -72,8 +77,8 @@ describe('SelectResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [
                 SelectResultsComponent,
@@ -82,7 +87,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SelectResultsComponent);
@@ -103,12 +108,10 @@ describe('SelectResultsComponent (DONE)', () => {
         expectedIsFullscreen = false;
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        emitClickedTableRequestSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        isQueryResultNotEmptySpy = spyOn(component, 'isQueryResultNotEmpty').and.callThrough();
-        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
+        emitClickedTableRequestSpy = vi.spyOn(component.clickedTableRequest, 'emit');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');
+        tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
     });
 
     it('... should create', () => {
@@ -158,11 +161,11 @@ describe('SelectResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `queryResult` input', waitForAsync(() => {
+        it('... should have `queryResult` input', async () => {
             expectToEqual(component.queryResult$, expectedQueryResult$);
-            expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-            expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedQueryResult);
-        }));
+            await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+            await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedQueryResult);
+        });
 
         it('... should have `queryTime` input', () => {
             expectToBe(component.queryTime, expectedQueryTime);
@@ -689,6 +692,18 @@ describe('SelectResultsComponent (DONE)', () => {
             });
 
             describe('... should return false if ...', () => {
+                it('... queryResult is a string message', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
+
+                    const noResultsMessage = 'Query returned no results';
+                    component.queryResult$ = observableOf(noResultsMessage);
+
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, noResultsMessage);
+                    expectToBe(component.isQueryResultNotEmpty(noResultsMessage), false);
+                });
+
                 it('... queryResult.head is undefined', () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 

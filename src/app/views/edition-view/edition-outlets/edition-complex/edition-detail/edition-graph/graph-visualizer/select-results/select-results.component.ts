@@ -25,7 +25,7 @@ export class SelectResultsComponent {
      * It keeps the query result as an observable.
      */
     @Input()
-    queryResult$: Observable<QueryResult>;
+    queryResult$: Observable<QueryResult | string>;
 
     /**
      * Input variable: queryTime.
@@ -79,7 +79,10 @@ export class SelectResultsComponent {
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isQueryResultNotEmpty(queryResult: QueryResult): boolean {
+    isQueryResultNotEmpty(queryResult: QueryResult | string): boolean {
+        if (typeof queryResult === 'string') {
+            return false;
+        }
         const { head, body } = queryResult;
         return this._utils.isNotEmptyArray(head?.vars) && this._utils.isNotEmptyArray(body?.bindings);
     }

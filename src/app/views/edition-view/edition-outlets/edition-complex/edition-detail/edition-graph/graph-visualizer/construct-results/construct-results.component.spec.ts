@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,9 +30,12 @@ import { ConstructResultsComponent } from './construct-results.component';
     standalone: false,
 })
 class ForceGraphStubComponent {
-    @Input() currentQueryResultTriples: Triple[];
-    @Input() height: number;
-    @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
+    @Input()
+    currentQueryResultTriples: Triple[];
+    @Input()
+    height: number;
+    @Output()
+    clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
 @Component({
@@ -73,8 +78,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [
                 ConstructResultsComponent,
@@ -83,7 +88,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ConstructResultsComponent);
@@ -101,12 +106,14 @@ describe('ConstructResultsComponent (DONE)', () => {
         expectedQueryResult$ = observableOf([expectedQueryResult]);
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        emitClickedNodeRequestSpy = spyOn(component.clickedNodeRequest, 'emit').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        isQueryResultNotEmptySpy = spyOn(component, 'isQueryResultNotEmpty').and.callThrough();
-        nodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
+        emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');
+        nodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

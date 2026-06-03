@@ -1,8 +1,10 @@
 import { DebugElement, NgModule, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -31,12 +33,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [UnsupportedTypeResultsComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
@@ -48,9 +50,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         expectedIsFullscreen = false;
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
     });
 
     it('... should create', () => {
@@ -218,7 +218,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
-                        expect(pEl).toHaveClass('text-center');
+                        expect(pEl.classList.contains('text-center')).toBe(true);
                     });
                 });
 
@@ -378,7 +378,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
-                        expect(pEl).toHaveClass('text-center');
+                        expect(pEl.classList.contains('text-center')).toBe(true);
                     });
                 });
 

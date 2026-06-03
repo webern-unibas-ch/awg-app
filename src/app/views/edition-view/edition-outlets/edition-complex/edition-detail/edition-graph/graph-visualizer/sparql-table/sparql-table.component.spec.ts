@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -15,11 +17,16 @@ import { SparqlTableComponent } from './sparql-table.component';
     standalone: false,
 })
 class TableStubComponent {
-    @Input() tableTitle: string;
-    @Input() headerInputData: any;
-    @Input() rowInputData: any;
-    @Output() clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
-    @Output() clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    tableTitle: string;
+    @Input()
+    headerInputData: any;
+    @Input()
+    rowInputData: any;
+    @Output()
+    clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('SparqlTableComponent (DONE)', () => {
@@ -61,10 +68,8 @@ describe('SparqlTableComponent (DONE)', () => {
         expectedTableTitle = 'SELECT Anfrage';
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
-        emitSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
+        tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
+        emitSpy = vi.spyOn(component.clickedTableRequest, 'emit');
     });
 
     it('... should create', () => {

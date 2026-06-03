@@ -96,9 +96,9 @@ export class GraphVisualizerService {
      * @param {string} ttlString The given turtle string.
      * @param {string} [mimeType] The optional given mimetype.
      *
-     * @returns {Promise<Triple[]>} A promise of the query result triples.
+     * @returns {Promise<string | QueryResult | Triple[]>} A promise of the query result.
      */
-    doQuery(
+    async doQuery(
         queryType: string,
         query: string,
         ttlString: string,
@@ -108,31 +108,28 @@ export class GraphVisualizerService {
             mimeType = 'text/turtle';
         }
 
-        return this._createStore(rdfstore)
-            .then(store => {
-                this._store = store;
+        const store = await this._createStore(rdfstore);
+        this._store = store;
 
-                return this._loadTriplesInStore(store, ttlString, mimeType);
-            })
-            .then(() => this._executeQuery(this._store, query))
-            .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
-                // Reformat data if select query
-                if (queryType === 'select') {
-                    const response = res as RDFStoreSelectResponse;
-                    const selectResponse = this._prepareSelectResponse(response);
-                    return selectResponse.data;
-                }
+        await this._loadTriplesInStore(store, ttlString, mimeType);
+        const res: RDFStoreConstructResponse | RDFStoreSelectResponse = await this._executeQuery(this._store, query);
 
-                // Reformat data if construct query
-                if (queryType === 'construct') {
-                    const response = res as RDFStoreConstructResponse;
-                    const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
-                    const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
-                    return constructResponse;
-                }
+        // Reformat data if select query
+        if (queryType === 'select') {
+            const response = res as RDFStoreSelectResponse;
+            const selectResponse = this._prepareSelectResponse(response);
+            return selectResponse.data;
+        }
 
-                return undefined;
-            });
+        // Reformat data if construct query
+        if (queryType === 'construct') {
+            const response = res as RDFStoreConstructResponse;
+            const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
+            const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
+            return constructResponse;
+        }
+
+        return undefined;
     }
 
     /**
@@ -276,8 +273,13 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<any>} A promise of the rdfstore instance.
      */
-    private _createStore(store: typeof rdfstore): Promise<any> {
+    private _createStore(store: any): Promise<any> {
         return new Promise((resolve, reject) => {
+            if (!store?.create) {
+                reject(new Error('rdfstore is not available in the current runtime.'));
+                return;
+            }
+
             store.create((err, createdStore) => {
                 if (err) {
                     reject(err);
