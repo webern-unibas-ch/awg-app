@@ -110,17 +110,9 @@
                     "builder": "@angular/build:unit-test",
                     "options": {
                         "runner": "vitest",
+                        "runnerConfig": true,
                         "reporters": ["default"],
                         "coverageReporters": ["html", "text-summary", "lcovonly"]
-                    },
-                    "configurations": {
-                        "local-browser": {
-                            "browsers": ["Chromium"]
-                        },
-                        "ci": {
-                            "watch": false,
-                            "progress": false
-                        }
                     }
                 },
                 "lint": {
