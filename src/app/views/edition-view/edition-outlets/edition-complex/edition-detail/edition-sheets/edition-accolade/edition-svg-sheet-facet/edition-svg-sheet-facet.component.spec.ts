@@ -1,6 +1,8 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -39,7 +41,10 @@ class EditionSvgSheetFacetItemStubComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetFacetComponent (DONE)', () => {
@@ -64,12 +69,12 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [EditionSvgSheetFacetComponent, EditionSvgSheetFacetItemStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetFacetComponent);
@@ -96,12 +101,10 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         expectedListUl = faListUl;
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleSheetFacetSpy = spyOn(component, 'toggleSheetFacet').and.callThrough();
-        toggleSheetFacetRequestEmitSpy = spyOn(component.toggleSheetFacetRequest, 'emit').and.callThrough();
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
+        toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
     });
 
     it('... should create', () => {

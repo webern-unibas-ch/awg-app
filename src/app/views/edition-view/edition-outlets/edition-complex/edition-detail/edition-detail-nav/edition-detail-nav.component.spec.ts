@@ -1,11 +1,12 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import { of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { of as observableOf } from 'rxjs';
+
 import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -25,7 +26,8 @@ import { EditionDetailNavComponent } from './edition-detail-nav.component';
 class RouterLinkButtonGroupStubComponent {
     @Input()
     routerLinkButtons: RouterLinkButton[];
-    @Input() queryParamsHandling?: QueryParamsHandling = '';
+    @Input()
+    queryParamsHandling?: QueryParamsHandling = '';
     @Output()
     selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 }
@@ -41,19 +43,25 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let setButtonsSpy: Spy;
     let getSelectedEditionComplexSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
+    beforeEach(async () => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionStateService = jasmine.createSpyObj('EditionStateService', ['getSelectedEditionComplex']);
+        const mockEditionStateService = {
+            getSelectedEditionComplex: vi.fn().mockName('EditionStateService.getSelectedEditionComplex'),
+        };
         // Make the spy return a synchronous Observable with the test data
-        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.and.returnValue(
+        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.mockReturnValue(
             observableOf(EditionComplexesService.getEditionComplexById('op12'))
         );
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionDetailNavComponent);
@@ -90,13 +98,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         ];
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setButtonsSpy = spyOn(component, 'setButtons').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        setButtonsSpy = vi.spyOn(component, 'setButtons');
     });
 
     it('... should create', () => {
