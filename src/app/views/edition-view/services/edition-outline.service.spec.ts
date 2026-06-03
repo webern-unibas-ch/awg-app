@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -23,13 +23,9 @@ describe('EditionOutlineService (DONE)', () => {
         TestBed.configureTestingModule({});
 
         // Spies for service methods
-        initializeEditionOutlineSpy = spyOn(EditionOutlineService, 'initializeEditionOutline').and.callThrough();
-        setEditionOutlineSpy = spyOn(EditionOutlineService, 'setEditionOutline').and.callThrough();
-        fetchEditionOutlineDataSpy = spyOn(EditionOutlineService as any, '_fetchEditionOutlineData').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        initializeEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'initializeEditionOutline');
+        setEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'setEditionOutline');
+        fetchEditionOutlineDataSpy = vi.spyOn(EditionOutlineService as any, '_fetchEditionOutlineData');
     });
 
     it('... should create', () => {
