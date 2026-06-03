@@ -1,10 +1,10 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -67,16 +67,16 @@ describe('ContactInfoComponent (DONE)', () => {
 
     const expectedContactInfoHeader = 'Kontakt';
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock service for test purposes
         mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [BrowserModule],
             declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ContactInfoComponent);
@@ -97,14 +97,8 @@ describe('ContactInfoComponent (DONE)', () => {
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
 
         // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        provideOSMUrlSpy = spyOn(component, 'provideOSMUrls').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
+        provideOSMUrlSpy = vi.spyOn(component, 'provideOSMUrls');
     });
 
     it('... should create', () => {
