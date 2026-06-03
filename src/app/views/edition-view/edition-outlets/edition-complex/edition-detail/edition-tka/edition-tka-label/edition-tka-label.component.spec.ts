@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -28,7 +28,9 @@ describe('EditionTkaLabelComponent (DONE)', () => {
             declarations: [EditionTkaLabelComponent],
             providers: [UtilityService],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionTkaLabelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -41,6 +43,10 @@ describe('EditionTkaLabelComponent (DONE)', () => {
 
         // Spies on component functions
         isSketchIdSpy = vi.spyOn(utils, 'isSketchId');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('should create', () => {

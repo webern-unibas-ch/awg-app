@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import type { Mock } from 'vitest';
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
@@ -282,6 +282,10 @@ describe('EditionReportComponent', () => {
         modalOpenSpy = vi.spyOn(component.modal, 'open');
         onModalOpenSpy = vi.spyOn(component, 'onModalOpen');
         selectSvgSheetSpy = vi.spyOn(component, 'onSvgSheetSelect');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

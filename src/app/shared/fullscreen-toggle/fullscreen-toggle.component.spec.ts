@@ -49,7 +49,9 @@ describe('FullscreenToggleComponent (DONE)', () => {
             declarations: [FullscreenToggleComponent],
             providers: [{ provide: FullscreenService, useValue: mockFullscreenService }],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(FullscreenToggleComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

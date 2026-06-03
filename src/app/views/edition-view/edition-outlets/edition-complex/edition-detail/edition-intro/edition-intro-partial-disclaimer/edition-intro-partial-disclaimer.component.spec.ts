@@ -41,7 +41,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionIntroPartialDisclaimerComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroPartialDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

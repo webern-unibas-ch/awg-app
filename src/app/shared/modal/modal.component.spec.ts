@@ -106,7 +106,7 @@ describe('ModalComponent', () => {
 
     afterEach(() => {
         // Clear mocks after each test
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create the component', () => {

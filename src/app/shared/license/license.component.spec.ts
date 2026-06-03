@@ -23,7 +23,9 @@ describe('LicenseComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [LicenseComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(LicenseComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

@@ -63,7 +63,7 @@ describe('AnalyticsService (DONE)', () => {
         // Clear mock stores after each test
         mockAnalytics.clear();
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
 
         // Remove global function
         (window as any).gtag = undefined;

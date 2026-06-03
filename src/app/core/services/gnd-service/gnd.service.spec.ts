@@ -64,7 +64,7 @@ describe('GndService (DONE)', () => {
         expectedLocalStorage.clear();
         mockConsole.clear();
         mockWindow.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

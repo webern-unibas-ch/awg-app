@@ -37,7 +37,9 @@ describe('HomeViewCardComponent (DONE)', () => {
             imports: [FontAwesomeTestingModule],
             declarations: [HomeViewCardComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewCardComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

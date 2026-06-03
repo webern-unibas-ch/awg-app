@@ -28,7 +28,9 @@ describe('ScrollToTopComponent (DONE)', () => {
             imports: [FontAwesomeTestingModule],
             declarations: [ScrollToTopComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(ScrollToTopComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

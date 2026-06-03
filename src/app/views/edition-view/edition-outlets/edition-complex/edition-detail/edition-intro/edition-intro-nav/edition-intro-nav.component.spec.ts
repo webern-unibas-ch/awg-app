@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { click } from '@testing/click-helper';
@@ -54,7 +54,9 @@ describe('EditionIntroNavComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionIntroNavComponent, LanguageSwitcherStubComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -70,6 +72,10 @@ describe('EditionIntroNavComponent (DONE)', () => {
         // Spies on component functions
         setLanguageSpy = vi.spyOn(component, 'setLanguage');
         emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {

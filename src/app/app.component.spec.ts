@@ -139,19 +139,20 @@ describe('AppComponent (DONE)', () => {
                 { provide: Title, useValue: mockTitleService },
             ],
         }).compileComponents();
-
-        // Spies for service methods
-        getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
-        setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
-        initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
-        initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
-        trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
     });
 
     beforeEach(() => {
         // Window spy object (Analytics)
         (window as any).gtag = vi.fn();
 
+        // Spies for service methods (need to be created before component creation to capture calls in constructor)
+        getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
+        setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
+        initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
+        initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
+        trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
+
+        // Create component and test fixture
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -166,6 +167,8 @@ describe('AppComponent (DONE)', () => {
     afterEach(() => {
         // Remove global spy object
         (window as any).gtag = undefined;
+
+        vi.restoreAllMocks();
     });
 
     it('... should create the app', () => {

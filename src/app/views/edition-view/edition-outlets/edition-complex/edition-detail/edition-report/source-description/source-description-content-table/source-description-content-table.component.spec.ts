@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -39,7 +39,9 @@ describe('SourceDescriptionContentTableComponent', () => {
             declarations: [SourceDescriptionContentTableComponent, CompileHtmlComponent, AbbrDirective],
             providers: [UtilityService],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionContentTableComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -60,6 +62,10 @@ describe('SourceDescriptionContentTableComponent', () => {
         // Spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {

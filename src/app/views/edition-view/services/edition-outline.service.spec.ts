@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
@@ -26,6 +26,10 @@ describe('EditionOutlineService (DONE)', () => {
         initializeEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'initializeEditionOutline');
         setEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'setEditionOutline');
         fetchEditionOutlineDataSpy = vi.spyOn(EditionOutlineService as any, '_fetchEditionOutlineData');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

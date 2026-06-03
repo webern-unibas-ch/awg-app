@@ -39,7 +39,9 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailPlaceholderComponent, AlertInfoStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

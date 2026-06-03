@@ -261,7 +261,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     afterEach(() => {
         // Clear storages and mock objects after each test
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

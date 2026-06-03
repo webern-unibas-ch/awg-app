@@ -41,7 +41,9 @@ describe('AlertInfoComponent (DONE)', () => {
             imports: [FontAwesomeTestingModule, NgbAnimationConfigModule],
             declarations: [AlertInfoComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(AlertInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

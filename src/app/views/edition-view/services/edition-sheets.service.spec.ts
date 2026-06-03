@@ -52,7 +52,7 @@ describe('EditionSheetsService (DONE)', () => {
     afterEach(() => {
         // Clear mock objects after each test
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

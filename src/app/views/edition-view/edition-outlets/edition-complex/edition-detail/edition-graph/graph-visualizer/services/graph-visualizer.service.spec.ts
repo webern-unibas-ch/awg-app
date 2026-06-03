@@ -170,7 +170,7 @@ describe('GraphVisualizerService', () => {
     afterEach(() => {
         // Clear mock console after each test
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

@@ -42,7 +42,7 @@ describe('StorageService (DONE)', () => {
         expectedSessionStorage.clear();
         expectedLocalStorage.clear();
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

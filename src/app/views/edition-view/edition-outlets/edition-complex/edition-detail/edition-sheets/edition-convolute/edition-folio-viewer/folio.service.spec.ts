@@ -167,7 +167,7 @@ describe('FolioService (DONE)', () => {
     afterEach(() => {
         // Clear mock stores after each test
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should inject', () => {

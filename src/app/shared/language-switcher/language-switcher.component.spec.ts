@@ -24,7 +24,9 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [LanguageSwitcherComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(LanguageSwitcherComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

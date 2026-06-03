@@ -1,7 +1,7 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -74,7 +74,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [SourceDescriptionCorrectionsComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionCorrectionsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -102,6 +104,10 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleAllCorrectionDetailsSpy = vi.spyOn(component, 'toggleAllCorrectionDetails');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {

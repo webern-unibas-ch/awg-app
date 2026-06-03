@@ -1,7 +1,7 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { lastValueFrom, Observable, of as observableOf } from 'rxjs';
@@ -100,7 +100,9 @@ describe('EditionSectionDetailOverviewComponent', () => {
             ],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailOverviewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -116,6 +118,10 @@ describe('EditionSectionDetailOverviewComponent', () => {
             'getSelectedEditionSection'
         );
         setupSectionDetailOverviewSpy = vi.spyOn(component, 'setupSectionDetailOverview');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('should create', () => {

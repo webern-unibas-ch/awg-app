@@ -2,7 +2,7 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { of as observableOf } from 'rxjs';
@@ -99,6 +99,10 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
         // Spies on component functions
         setButtonsSpy = vi.spyOn(component, 'setButtons');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

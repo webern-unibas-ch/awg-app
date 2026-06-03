@@ -21,7 +21,9 @@ describe('AlertErrorComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [AlertErrorComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(AlertErrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

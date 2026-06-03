@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -48,14 +48,14 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
         }).compileComponents();
-    });
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
     });
 
     beforeEach(() => {
@@ -85,6 +85,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
         openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
         selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

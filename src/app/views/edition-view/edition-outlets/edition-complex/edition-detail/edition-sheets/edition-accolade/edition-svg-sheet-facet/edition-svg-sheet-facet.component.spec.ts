@@ -353,16 +353,24 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expectSpyCall(selectSvgSheetSpy, 3, expectedSheetIds);
             });
 
-            it('... should not emit anything if no id is provided', () => {
+            it('... should not emit anything if no sheet id is provided', () => {
                 const expectedSheetIds = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedNextSheetIds);
+            });
+
+            it('... should emit a selected svg sheet id even if complex id is undefined', () => {
+                const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
+
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
@@ -402,7 +410,7 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
             it('... should emit id of selected svg sheet with partial for another complex', () => {
                 const expectedSheetId =
                     expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds = { complexId: expectedNextComplexId, sheetId: expectedSheetId };
 
                 component.selectSvgSheet(expectedSheetIds);
 

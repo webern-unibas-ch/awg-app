@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -161,6 +161,10 @@ describe('EditionInfoComponent (DONE)', () => {
             mockEditionStateService,
             'getSelectedEditionSection'
         );
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

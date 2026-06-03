@@ -28,7 +28,9 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionIntroPlaceholderComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroPlaceholderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

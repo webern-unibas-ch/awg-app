@@ -83,7 +83,7 @@ describe('CachingInterceptor (DONE)', () => {
         (httpCacheService as any).cachedResponses = new Map<string, HttpResponse<any>>();
         mockCache.clear();
         mockConsole.clear();
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should test if interceptor instance is created', () => {

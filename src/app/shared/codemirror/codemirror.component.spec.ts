@@ -30,7 +30,9 @@ describe('CodemirrorComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [CodeMirrorComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(CodeMirrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -53,7 +55,7 @@ describe('CodemirrorComponent', () => {
     });
 
     afterEach(() => {
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

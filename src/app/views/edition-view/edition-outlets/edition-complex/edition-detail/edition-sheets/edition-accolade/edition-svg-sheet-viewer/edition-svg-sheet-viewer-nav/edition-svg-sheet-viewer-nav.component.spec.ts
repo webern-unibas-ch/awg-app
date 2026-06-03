@@ -23,7 +23,9 @@ describe('EditionSvgSheetViewerNavComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSvgSheetViewerNavComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetViewerNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

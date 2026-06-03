@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import type { Mock } from 'vitest';
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -318,6 +318,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
         selectSvgSheetSpy = vi.spyOn(component as any, '_selectSvgSheet');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

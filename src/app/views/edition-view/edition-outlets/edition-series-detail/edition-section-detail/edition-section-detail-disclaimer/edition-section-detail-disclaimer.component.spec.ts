@@ -29,7 +29,9 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailDisclaimerComponent, AlertInfoStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

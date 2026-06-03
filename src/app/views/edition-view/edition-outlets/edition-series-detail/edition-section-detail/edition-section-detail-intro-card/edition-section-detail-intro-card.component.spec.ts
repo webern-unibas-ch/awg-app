@@ -36,7 +36,9 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailIntroCardComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailIntroCardComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

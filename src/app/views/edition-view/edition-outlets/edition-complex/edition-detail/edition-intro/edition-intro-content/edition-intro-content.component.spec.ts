@@ -62,7 +62,9 @@ describe('EditionIntroContentComponent (DONE)', () => {
             declarations: [EditionIntroContentComponent, CompileHtmlComponent],
             providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroContentComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
