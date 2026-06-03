@@ -256,11 +256,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should open or close all details when toggled', () => {
+            it('... should open or close all details when toggled', async () => {
                 // Open all details
                 component.toggleAllCorrectionDetails(true);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -275,7 +275,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 // Close all details
                 component.toggleAllCorrectionDetails(false);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDesClosed = getAndExpectDebugElementByCss(
                     compDe,
@@ -353,9 +353,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', () => {
+            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', async () => {
                 component.corrections[0].commentary.comments = [];
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,

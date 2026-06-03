@@ -372,7 +372,7 @@ describe('AppComponent (DONE)', () => {
                 );
                 expect(success).toBeTruthy();
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
                 const viewContainerCmp = viewContainerDes[0].injector.get(

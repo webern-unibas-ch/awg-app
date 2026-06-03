@@ -253,11 +253,11 @@ describe('SourceDescriptionContentsComponent', () => {
                     });
                 });
 
-                it('... should open or close all details when toggled', () => {
+                it('... should open or close all details when toggled', async () => {
                     // Close all details
                     component.toggleAllContentDetails(false);
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -272,7 +272,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     // Open all details
                     component.toggleAllContentDetails(true);
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const detailsDesClosed = getAndExpectDebugElementByCss(
                         compDe,

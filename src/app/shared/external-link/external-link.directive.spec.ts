@@ -128,11 +128,11 @@ describe('ExternalLinkDirective', () => {
         expectToBe(bareAEl.textContent?.trim(), 'Link without href');
     });
 
-    it('... should reflect input change for [href] values', () => {
+    it('... should reflect input change for [href] values', async () => {
         component.dynamicExternalLink = expectedNewExternalLink;
 
         // Apply changes
-        detectChangesOnPush(fixture);
+        await detectChangesOnPush(fixture);
 
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl: HTMLAnchorElement = aDes[1].nativeElement;

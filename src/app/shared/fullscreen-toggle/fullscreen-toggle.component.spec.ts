@@ -119,10 +119,10 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('... not in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Unset fullscreen
                     component.isFullscreen = false;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one "open fullscreen" button', () => {
@@ -143,10 +143,10 @@ describe('FullscreenToggleComponent (DONE)', () => {
             });
 
             describe('... in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one "close fullscreen" button', () => {
@@ -201,17 +201,17 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 expect(component.closeFullscreen).toBeDefined();
             });
 
-            it('... should trigger on click on "close fullscreen" button (in fullscreen mode)', () => {
+            it('... should trigger on click on "close fullscreen" button (in fullscreen mode)', async () => {
                 // Set fullscreen
                 component.isFullscreen = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                 const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(closeFullScreenSpy, 1);
             });
@@ -246,13 +246,13 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 expect(component.openFullscreen).toBeDefined();
             });
 
-            it('... should trigger on click on "open fullscreen" button (not in fullscreen mode)', () => {
+            it('... should trigger on click on "open fullscreen" button (not in fullscreen mode)', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                 const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(openFullScreenSpy, 1, expectedFsElement);
             });
@@ -287,9 +287,9 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 expect(component.toggleFullscreen).toBeDefined();
             });
 
-            it('... should toggle `isFullscreen` variable', () => {
+            it('... should toggle `isFullscreen` variable', async () => {
                 component.isFullscreen = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 component.toggleFullscreen(true);
 
@@ -300,9 +300,9 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 expectToBe(component.isFullscreen, false);
             });
 
-            it('... should emit the correct fullscreen mode', () => {
+            it('... should emit the correct fullscreen mode', async () => {
                 component.isFullscreen = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 component.toggleFullscreen(true);
 

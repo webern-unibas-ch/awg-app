@@ -104,18 +104,18 @@ describe('FooterLogoComponent (DONE)', () => {
             expectToEqual(component.logo, expectedRightMainFooterLogo);
         });
 
-        it('... should change logo if input changes', () => {
+        it('... should change logo if input changes', async () => {
             expectToEqual(component.logo, expectedRightMainFooterLogo);
 
             // Trigger changes in data binding
             component.logo = expectedLeftMainFooterLogo;
-            detectChangesOnPush(fixture);
+            await detectChangesOnPush(fixture);
 
             expectToEqual(component.logo, expectedLeftMainFooterLogo);
 
             // Trigger changes in data binding
             component.logo = expectedNonMainFooterLogo;
-            detectChangesOnPush(fixture);
+            await detectChangesOnPush(fixture);
 
             expectToEqual(component.logo, expectedNonMainFooterLogo);
         });
@@ -147,10 +147,10 @@ describe('FooterLogoComponent (DONE)', () => {
                 expectToBe(imageEl.alt, expectedRightMainFooterLogo.alt);
             });
 
-            it('... should have CSS class `my-2 float-end` applied only to right main footer logos', () => {
+            it('... should have CSS class `my-2 float-end` applied only to right main footer logos', async () => {
                 // Right main footer logo
                 component.logo = expectedRightMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
                 const imageEl: HTMLImageElement = imageDes[0].nativeElement;
@@ -162,10 +162,10 @@ describe('FooterLogoComponent (DONE)', () => {
                 expectToContain(imageEl.classList, cssClassMarginY2);
             });
 
-            it('... should have CSS class `float-end` applied only to right main footer logos', () => {
+            it('... should have CSS class `float-end` applied only to right main footer logos', async () => {
                 // Right main footer logo
                 component.logo = expectedRightMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
                 const imageEl: HTMLImageElement = imageDes[0].nativeElement;
@@ -176,7 +176,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Left main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedLeftMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).not.toBeTruthy();
                 expect(imageEl.classList).not.toContain(cssClassFloatEnd);
@@ -184,16 +184,16 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Not main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedNonMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).not.toBeTruthy();
                 expect(imageEl.classList).not.toContain(cssClassFloatEnd);
             });
 
-            it('... should have CSS class `my-2` applied only to main footer logos', () => {
+            it('... should have CSS class `my-2` applied only to main footer logos', async () => {
                 // Right main footer logo
                 component.logo = expectedRightMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
                 const imageEl: HTMLImageElement = imageDes[0].nativeElement;
@@ -204,7 +204,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedLeftMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy();
                 expectToContain(imageEl.classList, cssClassMarginY2);
@@ -212,16 +212,16 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Not main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedNonMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassMarginY2]).not.toBeTruthy();
                 expect(imageEl.classList).not.toContain(cssClassMarginY2);
             });
 
-            it('... should have [ngClass] resolve to correct classes', () => {
+            it('... should have [ngClass] resolve to correct classes', async () => {
                 // Right main footer logo
                 component.logo = expectedRightMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
                 const imageEl: HTMLImageElement = imageDes[0].nativeElement;
@@ -232,7 +232,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Left main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedLeftMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(imageDes[0].attributes['class'], cssClassMarginY2);
                 expectToBe(imageEl.attributes['class'].value, cssClassMarginY2);
@@ -240,7 +240,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 // Not main footer logo
                 // Trigger changes in data binding
                 component.logo = expectedNonMainFooterLogo;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].attributes['class']).not.toBeTruthy();
                 expect(imageEl.attributes['class'].value).not.toBeTruthy();

@@ -167,11 +167,11 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer div.card if svgSheetsData is not defined', () => {
+            it('... should contain no outer div.card if svgSheetsData is not defined', async () => {
                 // Reset svgSheetsData
                 component.svgSheetsData = undefined;
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
             });
@@ -285,10 +285,10 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
             });
 
             describe('... if minimized', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     component.isMinimized = true;
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 describe('... toggle button', () => {
@@ -415,18 +415,18 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expect(component.toggleSheetFacet).toBeDefined();
             });
 
-            it('... should trigger on click on button', () => {
+            it('... should trigger on click on button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                 const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(toggleSheetFacetSpy, 1);
             });
 
-            it('... should emit the toggle state of the sheet facet', () => {
+            it('... should emit the toggle state of the sheet facet', async () => {
                 expectToBe(component.isMinimized, false);
 
                 component.toggleSheetFacet();
@@ -434,7 +434,7 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, true);
 
                 component.isMinimized = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.isMinimized, true);
 

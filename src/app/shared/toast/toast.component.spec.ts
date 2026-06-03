@@ -127,13 +127,13 @@ describe('ToastComponent (DONE)', () => {
                 expectToBe(toastCmp.delay, expectedToast.options.delay);
             });
 
-            it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', () => {
+            it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', async () => {
                 toastService.remove(expectedToast);
                 const otherToast = new Toast('Other message', { header: 'header', className: 'bg-danger' });
                 toastService.add(otherToast);
 
                 // Apply changes
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;

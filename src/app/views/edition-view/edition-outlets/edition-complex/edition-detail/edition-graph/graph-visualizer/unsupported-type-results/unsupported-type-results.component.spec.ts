@@ -149,7 +149,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should toggle item body on click', () => {
+                it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -177,7 +177,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -192,7 +192,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -241,7 +241,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
                 });
 
-                it('... should display correct queryType in first paragraph if input changes', () => {
+                it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -257,24 +257,24 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // DESCRIBE
                     let newQueryType = 'describe';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
                 });
             });
 
             describe('in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen flag to true
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
@@ -321,7 +321,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should not toggle item body on click', () => {
+                it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -351,7 +351,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -401,7 +401,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
                 });
 
-                it('... should display correct queryType in first paragraph if input changes', () => {
+                it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -417,14 +417,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // DESCRIBE
                     let newQueryType = 'describe';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
                 });

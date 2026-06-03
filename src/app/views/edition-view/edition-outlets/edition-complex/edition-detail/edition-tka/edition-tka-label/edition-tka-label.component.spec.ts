@@ -81,16 +81,16 @@ describe('EditionTkaLabelComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('WHEN `labelType` is `evaluation`', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     component.labelType = 'evaluation';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... should display `Quellenbewertung` in span if no sketch id is given', () => {
+                it('... should display `Quellenbewertung` in span if no sketch id is given', async () => {
                     component.id = 'test-1';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -98,10 +98,10 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     expectToBe(spanEl.textContent.trim(), 'Quellenbewertung');
                 });
 
-                it('... should display `Skizzenkommentar` in span if sketch id is given', () => {
+                it('... should display `Skizzenkommentar` in span if sketch id is given', async () => {
                     component.id = 'test-1_Sk1';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -111,16 +111,16 @@ describe('EditionTkaLabelComponent (DONE)', () => {
             });
 
             describe('WHEN `labelType` is `commentary`', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     component.labelType = 'commentary';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... should display `Textkritische Anmerkungen` in span if no sketch id is given', () => {
+                it('... should display `Textkritische Anmerkungen` in span if no sketch id is given', async () => {
                     component.id = 'test-1';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -128,10 +128,10 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     expectToBe(spanEl.textContent.trim(), 'Textkritische Anmerkungen');
                 });
 
-                it('... should display `Textkritische Kommentare` in span if sketch id is given', () => {
+                it('... should display `Textkritische Kommentare` in span if sketch id is given', async () => {
                     component.id = 'test-1_Sk1';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;

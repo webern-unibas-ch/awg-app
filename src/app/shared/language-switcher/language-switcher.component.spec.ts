@@ -120,9 +120,9 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 expectSpyCall(setLanguageSpy, 1, 1);
             });
 
-            it('... should have .active class on first anchor element when currentLanguage is 0', () => {
+            it('... should have .active class on first anchor element when currentLanguage is 0', async () => {
                 component.currentLanguage = 0;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
@@ -134,9 +134,9 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 expect(aEl1.classList).not.toContain('active');
             });
 
-            it('... should have .active class on second anchor element when currentLanguage is 1', () => {
+            it('... should have .active class on second anchor element when currentLanguage is 1', async () => {
                 component.currentLanguage = 1;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);

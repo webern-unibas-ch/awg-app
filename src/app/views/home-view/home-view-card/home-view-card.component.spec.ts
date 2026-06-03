@@ -204,11 +204,11 @@ describe('HomeViewCardComponent (DONE)', () => {
             });
 
             describe('... with href', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     component.cardData.linkRouter = undefined;
                     component.cardData.linkHref = 'https://anton-webern.ch/';
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should have one info link button with href in `div.card-footer`', () => {

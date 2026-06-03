@@ -581,9 +581,9 @@ describe('EditionSectionsComponent (DONE)', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
             });
 
-            it('...should set `selectedSeries$`', () => {
+            it('...should set `selectedSeries$`', async () => {
                 component.selectedSeries$ = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(component.selectedSeries$).toBeUndefined();
 

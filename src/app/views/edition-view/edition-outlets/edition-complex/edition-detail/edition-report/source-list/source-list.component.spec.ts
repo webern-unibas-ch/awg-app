@@ -96,13 +96,13 @@ describe('SourceListComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('... without any sources', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     expectedSourceListData = {
                         sources: [],
                         textSources: [],
                     };
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain no tables with in div.card-body', () => {
@@ -173,11 +173,11 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain siglum link as link text in header column (th)', () => {
+                it('... should contain siglum link as link text in header column (th)', async () => {
                     expectedSourceListData.sources[2].missing = false;
 
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
@@ -212,14 +212,14 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display siglum addendum as link text if present in header column (th)', () => {
+                it('... should display siglum addendum as link text if present in header column (th)', async () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'b';
                     expectedSourceListData.sources[2].siglumAddendum = 'H';
                     expectedSourceListData.sources[2].missing = false;
 
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
@@ -262,13 +262,13 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display missing sources in brackets as link text in header column (th)', () => {
+                it('... should display missing sources in brackets as link text in header column (th)', async () => {
                     expectedSourceListData.sources[0].missing = true;
                     expectedSourceListData.sources[1].missing = true;
                     expectedSourceListData.sources[2].missing = true;
 
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
@@ -312,7 +312,7 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display missing sources with addendum in brackets as link text in header column (th)', () => {
+                it('... should display missing sources with addendum in brackets as link text in header column (th)', async () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'H';
                     expectedSourceListData.sources[2].siglumAddendum = 'F1-F2';
@@ -322,7 +322,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[2].missing = true;
 
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
@@ -386,7 +386,7 @@ describe('SourceListComponent (DONE)', () => {
                         ],
                     };
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
@@ -417,7 +417,7 @@ describe('SourceListComponent (DONE)', () => {
                         ],
                     };
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
@@ -434,7 +434,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectSpyCall(openModalSpy, 1, 'MODAL_TEXT');
                 });
 
-                it('... should contain no link for missing sources without description and linkTo value', () => {
+                it('... should contain no link for missing sources without description and linkTo value', async () => {
                     expectedSourceListData = {
                         sources: [
                             {
@@ -449,7 +449,7 @@ describe('SourceListComponent (DONE)', () => {
                         ],
                     };
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
@@ -513,16 +513,16 @@ describe('SourceListComponent (DONE)', () => {
             });
 
             describe('... with musical and text sources', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... should contain two tables with table body in div.card-body', () => {
+                it('... should contain two tables with table body in div.card-body', async () => {
                     expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 2, 2);
                 });
@@ -621,12 +621,12 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display text siglum and siglum addendum if present in header column (th)', () => {
+                it('... should display text siglum and siglum addendum if present in header column (th)', async () => {
                     expectedSourceListData.textSources[0].siglumAddendum = 'a';
                     expectedSourceListData.textSources[1].siglumAddendum = 'H';
 
                     component.sourceListData = expectedSourceListData;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);

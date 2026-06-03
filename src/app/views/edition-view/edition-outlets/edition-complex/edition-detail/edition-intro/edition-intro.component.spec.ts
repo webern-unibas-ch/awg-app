@@ -560,9 +560,9 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... without complex', () => {
-                    beforeEach(() => {
+                    beforeEach(async () => {
                         component.editionComplex = undefined;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
                     });
 
                     it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
@@ -628,19 +628,19 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... if intro data is empty', () => {
-                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', () => {
+                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', async () => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
                 });
 
-                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', () => {
+                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', async () => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -658,13 +658,13 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('on error', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     expectedErrorObject = { status: 404, statusText: 'got Error' };
                     // Spy on editionDataService to return an error
                     fetchAndFilterIntroDataSpy.mockReturnValue(observableThrowError(() => expectedErrorObject));
 
                     component.getEditionIntroData();
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should not contain intro view, but one AlertErrorComponent (stubbed)', () => {
@@ -686,30 +686,30 @@ describe('IntroComponent (DONE)', () => {
 
             describe('on loading', () => {
                 describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
-                    it('... editionIntroData$ is EMPTY', () => {
+                    it('... editionIntroData$ is EMPTY', async () => {
                         // Mock empty observable
                         component.editionIntroData$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionIntroData$ is undefined', () => {
+                    it('... editionIntroData$ is undefined', async () => {
                         // Mock undefined response
                         component.editionIntroData$ = observableOf(undefined);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionIntroData$ is null', () => {
+                    it('... editionIntroData$ is null', async () => {
                         // Mock null response
                         component.editionIntroData$ = observableOf(null);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
@@ -753,20 +753,20 @@ describe('IntroComponent (DONE)', () => {
                     expectToBe(result, false);
                 });
 
-                it('... should trigger `_extractUrlSegments` with intro URL', () => {
+                it('... should trigger `_extractUrlSegments` with intro URL', async () => {
                     const anyUrl = '/some/path';
                     const introUrl = '/some/path/series/1/section/5/intro';
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
                     expectSpyCall(extractUrlSegmentsSpy, 1, navigationEndEvent.urlAfterRedirects);
                 });
 
-                it('... should update edition state with seriesNumber and sectionNumber for valid URL segments', () => {
+                it('... should update edition state with seriesNumber and sectionNumber for valid URL segments', async () => {
                     const seriesNumber = '1';
                     const sectionNumber = '5';
                     const anyUrl = '/some/path';
@@ -774,20 +774,20 @@ describe('IntroComponent (DONE)', () => {
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
                     expectSpyCall(updateEditionStateSpy, 1, [seriesNumber, sectionNumber]);
                 });
 
-                it('... should not update edition state, but log an error for invalid URL segments', () => {
+                it('... should not update edition state, but log an error for invalid URL segments', async () => {
                     const anyUrl = '/some/path';
                     const invalidIntroUrl = `/some/path/series/invalid/section/invalid/intro`;
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, invalidIntroUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
@@ -828,7 +828,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onIntroFragmentNavigateSpy, 1, expectedIntroIds);
             });
 
-            it('... should navigate (to same page) with correct parameters', () => {
+            it('... should navigate (to same page) with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedIntroIds = { complexId: expectedComplexId, fragmentId: expectedIntroFragment };
                 const expectedNavigationExtras = {
@@ -836,13 +836,13 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onIntroFragmentNavigate(expectedIntroIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
             });
 
             describe('... should navigate (to same page) with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: undefined };
                     const expectedNavigationExtras = {
@@ -850,12 +850,12 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: null };
                     const expectedNavigationExtras = {
@@ -863,12 +863,12 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
                     const expectedNavigationExtras = {
@@ -876,38 +876,38 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
             });
 
             describe('... should navigate (to same page) with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedIntroIds = undefined;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedIntroIds = null;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
                     const expectedNavigationExtras = {
@@ -915,7 +915,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -943,9 +943,9 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onLanguageSetSpy, 1, expectedCurrentLaguage);
             });
 
-            it('... should set `currentLanguage` to the given language', () => {
+            it('... should set `currentLanguage` to the given language', async () => {
                 component.onLanguageSet(expectedCurrentLaguage);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.currentLanguage, expectedCurrentLaguage);
 
@@ -997,16 +997,16 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
             });
 
-            it('... should open modal with given id', () => {
+            it('... should open modal with given id', async () => {
                 component.onModalOpen(expectedModalSnippet);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
 
                 const otherSnippet = 'otherSnippet';
                 component.onModalOpen(otherSnippet);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 2, otherSnippet);
                 expectSpyCall(openModalSpy, 2, otherSnippet);
@@ -1059,7 +1059,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
             });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
+            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
@@ -1069,7 +1069,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onReportFragmentNavigate(expectedReportIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedReportIds.complexId,
@@ -1079,7 +1079,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
 
@@ -1089,7 +1089,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1098,7 +1098,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
 
@@ -1108,7 +1108,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1117,7 +1117,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
 
@@ -1127,7 +1127,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1138,7 +1138,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedReportIds = undefined;
 
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -1147,7 +1147,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1156,7 +1156,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedReportIds = null;
 
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -1165,7 +1165,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1174,7 +1174,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
 
@@ -1184,7 +1184,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1218,7 +1218,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onSvgSheetSelectSpy, 1, expectedSheetIds);
             });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
+            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
 
@@ -1228,7 +1228,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onSvgSheetSelect(expectedSheetIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedSheetIds.complexId,
@@ -1238,7 +1238,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
 
@@ -1248,7 +1248,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1257,7 +1257,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
 
@@ -1267,7 +1267,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1276,7 +1276,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
 
@@ -1286,7 +1286,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1297,7 +1297,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedSheetIds = undefined;
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1306,7 +1306,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1315,7 +1315,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedSheetIds = null;
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1324,7 +1324,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1333,7 +1333,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
 
@@ -1343,7 +1343,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1716,12 +1716,12 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... without given complex', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Simulate the services returning the observable properties
                     editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(null));
 
                     (component as any)._loadEditionIntroData();
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should have full editionIntroData$', async () => {
@@ -1911,7 +1911,7 @@ describe('IntroComponent (DONE)', () => {
                 });
             });
 
-            it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', () => {
+            it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', async () => {
                 // Spy on window.scrollTo
                 vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
                     const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
@@ -1922,7 +1922,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -1930,7 +1930,7 @@ describe('IntroComponent (DONE)', () => {
                 expectToBe(navLink2.classList.contains('active'), false);
             });
 
-            it('... should update nav link classes based on scroll position (window.scrollY)', () => {
+            it('... should update nav link classes based on scroll position (window.scrollY)', async () => {
                 // Spy on window.scrollTo
                 vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
                     const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
@@ -1941,7 +1941,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -1964,13 +1964,13 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should navigate within same complex if', () => {
-                it('... complex id is undefined', () => {
+                it('... complex id is undefined', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1983,13 +1983,13 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is null', () => {
+                it('... complex id is null', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -1998,13 +1998,13 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is empty string', () => {
+                it('... complex id is empty string', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -2013,7 +2013,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is equal to the current complex id', () => {
+                it('... complex id is equal to the current complex id', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
@@ -2023,7 +2023,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedEditionComplex.complexId.route.replace('/', ''),
@@ -2038,7 +2038,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should navigate to another complex if', () => {
-                it('... complex id is given and not equal to the current complex id', () => {
+                it('... complex id is given and not equal to the current complex id', async () => {
                     const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
@@ -2048,7 +2048,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedNextComplexId,
@@ -2064,7 +2064,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with no edition complex id given', () => {
                 describe('... should navigate within same complex to a given intro route', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: expectedIntroFragment };
@@ -2074,7 +2074,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2087,7 +2087,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2097,7 +2097,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2112,7 +2112,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -2122,7 +2122,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2135,7 +2135,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2145,7 +2145,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2160,7 +2160,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -2170,7 +2170,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2183,7 +2183,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -2193,7 +2193,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2210,7 +2210,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with the current edition complex id given', () => {
                 describe('... should navigate within same complex to a given intro route', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
@@ -2221,7 +2221,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2234,7 +2234,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
@@ -2245,7 +2245,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2260,7 +2260,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -2271,7 +2271,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2284,7 +2284,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -2295,7 +2295,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2310,7 +2310,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -2321,7 +2321,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2334,7 +2334,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -2345,7 +2345,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2362,7 +2362,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with another edition complex id given', () => {
                 describe('... should navigate to a given intro route of another complex', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: expectedIntroFragment };
@@ -2372,7 +2372,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2385,7 +2385,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2395,7 +2395,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2410,7 +2410,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate to a given report route of another complex', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -2420,7 +2420,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2433,7 +2433,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2443,7 +2443,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2458,7 +2458,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate to a given sheet route of another complex', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -2468,7 +2468,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2481,7 +2481,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -2491,7 +2491,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,

@@ -65,25 +65,25 @@ describe('ScrollToTopComponent (DONE)', () => {
 
     describe('#VIEW', () => {
         describe('... should contain no button.awg-scroll-to-top if', () => {
-            it('... isScrolled is undefined', () => {
+            it('... isScrolled is undefined', async () => {
                 component.isScrolled = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top', 0, 0);
             });
 
-            it('... isScrolled is false', () => {
+            it('... isScrolled is false', async () => {
                 component.isScrolled = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top', 0, 0);
             });
         });
 
         describe('... with isScrolled set to true', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 component.isScrolled = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
             it('... should contain one button.awg-scroll-to-top if isScrolled is true', () => {

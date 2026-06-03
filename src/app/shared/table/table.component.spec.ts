@@ -257,10 +257,10 @@ describe('TableComponent', () => {
                 expectToBe(tablePaginationCmps[1].page, 1);
             });
 
-            it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', () => {
+            it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', async () => {
                 // Mock empty observable
                 component.tableData.paginatedRows$ = EMPTY;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
             });

@@ -1107,7 +1107,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from ...', () => {
-                it('...  EditionTkaEvaluationsComponent', () => {
+                it('...  EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1126,7 +1126,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1144,7 +1144,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1163,7 +1163,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(

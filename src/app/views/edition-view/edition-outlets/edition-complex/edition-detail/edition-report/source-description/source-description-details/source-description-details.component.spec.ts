@@ -97,14 +97,14 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Simulate the parent setting the input properties
             component.details = expectedDetails;
             component.detailsClass = expectedDetailsClass;
             component.detailsLabel = expectedDetailsLabel;
 
             // Trigger initial data binding
-            detectChangesOnPush(fixture);
+            await detectChangesOnPush(fixture);
         });
 
         it('... should have `details`', () => {
@@ -124,9 +124,9 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
             });
 
-            it('... should contain no outer paragraph if no details are given', () => {
+            it('... should contain no outer paragraph if no details are given', async () => {
                 component.details = [];
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'p', 0, 0);
             });
@@ -138,9 +138,9 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expectToBe(pEl.className, `awg-source-description-${expectedDetailsClass}`);
             });
 
-            it('... should contain no span with the detailsLabel if not given', () => {
+            it('... should contain no span with the detailsLabel if not given', async () => {
                 component.detailsLabel = '';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'span.smallcaps', 0, 0);
             });
@@ -208,9 +208,9 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain no punctuation marks if detailsClass equals `conditions`', () => {
+            it('... should contain no punctuation marks if detailsClass equals `conditions`', async () => {
                 component.detailsClass = 'conditions';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -239,7 +239,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
@@ -328,7 +328,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
@@ -385,7 +385,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(

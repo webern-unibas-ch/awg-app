@@ -215,10 +215,10 @@ describe('EditionSectionDetailOverviewComponent', () => {
             });
 
             describe('... with intro disabled', () => {
-                it('... should contain no div.awg-edition-section-detail-intro', () => {
+                it('... should contain no div.awg-edition-section-detail-intro', async () => {
                     expectedSelectedSection.content.intro.disabled = true;
                     component.selectedSection$ = observableOf(expectedSelectedSection);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, EditionSectionDetailIntroCardStubComponent, 0, 0);
@@ -232,19 +232,19 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
                     });
 
-                    it('... if selected section has empty opus complexes, but given mnr complexes', () => {
+                    it('... if selected section has empty opus complexes, but given mnr complexes', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
                     });
 
-                    it('... if selected section has empty mnr complexes, but given opus complexes', () => {
+                    it('... if selected section has empty mnr complexes, but given opus complexes', async () => {
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
@@ -257,10 +257,10 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 1, 1);
                     });
 
-                    it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', () => {
+                    it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 0, 0);
@@ -324,10 +324,10 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 1, 1);
                     });
 
-                    it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', () => {
+                    it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', async () => {
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 0, 0);
@@ -388,30 +388,30 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but one EditionSectionDetailPlaceholder ...', () => {
-                    it('... if selectedSection has no complexTypes...', () => {
+                    it('... if selectedSection has no complexTypes...', async () => {
                         expectedSelectedSection.content.complexTypes = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 1, 1);
                     });
 
-                    it('... if selectedSection has empty opus and mnr complexTypes', () => {
+                    it('... if selectedSection has empty opus and mnr complexTypes', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 1, 1);
                     });
                 });
 
-                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', () => {
+                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', async () => {
                     expectedSelectedSection.content.complexTypes = undefined;
                     component.selectedSection$ = observableOf(expectedSelectedSection);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const placeholderDes = getAndExpectDebugElementByDirective(
                         compDe,

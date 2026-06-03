@@ -261,10 +261,10 @@ describe('EditionInfoComponent (DONE)', () => {
                 });
             });
 
-            it('... should open item body for selected section', () => {
-                expectedSections.forEach((section, sectionIndex) => {
+            it('... should open item body for selected section', async () => {
+                for (const [sectionIndex, section] of expectedSections.entries()) {
                     component.selectedEditionSection = section;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                     const itemDes = getAndExpectDebugElementByCss(
@@ -284,7 +284,7 @@ describe('EditionInfoComponent (DONE)', () => {
                             expect(itemBodyEl.classList).not.toContain('show');
                         }
                     });
-                });
+                }
             });
 
             describe('... with open item bodies', () => {

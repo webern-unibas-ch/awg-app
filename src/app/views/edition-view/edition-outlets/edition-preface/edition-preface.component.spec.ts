@@ -216,10 +216,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 expect(component.getGlyph).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 expectSpyCall(getGlyphSpy, 1);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 2);
             });

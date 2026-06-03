@@ -522,10 +522,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 });
 
                 describe('EditionSvgSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
                         component.hasAvailableTkkOverlays = false;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -542,10 +542,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkkOverlays = true;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -562,10 +562,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', () => {
+                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', async () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkkOverlays = false;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -582,10 +582,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should pass the sheet id to the switch component', () => {
+                    it('... should pass the sheet id to the switch component', async () => {
                         // Ensure suppliedClasses is set up so the switch component is rendered
                         component.suppliedClasses = expectedSuppliedClassMap;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
@@ -600,9 +600,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.id, expectedSvgSheet.id);
                     });
 
-                    it('... should pass the correct suppliedClasses to the switch component', () => {
+                    it('... should pass the correct suppliedClasses to the switch component', async () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
@@ -617,10 +617,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.suppliedClasses, expectedSuppliedClassMap);
                     });
 
-                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', () => {
+                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', async () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
                         component.hasAvailableTkkOverlays = false;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSvgSheetViewerSwitchStubComponent,
@@ -634,9 +634,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.hasAvailableTkkOverlays, false);
                     });
 
-                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', () => {
+                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', async () => {
                         component.hasAvailableTkkOverlays = true;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,

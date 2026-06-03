@@ -220,9 +220,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should not contain anything in outer div.awg-edition-svg-sheet-footer if selectedTextcritics is undefined', () => {
+            it('... should not contain anything in outer div.awg-edition-svg-sheet-footer if selectedTextcritics is undefined', async () => {
                 component.selectedTextcritics = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
@@ -270,9 +270,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(faIconIns(), expectedChevronRightIcon);
             });
 
-            it('... should display chevronDown icon in evaluation paragraph if showEvaluation = true', () => {
+            it('... should display chevronDown icon in evaluation paragraph if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -328,9 +328,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'evaluation');
             });
 
-            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', () => {
+            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -358,10 +358,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
 
-                it('... evaluations array is empty', () => {
+                it('... evaluations array is empty', async () => {
                     component.showEvaluation = true;
                     component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -374,9 +374,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', () => {
+            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -388,9 +388,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
             });
 
-            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', () => {
+            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -412,18 +412,18 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
-            it('... should contain no textcritics div.card if showTka is false', () => {
+            it('... should contain no textcritics div.card if showTka is false', async () => {
                 component.showTkA = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 0, 0);
             });
 
-            it('... should contain one textcritics div.card if showTka is true (and selectedTextcritics is defined)', () => {
+            it('... should contain one textcritics div.card if showTka is true (and selectedTextcritics is defined)', async () => {
                 component.showTkA = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
@@ -528,9 +528,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -624,9 +624,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -674,9 +674,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -749,16 +749,16 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.toggleEvaluation).toBeDefined();
             });
 
-            it('... should toggle `showEvaluation`', () => {
+            it('... should toggle `showEvaluation`', async () => {
                 expectToBe(component.showEvaluation, false);
 
                 component.toggleEvaluation();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.showEvaluation, true);
 
                 component.toggleEvaluation();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.showEvaluation, false);
             });

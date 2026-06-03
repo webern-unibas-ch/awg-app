@@ -171,7 +171,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
             });
 
             describe('... content sections', () => {
-                it('... should not contain an intro block heading if block header is empty', () => {
+                it('... should not contain an intro block heading if block header is empty', async () => {
                     expectedIntroBlockContent = [
                         {
                             blockId: 'testId',
@@ -181,7 +181,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                         },
                     ];
                     component.introBlockContent = expectedIntroBlockContent;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const sectionDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -242,7 +242,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     });
                 });
 
-                it('... should not contain any (additional) intro blocks if block content is empty', () => {
+                it('... should not contain any (additional) intro blocks if block content is empty', async () => {
                     expectedIntroBlockContent = [
                         {
                             blockId: 'testId',
@@ -252,7 +252,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                         },
                     ];
                     component.introBlockContent = expectedIntroBlockContent;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const sectionDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -412,11 +412,11 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 expect(component.getGlyph).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 // 2 glyphs in detected content
                 expectSpyCall(getGlyphSpy, 2);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 4);
             });

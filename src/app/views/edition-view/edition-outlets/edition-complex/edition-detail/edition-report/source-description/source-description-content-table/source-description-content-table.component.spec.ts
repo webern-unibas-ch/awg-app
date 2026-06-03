@@ -183,10 +183,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
             });
 
-            it('... should contain only one tr and td with colspan=2 attribute in table if no content.item is given', () => {
+            it('... should contain only one tr and td with colspan=2 attribute in table if no content.item is given', async () => {
                 component.content = expectedContents[3]; // Test item 4 without item
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -311,10 +311,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                 expectToBe(anchorEl2.textContent.trim(), expectedHtmlTextContent.textContent.trim());
             });
 
-            it('... should display the content-item-folio only with description if no item is given', () => {
+            it('... should display the content-item-folio only with description if no item is given', async () => {
                 component.content = expectedContents[3]; // Test item 4 without item
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(
                     compDe,

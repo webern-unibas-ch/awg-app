@@ -185,10 +185,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expectToEqual(pEl1.textContent.trim(), htmlEvaluationEntry.textContent.trim());
             });
 
-            it('... should contain a placeholder if content of evaluation data is empty', () => {
+            it('... should contain a placeholder if content of evaluation data is empty', async () => {
                 // Simulate the parent setting an empty content array
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -201,10 +201,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
             });
 
-            it('... should display placeholder in paragraph', () => {
+            it('... should display placeholder in paragraph', async () => {
                 // Simulate the parent setting an empty content array
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
