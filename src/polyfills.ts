@@ -51,8 +51,6 @@ import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import { Buffer as NodeBuffer } from 'buffer';
-
 const w = window as any;
 
 // Add global to window, assigning the value of window itself.
@@ -61,14 +59,3 @@ w.global = w;
 // Workaround for Uncaught ReferenceError: setImmediate is not defined
 // cf. https://stackoverflow.com/a/58088954
 w.setImmediate = w.setTimeout;
-
-// Workaround for Uncaught ReferenceError: Buffer is not defined
-// cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
-w.Buffer = w.Buffer || NodeBuffer;
-
-// Workaround for Uncaught ReferenceError: process is not defined
-// cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
-w.process = {
-    env: { DEBUG: undefined },
-    version: [],
-};
