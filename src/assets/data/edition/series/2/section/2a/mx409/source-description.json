@@ -15,7 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1058,38 +1058,38 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_Aa_corr_1",
+                        "id": "source_Aa_corr",
                         "label": "Korrekturen in <strong>A<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr_1-001",
+                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr-001",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "6/16",
                                             "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt e<sup>1</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr_1-002",
+                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr-002",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr_1-003",
+                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr-003",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr_1-004",
+                                            "svgGroupId": "awg-kv-mx409_tf1_Aa_corr-004",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
@@ -1101,24 +1101,24 @@
                         }
                     },
                     {
-                        "id": "source_Ab_corr_1",
+                        "id": "source_Ab_corr",
                         "label": "Korrekturen in <strong>A<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf2_Ab_corr_1-001",
+                                            "svgGroupId": "awg-kv-mx409_tf2_Ab_corr-001",
                                             "measure": "6 bzw. 14",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "c<sup>3</sup> geändert zu a<sup>2</sup>."
                                         },
                                         {
-                                            "svgGroupId": "awg-kv-mx409_tf2_Ab_corr_1-002",
+                                            "svgGroupId": "awg-kv-mx409_tf2_Ab_corr-002",
                                             "measure": "8 bzw. 16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",

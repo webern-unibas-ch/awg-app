@@ -701,7 +701,7 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -765,7 +765,7 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -775,7 +775,7 @@
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter dem System: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter dem System: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-002",
@@ -796,7 +796,7 @@
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze über dem System darüber: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze über dem System darüber: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-005",
@@ -828,7 +828,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "brauner Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1001,7 +1001,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Bleistift und Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1067,7 +1067,7 @@
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "Rasur im System (vgl. Korrekturen 2)."
+                                            "comment": "Rasur im System (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m46_tf2_C_corr_1-010",
@@ -1121,7 +1121,7 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1159,7 +1159,7 @@
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "Viertelnote e<sup>2</sup> mit Bleistift hinzugefügt (vgl. Korrekturen 1)."
+                                            "comment": "Viertelnote e<sup>2</sup> mit Bleistift hinzugefügt (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m46_tf2_C_corr_2-006",
