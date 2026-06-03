@@ -96,14 +96,14 @@ export class GraphVisualizerService {
      * @param {string} ttlString The given turtle string.
      * @param {string} [mimeType] The optional given mimetype.
      *
-     * @returns {Promise<string | QueryResult | Triple[]>} A promise of the query result.
+     * @returns {Promise<string | QueryResult | Triple[] | undefined>} A promise of the query result, or `undefined` for unsupported query types or missing select data.
      */
     async doQuery(
         queryType: string,
         query: string,
         ttlString: string,
         mimeType?: string
-    ): Promise<string | QueryResult | Triple[]> {
+    ): Promise<string | QueryResult | Triple[] | undefined> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
