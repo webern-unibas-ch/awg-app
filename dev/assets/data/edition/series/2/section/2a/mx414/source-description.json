@@ -565,7 +565,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "brauner Buntstift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1687,7 +1687,7 @@
                     },
                     {
                         "id": "source_B_corr_2",
-                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift und braunem Buntstift)",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift und rotem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 414: <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">einzige Textfassung</a>.",
@@ -1707,7 +1707,7 @@
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Mit braunem Buntstift gestrichen."
+                                            "comment": "Mit rotem Buntstift gestrichen."
                                         }
                                     ]
                                 }

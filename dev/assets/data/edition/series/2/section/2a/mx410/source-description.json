@@ -15,7 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1086,7 +1086,7 @@
                                             "measure": "11",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Version unter den Systemen: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter den Systemen: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-mx410_tf1_A_corr-004",

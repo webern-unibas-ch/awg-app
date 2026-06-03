@@ -257,7 +257,7 @@
                                             "measure": "nach 7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br />##Abbildung##"
+                                            "comment": "Korrekturskizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m267_tf1_A_corr_2-002",
@@ -271,7 +271,7 @@
                                             "measure": "8 bis 9",
                                             "system": "Klav. o.",
                                             "position": "6/8 <br />2/4",
-                                            "comment": "Alternative Skizze über dem System: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze über dem System: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m267_tf1_A_corr_2-004",
@@ -292,7 +292,7 @@
                                             "measure": "15 bis nach 15",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Skizze über und nach der Akkolade: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze über und nach der Akkolade: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m267_tf1_A_corr_2-007",
@@ -306,7 +306,7 @@
                                             "measure": "nach 17",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Alternative Skizze zu T. 16 3/4 bis T. 19 in Systemen 4–5: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze zu T. 16 3/4 bis T. 19 in Systemen 4–5: <br />##Abbildung##"
                                         }
                                     ]
                                 }
