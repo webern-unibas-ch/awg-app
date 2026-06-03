@@ -252,7 +252,7 @@ describe('ModalComponent', () => {
             expectToBe(component.closeResult, expectedCloseResult);
         });
 
-        describe('should return the dismiss reason of the modal', async () => {
+        describe('should return the dismiss reason of the modal', () => {
             it('... when clicking on close button', async () => {
                 const dismissEvent = 'Click on dismiss button';
                 const expectedDismissReason = `Dismissed with: ${dismissEvent}`;

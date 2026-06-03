@@ -330,13 +330,13 @@ describe('TextcriticsListComponent (DONE)', () => {
             describe('... if textcritics are related to work edition', () => {
                 let textcriticsDataWithWorkEdition: TextcriticsList;
 
-                beforeEach(() => {
+                beforeEach(async () => {
                     textcriticsDataWithWorkEdition = JSON.parse(JSON.stringify(expectedTextcriticsData));
                     textcriticsDataWithWorkEdition.textcritics[0].id = 'op12_WE';
                     textcriticsDataWithWorkEdition.textcritics[1].id = 'op25_WE';
 
                     component.textcriticsData = textcriticsDataWithWorkEdition;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain another button with DisclaimerWorkeditions component in button group ', () => {
@@ -399,7 +399,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
             });
 
-            it('... should toggle first item body on click on first header', () => {
+            it('... should toggle first item body on click on first header', async () => {
                 const totalItems = expectedTextcriticsData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
@@ -427,7 +427,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -443,7 +443,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -458,7 +458,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
             });
 
-            it('... should toggle second item body on click on second header', () => {
+            it('... should toggle second item body on click on second header', async () => {
                 const totalItems = expectedTextcriticsData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
@@ -486,7 +486,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -502,7 +502,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -518,7 +518,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... with open body', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Open bodies
                     const headerDes0 = getAndExpectDebugElementByCss(
                         compDe,
@@ -551,7 +551,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Click header buttons to open body
                     click(btnEl0 as HTMLElement);
                     click(btnEl1 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 describe('...  if evaluations array is empty', () => {
@@ -874,7 +874,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', () => {
+                it('... EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -893,7 +893,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -912,7 +912,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -931,7 +931,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
@@ -1007,7 +1007,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', () => {
+                it('... EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1026,7 +1026,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1043,7 +1043,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1062,7 +1062,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
