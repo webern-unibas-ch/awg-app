@@ -15,13 +15,12 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
     - [Pull Requests](#pull-requests)
     - [Release Versioning Convention](#release-versioning-convention)
     - [Issue Reporting](#issue-reporting)
-- [Angular quick start guide](#quick-start-guide)
+- [Angular quick start guide](#angular-quick-start-guide)
     - [Prerequisites](#prerequisites)
     - [Development server](#development-server)
     - [Code scaffolding](#code-scaffolding)
     - [Build](#build)
     - [Running unit tests](#running-unit-tests)
-    - [Running end-to-end tests](#running-end-to-end-tests)
     - [Further help](#further-help)
 - [Code of Conduct](#code-of-conduct)
 
@@ -157,7 +156,7 @@ For security concerns, please do not create a public issue. Instead, send an ema
 
 ## Angular quick start guide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21. Check there for necessary prerequisites (which comprise `Node` and `npm`or `yarn`).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21. Check there for necessary prerequisites (which comprise `Node` and `npm` or `yarn`).
 
 ### Development server
 
