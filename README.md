@@ -91,7 +91,7 @@ Releases for this project are automatically managed via Continuous Integration (
 
 ## Testing
 
-This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.
+This project uses a dynamic testing approach with Vitest for unit tests in Angular. Code coverage is measured with CodeCov.
 
 We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.
 
@@ -99,9 +99,11 @@ To assist with this, the following commands are provided:
 
 - `yarn test`: Launches the test runner.
 
-- `yarn test:cov`: Runs the tests and generates a coverage report.
+- `yarn test:local`: Runs the tests in a local browser environment.
 
-- `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
+- `yarn test:cov`: Runs the tests (headless) and generates a coverage report.
+
+- `yarn test:cov:serve`: Runs the tests (headless), generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
 
 ## Contributing
 
