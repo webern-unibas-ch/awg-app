@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 10
   cacheKey: 10c0
 
 "@aduh95/viz.js@npm:3.4.0":
@@ -5735,7 +5735,7 @@ __metadata:
     ngx-json-viewer: "npm:^3.2.1"
     playwright: "npm:^1.60.0"
     prettier: "npm:^3.8.3"
-    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.20"
+    rdfstore: "musicEnfanthen/rdfstore-js#v0.9.18-alpha.20"
     rxjs: "npm:~7.8.2"
     source-map-explorer: "npm:^2.5.3"
     stream: "npm:^0.0.3"
@@ -12020,9 +12020,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.20":
+"rdfstore@musicEnfanthen/rdfstore-js#v0.9.18-alpha.20":
   version: 0.9.18-alpha.20
-  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=bcac6397e38efe897b8c0dbabd505cbe59a8281e"
+  resolution: "rdfstore@https://github.com/musicEnfanthen/rdfstore-js.git#commit=bcac6397e38efe897b8c0dbabd505cbe59a8281e"
   dependencies:
     indexeddb-js: "npm:0.0.14"
     jsonld: "npm:^9.0.0"
