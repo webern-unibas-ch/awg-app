@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
-import { mockConsole, mockWindow } from '@testing/mock-helper';
+import { mockConsole, mockStorage, mockWindow } from '@testing/mock-helper';
 
 import { AppConfig } from '@awg-app/app.config';
 import { StorageType } from '@awg-core/services/storage-service';
@@ -24,6 +24,7 @@ describe('GndService (DONE)', () => {
     let expectedStorage: Storage;
     let expectedLocalStorage!: Storage;
     let expectedSessionStorage!: Storage;
+    let initialStorageDescriptors: ReturnType<typeof mockStorage.captureStorageDescriptors>;
 
     const expectedGndKey = 'gnd';
     const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i;
@@ -39,6 +40,10 @@ describe('GndService (DONE)', () => {
     const otherSetEvent = new GndEvent(GndEventType.SET, otherGndEventValue);
     const expectedRemoveEvent = new GndEvent(GndEventType.REMOVE, null);
 
+    beforeAll(() => {
+        initialStorageDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [GndService],
@@ -47,8 +52,8 @@ describe('GndService (DONE)', () => {
         // Inject service
         gndService = TestBed.inject(GndService);
 
-        expectedLocalStorage = window[localType] as Storage;
-        expectedSessionStorage = window[sessionType] as Storage;
+        expectedLocalStorage = mockStorage.ensureStorage(localType);
+        expectedSessionStorage = mockStorage.ensureStorage(sessionType);
 
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
@@ -63,11 +68,14 @@ describe('GndService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage?.clear();
-        expectedLocalStorage?.clear();
         mockConsole.clear();
+        mockStorage.clearStorages([sessionType, localType]);
         mockWindow.clear();
         vi.restoreAllMocks();
+    });
+
+    afterAll(() => {
+        mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
     });
 
     it('... should create', () => {

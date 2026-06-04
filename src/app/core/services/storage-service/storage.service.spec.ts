@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
-import { mockConsole } from '@testing/mock-helper';
+import { mockConsole, mockStorage } from '@testing/mock-helper';
 
 import { StorageService, StorageType } from './storage.service';
 
@@ -18,11 +18,17 @@ describe('StorageService (DONE)', () => {
     let expectedLocalStorage!: Storage;
     let expectedSessionStorage!: Storage;
 
+    let initialStorageDescriptors: ReturnType<typeof mockStorage.captureStorageDescriptors>;
+
     let consoleSpy: Spy;
 
     const expectedKey = 'key';
     const expectedItem = 'expectedItem';
     const otherItem = 'otherItem';
+
+    beforeAll(() => {
+        initialStorageDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+    });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -31,8 +37,8 @@ describe('StorageService (DONE)', () => {
         // Inject service
         storageService = TestBed.inject(StorageService);
 
-        expectedLocalStorage = window[localType] as Storage;
-        expectedSessionStorage = window[sessionType] as Storage;
+        expectedLocalStorage = mockStorage.ensureStorage(localType);
+        expectedSessionStorage = mockStorage.ensureStorage(sessionType);
 
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
@@ -42,10 +48,13 @@ describe('StorageService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage?.clear();
-        expectedLocalStorage?.clear();
         mockConsole.clear();
+        mockStorage.clearStorages([sessionType, localType]);
         vi.restoreAllMocks();
+    });
+
+    afterAll(() => {
+        mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
     });
 
     it('... should create', () => {
