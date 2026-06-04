@@ -164,6 +164,8 @@ describe('EditionViewComponent (DONE)', () => {
     });
 
     afterEach(() => {
+        vi.clearAllTimers();
+        vi.useRealTimers();
         vi.restoreAllMocks();
     });
 
@@ -286,6 +288,7 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         afterEach(() => {
+            vi.clearAllTimers();
             vi.useRealTimers();
         });
 
