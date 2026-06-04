@@ -1,8 +1,9 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click } from '@testing/click-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -40,7 +41,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionIntroPartialDisclaimerComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroPartialDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -52,10 +55,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedSectionRoute = EDITION_ROUTE_CONSTANTS.SECTION.route;
         expectedIntroRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('should create', () => {
@@ -97,8 +96,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('no-para-margin');
+                expect(pEl.classList.contains('text-muted')).toBe(true);
+                expect(pEl.classList.contains('no-para-margin')).toBe(true);
             });
         });
     });
@@ -147,8 +146,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('no-para-margin');
+                expect(pEl.classList.contains('text-muted')).toBe(true);
+                expect(pEl.classList.contains('no-para-margin')).toBe(true);
 
                 const awg = component.editionLabel;
                 const series = component.editionComplex?.pubStatement?.series?.short;
@@ -173,7 +172,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective) => {
+                for (const routerLink of routerLinks) {
                     const expectedRouterLink = [
                         expectedEditionRoute,
                         expectedSeriesRoute,
@@ -183,11 +182,11 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                         expectedIntroRoute,
                     ];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = [
                         expectedEditionRoute,
@@ -200,11 +199,10 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

@@ -1,6 +1,8 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -39,7 +41,10 @@ class EditionSvgSheetFacetItemStubComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetFacetComponent (DONE)', () => {
@@ -64,12 +69,12 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [EditionSvgSheetFacetComponent, EditionSvgSheetFacetItemStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetFacetComponent);
@@ -95,13 +100,15 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         expectedAnglesLeft = faAnglesLeft;
         expectedListUl = faListUl;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleSheetFacetSpy = spyOn(component, 'toggleSheetFacet').and.callThrough();
-        toggleSheetFacetRequestEmitSpy = spyOn(component.toggleSheetFacetRequest, 'emit').and.callThrough();
+        // Spies
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
+        toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -164,11 +171,11 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer div.card if svgSheetsData is not defined', () => {
+            it('... should contain no outer div.card if svgSheetsData is not defined', async () => {
                 // Reset svgSheetsData
                 component.svgSheetsData = undefined;
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
             });
@@ -282,10 +289,10 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
             });
 
             describe('... if minimized', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     component.isMinimized = true;
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 describe('... toggle button', () => {
@@ -350,16 +357,24 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expectSpyCall(selectSvgSheetSpy, 3, expectedSheetIds);
             });
 
-            it('... should not emit anything if no id is provided', () => {
+            it('... should not emit anything if no sheet id is provided', () => {
                 const expectedSheetIds = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedNextSheetIds);
+            });
+
+            it('... should emit a selected svg sheet id even if complex id is undefined', () => {
+                const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
+
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
@@ -399,7 +414,7 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
             it('... should emit id of selected svg sheet with partial for another complex', () => {
                 const expectedSheetId =
                     expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds = { complexId: expectedNextComplexId, sheetId: expectedSheetId };
 
                 component.selectSvgSheet(expectedSheetIds);
 
@@ -412,18 +427,18 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expect(component.toggleSheetFacet).toBeDefined();
             });
 
-            it('... should trigger on click on button', () => {
+            it('... should trigger on click on button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
                 const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(toggleSheetFacetSpy, 1);
             });
 
-            it('... should emit the toggle state of the sheet facet', () => {
+            it('... should emit the toggle state of the sheet facet', async () => {
                 expectToBe(component.isMinimized, false);
 
                 component.toggleSheetFacet();
@@ -431,7 +446,7 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                 expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, true);
 
                 component.isMinimized = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.isMinimized, true);
 

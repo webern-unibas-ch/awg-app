@@ -1,12 +1,12 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faArrowUp, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -23,15 +23,20 @@ describe('ScrollToTopComponent (DONE)', () => {
     let expectedScrollThreshold: number;
     let expectedArrowIcon: IconDefinition;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [ScrollToTopComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(ScrollToTopComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        // Mock window.scrollTo to prevent actual scrolling during tests
+        vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
 
         // Trigger initial data binding
         fixture.detectChanges();
@@ -40,14 +45,12 @@ describe('ScrollToTopComponent (DONE)', () => {
         expectedScrollThreshold = 300;
         expectedArrowIcon = faArrowUp;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        scrollToTopSpy = spyOn(component, 'scrollToTop').and.callThrough();
-    }));
+        // Spies
+        scrollToTopSpy = vi.spyOn(component, 'scrollToTop');
+    });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('should create', () => {
@@ -64,25 +67,25 @@ describe('ScrollToTopComponent (DONE)', () => {
 
     describe('#VIEW', () => {
         describe('... should contain no button.awg-scroll-to-top if', () => {
-            it('... isScrolled is undefined', () => {
+            it('... isScrolled is undefined', async () => {
                 component.isScrolled = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top', 0, 0);
             });
 
-            it('... isScrolled is false', () => {
+            it('... isScrolled is false', async () => {
                 component.isScrolled = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top', 0, 0);
             });
         });
 
         describe('... with isScrolled set to true', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 component.isScrolled = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
             it('... should contain one button.awg-scroll-to-top if isScrolled is true', () => {
@@ -97,14 +100,14 @@ describe('ScrollToTopComponent (DONE)', () => {
                 expectToEqual(faIconIns(), expectedArrowIcon);
             });
 
-            it('... should trigger `scrollToTop` method on button click', fakeAsync(() => {
+            it('... should trigger `scrollToTop` method on button click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top', 1, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(scrollToTopSpy, 1);
-            }));
+            });
         });
     });
 
@@ -173,14 +176,17 @@ describe('ScrollToTopComponent (DONE)', () => {
         });
 
         it('... should trigger window:scrollTo with correct parameters', () => {
-            const scrollToSpy = spyOn(window, 'scrollTo');
+            const scrollToSpy = vi.spyOn(window, 'scrollTo');
 
             component.scrollToTop();
 
             expectSpyCall(scrollToSpy, 1, { top: 0, behavior: 'smooth' });
         });
 
-        it('... should scroll to top of page', () => {
+        it('... should request scrolling to top of page', () => {
+            const scrollToSpy = vi.spyOn(window, 'scrollTo');
+            const baselineCallCount = scrollToSpy.mock.calls.length;
+
             const scrollEventBelowThreshold = new Event('scroll') as any;
             Object.defineProperty(scrollEventBelowThreshold, 'currentTarget', {
                 value: { scrollY: expectedScrollThreshold + 1 },
@@ -192,7 +198,7 @@ describe('ScrollToTopComponent (DONE)', () => {
 
             component.scrollToTop();
 
-            expectToBe(window.scrollY, 0);
+            expectSpyCall(scrollToSpy, baselineCallCount + 1, { top: 0, behavior: 'smooth' });
         });
     });
 });

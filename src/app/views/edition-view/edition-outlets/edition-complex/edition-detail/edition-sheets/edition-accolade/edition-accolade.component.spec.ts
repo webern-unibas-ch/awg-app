@@ -1,11 +1,13 @@
 import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -25,7 +27,6 @@ import {
     Textcritics,
 } from '@awg-views/edition-view/models';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
 // Mock components
@@ -42,7 +43,10 @@ class EditionSvgSheetFacetStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
     @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
@@ -64,7 +68,10 @@ class EditionSvgSheetViewerStubComponent {
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -80,11 +87,17 @@ class EditionSvgSheetFooterStubComponent {
     @Input()
     showTkA: boolean;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -147,8 +160,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 EditionAccoladeComponent,
@@ -158,7 +171,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 FullscreenToggleStubComponent,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionAccoladeComponent);
@@ -187,32 +200,27 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedShowTkA = true;
         expectedIsSheetFacetMinimized = false;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
-        browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
-        fullscreenToggleSpy = spyOn(component, 'fullscreenToggle').and.callThrough();
-        fullscreenToggleRequestEmitSpy = spyOn(component.fullscreenToggleRequest, 'emit').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectLinkBoxSpy = spyOn(component, 'selectLinkBox').and.callThrough();
-        selectLinkBoxRequestEmitSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
-        selectOverlaysSpy = spyOn(component, 'selectOverlays').and.callThrough();
-        selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleSheetFacetSpy = spyOn(component, 'toggleSheetFacet').and.callThrough();
-        toggleSheetFacetRequestEmitSpy = spyOn(component.toggleSheetFacetRequest, 'emit').and.callThrough();
+        // Spies
+        browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
+        browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
+        fullscreenToggleSpy = vi.spyOn(component, 'fullscreenToggle');
+        fullscreenToggleRequestEmitSpy = vi.spyOn(component.fullscreenToggleRequest, 'emit');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectLinkBoxSpy = vi.spyOn(component, 'selectLinkBox');
+        selectLinkBoxRequestEmitSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
+        selectOverlaysSpy = vi.spyOn(component, 'selectOverlays');
+        selectOverlaysRequestEmitSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
+        toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -311,7 +319,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have class `fullscreen` on div.accordion only in fullscreen mode', () => {
+            it('... should have class `fullscreen` on div.accordion only in fullscreen mode', async () => {
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                 const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
@@ -319,7 +327,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                 // Set fullscreen
                 component.isFullscreen = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToContain(accordionEl.classList, 'fullscreen');
             });
@@ -389,10 +397,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(itemHeaderDes[0], FullscreenToggleStubComponent, 1, 1);
                 });
 
-                it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', () => {
+                it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', async () => {
                     // Set fullscreen
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
@@ -432,9 +440,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
                 });
 
-                it('... should apply col-auto to sheet facet container div when minimized', () => {
+                it('... should apply col-auto to sheet facet container div when minimized', async () => {
                     component.isSheetFacetMinimized = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const facetDivDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -450,9 +458,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expect(facetDivEl.classList).not.toContain('col-xl-3');
                 });
 
-                it('... should apply col-12 col-lg-4 col-xl-3 to sheet facet container div when not minimized', () => {
+                it('... should apply col-12 col-lg-4 col-xl-3 to sheet facet container div when not minimized', async () => {
                     component.isSheetFacetMinimized = false;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const facetDivDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -468,9 +476,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expect(facetDivEl.classList).not.toContain('col-auto');
                 });
 
-                it('... should apply col to sheet viewer container div when minimized', () => {
+                it('... should apply col to sheet viewer container div when minimized', async () => {
                     component.isSheetFacetMinimized = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const viewerDivDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -486,9 +494,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expect(viewerDivEl.classList).not.toContain('col-xl-9');
                 });
 
-                it('... should apply col-12 col-lg-8 col-xl-9 to sheet viewer container div when not minimized', () => {
+                it('... should apply col-12 col-lg-8 col-xl-9 to sheet viewer container div when not minimized', async () => {
                     component.isSheetFacetMinimized = false;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const viewerDivDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -838,7 +846,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click on header button', fakeAsync(() => {
+            it('... should trigger on click on header button', async () => {
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-accolade-view > div.accordion-header',
@@ -851,10 +859,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const expectedSnippet = 'HINT_EDITION_SHEETS';
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedSnippet);
-            }));
+            });
 
             it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
                 const sheetFooterDes = getAndExpectDebugElementByDirective(
@@ -1037,9 +1045,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('... should trigger on toggleSheetFacetRequest event from EditionSvgSheetFacetComponent', () => {
-                it('... when sheet facet is not minimized', () => {
+                it('... when sheet facet is not minimized', async () => {
                     component.isSheetFacetMinimized = false;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const sheetFacetDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1056,9 +1064,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectSpyCall(toggleSheetFacetSpy, 1, true);
                 });
 
-                it('... when sheet facet is minimized', () => {
+                it('... when sheet facet is minimized', async () => {
                     component.isSheetFacetMinimized = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const sheetFacetDes = getAndExpectDebugElementByDirective(
                         compDe,

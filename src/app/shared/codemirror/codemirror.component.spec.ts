@@ -1,12 +1,12 @@
 import { DebugElement, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { StreamLanguage } from '@codemirror/language';
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { EditorState, EditorStateConfig, Extension } from '@codemirror/state';
-import { basicSetup } from 'codemirror';
 
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -30,7 +30,9 @@ describe('CodemirrorComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [CodeMirrorComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(CodeMirrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -39,19 +41,21 @@ describe('CodemirrorComponent', () => {
         expectedMode = sparql;
         expectedContent = 'SELECT * WHERE { ?s ?p ?o }';
 
-        const expectedExtensions: Extension[] = [basicSetup, StreamLanguage.define(expectedMode)];
+        const expectedExtensions: Extension[] = [StreamLanguage.define(expectedMode)];
         const config: EditorStateConfig = {
             doc: expectedContent || '',
             extensions: expectedExtensions,
         };
         expectedState = EditorState.create(config);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        initSpy = spyOn(component, 'init').and.callThrough();
-        onContentChangeSpy = spyOn(component, 'onContentChange').and.callThrough();
-        emitContentChangeSpy = spyOn(component.contentChange, 'emit').and.callThrough();
+        // Spies
+        initSpy = vi.spyOn(component, 'init');
+        onContentChangeSpy = vi.spyOn(component, 'onContentChange');
+        emitContentChangeSpy = vi.spyOn(component.contentChange, 'emit');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -135,6 +139,18 @@ describe('CodemirrorComponent', () => {
                 expect(component.onContentChange).toBeDefined();
             });
 
+            it('... should not trigger if editor update does not change the document', () => {
+                component.editor.dispatch({
+                    selection: {
+                        anchor: 0,
+                    },
+                });
+                fixture.detectChanges();
+
+                expectSpyCall(onContentChangeSpy, 0);
+                expectSpyCall(emitContentChangeSpy, 0);
+            });
+
             it('... should trigger on change of content input', () => {
                 const otherContent = 'SELECT * WHERE { ?s ?changed ?o }';
                 component.editor.dispatch({
@@ -182,7 +198,7 @@ describe('CodemirrorComponent', () => {
 
         describe('#ngOnChanges()', () => {
             it('... should update the editor on changes of content', () => {
-                editorDispatchSpy = spyOn(component.editor, 'dispatch').and.callThrough();
+                editorDispatchSpy = vi.spyOn(component.editor, 'dispatch');
 
                 // Directly trigger ngOnChanges
                 component.content = 'SELECT * WHERE { ?s ?changed ?o }';
@@ -197,7 +213,7 @@ describe('CodemirrorComponent', () => {
 
             describe('... should not trigger on changes of content', () => {
                 beforeEach(() => {
-                    editorDispatchSpy = spyOn(component.editor, 'dispatch').and.callThrough();
+                    editorDispatchSpy = vi.spyOn(component.editor, 'dispatch');
                 });
 
                 it('... if first change', () => {
@@ -241,6 +257,87 @@ describe('CodemirrorComponent', () => {
                     expectSpyCall(editorDispatchSpy, 0);
                 });
             });
+        });
+
+        describe('#_supportsRangeGeometry()', () => {
+            it('... should return false if document.createRange is not a function', () => {
+                const hadOwnCreateRange = Object.prototype.hasOwnProperty.call(document, 'createRange');
+                const ownCreateRangeDescriptor = Object.getOwnPropertyDescriptor(document, 'createRange');
+
+                try {
+                    Object.defineProperty(document, 'createRange', {
+                        configurable: true,
+                        writable: true,
+                        value: undefined,
+                    });
+
+                    expectToBe((component as any)._supportsRangeGeometry(), false);
+                } finally {
+                    if (hadOwnCreateRange && ownCreateRangeDescriptor) {
+                        Object.defineProperty(document, 'createRange', ownCreateRangeDescriptor);
+                    } else {
+                        delete (document as any).createRange;
+                    }
+                }
+            });
+
+            it('... should return true if range geometry APIs are available', () => {
+                const createRangeSpy = vi.spyOn(document, 'createRange').mockReturnValue({
+                    getClientRects: () => [] as unknown as DOMRectList,
+                    getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
+                } as unknown as Range);
+
+                expectToBe((component as any)._supportsRangeGeometry(), true);
+
+                createRangeSpy.mockRestore();
+            });
+
+            it('... should return false if getClientRects is not available', () => {
+                const createRangeSpy = vi.spyOn(document, 'createRange').mockReturnValue({
+                    getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
+                } as unknown as Range);
+
+                expectToBe((component as any)._supportsRangeGeometry(), false);
+
+                createRangeSpy.mockRestore();
+            });
+
+            it('... should return false if getBoundingClientRect is not available', () => {
+                const createRangeSpy = vi.spyOn(document, 'createRange').mockReturnValue({
+                    getClientRects: () => [] as unknown as DOMRectList,
+                } as unknown as Range);
+
+                expectToBe((component as any)._supportsRangeGeometry(), false);
+
+                createRangeSpy.mockRestore();
+            });
+        });
+    });
+
+    describe('#ngAfterViewInit() integration', () => {
+        it('... should initialize with setup extensions if range geometry APIs are available', () => {
+            const supportsRangeGeometrySpy = vi.spyOn(component as any, '_supportsRangeGeometry').mockReturnValue(true);
+            const initLocalSpy = vi.spyOn(component, 'init').mockImplementation(() => undefined);
+
+            component.mode = sparql;
+            component.content = expectedContent;
+
+            expect(() => fixture.detectChanges()).not.toThrow();
+            expectSpyCall(supportsRangeGeometrySpy, 1);
+            expectSpyCall(initLocalSpy, 1);
+        });
+
+        it('... should initialize the editor without throwing if range geometry APIs are unavailable', () => {
+            const supportsRangeGeometrySpy = vi
+                .spyOn(component as any, '_supportsRangeGeometry')
+                .mockReturnValue(false);
+
+            component.mode = sparql;
+            component.content = expectedContent;
+
+            expect(() => fixture.detectChanges()).not.toThrow();
+            expectSpyCall(supportsRangeGeometrySpy, 1);
+            expectToBe(component.editor.state.doc.toString(), expectedContent);
         });
     });
 });

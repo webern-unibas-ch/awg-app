@@ -1,5 +1,7 @@
 import { DebugElement } from '@angular/core';
 
+import { expect } from 'vitest';
+
 /**
  * Test helper function: expectAccordionItem.
  *
@@ -15,9 +17,8 @@ function expectAccordionItem(headerDe: DebugElement, msg: string, collapsed?: bo
     const headerEl: HTMLDivElement = headerDe.nativeElement;
     const isCollapsed = headerEl.classList.contains('collapsed');
 
-    expect(isCollapsed)
-        .withContext(`Header should be ${collapsed ? 'collapsed' : 'not collapsed'}`)
-        .toBe(collapsed);
+    const suffix = msg ? ` (${msg})` : '';
+    expect(isCollapsed, `Header should be ${collapsed ? 'collapsed' : 'not collapsed'}${suffix}`).toBe(collapsed);
 }
 
 /**

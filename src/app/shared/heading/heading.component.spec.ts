@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { HeadingComponent } from './heading.component';
@@ -14,11 +15,11 @@ describe('HeadingComponent (DONE)', () => {
     let expectedTitle: string;
     let expectedId: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [HeadingComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HeadingComponent);
@@ -28,10 +29,6 @@ describe('HeadingComponent (DONE)', () => {
         // Test data
         expectedTitle = 'Test Title';
         expectedId = '23';
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

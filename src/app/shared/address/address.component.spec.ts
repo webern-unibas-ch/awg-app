@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
@@ -17,11 +18,11 @@ describe('AddressComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedContactMetaData: MetaContact;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [AddressComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AddressComponent);
@@ -31,10 +32,6 @@ describe('AddressComponent (DONE)', () => {
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

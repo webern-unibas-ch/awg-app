@@ -1,8 +1,9 @@
 import { DebugElement, inject, NgModule } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IsActiveMatchOptions, Router } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import {
@@ -15,8 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -100,7 +100,7 @@ describe('NavbarComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Stub service for test purposes
         mockCoreService = {
             getLogos: () => expectedLogos,
@@ -113,7 +113,7 @@ describe('NavbarComponent (DONE)', () => {
                 true,
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
             declarations: [NavbarComponent, RouterLinkStubDirective],
             providers: [
@@ -121,7 +121,7 @@ describe('NavbarComponent (DONE)', () => {
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -167,18 +167,16 @@ describe('NavbarComponent (DONE)', () => {
             structure: 'Strukturmodell',
         };
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
-        routerSpy = spyOn(mockRouter, 'isActive').and.callThrough();
-        isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
-        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        toggleNavSpy = spyOn(component, 'toggleNav').and.callThrough();
+        // Spies
+        coreServiceSpy = vi.spyOn(mockCoreService, 'getLogos');
+        routerSpy = vi.spyOn(mockRouter, 'isActive');
+        isActiveRouteSpy = vi.spyOn(component, 'isActiveRoute');
+        provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
+        toggleNavSpy = vi.spyOn(component, 'toggleNav');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -333,15 +331,14 @@ describe('NavbarComponent (DONE)', () => {
                 expectSpyCall(toggleNavSpy, 0);
             });
 
-            it('... should be called when navbar toggle button clicked (click helper)', () => {
+            it('... should be called when navbar toggle button clicked (click helper)', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 expectSpyCall(toggleNavSpy, 0);
 
                 // Click button
-                click(btnDes[0]);
-                click(btnEl);
+                await clickAndAwaitChanges(btnDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(toggleNavSpy, 2);
             });
@@ -405,12 +402,12 @@ describe('NavbarComponent (DONE)', () => {
             describe('... second nav-item link (edition)', () => {
                 let navItemLinkDes: DebugElement[];
 
-                beforeEach(fakeAsync(() => {
+                beforeEach(async () => {
                     navItemLinkDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link', 1, 1);
 
                     // Click on second nav-item link
-                    clickAndAwaitChanges(navItemLinkDes[0], fixture);
-                }));
+                    await clickAndAwaitChanges(navItemLinkDes[0], fixture);
+                });
 
                 it('... should have edition label and fa-icon', () => {
                     const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > span', 1, 1);
@@ -632,7 +629,7 @@ describe('NavbarComponent (DONE)', () => {
             it('... should return true if a given route is active', () => {
                 const expectedActiveRoute = '/active-route';
 
-                routerSpy.and.returnValue(true);
+                routerSpy.mockReturnValue(true);
 
                 expectToBe(component.isActiveRoute(expectedActiveRoute), true);
             });
@@ -640,7 +637,7 @@ describe('NavbarComponent (DONE)', () => {
             it('... should return false if a given route is not active', () => {
                 const expectedActiveRoute = '/non-active-route';
 
-                routerSpy.and.returnValue(false);
+                routerSpy.mockReturnValue(false);
 
                 expectToBe(component.isActiveRoute(expectedActiveRoute), false);
             });
@@ -679,23 +676,22 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink, index) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterlinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

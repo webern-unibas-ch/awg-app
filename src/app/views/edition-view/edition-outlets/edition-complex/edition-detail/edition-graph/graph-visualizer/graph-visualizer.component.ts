@@ -73,9 +73,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples or QueryResult.
+     * It keeps the result of the query as an observable of triples, QueryResult, an info string, or undefined.
      */
-    queryResult$: Observable<Triple[] | QueryResult>;
+    queryResult$: Observable<Triple[] | QueryResult | string | undefined>;
 
     /**
      * Public variable: queryTime.
@@ -265,13 +265,17 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise<Triple[]>} The result of the query as a promise of triple array.
+     * @returns {Promise<Triple[] | QueryResult | string | undefined>} The result of the query.
      */
-    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
+    private async _queryLocalStore(
+        queryType: string,
+        queryString: string,
+        triples: string
+    ): Promise<Triple[] | QueryResult | string | undefined> {
         // Capture start time of query
         const t1 = Date.now();
 
-        let result;
+        let result: Triple[] | QueryResult | string | undefined;
 
         // Perform query with client based rdfstore
         try {

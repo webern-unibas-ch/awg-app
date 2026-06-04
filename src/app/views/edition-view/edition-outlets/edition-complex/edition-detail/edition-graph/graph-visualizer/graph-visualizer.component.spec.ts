@@ -1,10 +1,11 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EmptyError, lastValueFrom, Observable } from 'rxjs';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -18,7 +19,7 @@ import { mockConsole } from '@testing/mock-helper';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, D3SimulationNodeType, Triple } from './models';
+import { D3SimulationNode, D3SimulationNodeType, QueryResult, Triple } from './models';
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
@@ -47,7 +48,7 @@ class ConstructResultsStubComponent {
 })
 class SelectResultsStubComponent {
     @Input()
-    queryResult$: Observable<Triple[]>;
+    queryResult$: Observable<QueryResult | string>;
     @Input()
     queryTime: number;
     @Input()
@@ -91,7 +92,8 @@ class ToastStubComponent {}
     standalone: false,
 })
 class TriplesEditorStubComponent {
-    @Input() triples: string;
+    @Input()
+    triples: string;
     @Input()
     isFullscreen: boolean;
     @Output()
@@ -140,7 +142,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let showToastMessageSpy: Spy;
     let toastServiceAddSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mocked dataStreamerService
         mockGraphVisualizerService = {
             checkNamespacesInQuery: (queryString: string): string => queryString,
@@ -152,7 +154,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 }),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [
                 GraphVisualizerComponent,
                 ConstructResultsStubComponent,
@@ -164,7 +166,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             ],
             providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
@@ -202,27 +204,21 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedIsFullscreen = false;
 
         // Spies
-        serviceGetQueryTypeSpy = spyOn(mockGraphVisualizerService, 'getQuerytype').and.callThrough();
-        serviceCheckNamespacesInQuerySpy = spyOn(
-            mockGraphVisualizerService,
-            'checkNamespacesInQuery'
-        ).and.callThrough();
-        onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
-        performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
-        queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
-        resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
-        resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
-        showToastMessageSpy = spyOn(component, 'showToastMessage').and.callThrough();
-        toastServiceAddSpy = spyOn(toastService, 'add').and.callThrough();
+        serviceGetQueryTypeSpy = vi.spyOn(mockGraphVisualizerService, 'getQuerytype');
+        serviceCheckNamespacesInQuerySpy = vi.spyOn(mockGraphVisualizerService, 'checkNamespacesInQuery');
+        onTableNodeClickSpy = vi.spyOn(component, 'onTableNodeClick');
+        performQuerySpy = vi.spyOn(component, 'performQuery');
+        queryLocalStoreSpy = vi.spyOn(component as any, '_queryLocalStore');
+        resetQuerySpy = vi.spyOn(component, 'resetQuery');
+        resetTriplesSpy = vi.spyOn(component, 'resetTriples');
+        showToastMessageSpy = vi.spyOn(component, 'showToastMessage');
+        toastServiceAddSpy = vi.spyOn(toastService, 'add');
     });
 
     afterEach(() => {
         // Clear storages and mock objects after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -330,9 +326,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectedGraphRDFData.triples,
             ];
 
-            await expectAsync(
+            await expect(
                 graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-            ).toBeResolvedTo(expectedResult);
+            ).resolves.toEqual(expectedResult);
 
             expect(component.queryTime).toBeDefined();
             // Value is not predictable
@@ -360,7 +356,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectToEqual(component.triples, expectedGraphRDFData.triples);
             });
 
-            it('... should reset changed triples to initial triples', () => {
+            it('... should reset changed triples to initial triples', async () => {
                 expectSpyCall(resetTriplesSpy, 1, undefined);
 
                 // Set changed triples
@@ -368,30 +364,30 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                 component.triples = changedTriples;
                 // Wait for fixture to be stable
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToEqual(component.triples, changedTriples);
 
                 // Reset triples
                 component.resetTriples();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 2, undefined);
                 expect(component.triples).toBeDefined();
                 expectToEqual(component.triples, expectedGraphRDFData.triples);
             });
 
-            it('... should not do anything if no triples are provided from rdf data', () => {
+            it('... should not do anything if no triples are provided from rdf data', async () => {
                 expectSpyCall(resetTriplesSpy, 1);
 
                 // Set undefined triples
                 component.triples = undefined;
                 component.graphRDFInputData.triples = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Reset triples
                 component.resetTriples();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 2);
                 expect(component.triples).toBeUndefined();
@@ -427,14 +423,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
-            it('... should find and reset a query from queryList if queryLabel and queryType is known', () => {
+            it('... should find and reset a query from queryList if queryLabel and queryType is known', async () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Request for query with known queryLabel and queryType
                 const changedQuery = { ...expectedGraphRDFData.queryList[1] };
 
                 component.resetQuery(changedQuery);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Matches queryList queries by label
                 expectSpyCall(resetQuerySpy, 2, undefined);
@@ -445,7 +441,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('... should set query as is, and not find from queryList, if', () => {
-                it('... only queryLabel is known but not queryType', () => {
+                it('... only queryLabel is known but not queryType', async () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
                     // Request for query with known queryLabel but unknown queryType
@@ -453,10 +449,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     changedQuery.queryType = 'select';
 
                     // Set correct return value of service
-                    serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    serviceGetQueryTypeSpy.mockReturnValue(changedQuery.queryType);
 
                     component.resetQuery(changedQuery);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Matches queryList queries only by label
                     expectSpyCall(resetQuerySpy, 2, undefined);
@@ -466,7 +462,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToBe(component.query.queryType, changedQuery.queryType);
                 });
 
-                it('... only queryType is known but not queryLabel', () => {
+                it('... only queryType is known but not queryLabel', async () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
                     // Request for query with known queryType but unknown label
@@ -474,7 +470,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     changedQuery.queryLabel = 'select all tests';
 
                     component.resetQuery(changedQuery);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Matches queryList queries only by type
                     expectSpyCall(resetQuerySpy, 2, undefined);
@@ -484,7 +480,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToBe(component.query.queryType, changedQuery.queryType);
                 });
 
-                it('... given query is not in queryList', () => {
+                it('... given query is not in queryList', async () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
                     // Request for unknown query
@@ -495,9 +491,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
                     };
                     // Set correct return value of service
-                    serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    serviceGetQueryTypeSpy.mockReturnValue(changedQuery.queryType);
                     component.resetQuery(changedQuery);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(resetQuerySpy, 2, undefined);
 
@@ -507,32 +503,32 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            it('... should set initial query (queryList[0]) if no query is provided', () => {
+            it('... should set initial query (queryList[0]) if no query is provided', async () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set changed query
                 const changedQuery = { ...expectedGraphRDFData.queryList[1] };
                 component.query = changedQuery;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToEqual(component.query, changedQuery);
 
                 // Reset triples
                 component.resetQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, undefined);
 
                 expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
-            it('... should not do anything if no queryList is provided from RDF data', () => {
+            it('... should not do anything if no queryList is provided from RDF data', async () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set undefined triples
                 component.queryList = undefined;
                 component.graphRDFInputData.queryList = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Reset query
                 const changedQuery = {
@@ -542,18 +538,18 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, changedQuery);
                 expect(component.queryList).toBeUndefined();
             });
 
-            it('... should trigger `performQuery()`', () => {
+            it('... should trigger `performQuery()`', async () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
 
                 // Reset query
                 component.resetQuery(expectedGraphRDFData.queryList[1]);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -591,7 +587,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(performQuerySpy, 2);
             });
 
-            it('... should append namespaces to query if no prefixes given', () => {
+            it('... should append namespaces to query if no prefixes given', async () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
 
                 const queryStringWithoutPrefixes = 'CONSTRUCT WHERE { ?test ?has ?success . }';
@@ -600,14 +596,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
-                serviceCheckNamespacesInQuerySpy.and.returnValue(
+                serviceCheckNamespacesInQuerySpy.mockReturnValue(
                     'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
                 );
 
                 // Perform query without prefixes
                 component.query = queryWithoutPrefixes;
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(serviceCheckNamespacesInQuerySpy, 2, [
@@ -618,13 +614,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
-            it('... should get queryType from service', () => {
+            it('... should get queryType from service', async () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
                 expectSpyCall(serviceGetQueryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(serviceGetQueryTypeSpy, 2, expectedGraphRDFData.queryList[0].queryString);
@@ -632,13 +628,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectToBe(component.query.queryType, 'construct');
             });
 
-            it('... should trigger `_queryLocalStore` for construct queries', () => {
+            it('... should trigger `_queryLocalStore` for construct queries', async () => {
                 // Set construct query type
-                serviceGetQueryTypeSpy.and.returnValue('construct');
+                serviceGetQueryTypeSpy.mockReturnValue('construct');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -649,13 +645,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ]);
             });
 
-            it('... should trigger `_queryLocalStore` for select queries', () => {
+            it('... should trigger `_queryLocalStore` for select queries', async () => {
                 // Set select query type
-                serviceGetQueryTypeSpy.and.returnValue('select');
+                serviceGetQueryTypeSpy.mockReturnValue('select');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
@@ -666,70 +662,68 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ]);
             });
 
-            it('... should get queryResult for construct queries', waitForAsync(() => {
+            it('... should get queryResult for construct queries', async () => {
                 // Set construct query type
-                serviceGetQueryTypeSpy.and.returnValue('construct');
+                serviceGetQueryTypeSpy.mockReturnValue('construct');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'construct');
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+            });
 
-            it('... should get queryResult for select queries', waitForAsync(() => {
+            it('... should get queryResult for select queries', async () => {
                 // Set select query type
-                serviceGetQueryTypeSpy.and.returnValue('select');
+                serviceGetQueryTypeSpy.mockReturnValue('select');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'select');
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+            });
 
-            it('... should set empty observable for update query types', waitForAsync(() => {
-                serviceGetQueryTypeSpy.and.returnValue('update');
+            it('... should set empty observable for update query types', async () => {
+                serviceGetQueryTypeSpy.mockReturnValue('update');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'update');
-                expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
+            });
 
-            it('... should set empty observable for other query types', waitForAsync(() => {
-                serviceGetQueryTypeSpy.and.returnValue('other');
+            it('... should set empty observable for other query types', async () => {
+                serviceGetQueryTypeSpy.mockReturnValue('other');
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.query.queryType, 'other');
-                expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
+            });
         });
 
         describe('#_queryLocalStore()', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
             it('... should have a method `_queryLocalStore`', () => {
                 expect((component as any)._queryLocalStore).toBeDefined();
             });
 
-            it('... should trigger `graphVisualizerService.doQuery`', () => {
-                const serviceSpy = spyOn(graphVisualizerService, 'doQuery').and.callThrough();
+            it('... should trigger `graphVisualizerService.doQuery`', async () => {
+                const serviceSpy = vi.spyOn(graphVisualizerService, 'doQuery');
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -738,14 +732,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, expectedCallback);
                 expectSpyCall(serviceSpy, 1, expectedCallback);
             });
 
-            it('... should return query result on success', waitForAsync(() => {
+            it('... should return query result on success', async () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -754,17 +748,36 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                expectAsync(
+                await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeResolvedTo(expectedResult);
+                ).resolves.toEqual(expectedResult);
 
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+            });
 
-            it('... should return empty array on error', waitForAsync(() => {
+            it('... should return string message on successful select query with no results', async () => {
+                const expectedNoResults = 'Query returned no results';
+                const expectedCallback = [
+                    'select',
+                    expectedGraphRDFData.queryList[0].queryString,
+                    expectedGraphRDFData.triples,
+                ];
+
+                vi.spyOn(graphVisualizerService, 'doQuery').mockResolvedValue(expectedNoResults);
+
+                const result = await (component as any)._queryLocalStore(
+                    expectedCallback[0],
+                    expectedCallback[1],
+                    expectedCallback[2]
+                );
+
+                expectToBe(result, expectedNoResults);
+            });
+
+            it('... should return empty array on error', async () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -772,20 +785,20 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
-                spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
+                vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
+                vi.spyOn(graphVisualizerService, 'doQuery').mockImplementation(() => Promise.reject(expectedError));
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                expectAsync(
+                await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeRejectedWith(expectedError);
+                ).rejects.toEqual(expectedError);
 
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo([]);
-            }));
+                await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual([]);
+            });
 
             it('... should log an error on error', async () => {
                 const expectedCallback = [
@@ -795,16 +808,17 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
-                spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
+                const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                vi.spyOn(graphVisualizerService, 'doQuery').mockImplementation(() => Promise.reject(expectedError));
+                vi.mocked(errorSpy).mockClear();
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeRejectedWith(expectedError);
+                ).rejects.toEqual(expectedError);
 
                 expectSpyCall(errorSpy, 1, ['#queryLocalstore got error:', expectedError]);
             });
@@ -818,22 +832,22 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedError = { name: 'Error', message: 'error message' };
                 const expectedToastMessage = new ToastMessage(expectedError.name, expectedError.message, 5000);
 
-                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
-                spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
+                vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
+                vi.spyOn(graphVisualizerService, 'doQuery').mockImplementation(() => Promise.reject(expectedError));
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeRejectedWith(expectedError);
+                ).rejects.toEqual(expectedError);
 
                 expectSpyCall(showToastMessageSpy, 1);
-                expect(showToastMessageSpy.calls.any()).toBeTruthy();
-                expectToBe(showToastMessageSpy.calls.count(), 1);
-                expectToEqual(showToastMessageSpy.calls.first().args, [expectedToastMessage, 'error']);
-                expectToEqual(showToastMessageSpy.calls.allArgs()[0], [expectedToastMessage, 'error']);
+                expect(vi.mocked(showToastMessageSpy).mock.calls.length > 0).toBeTruthy();
+                expectToBe(vi.mocked(showToastMessageSpy).mock.calls.length, 1);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.calls[0], [expectedToastMessage, 'error']);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.calls[0], [expectedToastMessage, 'error']);
             });
 
             it('... should trigger `showToastMessage` 2x if error message contains `undefined`', async () => {
@@ -847,34 +861,34 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedToastMessage1 = new ToastMessage('Error', 'The query did not return any results.', 5000);
                 const expectedToastMessage2 = new ToastMessage(expectedError.name, expectedError.message, 5000);
 
-                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
-                spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
+                vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
+                vi.spyOn(graphVisualizerService, 'doQuery').mockImplementation(() => Promise.reject(expectedError));
 
                 // Perform query
                 component.performQuery();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeRejectedWith(expectedError);
+                ).rejects.toEqual(expectedError);
 
                 expectSpyCall(showToastMessageSpy, 2);
-                expect(showToastMessageSpy.calls.any()).toBeTruthy();
-                expectToBe(showToastMessageSpy.calls.count(), 2);
-                expectToEqual(showToastMessageSpy.calls.first().args, [expectedToastMessage1, 'error']);
-                expectToEqual(showToastMessageSpy.calls.allArgs()[0], [expectedToastMessage1, 'error']);
-                expectToEqual(showToastMessageSpy.calls.allArgs()[1], [expectedToastMessage2, 'error']);
-                expectToEqual(showToastMessageSpy.calls.mostRecent().args, [expectedToastMessage2, 'error']);
+                expect(vi.mocked(showToastMessageSpy).mock.calls.length > 0).toBeTruthy();
+                expectToBe(vi.mocked(showToastMessageSpy).mock.calls.length, 2);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.calls[0], [expectedToastMessage1, 'error']);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.calls[0], [expectedToastMessage1, 'error']);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.calls[1], [expectedToastMessage2, 'error']);
+                expectToEqual(vi.mocked(showToastMessageSpy).mock.lastCall, [expectedToastMessage2, 'error']);
             });
         });
 
         describe('#showToastMessage()', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
             });
 
             it('... should have a method `showToastMessage`', () => {
@@ -904,6 +918,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('... should not do anything', () => {
                 it('... if no toastMessage is provided', () => {
                     const toastMessage = undefined;
+                    vi.mocked(consoleSpy).mockClear();
 
                     component.showToastMessage(toastMessage, 'error');
 
@@ -914,6 +929,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... if no toastMessage.message is provided', () => {
                     const toastMessage = new ToastMessage('Error1', '', 500);
+                    vi.mocked(consoleSpy).mockClear();
 
                     component.showToastMessage(toastMessage, 'error');
 
@@ -930,7 +946,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     classname: 'bg-info text-light',
                     delay: toastMessage.duration,
                 });
-                consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+                consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
 
                 component.showToastMessage(toastMessage);
 
@@ -941,6 +957,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('... on error message', () => {
                 it('... should log the provided name and error message to console', () => {
                     const toastMessage = new ToastMessage('Error1', 'error message', 500);
+                    vi.mocked(consoleSpy).mockClear();
 
                     component.showToastMessage(toastMessage, 'error');
 
@@ -948,7 +965,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
                 });
 
-                it('... should trigger toast service and add an error toast message', () => {
+                it('... should trigger toast service and add an error toast message', async () => {
                     const toastMessage = new ToastMessage('Error1', 'error message', 500);
                     const expectedToast = new Toast(toastMessage.message, {
                         header: toastMessage.name,
@@ -958,7 +975,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Trigger error message
                     component.showToastMessage(toastMessage, 'error');
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -967,7 +984,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(toastService.toasts[0], expectedToast);
                 });
 
-                it('... should set durationvValue = 3000 for the errortoast message if delay not given ', () => {
+                it('... should set durationvValue = 3000 for the errortoast message if delay not given ', async () => {
                     const toastMessage = new ToastMessage('Error1', 'error message');
                     const expectedDuration = 3000;
                     const expectedToast = new Toast(toastMessage.message, {
@@ -978,7 +995,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Trigger error message without delay value
                     component.showToastMessage(toastMessage, 'error');
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -991,7 +1008,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('... on info message', () => {
                 it('... should log the provided name and info message to console', () => {
                     const toastMessage = new ToastMessage('Info1', 'info message', 500);
-                    consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+                    consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
+                    vi.mocked(consoleSpy).mockClear();
 
                     component.showToastMessage(toastMessage, 'info');
 
@@ -999,18 +1017,18 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
                 });
 
-                it('... should trigger toast service and add an info toast message', () => {
+                it('... should trigger toast service and add an info toast message', async () => {
                     const toastMessage = new ToastMessage('Info1', 'info message', 500);
                     const expectedToast = new Toast(toastMessage.message, {
                         header: toastMessage.name,
                         classname: 'bg-info text-light',
                         delay: toastMessage.duration,
                     });
-                    spyOn(console, 'info').and.callFake(mockConsole.log); // Catch console output
+                    vi.spyOn(console, 'info').mockImplementation(mockConsole.log); // Catch console output
 
                     // Trigger info message
                     component.showToastMessage(toastMessage, 'info');
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -1019,7 +1037,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(toastService.toasts[0], expectedToast);
                 });
 
-                it('... should set durationValue = 3000 for the info toast message if delay not given ', () => {
+                it('... should set durationValue = 3000 for the info toast message if delay not given ', async () => {
                     const toastMessage = new ToastMessage('Info1', 'info message');
                     const expectedDuration = 3000;
                     const expectedToast = new Toast(toastMessage.message, {
@@ -1027,11 +1045,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         classname: 'bg-info text-light',
                         delay: expectedDuration,
                     });
-                    spyOn(console, 'info').and.callFake(mockConsole.log); // Catch console output
+                    vi.spyOn(console, 'info').mockImplementation(mockConsole.log); // Catch console output
 
                     // Trigger info message without delay value
                     component.showToastMessage(toastMessage, 'info');
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
@@ -1045,13 +1063,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
         describe('#onGraphNodeClick()', () => {
             let onGraphNodeClickSpy: Spy;
 
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Set construct mode
                 component.query.queryType = 'construct';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
-                consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+                onGraphNodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
+                consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
             });
 
             it('... should have a method `onGraphNodeClick`', () => {
@@ -1089,6 +1107,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should show the provided node in a ToastMessage', () => {
+                vi.mocked(consoleSpy).mockClear();
+
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(
                     ConstructResultsStubComponent
@@ -1114,13 +1134,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('#onTableNodeClick()', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Set select mode
                 component.query = expectedGraphRDFData.queryList[0];
                 component.query.queryType = 'select';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+                consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
             });
 
             it('... should have a method `onTableNodeClick`', () => {
@@ -1154,6 +1174,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should log the provided URI to console', () => {
+                vi.mocked(consoleSpy).mockClear();
+
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(SelectResultsStubComponent) as SelectResultsStubComponent;
 
@@ -1200,27 +1222,27 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', () => {
+                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
                     component.query.queryType = 'construct';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
                     getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', () => {
+                it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', async () => {
                     component.query.queryType = 'select';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
                     getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', () => {
+                it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', async () => {
                     component.query.queryType = 'other';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1229,11 +1251,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen mode
                     component.isFullscreen = true;
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain a main div with 2 child divs', () => {
@@ -1263,27 +1285,27 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', () => {
+                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
                     component.query.queryType = 'construct';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
                     getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', () => {
+                it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', async () => {
                     component.query.queryType = 'select';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
                     getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', () => {
+                it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', async () => {
                     component.query.queryType = 'other';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
@@ -1388,10 +1410,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('ConstructResultsComponent', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'construct';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
@@ -1416,8 +1438,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should re-trigger `onGraphNodeClick()` with clickedTableRequest event', () => {
-                    consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
-                    const onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
+                    consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
+                    const onGraphNodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
 
                     const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                     const resultsCmp = resultsDes[0].injector.get(
@@ -1433,10 +1455,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('SelectResultsComponent', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'select';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
@@ -1452,7 +1474,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
-                    consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+                    consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
 
                     const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                     const resultsCmp = resultsDes[0].injector.get(
@@ -1468,10 +1490,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('UnsupportedTypeResultsComponent', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'other';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should have `queryType` passed down from main component', () => {

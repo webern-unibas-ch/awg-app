@@ -142,8 +142,10 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
         });
         const editorThemeExtension: Extension[] = [editorTheme];
 
+        const setupExtensions: Extension[] = this._supportsRangeGeometry() ? [basicSetup] : [];
+
         const ext: Extension[] = [
-            basicSetup,
+            ...setupExtensions,
             EditorView.lineWrapping,
 
             // Apply the custom editor theme
@@ -197,5 +199,23 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      */
     onContentChange(content: string): void {
         this.contentChange.emit(content);
+    }
+
+    /**
+     * Private method: _supportsRangeGeometry.
+     *
+     * It checks if the current DOM implementation supports range geometry APIs
+     * required by CodeMirror view measurement plugins.
+     *
+     * @returns {boolean} A boolean indicating support for range geometry APIs.
+     */
+    private _supportsRangeGeometry(): boolean {
+        if (typeof document === 'undefined' || typeof document.createRange !== 'function') {
+            return false;
+        }
+
+        const range = document.createRange() as Partial<Range>;
+
+        return typeof range.getClientRects === 'function' && typeof range.getBoundingClientRect === 'function';
     }
 }

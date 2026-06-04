@@ -65,10 +65,10 @@ export class OrderByPipe implements PipeTransform {
         if (a === b) {
             return 0;
         }
-        if (a == null) {
+        if (Number.isNaN(a) || a == null) {
             return 1;
         }
-        if (b == null) {
+        if (Number.isNaN(b) || b == null) {
             return -1;
         }
         return a > b ? 1 : -1;

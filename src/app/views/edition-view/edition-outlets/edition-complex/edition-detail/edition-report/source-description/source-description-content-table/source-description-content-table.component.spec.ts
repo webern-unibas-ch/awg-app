@@ -1,6 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -37,7 +39,9 @@ describe('SourceDescriptionContentTableComponent', () => {
             declarations: [SourceDescriptionContentTableComponent, CompileHtmlComponent, AbbrDirective],
             providers: [UtilityService],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionContentTableComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -56,8 +60,12 @@ describe('SourceDescriptionContentTableComponent', () => {
         expectedFolioId = 'test_folio_id_1';
 
         // Spies
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -83,7 +91,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl).toHaveClass('half-para-margin');
+                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
             });
 
             it('... should contain no table rows (yet)', () => {
@@ -122,7 +130,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl).toHaveClass('half-para-margin');
+                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
             });
 
             it('... should contain as many table rows in the table as folio systemgroups in the given content item', () => {
@@ -181,10 +189,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
             });
 
-            it('... should contain only one tr and td with colspan=2 attribute in table if no content.item is given', () => {
+            it('... should contain only one tr and td with colspan=2 attribute in table if no content.item is given', async () => {
                 component.content = expectedContents[3]; // Test item 4 without item
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -309,10 +317,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                 expectToBe(anchorEl2.textContent.trim(), expectedHtmlTextContent.textContent.trim());
             });
 
-            it('... should display the content-item-folio only with description if no item is given', () => {
+            it('... should display the content-item-folio only with description if no item is given', async () => {
                 component.content = expectedContents[3]; // Test item 4 without item
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -346,7 +354,7 @@ describe('SourceDescriptionContentTableComponent', () => {
             });
 
             describe('... should trigger on click', () => {
-                it('... on content folio', fakeAsync(() => {
+                it('... on content folio', async () => {
                     // Get content folio colspans
                     const tableDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -367,10 +375,10 @@ describe('SourceDescriptionContentTableComponent', () => {
                     const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
 
                     // CLick on anchor (with selectSvgSheet call)
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                    await clickAndAwaitChanges(anchorDes[0], fixture);
 
                     expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedFolioId });
-                }));
+                });
             });
 
             it('... should not emit anything if no id is provided', () => {

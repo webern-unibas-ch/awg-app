@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { expectToBe } from '@testing/expect-helper';
 
 import { PrefixForm } from '../models';
@@ -57,7 +59,7 @@ describe('PrefixPipe', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
 
-            expect(() => pipe.transform(shortForm, undefined)).toThrowError(
+            expect(() => pipe.transform(shortForm, undefined)).toThrow(
                 `The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: undefined.`
             );
         });

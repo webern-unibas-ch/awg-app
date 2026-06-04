@@ -1,10 +1,10 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -99,8 +99,8 @@ describe('HomeViewComponent (DONE)', () => {
         EditionOutlineService.initializeEditionOutline();
     });
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [
                 HomeViewComponent,
                 AlertInfoStubComponent,
@@ -109,7 +109,7 @@ describe('HomeViewComponent (DONE)', () => {
                 RouterLinkStubDirective,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewComponent);
@@ -129,14 +129,12 @@ describe('HomeViewComponent (DONE)', () => {
         ];
         expectedRouterlinks = getRouterlinks(expectedSections);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
+        // Spies
+        provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -459,23 +457,22 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink, index) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterlinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

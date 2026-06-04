@@ -1,6 +1,7 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe } from '@testing/expect-helper';
 
 import { LoadingService } from './loading.service';
@@ -21,10 +22,6 @@ describe('LoadingService (DONE)', () => {
         loadingStatus = false;
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
     it('... should create', () => {
         expect(loadingService).toBeTruthy();
     });
@@ -42,15 +39,15 @@ describe('LoadingService (DONE)', () => {
             expect(loadingService.getLoadingStatus).toBeDefined();
         });
 
-        it('... should return default false value', waitForAsync(() => {
+        it('... should return default false value', () => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
                     expectToBe(isLoading, false);
                 },
             });
-        }));
+        });
 
-        it('... should return updated value', waitForAsync(() => {
+        it('... should return updated value', () => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
                     expectToBe(isLoading, loadingStatus);
@@ -60,7 +57,7 @@ describe('LoadingService (DONE)', () => {
             // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
-        }));
+        });
     });
 
     describe('#updateLoadingStatus()', () => {
@@ -68,7 +65,7 @@ describe('LoadingService (DONE)', () => {
             expect(loadingService.updateLoadingStatus).toBeDefined();
         });
 
-        it('... should emit updated loading status', waitForAsync(() => {
+        it('... should emit updated loading status', () => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
                     expectToBe(isLoading, loadingStatus);
@@ -82,6 +79,6 @@ describe('LoadingService (DONE)', () => {
             // Update status
             loadingStatus = false;
             loadingService.updateLoadingStatus(loadingStatus);
-        }));
+        });
     });
 });

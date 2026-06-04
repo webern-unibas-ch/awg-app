@@ -1,13 +1,14 @@
 import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -124,18 +125,18 @@ describe('EditionInfoComponent (DONE)', () => {
         EditionOutlineService.initializeEditionOutline();
     });
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock edition state service
         mockEditionStateService = {
             getSelectedEditionSection: (): Observable<EditionOutlineSection> => observableOf(null),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [EditionInfoComponent, RouterLinkStubDirective],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionInfoComponent);
@@ -154,18 +155,16 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
-        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
+        // Spies
+        setupEditionViewSpy = vi.spyOn(component, 'setupEditionView');
+        editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'getSelectedEditionSection'
-        ).and.callThrough();
+        );
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -266,10 +265,10 @@ describe('EditionInfoComponent (DONE)', () => {
                 });
             });
 
-            it('... should open item body for selected section', () => {
-                expectedSections.forEach((section, sectionIndex) => {
+            it('... should open item body for selected section', async () => {
+                for (const [sectionIndex, section] of expectedSections.entries()) {
                     component.selectedEditionSection = section;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                     const itemDes = getAndExpectDebugElementByCss(
@@ -289,11 +288,11 @@ describe('EditionInfoComponent (DONE)', () => {
                             expect(itemBodyEl.classList).not.toContain('show');
                         }
                     });
-                });
+                }
             });
 
             describe('... with open item bodies', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Open second and third item
                     const itemDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -308,13 +307,9 @@ describe('EditionInfoComponent (DONE)', () => {
                     const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                     const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
 
-                    const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
-                    const btnEl2: HTMLButtonElement = btnDes2[0].nativeElement;
-
                     // Click header buttons to open
-                    click(btnEl1 as HTMLElement);
-                    click(btnEl2 as HTMLElement);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(btnDes1[0], fixture);
+                    await clickAndAwaitChanges(btnDes2[0], fixture);
                 });
 
                 it('... should display item header buttons', () => {
@@ -336,7 +331,7 @@ describe('EditionInfoComponent (DONE)', () => {
                     });
                 });
 
-                it('... should toggle item bodies on click', () => {
+                it('... should toggle item bodies on click', async () => {
                     const itemDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.accordion-item',
@@ -344,11 +339,10 @@ describe('EditionInfoComponent (DONE)', () => {
                         expectedSections.length + 1
                     );
 
-                    itemDes.forEach(itemDe => {
+                    for (const itemDe of itemDes) {
                         const itemHeaderDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-header', 1, 1);
 
                         const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is open
                         let itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-collapse', 1, 1, 'open');
@@ -357,8 +351,7 @@ describe('EditionInfoComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is collapsed
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -373,15 +366,14 @@ describe('EditionInfoComponent (DONE)', () => {
                         expect(itemBodyEl.classList).not.toContain('show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is open again
                         itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-collapse', 1, 1, 'open');
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
                         expectToContain(itemBodyEl.classList, 'show');
-                    });
+                    }
                 });
 
                 it('... should contain item body with 3 paragraphs in first item', () => {
@@ -479,15 +471,15 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 2);
             });
 
-            it('... should get selectedEditionSection (via EditionStateService)', waitForAsync(() => {
-                editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(expectedSections[0]));
+            it('... should get selectedEditionSection (via EditionStateService)', () => {
+                editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(observableOf(expectedSections[0]));
 
                 expectToEqual(component.selectedEditionSection, null);
 
                 component.setupEditionView();
 
                 expectToEqual(component.selectedEditionSection, expectedSections[0]);
-            }));
+            });
         });
 
         describe('#combineComplexes()', () => {
@@ -594,7 +586,7 @@ describe('EditionInfoComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Open second and third item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -604,13 +596,9 @@ describe('EditionInfoComponent (DONE)', () => {
                 const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                 const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
 
-                const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
-                const btnEl2: HTMLButtonElement = btnDes2[0].nativeElement;
-
                 // Click header buttons to open
-                click(btnEl1 as HTMLElement);
-                click(btnEl2 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes1[0], fixture);
+                await clickAndAwaitChanges(btnDes2[0], fixture);
 
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
@@ -629,24 +617,23 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const expectedRouterLink = expectedRouterLinks[index];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterLinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

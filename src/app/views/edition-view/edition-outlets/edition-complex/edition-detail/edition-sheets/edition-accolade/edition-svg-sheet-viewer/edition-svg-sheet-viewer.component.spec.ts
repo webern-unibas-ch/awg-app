@@ -1,13 +1,23 @@
-import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import {
+    Component,
+    DebugElement,
+    DOCUMENT,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    SimpleChange,
+} from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import Spy = jasmine.Spy;
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCompressArrowsAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { clickAndAwaitChanges } from '@testing/click-helper';
+import { clickAndAwaitChanges, clickDispatchAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -64,13 +74,18 @@ class EditionSvgSheetViewerNavStubComponent {
     standalone: false,
 })
 class EditionSvgSheetViewerSwitchStubComponent {
-    @Input() id?: string;
-    @Input() suppliedClasses?: Map<string, boolean>;
-    @Input() hasAvailableTkkOverlays?: boolean;
+    @Input()
+    id?: string;
+    @Input()
+    suppliedClasses?: Map<string, boolean>;
+    @Input()
+    hasAvailableTkkOverlays?: boolean;
 
     @Output()
-    toggleSuppliedClassesOpacityRequest: EventEmitter<{ className: string; isCurrentlyVisible: boolean }> =
-        new EventEmitter();
+    toggleSuppliedClassesOpacityRequest: EventEmitter<{
+        className: string;
+        isCurrentlyVisible: boolean;
+    }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetViewerComponent (DONE)', () => {
@@ -104,7 +119,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     let serviceToggleSuppliedClassOpacitySpy: Spy;
     let serviceToggleTkkOverlayHighlightsSpy: Spy;
 
-    let expectedComplexId: string;
     let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -117,7 +131,28 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     let expectedSuppliedClassNames: string[];
     let expectedSuppliedClassMap: Map<string, boolean>;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
+        // --- Robust SVGSVGElement Mock for D3-zoom ---
+        // Patch SVGSVGElement prototype to provide width/height.baseVal for D3-zoom
+        if (typeof SVGSVGElement !== 'undefined') {
+            if (!('width' in SVGSVGElement.prototype)) {
+                Object.defineProperty(SVGSVGElement.prototype, 'width', {
+                    configurable: true,
+                    get() {
+                        return { baseVal: { value: 100 } };
+                    },
+                });
+            }
+            if (!('height' in SVGSVGElement.prototype)) {
+                Object.defineProperty(SVGSVGElement.prototype, 'height', {
+                    configurable: true,
+                    get() {
+                        return { baseVal: { value: 100 } };
+                    },
+                });
+            }
+        }
+
         // Mock EditionSvgDrawingService
         mockEditionSvgDrawingService = {
             createSvg: (_svgFilePath: string, svgEl: SVGSVGElement): Promise<D3Selection> =>
@@ -125,7 +160,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     resolve(D3_SELECTION.select(svgEl));
                 }),
             fillD3SelectionWithColor: (): void => {},
-            getContainerDimensions: (): { width: number; height: number } => ({ width: 100, height: 100 }),
+            getContainerDimensions: (): {
+                width: number;
+                height: number;
+            } => ({ width: 100, height: 100 }),
             getD3SelectionById: (svgRootGroup: D3Selection, id: string): D3Selection => svgRootGroup.select(`#${id}`),
             getGroupsBySelector: (svgRootGroup: D3Selection, selector: string): D3Selection =>
                 svgRootGroup.selectAll(selector),
@@ -144,7 +182,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             toggleTkkOverlayHighlights: (): void => {},
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, FormsModule],
             declarations: [
                 EditionSvgSheetViewerComponent,
@@ -157,7 +195,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 { provide: EditionSvgOverlayService, useValue: mockEditionSvgOverlayService },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetViewerComponent);
@@ -170,7 +208,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         expectedCompressIcon = faCompressArrowsAlt;
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
-        expectedComplexId = 'testComplex1';
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
@@ -193,47 +230,38 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         expectedSuppliedClassMap.set(expectedSuppliedClassNames[1].split(' ')[1], true);
 
         // Spies
-        browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
-        browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
-        emitSelectLinkBoxRequestSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
-        emitSelectOverlaysRequestSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
-        onSuppliedClassesOpacityToggleSpy = spyOn(component, 'onSuppliedClassesOpacityToggle').and.callThrough();
-        onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
-        renderSheetSpy = spyOn(component, 'renderSheet').and.callThrough();
-        resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
+        browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
+        browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
+        emitSelectLinkBoxRequestSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
+        emitSelectOverlaysRequestSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
+        onSuppliedClassesOpacityToggleSpy = vi.spyOn(component, 'onSuppliedClassesOpacityToggle');
+        onZoomChangeSpy = vi.spyOn(component, 'onZoomChange');
+        renderSheetSpy = vi.spyOn(component, 'renderSheet');
+        resetZoomSpy = vi.spyOn(component, 'resetZoom');
 
         // Spies on private functions
-        clearSvgSpy = spyOn<any>(component, '_clearSvg').and.callThrough();
-        createSvgSpy = spyOn<any>(component, '_createSvg').and.callThrough();
-        getContainerDimensionsSpy = spyOn<any>(component, '_getContainerDimensions').and.callThrough();
-        rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callThrough();
-        resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
-        zoomHandlerSpy = spyOn<any>(component, '_zoomHandler').and.callThrough();
+        clearSvgSpy = vi.spyOn(component as any, '_clearSvg');
+        createSvgSpy = vi.spyOn(component as any, '_createSvg');
+        getContainerDimensionsSpy = vi.spyOn(component as any, '_getContainerDimensions');
+        rescaleZoomSpy = vi.spyOn(component as any, '_rescaleZoom');
+        resetZoomTranslationSpy = vi.spyOn(component as any, '_resetZoomTranslation');
+        zoomHandlerSpy = vi.spyOn(component as any, '_zoomHandler');
 
         // Spies for service methods
-        serviceClearSvgOverlaysSpy = spyOn(mockEditionSvgOverlayService, 'clearSvgOverlays').and.callThrough();
-        serviceCreateSvgOverlaysSpy = spyOn(mockEditionSvgOverlayService, 'createSvgOverlays').and.callThrough();
-        serviceCreateSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
-        serviceGetSuppliedClassesSpy = spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses').and.returnValue(
-            expectedSuppliedClassMap
-        );
-        serviceToggleSuppliedClassOpacitySpy = spyOn(
-            mockEditionSvgDrawingService,
-            'toggleSuppliedClassOpacity'
-        ).and.callThrough();
-        serviceToggleTkkOverlayHighlightsSpy = spyOn(
-            mockEditionSvgOverlayService,
-            'toggleTkkOverlayHighlights'
-        ).and.callThrough();
+        serviceClearSvgOverlaysSpy = vi.spyOn(mockEditionSvgOverlayService, 'clearSvgOverlays');
+        serviceCreateSvgOverlaysSpy = vi.spyOn(mockEditionSvgOverlayService, 'createSvgOverlays');
+        serviceCreateSvgSpy = vi.spyOn(mockEditionSvgDrawingService, 'createSvg');
+        serviceGetSuppliedClassesSpy = vi
+            .spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses')
+            .mockReturnValue(expectedSuppliedClassMap);
+        serviceToggleSuppliedClassOpacitySpy = vi.spyOn(mockEditionSvgDrawingService, 'toggleSuppliedClassOpacity');
+        serviceToggleTkkOverlayHighlightsSpy = vi.spyOn(mockEditionSvgOverlayService, 'toggleTkkOverlayHighlights');
     });
 
     afterEach(() => {
         // Clear storages and mock objects after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -295,7 +323,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(fakeAsync(() => {
+        beforeEach(async () => {
             // Simulate the parent setting the input properties
             component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
 
@@ -312,9 +340,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             component.svgSheetSelection = expectedSvgSheetSelection;
             component.svgSheetRootGroupSelection = expectedSvgSheetRootGroupSelection;
 
-            // Simulate the Promise being resolved
-            tick();
-        }));
+            // Simulate the Promise being resolved (microtask flush)
+            await Promise.resolve();
+        });
 
         it('... should have `selectedSvgSheet` input', () => {
             expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
@@ -344,6 +372,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have `suppliedClasses`', () => {
+            component.suppliedClasses = expectedSuppliedClassMap;
             expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
         });
 
@@ -493,10 +522,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 });
 
                 describe('EditionSvgSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
                         component.suppliedClasses = expectedSuppliedClassMap;
                         component.hasAvailableTkkOverlays = false;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -513,10 +542,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkkOverlays = true;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -533,10 +562,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', () => {
+                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', async () => {
                         component.suppliedClasses = new Map();
                         component.hasAvailableTkkOverlays = false;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -553,7 +582,11 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should pass the sheet id to the switch component', () => {
+                    it('... should pass the sheet id to the switch component', async () => {
+                        // Ensure suppliedClasses is set up so the switch component is rendered
+                        component.suppliedClasses = expectedSuppliedClassMap;
+                        await detectChangesOnPush(fixture);
+
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSvgSheetViewerSwitchStubComponent,
@@ -567,7 +600,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.id, expectedSvgSheet.id);
                     });
 
-                    it('... should pass the correct suppliedClasses to the switch component', () => {
+                    it('... should pass the correct suppliedClasses to the switch component', async () => {
+                        component.suppliedClasses = expectedSuppliedClassMap;
+                        await detectChangesOnPush(fixture);
+
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSvgSheetViewerSwitchStubComponent,
@@ -581,7 +617,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.suppliedClasses, expectedSuppliedClassMap);
                     });
 
-                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', () => {
+                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', async () => {
+                        component.suppliedClasses = expectedSuppliedClassMap;
+                        component.hasAvailableTkkOverlays = false;
+                        await detectChangesOnPush(fixture);
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSvgSheetViewerSwitchStubComponent,
@@ -595,9 +634,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         expectToEqual(switchCmp.hasAvailableTkkOverlays, false);
                     });
 
-                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', () => {
+                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', async () => {
                         component.hasAvailableTkkOverlays = true;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const switchDes = getAndExpectDebugElementByDirective(
                             compDe,
@@ -634,8 +673,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Record spy call count before current call
-                countBefore = getContainerDimensionsSpy.calls.count();
-                resizeSubjectNextSpy = spyOn<any>((component as any)._resize$, 'next').and.callThrough();
+                countBefore = vi.mocked(getContainerDimensionsSpy).mock.calls.length;
+                resizeSubjectNextSpy = vi.spyOn((component as any)._resize$, 'next');
             });
 
             describe('... should do nothing if ...', () => {
@@ -843,8 +882,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#renderSheet()', () => {
             beforeEach(() => {
-                resetZoomSpy.and.stub();
-                spyOn<any>(component, '_createSvgOverlays').and.stub();
+                resetZoomSpy.mockImplementation(() => {});
+                vi.spyOn(component as any, '_createSvgOverlays').mockImplementation(() => {});
             });
 
             it('... should have a method `renderSheet`', () => {
@@ -852,7 +891,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             describe('... it should be triggered by', () => {
-                it('... ngOnChanges only when `_isRendered` is true and selectedSvgSheet changes', fakeAsync(() => {
+                it('... ngOnChanges only when `_isRendered` is true and selectedSvgSheet changes', async () => {
                     expectSpyCall(renderSheetSpy, 1);
 
                     (component as any)._isRendered = true;
@@ -862,7 +901,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         selectedSvgSheet: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
                     });
 
-                    tick();
+                    await Promise.resolve();
 
                     expectSpyCall(renderSheetSpy, 2);
 
@@ -873,7 +912,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         selectedSvgSheet: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
                     });
 
-                    tick();
+                    await Promise.resolve();
 
                     expectSpyCall(renderSheetSpy, 2);
 
@@ -884,76 +923,83 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         otherChange: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
                     });
 
-                    tick();
+                    await Promise.resolve();
 
                     expectSpyCall(renderSheetSpy, 2);
-                }));
+                });
 
-                it('... _resize$ event', fakeAsync(() => {
-                    expectSpyCall(renderSheetSpy, 1);
+                it('... _resize$ event', async () => {
+                    vi.useFakeTimers();
 
-                    (component as any)._resize$.next();
+                    try {
+                        expectSpyCall(renderSheetSpy, 1);
 
-                    tick(200); // Wait for debounceTime
+                        (component as any)._resize$.next();
 
-                    expectSpyCall(renderSheetSpy, 2);
-                }));
+                        // Flush pending debounce timer(s)
+                        await vi.runAllTimersAsync();
+
+                        expectSpyCall(renderSheetSpy, 2);
+                    } finally {
+                        vi.useRealTimers();
+                    }
+                });
             });
 
-            it('... should trigger `_clearSvg` method', fakeAsync(() => {
-                const countBefore = clearSvgSpy.calls.count();
+            it('... should trigger `_clearSvg` method', () => {
+                const countBefore = vi.mocked(clearSvgSpy).mock.calls.length;
 
                 component.renderSheet();
 
                 expectSpyCall(clearSvgSpy, countBefore + 1);
-            }));
+            });
 
-            it('... should trigger `clearSvgOverlays` from service', fakeAsync(() => {
-                const countBefore = serviceClearSvgOverlaysSpy.calls.count();
+            it('... should trigger `clearSvgOverlays` from service', async () => {
+                const countBefore = vi.mocked(serviceClearSvgOverlaysSpy).mock.calls.length;
 
                 component.renderSheet();
-                tick();
+                await Promise.resolve();
 
                 expectSpyCall(serviceClearSvgOverlaysSpy, countBefore + 1);
-            }));
+            });
 
-            it('... should set `svgSheetFilePath`', fakeAsync(() => {
+            it('... should set `svgSheetFilePath`', async () => {
                 component.svgSheetFilePath = 'no-path';
 
                 expectToBe(component.svgSheetFilePath, 'no-path');
 
                 component.renderSheet();
 
-                tick();
+                await Promise.resolve();
 
                 expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
-            }));
+            });
 
-            it('... should not call `_createSvg` method if `svgSheetFilePath` is not set', fakeAsync(() => {
+            it('... should not call `_createSvg` method if `svgSheetFilePath` is not set', async () => {
                 expectSpyCall(createSvgSpy, 1);
 
                 component.selectedSvgSheet.content[0].svg = '';
 
                 component.renderSheet();
 
-                tick();
+                await Promise.resolve();
 
                 expectToBe(component.svgSheetFilePath, '');
                 expectSpyCall(createSvgSpy, 1);
-            }));
+            });
 
-            it('... should call `_createSvg` method if `svgSheetFilePath` is set', fakeAsync(() => {
+            it('... should call `_createSvg` method if `svgSheetFilePath` is set', async () => {
                 expectSpyCall(createSvgSpy, 1);
 
                 component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
 
                 component.renderSheet();
 
-                tick();
+                await Promise.resolve();
 
                 expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
                 expectSpyCall(createSvgSpy, 2);
-            }));
+            });
         });
 
         describe('#resetZoom()', () => {
@@ -961,7 +1007,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expect(component.resetZoom).toBeDefined();
             });
 
-            it('... should trigger on click on reset button of zoom slider', fakeAsync(() => {
+            it('... should trigger on click on reset button of zoom slider', async () => {
                 expectSpyCall(resetZoomSpy, 1);
 
                 const divZoomSliderDes = getAndExpectDebugElementByCss(
@@ -974,10 +1020,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(resetZoomSpy, 2);
-            }));
+            });
 
             describe('... should do nothing if', () => {
                 it('... svgSheetSelection is not set', () => {
@@ -1029,12 +1075,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             let selectAllSheetSpy: Spy;
 
             beforeEach(() => {
-                removeRootGroupSpy = jasmine.createSpy('removeRootGroup');
-                removeSheetSpy = jasmine.createSpy('removeSheet');
-                selectAllRootGroupSpy = jasmine
-                    .createSpy('selectAllRootGroup')
-                    .and.returnValue({ remove: removeRootGroupSpy });
-                selectAllSheetSpy = jasmine.createSpy('selectAllSheet').and.returnValue({ remove: removeSheetSpy });
+                removeRootGroupSpy = vi.fn();
+                removeSheetSpy = vi.fn();
+                selectAllRootGroupSpy = vi.fn().mockReturnValue({ remove: removeRootGroupSpy });
+                selectAllSheetSpy = vi.fn().mockReturnValue({ remove: removeSheetSpy });
             });
 
             it('... should have a method `_clearSvg`', () => {
@@ -1102,11 +1146,11 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Mock D3 selection and service
-                mockRootGroupSelection = { dummy: 'rootGroup', attr: jasmine.createSpy('attr') };
-                const selectSpy = jasmine.createSpy('select').and.returnValue(mockRootGroupSelection);
-                const callSpy = jasmine.createSpy('call');
+                mockRootGroupSelection = { dummy: 'rootGroup', attr: vi.fn() };
+                const selectSpy = vi.fn().mockReturnValue(mockRootGroupSelection);
+                const callSpy = vi.fn();
                 mockSvgSelection = { select: selectSpy, call: callSpy };
-                serviceCreateSvgSpy.and.resolveTo(mockSvgSelection);
+                serviceCreateSvgSpy.mockResolvedValue(mockSvgSelection);
 
                 // Provide required refs using real DOM elements from the fixture
                 const svgSheetContainerDes = getAndExpectDebugElementByCss(
@@ -1133,7 +1177,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
             it('... should not throw and should warn if svgSheetContainerRef is missing', async () => {
                 component.svgSheetContainerRef = undefined;
-                const consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log);
+                const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(mockConsole.log);
 
                 await (component as any)._createSvg();
 
@@ -1173,18 +1217,18 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should trigger `createSvgOverlays` from service with correct arguments', () => {
-                const countBefore = serviceCreateSvgOverlaysSpy.calls.count();
-                const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect');
-                const onTkkOverlaySelectSpy = spyOn(component as any, '_onTkkOverlaySelect');
+                const countBefore = vi.mocked(serviceCreateSvgOverlaysSpy).mock.calls.length;
+                const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
+                const onTkkOverlaySelectSpy = vi.spyOn(component as any, '_onTkkOverlaySelect');
 
                 (component as any)._createSvgOverlays();
 
                 expectSpyCall(serviceCreateSvgOverlaysSpy, countBefore + 1, [
                     expectedSvgSheetRootGroupSelection,
-                    jasmine.any(Function),
-                    jasmine.any(Function),
+                    expect.any(Function),
+                    expect.any(Function),
                 ]);
-                const callArgs = serviceCreateSvgOverlaysSpy.calls.mostRecent().args;
+                const callArgs = vi.mocked(serviceCreateSvgOverlaysSpy).mock.lastCall;
                 expectToEqual(callArgs[0], expectedSvgSheetRootGroupSelection);
                 expectToBe(typeof callArgs[1], 'function');
                 expectToBe(typeof callArgs[2], 'function');
@@ -1200,23 +1244,59 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should set hasAvailableTkkOverlays from the service getter', () => {
-                const getterSpy = spyOnProperty(
-                    mockEditionSvgOverlayService,
-                    'hasAvailableTkkOverlays',
-                    'get'
-                ).and.returnValue(true);
+                const getterSpy = vi
+                    .spyOn(mockEditionSvgOverlayService, 'hasAvailableTkkOverlays', 'get')
+                    .mockReturnValue(true);
 
                 (component as any)._createSvgOverlays();
 
                 expectSpyCall(getterSpy, 1);
                 expect(component.hasAvailableTkkOverlays).toBe(true);
 
-                getterSpy.and.returnValue(false);
+                getterSpy.mockReturnValue(false);
 
                 (component as any)._createSvgOverlays();
 
                 expectSpyCall(getterSpy, 2);
                 expect(component.hasAvailableTkkOverlays).toBe(false);
+            });
+        });
+
+        describe('#_getContainerDimensions()', () => {
+            it('... should have a method `_getContainerDimensions`', () => {
+                expect((component as any)._getContainerDimensions).toBeDefined();
+            });
+
+            it('... should set `_divWidth` and `_divHeight` from service dimensions when not set', () => {
+                const container = new ElementRef(mockDocument.createElement('div'));
+                const dimensionsSpy = vi
+                    .spyOn(mockEditionSvgDrawingService, 'getContainerDimensions')
+                    .mockReturnValue({ width: 321, height: 123 });
+
+                (component as any)._divWidth = undefined;
+                (component as any)._divHeight = undefined;
+
+                (component as any)._getContainerDimensions(container);
+
+                expectSpyCall(dimensionsSpy, 1, [container]);
+                expectToBe((component as any)._divWidth, 321);
+                expectToBe((component as any)._divHeight, 123);
+            });
+
+            it('... should not overwrite `_divWidth` and `_divHeight` once already set', () => {
+                const container = new ElementRef(mockDocument.createElement('div'));
+                const dimensionsSpy = vi
+                    .spyOn(mockEditionSvgDrawingService, 'getContainerDimensions')
+                    .mockReturnValue({ width: 999, height: 888 });
+
+                (component as any)._divWidth = 111;
+                (component as any)._divHeight = 222;
+
+                (component as any)._getContainerDimensions(container);
+
+                expectSpyCall(dimensionsSpy, 1, [container]);
+                expectToBe((component as any)._divWidth, 111);
+                expectToBe((component as any)._divHeight, 222);
             });
         });
 
@@ -1243,20 +1323,24 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expect((component as any)._onLinkBoxSelect).toBeDefined();
             });
 
-            xit('... should trigger on click on link box (D3 event)', fakeAsync(() => {
-                const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect').and.callThrough();
+            it('... should trigger on click on link box (D3 event)', async () => {
+                const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
+
+                serviceCreateSvgOverlaysSpy.mockImplementation((rootGroupSelection, onLinkBoxSelectFn) => {
+                    rootGroupSelection.selectAll('g.link-box').on('click', function () {
+                        onLinkBoxSelectFn((this as SVGGElement).id);
+                    });
+                });
+
+                (component as any)._createSvgOverlays();
+                fixture.detectChanges();
+
                 const linkBoxDes = getAndExpectDebugElementByCss(compDe, 'g.link-box', 1, 1);
 
-                // Select the element using D3
-                const linkBoxSelection = D3_SELECTION.select(linkBoxDes[0].nativeElement);
+                await clickDispatchAndAwaitChanges(linkBoxDes[0], fixture);
 
-                // Dispatch the click event
-                linkBoxSelection.dispatch('click');
-
-                tick();
-
-                expectSpyCall(onLinkBoxSelectSpy, 1, expectedComplexId);
-            }));
+                expectSpyCall(onLinkBoxSelectSpy, 1, expectedLinkBoxes[0].svgGroupId);
+            });
 
             it('... should not emit anything if no link box id is provided', () => {
                 const expectedLinkBoxId = '';
@@ -1301,7 +1385,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             let scaleToSpy: Spy;
 
             beforeEach(() => {
-                scaleToSpy = spyOn((component as any)._zoomBehaviour, 'scaleTo');
+                scaleToSpy = vi.spyOn((component as any)._zoomBehaviour, 'scaleTo');
             });
 
             it('... should have a method `_rescaleZoom`', () => {
@@ -1362,18 +1446,18 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should do nothing if svgSheetSelection is not set', () => {
                 component.svgSheetSelection = undefined;
 
-                const attrSpy = spyOn(component.svgSheetRootGroupSelection, 'attr').and.callThrough();
+                const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection, 'attr');
 
                 (component as any)._resetZoomTranslation();
 
                 expectSpyCall(attrSpy, 0);
             });
 
-            it('... should set a transform attribute to the `svgSheetRootGroupSelection`', fakeAsync(() => {
+            it('... should set a transform attribute to the `svgSheetRootGroupSelection`', () => {
                 const svg = createD3TestSvg(mockDocument);
                 component.svgSheetRootGroupSelection = createD3TestRootGroup(svg);
 
-                const attrSpy = spyOn(component.svgSheetRootGroupSelection, 'attr').and.callThrough();
+                const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection, 'attr');
 
                 (component as any)._resetZoomTranslation();
 
@@ -1382,7 +1466,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 expectSpyCall(attrSpy, 1, 'transform');
                 expectToBe(component.svgSheetRootGroupSelection.attr('transform'), 'translate(0,0)');
-            }));
+            });
         });
 
         describe('#_roundToScaleStepDecimalPrecision()', () => {
@@ -1446,6 +1530,68 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                         });
                     }
                 }
+            });
+        });
+
+        describe('#_zoomHandler()', () => {
+            it('... should have a method `_zoomHandler`', () => {
+                expect((component as any)._zoomHandler).toBeDefined();
+            });
+
+            it('... should create zoom behaviour and apply it to svg', () => {
+                const zoomContext = { attr: vi.fn() };
+                const svg = { call: vi.fn() };
+
+                (component as any)._zoomHandler(zoomContext as any, svg as any);
+
+                expect((component as any)._zoomBehaviour).toBeDefined();
+                expectSpyCall(svg.call as any, 1, [(component as any)._zoomBehaviour]);
+            });
+
+            it('... should update transform, slider value and slider label on zoom', () => {
+                const zoomContext = { attr: vi.fn() };
+                const svg = { call: vi.fn() };
+                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as any;
+                component.sliderInputLabel = { nativeElement: { innerText: '' } } as any;
+
+                (component as any)._zoomHandler(zoomContext as any, svg as any);
+                const zoomed = (component as any)._zoomBehaviour.on('zoom');
+                const transform = { k: 2.345 };
+
+                zoomed({ transform });
+
+                expectSpyCall(zoomContext.attr as any, 1, ['transform', transform]);
+                expectToBe(component.sliderConfig.value, 2.35);
+                expectToBe(component.sliderInput.nativeElement.value, 2.35);
+                expectToBe(component.sliderInputLabel.nativeElement.innerText, '2.35x');
+            });
+
+            it('... should not update slider value if sliderInput is missing', () => {
+                const svg = createD3TestSvg(mockDocument);
+                const rootGroup = createD3TestRootGroup(svg);
+                component.sliderInput = undefined;
+                component.sliderInputLabel = undefined;
+                component.sliderConfig.value = component.sliderConfig.initial;
+
+                (component as any)._zoomHandler(rootGroup, svg);
+                const zoomed = (component as any)._zoomBehaviour.on('zoom');
+                zoomed({ transform: { k: 2.34 } });
+
+                expectToBe(component.sliderConfig.value, component.sliderConfig.initial);
+            });
+
+            it('... should not update slider label if sliderInputLabel is missing', () => {
+                const svg = createD3TestSvg(mockDocument);
+                const rootGroup = createD3TestRootGroup(svg);
+                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as any;
+                component.sliderInputLabel = undefined;
+
+                (component as any)._zoomHandler(rootGroup, svg);
+                const zoomed = (component as any)._zoomBehaviour.on('zoom');
+                zoomed({ transform: { k: 2.34 } });
+
+                expectToBe(component.sliderConfig.value, 2.34);
+                expectToBe(component.sliderInput.nativeElement.value, 2.34);
             });
         });
     });

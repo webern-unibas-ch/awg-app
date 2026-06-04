@@ -1,7 +1,8 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AbbrDirective } from './abbr.directive';
@@ -54,10 +55,6 @@ describe('AbbrDirective (DONE)', () => {
             ['US-NYpm', 'The Morgan Library & Museum, New York City, NY'],
             ['US-Wc', 'The Library of Congress, Music Division, Washington, D.C.'],
         ]);
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should replace abbreviations with <abbr> elements', () => {

@@ -1,6 +1,10 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
+
+import type { Mock } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
     EMPTY,
@@ -12,11 +16,9 @@ import {
     throwError as observableThrowError,
     ReplaySubject,
 } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -58,13 +60,22 @@ class EditionIntroContentStubComponent {
     @Input()
     notesLabel: string;
     @Output()
-    navigateToIntroFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToIntroFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -79,7 +90,8 @@ class EditionIntroNavStubComponent {
     notesLabel: string;
     @Input()
     currentLanguage: number;
-    @Output() languageChangeRequest = new EventEmitter<number>();
+    @Output()
+    languageChangeRequest = new EventEmitter<number>();
 }
 
 @Component({
@@ -207,14 +219,14 @@ describe('IntroComponent (DONE)', () => {
         EditionOutlineService.initializeEditionOutline();
     });
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock router with spy object
         mockRouter = {
             url: '/test-url',
             events: observableOf(
                 new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
             ),
-            navigate: jasmine.createSpy('navigate'),
+            navigate: vi.fn().mockName('Router.navigate'),
         };
 
         // Mock services
@@ -235,7 +247,7 @@ describe('IntroComponent (DONE)', () => {
             getEditionSectionIntroData: (): Observable<IntroList> => observableOf(null),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterModule],
             declarations: [
                 EditionIntroComponent,
@@ -253,7 +265,7 @@ describe('IntroComponent (DONE)', () => {
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroComponent);
@@ -295,69 +307,45 @@ describe('IntroComponent (DONE)', () => {
         );
 
         // Spies on functions
-        extractUrlSegmentsSpy = spyOn(component as any, '_extractUrlSegments').and.callThrough();
-        fetchAndFilterIntroDataSpy = spyOn(component as any, '_fetchAndFilterIntroData').and.callThrough();
-        isNavigationEndToIntroSpy = spyOn(component as any, '_isNavigationEndToIntro').and.callThrough();
-        loadEditionIntroDataSpy = spyOn(component as any, '_loadEditionIntroData').and.callThrough();
-        updateEditionStateSpy = spyOn(component as any, '_updateEditionState').and.callThrough();
-        getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
-        navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
-        navigationSpy = mockRouter.navigate as jasmine.Spy;
-        openModalSpy = spyOn(component.modal, 'open').and.callThrough();
-        onIntroFragmentNavigateSpy = spyOn(component, 'onIntroFragmentNavigate').and.callThrough();
-        onLanguageSetSpy = spyOn(component, 'onLanguageSet').and.callThrough();
-        onModalOpenSpy = spyOn(component, 'onModalOpen').and.callThrough();
-        onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
-        onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        extractUrlSegmentsSpy = vi.spyOn(component as any, '_extractUrlSegments');
+        fetchAndFilterIntroDataSpy = vi.spyOn(component as any, '_fetchAndFilterIntroData');
+        isNavigationEndToIntroSpy = vi.spyOn(component as any, '_isNavigationEndToIntro');
+        loadEditionIntroDataSpy = vi.spyOn(component as any, '_loadEditionIntroData');
+        updateEditionStateSpy = vi.spyOn(component as any, '_updateEditionState');
+        getEditionIntroDataSpy = vi.spyOn(component, 'getEditionIntroData');
+        navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
+        navigationSpy = mockRouter.navigate as Mock;
+        openModalSpy = vi.spyOn(component.modal, 'open');
+        onIntroFragmentNavigateSpy = vi.spyOn(component, 'onIntroFragmentNavigate');
+        onLanguageSetSpy = vi.spyOn(component, 'onLanguageSet');
+        onModalOpenSpy = vi.spyOn(component, 'onModalOpen');
+        onReportFragmentNavigateSpy = vi.spyOn(component, 'onReportFragmentNavigate');
+        onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
-        editionDataServiceGetEditionComplexIntroDataSpy = spyOn(
-            editionDataService,
-            'getEditionComplexIntroData'
-        ).and.callThrough();
-        editionDataServiceGetEditionSectionIntroDataSpy = spyOn(
-            editionDataService,
-            'getEditionSectionIntroData'
-        ).and.callThrough();
-        editionOutlineServiceGetEditionSeriesByIdSpy = spyOn(
-            EditionOutlineService,
-            'getEditionSeriesById'
-        ).and.callThrough();
-        editionOutlineServiceGetEditionSectionByIdSpy = spyOn(
-            EditionOutlineService,
-            'getEditionSectionById'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
-            editionStateService,
-            'getSelectedEditionComplex'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
-            editionStateService,
-            'getSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSeriesSpy = spyOn(
+        editionDataServiceGetEditionComplexIntroDataSpy = vi.spyOn(editionDataService, 'getEditionComplexIntroData');
+        editionDataServiceGetEditionSectionIntroDataSpy = vi.spyOn(editionDataService, 'getEditionSectionIntroData');
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
+        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+        editionStateServiceGetSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'getSelectedEditionComplex');
+        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(editionStateService, 'getSelectedEditionSeries');
+        editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
             editionStateService,
             'updateSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
-            editionStateService,
-            'getSelectedEditionSection'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSectionSpy = spyOn(
+        );
+        editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(editionStateService, 'getSelectedEditionSection');
+        editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
             editionStateService,
             'updateSelectedEditionSection'
-        ).and.callThrough();
-        editionStateServiceUpdateIsIntroViewSpy = spyOn(editionStateService, 'updateIsIntroView').and.callThrough();
-        editionStateServiceClearIsIntroViewSpy = spyOn(editionStateService, 'clearIsIntroView').and.callThrough();
+        );
+        editionStateServiceUpdateIsIntroViewSpy = vi.spyOn(editionStateService, 'updateIsIntroView');
+        editionStateServiceClearIsIntroViewSpy = vi.spyOn(editionStateService, 'clearIsIntroView');
     });
 
     afterEach(() => {
         // Clear mock stores after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -443,13 +431,13 @@ describe('IntroComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the services returning the observable properties
-            editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(expectedSelectedEditionSeries));
-            editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
+            editionStateServiceGetSelectedEditionSeriesSpy.mockReturnValue(observableOf(expectedSelectedEditionSeries));
+            editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(
                 observableOf(expectedSelectedEditionSection)
             );
-            editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(expectedEditionComplex));
-            editionDataServiceGetEditionSectionIntroDataSpy.and.returnValue(observableOf(expectedEditionIntroData));
-            editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
+            editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(expectedEditionComplex));
+            editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(observableOf(expectedEditionIntroData));
+            editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
                 observableOf(expectedEditionIntroComplexData)
             );
 
@@ -476,7 +464,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... if intro data is given', () => {
                 describe('... with complex', () => {
-                    it('... should contain one EditionIntroPartialDisclaimerComponent (stubbed)', waitForAsync(() => {
+                    it('... should contain one EditionIntroPartialDisclaimerComponent (stubbed)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(
                             divDes[0],
@@ -484,9 +472,9 @@ describe('IntroComponent (DONE)', () => {
                             1,
                             1
                         );
-                    }));
+                    });
 
-                    it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', waitForAsync(() => {
+                    it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', () => {
                         const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroPartialDisclaimerStubComponent,
@@ -518,14 +506,14 @@ describe('IntroComponent (DONE)', () => {
                             editionIntroPartialDisclaimerCmp.introRoute,
                             expectedEditionRouteConstants.EDITION_INTRO.route
                         );
-                    }));
+                    });
 
-                    it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
+                    it('... should contain one EditionIntroContentComponent (stubbed)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
-                    }));
+                    });
 
-                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
+                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
                         const editionIntroContentDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroContentStubComponent,
@@ -544,14 +532,14 @@ describe('IntroComponent (DONE)', () => {
                             editionIntroContentCmp.notesLabel,
                             expectedNotesLabels.get(expectedCurrentLaguage)
                         );
-                    }));
+                    });
 
-                    it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
+                    it('... should contain one EditionIntroNavComponent (stubbed)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
-                    }));
+                    });
 
-                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
+                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
                         const editionIntroNavDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroNavStubComponent,
@@ -568,13 +556,13 @@ describe('IntroComponent (DONE)', () => {
                         );
                         expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
                         expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
-                    }));
+                    });
                 });
 
                 describe('... without complex', () => {
-                    beforeEach(() => {
+                    beforeEach(async () => {
                         component.editionComplex = undefined;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
                     });
 
                     it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
@@ -587,12 +575,12 @@ describe('IntroComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
+                    it('... should contain one EditionIntroContentComponent (stubbed)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
-                    }));
+                    });
 
-                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
+                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
                         const editionIntroContentDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroContentStubComponent,
@@ -611,14 +599,14 @@ describe('IntroComponent (DONE)', () => {
                             editionIntroContentCmp.notesLabel,
                             expectedNotesLabels.get(expectedCurrentLaguage)
                         );
-                    }));
+                    });
 
-                    it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
+                    it('... should contain one EditionIntroNavComponent (stubbed)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
-                    }));
+                    });
 
-                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
+                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
                         const editionIntroNavDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroNavStubComponent,
@@ -635,24 +623,24 @@ describe('IntroComponent (DONE)', () => {
                         );
                         expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
                         expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
-                    }));
+                    });
                 });
             });
 
             describe('... if intro data is empty', () => {
-                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', waitForAsync(() => {
+                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', async () => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
-                }));
+                });
 
-                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', waitForAsync(() => {
+                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', async () => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -666,62 +654,62 @@ describe('IntroComponent (DONE)', () => {
 
                     expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedEditionComplex);
                     expectToEqual(editionIntroPlaceholderCmp.editionLabel, expectedEditionRouteConstants.EDITION.short);
-                }));
+                });
             });
 
             describe('on error', () => {
-                beforeEach(waitForAsync(() => {
+                beforeEach(async () => {
                     expectedErrorObject = { status: 404, statusText: 'got Error' };
                     // Spy on editionDataService to return an error
-                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedErrorObject));
+                    fetchAndFilterIntroDataSpy.mockReturnValue(observableThrowError(() => expectedErrorObject));
 
                     component.getEditionIntroData();
-                    detectChangesOnPush(fixture);
-                }));
+                    await detectChangesOnPush(fixture);
+                });
 
-                it('... should not contain intro view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
+                it('... should not contain intro view, but one AlertErrorComponent (stubbed)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
-                }));
+                });
 
-                it('... should pass down error object to AlertErrorComponent', waitForAsync(() => {
+                it('... should pass down error object to AlertErrorComponent', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
                     expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
-                }));
+                });
             });
 
             describe('on loading', () => {
                 describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
-                    it('... editionIntroData$ is EMPTY', () => {
+                    it('... editionIntroData$ is EMPTY', async () => {
                         // Mock empty observable
                         component.editionIntroData$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionIntroData$ is undefined', () => {
+                    it('... editionIntroData$ is undefined', async () => {
                         // Mock undefined response
                         component.editionIntroData$ = observableOf(undefined);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionIntroData$ is null', () => {
+                    it('... editionIntroData$ is null', async () => {
                         // Mock null response
                         component.editionIntroData$ = observableOf(null);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
@@ -765,20 +753,20 @@ describe('IntroComponent (DONE)', () => {
                     expectToBe(result, false);
                 });
 
-                it('... should trigger `_extractUrlSegments` with intro URL', () => {
+                it('... should trigger `_extractUrlSegments` with intro URL', async () => {
                     const anyUrl = '/some/path';
                     const introUrl = '/some/path/series/1/section/5/intro';
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
                     expectSpyCall(extractUrlSegmentsSpy, 1, navigationEndEvent.urlAfterRedirects);
                 });
 
-                it('... should update edition state with seriesNumber and sectionNumber for valid URL segments', () => {
+                it('... should update edition state with seriesNumber and sectionNumber for valid URL segments', async () => {
                     const seriesNumber = '1';
                     const sectionNumber = '5';
                     const anyUrl = '/some/path';
@@ -786,20 +774,20 @@ describe('IntroComponent (DONE)', () => {
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
                     expectSpyCall(updateEditionStateSpy, 1, [seriesNumber, sectionNumber]);
                 });
 
-                it('... should not update edition state, but log an error for invalid URL segments', () => {
+                it('... should not update edition state, but log an error for invalid URL segments', async () => {
                     const anyUrl = '/some/path';
                     const invalidIntroUrl = `/some/path/series/invalid/section/invalid/intro`;
                     const navigationEndEvent = new NavigationEnd(1, anyUrl, invalidIntroUrl);
 
                     mockRouter.events = observableOf(navigationEndEvent);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     component.getEditionIntroData();
 
@@ -840,7 +828,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onIntroFragmentNavigateSpy, 1, expectedIntroIds);
             });
 
-            it('... should navigate (to same page) with correct parameters', () => {
+            it('... should navigate (to same page) with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedIntroIds = { complexId: expectedComplexId, fragmentId: expectedIntroFragment };
                 const expectedNavigationExtras = {
@@ -848,13 +836,13 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onIntroFragmentNavigate(expectedIntroIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
             });
 
             describe('... should navigate (to same page) with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: undefined };
                     const expectedNavigationExtras = {
@@ -862,12 +850,12 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: null };
                     const expectedNavigationExtras = {
@@ -875,12 +863,12 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
                     const expectedNavigationExtras = {
@@ -888,38 +876,38 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
             });
 
             describe('... should navigate (to same page) with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedIntroIds = undefined;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedIntroIds = null;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
                     const expectedNavigationExtras = {
@@ -927,7 +915,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onIntroFragmentNavigate(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
@@ -955,9 +943,9 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onLanguageSetSpy, 1, expectedCurrentLaguage);
             });
 
-            it('... should set `currentLanguage` to the given language', () => {
+            it('... should set `currentLanguage` to the given language', async () => {
                 component.onLanguageSet(expectedCurrentLaguage);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.currentLanguage, expectedCurrentLaguage);
 
@@ -1009,16 +997,16 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
             });
 
-            it('... should open modal with given id', () => {
+            it('... should open modal with given id', async () => {
                 component.onModalOpen(expectedModalSnippet);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
 
                 const otherSnippet = 'otherSnippet';
                 component.onModalOpen(otherSnippet);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 2, otherSnippet);
                 expectSpyCall(openModalSpy, 2, otherSnippet);
@@ -1071,7 +1059,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
             });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
+            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
@@ -1081,7 +1069,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onReportFragmentNavigate(expectedReportIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedReportIds.complexId,
@@ -1091,7 +1079,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
 
@@ -1101,7 +1089,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1110,7 +1098,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
 
@@ -1120,7 +1108,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1129,7 +1117,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
 
@@ -1139,7 +1127,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1150,7 +1138,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedReportIds = undefined;
 
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -1159,7 +1147,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1168,7 +1156,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedReportIds = null;
 
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -1177,7 +1165,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1186,7 +1174,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
 
@@ -1196,7 +1184,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -1230,7 +1218,7 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(onSvgSheetSelectSpy, 1, expectedSheetIds);
             });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
+            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
 
@@ -1240,7 +1228,7 @@ describe('IntroComponent (DONE)', () => {
                 };
 
                 component.onSvgSheetSelect(expectedSheetIds);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedSheetIds.complexId,
@@ -1250,7 +1238,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                it('... fragment id is undefined', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
 
@@ -1260,7 +1248,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1269,7 +1257,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is null', () => {
+                it('... fragment id is null', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
 
@@ -1279,7 +1267,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1288,7 +1276,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
 
@@ -1298,7 +1286,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1309,7 +1297,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
-                it('... introIds are undefined', () => {
+                it('... introIds are undefined', async () => {
                     const expectedSheetIds = undefined;
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1318,7 +1306,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1327,7 +1315,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... introIds are null', () => {
+                it('... introIds are null', async () => {
                     const expectedSheetIds = null;
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1336,7 +1324,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1345,7 +1333,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... fragment id is empty string', () => {
+                it('... fragment id is empty string', async () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
 
@@ -1355,7 +1343,7 @@ describe('IntroComponent (DONE)', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1503,7 +1491,7 @@ describe('IntroComponent (DONE)', () => {
                     expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 3, [seriesRoute, sectionRoute]);
                 });
 
-                it('... should return the correct edition intro data for a given series and section', done => {
+                it('... should return the correct edition intro data for a given series and section', () => {
                     const seriesRoute = expectedSelectedEditionSeries.series.route;
                     const sectionRoute = expectedSelectedEditionSection.section.route;
 
@@ -1512,11 +1500,9 @@ describe('IntroComponent (DONE)', () => {
                     result$.subscribe({
                         next: (data: Observable<IntroList>) => {
                             expectToEqual(data, expectedEditionIntroData);
-                            done();
                         },
                         error: (err: any) => {
-                            fail(`Observable emitted an error: ${err}`);
-                            done();
+                            throw new Error(`Observable emitted an error: ${err}`);
                         },
                     });
                 });
@@ -1524,10 +1510,10 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with given complex', () => {
                 beforeEach(() => {
-                    editionDataServiceGetEditionSectionIntroDataSpy.and.returnValue(
+                    editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
                         observableOf(expectedEditionIntroData)
                     );
-                    editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
+                    editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
                         observableOf(expectedEditionIntroComplexData)
                     );
                 });
@@ -1544,7 +1530,7 @@ describe('IntroComponent (DONE)', () => {
                     expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 3, [seriesRoute, sectionRoute]);
                 });
 
-                it('... should set `editionComplex`', done => {
+                it('... should set `editionComplex`', () => {
                     const seriesRoute = expectedSelectedEditionSeries.series.route;
                     const sectionRoute = expectedSelectedEditionSection.section.route;
                     const complex = expectedEditionComplex;
@@ -1554,16 +1540,14 @@ describe('IntroComponent (DONE)', () => {
                     result$.subscribe({
                         next: () => {
                             expectToEqual(component.editionComplex, complex);
-                            done();
                         },
                         error: (err: any) => {
-                            fail(`Observable emitted an error: ${err}`);
-                            done();
+                            throw new Error(`Observable emitted an error: ${err}`);
                         },
                     });
                 });
 
-                it('... should trigger `getEditionComplexIntroData()` method from EditionDataService with complex', done => {
+                it('... should trigger `getEditionComplexIntroData()` method from EditionDataService with complex', () => {
                     const seriesRoute = expectedSelectedEditionSeries.series.route;
                     const sectionRoute = expectedSelectedEditionSection.section.route;
                     const complex = expectedEditionComplex;
@@ -1575,25 +1559,20 @@ describe('IntroComponent (DONE)', () => {
                     result$.subscribe({
                         next: () => {
                             expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
-                            done();
                         },
                         error: (err: any) => {
-                            fail(`Observable emitted an error: ${err}`);
-                            done();
+                            throw new Error(`Observable emitted an error: ${err}`);
                         },
                     });
                 });
 
-                it('... should trigger `_filterSectionIntroDataById()` method with correct parameters', done => {
+                it('... should trigger `_filterSectionIntroDataById()` method with correct parameters', () => {
                     const seriesRoute = expectedSelectedEditionSeries.series.route;
                     const sectionRoute = expectedSelectedEditionSection.section.route;
                     const complex = expectedEditionComplex;
                     const expectedBlockId = expectedEditionIntroComplexData.intro[0].id;
 
-                    const filterSectionIntroDataByIdSpy = spyOn(
-                        component as any,
-                        '_filterSectionIntroDataById'
-                    ).and.callThrough();
+                    const filterSectionIntroDataByIdSpy = vi.spyOn(component as any, '_filterSectionIntroDataById');
 
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
@@ -1603,16 +1582,14 @@ describe('IntroComponent (DONE)', () => {
                                 expectedEditionIntroData,
                                 expectedBlockId,
                             ]);
-                            done();
                         },
                         error: (err: any) => {
-                            fail(`Observable emitted an error: ${err}`);
-                            done();
+                            throw new Error(`Observable emitted an error: ${err}`);
                         },
                     });
                 });
 
-                it('... should return the correct fltered edition intro data for a given series, section and complex', done => {
+                it('... should return the correct fltered edition intro data for a given series, section and complex', () => {
                     const seriesRoute = expectedSelectedEditionSeries.series.route;
                     const sectionRoute = expectedSelectedEditionSection.section.route;
                     const complex = expectedEditionComplex;
@@ -1622,11 +1599,9 @@ describe('IntroComponent (DONE)', () => {
                     result$.subscribe({
                         next: (data: Observable<IntroList>) => {
                             expectToEqual(data, expectedEditionIntroFilteredData);
-                            done();
                         },
                         error: (err: any) => {
-                            fail(`Observable emitted an error: ${err}`);
-                            done();
+                            throw new Error(`Observable emitted an error: ${err}`);
                         },
                     });
                 });
@@ -1680,7 +1655,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             it('.... should trigger `_onIntroScroll` method when window is scrolled', () => {
-                const onIntroScrollSpy = spyOn(component as any, '_onIntroScroll');
+                const onIntroScrollSpy = vi.spyOn(component as any, '_onIntroScroll');
 
                 (component as any)._initScrollListener();
 
@@ -1697,17 +1672,17 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should return true for NavigationEnd event with `intro` in URL', () => {
                 const event = new NavigationEnd(1, '/some/path', '/some/path/intro');
-                expect(component['_isNavigationEndToIntro'](event)).toBeTrue();
+                expect(component['_isNavigationEndToIntro'](event)).toBe(true);
             });
 
             it('... should return false for NavigationEnd event without `intro` in URL', () => {
                 const event = new NavigationEnd(1, '/some/path', '/some/path/other');
-                expect(component['_isNavigationEndToIntro'](event)).toBeFalse();
+                expect(component['_isNavigationEndToIntro'](event)).toBe(false);
             });
 
             it('... should return false for non-NavigationEnd event', () => {
                 const event = { urlAfterRedirects: '/some/path/intro' };
-                expect(component['_isNavigationEndToIntro'](event)).toBeFalse();
+                expect(component['_isNavigationEndToIntro'](event)).toBe(false);
             });
         });
 
@@ -1741,20 +1716,18 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... without given complex', () => {
-                beforeEach(fakeAsync(() => {
+                beforeEach(async () => {
                     // Simulate the services returning the observable properties
-                    editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
-
-                    tick();
+                    editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(null));
 
                     (component as any)._loadEditionIntroData();
-                    detectChangesOnPush(fixture);
-                }));
+                    await detectChangesOnPush(fixture);
+                });
 
-                it('... should have full editionIntroData$', waitForAsync(() => {
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(expectedEditionIntroData);
-                }));
+                it('... should have full editionIntroData$', async () => {
+                    await expect(lastValueFrom(component.editionIntroData$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.editionIntroData$)).resolves.toEqual(expectedEditionIntroData);
+                });
 
                 it('... should not have editionComplex', () => {
                     expect(component.editionComplex).toBeUndefined();
@@ -1770,12 +1743,12 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... with given complex', () => {
-                it('... should have filtered editionIntroData$', waitForAsync(() => {
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(
+                it('... should have filtered editionIntroData$', async () => {
+                    await expect(lastValueFrom(component.editionIntroData$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.editionIntroData$)).resolves.toEqual(
                         expectedEditionIntroFilteredData
                     );
-                }));
+                });
 
                 it('... should have set editionComplex', () => {
                     expectToEqual(component.editionComplex, expectedEditionComplex);
@@ -1792,85 +1765,77 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... without series or section (EMPTY)', () => {
                 describe('... should have editionIntroData$ = EMPTY if', () => {
-                    it('... no series is given', fakeAsync(() => {
+                    it('... no series is given', () => {
                         // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.mockReturnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(
                             observableOf(expectedSelectedEditionSection)
                         );
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(null));
 
                         (component as any)._loadEditionIntroData();
-                        tick();
-
                         component.editionIntroData$.pipe(isEmpty()).subscribe({
                             next: isEmptyData => {
                                 expectToBe(isEmptyData, true);
                             },
                             error: err => {
-                                fail(`Observable emitted an error: ${err}`);
+                                throw new Error(`Observable emitted an error: ${err}`);
                             },
                         });
-                    }));
+                    });
 
-                    it('... no section is given', fakeAsync(() => {
+                    it('... no section is given', () => {
                         // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.mockReturnValue(
                             observableOf(expectedSelectedEditionSeries)
                         );
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(null));
 
                         (component as any)._loadEditionIntroData();
-                        tick();
-
                         component.editionIntroData$.pipe(isEmpty()).subscribe({
                             next: isEmptyData => {
                                 expectToBe(isEmptyData, true);
                             },
                             error: err => {
-                                fail(`Observable emitted an error: ${err}`);
+                                throw new Error(`Observable emitted an error: ${err}`);
                             },
                         });
-                    }));
+                    });
 
-                    it('... no series and no section are given', fakeAsync(() => {
+                    it('... no series and no section are given', () => {
                         // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.mockReturnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
                             observableOf(expectedEditionComplex)
                         );
 
                         (component as any)._loadEditionIntroData();
-                        tick();
-
                         component.editionIntroData$.pipe(isEmpty()).subscribe({
                             next: isEmptyData => {
                                 expectToBe(isEmptyData, true);
                             },
                             error: err => {
-                                fail(`Observable emitted an error: ${err}`);
+                                throw new Error(`Observable emitted an error: ${err}`);
                             },
                         });
-                    }));
+                    });
                 });
             });
 
             describe('... on error', () => {
-                it('... should return empty observable and set errorObject if switchMap fails', fakeAsync(() => {
+                it('... should return empty observable and set errorObject if switchMap fails', async () => {
                     const expectedError = { status: 404, statusText: 'error' };
                     // Spy on switchMap method to return an error
-                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
+                    fetchAndFilterIntroDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
                     (component as any)._loadEditionIntroData();
-                    tick();
 
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+                    await expect(lastValueFrom(component.editionIntroData$)).rejects.toThrow(EmptyError);
 
                     expectToEqual(component.errorObject, expectedError);
-                }));
+                });
             });
         });
 
@@ -1891,6 +1856,8 @@ describe('IntroComponent (DONE)', () => {
                 introSection1.style.position = 'absolute'; // Needed to get a fixed scroll target
                 introSection1.style.top = '100px';
                 introSection1.style.height = '100px';
+                Object.defineProperty(introSection1, 'offsetTop', { value: 100, configurable: true });
+                Object.defineProperty(introSection1, 'offsetHeight', { value: 100, configurable: true });
                 intro.appendChild(introSection1);
 
                 const introSection2 = mockDocument.createElement('div');
@@ -1899,6 +1866,8 @@ describe('IntroComponent (DONE)', () => {
                 introSection2.style.position = 'absolute'; // Needed to get a fixed scroll target
                 introSection2.style.top = '300px';
                 introSection2.style.height = '100px';
+                Object.defineProperty(introSection2, 'offsetTop', { value: 300, configurable: true });
+                Object.defineProperty(introSection2, 'offsetHeight', { value: 100, configurable: true });
                 intro.appendChild(introSection2);
 
                 navLink1 = mockDocument.createElement('a');
@@ -1942,9 +1911,9 @@ describe('IntroComponent (DONE)', () => {
                 });
             });
 
-            it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', () => {
+            it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', async () => {
                 // Spy on window.scrollTo
-                spyOn(window, 'scrollTo').and.callFake((...args: any[]) => {
+                vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
                     const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
                     // Mock the scroll position
                     Object.defineProperty(mockDocument.documentElement, 'scrollTop', { value: y, writable: true });
@@ -1953,7 +1922,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -1961,9 +1930,9 @@ describe('IntroComponent (DONE)', () => {
                 expectToBe(navLink2.classList.contains('active'), false);
             });
 
-            it('... should update nav link classes based on scroll position (window.scrollY)', () => {
+            it('... should update nav link classes based on scroll position (window.scrollY)', async () => {
                 // Spy on window.scrollTo
-                spyOn(window, 'scrollTo').and.callFake((...args: any[]) => {
+                vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
                     const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
                     // Mock the scroll position
                     Object.defineProperty(window, 'scrollY', { value: y, writable: true });
@@ -1972,7 +1941,7 @@ describe('IntroComponent (DONE)', () => {
                 // Scroll to a specific position
                 window.scrollTo(0, 150);
                 window.dispatchEvent(new Event('scroll'));
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
@@ -1995,13 +1964,13 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should navigate within same complex if', () => {
-                it('... complex id is undefined', () => {
+                it('... complex id is undefined', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -2014,13 +1983,13 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is null', () => {
+                it('... complex id is null', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -2029,13 +1998,13 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is empty string', () => {
+                it('... complex id is empty string', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -2044,7 +2013,7 @@ describe('IntroComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... complex id is equal to the current complex id', () => {
+                it('... complex id is equal to the current complex id', async () => {
                     const expectedComplexRoute = expectedEditionComplexBaseRoute;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
@@ -2054,7 +2023,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedEditionComplex.complexId.route.replace('/', ''),
@@ -2069,7 +2038,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... should navigate to another complex if', () => {
-                it('... complex id is given and not equal to the current complex id', () => {
+                it('... complex id is given and not equal to the current complex id', async () => {
                     const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
@@ -2079,7 +2048,7 @@ describe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedNextComplexId,
@@ -2095,7 +2064,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with no edition complex id given', () => {
                 describe('... should navigate within same complex to a given intro route', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: expectedIntroFragment };
@@ -2105,7 +2074,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2118,7 +2087,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2128,7 +2097,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2143,7 +2112,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -2153,7 +2122,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2166,7 +2135,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2176,7 +2145,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2191,7 +2160,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -2201,7 +2170,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2214,7 +2183,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -2224,7 +2193,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -2241,7 +2210,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with the current edition complex id given', () => {
                 describe('... should navigate within same complex to a given intro route', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
@@ -2252,7 +2221,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2265,7 +2234,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
@@ -2276,7 +2245,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2291,7 +2260,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -2302,7 +2271,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2315,7 +2284,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -2326,7 +2295,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2341,7 +2310,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -2352,7 +2321,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2365,7 +2334,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -2376,7 +2345,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -2393,7 +2362,7 @@ describe('IntroComponent (DONE)', () => {
 
             describe('... with another edition complex id given', () => {
                 describe('... should navigate to a given intro route of another complex', () => {
-                    it('... with a given intro fragment', () => {
+                    it('... with a given intro fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: expectedIntroFragment };
@@ -2403,7 +2372,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2416,7 +2385,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given intro fragment', () => {
+                    it('... without a given intro fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2426,7 +2395,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2441,7 +2410,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate to a given report route of another complex', () => {
-                    it('... with a given report fragment', () => {
+                    it('... with a given report fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -2451,7 +2420,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2464,7 +2433,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... without a given report fragment', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -2474,7 +2443,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2489,7 +2458,7 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 describe('... should navigate to a given sheet route of another complex', () => {
-                    it('... with a given sheet id', () => {
+                    it('... with a given sheet id', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -2499,7 +2468,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2512,7 +2481,7 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... without a given sheet id', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -2522,7 +2491,7 @@ describe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -2539,6 +2508,14 @@ describe('IntroComponent (DONE)', () => {
         });
 
         describe('#_updateEditionState()', () => {
+            beforeEach(() => {
+                vi.mocked(editionOutlineServiceGetEditionSeriesByIdSpy).mockClear();
+                vi.mocked(editionOutlineServiceGetEditionSectionByIdSpy).mockClear();
+                vi.mocked(editionStateServiceUpdateSelectedEditionSeriesSpy).mockClear();
+                vi.mocked(editionStateServiceUpdateSelectedEditionSectionSpy).mockClear();
+                vi.mocked(editionStateServiceUpdateIsIntroViewSpy).mockClear();
+            });
+
             it('... should have a method `_updateEditionState`', () => {
                 expect((component as any)._updateEditionState).toBeDefined();
             });
