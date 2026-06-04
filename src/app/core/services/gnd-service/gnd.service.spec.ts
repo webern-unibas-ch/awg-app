@@ -22,8 +22,8 @@ describe('GndService (DONE)', () => {
     const sessionType = StorageType.sessionStorage;
     const localType = StorageType.localStorage;
     let expectedStorage: Storage;
-    const expectedLocalStorage: Storage = window[localType];
-    const expectedSessionStorage: Storage = window[sessionType];
+    let expectedLocalStorage!: Storage;
+    let expectedSessionStorage!: Storage;
 
     const expectedGndKey = 'gnd';
     const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i;
@@ -47,6 +47,9 @@ describe('GndService (DONE)', () => {
         // Inject service
         gndService = TestBed.inject(GndService);
 
+        expectedLocalStorage = window[localType] as Storage;
+        expectedSessionStorage = window[sessionType] as Storage;
+
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
         // Spy on console
@@ -60,8 +63,8 @@ describe('GndService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage.clear();
-        expectedLocalStorage.clear();
+        expectedSessionStorage?.clear();
+        expectedLocalStorage?.clear();
         mockConsole.clear();
         mockWindow.clear();
         vi.restoreAllMocks();

@@ -15,8 +15,8 @@ describe('StorageService (DONE)', () => {
     const localType = StorageType.localStorage;
 
     let expectedStorage: Storage;
-    const expectedLocalStorage: Storage = window[localType];
-    const expectedSessionStorage: Storage = window[sessionType];
+    let expectedLocalStorage!: Storage;
+    let expectedSessionStorage!: Storage;
 
     let consoleSpy: Spy;
 
@@ -31,6 +31,9 @@ describe('StorageService (DONE)', () => {
         // Inject service
         storageService = TestBed.inject(StorageService);
 
+        expectedLocalStorage = window[localType] as Storage;
+        expectedSessionStorage = window[sessionType] as Storage;
+
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
 
@@ -39,8 +42,8 @@ describe('StorageService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage.clear();
-        expectedLocalStorage.clear();
+        expectedSessionStorage?.clear();
+        expectedLocalStorage?.clear();
         mockConsole.clear();
         vi.restoreAllMocks();
     });
