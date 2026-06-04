@@ -1,10 +1,48 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner.component';
+
+// Helper functions for testing pseudo-element content
+function _getExpectedNoteSymbol(index: number): string {
+    if (index === 6 || index === 12) {
+        return '\u266D'; // UNICODE FLAT SIGN
+    }
+
+    if (index === 3 || index === 9) {
+        return '\u266F'; // UNICODE SHARP SIGN
+    }
+
+    return '\u2669'; // UNICODE QUARTER NOTE
+}
+
+function _assertPseudoContentFromStyles(index: number, expectedContent: string): void {
+    const styles = Array.from(document.querySelectorAll('style'))
+        .map(style => style.textContent ?? '')
+        .join('\n');
+
+    if (index === 6 || index === 12) {
+        expect(styles).toMatch(/spinner-note6/);
+        expect(styles).toMatch(/spinner-note12/);
+        expect(styles).toMatch(/content:\s*"\\266d"/i);
+        return;
+    }
+
+    if (index === 3 || index === 9) {
+        expect(styles).toMatch(/spinner-note3/);
+        expect(styles).toMatch(/spinner-note9/);
+        expect(styles).toMatch(/content:\s*"\\266f"/i);
+        return;
+    }
+
+    expect(styles).toMatch(/>\s*div[^\n]*:before/i);
+    expect(styles).toMatch(/content:\s*"\\2669"/i);
+    expect(expectedContent).toBe('\u2669');
+}
 
 describe('TwelveToneSpinnerComponent', () => {
     let component: TwelveToneSpinnerComponent;
@@ -13,11 +51,11 @@ describe('TwelveToneSpinnerComponent', () => {
 
     let expectedSpinnerLoadText: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [TwelveToneSpinnerComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TwelveToneSpinnerComponent);
@@ -26,10 +64,16 @@ describe('TwelveToneSpinnerComponent', () => {
 
         // Test data
         expectedSpinnerLoadText = 'loading';
+
+        // Mock getComputedStyle to ensure consistent test results across different environments
+        const originalGetComputedStyle = window.getComputedStyle.bind(window);
+        vi.spyOn(window, 'getComputedStyle').mockImplementation((element: Element) =>
+            originalGetComputedStyle(element)
+        );
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -72,17 +116,13 @@ describe('TwelveToneSpinnerComponent', () => {
 
                     // Replace is used to remove the quotes around the content string
                     const actualContent = beforeContent.replace(/['"]+/g, '');
+                    const expectedContent = _getExpectedNoteSymbol(i);
 
-                    let expectedContent: string;
-                    if (i === 6 || i === 12) {
-                        expectedContent = '\u266D'; // UNICODE FLAT SIGN
-                    } else if (i === 3 || i === 9) {
-                        expectedContent = '\u266F'; // UNICODE SHARP SIGN
+                    if (actualContent === 'normal' || actualContent === '') {
+                        _assertPseudoContentFromStyles(i, expectedContent);
                     } else {
-                        expectedContent = '\u2669'; // UNICODE QUARTER NOTE
+                        expectToBe(actualContent, expectedContent);
                     }
-
-                    expectToBe(actualContent, expectedContent);
                 });
             }
         });

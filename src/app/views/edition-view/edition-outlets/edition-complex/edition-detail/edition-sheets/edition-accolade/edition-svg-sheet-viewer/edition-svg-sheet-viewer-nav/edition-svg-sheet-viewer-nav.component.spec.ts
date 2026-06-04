@@ -1,9 +1,9 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -23,22 +23,22 @@ describe('EditionSvgSheetViewerNavComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSvgSheetViewerNavComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetViewerNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
-        browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
+        // Spies
+        browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
+        browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -104,25 +104,25 @@ describe('EditionSvgSheetViewerNavComponent', () => {
                 expect(component.browseSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click on div.prev', fakeAsync(() => {
+            it('... should trigger on click on div.prev', async () => {
                 const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
                 const expectedDirection = -1;
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divPrevDes[0], fixture);
+                await clickAndAwaitChanges(divPrevDes[0], fixture);
 
                 expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-            }));
+            });
 
-            it('... should trigger on click on div.next', fakeAsync(() => {
+            it('... should trigger on click on div.next', async () => {
                 const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
                 const expectedDirection = 1;
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divNextDes[0], fixture);
+                await clickAndAwaitChanges(divNextDes[0], fixture);
 
                 expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-            }));
+            });
 
             it('... should not emit anything if no direction is provided', () => {
                 const expectedDirection = undefined;

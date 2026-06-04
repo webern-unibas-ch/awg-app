@@ -51,7 +51,6 @@ import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-
 const w = window as any;
 
 // Add global to window, assigning the value of window itself.
@@ -61,14 +60,13 @@ w.global = w;
 // cf. https://stackoverflow.com/a/58088954
 w.setImmediate = w.setTimeout;
 
-// Workaround for Uncaught ReferenceError: Buffer is not defined
-// cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
-// @ts-ignore
-w.Buffer = []; // w.Buffer || require('buffer').Buffer;
-
-// Workaround for Uncaught ReferenceError: process is not defined
-// cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
-w.process = {
-    env: { DEBUG: undefined },
-    version: [],
-};
+// Workaround for ReferenceError: process is not defined in browser environments.
+// n3's readable-stream accesses process.env at module level (no typeof guard);
+// rdfstore checks process.browser to detect the environment.
+if (typeof w.process === 'undefined') {
+    w.process = {
+        browser: true,
+        env: {},
+        nextTick: (fn: (...args: unknown[]) => void, ...args: unknown[]) => setTimeout(() => fn(...args), 0),
+    };
+}

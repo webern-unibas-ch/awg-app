@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { StructureViewComponent } from './structure-view.component';
@@ -27,20 +28,16 @@ describe('StructureViewComponent (DONE)', () => {
     const expectedTitle = 'Datenstrukturmodell';
     const expectedId = 'awg-structure-view';
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [StructureViewComponent, HeadingStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

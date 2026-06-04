@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper/mock-console';
@@ -46,16 +46,13 @@ describe('EditionSheetsService (DONE)', () => {
         expectedTextcriticalCommentary = expectedTextcriticsArray.at(1).commentary;
 
         // Spies on service functions
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
         // Clear mock objects after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

@@ -1,11 +1,12 @@
 import { DOCUMENT, DebugElement, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_SELECTION from 'd3-selection';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { clickAndAwaitChanges } from '@testing/click-helper';
+import { clickDispatchAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -61,7 +62,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartialA: EditionSvgSheet;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Stub service for test purposes
         mockFolioService = {
             addFolioToSvgCanvas: () => {},
@@ -70,11 +71,11 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 new FolioSvgData(new FolioCalculation(folioSettings, folio, 4)),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [EditionFolioViewerComponent],
             providers: [{ provide: FolioService, useValue: mockFolioService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionFolioViewerComponent);
@@ -117,27 +118,25 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             expectedFolioSvgDataArray.push(expectedFolioSvgData);
         });
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        createSVGCanvasSpy = spyOn(component, 'createSVGCanvas').and.callThrough();
-        d3SelectSpy = spyOn(component as any, '_d3Select').and.callThrough();
-        isSelectedSvgSheetSpy = spyOn(component, 'isSelectedSvgSheet').and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        prepareFolioSvgOutputSpy = spyOn(component, 'prepareFolioSvgOutput').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleActiveClassSpy = spyOn(component, 'toggleActiveClass').and.callThrough();
+        // Spies
+        createSVGCanvasSpy = vi.spyOn(component, 'createSVGCanvas');
+        d3SelectSpy = vi.spyOn(component as any, '_d3Select');
+        isSelectedSvgSheetSpy = vi.spyOn(component, 'isSelectedSvgSheet');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        prepareFolioSvgOutputSpy = vi.spyOn(component, 'prepareFolioSvgOutput');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleActiveClassSpy = vi.spyOn(component, 'toggleActiveClass');
 
         // Service spies
-        serviceAddFolioToSvgCanvasSpy = spyOn(mockFolioService, 'addFolioToSvgCanvas').and.callThrough();
-        serviceAddViewBoxToSvgCanvasSpy = spyOn(mockFolioService, 'addViewBoxToSvgCanvas').and.callThrough();
-        serviceGetFolioSvgDataSpy = spyOn(mockFolioService, 'getFolioSvgData').and.callThrough();
+        serviceAddFolioToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addFolioToSvgCanvas');
+        serviceAddViewBoxToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addViewBoxToSvgCanvas');
+        serviceGetFolioSvgDataSpy = vi.spyOn(mockFolioService, 'getFolioSvgData');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -214,7 +213,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(gridDes[0], 'div.svgRow', 1, 1);
             });
 
-            it('... should contain as many div.svgCol in div.svgRow as content segments in folioSvgDataArray', async () => {
+            it('... should contain as many div.svgCol in div.svgRow as content segments in folioSvgDataArray', () => {
                 const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
                 expect(component.folioSvgDataArray.length).toBeGreaterThan(0);
@@ -389,7 +388,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 });
 
                 it('... svgCanvas is empty', () => {
-                    d3SelectSpy.and.returnValue({ empty: () => true });
+                    d3SelectSpy.mockReturnValue({ empty: () => true });
 
                     component.prepareFolioSvgOutput();
                     component.createSVGCanvas();
@@ -407,7 +406,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     const container: HTMLElement = mockDocument.createElement('div');
                     svgSelection = D3_SELECTION.select(container).append('svg').attr('id', svgId);
 
-                    d3SelectSpy.and.returnValue(svgSelection);
+                    d3SelectSpy.mockReturnValue(svgSelection);
 
                     // Prepare folio data
                     component.prepareFolioSvgOutput();
@@ -492,12 +491,14 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         describe('#prepareFolioSvgOutput()', () => {
             beforeEach(() => {
                 // Add custom equality tester to ignore functions
-                jasmine.addCustomEqualityTester((first, second) => {
-                    if (typeof first === 'function' && typeof second === 'function') {
-                        return true;
-                    }
-                    return undefined;
-                });
+                expect.addEqualityTesters([
+                    (first, second) => {
+                        if (typeof first === 'function' && typeof second === 'function') {
+                            return true;
+                        }
+                        return undefined;
+                    },
+                ]);
             });
 
             it('... should have a method `prepareFolioSvgOutput`', () => {
@@ -579,20 +580,25 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            xit('... should trigger on click', fakeAsync(() => {
-                // TODO: update
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-phys-desc', 1, 1);
-                // Find description paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-conditions', 1, 1);
+            it('... should trigger on click', async () => {
+                serviceAddFolioToSvgCanvasSpy.mockImplementation((svgCanvas, _folioSvgData, ref) => {
+                    const contentSegmentGroup = svgCanvas
+                        .append('g')
+                        .attr('class', 'content-segment-group')
+                        .attr('contentSegmentId', 'mock-modal-segment');
 
-                // Find anchors in second description paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                    contentSegmentGroup.on('click', () => ref.openModal(expectedModalSnippet));
+                });
 
-                // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                component.createSVGCanvas();
+                fixture.detectChanges();
+
+                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg g.content-segment-group', 1, 1);
+
+                await clickDispatchAndAwaitChanges(contentSegmentDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -625,20 +631,30 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            xit('... should trigger on click', fakeAsync(() => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+            it('... should trigger on click', async () => {
+                const expectedSheetIds = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedSvgSheet.id,
+                };
 
-                // Find content segments
-                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg > g.content-segment-group', 3, 3);
+                serviceAddFolioToSvgCanvasSpy.mockImplementation((svgCanvas, _folioSvgData, ref) => {
+                    const contentSegmentGroup = svgCanvas
+                        .append('g')
+                        .attr('class', 'content-segment-group')
+                        .attr('contentSegmentId', expectedSheetIds.sheetId);
 
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(contentSegmentDes[0], 'a', 1, 1);
+                    contentSegmentGroup.on('click', () => ref.selectSvgSheet(expectedSheetIds));
+                });
 
-                // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                component.createSVGCanvas();
+                fixture.detectChanges();
+
+                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg g.content-segment-group', 1, 1);
+
+                await clickDispatchAndAwaitChanges(contentSegmentDes[0], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;
@@ -703,7 +719,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     .attr('class', 'content-segment-group')
                     .attr('contentSegmentId', anotherContentSegmentId);
 
-                d3SelectSpy.and.returnValue(svgSelection);
+                d3SelectSpy.mockReturnValue(svgSelection);
             });
 
             afterEach(() => {
@@ -733,14 +749,14 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             it('should toggle the active class for each content segment group based on whether it is active', () => {
                 component.canvasArray = [svgSelection];
 
-                isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === expectedSvgSheet.id);
+                isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === expectedSvgSheet.id);
 
                 component.toggleActiveClass();
 
                 expectToBe(svgGroupSelection1.classed('active'), true);
                 expectToBe(svgGroupSelection2.classed('active'), false);
 
-                isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === 'another-id');
+                isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === 'another-id');
 
                 component.toggleActiveClass();
 

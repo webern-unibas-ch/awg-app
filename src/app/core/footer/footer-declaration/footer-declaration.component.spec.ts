@@ -1,9 +1,10 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 import { DebugElement, LOCALE_ID } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { click } from '@testing/click-helper';
 import {
     expectToBe,
@@ -31,13 +32,13 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
             imports: [DatePipe],
             providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterDeclarationComponent);
@@ -46,10 +47,6 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

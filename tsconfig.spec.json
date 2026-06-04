@@ -3,7 +3,8 @@
     "compilerOptions": {
         "baseUrl": "./src/",
         "outDir": "./out-tsc/spec",
-        "types": ["jasmine", "node"],
+        "typeRoots": ["./node_modules/@types", "./node_modules"],
+        "types": ["vitest/globals", "node"],
         "paths": {
             "@awg-app/*": ["app/*"],
             "@awg-core/*": ["app/core/*"],
@@ -13,5 +14,5 @@
             "@testing/*": ["testing/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/", "polyfills.ts"]
 }

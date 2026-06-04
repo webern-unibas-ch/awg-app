@@ -1,8 +1,9 @@
 import { DebugElement, SecurityContext } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -20,14 +21,17 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedOsmEmbedUrl: SafeResourceUrl;
     let expectedOsmLinkUrl: string;
     let expectedOsmLinkLabel: string;
-    let expectedOsmIFrameSettings: { width; height };
+    let expectedOsmIFrameSettings: {
+        width;
+        height;
+    };
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [BrowserModule],
             declarations: [OpenStreetMapComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);
@@ -49,10 +53,6 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
         // Trust the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
@@ -160,7 +160,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 // Check for the inner text to contain the link label
-                expectToBe(aEl.innerText, expectedOsmLinkLabel);
+                expectToBe(aEl.textContent, expectedOsmLinkLabel);
             });
         });
     });

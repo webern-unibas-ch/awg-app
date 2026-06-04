@@ -1,8 +1,9 @@
 import { UpperCasePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LOGOS_DATA } from '@awg-core/core-data';
@@ -16,14 +17,19 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedIdentifiers: MetaIdentifiers;
-    let expectedIdentifierConfigs: { key: keyof MetaIdentifiers; baseUrl: string; src: string; label: string }[];
+    let expectedIdentifierConfigs: {
+        key: keyof MetaIdentifiers;
+        baseUrl: string;
+        src: string;
+        label: string;
+    }[];
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [MetaIdentifierBadgesComponent],
             imports: [UpperCasePipe],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MetaIdentifierBadgesComponent);
@@ -38,10 +44,6 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             src: LOGOS_DATA[key].src,
             label: LOGOS_DATA[key].alt,
         }));
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

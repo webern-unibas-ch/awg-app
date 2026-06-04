@@ -1,6 +1,8 @@
 import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCircleInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NgbAlert, NgbAlertModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +41,9 @@ describe('AlertInfoComponent (DONE)', () => {
             imports: [FontAwesomeTestingModule, NgbAnimationConfigModule],
             declarations: [AlertInfoComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(AlertInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

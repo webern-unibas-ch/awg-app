@@ -1,5 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
@@ -12,13 +14,13 @@ describe('ForceGraphComponent', () => {
     let component: ForceGraphComponent;
     let fixture: ComponentFixture<ForceGraphComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, FormsModule],
             declarations: [ForceGraphComponent, PrefixPipe],
             providers: [GraphVisualizerService, PrefixPipe],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ForceGraphComponent);

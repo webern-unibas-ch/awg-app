@@ -9,6 +9,7 @@
  *
  *
  ************************************************/
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToEqual } from '@testing/expect-helper';
 
@@ -64,9 +65,9 @@ describe('OrderByPipe (DONE)', () => {
             expectToEqual(pipe.transform(array), sortedArray);
         });
 
-        it('... should keep `NaN` as it is', () => {
+        it('... should move `NaN` to end', () => {
             const array = [3, NaN, 1];
-            const sortedArray = [1, NaN, 3];
+            const sortedArray = [1, 3, NaN];
 
             expectToEqual(pipe.transform(array), sortedArray);
         });
@@ -87,30 +88,30 @@ describe('OrderByPipe (DONE)', () => {
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('... should move empty string to the start', () => {
+        it('... should move empty string to the start (rest unsorted)', () => {
             const array = ['c', '', 'a'];
             const arraySorted = ['', 'c', 'a'];
 
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('... should move `NaN` to the start', () => {
+        it('... should move `NaN` to end (rest unsorted)', () => {
             const array = [3, NaN, 1];
-            const sortedArray = [NaN, 3, 1];
+            const sortedArray = [3, 1, NaN];
 
             expectToEqual(pipe.transform(array, 'anything'), sortedArray);
         });
 
-        it('... should move `null` to the end', () => {
+        it('... should move `null` to the end (rest unsorted)', () => {
             const array = [3, null, 1];
             const arraySorted = [3, 1, null];
 
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('... should move `undefined` to the end', () => {
-            const array = [3, null, 1];
-            const arraySorted = [3, 1, null];
+        it('... should move `undefined` to the end (rest unsorted)', () => {
+            const array = [3, undefined, 1];
+            const arraySorted = [3, 1, undefined];
 
             expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });

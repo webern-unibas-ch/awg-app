@@ -1,10 +1,11 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { lastValueFrom, Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -99,7 +100,9 @@ describe('EditionSectionDetailOverviewComponent', () => {
             ],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailOverviewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -109,19 +112,16 @@ describe('EditionSectionDetailOverviewComponent', () => {
         expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
 
         // Spies
-        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionStateService,
-            'getSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
+        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
+        editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'getSelectedEditionSection'
-        ).and.callThrough();
-        setupSectionDetailOverviewSpy = spyOn(component, 'setupSectionDetailOverview').and.callThrough();
+        );
+        setupSectionDetailOverviewSpy = vi.spyOn(component, 'setupSectionDetailOverview');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('should create', () => {
@@ -170,13 +170,15 @@ describe('EditionSectionDetailOverviewComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have `selectedSeries$`', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.selectedSeries$)).toBeResolvedTo(expectedSelectedSeries);
-        }));
+        it('should have `selectedSeries$`', async () => {
+            expect(component.selectedSeries$).toBeDefined();
+            await expect(lastValueFrom(component.selectedSeries$)).resolves.toEqual(expectedSelectedSeries);
+        });
 
-        it('should have `selectedSection$`', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.selectedSection$)).toBeResolvedTo(expectedSelectedSection);
-        }));
+        it('should have `selectedSection$`', async () => {
+            expect(component.selectedSection$).toBeDefined();
+            await expect(lastValueFrom(component.selectedSection$)).resolves.toEqual(expectedSelectedSection);
+        });
 
         describe('VIEW', () => {
             it('... should contain one outer div.awg-edition-section-detail', () => {
@@ -192,9 +194,9 @@ describe('EditionSectionDetailOverviewComponent', () => {
             });
 
             describe('... with given intro', () => {
-                it('... should contain one div.awg-edition-section-detail-intro', waitForAsync(() => {
+                it('... should contain one div.awg-edition-section-detail-intro', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 1, 1);
-                }));
+                });
 
                 it('... should contain one EditionSectionDetailIntroCardComponent (stubbed)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 1, 1);
@@ -219,14 +221,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
             });
 
             describe('... with intro disabled', () => {
-                it('... should contain no div.awg-edition-section-detail-intro', waitForAsync(() => {
+                it('... should contain no div.awg-edition-section-detail-intro', async () => {
                     expectedSelectedSection.content.intro.disabled = true;
                     component.selectedSection$ = observableOf(expectedSelectedSection);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, EditionSectionDetailIntroCardStubComponent, 0, 0);
-                }));
+                });
             });
 
             describe('... with given complexes', () => {
@@ -236,23 +238,23 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
                     });
 
-                    it('... if selected section has empty opus complexes, but given mnr complexes', waitForAsync(() => {
+                    it('... if selected section has empty opus complexes, but given mnr complexes', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
-                    }));
+                    });
 
-                    it('... if selected section has empty mnr complexes, but given opus complexes', waitForAsync(() => {
+                    it('... if selected section has empty mnr complexes, but given opus complexes', async () => {
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 0, 0);
-                    }));
+                    });
                 });
 
                 describe('... opus complexes', () => {
@@ -261,14 +263,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 1, 1);
                     });
 
-                    it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', waitForAsync(() => {
+                    it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 0, 0);
-                    }));
+                    });
 
                     it('... should display heading (h5) in div.awg-edition-section-detail-opus', () => {
                         const divDes = getAndExpectDebugElementByCss(
@@ -328,14 +330,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 1, 1);
                     });
 
-                    it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', waitForAsync(() => {
+                    it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', async () => {
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
                         getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 0, 0);
-                    }));
+                    });
 
                     it('... should display header (h5) in div.awg-edition-section-detail-mnr', () => {
                         const divDes = getAndExpectDebugElementByCss(
@@ -392,30 +394,30 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but one EditionSectionDetailPlaceholder ...', () => {
-                    it('... if selectedSection has no complexTypes...', waitForAsync(() => {
+                    it('... if selectedSection has no complexTypes...', async () => {
                         expectedSelectedSection.content.complexTypes = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 1, 1);
-                    }));
+                    });
 
-                    it('... if selectedSection has empty opus and mnr complexTypes', waitForAsync(() => {
+                    it('... if selectedSection has empty opus and mnr complexTypes', async () => {
                         expectedSelectedSection.content.complexTypes.opus = undefined;
                         expectedSelectedSection.content.complexTypes.mnr = undefined;
                         component.selectedSection$ = observableOf(expectedSelectedSection);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 1, 1);
-                    }));
+                    });
                 });
 
-                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', waitForAsync(() => {
+                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', async () => {
                     expectedSelectedSection.content.complexTypes = undefined;
                     component.selectedSection$ = observableOf(expectedSelectedSection);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const placeholderDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -429,7 +431,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                     expectToEqual(placeholderCmp.selectedSeries, expectedSelectedSeries);
                     expectToEqual(placeholderCmp.selectedSection, expectedSelectedSection);
-                }));
+                });
             });
         });
 
@@ -446,19 +448,19 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
             });
 
-            it('... should have set selectedSeries (via EditionStateService)', waitForAsync(() => {
+            it('... should have set selectedSeries (via EditionStateService)', async () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
-                expectAsync(lastValueFrom(component.selectedSeries$)).toBeResolvedTo(expectedSelectedSeries);
-            }));
+                await expect(lastValueFrom(component.selectedSeries$)).resolves.toEqual(expectedSelectedSeries);
+            });
 
             it('... should have triggered `editionStateService.getSelectedEditionSection`', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
             });
 
-            it('... should have set selectedSection (via EditionStateService)', waitForAsync(() => {
+            it('... should have set selectedSection (via EditionStateService)', async () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
-                expectAsync(lastValueFrom(component.selectedSection$)).toBeResolvedTo(expectedSelectedSection);
-            }));
+                await expect(lastValueFrom(component.selectedSection$)).resolves.toEqual(expectedSelectedSection);
+            });
         });
     });
 });

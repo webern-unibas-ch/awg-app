@@ -1,8 +1,10 @@
 import { DebugElement, NgModule, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -31,12 +33,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [UnsupportedTypeResultsComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
@@ -47,10 +49,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         expectedQueryType = 'ask';
         expectedIsFullscreen = false;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
+        // Spies
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -149,7 +153,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should toggle item body on click', () => {
+                it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -177,7 +181,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -192,7 +196,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -218,7 +222,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
-                        expect(pEl).toHaveClass('text-center');
+                        expect(pEl.classList.contains('text-center')).toBe(true);
                     });
                 });
 
@@ -241,7 +245,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
                 });
 
-                it('... should display correct queryType in first paragraph if input changes', () => {
+                it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -257,24 +261,24 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // DESCRIBE
                     let newQueryType = 'describe';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
                 });
             });
 
             describe('in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen flag to true
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
@@ -321,7 +325,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should not toggle item body on click', () => {
+                it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -351,7 +355,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -378,7 +382,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
-                        expect(pEl).toHaveClass('text-center');
+                        expect(pEl.classList.contains('text-center')).toBe(true);
                     });
                 });
 
@@ -401,7 +405,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
                 });
 
-                it('... should display correct queryType in first paragraph if input changes', () => {
+                it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -417,14 +421,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // DESCRIBE
                     let newQueryType = 'describe';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
                     component.queryType = newQueryType;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
                 });

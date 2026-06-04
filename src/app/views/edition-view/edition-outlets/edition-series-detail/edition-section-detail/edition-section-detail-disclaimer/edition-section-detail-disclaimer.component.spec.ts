@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionSectionDetailDisclaimerComponent } from './edition-section-detail-disclaimer.component';
@@ -28,17 +29,15 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailDisclaimerComponent, AlertInfoStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
         expectedInfoMessage = `Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.`;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('should create', () => {

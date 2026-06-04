@@ -24,7 +24,7 @@ export class ConstructResultsComponent {
      * It keeps the result of the query as an observable of triples.
      */
     @Input()
-    queryResult$: Observable<Triple[]>;
+    queryResult$: Observable<Triple[] | undefined>;
 
     /**
      * Input variable: defaultForceGraphHeight.

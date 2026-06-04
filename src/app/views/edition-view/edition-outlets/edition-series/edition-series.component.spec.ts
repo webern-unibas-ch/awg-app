@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { click } from '@testing/click-helper';
 import {
@@ -40,18 +41,18 @@ describe('EditionSeriesComponent (DONE)', () => {
         EditionOutlineService.initializeEditionOutline();
     });
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock edition state service
         mockEditionStateService = {
             clearSelectedEditionSeries: () => {},
             clearSelectedEditionSection: () => {},
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
             providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSeriesComponent);
@@ -62,17 +63,15 @@ describe('EditionSeriesComponent (DONE)', () => {
         expectedEditionOutline = EditionOutlineService.getEditionOutline();
 
         // Spies
-        clearSelectionsSpy = spyOn(component, 'clearSelections').and.callThrough();
-        getEditionOutlineSpy = spyOn(component, 'getEditionOutline').and.callThrough();
-        serviceClearSelectedEditionSeriesSpy = spyOn(
-            mockEditionStateService,
-            'clearSelectedEditionSeries'
-        ).and.callThrough();
-        serviceClearSelectedEditionSectionSpy = spyOn(
-            mockEditionStateService,
-            'clearSelectedEditionSection'
-        ).and.callThrough();
-        serviceGetEditionOutlineSpy = spyOn(EditionOutlineService, 'getEditionOutline').and.callThrough();
+        clearSelectionsSpy = vi.spyOn(component, 'clearSelections');
+        getEditionOutlineSpy = vi.spyOn(component, 'getEditionOutline');
+        serviceClearSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'clearSelectedEditionSeries');
+        serviceClearSelectedEditionSectionSpy = vi.spyOn(mockEditionStateService, 'clearSelectedEditionSection');
+        serviceGetEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'getEditionOutline');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -547,7 +546,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 const anotherEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
                 anotherEditionOutline[0].series = EDITION_ROUTE_CONSTANTS.SERIES_2;
 
-                serviceGetEditionOutlineSpy.and.returnValue(anotherEditionOutline);
+                serviceGetEditionOutlineSpy.mockReturnValue(anotherEditionOutline);
 
                 component.getEditionOutline();
 

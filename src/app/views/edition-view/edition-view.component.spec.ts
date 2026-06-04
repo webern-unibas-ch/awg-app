@@ -1,13 +1,13 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 import { Component, DebugElement, DOCUMENT, Input, LOCALE_ID } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { delay, Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { BehaviorSubject, delay, Observable, of as observableOf } from 'rxjs';
+
 import {
     expectSpyCall,
     expectToBe,
@@ -52,7 +52,8 @@ class ScrollToTopStubComponent {}
     standalone: false,
 })
 class MetaIdentifierBadgesStubComponent {
-    @Input() identifiers: MetaIdentifiers | undefined;
+    @Input()
+    identifiers: MetaIdentifiers | undefined;
 }
 
 describe('EditionViewComponent (DONE)', () => {
@@ -90,7 +91,7 @@ describe('EditionViewComponent (DONE)', () => {
         EditionOutlineService.initializeEditionOutline();
     });
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Mock edition state service
         mockEditionStateService = {
             getIsIntroView: (): Observable<boolean> => observableOf(expectedIsIntroView),
@@ -108,7 +109,7 @@ describe('EditionViewComponent (DONE)', () => {
                 observableOf(expectedSelectedEditionSection),
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [
                 EditionViewComponent,
                 EditionJumbotronStubComponent,
@@ -123,7 +124,7 @@ describe('EditionViewComponent (DONE)', () => {
                 { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionViewComponent);
@@ -144,31 +145,26 @@ describe('EditionViewComponent (DONE)', () => {
         expectedSelectedEditionSeries = EditionOutlineService.getEditionOutline()[0]; // Series 1
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
+        // Spies
+        setupEditionViewSpy = vi.spyOn(component, 'setupEditionView');
 
         // Spies for service methods
-        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+        editionStateServiceGetSelectedEditionComplexSpy = vi.spyOn(
             mockEditionStateService,
             'getSelectedEditionComplex'
-        ).and.callThrough();
-        editionStateServiceGetIsIntroViewSpy = spyOn(mockEditionStateService, 'getIsIntroView').and.callThrough();
-        editionStateServiceGetIsPrefaceViewSpy = spyOn(mockEditionStateService, 'getIsPrefaceView').and.callThrough();
-        editionStateServiceGetIsRowTableViewSpy = spyOn(mockEditionStateService, 'getIsRowTableView').and.callThrough();
-        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionStateService,
-            'getSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
+        );
+        editionStateServiceGetIsIntroViewSpy = vi.spyOn(mockEditionStateService, 'getIsIntroView');
+        editionStateServiceGetIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'getIsPrefaceView');
+        editionStateServiceGetIsRowTableViewSpy = vi.spyOn(mockEditionStateService, 'getIsRowTableView');
+        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
+        editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'getSelectedEditionSection'
-        ).and.callThrough();
+        );
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -283,19 +279,26 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            vi.useFakeTimers();
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        afterEach(() => {
+            vi.useRealTimers();
+        });
+
         describe('VIEW', () => {
             describe('... if isPrefaceView$ is given', () => {
-                beforeEach(fakeAsync(() => {
+                beforeEach(async () => {
                     component.isPrefaceView$ = observableOf(true).pipe(delay(0));
 
                     // Trigger data binding
                     fixture.detectChanges();
-                    tick(); // Wait for delay(0) to complete
-                }));
+                    vi.runAllTimers();
+                    await Promise.resolve();
+                });
 
                 it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
@@ -321,7 +324,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.PREFACE.short}`;
 
-                    expectToBe(hEl.innerText, expectedBreadCrumb);
+                    expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
@@ -343,13 +346,14 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             describe('... if isRowTableView$ is given', () => {
-                beforeEach(fakeAsync(() => {
+                beforeEach(async () => {
                     component.isRowTableView$ = observableOf(true).pipe(delay(0));
 
                     // Trigger data binding
                     fixture.detectChanges();
-                    tick(); // Process any pending async operations
-                }));
+                    vi.runAllTimers();
+                    await Promise.resolve();
+                });
 
                 it('... should have one `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
@@ -375,7 +379,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.ROWTABLES.full}`;
 
-                    expectToBe(hEl.innerText, expectedBreadCrumb);
+                    expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
@@ -397,20 +401,25 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             describe('... if selectedEditionComplex$ is given', () => {
-                beforeEach(fakeAsync(() => {
-                    component.selectedEditionComplex$ = observableOf(expectedSelectedEditionComplex).pipe(delay(0));
+                const renderSelectedEditionComplex = async (complex: EditionComplex): Promise<void> => {
+                    component.selectedEditionComplex$ = observableOf(complex).pipe(delay(0));
 
                     // Trigger data binding
                     fixture.detectChanges();
-                    tick(); // Process any pending async operations
-                }));
+                    vi.runAllTimers();
+                    await Promise.resolve();
+                };
 
-                it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
+                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -418,7 +427,9 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-responsibility', 1, 1);
                 });
 
-                it('... should display edition complex in breadcrumb header (h6)', () => {
+                it('... should display edition complex in breadcrumb header (h6)', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const hDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-complex > h6.awg-edition-info-breadcrumb',
@@ -435,14 +446,16 @@ describe('EditionViewComponent (DONE)', () => {
                     const complex = expectedSelectedEditionComplex.complexId.short;
                     const complexHtml = mockDocument.createElement('span');
                     complexHtml.innerHTML = complex;
-                    const complexText = complexHtml.innerText;
+                    const complexText = complexHtml.textContent?.replace(/\s+/g, ' ').trim();
 
                     const expectedBreadCrumb = `${awg} / ${series} / ${section} / ${complexText}`;
 
-                    expectToBe(hEl.innerText, expectedBreadCrumb);
+                    expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
                 });
 
-                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     // Get debug and native element of JumbotronComponent
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
@@ -459,7 +472,9 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(jumbotronCmp.jumbotronTitle, expectedSelectedEditionComplex.complexId.full);
                 });
 
-                it('... should have one paragraph with editor and version in responsibility div', () => {
+                it('... should have one paragraph with editor and version in responsibility div', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
                     const editors = expectedSelectedEditionComplex.respStatement.editors;
@@ -468,7 +483,9 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                 });
 
-                it('... should display editor link and version in responsibility div', () => {
+                it('... should display editor link and version in responsibility div', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
                     const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
@@ -486,7 +503,7 @@ describe('EditionViewComponent (DONE)', () => {
                     editorLinkEls.forEach((editorLinkEl, i: number) => {
                         expectToBe(editorLinkEl.href, expectedEditors[i].homepage);
 
-                        expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
+                        expectToBe(editorLinkEl.textContent?.trim(), expectedEditors[i].name);
                     });
 
                     const datePipe = new DatePipe('de-DE');
@@ -494,25 +511,23 @@ describe('EditionViewComponent (DONE)', () => {
                         expectedSelectedEditionComplex.respStatement.lastModified,
                         'longDate'
                     );
-                    expectToBe(versionSpanEl.innerText, expectedLastModified);
+                    expectToBe(versionSpanEl.textContent?.trim(), expectedLastModified);
                 });
 
-                it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', fakeAsync(() => {
+                it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', async () => {
                     const expectedComplexWithDash = EditionComplexesService.getEditionComplexById('m212');
-                    component.selectedEditionComplex$ = observableOf(expectedComplexWithDash).pipe(delay(0));
-
-                    // Trigger data binding
-                    detectChangesOnPush(fixture);
-                    tick(); // Process any pending async operations
+                    await renderSelectedEditionComplex(expectedComplexWithDash);
 
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
                     const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                     const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
-                    expectToBe(versionSpanEl.innerText, '---');
-                }));
+                    expectToBe(versionSpanEl.textContent?.trim(), '---');
+                });
 
-                it('... should have one MetaIdentifierBadgesComponent for each editor', () => {
+                it('... should have one MetaIdentifierBadgesComponent for each editor', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
 
                     const badgeDes = getAndExpectDebugElementByDirective(
@@ -526,7 +541,9 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToEqual(badgeCmps.length, expectedEditors.length);
                 });
 
-                it('... should pass identifiers to MetaIdentifierBadgesComponent for each editor', () => {
+                it('... should pass identifiers to MetaIdentifierBadgesComponent for each editor', async () => {
+                    await renderSelectedEditionComplex(expectedSelectedEditionComplex);
+
                     const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
 
                     const badgeDes = getAndExpectDebugElementByDirective(
@@ -544,15 +561,27 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             describe('... if selectedEditionComplex$, isPrefaceView$ and isRowTableView$ are not given', () => {
-                beforeEach(fakeAsync(() => {
-                    component.selectedEditionComplex$ = observableOf(null).pipe(delay(0));
-                    component.isPrefaceView$ = observableOf(null).pipe(delay(0));
-                    component.isRowTableView$ = observableOf(null).pipe(delay(0));
+                let selectedEditionSeriesSubject: BehaviorSubject<EditionOutlineSeries | null>;
+                let selectedEditionSectionSubject: BehaviorSubject<EditionOutlineSection | null>;
+                let isIntroViewSubject: BehaviorSubject<boolean>;
+
+                beforeEach(async () => {
+                    selectedEditionSeriesSubject = new BehaviorSubject<EditionOutlineSeries | null>(null);
+                    selectedEditionSectionSubject = new BehaviorSubject<EditionOutlineSection | null>(null);
+                    isIntroViewSubject = new BehaviorSubject<boolean>(false);
+
+                    component.selectedEditionComplex$ = observableOf(null);
+                    component.isPrefaceView$ = observableOf(null);
+                    component.isRowTableView$ = observableOf(null);
+                    component.selectedEditionSeries$ = selectedEditionSeriesSubject.asObservable();
+                    component.selectedEditionSection$ = selectedEditionSectionSubject.asObservable();
+                    component.isIntroView$ = isIntroViewSubject.asObservable();
 
                     // Trigger data binding
                     fixture.detectChanges();
-                    tick(); // Process any pending async operations
-                }));
+                    vi.runAllTimers();
+                    await Promise.resolve();
+                });
 
                 it('... should not have a `div.awg-edition-preface` in `div.awg-edition-view`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
@@ -599,10 +628,13 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(jumbotronCmp.jumbotronTitle, expectedTitle);
                 });
 
-                it('... should pass down full edition intro const as title to JumbotronComponent (stubbed) if `isIntroView=true`', fakeAsync(() => {
-                    component.isIntroView$ = observableOf(true).pipe(delay(0));
+                it('... should pass down full edition intro const as title to JumbotronComponent (stubbed) if `isIntroView=true`', async () => {
+                    isIntroViewSubject.next(true);
+
+                    // Trigger data binding
                     fixture.detectChanges();
-                    tick(); // Process any pending async operations
+                    vi.runAllTimers();
+                    await Promise.resolve();
 
                     // Get debug and native element of JumbotronComponent
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
@@ -618,17 +650,18 @@ describe('EditionViewComponent (DONE)', () => {
 
                     expectToBe(jumbotronCmp.jumbotronId, expectedId);
                     expectToBe(jumbotronCmp.jumbotronTitle, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
-                }));
+                });
 
                 describe('... breadcrumb header (h6)', () => {
                     describe('... if no series and section is given', () => {
-                        it('... should display edition base root (AWG)', fakeAsync(() => {
-                            component.selectedEditionSeries$ = observableOf(null).pipe(delay(0));
-                            component.selectedEditionSection$ = observableOf(null).pipe(delay(0));
+                        it('... should display edition base root (AWG)', async () => {
+                            selectedEditionSeriesSubject.next(null);
+                            selectedEditionSectionSubject.next(null);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -641,18 +674,19 @@ describe('EditionViewComponent (DONE)', () => {
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const expectedBreadCrumb = `${awg} /`;
 
-                            expectToBe(hEl.innerText, expectedBreadCrumb);
-                        }));
+                            expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
+                        });
 
-                        it('... should have no back link to edition series overview', fakeAsync(() => {
+                        it('... should have no back link to edition series overview', async () => {
                             const expectedLinkLength = 0;
 
-                            component.selectedEditionSeries$ = observableOf(null).pipe(delay(0));
-                            component.selectedEditionSection$ = observableOf(null).pipe(delay(0));
+                            selectedEditionSeriesSubject.next(null);
+                            selectedEditionSectionSubject.next(null);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -661,19 +695,18 @@ describe('EditionViewComponent (DONE)', () => {
                                 1
                             );
                             getAndExpectDebugElementByCss(hDes[0], 'a', expectedLinkLength, expectedLinkLength);
-                        }));
+                        });
                     });
 
                     describe('... if series, but no section is given', () => {
-                        it('... should display edition series', fakeAsync(() => {
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(null).pipe(delay(0));
+                        it('... should display edition series', async () => {
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(null);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -687,20 +720,19 @@ describe('EditionViewComponent (DONE)', () => {
                             const series = expectedSelectedEditionComplex.pubStatement.series.full;
                             const expectedBreadCrumb = `${awg} / ${series} /`;
 
-                            expectToBe(hEl.innerText, expectedBreadCrumb);
-                        }));
+                            expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
+                        });
 
-                        it('... should have a back link to edition series overview', fakeAsync(() => {
+                        it('... should have a back link to edition series overview', async () => {
                             const expectedLinkLength = 1;
 
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(null).pipe(delay(0));
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(null);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -720,21 +752,18 @@ describe('EditionViewComponent (DONE)', () => {
 
                             expectToBe(routerLinks.length, expectedLinkLength);
                             expectToEqual(routerLinks[0].linkParams, [expectedRoute]);
-                        }));
+                        });
                     });
 
                     describe('... if series and section are given', () => {
-                        it('... should display edition series and section', fakeAsync(() => {
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection).pipe(
-                                delay(0)
-                            );
+                        it('... should display edition series and section', async () => {
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(expectedSelectedEditionSection);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -749,22 +778,19 @@ describe('EditionViewComponent (DONE)', () => {
                             const section = expectedSelectedEditionComplex.pubStatement.section.full;
                             const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
 
-                            expectToBe(hEl.innerText, expectedBreadCrumb);
-                        }));
+                            expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
+                        });
 
-                        it('... should have two back links to series overview and current edition series', fakeAsync(() => {
+                        it('... should have two back links to series overview and current edition series', async () => {
                             const expectedLinkLength = 2;
 
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection).pipe(
-                                delay(0)
-                            );
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(expectedSelectedEditionSection);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -789,22 +815,20 @@ describe('EditionViewComponent (DONE)', () => {
                                 './' + expectedSeriesRoute,
                                 expectedSeriesNumberRoute,
                             ]);
-                        }));
+                        });
                     });
 
                     describe('... if series, section, and isIntroView$ is given', () => {
-                        it('... should display edition series, section and intro heading', fakeAsync(() => {
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection).pipe(
-                                delay(0)
-                            );
-                            component.isIntroView$ = observableOf(true).pipe(delay(0));
+                        it('... should display edition series, section and intro heading', async () => {
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(expectedSelectedEditionSection);
+                            isIntroViewSubject.next(true);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
+                            fixture.detectChanges();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -817,26 +841,24 @@ describe('EditionViewComponent (DONE)', () => {
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const series = expectedSelectedEditionComplex.pubStatement.series.full;
                             const section = expectedSelectedEditionComplex.pubStatement.section.full;
-                            const intro = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full;
+                            const intro = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full.replace(/\u00A0/g, ' ');
                             const expectedBreadCrumb = `${awg} / ${series} / ${section} / ${intro}`;
 
-                            expectToBe(hEl.innerText, expectedBreadCrumb);
-                        }));
+                            expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
+                        });
 
-                        it('... should have three back links to series overview, current edition series and section overview', fakeAsync(() => {
+                        it('... should have three back links to series overview, current edition series and section overview', async () => {
                             const expectedLinkLength = 3;
 
-                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries).pipe(
-                                delay(0)
-                            );
-                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection).pipe(
-                                delay(0)
-                            );
-                            component.isIntroView$ = observableOf(true).pipe(delay(0));
+                            selectedEditionSeriesSubject.next(expectedSelectedEditionSeries);
+                            selectedEditionSectionSubject.next(expectedSelectedEditionSection);
+                            isIntroViewSubject.next(true);
 
                             // Trigger data binding
                             fixture.detectChanges();
-                            tick(); // Process any pending async operations
+                            vi.runAllTimers();
+                            await Promise.resolve();
+                            fixture.detectChanges();
 
                             const hDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -869,18 +891,22 @@ describe('EditionViewComponent (DONE)', () => {
                                 expectedSectionRoute,
                                 expectedSectionNumberRoute,
                             ]);
-                        }));
+                        });
                     });
                 });
             });
         });
 
         describe('#setupEditionView()', () => {
+            beforeEach(() => {
+                // Fixture.detectChanges();
+            });
+
             it('... should have been called', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
             });
 
-            it('... should get isIntroView$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get isIntroView$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetIsIntroViewSpy, 1);
 
@@ -890,9 +916,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(isView, expectedIsIntroView);
                     },
                 });
-            }));
+            });
 
-            it('... should get isPrefaceView$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get isPrefaceView$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetIsPrefaceViewSpy, 1);
 
@@ -902,9 +928,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(isView, expectedIsPrefaceView);
                     },
                 });
-            }));
+            });
 
-            it('... should get isRowTableView$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get isRowTableView$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetIsRowTableViewSpy, 1);
 
@@ -914,9 +940,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(isView, expectedIsRowTableView);
                     },
                 });
-            }));
+            });
 
-            it('... should get selectedEditionSeries$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get selectedEditionSeries$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
 
@@ -926,9 +952,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToEqual(series, expectedSelectedEditionSeries);
                     },
                 });
-            }));
+            });
 
-            it('... should get selectedEditionSection$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get selectedEditionSection$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
 
@@ -938,9 +964,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToEqual(section, expectedSelectedEditionSection);
                     },
                 });
-            }));
+            });
 
-            it('... should get selectedEditionComplex$ (via EditionStateService)', waitForAsync(() => {
+            it('... should get selectedEditionComplex$ (via EditionStateService)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
@@ -953,7 +979,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                     },
                 });
-            }));
+            });
         });
     });
 });

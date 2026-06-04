@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToEqual } from '@testing/expect-helper';
 
 import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
@@ -24,10 +25,6 @@ describe('CoreService (DONE)', () => {
         // Test data
         expectedMetaData = META_DATA;
         expectedLogosData = LOGOS_DATA;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should inject', () => {

@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
 import * as D3_SELECTION from 'd3-selection';
 
-import Spy = jasmine.Spy;
-
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { mockConsole } from '@testing/mock-helper';
 
 import {
     Folio,
@@ -20,7 +22,6 @@ import {
     ViewBox,
 } from '@awg-views/edition-view/models';
 
-import { mockConsole } from '@testing/mock-helper';
 import { FolioService } from './folio.service';
 
 describe('FolioService (DONE)', () => {
@@ -83,8 +84,8 @@ describe('FolioService (DONE)', () => {
         // Inject services and http client handler
         folioService = TestBed.inject(FolioService);
         refMock = {
-            selectSvgSheet: jasmine.createSpy('selectSvgSheet'),
-            openModal: jasmine.createSpy('openModal'),
+            selectSvgSheet: vi.fn(),
+            openModal: vi.fn(),
         };
 
         // Test data
@@ -131,81 +132,42 @@ describe('FolioService (DONE)', () => {
         );
 
         // Spies on service functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        addFolioSheetToSvgCanvasSpy = spyOn(folioService as any, '_addFolioSheetToSvgCanvas').and.callThrough();
-        addFolioSystemsToSvgCanvasSpy = spyOn(folioService as any, '_addFolioSystemsToSvgCanvas').and.callThrough();
-        addFolioContentSegmentsToSvgCanvasSpy = spyOn(
-            folioService as any,
-            '_addFolioContentSegmentsToSvgCanvas'
-        ).and.callThrough();
-        appendCanvasSheetGroupSpy = spyOn(folioService as any, '_appendCanvasSheetGroup').and.callThrough();
-        appendContentSegmentGroupSpy = spyOn(folioService as any, '_appendContentSegmentGroup').and.callThrough();
-        appendContentSegmentGroupElementSpy = spyOn(
-            folioService as any,
-            '_appendContentSegmentGroupElement'
-        ).and.callThrough();
-        appendContentSegmentGroupTitleSpy = spyOn(
-            folioService as any,
-            '_appendContentSegmentGroupTitle'
-        ).and.callThrough();
-        appendContentSegmentLinkSpy = spyOn(folioService as any, '_appendContentSegmentLink').and.callThrough();
-        appendContentSegmentLinkLabelSpy = spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkLabel'
-        ).and.callThrough();
-        appendContentSegmentLinkLabelTextElementSpy = spyOn(
+        addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSheetToSvgCanvas');
+        addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSystemsToSvgCanvas');
+        addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioContentSegmentsToSvgCanvas');
+        appendCanvasSheetGroupSpy = vi.spyOn(folioService as any, '_appendCanvasSheetGroup');
+        appendContentSegmentGroupSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroup');
+        appendContentSegmentGroupElementSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupElement');
+        appendContentSegmentGroupTitleSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupTitle');
+        appendContentSegmentLinkSpy = vi.spyOn(folioService as any, '_appendContentSegmentLink');
+        appendContentSegmentLinkLabelSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkLabel');
+        appendContentSegmentLinkLabelTextElementSpy = vi.spyOn(
             folioService as any,
             '_appendContentSegmentLinkLabelTextElement'
-        ).and.callThrough();
-        appendContentSegmentLinkLabelTspanElementsSpy = spyOn(
+        );
+        appendContentSegmentLinkLabelTspanElementsSpy = vi.spyOn(
             folioService as any,
             '_appendContentSegmentLinkLabelTspanElements'
-        ).and.callThrough();
-        appendContentSegmentLinkPolygonSpy = spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkPolygon'
-        ).and.callThrough();
-        appendSheetGroupSheetTitleSpy = spyOn(folioService as any, '_appendSheetGroupSheetTitle').and.callThrough();
-        appendSheetGroupSheetRectangleSpy = spyOn(
-            folioService as any,
-            '_appendSheetGroupSheetRectangle'
-        ).and.callThrough();
-        appendSheetGroupTrademarkSpy = spyOn(folioService as any, '_appendSheetGroupTrademark').and.callThrough();
-        appendSheetGroupTrademarkGroupSpy = spyOn(
-            folioService as any,
-            '_appendSheetGroupTrademarkGroup'
-        ).and.callThrough();
-        appendSheetGroupTrademarkRectangleSpy = spyOn(
-            folioService as any,
-            '_appendSheetGroupTrademarkRectangle'
-        ).and.callThrough();
-        appendSheetGroupTrademarkSymbolSpy = spyOn(
-            folioService as any,
-            '_appendSheetGroupTrademarkSymbol'
-        ).and.callThrough();
-        appendSheetGroupTrademarkTitleSpy = spyOn(
-            folioService as any,
-            '_appendSheetGroupTrademarkTitle'
-        ).and.callThrough();
+        );
+        appendContentSegmentLinkPolygonSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkPolygon');
+        appendSheetGroupSheetTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetTitle');
+        appendSheetGroupSheetRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetRectangle');
+        appendSheetGroupTrademarkSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademark');
+        appendSheetGroupTrademarkGroupSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkGroup');
+        appendSheetGroupTrademarkRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkRectangle');
+        appendSheetGroupTrademarkSymbolSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkSymbol');
+        appendSheetGroupTrademarkTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkTitle');
 
-        appendSystemsGroupLabelSpy = spyOn(folioService as any, '_appendSystemsGroupLabel').and.callThrough();
-        appendSystemsGroupLinesSpy = spyOn(folioService as any, '_appendSystemsGroupLines').and.callThrough();
-        appendSvgElementWithAttrsSpy = spyOn(folioService as any, '_appendSvgElementWithAttrs').and.callThrough();
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        appendSystemsGroupLabelSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLabel');
+        appendSystemsGroupLinesSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLines');
+        appendSvgElementWithAttrsSpy = vi.spyOn(folioService as any, '_appendSvgElementWithAttrs');
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
         // Clear mock stores after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should inject', () => {
@@ -281,12 +243,14 @@ describe('FolioService (DONE)', () => {
     describe('#getFolioSvgData', () => {
         beforeEach(() => {
             // Add custom equality tester to ignore functions
-            jasmine.addCustomEqualityTester((first, second) => {
-                if (typeof first === 'function' && typeof second === 'function') {
-                    return true;
-                }
-                return undefined;
-            });
+            expect.addEqualityTesters([
+                (first, second) => {
+                    if (typeof first === 'function' && typeof second === 'function') {
+                        return true;
+                    }
+                    return undefined;
+                },
+            ]);
         });
 
         it('... should have a method `getFolioSvgData`', () => {
@@ -1115,7 +1079,7 @@ describe('FolioService (DONE)', () => {
                     .attr('class', 'systems-group');
                 systemsGroup.append('g').attr('systemLineGroupId', labelIndex).attr('class', 'system-line-group');
 
-                expectToBe(appendSystemsGroupLabelSpy.calls.count(), systemIndex + 1);
+                expectToBe(vi.mocked(appendSystemsGroupLabelSpy).mock.calls.length, systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLabelSpy, systemIndex + 1, [
                     svgSheetGroup.select(`[systemsGroupId="${labelIndex}"]`),
                     labelPosition,
@@ -1143,7 +1107,7 @@ describe('FolioService (DONE)', () => {
                 systemsGroup.append('g').attr('systemLineGroupId', labelIndex).attr('class', 'system-line-group');
 
                 // Method got called twice, once for regular and once for reversed systems
-                expectToBe(appendSystemsGroupLabelSpy.calls.count(), 2 * (systemIndex + 1));
+                expectToBe(vi.mocked(appendSystemsGroupLabelSpy).mock.calls.length, 2 * (systemIndex + 1));
                 expectSpyCall(appendSystemsGroupLabelSpy, 2 * (systemIndex + 1), [
                     svgSheetGroup.select(`[systemsGroupId="${labelIndex}"]`),
                     labelPosition,
@@ -1159,7 +1123,7 @@ describe('FolioService (DONE)', () => {
                     .attr('systemLineGroupId', systemIndex + 1)
                     .attr('class', 'system-line-group');
 
-                expectToBe(appendSystemsGroupLinesSpy.calls.count(), systemIndex + 1);
+                expectToBe(vi.mocked(appendSystemsGroupLinesSpy).mock.calls.length, systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLinesSpy, systemIndex + 1, [
                     svgSheetGroup.select(`[systemLineGroupId="${systemIndex + 1}"]`),
                     expectedFolioSvgData.systems.systemsLines.at(-1),
@@ -1346,7 +1310,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedFolioSvgData.contentSegments.forEach((_contentContentSegment, i) => {
                     const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
-                    const callArgs = appendContentSegmentLinkSpy.calls.argsFor(i);
+                    const callArgs = vi.mocked(appendContentSegmentLinkSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [contentSegmentGroup]);
                 });
@@ -1372,7 +1336,7 @@ describe('FolioService (DONE)', () => {
                 expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
                     const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
                     const contentSegmentLink = contentSegmentGroup.select('a');
-                    const callArgs = appendContentSegmentLinkPolygonSpy.calls.argsFor(i);
+                    const callArgs = vi.mocked(appendContentSegmentLinkPolygonSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [
                         contentSegmentLink,
@@ -1403,7 +1367,7 @@ describe('FolioService (DONE)', () => {
                 expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
                     const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
                     const contentSegmentLink = contentSegmentGroup.select('a');
-                    const callArgs = appendContentSegmentLinkLabelSpy.calls.argsFor(i);
+                    const callArgs = vi.mocked(appendContentSegmentLinkLabelSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [contentSegmentLink, expectedFolioSvgData.contentSegments[i]]);
                 });
@@ -1969,10 +1933,10 @@ describe('FolioService (DONE)', () => {
                 };
                 additionalAttributes['text-anchor'] = 'middle';
 
-                expectToBe(appendSvgElementWithAttrsSpy.calls.count(), labelArrayLength);
+                expectToBe(vi.mocked(appendSvgElementWithAttrsSpy).mock.calls.length, labelArrayLength);
 
                 expectedContentSegment.segmentLabelArray.forEach((_label, i) => {
-                    const callArgs = appendSvgElementWithAttrsSpy.calls.argsFor(i);
+                    const callArgs = vi.mocked(appendSvgElementWithAttrsSpy).mock.calls[i];
                     const expectedArgs = [...commonArgs, i === 0 ? {} : additionalAttributes];
 
                     expectToBe(callArgs.length, expectedArgs.length);

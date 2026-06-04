@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-core/core-data';
@@ -19,19 +19,13 @@ describe('EditionComplexesService (DONE)', () => {
         TestBed.configureTestingModule({});
 
         // Spies for service methods
-        initializeEditionComplexesListSpy = spyOn(
-            EditionComplexesService,
-            'initializeEditionComplexesList'
-        ).and.callThrough();
-        setEditionComplexesListSpy = spyOn(EditionComplexesService, 'setEditionComplexesList').and.callThrough();
-        fetchEditionComplexesDataSpy = spyOn(
-            EditionComplexesService as any,
-            '_fetchEditionComplexesData'
-        ).and.callThrough();
+        initializeEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'initializeEditionComplexesList');
+        setEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'setEditionComplexesList');
+        fetchEditionComplexesDataSpy = vi.spyOn(EditionComplexesService as any, '_fetchEditionComplexesData');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

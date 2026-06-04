@@ -1,9 +1,10 @@
 import { Component, DebugElement, Input, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -25,7 +26,8 @@ import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'commentary';
+    @Input()
+    labelType: 'evaluation' | 'commentary';
 }
 
 describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
@@ -49,12 +51,12 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let expectedAllClassesVisible: boolean;
     let expectedTkkHighlightingVisible: boolean;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FormsModule],
             declarations: [EditionSvgSheetViewerSwitchComponent, EditionTkaLabelStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetViewerSwitchComponent);
@@ -73,26 +75,18 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         expectedAllClassesVisible = true;
         expectedTkkHighlightingVisible = true;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        emitToggleSuppliedClassesOpacityRequestSpy = spyOn(
-            component.toggleSuppliedClassesOpacityRequest,
-            'emit'
-        ).and.callThrough();
-        emitToggleTkkClassesHighlightRequestSpy = spyOn(
-            component.toggleTkkClassesHighlightRequest,
-            'emit'
-        ).and.callThrough();
-        onSuppliedClassesOpacityToggleSpy = spyOn<any>(component, '_onSuppliedClassesOpacityToggle').and.callThrough();
-        toggleSingleSuppliedClassOpacitySpy = spyOn(component, 'toggleSingleSuppliedClassOpacity').and.callThrough();
-        toggleAllClassesOpacitySpy = spyOn(component, 'toggleAllClassesOpacity').and.callThrough();
-        toggleTkkClassesHighlightSpy = spyOn(component, 'toggleTkkClassesHighlight').and.callThrough();
-        toggleUpdateAllClassesVisibilitySpy = spyOn<any>(component, '_updateAllClassesVisibility').and.callThrough();
+        // Spies
+        emitToggleSuppliedClassesOpacityRequestSpy = vi.spyOn(component.toggleSuppliedClassesOpacityRequest, 'emit');
+        emitToggleTkkClassesHighlightRequestSpy = vi.spyOn(component.toggleTkkClassesHighlightRequest, 'emit');
+        onSuppliedClassesOpacityToggleSpy = vi.spyOn(component as any, '_onSuppliedClassesOpacityToggle');
+        toggleSingleSuppliedClassOpacitySpy = vi.spyOn(component, 'toggleSingleSuppliedClassOpacity');
+        toggleAllClassesOpacitySpy = vi.spyOn(component, 'toggleAllClassesOpacity');
+        toggleTkkClassesHighlightSpy = vi.spyOn(component, 'toggleTkkClassesHighlight');
+        toggleUpdateAllClassesVisibilitySpy = vi.spyOn(component as any, '_updateAllClassesVisibility');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -277,7 +271,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 expectToEqual(formSwitchLabelEl.textContent.trim(), 'Alle einblenden');
             });
 
-            it('... should trigger `toggleAllClassesOpacity`on click on form-switch for all-supplied-classes', fakeAsync(() => {
+            it('... should trigger `toggleAllClassesOpacity`on click on form-switch for all-supplied-classes', async () => {
                 const formSwitchInputDes = getAndExpectDebugElementByCss(
                     compDe,
                     'input.form-check-input#all-supplied-classes',
@@ -286,10 +280,10 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 );
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(formSwitchInputDes[0], fixture);
+                await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleAllClassesOpacitySpy, 1);
-            }));
+            });
 
             it('... should have a form-switch for each supplied class', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
@@ -329,10 +323,10 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 });
             });
 
-            it('... should trigger `toggleSingleSuppliedClassOpacity` on click on form-switch for supplied class', fakeAsync(() => {
+            it('... should trigger `toggleSingleSuppliedClassOpacity` on click on form-switch for supplied class', async () => {
                 const keysArray = Array.from(expectedSuppliedClasses.keys());
 
-                keysArray.forEach((key, index) => {
+                for (const [index, key] of keysArray.entries()) {
                     const formSwitchInputDes = getAndExpectDebugElementByCss(
                         compDe,
                         'input.form-check-input#' + key,
@@ -341,11 +335,11 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                     );
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(formSwitchInputDes[0], fixture);
+                    await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                     expectSpyCall(toggleSingleSuppliedClassOpacitySpy, index + 1, [key]);
-                });
-            }));
+                }
+            });
 
             it('... should have a form-switch for tkk if hasAvailableTkkOverlays is true', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
@@ -435,14 +429,14 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'commentary');
             });
 
-            it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', fakeAsync(() => {
+            it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', async () => {
                 const formSwitchInputDes = getAndExpectDebugElementByCss(compDe, 'input.form-check-input#tkk', 1, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(formSwitchInputDes[0], fixture);
+                await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleTkkClassesHighlightSpy, 1);
-            }));
+            });
         });
 
         describe('#ngOnChanges', () => {

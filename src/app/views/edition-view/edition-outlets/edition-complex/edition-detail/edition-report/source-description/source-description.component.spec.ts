@@ -1,6 +1,8 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
     expectSpyCall,
@@ -32,18 +34,27 @@ class SourceDescriptionContentsStubComponent {
     @Input()
     contents: SourceDescriptionContent[];
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 @Component({ selector: 'awg-source-description-corrections', template: '', standalone: false })
 class SourceDescriptionCorrectionsStubComponent {
     @Input()
     corrections: Textcritics[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-source-description-details', template: '', standalone: false })
@@ -55,11 +66,17 @@ class SourceDescriptionDetailsStubComponent {
     @Input()
     detailsLabel: string;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-source-description-writing-materials', template: '', standalone: false })
@@ -90,8 +107,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedReportFragment: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [
                 SourceDescriptionComponent,
                 SourceDescriptionContentsStubComponent,
@@ -104,7 +121,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             ],
             providers: [UtilityService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionComponent);
@@ -123,15 +140,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
 
         // Spies
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -249,11 +267,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const siglumSpanDes = spanDes[0];
                     const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
-                    expect(pEl).toHaveClass('bold');
+                    expect(pEl.classList.contains('awg-source-description-siglum-container')).toBe(true);
+                    expect(pEl.classList.contains('bold')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expect(siglumSpanEl.classList.contains('awg-source-description-siglum')).toBe(true);
                     expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
                 });
 
@@ -269,7 +287,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const pEl: HTMLParagraphElement = pDes[1].nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-type');
+                    expect(pEl.classList.contains('awg-source-description-type')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].type.trim());
                 });
 
@@ -285,7 +303,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const pEl: HTMLParagraphElement = pDes[2].nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-location');
+                    expect(pEl.classList.contains('awg-source-description-location')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].location.trim());
                 });
             });
@@ -335,14 +353,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const addendumSpanDes = spanDes[1];
                     const addendumSpanEl: HTMLSpanElement = addendumSpanDes.nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
-                    expect(pEl).toHaveClass('bold');
+                    expect(pEl.classList.contains('awg-source-description-siglum-container')).toBe(true);
+                    expect(pEl.classList.contains('bold')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expect(siglumSpanEl.classList.contains('awg-source-description-siglum')).toBe(true);
                     expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(addendumSpanEl).toHaveClass('awg-source-description-siglum-addendum');
+                    expect(addendumSpanEl.classList.contains('awg-source-description-siglum-addendum')).toBe(true);
                     expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
                 });
 
@@ -357,7 +375,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
                     const pEl: HTMLParagraphElement = pDes[1].nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-location');
+                    expect(pEl.classList.contains('awg-source-description-location')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[1].location.trim());
                 });
 
@@ -400,7 +418,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         instruments.secondary.join(', ') +
                         '.</span>';
 
-                    expect(pEl).toHaveClass('awg-source-description-writing-instruments');
+                    expect(pEl.classList.contains('awg-source-description-writing-instruments')).toBe(true);
                     expectToBe(
                         pEl.textContent.trim().toLowerCase(),
                         expectedHtmlTextContent.textContent.trim().toLowerCase()
@@ -794,14 +812,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const addendumSpanDes = spanDes[2];
                     const addendumSpanEl: HTMLSpanElement = addendumSpanDes.nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
-                    expect(pEl).toHaveClass('bold');
+                    expect(pEl.classList.contains('awg-source-description-siglum-container')).toBe(true);
+                    expect(pEl.classList.contains('bold')).toBe(true);
                     expectToBe(pEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
-                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expect(siglumSpanEl.classList.contains('awg-source-description-siglum')).toBe(true);
                     expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(addendumSpanEl).toHaveClass('awg-source-description-siglum-addendum');
+                    expect(addendumSpanEl.classList.contains('awg-source-description-siglum-addendum')).toBe(true);
                     expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
                 });
 
@@ -820,7 +838,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const expectedHtmlTextContent = mockDocument.createElement('p');
                     expectedHtmlTextContent.innerHTML = expectedSourceDescriptionListData.sources[2].type;
 
-                    expect(pEl).toHaveClass('awg-source-description-type');
+                    expect(pEl.classList.contains('awg-source-description-type')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
@@ -835,7 +853,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
                     const pEl: HTMLParagraphElement = pDes[2].nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-location');
+                    expect(pEl.classList.contains('awg-source-description-location')).toBe(true);
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
                 });
 

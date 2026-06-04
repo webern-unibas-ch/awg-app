@@ -1,7 +1,8 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
@@ -20,11 +21,11 @@ describe('ViewContainerComponent (DONE)', () => {
 
     let expectedActivateSideOutlet: boolean;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewContainerComponent);
@@ -33,10 +34,6 @@ describe('ViewContainerComponent (DONE)', () => {
 
         // Test data
         expectedActivateSideOutlet = true;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
@@ -68,7 +65,7 @@ describe('ViewContainerComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                 const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                expect(divEl0).toHaveClass('awg-maincontent');
+                expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
             });
 
             it('... should contain one router outlet (stubbed)', () => {
@@ -108,8 +105,8 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
                     const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
-                    expect(divEl0).toHaveClass('awg-maincontent');
-                    expect(divEl1).toHaveClass('awg-side-outlet');
+                    expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
+                    expect(divEl1.classList.contains('awg-side-outlet')).toBe(true);
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
@@ -148,14 +145,13 @@ describe('ViewContainerComponent (DONE)', () => {
             });
 
             describe('... with `showSideOutlet=false`', () => {
-                beforeEach(fakeAsync(() => {
+                beforeEach(async () => {
                     // Simulate the parent component setting the input
                     component.activateSideOutlet = false;
 
                     // Trigger initial data binding
-                    detectChangesOnPush(fixture);
-                    tick(); // Ensure change detection completes
-                }));
+                    await detectChangesOnPush(fixture);
+                });
 
                 it('... should have class `justify-content-center` on `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
@@ -168,7 +164,7 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                    expect(divEl0).toHaveClass('awg-maincontent');
+                    expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {

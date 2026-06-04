@@ -1,6 +1,8 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -31,11 +33,17 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
@@ -66,7 +74,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [SourceDescriptionCorrectionsComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionCorrectionsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -86,19 +96,18 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-        toggleAllCorrectionDetailsSpy = spyOn(component, 'toggleAllCorrectionDetails').and.callThrough();
+        // Spies
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+        toggleAllCorrectionDetailsSpy = vi.spyOn(component, 'toggleAllCorrectionDetails');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -129,7 +138,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('no-para-margin');
+                expect(pEl.classList.contains('no-para-margin')).toBe(true);
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -147,8 +156,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 );
                 const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
 
-                expect(toggleSpanEl).toHaveClass('small');
-                expect(toggleSpanEl).toHaveClass('text-muted');
+                expect(toggleSpanEl.classList.contains('small')).toBe(true);
+                expect(toggleSpanEl.classList.contains('text-muted')).toBe(true);
             });
 
             it('... should not display a text in the toggle span yet', () => {
@@ -209,7 +218,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
             });
 
-            it('... should toggle the text in the toggle span on click', fakeAsync(() => {
+            it('... should toggle the text in the toggle span on click', async () => {
                 const toggleTextSpanDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-description-corrections-toggle-text',
@@ -221,10 +230,10 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
-            }));
+            });
 
             it('... should contain as many correction details as items in `corrections` data', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
@@ -253,11 +262,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should open or close all details when toggled', () => {
+            it('... should open or close all details when toggled', async () => {
                 // Open all details
                 component.toggleAllCorrectionDetails(true);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -272,7 +281,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 // Close all details
                 component.toggleAllCorrectionDetails(false);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDesClosed = getAndExpectDebugElementByCss(
                     compDe,
@@ -350,9 +359,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', () => {
+            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', async () => {
                 component.corrections[0].commentary.comments = [];
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -669,7 +678,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 expect(component.toggleAllCorrectionDetails).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const toggleTextSpanDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-description-corrections-toggle-text',
@@ -678,15 +687,15 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 );
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllCorrectionDetailsSpy, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllCorrectionDetailsSpy, 2);
-            }));
+            });
 
             it('... should toggle the openAllCorrectionDetails flag', () => {
                 component.toggleAllCorrectionDetails(true);
