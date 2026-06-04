@@ -1422,9 +1422,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IMockConsole.html" data-type="entity-link" >IMockConsole</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockStorage.html" data-type="entity-link" >IMockStorage</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/IMockWindow.html" data-type="entity-link" >IMockWindow</a>
                             </li>
                             <li class="link">

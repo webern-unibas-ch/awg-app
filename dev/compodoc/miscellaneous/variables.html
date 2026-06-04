@@ -194,9 +194,6 @@
                             <a href="#httpInterceptorProviders" title="src/app/core/interceptors/interceptor-providers.ts" ><b>httpInterceptorProviders</b>&nbsp;&nbsp;&nbsp;(src/.../interceptor-providers.ts)</a>
                         </li>
                         <li>
-                            <a href="#localStore" title="src/testing/mock-helper/mock-storage.ts" ><b>localStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
-                        </li>
-                        <li>
                             <a href="#LOGOS_DATA" title="src/app/core/core-data/logos.data.ts" ><b>LOGOS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../logos.data.ts)</a>
                         </li>
                         <li>
@@ -225,12 +222,6 @@
                         </li>
                         <li>
                             <a href="#mockEditionOutline" title="src/testing/mock-data/mockEditionOutline.ts" ><b>mockEditionOutline</b>&nbsp;&nbsp;&nbsp;(src/.../mockEditionOutline.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#mockLocalStorage" title="src/testing/mock-helper/mock-storage.ts" ><b>mockLocalStorage</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#mockSessionStorage" title="src/testing/mock-helper/mock-storage.ts" ><b>mockSessionStorage</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
                             <a href="#mockWindow" title="src/testing/mock-helper/mock-window.ts" ><b>mockWindow</b>&nbsp;&nbsp;&nbsp;(src/.../mock-window.ts)</a>
@@ -288,9 +279,6 @@
                         </li>
                         <li>
                             <a href="#routedStructureViewComponents" title="src/app/views/structure-view/structure-view-routing.module.ts" ><b>routedStructureViewComponents</b>&nbsp;&nbsp;&nbsp;(src/.../structure-view-routing.module.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#sessionStore" title="src/testing/mock-helper/mock-storage.ts" ><b>sessionStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
                             <a href="#w" title="src/polyfills.ts" ><b>w</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</a>
@@ -518,7 +506,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.6.0-193-g55ade6c49&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.6.0-194-gc34e85943&#x27;</code>
                     </td>
                 </tr>
 
@@ -550,7 +538,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-06-03&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-06-04&#x27;</code>
                     </td>
                 </tr>
 
@@ -2133,163 +2121,6 @@ to store the trademarks data.</p>
 <p>They allow to intercept and cache the search requests
 using the <a href="../interceptors/CachingInterceptor.html">CachingInterceptor</a> and to
 update the loading status using the <a href="../interceptors/LoadingInterceptor.html">LoadingInterceptor</a>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/testing/mock-helper/mock-storage.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="localStore"></a>
-                    <span class="name">
-                        <span ><b>localStore</b></span>
-                        <a href="#localStore"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>literal type</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Internal variable: localStore.</p>
-<p>It keeps the localStorage events.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mockLocalStorage"></a>
-                    <span class="name">
-                        <span ><b>mockLocalStorage</b></span>
-                        <a href="#mockLocalStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/IMockStorage.html" target="_self" >IMockStorage</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-    getItem: (key: string): string &#x3D;&gt; (key in localStore ? localStore[key] : null),
-    setItem: (key: string, value: string) &#x3D;&gt; {
-        localStore[key] &#x3D; &#x60;${value}&#x60;;
-    },
-    removeItem: (key: string) &#x3D;&gt; {
-        delete localStore[key];
-    },
-    clear: () &#x3D;&gt; {
-        localStore &#x3D; {};
-    },
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Test helper: mockLocalStorage.</p>
-<p>It mocks the local storage object to catch storage events.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mockSessionStorage"></a>
-                    <span class="name">
-                        <span ><b>mockSessionStorage</b></span>
-                        <a href="#mockSessionStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/IMockStorage.html" target="_self" >IMockStorage</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-    getItem: (key: string): string &#x3D;&gt; (key in sessionStore ? sessionStore[key] : null),
-    setItem: (key: string, value: string) &#x3D;&gt; {
-        sessionStore[key] &#x3D; &#x60;${value}&#x60;;
-    },
-    removeItem: (key: string) &#x3D;&gt; {
-        delete sessionStore[key];
-    },
-    clear: () &#x3D;&gt; {
-        sessionStore &#x3D; {};
-    },
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Test helper: mockSessionStorage.</p>
-<p>It mocks the session storage object to catch storage events.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="sessionStore"></a>
-                    <span class="name">
-                        <span ><b>sessionStore</b></span>
-                        <a href="#sessionStore"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>literal type</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Internal variable: sessionStore.</p>
-<p>It keeps the sessionStorage events.</p>
 </div>
                 </td>
             </tr>

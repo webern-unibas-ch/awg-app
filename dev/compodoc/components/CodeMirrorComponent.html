@@ -246,6 +246,10 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_supportsRangeGeometry" >_supportsRangeGeometry</a>
+                            </li>
+                            <li>
                                 <a href="#init" >init</a>
                             </li>
                             <li>
@@ -433,6 +437,53 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_supportsRangeGeometry"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_supportsRangeGeometry</b></span>
+                        <a href="#_supportsRangeGeometry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_supportsRangeGeometry()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _supportsRangeGeometry.</p>
+<p>It checks if the current DOM implementation supports range geometry APIs
+required by CodeMirror view measurement plugins.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A boolean indicating support for range geometry APIs.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="init"></a>
                     <span class="name">
                         <span ><b>init</b></span>
@@ -449,8 +500,8 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="181"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:181</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:183</a></div>
                         </td>
                     </tr>
 
@@ -641,8 +692,8 @@ after initializing the view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="198"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:198</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -890,8 +941,10 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
         });
         const editorThemeExtension: Extension[] &#x3D; [editorTheme];
 
+        const setupExtensions: Extension[] &#x3D; this._supportsRangeGeometry() ? [basicSetup] : [];
+
         const ext: Extension[] &#x3D; [
-            basicSetup,
+            ...setupExtensions,
             EditorView.lineWrapping,
 
             // Apply the custom editor theme
@@ -945,6 +998,24 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      */
     onContentChange(content: string): void {
         this.contentChange.emit(content);
+    }
+
+    /**
+     * Private method: _supportsRangeGeometry.
+     *
+     * It checks if the current DOM implementation supports range geometry APIs
+     * required by CodeMirror view measurement plugins.
+     *
+     * @returns {boolean} A boolean indicating support for range geometry APIs.
+     */
+    private _supportsRangeGeometry(): boolean {
+        if (typeof document &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || typeof document.createRange !&#x3D;&#x3D; &#x27;function&#x27;) {
+            return false;
+        }
+
+        const range &#x3D; document.createRange() as Partial&lt;Range&gt;;
+
+        return typeof range.getClientRects &#x3D;&#x3D;&#x3D; &#x27;function&#x27; &amp;&amp; typeof range.getBoundingClientRect &#x3D;&#x3D;&#x3D; &#x27;function&#x27;;
     }
 }
 </code></pre>

@@ -1227,10 +1227,10 @@ export class OrderByPipe implements PipeTransform {
         if (a &#x3D;&#x3D;&#x3D; b) {
             return 0;
         }
-        if (a &#x3D;&#x3D; null) {
+        if (Number.isNaN(a) || a &#x3D;&#x3D; null) {
             return 1;
         }
-        if (b &#x3D;&#x3D; null) {
+        if (Number.isNaN(b) || b &#x3D;&#x3D; null) {
             return -1;
         }
         return a &gt; b ? 1 : -1;
