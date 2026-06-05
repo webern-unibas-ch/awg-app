@@ -181,11 +181,9 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
         describe('... should do nothing if', () => {
             it('... no D3 selection is provided', () => {
-                const d3Selection: D3Selection = undefined;
                 const color = 'red';
-                service.fillD3SelectionWithColor(d3Selection, color);
 
-                expect(d3Selection).toBeUndefined();
+                expect(() => service.fillD3SelectionWithColor(undefined, color)).not.toThrow();
             });
 
             it('... no color is provided', () => {
