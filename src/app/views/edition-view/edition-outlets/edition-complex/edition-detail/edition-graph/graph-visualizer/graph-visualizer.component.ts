@@ -283,7 +283,7 @@ export class GraphVisualizerComponent implements OnInit {
             console.error('#queryLocalstore got error:', err);
 
             if (err.message && err.name) {
-                if (err.message.indexOf('undefined') !== -1) {
+                if (err.message.includes('undefined')) {
                     this.showToastMessage(
                         new ToastMessage(err.name, 'The query did not return any results.', 5000),
                         'error'

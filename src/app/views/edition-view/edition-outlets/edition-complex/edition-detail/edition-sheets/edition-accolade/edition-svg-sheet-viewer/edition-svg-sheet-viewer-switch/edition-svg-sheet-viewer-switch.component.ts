@@ -136,11 +136,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      * @returns {void} Toggles the visibility of the tkk classes highlighting.
      */
     toggleTkkClassesHighlight(isVisible?: boolean): void {
-        if (isVisible !== undefined) {
-            this.tkkHighlightingVisible = isVisible;
-        } else {
-            this.tkkHighlightingVisible = !this.tkkHighlightingVisible;
-        }
+        this.tkkHighlightingVisible = isVisible ?? !this.tkkHighlightingVisible;
+
         this.toggleTkkClassesHighlightRequest.emit(this.tkkHighlightingVisible);
 
         // Update allClassesVisible flag
