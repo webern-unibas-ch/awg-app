@@ -1425,6 +1425,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IMockWindow.html" data-type="entity-link" >IMockWindow</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IStorageDescriptorMap.html" data-type="entity-link" >IStorageDescriptorMap</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
                             </li>
                             <li class="link">
