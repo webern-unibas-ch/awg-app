@@ -12,7 +12,7 @@ export type QueryResult = Triple[] | QuerySelectResult | string | undefined;
  */
 export interface QuerySelectResult {
     /**
-     * The head of the query selectresult with the variable names.
+     * The head of the query select result with the variable names.
      */
     head: QuerySelectResultHead;
 
@@ -25,11 +25,11 @@ export interface QuerySelectResult {
 /**
  * The QuerySelectResultHead interface.
  *
- * It represents the head of a query result.
+ * It represents the head of a query select result.
  */
 export interface QuerySelectResultHead {
     /**
-     * The variable names of the query result head.
+     * The variable names of the query select result head.
      */
     vars: string[];
 }
@@ -37,11 +37,11 @@ export interface QuerySelectResultHead {
 /**
  * The QuerySelectResultBody interface.
  *
- * It represents the body of a query result.
+ * It represents the body of a query select result.
  */
 export interface QuerySelectResultBody {
     /**
-     * The bindings of the query result body.
+     * The bindings of the query select result body.
      */
     bindings: QuerySelectResultBindings[];
 }
@@ -49,11 +49,11 @@ export interface QuerySelectResultBody {
 /**
  * The QuerySelectResultBindings interface.
  *
- * It represents the bindings of a query result.
+ * It represents the bindings of a query select result.
  */
 export interface QuerySelectResultBindings {
     /**
-     * The key-value pair bindings of the query result body.
+     * The key-value pair bindings of the query select result body.
      */
     [key: string]: any;
 }
