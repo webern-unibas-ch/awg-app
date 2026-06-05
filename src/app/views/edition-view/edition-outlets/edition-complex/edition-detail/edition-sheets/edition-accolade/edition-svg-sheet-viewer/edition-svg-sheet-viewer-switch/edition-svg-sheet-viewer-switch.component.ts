@@ -167,8 +167,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      */
     private _updateAllClassesVisibility(): void {
         const allValues = [...Array.from(this.suppliedClasses.values()), this.tkkHighlightingVisible];
-        const allValuesTrue = allValues.every(value => value);
-        const allValuesFalse = allValues.every(value => !value);
+        const allValuesTrue = allValues.every(Boolean); // Check if all values are true
+        const allValuesFalse = !allValues.some(Boolean); // Check if nothing is true (i.e., all are false)
 
         if (allValuesTrue || allValuesFalse) {
             this.allClassesVisible = allValues[0];
