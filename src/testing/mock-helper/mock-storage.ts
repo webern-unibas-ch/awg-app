@@ -26,10 +26,10 @@ const createInMemoryStorage = (): Storage => {
         clear() {
             store.clear();
         },
-        getItem(key: string) {
-            return store.has(key) ? store.get(key) : null;
+        getItem(key: string): string | null {
+            return store.get(key) ?? null;
         },
-        key(index: number) {
+        key(index: number): string | null {
             return Array.from(store.keys())[index] ?? null;
         },
         removeItem(key: string) {
