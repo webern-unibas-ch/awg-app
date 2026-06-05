@@ -31,7 +31,7 @@ const reverse = (str: string): string => str.split('').reverse().join('');
  * @returns {string}
  */
 const random = (): string => {
-    const crypto = window.crypto || (<any>window).msCrypto;
+    const crypto = globalThis.crypto || (<any>globalThis).msCrypto;
     const array = new Uint32Array(1);
 
     return Math.floor(crypto.getRandomValues(array)[0]).toString(16);
