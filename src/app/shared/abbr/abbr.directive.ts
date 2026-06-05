@@ -79,7 +79,7 @@ export class AbbrDirective implements OnInit {
 
         // Construct a single regular expression to match any abbreviation
         const abbreviationsPattern = Array.from(this._abbreviations.keys()).join('|');
-        const regex = new RegExp(`(?<!\\w)(${abbreviationsPattern})(?!\\w)`, 'g');
+        const regex = new RegExp(String.raw`(?<!\w)(${abbreviationsPattern})(?!\w)`, 'g');
 
         // Replace abbreviations with <abbr> elements
         innerHTML = innerHTML.replace(regex, match => {

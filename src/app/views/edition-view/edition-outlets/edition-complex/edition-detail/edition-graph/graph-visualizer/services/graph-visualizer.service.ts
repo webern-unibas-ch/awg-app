@@ -357,7 +357,7 @@ export class GraphVisualizerService {
 
         // Find WHERE clause
         const start = query.toLowerCase().indexOf(where.toLowerCase());
-        const queryStr = start !== -1 ? query.slice(start) : query;
+        const queryStr = start === -1 ? query : query.slice(start);
 
         // Find prefixes in query using matchAll
         const matches = queryStr.matchAll(regex);
