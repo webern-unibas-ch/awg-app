@@ -279,20 +279,18 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            vi.useFakeTimers();
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        afterEach(() => {
+            vi.clearAllTimers();
+            vi.useRealTimers();
+        });
+
         describe('VIEW', () => {
-            beforeEach(() => {
-                vi.useFakeTimers();
-            });
-
-            afterEach(() => {
-                vi.clearAllTimers();
-                vi.useRealTimers();
-            });
-
             describe('... if isPrefaceView$ is given', () => {
                 beforeEach(async () => {
                     component.isPrefaceView$ = observableOf(true).pipe(delay(0));
