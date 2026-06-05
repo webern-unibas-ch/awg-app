@@ -153,7 +153,7 @@
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.60.1",
-        "vitest": "^4.1.7",
+        "vitest": "^4.1.8",
         "webpack-bundle-analyzer": "^5.3.0"
     },
     "resolutions": {
