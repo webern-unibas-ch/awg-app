@@ -941,6 +941,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                         expectSpyCall(renderSheetSpy, 2);
                     } finally {
+                        vi.clearAllTimers();
                         vi.useRealTimers();
                     }
                 });

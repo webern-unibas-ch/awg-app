@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
-import { mockConsole, mockWindow } from '@testing/mock-helper';
+import { mockConsole, mockStorage, mockWindow } from '@testing/mock-helper';
 
 import { AppConfig } from '@awg-app/app.config';
 import { StorageType } from '@awg-core/services/storage-service';
@@ -22,8 +22,9 @@ describe('GndService (DONE)', () => {
     const sessionType = StorageType.sessionStorage;
     const localType = StorageType.localStorage;
     let expectedStorage: Storage;
-    const expectedLocalStorage: Storage = window[localType];
-    const expectedSessionStorage: Storage = window[sessionType];
+    let expectedLocalStorage!: Storage;
+    let expectedSessionStorage!: Storage;
+    let initialStorageDescriptors: ReturnType<typeof mockStorage.captureStorageDescriptors>;
 
     const expectedGndKey = 'gnd';
     const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i;
@@ -39,6 +40,10 @@ describe('GndService (DONE)', () => {
     const otherSetEvent = new GndEvent(GndEventType.SET, otherGndEventValue);
     const expectedRemoveEvent = new GndEvent(GndEventType.REMOVE, null);
 
+    beforeAll(() => {
+        initialStorageDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [GndService],
@@ -46,6 +51,9 @@ describe('GndService (DONE)', () => {
 
         // Inject service
         gndService = TestBed.inject(GndService);
+
+        expectedLocalStorage = mockStorage.ensureStorage(localType);
+        expectedSessionStorage = mockStorage.ensureStorage(sessionType);
 
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
@@ -60,11 +68,14 @@ describe('GndService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage.clear();
-        expectedLocalStorage.clear();
         mockConsole.clear();
+        mockStorage.clearStorages([sessionType, localType]);
         mockWindow.clear();
         vi.restoreAllMocks();
+    });
+
+    afterAll(() => {
+        mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
     });
 
     it('... should create', () => {
@@ -98,6 +109,30 @@ describe('GndService (DONE)', () => {
             expect(mockWindow.get(0)).toBeUndefined();
         });
 
+        it('... should fallback to in-memory sessionStorage when window access throws', () => {
+            mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
+
+            Object.defineProperty(window, sessionType, {
+                configurable: true,
+                get: () => {
+                    throw new DOMException('Blocked by test', 'SecurityError');
+                },
+            });
+
+            const fallbackSessionStorage = mockStorage.ensureStorage(sessionType);
+
+            expectToBe(fallbackSessionStorage.getItem(expectedGndKey), null);
+            expectToBe(fallbackSessionStorage.length, 0);
+            expectToBe(fallbackSessionStorage.key(0), null);
+
+            gndService.exposeGnd(expectedSetEvent);
+
+            expectToBe(fallbackSessionStorage.getItem(expectedGndKey), expectedItem);
+            expectToBe(fallbackSessionStorage.length, 1);
+            expectToBe(fallbackSessionStorage.key(0), expectedGndKey);
+            expectToBe(fallbackSessionStorage.key(1), null);
+        });
+
         it('... should isolate session and local storage', () => {
             const otherStorage = expectedLocalStorage;
 
@@ -111,7 +146,26 @@ describe('GndService (DONE)', () => {
         });
 
         it('... should start each test with empty default storage', () => {
+            expectToBe(expectedStorage.length, 0);
+            expectToBe(expectedStorage.key(0), null);
             expectToBe(expectedStorage.getItem('testkey'), null);
+        });
+
+        it('... should delete storage property if descriptor is missing on restore', () => {
+            const currentDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+
+            Object.defineProperty(window, sessionType, {
+                configurable: true,
+                value: expectedSessionStorage,
+            });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeDefined();
+
+            mockStorage.restoreStorageDescriptors({ localStorage: currentDescriptors.localStorage });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeUndefined();
+
+            mockStorage.restoreStorageDescriptors(currentDescriptors);
         });
     });
 

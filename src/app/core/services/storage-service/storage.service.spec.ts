@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
-import { mockConsole } from '@testing/mock-helper';
+import { mockConsole, mockStorage } from '@testing/mock-helper';
 
 import { StorageService, StorageType } from './storage.service';
 
@@ -15,8 +15,10 @@ describe('StorageService (DONE)', () => {
     const localType = StorageType.localStorage;
 
     let expectedStorage: Storage;
-    const expectedLocalStorage: Storage = window[localType];
-    const expectedSessionStorage: Storage = window[sessionType];
+    let expectedLocalStorage!: Storage;
+    let expectedSessionStorage!: Storage;
+
+    let initialStorageDescriptors: ReturnType<typeof mockStorage.captureStorageDescriptors>;
 
     let consoleSpy: Spy;
 
@@ -24,12 +26,19 @@ describe('StorageService (DONE)', () => {
     const expectedItem = 'expectedItem';
     const otherItem = 'otherItem';
 
+    beforeAll(() => {
+        initialStorageDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [StorageService],
         });
         // Inject service
         storageService = TestBed.inject(StorageService);
+
+        expectedLocalStorage = mockStorage.ensureStorage(localType);
+        expectedSessionStorage = mockStorage.ensureStorage(sessionType);
 
         // Default to sessionStorage
         expectedStorage = expectedSessionStorage;
@@ -39,10 +48,13 @@ describe('StorageService (DONE)', () => {
 
     afterEach(() => {
         // Clear storages and mocks after each test
-        expectedSessionStorage.clear();
-        expectedLocalStorage.clear();
         mockConsole.clear();
+        mockStorage.clearStorages([sessionType, localType]);
         vi.restoreAllMocks();
+    });
+
+    afterAll(() => {
+        mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
     });
 
     it('... should create', () => {
@@ -50,6 +62,35 @@ describe('StorageService (DONE)', () => {
     });
 
     describe('storage environment sanity checks', () => {
+        it('... should fallback to in-memory storage when window localStorage access throws', () => {
+            mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
+
+            Object.defineProperty(window, localType, {
+                configurable: true,
+                get: () => {
+                    throw new DOMException('Blocked by test', 'SecurityError');
+                },
+            });
+
+            const fallbackStorage = mockStorage.ensureStorage(localType);
+
+            expectToBe(fallbackStorage.getItem(expectedKey), null);
+            expectToBe(fallbackStorage.length, 0);
+            expectToBe(fallbackStorage.key(0), null);
+
+            fallbackStorage.setItem(expectedKey, expectedItem);
+
+            expectToBe(fallbackStorage.length, 1);
+            expectToBe(fallbackStorage.key(0), expectedKey);
+            expectToBe(fallbackStorage.getItem(expectedKey), expectedItem);
+
+            storageService.setStorageKey(localType, expectedKey, otherItem);
+            expectToBe(storageService.getStorageKey(localType, expectedKey), otherItem);
+
+            expectToBe(fallbackStorage.length, 1);
+            expectToBe(fallbackStorage.key(1), null);
+        });
+
         it('... should isolate session and local storage', () => {
             const otherStorage = expectedLocalStorage;
 
@@ -70,7 +111,26 @@ describe('StorageService (DONE)', () => {
         });
 
         it('... should start each test with empty default storage', () => {
+            expectToBe(expectedStorage.length, 0);
+            expectToBe(expectedStorage.key(0), null);
             expectToBe(expectedStorage.getItem('testkey'), null);
+        });
+
+        it('... should delete storage property if descriptor is missing on restore', () => {
+            const currentDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+
+            Object.defineProperty(window, sessionType, {
+                configurable: true,
+                value: expectedSessionStorage,
+            });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeDefined();
+
+            mockStorage.restoreStorageDescriptors({ localStorage: currentDescriptors.localStorage });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeUndefined();
+
+            mockStorage.restoreStorageDescriptors(currentDescriptors);
         });
     });
 

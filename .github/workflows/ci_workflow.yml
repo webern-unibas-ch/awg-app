@@ -29,7 +29,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.19, 22.16, 24.x]
+                node-version: [22.22, 24.16, 26.x]
 
         steps:
             - name: Harden Runner
@@ -52,7 +52,7 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 22.16 # upload coverage report for current node version only
+              if: matrix.node-version == 24.16 # upload coverage report for current node version only
               uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
@@ -98,7 +98,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
@@ -129,7 +129,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.19, 22.16, 24.x]
+                node-version: [22.22, 24.16, 26.x]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
@@ -173,7 +173,7 @@ jobs:
 
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
-              if: matrix.node-version == 22.16 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+              if: matrix.node-version == 24.16 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
               with:
                   name: dist
@@ -197,7 +197,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
@@ -269,7 +269,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
@@ -309,7 +309,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
         steps:
             - name: Harden Runner
               uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4

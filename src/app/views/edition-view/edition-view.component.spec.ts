@@ -286,6 +286,7 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         afterEach(() => {
+            vi.clearAllTimers();
             vi.useRealTimers();
         });
 
@@ -898,10 +899,6 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('#setupEditionView()', () => {
-            beforeEach(() => {
-                // Fixture.detectChanges();
-            });
-
             it('... should have been called', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
             });
