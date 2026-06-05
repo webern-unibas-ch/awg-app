@@ -57,7 +57,7 @@ describe('EditionComplexesService (DONE)', () => {
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
 
             expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toBe({});
+            expect(editionComplexesList).not.toEqual({});
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
@@ -143,7 +143,7 @@ describe('EditionComplexesService (DONE)', () => {
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
 
             expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toBe({});
+            expect(editionComplexesList).not.toEqual({});
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
@@ -332,7 +332,7 @@ describe('EditionComplexesService (DONE)', () => {
             const editionComplexesList = (EditionComplexesService as any)._fetchEditionComplexesData();
 
             expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toBe({});
+            expect(editionComplexesList).not.toEqual({});
 
             // Test for samples
             expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
