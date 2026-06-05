@@ -11,6 +11,7 @@
                             class="nav-link awg-edition-intro-nav-link pt-0"
                             [routerLink]="'.'"
                             [fragment]="introBlock.blockId"
+                            [attr.aria-label]="introBlock.blockHeader"
                             [innerHTML]="introBlock.blockHeader"></a>
                     </li>
                 }

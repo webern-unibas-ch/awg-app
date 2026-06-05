@@ -881,9 +881,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 objNode.owlClass = this._checkForRdfType(predNode);
             }
 
-            graphData.links.push(new D3SimulationLink(subjNode, predNode));
-            graphData.links.push(new D3SimulationLink(predNode, objNode));
-
+            graphData.links.push(new D3SimulationLink(subjNode, predNode), new D3SimulationLink(predNode, objNode));
             graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
         });
 
