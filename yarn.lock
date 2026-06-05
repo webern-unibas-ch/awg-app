@@ -5731,11 +5731,11 @@ __metadata:
     husky: "npm:^9.1.7"
     jsdom: "npm:^29.1.1"
     lint-staged: "npm:^17.0.7"
-    n3: "npm:^2.0.1"
+    n3: "npm:^2.0.3"
     ngx-json-viewer: "npm:^3.2.1"
     playwright: "npm:^1.60.0"
     prettier: "npm:^3.8.3"
-    rdfstore: "musicEnfanthen/rdfstore-js#v0.9.18-alpha.20"
+    rdfstore: "musicEnfanthen/rdfstore-js#v0.9.18-alpha.21"
     rxjs: "npm:~7.8.2"
     source-map-explorer: "npm:^2.5.3"
     stream: "npm:^0.0.3"
@@ -10800,7 +10800,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^2.0.1":
+"n3@npm:^2.0.3":
   version: 2.0.3
   resolution: "n3@npm:2.0.3"
   dependencies:
@@ -10903,6 +10903,15 @@ __metadata:
   dependencies:
     node-gyp: "npm:latest"
   checksum: 10c0/fb32a206276d608037fa1bcd7e9921e177fe992fc610d098aa3128baca3c0050fc1e014fa007e9b3874cf865ddb4f5bd9f43ccb7cbbbe4efaff6a83e920b17e9
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^8.0.0":
+  version: 8.8.0
+  resolution: "node-addon-api@npm:8.8.0"
+  dependencies:
+    node-gyp: "npm:latest"
+  checksum: 10c0/4fc508efce85b448eac0e6ca5e3df7f287db42ca6b7c83490c1b9e805f56f558f0d4411112b3b1cb27a573a5a1007eefd0ca91e7aa2afa5b9b513a146b1ae8f9
   languageName: node
   linkType: hard
 
@@ -11827,7 +11836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prebuild-install@npm:^7.1.1":
+"prebuild-install@npm:^7.1.1, prebuild-install@npm:^7.1.3":
   version: 7.1.3
   resolution: "prebuild-install@npm:7.1.3"
   dependencies:
@@ -12020,20 +12029,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicEnfanthen/rdfstore-js#v0.9.18-alpha.20":
-  version: 0.9.18-alpha.20
-  resolution: "rdfstore@https://github.com/musicEnfanthen/rdfstore-js.git#commit=bcac6397e38efe897b8c0dbabd505cbe59a8281e"
+"rdfstore@musicEnfanthen/rdfstore-js#v0.9.18-alpha.21":
+  version: 0.9.18-alpha.21
+  resolution: "rdfstore@https://github.com/musicEnfanthen/rdfstore-js.git#commit=5d347efb5f49cc887166528a253eeb44eb6adbbb"
   dependencies:
     indexeddb-js: "npm:0.0.14"
     jsonld: "npm:^9.0.0"
-    n3: "npm:^2.0.1"
-    sqlite3: "npm:^5.1.7"
+    n3: "npm:^2.0.3"
+    sqlite3: "npm:^6.0.1"
   dependenciesMeta:
     indexeddb-js:
       optional: true
     sqlite3:
       optional: true
-  checksum: 10c0/b11cba98a6cb2dbdbdd6241ac432970554bc323b63b837c99f840e18baa6eaaf2c5c64660463982d3ff25903635c5c9fa9868b3cac01f3c20dfae584cdb36638
+  checksum: 10c0/d074a803fdf22746fab04ee5bec8763b5b5efdd2907dd50a46b6e50fc2429879155b0afc80890b44c1ed97fce3d3ed3d48396d4c7f28199b5bec65958620e822
   languageName: node
   linkType: hard
 
@@ -13111,7 +13120,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sqlite3@npm:>=2.1.1, sqlite3@npm:^5.1.7":
+"sqlite3@npm:>=2.1.1":
   version: 5.1.7
   resolution: "sqlite3@npm:5.1.7"
   dependencies:
@@ -13129,6 +13138,27 @@ __metadata:
     node-gyp:
       optional: true
   checksum: 10c0/10daab5d7854bd0ec3c7690c00359cd3444eabc869b68c68dcb61374a8fa5e2f4be06cf0aba78f7a16336d49e83e4631e8af98f8bd33c772fe8d60b45fa60bc1
+  languageName: node
+  linkType: hard
+
+"sqlite3@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "sqlite3@npm:6.0.1"
+  dependencies:
+    bindings: "npm:^1.5.0"
+    node-addon-api: "npm:^8.0.0"
+    node-gyp: "npm:12.x"
+    prebuild-install: "npm:^7.1.3"
+    tar: "npm:^7.5.10"
+  peerDependencies:
+    node-gyp: 12.x
+  dependenciesMeta:
+    node-gyp:
+      optional: true
+  peerDependenciesMeta:
+    node-gyp:
+      optional: true
+  checksum: 10c0/519e1b84168e4404872d68b5261d73326dd6551bbf2a6b9d6318f3193efe5392ee2c1061a10e18f3d7dcbe6dc4c753513e3f83986d3bca703f363545eba2fb8e
   languageName: node
   linkType: hard
 
