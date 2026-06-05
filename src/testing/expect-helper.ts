@@ -183,14 +183,14 @@ export function expectToEqual(source: any, expected: any): void {
  * @returns {void} Throws the expectation statements.
  */
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
-    const recentCall = spy.mock.calls[spy.mock.calls.length - 1];
+    const recentCall = spy.mock.calls.at(-1);
 
     // Use a realm-safe object check so DOM objects from different globals
     // (e.g. jsdom document elements) are compared by value, not identity.
     if (expectedMostRecentValue !== null && typeof expectedMostRecentValue === 'object') {
-        expect(recentCall[index]).toEqual(expectedMostRecentValue);
+        expect(recentCall?.[index]).toEqual(expectedMostRecentValue);
     } else {
-        expect(recentCall[index]).toBe(expectedMostRecentValue);
+        expect(recentCall?.[index]).toBe(expectedMostRecentValue);
     }
 }
 
