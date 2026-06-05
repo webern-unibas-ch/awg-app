@@ -109,6 +109,30 @@ describe('GndService (DONE)', () => {
             expect(mockWindow.get(0)).toBeUndefined();
         });
 
+        it('... should fallback to in-memory sessionStorage when window access throws', () => {
+            mockStorage.restoreStorageDescriptors(initialStorageDescriptors);
+
+            Object.defineProperty(window, sessionType, {
+                configurable: true,
+                get: () => {
+                    throw new DOMException('Blocked by test', 'SecurityError');
+                },
+            });
+
+            const fallbackSessionStorage = mockStorage.ensureStorage(sessionType);
+
+            expectToBe(fallbackSessionStorage.getItem(expectedGndKey), null);
+            expectToBe(fallbackSessionStorage.length, 0);
+            expectToBe(fallbackSessionStorage.key(0), null);
+
+            gndService.exposeGnd(expectedSetEvent);
+
+            expectToBe(fallbackSessionStorage.getItem(expectedGndKey), expectedItem);
+            expectToBe(fallbackSessionStorage.length, 1);
+            expectToBe(fallbackSessionStorage.key(0), expectedGndKey);
+            expectToBe(fallbackSessionStorage.key(1), null);
+        });
+
         it('... should isolate session and local storage', () => {
             const otherStorage = expectedLocalStorage;
 
@@ -122,7 +146,26 @@ describe('GndService (DONE)', () => {
         });
 
         it('... should start each test with empty default storage', () => {
+            expectToBe(expectedStorage.length, 0);
+            expectToBe(expectedStorage.key(0), null);
             expectToBe(expectedStorage.getItem('testkey'), null);
+        });
+
+        it('... should delete storage property if descriptor is missing on restore', () => {
+            const currentDescriptors = mockStorage.captureStorageDescriptors([localType, sessionType]);
+
+            Object.defineProperty(window, sessionType, {
+                configurable: true,
+                value: expectedSessionStorage,
+            });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeDefined();
+
+            mockStorage.restoreStorageDescriptors({ localStorage: currentDescriptors.localStorage });
+
+            expect(Object.getOwnPropertyDescriptor(window, sessionType)).toBeUndefined();
+
+            mockStorage.restoreStorageDescriptors(currentDescriptors);
         });
     });
 

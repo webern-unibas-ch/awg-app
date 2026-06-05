@@ -55,9 +55,14 @@ export const mockStorage = {
     },
 
     ensureStorage(type: WindowStorageType): Storage {
-        const availableStorage = window[type] as Storage | undefined;
-        if (availableStorage) {
-            return availableStorage;
+        try {
+            const availableStorage = window[type] as Storage | undefined;
+            if (availableStorage) {
+                return availableStorage;
+            }
+        } catch {
+            // Some environments (e.g., jsdom with opaque origins) throw on window storage access.
+            // In that case we still need a stable in-memory storage for tests.
         }
 
         const fallbackStorage = createInMemoryStorage();
@@ -66,13 +71,17 @@ export const mockStorage = {
             value: fallbackStorage,
         });
 
-        return window[type] as Storage;
+        return fallbackStorage;
     },
 
     clearStorages(types: WindowStorageType[]): void {
         types.forEach((type: WindowStorageType) => {
-            const storage = window[type] as Storage | undefined;
-            storage?.clear();
+            try {
+                const storage = window[type] as Storage | undefined;
+                storage?.clear();
+            } catch {
+                // Ignore access errors for unavailable/blocked storages.
+            }
         });
     },
 
