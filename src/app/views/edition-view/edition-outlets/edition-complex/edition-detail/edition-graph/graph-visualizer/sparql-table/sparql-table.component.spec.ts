@@ -8,7 +8,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { QueryResult } from '../models';
+import { QuerySelectResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
 
 @Component({
@@ -34,7 +34,7 @@ describe('SparqlTableComponent (DONE)', () => {
     let fixture: ComponentFixture<SparqlTableComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QueryResult;
+    let expectedQueryResult: QuerySelectResult;
     let expectedQueryTime: number;
 
     let expectedTableTitle: string;

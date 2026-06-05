@@ -8,7 +8,7 @@ import * as N3 from 'n3';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { QueryResult, RDFStoreConstructResponseTriple, Triple } from '../models';
+import { QuerySelectResult, RDFStoreConstructResponseTriple, Triple } from '../models';
 import { PrefixPipe } from '../prefix-pipe';
 
 import { GraphVisualizerService } from './graph-visualizer.service';
@@ -321,12 +321,12 @@ describe('GraphVisualizerService', () => {
                 expectToEqual(result, expectedConstructResult);
             });
 
-            it('... and return QueryResult with SELECT query', async () => {
+            it('... and return QuerySelectResult with SELECT query', async () => {
                 const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o . }';
                 const tripleStr =
                     '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                 const queryType = 'select';
-                const expectedSelectResult: QueryResult = {
+                const expectedSelectResult: QuerySelectResult = {
                     head: {
                         vars: ['s', 'p', 'o'],
                     },
@@ -366,7 +366,7 @@ describe('GraphVisualizerService', () => {
                     '<http://example.org/subject> <http://example.org/predicate> "1"^^xsd:nonNegativeInteger . ' +
                     '<http://example.org/subject2> <http://example.org/predicate2> "2"^^xsd:integer . ';
                 const queryType = 'select';
-                const expectedSelectResult: QueryResult = {
+                const expectedSelectResult: QuerySelectResult = {
                     head: {
                         vars: ['s', 'p', 'o'],
                     },
@@ -1901,7 +1901,7 @@ describe('GraphVisualizerService', () => {
             expect((graphVisualizerService as any)._prepareSelectResponse).toBeDefined();
         });
 
-        it('... should return a QueryResult object with mapped bindings and vars', () => {
+        it('... should return a QuerySelectResult object with mapped bindings and vars', () => {
             const selectResponse = [
                 {
                     key1: {

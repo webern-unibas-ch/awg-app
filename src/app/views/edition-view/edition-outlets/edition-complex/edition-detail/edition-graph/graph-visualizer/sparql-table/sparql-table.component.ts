@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { QueryResult } from '../models';
+import { QuerySelectResult } from '../models';
 
 /**
  * The SparqlTable component.
@@ -22,7 +22,7 @@ export class SparqlTableComponent {
      * It keeps the result of the query.
      */
     @Input()
-    queryResult: QueryResult;
+    queryResult: QuerySelectResult;
 
     /**
      * Input variable: queryTime.

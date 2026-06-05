@@ -14,7 +14,7 @@ export { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
 export { D3SimulationNode, D3SimulationNodeType } from './d3-simulation-node.model';
 export { Namespace, NamespaceType } from './namespace.model';
 export { Prefix, PrefixForm } from './prefix.model';
-export { QueryResult, QueryResultBindings } from './query-result.model';
+export { QueryResult, QuerySelectResult, QuerySelectResultBindings } from './query-result.model';
 export { RDFStoreConstructResponse, RDFStoreSelectResponse } from './rdfstore-response.model';
 export {
     RDFStoreConstructResponseTriple,

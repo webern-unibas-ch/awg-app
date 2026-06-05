@@ -8,7 +8,7 @@ import { EMPTY, from, Observable } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, QueryResult, Triple } from './models';
+import { D3SimulationNode, QueryResult } from './models';
 
 import { GraphVisualizerService } from './services';
 
@@ -73,9 +73,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples, QueryResult, an info string, or undefined.
+     * It keeps the result of the query as an observable of QueryResult.
      */
-    queryResult$: Observable<Triple[] | QueryResult | string | undefined>;
+    queryResult$: Observable<QueryResult>;
 
     /**
      * Public variable: queryTime.
@@ -265,17 +265,13 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise<Triple[] | QueryResult | string | undefined>} The result of the query.
+     * @returns {Promise<QueryResult>} The result of the query.
      */
-    private async _queryLocalStore(
-        queryType: string,
-        queryString: string,
-        triples: string
-    ): Promise<Triple[] | QueryResult | string | undefined> {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<QueryResult> {
         // Capture start time of query
         const t1 = Date.now();
 
-        let result: Triple[] | QueryResult | string | undefined;
+        let result: QueryResult;
 
         // Perform query with client based rdfstore
         try {

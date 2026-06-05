@@ -19,7 +19,7 @@ import { mockConsole } from '@testing/mock-helper';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, D3SimulationNodeType, QueryResult, Triple } from './models';
+import { D3SimulationNode, D3SimulationNodeType, QuerySelectResult, Triple } from './models';
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
@@ -48,7 +48,7 @@ class ConstructResultsStubComponent {
 })
 class SelectResultsStubComponent {
     @Input()
-    queryResult$: Observable<QueryResult | string>;
+    queryResult$: Observable<QuerySelectResult | string>;
     @Input()
     queryTime: number;
     @Input()
