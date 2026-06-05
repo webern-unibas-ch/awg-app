@@ -85,10 +85,10 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
-        expectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
+        expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
 
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -186,8 +186,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.selectedConvolute = expectedConvolute;
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.selectedConvolute = structuredClone(expectedConvolute);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Manually trigger ngOnChanges
             component.ngOnChanges({
@@ -199,11 +199,11 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         });
 
         it('... should have `selectedSvgSheet` input', () => {
-            expectToBe(component.selectedSvgSheet, expectedSvgSheet);
+            expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
         });
 
         it('... should have `selectedConvolute` input', () => {
-            expectToBe(component.selectedConvolute, expectedConvolute);
+            expectToEqual(component.selectedConvolute, expectedConvolute);
         });
 
         describe('VIEW', () => {
@@ -455,13 +455,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             describe('... should return true if', () => {
                 it('... the given id matches the selectedSvgSheet id', () => {
-                    component.selectedSvgSheet = expectedSvgSheet;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
                     expectToBe(component.isSelectedSvgSheet('test-1'), true);
                 });
 
                 it('... the given id matches the selectedSvgSheet id with partial', () => {
-                    component.selectedSvgSheet = expectedSvgSheetWithPartialA;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
 
                     expectToBe(component.isSelectedSvgSheet('test-2a'), true);
                 });
@@ -469,13 +469,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             describe('... should return false if', () => {
                 it('... the given id does not match the selectedSvgSheet id', () => {
-                    component.selectedSvgSheet = expectedSvgSheet;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
                     expectToBe(component.isSelectedSvgSheet('other-test'), false);
                 });
 
                 it('... given the id does not match the selectedSvgSheet id with partial', () => {
-                    component.selectedSvgSheet = expectedSvgSheetWithPartialA;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
 
                     expectToBe(component.isSelectedSvgSheet('test-2b'), false);
                 });
@@ -521,7 +521,10 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 it('... given selectedConvolute.folios are undefined', () => {
                     expectSpyCall(serviceGetFolioSvgDataSpy, 1);
 
-                    component.selectedConvolute = { ...expectedConvolute, folios: undefined };
+                    const expectedConvoluteWithoutFolios = structuredClone(expectedConvolute);
+                    expectedConvoluteWithoutFolios.folios = undefined;
+
+                    component.selectedConvolute = expectedConvoluteWithoutFolios;
 
                     component.prepareFolioSvgOutput();
 
@@ -534,7 +537,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             it('... should populate folioSvgDataArray and viewBoxArray based on selectedConvolute', () => {
                 expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
 
-                component.selectedConvolute = expectedConvolute;
+                component.selectedConvolute = structuredClone(expectedConvolute);
 
                 component.prepareFolioSvgOutput();
 
@@ -544,7 +547,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should calculate viewBox dimensions for each folio', () => {
-                component.selectedConvolute = expectedConvolute;
+                component.selectedConvolute = structuredClone(expectedConvolute);
 
                 component.prepareFolioSvgOutput();
 
@@ -563,7 +566,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             it('... should get folio svg data from service for each folio', () => {
                 expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
 
-                component.selectedConvolute = expectedConvolute;
+                component.selectedConvolute = structuredClone(expectedConvolute);
 
                 component.prepareFolioSvgOutput();
 

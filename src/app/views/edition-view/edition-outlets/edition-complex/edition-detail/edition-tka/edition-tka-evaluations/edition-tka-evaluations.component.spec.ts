@@ -8,6 +8,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -78,10 +79,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_B';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedEvaluations = mockEditionData.mockTextcriticsData.textcritics.at(1).evaluations;
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].evaluations);
 
         // Spies on functions
         getGlyphSpy = vi.spyOn(component, 'getGlyph');
@@ -122,14 +123,14 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.evaluations = expectedEvaluations;
+            component.evaluations = structuredClone(expectedEvaluations);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have evaluations', () => {
-            expectToBe(component.evaluations, expectedEvaluations);
+            expectToEqual(component.evaluations, expectedEvaluations);
         });
 
         describe('VIEW', () => {

@@ -115,12 +115,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedReportFragment = 'source_A';
         expectedSnippetSrc = 'assets/img/edition/snippets/testGroup.png';
         expectedSnippetId = 'testGroup';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedCommentary = JSON.parse(
-            JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1).commentary)
-        );
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].commentary);
 
         const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
         expectedTotalCommentRows = expectedCommentary.comments.reduce(
@@ -214,7 +212,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.commentary = expectedCommentary;
+            component.commentary = structuredClone(expectedCommentary);
             component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
@@ -222,7 +220,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('... should have commentary', () => {
-            expectToBe(component.commentary, expectedCommentary);
+            expectToEqual(component.commentary, expectedCommentary);
         });
 
         describe('VIEW', () => {
@@ -235,7 +233,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should contain no table caption if commentary.preamble is empty', async () => {
-                component.commentary.preamble = '';
+                const commentaryWithoutPreamble = structuredClone(expectedCommentary);
+                commentaryWithoutPreamble.preamble = '';
+
+                component.commentary = commentaryWithoutPreamble;
                 await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
@@ -246,7 +247,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should contain no table head or body if commentary.comments are empty', async () => {
-                component.commentary.comments = [];
+                const commentaryWithoutComments = structuredClone(expectedCommentary);
+                commentaryWithoutComments.comments = [];
+
+                component.commentary = commentaryWithoutComments;
                 await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);

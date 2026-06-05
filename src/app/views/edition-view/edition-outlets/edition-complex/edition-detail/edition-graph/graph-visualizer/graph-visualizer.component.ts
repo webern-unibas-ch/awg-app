@@ -147,7 +147,7 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
 
-        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.queryList = structuredClone(this.graphRDFInputData.queryList);
         const resetted = query
             ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
             : this.queryList[0];

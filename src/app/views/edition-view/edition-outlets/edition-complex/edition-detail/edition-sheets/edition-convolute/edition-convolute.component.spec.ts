@@ -94,11 +94,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
+        expectedSelectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
         expectedSquareIcon = faSquare;
 
@@ -171,8 +171,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.selectedConvolute = expectedSelectedConvolute;
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.selectedConvolute = structuredClone(expectedSelectedConvolute);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();

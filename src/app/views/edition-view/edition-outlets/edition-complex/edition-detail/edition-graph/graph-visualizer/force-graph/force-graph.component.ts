@@ -336,7 +336,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Logs a message to the console.
      */
     log(messageString: string, messageValue: any): void {
-        const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        const value = typeof messageValue === 'object' ? structuredClone(messageValue) : messageValue;
         console.info(messageString, value);
     }
 

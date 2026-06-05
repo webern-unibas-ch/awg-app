@@ -44,7 +44,7 @@ describe('SourceListComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
+        expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
         expectedFragment = 'source_A';
 
         // Spies
@@ -84,7 +84,7 @@ describe('SourceListComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.sourceListData = expectedSourceListData;
+            component.sourceListData = structuredClone(expectedSourceListData);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -101,7 +101,7 @@ describe('SourceListComponent (DONE)', () => {
                         sources: [],
                         textSources: [],
                     };
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
                 });
 
@@ -176,7 +176,7 @@ describe('SourceListComponent (DONE)', () => {
                 it('... should contain siglum link as link text in header column (th)', async () => {
                     expectedSourceListData.sources[2].missing = false;
 
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -218,7 +218,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[2].siglumAddendum = 'H';
                     expectedSourceListData.sources[2].missing = false;
 
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -267,7 +267,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[1].missing = true;
                     expectedSourceListData.sources[2].missing = true;
 
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -321,7 +321,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[1].missing = true;
                     expectedSourceListData.sources[2].missing = true;
 
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -385,7 +385,7 @@ describe('SourceListComponent (DONE)', () => {
                             },
                         ],
                     };
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -416,7 +416,7 @@ describe('SourceListComponent (DONE)', () => {
                             },
                         ],
                     };
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -448,7 +448,7 @@ describe('SourceListComponent (DONE)', () => {
                             },
                         ],
                     };
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.sources.length;
@@ -514,16 +514,12 @@ describe('SourceListComponent (DONE)', () => {
 
             describe('... with musical and text sources', () => {
                 beforeEach(async () => {
-                    expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
-                    component.sourceListData = expectedSourceListData;
+                    expectedSourceListData = structuredClone(mockEditionData.mockSourceListDataWithTexts);
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should contain two tables with table body in div.card-body', async () => {
-                    expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
-                    component.sourceListData = expectedSourceListData;
-                    await detectChangesOnPush(fixture);
-
+                it('... should contain two tables with table body in div.card-body', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 2, 2);
                 });
 
@@ -625,7 +621,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.textSources[0].siglumAddendum = 'a';
                     expectedSourceListData.textSources[1].siglumAddendum = 'H';
 
-                    component.sourceListData = expectedSourceListData;
+                    component.sourceListData = structuredClone(expectedSourceListData);
                     await detectChangesOnPush(fixture);
 
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;

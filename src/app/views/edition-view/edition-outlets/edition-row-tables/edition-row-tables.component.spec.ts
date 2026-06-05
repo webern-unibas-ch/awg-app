@@ -73,7 +73,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Test data
-        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
+        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
 
         // Spies
         editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');

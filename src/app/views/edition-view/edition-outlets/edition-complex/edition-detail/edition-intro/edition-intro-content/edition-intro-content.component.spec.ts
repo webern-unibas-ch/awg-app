@@ -72,13 +72,13 @@ describe('EditionIntroContentComponent (DONE)', () => {
         mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
-        expectedIntroBlockContent = JSON.parse(JSON.stringify(mockEditionData.mockIntroData.intro[0].content));
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroData.intro[0].content);
         expectedNotesLabel = 'Test notes label';
 
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedIntroFragment = 'note-80';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedReportFragment = 'source_A';
         expectedSheetId = 'test-1';
         expectedNextSheetId = 'test-2';

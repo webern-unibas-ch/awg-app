@@ -62,7 +62,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedIntroBlockContent = JSON.parse(JSON.stringify(mockEditionData.mockIntroData.intro[0].content));
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroData.intro[0].content);
         expectedNotesLabel = 'Test notes label';
         expectedCurrentLanguage = 0;
 

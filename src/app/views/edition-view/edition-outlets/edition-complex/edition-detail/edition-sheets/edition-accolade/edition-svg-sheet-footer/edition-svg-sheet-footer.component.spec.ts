@@ -135,10 +135,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
@@ -205,8 +205,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
+            component.selectedTextcritics = structuredClone(expectedSelectedTextcritics);
+            component.selectedTextcriticalCommentary = structuredClone(expectedSelectedTextcriticalCommentary);
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -335,7 +335,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
-                component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
+                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
@@ -366,7 +366,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 it('... evaluations array is empty', async () => {
                     component.showEvaluation = true;
-                    component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
+                    component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(
@@ -415,7 +415,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     EditionTkaEvaluationsStubComponent
                 ) as EditionTkaEvaluationsStubComponent;
 
-                expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
+                expectToEqual(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
             it('... should contain no textcritics div.card if showTka is false', async () => {

@@ -70,11 +70,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
         expectedReportFragment = 'source_A';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSourceEvaluationListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceEvaluationListData));
-        expectedSourceEvaluationListEmptyData = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceEvaluationListEmptyData)
-        );
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
+        expectedSourceEvaluationListEmptyData = structuredClone(mockEditionData.mockSourceEvaluationListEmptyData);
 
         mockDocument = TestBed.inject(DOCUMENT);
 
@@ -123,7 +121,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.editionComplex = expectedEditionComplex;
-            component.sourceEvaluationListData = { ...mockEditionData.mockSourceEvaluationListData };
+            component.sourceEvaluationListData = structuredClone(expectedSourceEvaluationListData);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -191,7 +189,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
             it('... should contain a placeholder if content of evaluation data is empty', async () => {
                 // Simulate the parent setting an empty content array
-                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
+                component.sourceEvaluationListData = structuredClone(expectedSourceEvaluationListEmptyData);
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
@@ -207,7 +205,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
             it('... should display placeholder in paragraph', async () => {
                 // Simulate the parent setting an empty content array
-                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
+                component.sourceEvaluationListData = structuredClone(expectedSourceEvaluationListEmptyData);
                 await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(

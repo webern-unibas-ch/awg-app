@@ -135,8 +135,8 @@ describe('EditionDataService (DONE)', () => {
         expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
         expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
 
-        expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
-        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
+        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
 
         // Spies on console logs
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
@@ -858,9 +858,7 @@ describe('EditionDataService (DONE)', () => {
 
         describe('success', () => {
             it('... should return an Observable(PrefaceList)', () => {
-                const rt = expectedPrefaceData;
-
-                const expectedResult = rt;
+                const expectedResult = structuredClone(expectedPrefaceData);
 
                 getPrefaceDataSpy.mockReturnValue(observableOf(expectedResult));
 

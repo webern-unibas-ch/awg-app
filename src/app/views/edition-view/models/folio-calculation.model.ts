@@ -326,7 +326,7 @@ export class FolioCalculationContentSegmentVertices {
                 offset = 0;
         }
 
-        const yValue = isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
+        const yValue = isStart ? systemLines[0].START_POINT.y : systemLines.at(-1).END_POINT.y;
         const correction = this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);

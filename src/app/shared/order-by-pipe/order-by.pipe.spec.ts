@@ -148,6 +148,17 @@ describe('OrderByPipe (DONE)', () => {
         expectToEqual(pipe.transform(array, 'string'), arraySorted);
     });
 
+    it('... should sort boxed strings too', () => {
+        // eslint-disable-next-line no-new-wrappers
+        const boxedA = new String('a');
+        // eslint-disable-next-line no-new-wrappers
+        const boxedB = new String('b');
+        const array = [{ string: boxedB }, { string: boxedA }];
+        const arraySorted = [{ string: boxedA }, { string: boxedB }];
+
+        expectToEqual(pipe.transform(array, 'string'), arraySorted);
+    });
+
     it('... should sort case-sensitive strings', () => {
         const array = [{ string: 'Abc' }, { string: 'abc' }, { string: 'b' }, { string: 'B' }];
         const arraySorted = [{ string: 'Abc' }, { string: 'B' }, { string: 'abc' }, { string: 'b' }];
