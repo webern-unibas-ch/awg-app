@@ -1,4 +1,15 @@
 /**
+ * The StatisticsBreakDownBadge interface.
+ *
+ * It defines the structure for a badge representing a breakdown of complex types in statistics.
+ */
+export interface StatisticsBreakDownBadge {
+    label: string;
+    val: number;
+    type: string;
+}
+
+/**
  * The StatisticsComplexType type.
  *
  * It defines the valid complex types for statistics breakdowns.

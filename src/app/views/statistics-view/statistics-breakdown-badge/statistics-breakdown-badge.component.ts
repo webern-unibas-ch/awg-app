@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
+import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
 
 /**
  * The StatisticsBreakdownBadge component.
@@ -16,23 +16,45 @@ import { StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
 })
 export class StatisticsBreakdownBadgeComponent {
     /**
-     * Input variable: breakdown.
+     * Input signal: breakdown.
      *
-     * It keeps the breakdown data for the complex types to be displayed in the badges.
+     * Holds the breakdown data for the complex types to be displayed in the badges.
      */
-    @Input() breakdown: StatisticsComplexBreakdown = new StatisticsComplexBreakdown();
+    breakdown = input<StatisticsComplexBreakdown>(new StatisticsComplexBreakdown());
 
     /**
-     * Input variable: containerClasses.
+     * Input signal: containerClasses.
      *
-     * It keeps additional CSS classes to apply to the container.
+     * Holds additional CSS classes to apply to the container.
+     * @default 'small text-muted'
      */
-    @Input() containerClasses = 'small text-muted';
+    containerClasses = input<string>('small text-muted');
 
     /**
-     * Input variable: hideEmptyBadges.
+     * Input signal: showEmptyBadges.
      *
-     * It keeps a flag whether to hide badges when they are empty.
+     * Holds a flag whether to show badges when their value is zero.
+     * @default false
      */
-    @Input() hideEmptyBadges = true;
+    showEmptyBadges = input<boolean>(false);
+
+    /**
+     * Computed signal: visibleBadges.
+     *
+     * Computes the list of badges to be displayed
+     * based on the breakdown data and the showEmptyBadges flag.
+     */
+    visibleBadges = computed<StatisticsBreakDownBadge[]>(() => {
+        const data = this.breakdown();
+        const showEmpty = this.showEmptyBadges();
+
+        const allBadges: StatisticsBreakDownBadge[] = [
+            { label: 'Op', val: data.opus, type: 'primary' },
+            { label: 'M', val: data.mnr, type: 'secondary' },
+            { label: 'M*', val: data.mnrX, type: 'info' },
+        ];
+
+        // Keep badges if showEmpty is true, or if their value is greater than zero
+        return allBadges.filter(badge => showEmpty || badge.val > 0);
+    });
 }

@@ -1,7 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { EditionStatistics, StatisticsComplexBreakdown } from './models';
 import { EditionStatisticsService } from './services';
 import { StatisticsViewComponent } from './statistics-view.component';
+
+// Mock components
+@Component({
+    selector: 'awg-statistics-breakdown-badge',
+    template: '',
+    standalone: false,
+})
+class StatisticsBreakdownBadgeStubComponent {
+    breakdown = input<StatisticsComplexBreakdown>(new StatisticsComplexBreakdown());
+    containerClasses = input<string>('small text-muted');
+    showEmptyBadges = input<boolean>(false);
+}
 
 describe('StatisticsViewComponent', () => {
     let component: StatisticsViewComponent;

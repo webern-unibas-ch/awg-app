@@ -8,9 +8,10 @@
  */
 export {
     EditionStatistics,
+    StatisticsBreakDownBadge,
+    StatisticsComplexBreakdown,
     StatisticsComplexCounter,
     StatisticsComplexType,
-    StatisticsComplexBreakdown,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
 } from './statistics.model';
