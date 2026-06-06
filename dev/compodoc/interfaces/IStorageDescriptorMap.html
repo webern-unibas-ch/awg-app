@@ -228,6 +228,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The optional property descriptor for localStorage.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -266,6 +272,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The optional property descriptor for sessionStorage.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -274,7 +286,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">interface IStorageDescriptorMap {
+    /**
+     * The optional property descriptor for localStorage.
+     **/
     localStorage?: PropertyDescriptor;
+
+    /**
+     * The optional property descriptor for sessionStorage.
+     **/
     sessionStorage?: PropertyDescriptor;
 }
 
