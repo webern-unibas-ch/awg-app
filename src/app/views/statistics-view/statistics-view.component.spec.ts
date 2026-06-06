@@ -1,10 +1,26 @@
+import { Component, input, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditionStatistics, StatisticsComplexBreakdown } from './models';
 import { EditionStatisticsService } from './services';
+
 import { StatisticsViewComponent } from './statistics-view.component';
 
 // Mock components
+@Component({
+    selector: 'awg-statistics-progress-bar',
+    template: '',
+    standalone: false,
+})
+class StatisticsProgressBarStubComponent {
+    percentage = input<number>(0);
+    height = input<string>('15px');
+    minWidth = input<string>('120px');
+    showPercentageLabel = input<boolean>(true);
+    boldPercentageLabel = input<boolean>(false);
+    customClasses = input<string>('');
+    useCustomClassesOnly = input<boolean>(false);
+}
 @Component({
     selector: 'awg-statistics-breakdown-badge',
     template: '',
@@ -27,7 +43,11 @@ describe('StatisticsViewComponent', () => {
         const spy = jasmine.createSpyObj('EditionStatisticsService', ['calculateStatistics']);
 
         await TestBed.configureTestingModule({
-            declarations: [StatisticsViewComponent],
+            declarations: [
+                StatisticsViewComponent,
+                StatisticsBreakdownBadgeStubComponent,
+                StatisticsProgressBarStubComponent,
+            ],
             providers: [{ provide: EditionStatisticsService, useValue: spy }],
         }).compileComponents();
 

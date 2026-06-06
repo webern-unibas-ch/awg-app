@@ -1,14 +1,24 @@
-<div class="d-flex align-items-center">
-    <div class="progress flex-grow-1" [class.me-2]="showLabel" [style.height]="height" [style.min-width]="minWidth">
+<div class="awg-statistics-progress-container d-flex align-items-center">
+    <div
+        class="awg-statistics-progress progress flex-grow-1"
+        [class.me-2]="showPercentageLabel()"
+        [style.height]="height()"
+        [style.min-width]="minWidth()">
         <div
-            class="progress-bar {{ useCustomClassesOnly ? '' : getProgressBarClass(percentage) }} {{ customClasses }}"
+            class="awg-statistics-progress-bar progress-bar"
+            [class]="customClasses()"
+            [class.bg-success]="progressBarColorType() === 'success'"
+            [class.bg-warning]="progressBarColorType() === 'warning'"
+            [class.bg-danger]="progressBarColorType() === 'danger'"
             role="progressbar"
-            [style.width.%]="percentage"
-            [attr.aria-valuenow]="percentage"
+            [style.width.%]="percentage()"
+            [attr.aria-valuenow]="percentage()"
             aria-valuemin="0"
             aria-valuemax="100"></div>
     </div>
-    @if (showLabel) {
-        <small class="text-nowrap" [class.fw-bold]="boldLabel">{{ percentage }}%</small>
+    @if (showPercentageLabel()) {
+        <small class="text-nowrap awg-statistics-progress-label" [class.fw-bold]="boldPercentageLabel()"
+            >{{ percentage() }}%</small
+        >
     }
 </div>

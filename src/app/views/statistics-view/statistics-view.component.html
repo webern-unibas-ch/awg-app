@@ -37,11 +37,11 @@
                                 <span>Edition Completion</span>
                                 <span>{{ statistics.progressRate }}%</span>
                             </div>
-                            <awg-progress-bar
+                            <awg-statistics-progress-bar
                                 [percentage]="statistics.progressRate"
                                 [height]="'20px'"
-                                [showLabel]="false">
-                            </awg-progress-bar>
+                                [showPercentageLabel]="false">
+                            </awg-statistics-progress-bar>
                             <div class="text-center fw-bold">{{ statistics.progressRate }}%</div>
                             <small class="text-muted">
                                 {{ statistics.availableComplexes }} of {{ statistics.totalComplexes }} currently enabled
@@ -64,7 +64,7 @@
                                             <span>Opus Complexes</span>
                                             <span>{{ statistics.complexBreakdown.opus }}</span>
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.complexBreakdown.opus,
@@ -72,10 +72,10 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false"
+                                            [showPercentageLabel]="false"
                                             [customClasses]="'bg-primary'"
                                             [useCustomClassesOnly]="true">
-                                        </awg-progress-bar>
+                                        </awg-statistics-progress-bar>
                                     </div>
 
                                     <div class="mb-3">
@@ -83,7 +83,7 @@
                                             <span>M-number Complexes</span>
                                             <span>{{ statistics.complexBreakdown.mnr }}</span>
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.complexBreakdown.mnr,
@@ -91,10 +91,10 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false"
+                                            [showPercentageLabel]="false"
                                             [customClasses]="'bg-secondary'"
                                             [useCustomClassesOnly]="true">
-                                        </awg-progress-bar>
+                                        </awg-statistics-progress-bar>
                                     </div>
 
                                     <div class="mb-3">
@@ -102,7 +102,7 @@
                                             <span>M*-number Complexes</span>
                                             <span>{{ statistics.complexBreakdown.mnrX }}</span>
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.complexBreakdown.mnrX,
@@ -110,10 +110,10 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false"
+                                            [showPercentageLabel]="false"
                                             [customClasses]="'bg-info'"
                                             [useCustomClassesOnly]="true">
-                                        </awg-progress-bar>
+                                        </awg-statistics-progress-bar>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                                 {{ statistics.complexBreakdown.opus }}</span
                                             >
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.availableComplexBreakdown.opus,
@@ -141,8 +141,8 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false">
-                                        </awg-progress-bar>
+                                            [showPercentageLabel]="false">
+                                        </awg-statistics-progress-bar>
                                     </div>
 
                                     <div class="mb-3">
@@ -153,7 +153,7 @@
                                                 {{ statistics.complexBreakdown.mnr }}</span
                                             >
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.availableComplexBreakdown.mnr,
@@ -161,8 +161,8 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false">
-                                        </awg-progress-bar>
+                                            [showPercentageLabel]="false">
+                                        </awg-statistics-progress-bar>
                                     </div>
 
                                     <div class="mb-3">
@@ -173,7 +173,7 @@
                                                 {{ statistics.complexBreakdown.mnrX }}</span
                                             >
                                         </div>
-                                        <awg-progress-bar
+                                        <awg-statistics-progress-bar
                                             [percentage]="
                                                 getProgressBarWidth(
                                                     statistics.availableComplexBreakdown.mnrX,
@@ -181,8 +181,8 @@
                                                 )
                                             "
                                             [height]="'15px'"
-                                            [showLabel]="false">
-                                        </awg-progress-bar>
+                                            [showPercentageLabel]="false">
+                                        </awg-statistics-progress-bar>
                                     </div>
                                 </div>
                             </div>
@@ -232,12 +232,12 @@
                                                     <strong>{{ series.availableComplexes }}</strong>
                                                 </td>
                                                 <td>
-                                                    <awg-progress-bar
+                                                    <awg-statistics-progress-bar
                                                         [percentage]="series.progressRate"
                                                         [height]="'20px'"
                                                         [minWidth]="'120px'"
-                                                        [boldLabel]="true">
-                                                    </awg-progress-bar>
+                                                        [boldPercentageLabel]="true">
+                                                    </awg-statistics-progress-bar>
                                                 </td>
                                             </tr>
                                             <!-- Section Rows -->
@@ -263,11 +263,11 @@
                                                     <td class="text-center">{{ section.availableComplexes }}</td>
                                                     <td>
                                                         @if (section.totalComplexes > 0) {
-                                                            <awg-progress-bar
+                                                            <awg-statistics-progress-bar
                                                                 [percentage]="section.progressRate"
                                                                 [height]="'16px'"
                                                                 [minWidth]="'120px'">
-                                                            </awg-progress-bar>
+                                                            </awg-statistics-progress-bar>
                                                         } @else {
                                                             <div class="d-flex align-items-center">
                                                                 <div
