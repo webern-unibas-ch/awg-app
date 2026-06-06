@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AbbrDirective } from './abbr.directive';
 
@@ -94,8 +94,8 @@ describe('AbbrDirective (DONE)', () => {
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         expect(pEl.innerHTML).not.toContain('<abbr title="Klavier">Klaviert</abbr>');
-        expect(pEl.innerHTML).toContain('<abbr title="Klavier oben">Klav. o.</abbr>');
-        expect(pEl.innerHTML).toContain('<abbr title="Gesang">Ges.</abbr>');
+        expectToContain(pEl.innerHTML, '<abbr title="Klavier oben">Klav. o.</abbr>');
+        expectToContain(pEl.innerHTML, '<abbr title="Gesang">Ges.</abbr>');
     });
 
     it('... should handle empty text', () => {
@@ -105,6 +105,6 @@ describe('AbbrDirective (DONE)', () => {
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-        expect(pEl.innerHTML).toBe('');
+        expectToBe(pEl.innerHTML, '');
     });
 });

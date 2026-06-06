@@ -65,7 +65,7 @@ describe('ViewContainerComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                 const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
+                expectToBe(divEl0.classList.contains('awg-maincontent'), true);
             });
 
             it('... should contain one router outlet (stubbed)', () => {
@@ -105,8 +105,8 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
                     const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
-                    expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
-                    expect(divEl1.classList.contains('awg-side-outlet')).toBe(true);
+                    expectToBe(divEl0.classList.contains('awg-maincontent'), true);
+                    expectToBe(divEl1.classList.contains('awg-side-outlet'), true);
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
@@ -164,7 +164,7 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                    expect(divEl0.classList.contains('awg-maincontent')).toBe(true);
+                    expectToBe(divEl0.classList.contains('awg-maincontent'), true);
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
