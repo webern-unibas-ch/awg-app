@@ -870,7 +870,7 @@ export class StorageService {
      * @returns {boolean} The boolean value for a supported Storage with the given storage type.
      */
     private _storageIsSupported(storage: Storage): boolean {
-        return typeof storage !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; storage !&#x3D;&#x3D; null &amp;&amp; this._storageIsAvailable(storage);
+        return storage !&#x3D;&#x3D; undefined &amp;&amp; storage !&#x3D;&#x3D; null &amp;&amp; this._storageIsAvailable(storage);
     }
 
     /**

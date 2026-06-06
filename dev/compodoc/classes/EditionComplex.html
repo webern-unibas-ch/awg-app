@@ -922,7 +922,7 @@ export class EditionComplex {
         this.complexId &#x3D; new EditionRouteConstant();
         this.complexId.route &#x3D; this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
-        this.complexId.route +&#x3D; this.titleStatement.catalogueNumber.replace(/\//g, &#x27;_&#x27;);
+        this.complexId.route +&#x3D; this.titleStatement.catalogueNumber.replaceAll(/\//g, &#x27;_&#x27;);
         this.complexId.short &#x3D; &#x60;${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}&#x60;;
         this.complexId.full &#x3D; &#x60;${this.titleStatement.title} ${this.complexId.short}&#x60;;
 

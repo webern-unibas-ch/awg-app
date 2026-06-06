@@ -491,7 +491,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/QueryResult.html" target="_self" >Promise&lt;[] | QueryResult | string | undefined&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#QueryResult" target="_self" >Promise&lt;QueryResult&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -1200,7 +1200,7 @@ from the RDF input data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/QueryResult.html" target="_self" >Observable&lt;[] | QueryResult | string | undefined&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#QueryResult" target="_self" >Observable&lt;QueryResult&gt;</a></code>
 
                     </td>
                 </tr>
@@ -1213,7 +1213,7 @@ from the RDF input data.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: queryResult$.</p>
-<p>It keeps the result of the query as an observable of triples, QueryResult, an info string, or undefined.</p>
+<p>It keeps the result of the query as an observable of QueryResult.</p>
 </div>
                 </td>
             </tr>
@@ -1298,7 +1298,7 @@ import { EMPTY, from, Observable } from &#x27;rxjs&#x27;;
 
 import { Toast, ToastMessage, ToastService } from &#x27;@awg-shared/toast/toast.service&#x27;;
 import { GraphRDFData, GraphSparqlQuery } from &#x27;@awg-views/edition-view/models&#x27;;
-import { D3SimulationNode, QueryResult, Triple } from &#x27;./models&#x27;;
+import { D3SimulationNode, QueryResult } from &#x27;./models&#x27;;
 
 import { GraphVisualizerService } from &#x27;./services&#x27;;
 
@@ -1363,9 +1363,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples, QueryResult, an info string, or undefined.
+     * It keeps the result of the query as an observable of QueryResult.
      */
-    queryResult$: Observable&lt;Triple[] | QueryResult | string | undefined&gt;;
+    queryResult$: Observable&lt;QueryResult&gt;;
 
     /**
      * Public variable: queryTime.
@@ -1437,7 +1437,7 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
 
-        this.queryList &#x3D; JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.queryList &#x3D; structuredClone(this.graphRDFInputData.queryList);
         const resetted &#x3D; query
             ? this.queryList.find(q &#x3D;&gt; query.queryLabel &#x3D;&#x3D;&#x3D; q.queryLabel &amp;&amp; query.queryType &#x3D;&#x3D;&#x3D; q.queryType) || query
             : this.queryList[0];
@@ -1555,17 +1555,13 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise&lt;Triple[] | QueryResult | string | undefined&gt;} The result of the query.
+     * @returns {Promise&lt;QueryResult&gt;} The result of the query.
      */
-    private async _queryLocalStore(
-        queryType: string,
-        queryString: string,
-        triples: string
-    ): Promise&lt;Triple[] | QueryResult | string | undefined&gt; {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise&lt;QueryResult&gt; {
         // Capture start time of query
         const t1 &#x3D; Date.now();
 
-        let result: Triple[] | QueryResult | string | undefined;
+        let result: QueryResult;
 
         // Perform query with client based rdfstore
         try {
@@ -1577,7 +1573,7 @@ export class GraphVisualizerComponent implements OnInit {
             console.error(&#x27;#queryLocalstore got error:&#x27;, err);
 
             if (err.message &amp;&amp; err.name) {
-                if (err.message.indexOf(&#x27;undefined&#x27;) !&#x3D;&#x3D; -1) {
+                if (err.message.includes(&#x27;undefined&#x27;)) {
                     this.showToastMessage(
                         new ToastMessage(err.name, &#x27;The query did not return any results.&#x27;, 5000),
                         &#x27;error&#x27;

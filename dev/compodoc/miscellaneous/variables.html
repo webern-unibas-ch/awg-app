@@ -188,6 +188,9 @@
                             <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts" ><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../d3-force-simulation.model.ts)</a>
                         </li>
                         <li>
+                            <a href="#globalObj" title="src/testing/mock-helper/mock-storage.ts" ><b>globalObj</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
+                        </li>
+                        <li>
                             <a href="#gtag" title="src/app/core/services/analytics-sercvice/analytics.service.ts" ><b>gtag</b>&nbsp;&nbsp;&nbsp;(src/.../analytics.service.ts)</a>
                         </li>
                         <li>
@@ -512,7 +515,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.6.0-211-ga193ec3cb&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.6.0-212-gea8182b74&#x27;</code>
                     </td>
                 </tr>
 
@@ -544,7 +547,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-06-05&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-06-06&#x27;</code>
                     </td>
                 </tr>
 
@@ -779,6 +782,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="globalObj"></a>
+                    <span class="name">
+                        <span ><b>globalObj</b></span>
+                        <a href="#globalObj"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>globalThis as Window &amp; typeof globalThis</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The global object reference for window, used to ensure storage availability and restore original descriptors in tests.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="mockStorage"></a>
                     <span class="name">
                         <span ><b>mockStorage</b></span>
@@ -797,14 +832,14 @@
                         <i>Default value : </i><code>{
     captureStorageDescriptors(types: WindowStorageType[]): IStorageDescriptorMap {
         return types.reduce((descriptors: IStorageDescriptorMap, type: WindowStorageType) &#x3D;&gt; {
-            descriptors[type] &#x3D; Object.getOwnPropertyDescriptor(window, type);
+            descriptors[type] &#x3D; Object.getOwnPropertyDescriptor(globalObj, type);
             return descriptors;
         }, {});
     },
 
     ensureStorage(type: WindowStorageType): Storage {
         try {
-            const availableStorage &#x3D; window[type] as Storage | undefined;
+            const availableStorage &#x3D; globalObj[type];
             if (availableStorage) {
                 return availableStorage;
             }
@@ -814,7 +849,7 @@
         }
 
         const fallbackStorage &#x3D; createInMemoryStorage();
-        Object.defineProperty(window, type, {
+        Object.defineProperty(globalObj, type, {
             configurable: true,
             value: fallbackStorage,
         });
@@ -825,8 +860,8 @@
     clearStorages(types: WindowStorageType[]): void {
         types.forEach((type: WindowStorageType) &#x3D;&gt; {
             try {
-                const storage &#x3D; window[type] as Storage | undefined;
-                storage?.clear();
+                const storage &#x3D; globalObj[type];
+                storage.clear();
             } catch {
                 // Ignore access errors for unavailable/blocked storages.
             }
@@ -839,9 +874,9 @@
         storageTypes.forEach((type: WindowStorageType) &#x3D;&gt; {
             const descriptor &#x3D; descriptors[type];
             if (descriptor) {
-                Object.defineProperty(window, type, descriptor);
+                Object.defineProperty(globalObj, type, descriptor);
             } else {
-                Reflect.deleteProperty(window, type);
+                Reflect.deleteProperty(globalObj, type);
             }
         });
     },
@@ -984,7 +1019,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>(): string &#x3D;&gt; {
-    const crypto &#x3D; window.crypto || (&lt;any&gt;window).msCrypto;
+    const crypto &#x3D; globalThis.crypto || (&lt;any&gt;globalThis).msCrypto;
     const array &#x3D; new Uint32Array(1);
 
     return Math.floor(crypto.getRandomValues(array)[0]).toString(16);
@@ -3227,17 +3262,22 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 preamble: &#x27;Korrekturen 1:&#x27;,
                                 comments: [
                                     {
-                                        measure: &#x27;3–4&#x27;,
-                                        system: &#x27;&#x27;,
-                                        position: &#x27;&#x27;,
-                                        comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
-                                    },
-                                    {
-                                        measure: &#x27;4&#x27;,
-                                        system: &#x27;Klav. o.&#x27;,
-                                        position: &#x27;&#x27;,
-                                        comment:
-                                            &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
+                                        blockHeader: &#x27;&#x27;,
+                                        blockComments: [
+                                            {
+                                                measure: &#x27;3–4&#x27;,
+                                                system: &#x27;&#x27;,
+                                                position: &#x27;&#x27;,
+                                                comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
+                                            },
+                                            {
+                                                measure: &#x27;4&#x27;,
+                                                system: &#x27;Klav. o.&#x27;,
+                                                position: &#x27;&#x27;,
+                                                comment:
+                                                    &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
+                                            },
+                                        ],
                                     },
                                 ],
                             },

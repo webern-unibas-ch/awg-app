@@ -785,7 +785,7 @@ const reverse &#x3D; (str: string): string &#x3D;&gt; str.split(&#x27;&#x27;).re
  * @returns {string}
  */
 const random &#x3D; (): string &#x3D;&gt; {
-    const crypto &#x3D; window.crypto || (&lt;any&gt;window).msCrypto;
+    const crypto &#x3D; globalThis.crypto || (&lt;any&gt;globalThis).msCrypto;
     const array &#x3D; new Uint32Array(1);
 
     return Math.floor(crypto.getRandomValues(array)[0]).toString(16);

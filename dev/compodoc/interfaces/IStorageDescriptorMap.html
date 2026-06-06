@@ -284,6 +284,11 @@
 export type WindowStorageType &#x3D; &#x27;localStorage&#x27; | &#x27;sessionStorage&#x27;;
 
 /**
+ * The global object reference for window, used to ensure storage availability and restore original descriptors in tests.
+ */
+const globalObj &#x3D; globalThis as Window &amp; typeof globalThis;
+
+/**
  * Creates an in-memory Storage implementation.
  */
 const createInMemoryStorage &#x3D; (): Storage &#x3D;&gt; {
@@ -319,14 +324,14 @@ const createInMemoryStorage &#x3D; (): Storage &#x3D;&gt; {
 export const mockStorage &#x3D; {
     captureStorageDescriptors(types: WindowStorageType[]): IStorageDescriptorMap {
         return types.reduce((descriptors: IStorageDescriptorMap, type: WindowStorageType) &#x3D;&gt; {
-            descriptors[type] &#x3D; Object.getOwnPropertyDescriptor(window, type);
+            descriptors[type] &#x3D; Object.getOwnPropertyDescriptor(globalObj, type);
             return descriptors;
         }, {});
     },
 
     ensureStorage(type: WindowStorageType): Storage {
         try {
-            const availableStorage &#x3D; window[type] as Storage | undefined;
+            const availableStorage &#x3D; globalObj[type];
             if (availableStorage) {
                 return availableStorage;
             }
@@ -336,7 +341,7 @@ export const mockStorage &#x3D; {
         }
 
         const fallbackStorage &#x3D; createInMemoryStorage();
-        Object.defineProperty(window, type, {
+        Object.defineProperty(globalObj, type, {
             configurable: true,
             value: fallbackStorage,
         });
@@ -347,8 +352,8 @@ export const mockStorage &#x3D; {
     clearStorages(types: WindowStorageType[]): void {
         types.forEach((type: WindowStorageType) &#x3D;&gt; {
             try {
-                const storage &#x3D; window[type] as Storage | undefined;
-                storage?.clear();
+                const storage &#x3D; globalObj[type];
+                storage.clear();
             } catch {
                 // Ignore access errors for unavailable/blocked storages.
             }
@@ -361,9 +366,9 @@ export const mockStorage &#x3D; {
         storageTypes.forEach((type: WindowStorageType) &#x3D;&gt; {
             const descriptor &#x3D; descriptors[type];
             if (descriptor) {
-                Object.defineProperty(window, type, descriptor);
+                Object.defineProperty(globalObj, type, descriptor);
             } else {
-                Reflect.deleteProperty(window, type);
+                Reflect.deleteProperty(globalObj, type);
             }
         });
     },

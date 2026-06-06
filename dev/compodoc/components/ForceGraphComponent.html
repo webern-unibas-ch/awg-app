@@ -1209,8 +1209,8 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="905"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:905</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="903"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:903</a></div>
                         </td>
                     </tr>
 
@@ -1724,8 +1724,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="981"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:981</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="979"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:979</a></div>
                         </td>
                     </tr>
 
@@ -1804,8 +1804,8 @@ Cf. <a href="https://stackoverflow.com/questions/16358905/d3-force-layout-graph-
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="1051"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:1051</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="1049"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:1049</a></div>
                         </td>
                     </tr>
 
@@ -1883,8 +1883,8 @@ on a force simulation&#39;s tick.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="937"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:937</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="935"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:935</a></div>
                         </td>
                     </tr>
 
@@ -1962,8 +1962,8 @@ on a force simulation&#39;s tick.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="966"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:966</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="964"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:964</a></div>
                         </td>
                     </tr>
 
@@ -3719,7 +3719,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Logs a message to the console.
      */
     log(messageString: string, messageValue: any): void {
-        const value &#x3D; messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        const value &#x3D; typeof messageValue &#x3D;&#x3D;&#x3D; &#x27;object&#x27; ? structuredClone(messageValue) : messageValue;
         console.info(messageString, value);
     }
 
@@ -3951,9 +3951,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                     // Return &quot;instance-space&quot; //MB
                     // }else if(d.instSpaceType){ //MB
                     // Return &quot;instance-spaceType&quot;	//MB
-                } else if (d.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+                } else if (d.label.includes(&#x27;_:&#x27;)) {
                     return &#x27;blank&#x27;;
-                } else if (d.instance || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                } else if (d.instance || d.label.includes(&#x27;inst:&#x27;)) {
                     return &#x27;instance&#x27;;
                 } else {
                     return &#x27;node&#x27;;
@@ -3962,11 +3962,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr(&#x27;id&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.label)
             .attr(&#x27;r&#x27;, (d: D3SimulationNode) &#x3D;&gt; {
                 // MB if(d.instance || d.instSpace || d.instSpaceType){
-                if (d.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+                if (d.label.includes(&#x27;_:&#x27;)) {
                     return 8;
-                } else if (d.instance || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                } else if (d.instance || d.label.includes(&#x27;inst:&#x27;)) {
                     return 11;
-                } else if (d.owlClass || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                } else if (d.owlClass || d.label.includes(&#x27;inst:&#x27;)) {
                     return 10;
                 } else {
                     return 9;
@@ -4172,11 +4172,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         let defaultRadius &#x3D; 8;
 
         // MB if(d.instance || d.instSpace || d.instSpaceType){
-        if (node.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+        if (node.label.includes(&#x27;_:&#x27;)) {
             defaultRadius &#x3D; defaultRadius - 1;
-        } else if (node.instance || node.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+        } else if (node.instance || node.label.includes(&#x27;inst:&#x27;)) {
             defaultRadius &#x3D; defaultRadius + 2;
-        } else if (node.owlClass || node.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+        } else if (node.owlClass || node.label.includes(&#x27;inst:&#x27;)) {
             defaultRadius &#x3D; defaultRadius + 1;
         }
         return defaultRadius;
@@ -4264,9 +4264,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 objNode.owlClass &#x3D; this._checkForRdfType(predNode);
             }
 
-            graphData.links.push(new D3SimulationLink(subjNode, predNode));
-            graphData.links.push(new D3SimulationLink(predNode, objNode));
-
+            graphData.links.push(new D3SimulationLink(subjNode, predNode), new D3SimulationLink(predNode, objNode));
             graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
         });
 

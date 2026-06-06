@@ -2465,7 +2465,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Initializes the scroll listener.
      */
     private _initScrollListener(): void {
-        fromEvent(window, &#x27;scroll&#x27;)
+        fromEvent(globalThis, &#x27;scroll&#x27;)
             .pipe(throttleTime(200), takeUntil(this._destroyed$))
             .subscribe({
                 next: event &#x3D;&gt; this._onIntroScroll(event),
@@ -2542,7 +2542,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     private _onIntroScroll(event: Event): void {
         if (event?.type &#x3D;&#x3D;&#x3D; &#x27;scroll&#x27;) {
-            const scrollPosition &#x3D; window.scrollY || document.documentElement.scrollTop;
+            const scrollPosition &#x3D; globalThis.scrollY || document.documentElement.scrollTop;
             const introSections: NodeListOf&lt;HTMLElement&gt; &#x3D; document.querySelectorAll(&#x27;.awg-edition-intro-section&#x27;);
             const introNavLinks: NodeListOf&lt;HTMLAnchorElement&gt; &#x3D;
                 document.querySelectorAll(&#x27;a.awg-edition-intro-nav-link&#x27;);

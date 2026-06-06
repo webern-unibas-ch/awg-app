@@ -1431,16 +1431,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryResult.html" data-type="entity-link" >QueryResult</a>
+                                <a href="interfaces/QuerySelectResult.html" data-type="entity-link" >QuerySelectResult</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryResultBindings.html" data-type="entity-link" >QueryResultBindings</a>
+                                <a href="interfaces/QuerySelectResultBindings.html" data-type="entity-link" >QuerySelectResultBindings</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryResultBody.html" data-type="entity-link" >QueryResultBody</a>
+                                <a href="interfaces/QuerySelectResultBody.html" data-type="entity-link" >QuerySelectResultBody</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryResultHead.html" data-type="entity-link" >QueryResultHead</a>
+                                <a href="interfaces/QuerySelectResultHead.html" data-type="entity-link" >QuerySelectResultHead</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/RDFStoreConstructResponse.html" data-type="entity-link" >RDFStoreConstructResponse</a>

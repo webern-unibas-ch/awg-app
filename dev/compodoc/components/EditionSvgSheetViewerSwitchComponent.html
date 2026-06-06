@@ -486,8 +486,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer-switch/edition-svg-sheet-viewer-switch.component.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer-switch/edition-svg-sheet-viewer-switch.component.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -580,8 +580,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="171"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer-switch/edition-svg-sheet-viewer-switch.component.ts:171</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer-switch/edition-svg-sheet-viewer-switch.component.ts:168</a></div>
                         </td>
                     </tr>
 
@@ -1096,11 +1096,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      * @returns {void} Toggles the visibility of the tkk classes highlighting.
      */
     toggleTkkClassesHighlight(isVisible?: boolean): void {
-        if (isVisible !&#x3D;&#x3D; undefined) {
-            this.tkkHighlightingVisible &#x3D; isVisible;
-        } else {
-            this.tkkHighlightingVisible &#x3D; !this.tkkHighlightingVisible;
-        }
+        this.tkkHighlightingVisible &#x3D; isVisible ?? !this.tkkHighlightingVisible;
+
         this.toggleTkkClassesHighlightRequest.emit(this.tkkHighlightingVisible);
 
         // Update allClassesVisible flag
@@ -1130,8 +1127,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      */
     private _updateAllClassesVisibility(): void {
         const allValues &#x3D; [...Array.from(this.suppliedClasses.values()), this.tkkHighlightingVisible];
-        const allValuesTrue &#x3D; allValues.every(value &#x3D;&gt; value);
-        const allValuesFalse &#x3D; allValues.every(value &#x3D;&gt; !value);
+        const allValuesTrue &#x3D; allValues.every(Boolean); // Check if all values are true
+        const allValuesFalse &#x3D; !allValues.some(Boolean); // Check if nothing is true (i.e., all are false)
 
         if (allValuesTrue || allValuesFalse) {
             this.allClassesVisible &#x3D; allValues[0];

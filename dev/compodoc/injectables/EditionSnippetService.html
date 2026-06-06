@@ -556,7 +556,7 @@ export class EditionSnippetService {
         const count &#x3D; (comment.match(placeholderPattern) ?? []).length;
         let index &#x3D; 0;
         return comment.replace(placeholderPattern, () &#x3D;&gt; {
-            const suffix &#x3D; count &gt; 1 ? String.fromCharCode(97 + index) : &#x27;&#x27;;
+            const suffix &#x3D; count &gt; 1 ? String.fromCodePoint(97 + index) : &#x27;&#x27;;
             index++;
             const id &#x3D; &#x60;${svgGroupId}${suffix}&#x60;;
             const src &#x3D; &#x60;assets/img/edition/snippets/${id}.png&#x60;;
@@ -601,11 +601,11 @@ export class EditionSnippetService {
      */
     private _escapeHtmlAttribute(value: string): string {
         return value
-            .replace(/&amp;/g, &#x27;&amp;amp;&#x27;)
-            .replace(/&quot;/g, &#x27;&amp;quot;&#x27;)
-            .replace(/&lt;/g, &#x27;&amp;lt;&#x27;)
-            .replace(/&gt;/g, &#x27;&amp;gt;&#x27;)
-            .replace(/&#x27;/g, &#x27;&amp;#39;&#x27;);
+            .replaceAll(&#x27;&amp;&#x27;, &#x27;&amp;amp;&#x27;)
+            .replaceAll(&#x27;&quot;&#x27;, &#x27;&amp;quot;&#x27;)
+            .replaceAll(&#x27;&lt;&#x27;, &#x27;&amp;lt;&#x27;)
+            .replaceAll(&#x27;&gt;&#x27;, &#x27;&amp;gt;&#x27;)
+            .replaceAll(&quot;&#x27;&quot;, &#x27;&amp;#39;&#x27;);
     }
 }
 </code></pre>
