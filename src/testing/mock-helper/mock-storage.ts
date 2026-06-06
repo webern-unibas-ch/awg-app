@@ -4,7 +4,14 @@
  * It stores optional property descriptors for window storage types.
  */
 interface IStorageDescriptorMap {
+    /**
+     * The optional property descriptor for localStorage.
+     **/
     localStorage?: PropertyDescriptor;
+
+    /**
+     * The optional property descriptor for sessionStorage.
+     **/
     sessionStorage?: PropertyDescriptor;
 }
 
