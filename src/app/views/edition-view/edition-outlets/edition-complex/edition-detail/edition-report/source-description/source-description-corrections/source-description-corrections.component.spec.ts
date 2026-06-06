@@ -84,15 +84,13 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        const expectedSourceDescriptionListData = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData)
-        );
+        const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
         expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
         expectedOpenAllCorrectionDetails = false;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
 

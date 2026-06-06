@@ -284,9 +284,9 @@ describe('IntroComponent (DONE)', () => {
             [0, 'Anmerkungen'],
             [1, 'Notes'],
         ]);
-        expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
-        expectedEditionIntroComplexData = JSON.parse(JSON.stringify(mockEditionData.mockIntroComplexData));
-        expectedEditionIntroFilteredData = JSON.parse(JSON.stringify(mockEditionData.mockIntroFilteredData));
+        expectedEditionIntroData = structuredClone(mockEditionData.mockIntroData);
+        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
+        expectedEditionIntroFilteredData = structuredClone(mockEditionData.mockIntroFilteredData);
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
         expectedErrorObject = null;
 
@@ -295,8 +295,8 @@ describe('IntroComponent (DONE)', () => {
         expectedNextComplexId = 'testComplex2';
         expectedIntroFragment = 'note-80';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
 
         expectedSelectedEditionSeries = EditionOutlineService.getEditionSeriesById(
             expectedEditionComplex.pubStatement.series.route

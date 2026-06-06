@@ -153,10 +153,10 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
+        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
 
         // Spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
@@ -194,7 +194,7 @@ describe('TextcriticsListComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticsData = expectedTextcriticsData;
+            component.textcriticsData = structuredClone(expectedTextcriticsData);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -335,11 +335,11 @@ describe('TextcriticsListComponent (DONE)', () => {
                 let textcriticsDataWithWorkEdition: TextcriticsList;
 
                 beforeEach(async () => {
-                    textcriticsDataWithWorkEdition = JSON.parse(JSON.stringify(expectedTextcriticsData));
+                    textcriticsDataWithWorkEdition = structuredClone(expectedTextcriticsData);
                     textcriticsDataWithWorkEdition.textcritics[0].id = 'op12_WE';
                     textcriticsDataWithWorkEdition.textcritics[1].id = 'op25_WE';
 
-                    component.textcriticsData = textcriticsDataWithWorkEdition;
+                    component.textcriticsData = structuredClone(textcriticsDataWithWorkEdition);
                     await detectChangesOnPush(fixture);
                 });
 

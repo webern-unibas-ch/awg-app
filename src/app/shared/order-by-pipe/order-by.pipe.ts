@@ -30,7 +30,7 @@ export class OrderByPipe implements PipeTransform {
      * @param value
      */
     static isString(value: any): boolean {
-        return typeof value === 'string' || value instanceof String;
+        return typeof value === 'string' || Object.prototype.toString.call(value) === '[object String]';
     }
 
     /**
@@ -82,7 +82,7 @@ export class OrderByPipe implements PipeTransform {
      * @returns {string[]}
      */
     static parseExpression(expression: string): string[] {
-        expression = expression.replace(/\[(\w+)\]/g, '.$1');
+        expression = expression.replaceAll(/\[(\w+)\]/g, '.$1');
         expression = expression.replace(/^\./, '');
         return expression.split('.');
     }
@@ -169,7 +169,7 @@ export class OrderByPipe implements PipeTransform {
         isCaseInsensitive?: boolean,
         comparator?: Function
     ): T[] {
-        const isDeepLink = expression && expression.indexOf('.') !== -1;
+        const isDeepLink = expression && expression.includes('.');
 
         if (isDeepLink) {
             expression = OrderByPipe.parseExpression(expression);

@@ -208,8 +208,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         expectedCompressIcon = faCompressArrowsAlt;
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
         expectedTkkOverlays = [
             new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1', true),
@@ -325,7 +325,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
-            component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -979,7 +979,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should not call `_createSvg` method if `svgSheetFilePath` is not set', async () => {
                 expectSpyCall(createSvgSpy, 1);
 
-                component.selectedSvgSheet.content[0].svg = '';
+                const sheetWithoutPath = structuredClone(expectedSvgSheet);
+                sheetWithoutPath.content[0].svg = '';
+
+                component.selectedSvgSheet = sheetWithoutPath;
 
                 component.renderSheet();
 
@@ -992,7 +995,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should call `_createSvg` method if `svgSheetFilePath` is set', async () => {
                 expectSpyCall(createSvgSpy, 1);
 
-                component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
+                component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
                 component.renderSheet();
 

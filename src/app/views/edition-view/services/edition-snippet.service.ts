@@ -40,7 +40,7 @@ export class EditionSnippetService {
         const count = (comment.match(placeholderPattern) ?? []).length;
         let index = 0;
         return comment.replace(placeholderPattern, () => {
-            const suffix = count > 1 ? String.fromCharCode(97 + index) : '';
+            const suffix = count > 1 ? String.fromCodePoint(97 + index) : '';
             index++;
             const id = `${svgGroupId}${suffix}`;
             const src = `assets/img/edition/snippets/${id}.png`;
@@ -85,10 +85,10 @@ export class EditionSnippetService {
      */
     private _escapeHtmlAttribute(value: string): string {
         return value
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/'/g, '&#39;');
+            .replaceAll('&', '&amp;')
+            .replaceAll('"', '&quot;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll("'", '&#39;');
     }
 }

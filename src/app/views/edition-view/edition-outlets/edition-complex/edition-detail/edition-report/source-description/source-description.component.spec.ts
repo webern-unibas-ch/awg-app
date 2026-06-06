@@ -131,13 +131,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
+        expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
         expectedReportFragment = 'source_G';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
 
         // Spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
@@ -175,7 +175,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.sourceDescriptionListData = expectedSourceDescriptionListData;
+            component.sourceDescriptionListData = structuredClone(expectedSourceDescriptionListData);
 
             // Trigger initial data binding
             fixture.detectChanges();

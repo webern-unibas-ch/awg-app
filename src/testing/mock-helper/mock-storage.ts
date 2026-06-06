@@ -14,6 +14,11 @@ interface IStorageDescriptorMap {
 export type WindowStorageType = 'localStorage' | 'sessionStorage';
 
 /**
+ * The global object reference for window, used to ensure storage availability and restore original descriptors in tests.
+ */
+const globalObj = globalThis as Window & typeof globalThis;
+
+/**
  * Creates an in-memory Storage implementation.
  */
 const createInMemoryStorage = (): Storage => {
@@ -49,14 +54,14 @@ const createInMemoryStorage = (): Storage => {
 export const mockStorage = {
     captureStorageDescriptors(types: WindowStorageType[]): IStorageDescriptorMap {
         return types.reduce((descriptors: IStorageDescriptorMap, type: WindowStorageType) => {
-            descriptors[type] = Object.getOwnPropertyDescriptor(window, type);
+            descriptors[type] = Object.getOwnPropertyDescriptor(globalObj, type);
             return descriptors;
         }, {});
     },
 
     ensureStorage(type: WindowStorageType): Storage {
         try {
-            const availableStorage = window[type] as Storage | undefined;
+            const availableStorage = globalObj[type];
             if (availableStorage) {
                 return availableStorage;
             }
@@ -66,7 +71,7 @@ export const mockStorage = {
         }
 
         const fallbackStorage = createInMemoryStorage();
-        Object.defineProperty(window, type, {
+        Object.defineProperty(globalObj, type, {
             configurable: true,
             value: fallbackStorage,
         });
@@ -77,8 +82,8 @@ export const mockStorage = {
     clearStorages(types: WindowStorageType[]): void {
         types.forEach((type: WindowStorageType) => {
             try {
-                const storage = window[type] as Storage | undefined;
-                storage?.clear();
+                const storage = globalObj[type];
+                storage.clear();
             } catch {
                 // Ignore access errors for unavailable/blocked storages.
             }
@@ -91,9 +96,9 @@ export const mockStorage = {
         storageTypes.forEach((type: WindowStorageType) => {
             const descriptor = descriptors[type];
             if (descriptor) {
-                Object.defineProperty(window, type, descriptor);
+                Object.defineProperty(globalObj, type, descriptor);
             } else {
-                Reflect.deleteProperty(window, type);
+                Reflect.deleteProperty(globalObj, type);
             }
         });
     },

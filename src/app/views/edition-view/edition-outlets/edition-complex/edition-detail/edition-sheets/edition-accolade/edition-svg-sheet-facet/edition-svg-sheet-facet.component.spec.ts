@@ -84,10 +84,10 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
-        expectedSvgSheetWithPartials = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
+        expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -152,8 +152,8 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.isMinimized = expectedIsMinimized;
-            component.svgSheetsData = expectedSvgSheetsData;
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.svgSheetsData = structuredClone(expectedSvgSheetsData);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();

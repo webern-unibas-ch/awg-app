@@ -63,15 +63,15 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
         expectedFacetItemLabel = 'Testeditionslabel';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheets = mockEditionData.mockSvgSheetList.sheets['sketchEditions'];
+        expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets['sketchEditions']);
         expectedSheetsWithoutPartials = expectedSvgSheets.filter(sheet => sheet.content.length === 1);
         expectedSheetsWithPartials = expectedSvgSheets.filter(sheet => sheet.content.length > 1);
 
-        expectedSvgSheet = expectedSvgSheets.at(0);
-        expectedNextSvgSheet = expectedSvgSheets.at(3);
-        expectedSvgSheetWithPartials = expectedSvgSheets.at(1);
+        expectedSvgSheet = structuredClone(expectedSvgSheets[0]);
+        expectedNextSvgSheet = structuredClone(expectedSvgSheets[3]);
+        expectedSvgSheetWithPartials = structuredClone(expectedSvgSheets[1]);
 
-        expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+        expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
 
         // Spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
@@ -117,8 +117,8 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.facetItemLabel = expectedFacetItemLabel;
-            component.svgSheets = expectedSvgSheets;
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.svgSheets = structuredClone(expectedSvgSheets);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -299,7 +299,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have `text-muted` class on dropdown header anchor when svg sheet with partials is not selected', async () => {
-                component.selectedSvgSheet = expectedSvgSheet;
+                component.selectedSvgSheet = structuredClone(expectedSvgSheet);
                 await detectChangesOnPush(fixture);
 
                 const aDes = getAndExpectDebugElementByCss(
@@ -317,7 +317,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have `active` class on dropdown header anchor when svg sheet with partials is selected', async () => {
-                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
                 await detectChangesOnPush(fixture);
 
                 let aDes = getAndExpectDebugElementByCss(
@@ -335,7 +335,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 expectToContain(aEl1.classList, 'text-muted');
                 expect(aEl1.classList).not.toContain('active');
 
-                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3b));
+                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3b);
                 await detectChangesOnPush(fixture);
 
                 aDes = getAndExpectDebugElementByCss(
@@ -373,7 +373,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', async () => {
-                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
                 await detectChangesOnPush(fixture);
 
                 const aDes = getAndExpectDebugElementByCss(
@@ -441,7 +441,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
 
             describe('... with partial', () => {
                 it('... should return false if given id does not equal id with partial of selected svg sheet', async () => {
-                    component.selectedSvgSheet = expectedSvgSheetWithPartialA;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
                     await detectChangesOnPush(fixture);
 
                     const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
@@ -450,7 +450,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should return true if given id does equal id with partial of selected svg sheet', async () => {
-                    component.selectedSvgSheet = expectedSvgSheetWithPartialA;
+                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
                     await detectChangesOnPush(fixture);
 
                     const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');

@@ -89,9 +89,9 @@ describe('FolioService (DONE)', () => {
         };
 
         // Test data
-        expectedConvolutes = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData.convolutes));
+        expectedConvolutes = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes);
         expectedDefaultFolio = expectedConvolutes[0].folios[0];
-        expectedReversedFolio = JSON.parse(JSON.stringify(mockEditionData.mockReversedFolio));
+        expectedReversedFolio = structuredClone(mockEditionData.mockReversedFolio);
         expectedFolioSettings = {
             factor: 1.5,
             formatX: 175,
@@ -258,36 +258,25 @@ describe('FolioService (DONE)', () => {
         });
 
         it('... should return an instance of FolioSvgData object', () => {
-            // Create mock FolioSettings and Folio objects
-            const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedDefaultFolio;
+            const result = folioService.getFolioSvgData(expectedFolioSettings, expectedDefaultFolio);
 
-            // Call the method with the mock objects
-            const result = folioService.getFolioSvgData(folioSettings, folio);
-
-            // Check if the result is a FolioSvgData object
             expect(result).toBeInstanceOf(FolioSvgData);
         });
 
         it('... should create a new FolioCalculation object with the correct parameters', () => {
-            // Create mock FolioSettings and Folio objects
-            const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedDefaultFolio;
-            const result = folioService.getFolioSvgData(folioSettings, folio);
+            const result = folioService.getFolioSvgData(expectedFolioSettings, expectedDefaultFolio);
 
             expectToEqual(result, expectedFolioSvgData);
         });
 
         it('... should create a new FolioCalculation object when contentSegmentOffsetCorrection is undefined', () => {
-            // Create mock FolioSettings and Folio objects
-            const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedDefaultFolio;
-
-            const expectedFolioSvgDataWithoutOffset = new FolioSvgData(new FolioCalculation(folioSettings, folio, 0));
+            const expectedFolioSvgDataWithoutOffset = new FolioSvgData(
+                new FolioCalculation(expectedFolioSettings, expectedDefaultFolio, 0)
+            );
 
             (folioService as any)._contentSegmentOffsetCorrection = undefined;
 
-            const result = folioService.getFolioSvgData(folioSettings, folio);
+            const result = folioService.getFolioSvgData(expectedFolioSettings, expectedDefaultFolio);
 
             expectToEqual(result, expectedFolioSvgDataWithoutOffset);
         });
@@ -552,7 +541,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... should rotate the trademark symbol if systems are reversed', () => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.reversed = true;
 
                     const altSvgData = new FolioSvgData(
@@ -585,7 +574,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... with trademark position `unten rechts`', () => {
                 beforeEach(() => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.trademarkPosition = 'unten rechts';
 
                     const altSvgData = new FolioSvgData(
@@ -657,7 +646,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... should rotate the trademark symbol if systems are reversed', () => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.reversed = true;
                     altFolio.trademarkPosition = 'unten rechts';
 
@@ -691,7 +680,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... with trademark position `oben links`', () => {
                 beforeEach(() => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.trademarkPosition = 'oben links';
 
                     const altSvgData = new FolioSvgData(
@@ -759,7 +748,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... should rotate the trademark symbol if systems are reversed', () => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.reversed = true;
                     altFolio.trademarkPosition = 'oben links';
 
@@ -793,7 +782,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... with trademark position `oben rechts`', () => {
                 beforeEach(() => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.trademarkPosition = 'oben rechts';
 
                     const altSvgData = new FolioSvgData(
@@ -863,7 +852,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... should rotate the trademark symbol if systems are reversed', () => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.reversed = true;
                     altFolio.trademarkPosition = 'oben rechts';
 
@@ -897,7 +886,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... with any other trademark position', () => {
                 beforeEach(() => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.trademarkPosition = 'irgendwo';
 
                     const altSvgData = new FolioSvgData(
@@ -962,7 +951,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... should rotate the trademark symbol if systems are reversed', () => {
-                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    const altFolio = structuredClone(expectedDefaultFolio);
                     altFolio.reversed = true;
                     altFolio.trademarkPosition = 'irgendwo';
 

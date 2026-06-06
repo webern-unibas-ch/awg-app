@@ -44,8 +44,8 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedSeries = JSON.parse(JSON.stringify(EditionOutlineService.getEditionOutline()[0]));
-        expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
+        expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
+        expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
     });
 
     it('should create', () => {
@@ -70,8 +70,8 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = expectedSelectedSeries;
-            component.selectedSection = expectedSelectedSection;
+            component.selectedSeries = structuredClone(expectedSelectedSeries);
+            component.selectedSection = structuredClone(expectedSelectedSection);
 
             // Trigger initial data binding
             fixture.detectChanges();

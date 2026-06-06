@@ -336,7 +336,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Logs a message to the console.
      */
     log(messageString: string, messageValue: any): void {
-        const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        const value = typeof messageValue === 'object' ? structuredClone(messageValue) : messageValue;
         console.info(messageString, value);
     }
 
@@ -568,9 +568,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                     // Return "instance-space" //MB
                     // }else if(d.instSpaceType){ //MB
                     // Return "instance-spaceType"	//MB
-                } else if (d.label.indexOf('_:') !== -1) {
+                } else if (d.label.includes('_:')) {
                     return 'blank';
-                } else if (d.instance || d.label.indexOf('inst:') !== -1) {
+                } else if (d.instance || d.label.includes('inst:')) {
                     return 'instance';
                 } else {
                     return 'node';
@@ -579,11 +579,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr('id', (d: D3SimulationNode) => d.label)
             .attr('r', (d: D3SimulationNode) => {
                 // MB if(d.instance || d.instSpace || d.instSpaceType){
-                if (d.label.indexOf('_:') !== -1) {
+                if (d.label.includes('_:')) {
                     return 8;
-                } else if (d.instance || d.label.indexOf('inst:') !== -1) {
+                } else if (d.instance || d.label.includes('inst:')) {
                     return 11;
-                } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
+                } else if (d.owlClass || d.label.includes('inst:')) {
                     return 10;
                 } else {
                     return 9;
@@ -789,11 +789,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         let defaultRadius = 8;
 
         // MB if(d.instance || d.instSpace || d.instSpaceType){
-        if (node.label.indexOf('_:') !== -1) {
+        if (node.label.includes('_:')) {
             defaultRadius = defaultRadius - 1;
-        } else if (node.instance || node.label.indexOf('inst:') !== -1) {
+        } else if (node.instance || node.label.includes('inst:')) {
             defaultRadius = defaultRadius + 2;
-        } else if (node.owlClass || node.label.indexOf('inst:') !== -1) {
+        } else if (node.owlClass || node.label.includes('inst:')) {
             defaultRadius = defaultRadius + 1;
         }
         return defaultRadius;
@@ -881,9 +881,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 objNode.owlClass = this._checkForRdfType(predNode);
             }
 
-            graphData.links.push(new D3SimulationLink(subjNode, predNode));
-            graphData.links.push(new D3SimulationLink(predNode, objNode));
-
+            graphData.links.push(new D3SimulationLink(subjNode, predNode), new D3SimulationLink(predNode, objNode));
             graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
         });
 

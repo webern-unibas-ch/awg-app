@@ -91,7 +91,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         mockEditionStateService = TestBed.inject(EditionStateService);
 
         // Test data
-        expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedCurrentLanguage = 0;
 
         // Spies

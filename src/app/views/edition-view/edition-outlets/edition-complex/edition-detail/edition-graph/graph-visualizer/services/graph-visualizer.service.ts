@@ -12,7 +12,8 @@ import {
     NamespaceType,
     PrefixForm,
     QueryResult,
-    QueryResultBindings,
+    QuerySelectResult,
+    QuerySelectResultBindings,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
     RDFStoreSelectResponse,
@@ -96,14 +97,9 @@ export class GraphVisualizerService {
      * @param {string} ttlString The given turtle string.
      * @param {string} [mimeType] The optional given mimetype.
      *
-     * @returns {Promise<string | QueryResult | Triple[] | undefined>} A promise of the query result, or `undefined` for unsupported query types or missing select data.
+     * @returns {Promise<QueryResult>} A promise of the query result.
      */
-    async doQuery(
-        queryType: string,
-        query: string,
-        ttlString: string,
-        mimeType?: string
-    ): Promise<string | QueryResult | Triple[] | undefined> {
+    async doQuery(queryType: string, query: string, ttlString: string, mimeType?: string): Promise<QueryResult> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
@@ -361,7 +357,7 @@ export class GraphVisualizerService {
 
         // Find WHERE clause
         const start = query.toLowerCase().indexOf(where.toLowerCase());
-        const queryStr = start !== -1 ? query.slice(start) : query;
+        const queryStr = start === -1 ? query : query.slice(start);
 
         // Find prefixes in query using matchAll
         const matches = queryStr.matchAll(regex);
@@ -432,9 +428,9 @@ export class GraphVisualizerService {
      *
      * @param {RDFStoreSelectResponse} selectResponse The given select response.
      *
-     * @returns {QueryResultBindings[]} The array of bindings.
+     * @returns {QuerySelectResultBindings[]} The array of bindings.
      */
-    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QueryResultBindings[] {
+    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QuerySelectResultBindings[] {
         const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
         const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
         const keyMap = {
@@ -506,11 +502,11 @@ export class GraphVisualizerService {
      *
      * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
      *
-     * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
+     * @returns  {status: number; data: QuerySelectResult | string } An object with a status code, and the data as QuerySelectResult or string.
      */
     private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
         status: number;
-        data: QueryResult | string;
+        data: QuerySelectResult | string;
     } {
         if (!selectResponse) {
             return { status: 404, data: undefined };
@@ -525,7 +521,7 @@ export class GraphVisualizerService {
         const selectResponseBindings = this._prepareMappedBindings(selectResponse);
 
         // Re-format data
-        const reformatted: QueryResult = {
+        const reformatted: QuerySelectResult = {
             head: { vars: selectResponseKeys },
             body: { bindings: selectResponseBindings },
         };

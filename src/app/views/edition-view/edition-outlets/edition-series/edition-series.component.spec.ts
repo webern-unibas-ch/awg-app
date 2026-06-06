@@ -97,7 +97,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.editionOutline = expectedEditionOutline;
+            component.editionOutline = structuredClone(expectedEditionOutline);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -543,7 +543,7 @@ describe('EditionSeriesComponent (DONE)', () => {
             });
 
             it('...should set `editionOutline`', () => {
-                const anotherEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
+                const anotherEditionOutline = structuredClone(mockEditionOutline);
                 anotherEditionOutline[0].series = EDITION_ROUTE_CONSTANTS.SERIES_2;
 
                 serviceGetEditionOutlineSpy.mockReturnValue(anotherEditionOutline);

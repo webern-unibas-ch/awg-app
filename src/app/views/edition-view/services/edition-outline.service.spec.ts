@@ -61,7 +61,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = EditionOutlineService.getEditionOutline();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe([]);
+            expect(editionOutline).not.toEqual([]);
 
             // Test for samples
             expect(editionOutline.length).toBeGreaterThan(0);
@@ -80,7 +80,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = EditionOutlineService.getEditionOutline();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe([]);
+            expect(editionOutline).not.toEqual([]);
 
             // Test for samples
             expect(editionOutline.length).toBeGreaterThan(0);
@@ -247,7 +247,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = (EditionOutlineService as any)._fetchEditionOutlineData();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe({});
+            expect(editionOutline).not.toEqual({});
             expect(Object.keys(editionOutline).length).toBeGreaterThan(0);
             expect(editionOutline.outline).toBeDefined();
 

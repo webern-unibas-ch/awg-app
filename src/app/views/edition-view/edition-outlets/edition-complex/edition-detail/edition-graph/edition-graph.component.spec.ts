@@ -173,7 +173,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
 
-        expectedEditionGraphDataEmpty = JSON.parse(JSON.stringify(mockEditionData.mockGraphEmptyData));
+        expectedEditionGraphDataEmpty = structuredClone(mockEditionData.mockGraphEmptyData);
 
         expectedEditionGraphDataOp25 = new GraphList();
         expectedEditionGraphDataOp25.graph = [];

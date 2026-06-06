@@ -10,14 +10,14 @@ export class ViewBox {
      *
      * Set to `100%` by default.
      */
-    svgWidth: string;
+    svgWidth = '100%';
 
     /**
      * The height of the svg (string).
      *
      * Set to `100%` by default.
      */
-    svgHeight: string;
+    svgHeight = '100%';
 
     /**
      * The svg viewBox attribute (string).
@@ -39,8 +39,6 @@ export class ViewBox {
      */
     constructor(width: number, height: number) {
         // Set the viewBox string
-        this.svgWidth = '100%';
-        this.svgHeight = '100%';
         this.viewBox = `0 0 ${width} ${height}`;
     }
 }

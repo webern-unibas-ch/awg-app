@@ -55,7 +55,7 @@ describe('EditionInitService (DONE)', () => {
             const editionComplexesList = EditionComplexesService.getEditionComplexesList();
 
             expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toBe({});
+            expect(editionComplexesList).not.toEqual({});
 
             // Test for samples
             expect(editionComplexesList['op3']).toBeDefined();
@@ -73,7 +73,7 @@ describe('EditionInitService (DONE)', () => {
             const editionOutline = EditionOutlineService.getEditionOutline();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe([]);
+            expect(editionOutline).not.toEqual([]);
 
             // Test for samples
             expectToEqual(editionOutline[0].series, EDITION_ROUTE_CONSTANTS.SERIES_1);

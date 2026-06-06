@@ -270,15 +270,15 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
 
-        expectedFolioConvoluteData = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData));
+        expectedFolioConvoluteData = structuredClone(mockEditionData.mockFolioConvoluteData);
         expectedConvolute = expectedFolioConvoluteData.convolutes[0];
 
-        expectedSvgSheetsData = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheetList));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedSvgSheetsData = structuredClone(mockEditionData.mockSvgSheetList);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
-        expectedSelectedTextcritics = expectedTextcriticsData.textcritics.at(1);
+        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
+        expectedSelectedTextcritics = expectedTextcriticsData.textcritics[1];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         // Spies on service functions
@@ -429,10 +429,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.editionComplex = expectedEditionComplex;
-            component.folioConvoluteData = expectedFolioConvoluteData;
-            component.svgSheetsData = expectedSvgSheetsData;
-            component.textcriticsData = expectedTextcriticsData;
+            component.editionComplex = structuredClone(expectedEditionComplex);
+            component.folioConvoluteData = structuredClone(expectedFolioConvoluteData);
+            component.svgSheetsData = structuredClone(expectedSvgSheetsData);
+            component.textcriticsData = structuredClone(expectedTextcriticsData);
 
             // Trigger initial data binding
             fixture.detectChanges();

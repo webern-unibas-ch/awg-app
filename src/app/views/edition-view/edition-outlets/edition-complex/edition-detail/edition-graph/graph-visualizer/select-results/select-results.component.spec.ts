@@ -19,7 +19,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { QueryResult } from '../models';
+import { QuerySelectResult } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
@@ -37,7 +37,7 @@ class SparqlNoResultsStubComponent {}
 })
 class SparqlTableStubComponent {
     @Input()
-    queryResult: QueryResult;
+    queryResult: QuerySelectResult;
     @Input()
     queryTime: number;
     @Output()
@@ -56,8 +56,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QueryResult | string;
-    let expectedQueryResult$: Observable<QueryResult | string>;
+    let expectedQueryResult: QuerySelectResult | string;
+    let expectedQueryResult$: Observable<QuerySelectResult | string>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 

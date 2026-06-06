@@ -657,17 +657,22 @@ export const mockEditionData = {
                                 preamble: 'Korrekturen 1:',
                                 comments: [
                                     {
-                                        measure: '3–4',
-                                        system: '',
-                                        position: '',
-                                        comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
-                                    },
-                                    {
-                                        measure: '4',
-                                        system: 'Klav. o.',
-                                        position: '',
-                                        comment:
-                                            'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                        blockHeader: '',
+                                        blockComments: [
+                                            {
+                                                measure: '3–4',
+                                                system: '',
+                                                position: '',
+                                                comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                            },
+                                            {
+                                                measure: '4',
+                                                system: 'Klav. o.',
+                                                position: '',
+                                                comment:
+                                                    'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                            },
+                                        ],
                                     },
                                 ],
                             },

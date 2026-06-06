@@ -183,13 +183,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSvgSheetsData = {
             sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
         };
-        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         const type = EditionSvgOverlayTypes.tkk;
@@ -280,10 +280,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.isFullscreen = expectedIsFullscreen;
             component.isSheetFacetMinimized = expectedIsSheetFacetMinimized;
-            component.svgSheetsData = expectedSvgSheetsData;
-            component.selectedSvgSheet = expectedSvgSheet;
-            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
-            component.selectedTextcritics = expectedSelectedTextcritics;
+            component.svgSheetsData = structuredClone(expectedSvgSheetsData);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+            component.selectedTextcriticalCommentary = structuredClone(expectedSelectedTextcriticalCommentary);
+            component.selectedTextcritics = structuredClone(expectedSelectedTextcritics);
             component.showTkA = expectedShowTkA;
 
             // Trigger initial data binding

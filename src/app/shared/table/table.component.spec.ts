@@ -552,12 +552,13 @@ describe('TableComponent', () => {
 
                     expect(component.tableData).toBeDefined();
                     expectToEqual(component.tableData.filteredRows.length, 1);
-                    expectToEqual(component.tableData.filteredRows, [expectedRowInputData.at(0)]);
+                    expectToEqual(component.tableData.filteredRows, [expectedRowInputData[0]]);
                 });
 
-                it('... by non-matching searchFilter (empty array)', async () => {
+                it('... by non-matching searchFilter (empty array)', () => {
                     const searchFilter = 'test';
-                    await component.onPageSizeChange(searchFilter);
+
+                    component.onPageSizeChange(searchFilter);
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
@@ -565,7 +566,8 @@ describe('TableComponent', () => {
                     expectToEqual(component.tableData.filteredRows, []);
                 });
 
-                it('... if a rowEntry is null or undefined', async () => {
+                it('... if a rowEntry is null or undefined', () => {
+                    const searchFilter = '';
                     const expectedFilteredRows = expectedRowInputData.slice(0, 4);
 
                     expectedRowInputData[expectedRowInputData.length - 2] = {
@@ -580,8 +582,7 @@ describe('TableComponent', () => {
                     };
                     component.tableData = new TableData(expectedHeaderInputData, expectedRowInputData);
 
-                    const searchFilter = '';
-                    await component.onPageSizeChange(searchFilter);
+                    component.onPageSizeChange(searchFilter);
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
@@ -592,7 +593,7 @@ describe('TableComponent', () => {
                 it('... if table data is empty (empty array)', async () => {
                     component.tableData = new TableData(null, null);
 
-                    await component.onPageSizeChange('');
+                    component.onPageSizeChange('');
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
