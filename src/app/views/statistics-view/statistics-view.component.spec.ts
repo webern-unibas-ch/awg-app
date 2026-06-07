@@ -13,7 +13,8 @@ import { StatisticsViewComponent } from './statistics-view.component';
     standalone: false,
 })
 class StatisticsProgressBarStubComponent {
-    percentage = input<number>(0);
+    config = input.required<number>();
+    progressHeaderLabel = input<string>();
     height = input<string>('15px');
     minWidth = input<string>('120px');
     showPercentageLabel = input<boolean>(true);
@@ -217,31 +218,10 @@ describe('StatisticsViewComponent', () => {
 
         it('... should return early if statistics is not set', () => {
             component.statistics = null;
+
             component.updateStatisticsCards();
-            expect(component.statisticsCards).toEqual([]);
-        });
-    });
 
-    describe('#getProgressBarWidth', () => {
-        it('... should calculate correct percentage', () => {
-            expect(component.getProgressBarWidth(75, 100)).toBe(75);
-            expect(component.getProgressBarWidth(50, 100)).toBe(50);
-            expect(component.getProgressBarWidth(0, 100)).toBe(0);
-        });
-
-        it('... should return 0 for zero total', () => {
-            expect(component.getProgressBarWidth(10, 0)).toBe(0);
-        });
-    });
-
-    describe('#getProgressBarClass', () => {
-        it('... should return correct Bootstrap class for different percentages', () => {
-            expect(component.getProgressBarClass(90)).toBe('bg-success');
-            expect(component.getProgressBarClass(80)).toBe('bg-success');
-            expect(component.getProgressBarClass(70)).toBe('bg-warning');
-            expect(component.getProgressBarClass(50)).toBe('bg-warning');
-            expect(component.getProgressBarClass(30)).toBe('bg-danger');
-            expect(component.getProgressBarClass(0)).toBe('bg-danger');
+            expectToEqual(component.statisticsCards, []);
         });
     });
 });

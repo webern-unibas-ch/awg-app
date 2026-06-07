@@ -14,7 +14,7 @@ export interface StatisticsBreakDownBadge {
  *
  * It defines the valid complex types for statistics breakdowns.
  */
-export type StatisticsComplexType = 'opus' | 'mnr' | 'mnrX';
+export type StatisticsComplexType = keyof StatisticsComplexBreakdown;
 
 /**
  * The StatisticsComplexCounter type.
@@ -23,6 +23,17 @@ export type StatisticsComplexType = 'opus' | 'mnr' | 'mnrX';
  */
 export interface StatisticsComplexCounter {
     registerComplex: (complexType: StatisticsComplexType, isAvailable: boolean) => void;
+}
+
+/**
+ * The StatisticsProgressBarItem interface.
+ *
+ * It defines the structure for items used in progress bars within the statistics view.
+ */
+export interface StatisticsProgressBarItem {
+    key: keyof StatisticsComplexBreakdown;
+    baseLabel: string;
+    colorClass: string;
 }
 
 /**

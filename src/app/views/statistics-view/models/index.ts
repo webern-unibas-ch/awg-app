@@ -12,6 +12,7 @@ export {
     StatisticsComplexBreakdown,
     StatisticsComplexCounter,
     StatisticsComplexType,
+    StatisticsProgressBarItem,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
 } from './statistics.model';
