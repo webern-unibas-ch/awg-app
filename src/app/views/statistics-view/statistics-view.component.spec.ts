@@ -1,6 +1,10 @@
 import { Component, input, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vitest';
+
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
+
 import { EditionStatistics, StatisticsComplexBreakdown } from './models';
 import { EditionStatisticsService } from './services';
 
@@ -22,6 +26,23 @@ class StatisticsProgressBarStubComponent {
     customClasses = input<string>('');
     useCustomClassesOnly = input<boolean>(false);
 }
+
+@Component({
+    selector: 'awg-statistics-card',
+    template: '',
+    standalone: false,
+})
+class StatisticsCardStubComponent {
+    @Input()
+    title: string;
+    @Input()
+    value: number | string;
+    @Input()
+    icon: string;
+    @Input()
+    bgClass: string;
+}
+
 @Component({
     selector: 'awg-statistics-breakdown-badge',
     template: '',
@@ -37,24 +58,25 @@ describe('StatisticsViewComponent', () => {
     let component: StatisticsViewComponent;
     let fixture: ComponentFixture<StatisticsViewComponent>;
 
-    let mockEditionStatisticsService: jasmine.SpyObj<EditionStatisticsService>;
+    let mockEditionStatisticsService: Mocked<EditionStatisticsService>;
 
     beforeEach(async () => {
         // Create spy object for EditionStatisticsService
-        const spy = jasmine.createSpyObj('EditionStatisticsService', ['calculateStatistics']);
+        const spy = {
+            calculateStatistics: vi.fn(),
+        };
 
         await TestBed.configureTestingModule({
             declarations: [
                 StatisticsViewComponent,
                 StatisticsBreakdownBadgeStubComponent,
+                StatisticsCardStubComponent,
                 StatisticsProgressBarStubComponent,
             ],
             providers: [{ provide: EditionStatisticsService, useValue: spy }],
         }).compileComponents();
 
-        mockEditionStatisticsService = TestBed.inject(
-            EditionStatisticsService
-        ) as jasmine.SpyObj<EditionStatisticsService>;
+        mockEditionStatisticsService = TestBed.inject(EditionStatisticsService) as Mocked<EditionStatisticsService>;
     });
 
     beforeEach(() => {
@@ -62,7 +84,7 @@ describe('StatisticsViewComponent', () => {
         component = fixture.componentInstance;
 
         // Mock return value for calculateStatistics
-        mockEditionStatisticsService.calculateStatistics.and.returnValue({
+        mockEditionStatisticsService.calculateStatistics.mockReturnValue({
             totalSeries: 3,
             activeSeries: 2,
             totalSections: 5,
@@ -102,9 +124,13 @@ describe('StatisticsViewComponent', () => {
             ],
             complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
             availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-        } as any);
+        } as EditionStatistics);
 
         fixture.detectChanges();
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -113,7 +139,7 @@ describe('StatisticsViewComponent', () => {
 
     describe('#ngOnInit', () => {
         it('... should call calculateStatistics', () => {
-            spyOn(component, 'calculateStatistics');
+            vi.spyOn(component, 'calculateStatistics');
             component.ngOnInit();
             expect(component.calculateStatistics).toHaveBeenCalled();
         });
@@ -128,12 +154,12 @@ describe('StatisticsViewComponent', () => {
         it('... should set statistics property', () => {
             component.calculateStatistics();
             expect(component.statistics).toBeDefined();
-            expect(component.statistics.totalComplexes).toBe(100);
-            expect(component.statistics.availableComplexes).toBe(75);
+            expectToBe(component.statistics.totalComplexes, 100);
+            expectToBe(component.statistics.availableComplexes, 75);
         });
 
         it('... should call updateStatisticsCards', () => {
-            spyOn(component, 'updateStatisticsCards');
+            vi.spyOn(component, 'updateStatisticsCards');
             component.calculateStatistics();
             expect(component.updateStatisticsCards).toHaveBeenCalled();
         });
@@ -181,39 +207,39 @@ describe('StatisticsViewComponent', () => {
                 ],
                 complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
                 availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-            } as any;
+            } as EditionStatistics;
         });
 
-        it('... should populate statisticsCards array', () => {
+        it('... should populate statisticsSummaryCards array', () => {
             component.updateStatisticsCards();
-            expect(component.statisticsCards).toBeDefined();
-            expect(component.statisticsCards.length).toBe(4);
+            expect(component.statisticsSummaryCards).toBeDefined();
+            expectToBe(component.statisticsSummaryCards.length, 4);
         });
 
         it('... should set correct card data', () => {
             component.updateStatisticsCards();
 
-            const [seriesCard, sectionsCard, complexesCard, availableCard] = component.statisticsCards;
+            const [seriesCard, sectionsCard, complexesCard, availableCard] = component.statisticsSummaryCards;
 
-            expect(seriesCard.title).toBe('Active Series');
-            expect(seriesCard.value).toBe(2);
-            expect(seriesCard.icon).toBe('fas fa-list');
-            expect(seriesCard.bgClass).toBe('bg-primary');
+            expectToBe(seriesCard.title, 'Active Series');
+            expectToBe(seriesCard.value, 2);
+            expectToBe(seriesCard.icon, 'fas fa-list');
+            expectToBe(seriesCard.bgClass, 'bg-primary');
 
-            expect(sectionsCard.title).toBe('Active Sections');
-            expect(sectionsCard.value).toBe(5);
-            expect(sectionsCard.icon).toBe('fas fa-folder');
-            expect(sectionsCard.bgClass).toBe('bg-info');
+            expectToBe(sectionsCard.title, 'Active Sections');
+            expectToBe(sectionsCard.value, 5);
+            expectToBe(sectionsCard.icon, 'fas fa-folder');
+            expectToBe(sectionsCard.bgClass, 'bg-info');
 
-            expect(complexesCard.title).toBe('Total Complexes');
-            expect(complexesCard.value).toBe(100);
-            expect(complexesCard.icon).toBe('fas fa-music');
-            expect(complexesCard.bgClass).toBe('bg-secondary');
+            expectToBe(complexesCard.title, 'Total Complexes');
+            expectToBe(complexesCard.value, 100);
+            expectToBe(complexesCard.icon, 'fas fa-music');
+            expectToBe(complexesCard.bgClass, 'bg-secondary');
 
-            expect(availableCard.title).toBe('Available Complexes');
-            expect(availableCard.value).toBe(75);
-            expect(availableCard.icon).toBe('fas fa-check-circle');
-            expect(availableCard.bgClass).toBe('bg-success');
+            expectToBe(availableCard.title, 'Available Complexes');
+            expectToBe(availableCard.value, 75);
+            expectToBe(availableCard.icon, 'fas fa-check-circle');
+            expectToBe(availableCard.bgClass, 'bg-success');
         });
 
         it('... should return early if statistics is not set', () => {
@@ -221,7 +247,7 @@ describe('StatisticsViewComponent', () => {
 
             component.updateStatisticsCards();
 
-            expectToEqual(component.statisticsCards, []);
+            expectToEqual(component.statisticsSummaryCards, []);
         });
     });
 });

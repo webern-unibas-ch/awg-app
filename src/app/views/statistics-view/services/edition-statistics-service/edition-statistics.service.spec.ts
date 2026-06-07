@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
@@ -83,8 +84,12 @@ describe('EditionStatisticsService', () => {
         ] as any;
 
         // Spies
-        incrementSpy = spyOn(service as any, '_incrementComplexCounters').and.callThrough();
-        processComplexesByTypeSpy = spyOn(service as any, '_processComplexesByType').and.callThrough();
+        incrementSpy = vi.spyOn(service as any, '_incrementComplexCounters');
+        processComplexesByTypeSpy = vi.spyOn(service as any, '_processComplexesByType');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should be created', () => {
@@ -233,8 +238,8 @@ describe('EditionStatisticsService', () => {
         });
 
         it('... should call registerComplex on each target with given type and availability', () => {
-            const targetA = jasmine.createSpyObj('targetA', ['registerComplex']);
-            const targetB = jasmine.createSpyObj('targetB', ['registerComplex']);
+            const targetA = { registerComplex: vi.fn() };
+            const targetB = { registerComplex: vi.fn() };
 
             (service as any)._incrementComplexCounters([targetA, targetB], 'opus', true);
 
@@ -243,7 +248,7 @@ describe('EditionStatisticsService', () => {
         });
 
         it('... should pass isAvailable as false when complex is not available', () => {
-            const target = jasmine.createSpyObj('target', ['registerComplex']);
+            const target = { registerComplex: vi.fn() };
 
             (service as any)._incrementComplexCounters([target], 'mnr', false);
 
@@ -291,16 +296,22 @@ describe('EditionStatisticsService', () => {
     });
 
     describe('#_processComplexes()', () => {
+        let stats: any;
+        let seriesStats: any;
+        let sectionStats: any;
+
+        beforeEach(() => {
+            stats = { registerComplex: vi.fn() };
+            seriesStats = { registerComplex: vi.fn() };
+            sectionStats = { registerComplex: vi.fn() };
+        });
+
         it('... should have a method `_processComplexes`', () => {
             expect((service as any)._processComplexes).toBeDefined();
         });
 
         describe('... should return false when ...', () => {
             it('... both opus and mnr arrays are empty', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
                     opus: [],
                     mnr: [],
@@ -310,10 +321,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... both opus and mnr arrays are undefined', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
                     opus: undefined,
                     mnr: undefined,
@@ -324,10 +331,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... opus is undefined and mnr is empty', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
                     opus: undefined,
                     mnr: [],
@@ -338,10 +341,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... opus is empty and mnr is undefined', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
                     opus: [],
                     mnr: undefined,
@@ -354,10 +353,6 @@ describe('EditionStatisticsService', () => {
 
         describe('... should return true and trigger `processComplexesByType` when ...', () => {
             it('... only opus complexes are present', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedOpusComplexes = [{ disabled: false, complex: { complexId: { route: '/op25' } } }];
                 const expectedComplexTypes = { opus: expectedOpusComplexes, mnr: [] };
 
@@ -371,26 +366,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... only disabled opus complexes are present', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedOpusComplexes = [{ disabled: true, complex: { complexId: { route: '/op26' } } }];
                 const expectedComplexTypes = { opus: expectedOpusComplexes, mnr: [] };
 
@@ -404,26 +395,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... only mnr complexes are present', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedMnrComplexes = [{ disabled: false, complex: { complexId: { route: '/m28' } } }];
                 const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
 
@@ -437,26 +424,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... only disabled mnr complexes are present', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedMnrComplexes = [{ disabled: true, complex: { complexId: { route: '/m29' } } }];
                 const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
 
@@ -470,26 +453,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... mnr complexes are classified as `mnrX` when route starts with `/mx`', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedMnrComplexes = [{ disabled: false, complex: { complexId: { route: '/mx401' } } }];
                 const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
 
@@ -503,26 +482,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... mnr complexes are classified as `mnr` when route does not start with `/mx`', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedMnrComplexes = [{ disabled: true, complex: { complexId: { route: '/m28' } } }];
                 const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
 
@@ -536,26 +511,22 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
 
             it('... both opus and mnr groups are processed together', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const expectedOpusComplexes = [{ disabled: false, complex: { complexId: { route: '/op25' } } }];
                 const expectedMnrComplexes = [
                     { disabled: false, complex: { complexId: { route: '/m28' } } },
@@ -573,19 +544,19 @@ describe('EditionStatisticsService', () => {
                 expectToBe(result, true);
                 expectSpyCall(processComplexesByTypeSpy, 2);
 
-                const callArgs = processComplexesByTypeSpy.calls.allArgs();
+                const callArgs = processComplexesByTypeSpy.mock.calls;
 
                 expectToBe(callArgs[0][0], stats);
                 expectToBe(callArgs[0][1], seriesStats);
                 expectToBe(callArgs[0][2], sectionStats);
                 expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], jasmine.any(Function));
+                expectToEqual(callArgs[0][4], expect.any(Function));
 
                 expectToBe(callArgs[1][0], stats);
                 expectToBe(callArgs[1][1], seriesStats);
                 expectToBe(callArgs[1][2], sectionStats);
                 expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], jasmine.any(Function));
+                expectToEqual(callArgs[1][4], expect.any(Function));
             });
         });
     });
@@ -597,7 +568,7 @@ describe('EditionStatisticsService', () => {
 
         describe('... should return false when ...', () => {
             it('... complexes array is undefined', () => {
-                const target = jasmine.createSpyObj('target', ['registerComplex']);
+                const target = { registerComplex: vi.fn() };
                 expectToBe(
                     (service as any)._processComplexesByType(target, target, target, undefined, () => 'opus'),
                     false
@@ -605,7 +576,7 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... complexes array is empty', () => {
-                const target = jasmine.createSpyObj('target', ['registerComplex']);
+                const target = { registerComplex: vi.fn() };
                 expectToBe(
                     (service as any)._processComplexesByType(target, target, target, [], () => 'opus'),
                     false
@@ -613,11 +584,17 @@ describe('EditionStatisticsService', () => {
             });
         });
         describe('... should return true and trigger `_incrementComplexCounters` when ...', () => {
-            it('... opus complexes are provided', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
+            let stats: any;
+            let seriesStats: any;
+            let sectionStats: any;
 
+            beforeEach(() => {
+                stats = { registerComplex: vi.fn() };
+                seriesStats = { registerComplex: vi.fn() };
+                sectionStats = { registerComplex: vi.fn() };
+            });
+
+            it('... opus complexes are provided', () => {
                 const complexes = [
                     { complex: { complexId: { route: '/op25' } }, disabled: false },
                     { complex: { complexId: { route: '/op26' } }, disabled: true },
@@ -639,10 +616,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... mnr complexes are provided', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const complexes = [
                     { complex: { complexId: { route: '/m28' } }, disabled: false },
                     { complex: { complexId: { route: '/m29' } }, disabled: true },
@@ -664,10 +637,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... when mnrX complexes are provided', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const complexes = [
                     { complex: { complexId: { route: '/mx28' } }, disabled: false },
                     { complex: { complexId: { route: '/mx29' } }, disabled: true },
@@ -689,10 +658,6 @@ describe('EditionStatisticsService', () => {
             });
 
             it('... should use getComplexType resolver to determine complex type', () => {
-                const stats = jasmine.createSpyObj('stats', ['registerComplex']);
-                const seriesStats = jasmine.createSpyObj('seriesStats', ['registerComplex']);
-                const sectionStats = jasmine.createSpyObj('sectionStats', ['registerComplex']);
-
                 const complexes = [
                     { complex: { complexId: { route: '/m28' } }, disabled: false },
                     { complex: { complexId: { route: '/mx29' } }, disabled: true },
