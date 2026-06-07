@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services';
-import { EditionStatistics } from '@awg-views/statistics-view/models';
+import { EditionStatistics, StatisticsProgressBarItem } from '@awg-views/statistics-view/models';
 import { EditionStatisticsService } from '@awg-views/statistics-view/services';
-
-import { StatisticsCardData } from './statistics-card';
 
 /**
  * The Statistics view component.
@@ -19,126 +17,31 @@ import { StatisticsCardData } from './statistics-card';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class StatisticsViewComponent implements OnInit {
+export class StatisticsViewComponent {
     /**
-     * Public variable: statistics.
+     * Private readonly injection variable: _editionStatisticsService.
      *
-     * It keeps the calculated statistics.
+     * It keeps the instance of the injected EditionStatisticsService.
      */
-    statistics: EditionStatistics;
-
-    /**
-     * Public variable: statisticsCards.
-     *
-     * It keeps the data for the statistics cards.
-     */
-    statisticsCards: StatisticsCardData[] = [];
+    protected readonly _editionStatisticsService = inject(EditionStatisticsService);
 
     /**
-     * Constructor of the StatisticsViewComponent.
+     * Public readonly variable: complexBreakdownItems.
      *
-     * It declares a private EditionStatisticsService instance
-     * to get the statistics data.
-     *
-     * @param {EditionStatisticsService} editionStatisticsService Instance of the EditionStatisticsService.
+     * It defines the items for the complex breakdown progress bars.
      */
-    constructor(private editionStatisticsService: EditionStatisticsService) {}
+    readonly complexBreakdownItems: StatisticsProgressBarItem[] = [
+        { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
+        { key: 'mnr', baseLabel: 'M-number', colorClass: 'bg-secondary' },
+        { key: 'mnrX', baseLabel: 'M*-number', colorClass: 'bg-info' },
+    ];
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Public readonly signal: statisticsData.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the statistics data for the edition complexes.
      */
-    ngOnInit() {
-        this.calculateStatistics();
-    }
-
-    /**
-     * Public method: calculateStatistics.
-     *
-     * It calculates the statistics from the edition outline data.
-     *
-     * @returns {void} Calculates the statistics.
-     */
-    calculateStatistics(): void {
-        const editionOutline = EditionOutlineService.getEditionOutline();
-        this.statistics = this.editionStatisticsService.calculateStatistics(editionOutline);
-
-        console.log('Calculated Statistics:', this.statistics); // Debug log
-        this.updateStatisticsCards();
-    }
-
-    /**
-     * Public method: updateStatisticsCards.
-     *
-     * It updates the statistics cards data based on the current statistics.
-     *
-     * @returns {void} Updates the statistics cards.
-     */
-    updateStatisticsCards(): void {
-        if (!this.statistics) {
-            return;
-        }
-
-        this.statisticsCards = [
-            {
-                title: 'Active Series',
-                value: this.statistics.activeSeries,
-                icon: 'fas fa-list',
-                bgClass: 'bg-primary',
-            },
-            {
-                title: 'Active Sections',
-                value: this.statistics.totalSections,
-                icon: 'fas fa-folder',
-                bgClass: 'bg-info',
-            },
-            {
-                title: 'Total Complexes',
-                value: this.statistics.totalComplexes,
-                icon: 'fas fa-music',
-                bgClass: 'bg-secondary',
-            },
-            {
-                title: 'Available Complexes',
-                value: this.statistics.availableComplexes,
-                icon: 'fas fa-check-circle',
-                bgClass: 'bg-success',
-            },
-        ];
-    }
-
-    /**
-     * Public method: getProgressBarWidth.
-     *
-     * It calculates the width for a progress bar based on available vs total.
-     *
-     * @param {number} available The number of available items.
-     * @param {number} total The total number of items.
-     *
-     * @returns {number} The width percentage.
-     */
-    getProgressBarWidth(available: number, total: number): number {
-        return total > 0 ? Math.round((available / total) * 100) : 0;
-    }
-
-    /**
-     * Public method: getProgressBarClass.
-     *
-     * It returns the appropriate Bootstrap class for progress bar color.
-     *
-     * @param {number} percentage The percentage value.
-     *
-     * @returns {string} The Bootstrap class name.
-     */
-    getProgressBarClass(percentage: number): string {
-        if (percentage >= 80) {
-            return 'bg-success';
-        } else if (percentage >= 50) {
-            return 'bg-warning';
-        } else {
-            return 'bg-danger';
-        }
-    }
+    readonly statisticsData = signal<EditionStatistics>(
+        this._editionStatisticsService.getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
+    );
 }

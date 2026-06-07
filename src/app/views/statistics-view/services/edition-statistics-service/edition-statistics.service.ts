@@ -35,7 +35,7 @@ export class EditionStatisticsService {
      *
      * @returns {EditionStatistics} The calculated statistics.
      */
-    calculateStatistics(editionOutline: EditionOutlineSeries[]): EditionStatistics {
+    getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): EditionStatistics {
         const stats = new EditionStatistics();
 
         editionOutline.forEach(series => {
