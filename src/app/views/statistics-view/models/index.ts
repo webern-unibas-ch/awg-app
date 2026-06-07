@@ -15,4 +15,5 @@ export {
     StatisticsProgressBarItem,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
+    StatisticsSummaryCardData,
 } from './statistics.model';

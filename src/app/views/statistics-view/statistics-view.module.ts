@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StatisticsBreakdownBadgeComponent } from './statistics-breakdown-badge';
-import { StatisticsCardComponent } from './statistics-card';
 import { StatisticsProgressBarComponent } from './statistics-progress-bar';
+import { StatisticsSummaryCardComponent } from './statistics-summary-card';
+import { StatisticsSummaryCardsComponent } from './statistics-summary-cards';
 import { StatisticsViewRoutingModule, routedStatisticsViewComponents } from './statistics-view-routing.module';
 
 /**
@@ -14,12 +15,12 @@ import { StatisticsViewRoutingModule, routedStatisticsViewComponents } from './s
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [CommonModule, StatisticsViewRoutingModule],
-    declarations: [
-        routedStatisticsViewComponents,
-        StatisticsProgressBarComponent,
-        StatisticsBreakdownBadgeComponent,
-        StatisticsCardComponent,
+    imports: [
+        CommonModule,
+        StatisticsViewRoutingModule,
+        StatisticsSummaryCardsComponent,
+        StatisticsSummaryCardComponent,
     ],
+    declarations: [routedStatisticsViewComponents, StatisticsProgressBarComponent, StatisticsBreakdownBadgeComponent],
 })
 export class StatisticsViewModule {}

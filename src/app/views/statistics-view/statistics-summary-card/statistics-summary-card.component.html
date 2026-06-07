@@ -1,0 +1,13 @@
+<div class="card text-white" [class]="bgClass()">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h4 class="mb-0">{{ value() }}</h4>
+                <small>{{ title() }}</small>
+            </div>
+            <div class="align-self-center">
+                <fa-icon [icon]="icon()" class="fa-2x opacity-75" aria-hidden="true"></fa-icon>
+            </div>
+        </div>
+    </div>
+</div>

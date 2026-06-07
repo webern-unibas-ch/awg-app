@@ -1,3 +1,5 @@
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
+
 /**
  * The StatisticsBreakDownBadge interface.
  *
@@ -22,6 +24,12 @@ export type StatisticsComplexType = keyof StatisticsComplexBreakdown;
  * It defines the structure for a counter function to register complexes in statistics models.
  */
 export interface StatisticsComplexCounter {
+    /**
+     * The counter function to register one complex in statistics.
+     *
+     * @param complexType The complex type.
+     * @param isAvailable Flag indicating whether the complex is available.
+     */
     registerComplex: (complexType: StatisticsComplexType, isAvailable: boolean) => void;
 }
 
@@ -31,9 +39,47 @@ export interface StatisticsComplexCounter {
  * It defines the structure for items used in progress bars within the statistics view.
  */
 export interface StatisticsProgressBarItem {
+    /**
+     * The key corresponding to the complex type in the breakdown.
+     */
     key: keyof StatisticsComplexBreakdown;
+
+    /**
+     * The base label for the progress bar item, used for display purposes.
+     */
     baseLabel: string;
+
+    /**
+     * The background color class for the progress bar item.
+     */
     colorClass: string;
+}
+
+/**
+ * The StatisticsSummaryCardData interface.
+ *
+ * It represents the data structure for a statistics summary card.
+ */
+export interface StatisticsSummaryCardData {
+    /**
+     * The title of the statistics card.
+     */
+    title: string;
+
+    /**
+     * The value to display in the statistics card.
+     */
+    value: number | string;
+
+    /**
+     * The FontAwesome icon class for the card.
+     */
+    icon: IconDefinition;
+
+    /**
+     * The Bootstrap background color class for the card.
+     */
+    bgClass: string;
 }
 
 /**
