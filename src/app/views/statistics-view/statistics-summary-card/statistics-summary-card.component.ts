@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * The StatisticsSummaryCard component.
@@ -9,10 +10,10 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
  */
 @Component({
     selector: 'awg-statistics-summary-card',
-    imports: [FontAwesomeModule],
     templateUrl: './statistics-summary-card.component.html',
     styleUrls: ['./statistics-summary-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FontAwesomeModule],
 })
 export class StatisticsSummaryCardComponent {
     /**
