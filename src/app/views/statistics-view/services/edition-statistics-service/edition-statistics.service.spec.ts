@@ -103,6 +103,7 @@ describe('EditionStatisticsService', () => {
                 totalSeries: number;
                 activeSeries: number;
                 totalSections: number;
+                activeSections: number;
                 totalComplexes: number;
                 availableComplexes: number;
                 progressRate: number;
@@ -111,6 +112,7 @@ describe('EditionStatisticsService', () => {
             expectToBe(stats.totalSeries, summary.totalSeries);
             expectToBe(stats.activeSeries, summary.activeSeries);
             expectToBe(stats.totalSections, summary.totalSections);
+            expectToBe(stats.activeSections, summary.activeSections);
             expectToBe(stats.totalComplexes, summary.totalComplexes);
             expectToBe(stats.availableComplexes, summary.availableComplexes);
             expectToBe(stats.progressRate, summary.progressRate);
@@ -127,6 +129,7 @@ describe('EditionStatisticsService', () => {
                 totalSeries: 0,
                 activeSeries: 0,
                 totalSections: 0,
+                activeSections: 0,
                 totalComplexes: 0,
                 availableComplexes: 0,
                 progressRate: 0,
@@ -140,6 +143,7 @@ describe('EditionStatisticsService', () => {
                 totalSeries: 1,
                 activeSeries: 1,
                 totalSections: 1,
+                activeSections: 1,
                 totalComplexes: 3,
                 availableComplexes: 2,
                 progressRate: 67,

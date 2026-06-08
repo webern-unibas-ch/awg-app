@@ -87,7 +87,8 @@ describe('StatisticsViewComponent', () => {
         mockEditionStatisticsService.calculateStatistics.mockReturnValue({
             totalSeries: 3,
             activeSeries: 2,
-            totalSections: 5,
+            totalSections: 15,
+            activeSections: 5,
             totalComplexes: 100,
             availableComplexes: 75,
             progressRate: 75,

@@ -46,10 +46,11 @@ export class EditionStatisticsService {
             let hasActiveContent = false;
 
             series.sections.forEach(section => {
+                stats.totalSections++;
                 const sectionStats = new StatisticsSectionBreakdown(section.section.short, section.disabled);
 
                 if (!section.disabled) {
-                    stats.totalSections++;
+                    stats.activeSections++;
                     seriesStats.sections++;
                     hasActiveContent = true;
                 }

@@ -283,6 +283,11 @@ export class EditionStatistics extends StatisticsBreakdownBase {
     totalSections = 0;
 
     /**
+     * The number of active sections (section with at least one available complex).
+     */
+    activeSections = 0;
+
+    /**
      * The breakdown by series.
      */
     seriesBreakdown: StatisticsSeriesBreakdown[] = [];
