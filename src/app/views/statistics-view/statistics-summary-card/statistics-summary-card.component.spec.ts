@@ -67,7 +67,8 @@ describe('StatisticsCardComponent', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-card', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
-                expectToBe(cardEl.classList.length, 3);
+                expectToBe(cardEl.classList.length, 4);
+                expectToContain(cardEl.classList, 'awg-statistics-card');
                 expectToContain(cardEl.classList, 'awg-statistics-summary-card');
                 expectToContain(cardEl.classList, 'card');
                 expectToContain(cardEl.classList, 'text-white');
@@ -185,7 +186,8 @@ describe('StatisticsCardComponent', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-card', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
-                expectToBe(cardEl.classList.length, 4);
+                expectToBe(cardEl.classList.length, 5);
+                expectToContain(cardEl.classList, 'awg-statistics-card');
                 expectToContain(cardEl.classList, 'awg-statistics-summary-card');
                 expectToContain(cardEl.classList, 'card');
                 expectToContain(cardEl.classList, 'text-white');
