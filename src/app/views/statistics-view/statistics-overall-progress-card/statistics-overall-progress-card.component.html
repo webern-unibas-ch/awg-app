@@ -1,0 +1,17 @@
+<div class="awg-statistics-card awg-statistics-overall-progress-card card mb-4">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Overall Progress</h3>
+    </div>
+    <div class="card-body">
+        <awg-statistics-progress-bar
+            [config]="{ mode: 'percentage', percentage: progressRate() }"
+            [headerLabel]="'Edition Completion'"
+            [height]="'20px'"
+            [showPercentageLabel]="true"
+            [boldPercentageLabel]="true">
+        </awg-statistics-progress-bar>
+        <div class="text-center text-muted small mt-2">
+            {{ availableComplexes() }} of {{ totalComplexes() }} currently enabled edition complexes available
+        </div>
+    </div>
+</div>

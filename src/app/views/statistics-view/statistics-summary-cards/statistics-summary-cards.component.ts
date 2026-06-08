@@ -52,29 +52,29 @@ export class StatisticsSummaryCardsComponent {
      * It computes the data for the statistics summary cards based on the input statistics data.
      */
     summaryCards = computed<StatisticsSummaryCardData[]>(() => [
-            {
-                title: 'Active Series',
-                value: this.activeSeries(),
-                icon: faList,
-                bgClass: 'bg-primary',
-            },
-            {
-                title: 'Active Sections',
-                value: this.activeSections(),
-                icon: faFolder,
-                bgClass: 'bg-info',
-            },
-            {
-                title: 'Total Complexes',
-                value: this.totalComplexes(),
-                icon: faMusic,
-                bgClass: 'bg-secondary',
-            },
-            {
-                title: 'Available Complexes',
-                value: this.availableComplexes(),
-                icon: faCheckCircle,
-                bgClass: 'bg-success',
-            },
-        ]);
+        {
+            title: 'Active Series',
+            value: this.activeSeries(),
+            icon: faList,
+            bgClass: 'bg-primary',
+        },
+        {
+            title: 'Active Sections',
+            value: this.activeSections(),
+            icon: faFolder,
+            bgClass: 'bg-info',
+        },
+        {
+            title: 'Total Complexes',
+            value: this.totalComplexes(),
+            icon: faMusic,
+            bgClass: 'bg-secondary',
+        },
+        {
+            title: 'Available Complexes',
+            value: this.availableComplexes(),
+            icon: faCheckCircle,
+            bgClass: 'bg-success',
+        },
+    ]);
 }

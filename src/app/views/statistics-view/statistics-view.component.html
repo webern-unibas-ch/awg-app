@@ -22,26 +22,13 @@
                     </awg-statistics-summary-cards>
 
                     <!-- Overall Progress -->
-                    @if (statisticsData) {
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h3 class="card-title mb-0">Overall Progress</h3>
-                            </div>
-                            <div class="card-body">
-                                <awg-statistics-progress-bar
-                                    [config]="{ mode: 'percentage', percentage: statisticsData.progressRate }"
-                                    [headerLabel]="'Edition Completion'"
-                                    [height]="'20px'"
-                                    [showPercentageLabel]="true"
-                                    [boldPercentageLabel]="true">
-                                </awg-statistics-progress-bar>
-                                <div class="text-center text-muted small mt-2">
-                                    {{ statisticsData.availableComplexes }} of
-                                    {{ statisticsData.totalComplexes }} currently enabled edition complexes available
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    <awg-statistics-overall-progress-card
+                        [progressRate]="statisticsData.progressRate"
+                        [availableComplexes]="statisticsData.availableComplexes"
+                        [totalComplexes]="statisticsData.totalComplexes">
+                        ></awg-statistics-overall-progress-card
+                    >
+
                     <!-- Complex Types Breakdown -->
                     @if (statisticsData) {
                         <div class="row mb-4">
