@@ -17,14 +17,14 @@ export class StatisticsBreakdownBadgeComponent {
     /**
      * Input signal: breakdown.
      *
-     * Holds the breakdown data for the complex types to be displayed in the badges.
+     * It holds the breakdown data for the complex types to be displayed in the badges.
      */
     breakdown = input<StatisticsComplexBreakdown>(new StatisticsComplexBreakdown());
 
     /**
      * Input signal: containerClasses.
      *
-     * Holds additional CSS classes to apply to the container.
+     * It holds additional CSS classes to apply to the container.
      * @default 'small text-muted'
      */
     containerClasses = input<string>('small text-muted');
@@ -32,7 +32,7 @@ export class StatisticsBreakdownBadgeComponent {
     /**
      * Input signal: showEmptyBadges.
      *
-     * Holds a flag whether to show badges when their value is zero.
+     * It holds a flag whether to show badges when their value is zero.
      * @default false
      */
     showEmptyBadges = input<boolean>(false);
@@ -40,7 +40,7 @@ export class StatisticsBreakdownBadgeComponent {
     /**
      * Computed signal: visibleBadges.
      *
-     * Computes the list of badges to be displayed
+     * It computes the list of badges to be displayed
      * based on the breakdown data and the showEmptyBadges flag.
      */
     visibleBadges = computed<StatisticsBreakDownBadge[]>(() => {

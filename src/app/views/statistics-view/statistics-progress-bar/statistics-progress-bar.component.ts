@@ -17,7 +17,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: config.
      *
-     * Holds the configuration for the progress bar,
+     * It holds the configuration for the progress bar,
      * including mode and relevant values.
      */
     config = input.required<StatisticsProgressBarConfig>();
@@ -25,14 +25,14 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: headerLabel.
      *
-     * Holds an optional label to display above the progress bar.
+     * It holds an optional label to display above the progress bar.
      */
     headerLabel = input<string>();
 
     /**
      * Input signal: height.
      *
-     * Holds the height of the progress bar (e.g., '15px', '20px').
+     * It holds the height of the progress bar (e.g., '15px', '20px').
      * @default '15px'
      */
     height = input<string>('15px');
@@ -40,7 +40,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: minWidth.
      *
-     * Holds the minimum width of the progress bar for responsive behavior.
+     * It holds the minimum width of the progress bar for responsive behavior.
      * @default '120px'
      */
     minWidth = input<string>('120px');
@@ -48,7 +48,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: showPercentageLabel.
      *
-     * Holds a flag whether to show the percentage label next to the bar.
+     * It holds a flag whether to show the percentage label next to the bar.
      * @default true
      */
     showPercentageLabel = input<boolean>(true);
@@ -56,7 +56,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: boldPercentageLabel.
      *
-     * Holds a flag whether to show the percentage label with bold styling (for series rows).
+     * It holds a flag whether to show the percentage label with bold styling (for series rows).
      * @default false
      */
     boldPercentageLabel = input<boolean>(false);
@@ -64,7 +64,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: customClasses.
      *
-     * Holds additional CSS classes to apply to the progress bar.
+     * It holds additional CSS classes to apply to the progress bar.
      * @default ''
      */
     customClasses = input<string>('');
@@ -72,7 +72,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Input signal: useCustomClassesOnly.
      *
-     * Holds a flag whether to use only custom classes and skip automatic class logic.
+     * It holds a flag whether to use only custom classes and skip automatic class logic.
      * @default false
      */
     useCustomClassesOnly = input<boolean>(false);
@@ -80,7 +80,7 @@ export class StatisticsProgressBarComponent {
     /**
      * Computed signal: progressBarColorType.
      *
-     * Returns the appropriate abstract color type for the progress bar based on percentage,
+     * It returns the appropriate abstract color type for the progress bar based on percentage,
      * or an empty string if custom classes should be used exclusively.
      */
     progressBarColorType = computed<'success' | 'warning' | 'danger' | 'light' | ''>(() => {
@@ -115,7 +115,9 @@ export class StatisticsProgressBarComponent {
                 return cfg.percentage ?? 0;
             case 'absolute':
             case 'ratio':
-                if (cfg.total === 0) {return 0;}
+                if (cfg.total === 0) {
+                    return 0;
+                }
                 return Math.round((cfg.available / cfg.total) * 100);
             default:
                 return 0;
@@ -131,7 +133,9 @@ export class StatisticsProgressBarComponent {
     progressHeaderValue = computed(() => {
         const cfg = this.config();
 
-        if (cfg.mode === 'percentage' || cfg.available === undefined) {return '';}
+        if (cfg.mode === 'percentage' || cfg.available === undefined) {
+            return '';
+        }
 
         return cfg.mode === 'ratio' ? `${cfg.available} / ${cfg.total}` : `${cfg.available}`;
     });
