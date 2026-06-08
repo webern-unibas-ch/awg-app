@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionStatistics, StatisticsSummaryCardData } from '../models';
+import { StatisticsSummaryCardData } from '../models';
 import { StatisticsSummaryCardComponent } from '../statistics-summary-card';
 
 /**
@@ -19,46 +19,62 @@ import { StatisticsSummaryCardComponent } from '../statistics-summary-card';
 })
 export class StatisticsSummaryCardsComponent {
     /**
-     * Input signal: statisticsData.
+     * Input signal: activeSeries.
      *
-     * It holds the statistics data.
+     * It holds the number of active series.
      */
-    statisticsData = input.required<EditionStatistics>();
+    activeSeries = input.required<number>();
+
+    /**
+     * Input signal: activeSections.
+     *
+     * It holds the number of active sections.
+     */
+    activeSections = input.required<number>();
+
+    /**
+     * Input signal: totalComplexes.
+     *
+     * It holds the total number of complexes.
+     */
+    totalComplexes = input.required<number>();
+
+    /**
+     * Input signal: availableComplexes.
+     *
+     * It holds the number of available complexes.
+     */
+    availableComplexes = input.required<number>();
 
     /**
      * Computed signal: summaryCards.
      *
      * It computes the data for the statistics summary cards based on the input statistics data.
      */
-    summaryCards = computed<StatisticsSummaryCardData[]>(() => {
-        const statisticsData = this.statisticsData();
-        if (!statisticsData) {return [];}
-
-        return [
+    summaryCards = computed<StatisticsSummaryCardData[]>(() => [
             {
                 title: 'Active Series',
-                value: statisticsData.activeSeries,
+                value: this.activeSeries(),
                 icon: faList,
                 bgClass: 'bg-primary',
             },
             {
                 title: 'Active Sections',
-                value: statisticsData.activeSections,
+                value: this.activeSections(),
                 icon: faFolder,
                 bgClass: 'bg-info',
             },
             {
                 title: 'Total Complexes',
-                value: statisticsData.totalComplexes,
+                value: this.totalComplexes(),
                 icon: faMusic,
                 bgClass: 'bg-secondary',
             },
             {
                 title: 'Available Complexes',
-                value: statisticsData.availableComplexes,
+                value: this.availableComplexes(),
                 icon: faCheckCircle,
                 bgClass: 'bg-success',
             },
-        ];
-    });
+        ]);
 }

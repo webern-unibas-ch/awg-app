@@ -14,7 +14,12 @@
                     </div>
 
                     <!-- Summary Cards -->
-                    <awg-statistics-summary-cards [statisticsData]="statisticsData"></awg-statistics-summary-cards>
+                    <awg-statistics-summary-cards
+                        [activeSeries]="statisticsData.activeSeries"
+                        [activeSections]="statisticsData.activeSections"
+                        [totalComplexes]="statisticsData.totalComplexes"
+                        [availableComplexes]="statisticsData.availableComplexes">
+                    </awg-statistics-summary-cards>
 
                     <!-- Overall Progress -->
                     @if (statisticsData) {
