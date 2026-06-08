@@ -18,9 +18,11 @@ import { StatisticsViewRoutingModule, routedStatisticsViewComponents } from './s
     imports: [
         CommonModule,
         StatisticsViewRoutingModule,
+        StatisticsBreakdownBadgeComponent,
+        StatisticsProgressBarComponent,
         StatisticsSummaryCardsComponent,
         StatisticsSummaryCardComponent,
     ],
-    declarations: [routedStatisticsViewComponents, StatisticsProgressBarComponent, StatisticsBreakdownBadgeComponent],
+    declarations: [routedStatisticsViewComponents],
 })
 export class StatisticsViewModule {}

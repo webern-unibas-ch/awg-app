@@ -1,22 +1,43 @@
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 
 /**
- * The StatisticsBreakDownBadge interface.
- *
- * It defines the structure for a badge representing a breakdown of complex types in statistics.
- */
-export interface StatisticsBreakDownBadge {
-    label: string;
-    val: number;
-    type: string;
-}
-
-/**
  * The StatisticsComplexType type.
  *
  * It defines the valid complex types for statistics breakdowns.
  */
 export type StatisticsComplexType = keyof StatisticsComplexBreakdown;
+
+/**
+ * The StatisticsProgressBarConfig type.
+ *
+ * It defines the valid configuration options for the StatisticsProgressBarComponent,
+ * including different modes for percentage, ratio, and absolute values.
+ */
+export type StatisticsProgressBarConfig =
+    | { mode: 'percentage'; percentage: number }
+    | { mode: 'ratio'; available: number; total: number }
+    | { mode: 'absolute'; available: number; total: number };
+
+/**
+ * The StatisticsBreakDownBadge interface.
+ *
+ * It defines the structure for a badge representing a breakdown of complex types in statistics.
+ */
+export interface StatisticsBreakDownBadge {
+    /**
+     * The label for the breakdown badge.
+     */
+    label: string;
+
+    /**
+     * The value associated with the breakdown badge.
+     */
+    val: number;
+    /**
+     * The type of the breakdown badge.
+     */
+    type: string;
+}
 
 /**
  * The StatisticsComplexCounter type.

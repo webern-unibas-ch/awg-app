@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-export type StatisticsProgressBarConfig =
-    | { mode: 'percentage'; percentage: number }
-    | { mode: 'ratio'; available: number; total: number }
-    | { mode: 'absolute'; available: number; total: number };
+import { StatisticsProgressBarConfig } from '../models';
 
 /**
  * The StatisticsProgressBarComponent component.
@@ -15,7 +12,6 @@ export type StatisticsProgressBarConfig =
     templateUrl: './statistics-progress-bar.component.html',
     styleUrls: ['./statistics-progress-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class StatisticsProgressBarComponent {
     /**
@@ -119,7 +115,7 @@ export class StatisticsProgressBarComponent {
                 return cfg.percentage ?? 0;
             case 'absolute':
             case 'ratio':
-                if (cfg.total === 0) return 0;
+                if (cfg.total === 0) {return 0;}
                 return Math.round((cfg.available / cfg.total) * 100);
             default:
                 return 0;
@@ -135,7 +131,7 @@ export class StatisticsProgressBarComponent {
     progressHeaderValue = computed(() => {
         const cfg = this.config();
 
-        if (cfg.mode === 'percentage' || cfg.available === undefined) return '';
+        if (cfg.mode === 'percentage' || cfg.available === undefined) {return '';}
 
         return cfg.mode === 'ratio' ? `${cfg.available} / ${cfg.total}` : `${cfg.available}`;
     });

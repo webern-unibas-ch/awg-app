@@ -12,7 +12,6 @@ import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '@awg-views
     templateUrl: './statistics-breakdown-badge.component.html',
     styleUrls: ['./statistics-breakdown-badge.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class StatisticsBreakdownBadgeComponent {
     /**

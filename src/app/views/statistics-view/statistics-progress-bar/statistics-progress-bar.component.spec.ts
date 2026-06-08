@@ -22,7 +22,7 @@ describe('StatisticsProgressBarComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [StatisticsProgressBarComponent],
+            imports: [StatisticsProgressBarComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(StatisticsProgressBarComponent);

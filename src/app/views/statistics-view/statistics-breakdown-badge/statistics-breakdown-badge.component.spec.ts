@@ -21,7 +21,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [StatisticsBreakdownBadgeComponent],
+            imports: [StatisticsBreakdownBadgeComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(StatisticsBreakdownBadgeComponent);

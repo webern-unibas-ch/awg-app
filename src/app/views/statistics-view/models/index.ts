@@ -12,6 +12,7 @@ export {
     StatisticsComplexBreakdown,
     StatisticsComplexCounter,
     StatisticsComplexType,
+    StatisticsProgressBarConfig,
     StatisticsProgressBarItem,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,

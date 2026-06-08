@@ -96,7 +96,7 @@ describe('EditionStatisticsService', () => {
         expect(service).toBeTruthy();
     });
 
-    describe('#calculateStatistics()', () => {
+    describe('#getStatisticsFromOutline()', () => {
         const expectSummary = (
             stats: any,
             summary: {
@@ -116,12 +116,12 @@ describe('EditionStatisticsService', () => {
             expectToBe(stats.progressRate, summary.progressRate);
         };
 
-        it('... should have a method `calculateStatistics`', () => {
-            expect(service.calculateStatistics).toBeDefined();
+        it('... should have a method `getStatisticsFromOutline`', () => {
+            expect(service.getStatisticsFromOutline).toBeDefined();
         });
 
         it('... should calculate correct statistics for empty data', () => {
-            const stats = service.calculateStatistics(emptyOutline);
+            const stats = service.getStatisticsFromOutline(emptyOutline);
 
             expectSummary(stats, {
                 totalSeries: 0,
@@ -134,7 +134,7 @@ describe('EditionStatisticsService', () => {
         });
 
         it('... should calculate correct statistics for sample data', () => {
-            const stats = service.calculateStatistics(singleSeriesSampleOutline);
+            const stats = service.getStatisticsFromOutline(singleSeriesSampleOutline);
 
             expectSummary(stats, {
                 totalSeries: 1,
@@ -162,7 +162,7 @@ describe('EditionStatisticsService', () => {
         });
 
         it('... should calculate series progress as average of all sections', () => {
-            const stats = service.calculateStatistics(sectionAverageOutline);
+            const stats = service.getStatisticsFromOutline(sectionAverageOutline);
 
             // Section 1: 0% (disabled, no complexes)
             // Section 2A: 100% (2 complexes, all available)
