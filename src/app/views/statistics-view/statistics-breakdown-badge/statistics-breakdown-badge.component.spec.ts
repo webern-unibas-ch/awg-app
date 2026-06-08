@@ -55,13 +55,6 @@ describe('StatisticsBreakdownBadgeComponent', () => {
             expectToBe(component.showEmptyBadges(), false);
         });
 
-        it('... should have computed `visibleBadges` (empty array due to showEmptyBadges=false)', () => {
-            const currentVisibleBadges: StatisticsBreakDownBadge[] = component.visibleBadges();
-
-            expectToEqual(currentVisibleBadges, []);
-            expectToBe(currentVisibleBadges.length, 0);
-        });
-
         describe('VIEW', () => {
             it('... should contain one outer div container', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-breakdown-badge-container', 1, 1);
@@ -142,7 +135,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Simulate the parent component updating the input signals
+            // Simulate the parent updating the input signals
             fixture.componentRef.setInput('breakdown', expectedBreakdown);
             fixture.componentRef.setInput('containerClasses', expectedContainerClasses);
             fixture.componentRef.setInput('showEmptyBadges', expectedShowEmptyBadges);

@@ -155,7 +155,7 @@ describe('StatisticsCardComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent component updating the input signals
+            // Simulate the parent updating the input signals
             fixture.componentRef.setInput('title', expectedTitle);
             fixture.componentRef.setInput('value', expectedValue);
             fixture.componentRef.setInput('icon', expectedIcon);

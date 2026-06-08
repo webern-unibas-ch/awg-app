@@ -266,7 +266,7 @@ describe('StatisticsProgressBarComponent', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Simulate the parent component updating the input signals
+            // Simulate the parent updating the input signals
             fixture.componentRef.setInput('config', { mode: 'percentage', percentage: expectedPercentage });
             fixture.componentRef.setInput('height', expectedHeight);
             fixture.componentRef.setInput('minWidth', expectedMinWidth);
