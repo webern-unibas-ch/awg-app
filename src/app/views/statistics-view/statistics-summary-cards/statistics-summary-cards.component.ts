@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
@@ -13,10 +12,10 @@ import { StatisticsSummaryCardComponent } from '../statistics-summary-card';
  */
 @Component({
     selector: 'awg-statistics-summary-cards',
-    imports: [CommonModule, StatisticsSummaryCardComponent],
     templateUrl: './statistics-summary-cards.component.html',
     styleUrl: './statistics-summary-cards.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [StatisticsSummaryCardComponent],
 })
 export class StatisticsSummaryCardsComponent {
     /**
@@ -27,13 +26,13 @@ export class StatisticsSummaryCardsComponent {
     statisticsData = input.required<EditionStatistics>();
 
     /**
-     * Public readonly computed signal: summaryCards.
+     * Computed signal: summaryCards.
      *
      * It computes the data for the statistics summary cards based on the input statistics data.
      */
-    readonly summaryCards = computed<StatisticsSummaryCardData[]>(() => {
+    summaryCards = computed<StatisticsSummaryCardData[]>(() => {
         const statisticsData = this.statisticsData();
-        if (!statisticsData) return [];
+        if (!statisticsData) {return [];}
 
         return [
             {
@@ -44,7 +43,7 @@ export class StatisticsSummaryCardsComponent {
             },
             {
                 title: 'Active Sections',
-                value: statisticsData.totalSections,
+                value: statisticsData.activeSections,
                 icon: faFolder,
                 bgClass: 'bg-info',
             },
