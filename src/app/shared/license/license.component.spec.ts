@@ -62,7 +62,7 @@ describe('LicenseComponent', () => {
             it('... should contain one anchor with correct href and rel attributes', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.href, expectedLicenseLink);
                 expectToBe(aEl.rel, 'license');
@@ -71,7 +71,7 @@ describe('LicenseComponent', () => {
             it('... should contain license text in anchor', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToContain(aEl.textContent, expectedLicenseText);
             });
@@ -88,7 +88,7 @@ describe('LicenseComponent', () => {
                 const imgDes = getAndExpectDebugElementByCss(spanDes[0], 'img', 3, 3);
 
                 imgDes.forEach((imgDe, index) => {
-                    const imgEl: HTMLImageElement = imgDe.nativeElement as HTMLImageElement;
+                    const imgEl: HTMLImageElement = imgDe.nativeElement;
                     expectToBe(imgEl.src, expectedLicenseIcons[index].src);
                     expectToBe(imgEl.alt, expectedLicenseIcons[index].alt);
                 });

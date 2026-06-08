@@ -51,6 +51,10 @@ describe('StatisticsProgressBarComponent', () => {
             expectToEqual(component.config(), { mode: 'percentage', percentage: 0 });
         });
 
+        it('... should have unassigned `headerLabel`', () => {
+            expect(component.headerLabel()).toBeUndefined();
+        });
+
         it('... should have default `height`', () => {
             expectToBe(component.height(), '15px');
         });
@@ -91,7 +95,7 @@ describe('StatisticsProgressBarComponent', () => {
                     1,
                     1
                 );
-                const containerEl = containerDes[0].nativeElement as HTMLDivElement;
+                const containerEl: HTMLDivElement = containerDes[0].nativeElement;
 
                 expectToContain(containerEl.classList, 'd-flex');
                 expectToContain(containerEl.classList, 'align-items-center');
@@ -103,7 +107,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have progress and flex-grow-1 classes on progress div', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToContain(progressEl.classList, 'progress');
                 expectToContain(progressEl.classList, 'flex-grow-1');
@@ -111,7 +115,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should not have me-2 class on progress div yet', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToBe(progressEl.classList.length, 3);
                 expectToContain(progressEl.classList, 'awg-statistics-progress');
@@ -122,7 +126,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should not have style height and min-width set on progress div yet', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToBe(progressEl.style.height, '');
                 expectToBe(progressEl.style.minWidth, '');
@@ -134,14 +138,14 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have progress-bar class on progress bar div', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToContain(progressBarEl.classList, 'progress-bar');
             });
 
             it('... should not have custom or color classes on progress bar div yet', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.classList.length, 2);
                 expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
@@ -150,7 +154,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should not have style width or aria-valuenow set in progress bar yet', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.style.width, '');
                 expectToBe(progressBarEl.getAttribute('aria-valuenow'), null);
@@ -165,6 +169,10 @@ describe('StatisticsProgressBarComponent', () => {
     describe('AFTER initial data binding (default values)', () => {
         beforeEach(() => {
             fixture.detectChanges();
+        });
+
+        it('... should have unassigned `headerLabel`', () => {
+            expect(component.headerLabel()).toBeUndefined();
         });
 
         it('... should have default `height`', () => {
@@ -198,7 +206,7 @@ describe('StatisticsProgressBarComponent', () => {
         describe('VIEW', () => {
             it('... should have me-2 class on progress div', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToBe(progressEl.classList.length, 4);
                 expectToContain(progressEl.classList, 'awg-statistics-progress');
@@ -209,7 +217,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have default style height and min-width set on progress div', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToBe(progressEl.style.height, '15px');
                 expectToBe(progressEl.style.minWidth, '120px');
@@ -217,7 +225,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should not have custom, but color classes on progress bar div (bg-danger due to percentage=0)', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.classList.length, 3);
                 expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
@@ -227,7 +235,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have style width or aria-valuenow set in progress bar (0)', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.style.width, '0%');
                 expectToBe(progressBarEl.getAttribute('aria-valuenow'), '0');
@@ -235,21 +243,21 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should show percentage label (0%)', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.textContent?.trim(), '0%');
             });
 
             it('... should not have fw-bold class on percentage label', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.classList.contains('fw-bold'), false);
             });
 
             it('... should have text-muted class on percentage label due to 0%', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.classList.contains('text-muted'), true);
             });
@@ -272,6 +280,10 @@ describe('StatisticsProgressBarComponent', () => {
 
         it('... should have updated `config`', () => {
             expectToEqual(component.config(), { mode: 'percentage', percentage: expectedPercentage });
+        });
+
+        it('... should have unassigned `headerLabel`', () => {
+            expect(component.headerLabel()).toBeUndefined();
         });
 
         it('... should have updated `height`', () => {
@@ -305,7 +317,7 @@ describe('StatisticsProgressBarComponent', () => {
         describe('VIEW', () => {
             it('... should have me-2 class on progress div', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 console.log('Progress div classes:', progressEl.classList);
                 expectToBe(progressEl.classList.length, 4);
@@ -317,7 +329,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have style height and min-width set on progress div', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                 expectToBe(progressEl.style.height, expectedHeight);
                 expectToBe(progressEl.style.minWidth, expectedMinWidth);
@@ -325,7 +337,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have custom and color classes on progress bar div (bg-warning due to percentage=75)', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.classList.length, 4);
                 expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
@@ -336,7 +348,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should have style width or aria-valuenow set in progress bar (depending on percentage)', () => {
                 const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                 expectToBe(progressBarEl.style.width, '75%');
                 expectToBe(progressBarEl.getAttribute('aria-valuenow'), '75');
@@ -344,21 +356,21 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should show percentage label (75%)', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.textContent?.trim(), '75%');
             });
 
             it('... should have fw-bold class on percentage label', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToContain(labelEl.classList, 'fw-bold');
             });
 
             it('... should not have text-muted class on percentage label due to non-zero percentage', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                const labelEl = labelDes[0].nativeElement as HTMLElement;
+                const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.classList.contains('text-muted'), false);
             });
@@ -382,7 +394,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1,
                             1
                         );
-                        const headerEl = headerDes[0].nativeElement as HTMLDivElement;
+                        const headerEl: HTMLDivElement = headerDes[0].nativeElement;
 
                         expectToBe(headerEl.classList.length, 2);
                         expectToContain(headerEl.classList, 'awg-statistics-progress-header');
@@ -399,7 +411,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1
                         );
                         const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 1, 1);
-                        const headerSpanEl = headerSpanDes[0].nativeElement as HTMLSpanElement;
+                        const headerSpanEl: HTMLSpanElement = headerSpanDes[0].nativeElement;
 
                         expectToBe(headerSpanEl.textContent?.trim(), 'Progress Label');
                     });
@@ -423,7 +435,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1,
                             1
                         );
-                        const headerEl = headerDes[0].nativeElement as HTMLDivElement;
+                        const headerEl: HTMLDivElement = headerDes[0].nativeElement;
 
                         expectToBe(headerEl.classList.length, 4);
                         expectToContain(headerEl.classList, 'awg-statistics-progress-header');
@@ -440,7 +452,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1
                         );
                         const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 2, 2);
-                        const headerSpanEl = headerSpanDes[0].nativeElement as HTMLSpanElement;
+                        const headerSpanEl: HTMLSpanElement = headerSpanDes[0].nativeElement;
 
                         expectToBe(headerSpanEl.textContent?.trim(), 'Progress Label');
                     });
@@ -453,7 +465,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1
                         );
                         const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 2, 2);
-                        const headerSpanEl = headerSpanDes[1].nativeElement as HTMLSpanElement;
+                        const headerSpanEl: HTMLSpanElement = headerSpanDes[1].nativeElement;
 
                         expectToBe(headerSpanEl.textContent?.trim(), '75 / 100');
                     });
@@ -469,7 +481,7 @@ describe('StatisticsProgressBarComponent', () => {
                             1
                         );
                         const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 2, 2);
-                        const headerSpanEl = headerSpanDes[1].nativeElement as HTMLSpanElement;
+                        const headerSpanEl: HTMLSpanElement = headerSpanDes[1].nativeElement;
 
                         expectToBe(headerSpanEl.textContent?.trim(), '75');
                     });
@@ -489,7 +501,7 @@ describe('StatisticsProgressBarComponent', () => {
                         1,
                         1
                     );
-                    const progressBarEl = progressBarDes[0].nativeElement as HTMLDivElement;
+                    const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
 
                     expectToBe(progressBarEl.classList.length, 3);
                     expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
@@ -513,7 +525,7 @@ describe('StatisticsProgressBarComponent', () => {
 
                 it('... should not have me-2 class on progress div', () => {
                     const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                    const progressEl = progressDes[0].nativeElement as HTMLDivElement;
+                    const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
                     expectToBe(progressEl.classList.length, 3);
                     expectToContain(progressEl.classList, 'awg-statistics-progress');
@@ -535,7 +547,7 @@ describe('StatisticsProgressBarComponent', () => {
 
                 it('... should not have fw-bold class on percentage label', () => {
                     const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
-                    const labelEl = labelDes[0].nativeElement as HTMLElement;
+                    const labelEl: HTMLElement = labelDes[0].nativeElement;
 
                     expectToBe(labelEl.classList.contains('fw-bold'), false);
                 });
