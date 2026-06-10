@@ -63,7 +63,7 @@ export interface StatisticsProgressBarItem {
     /**
      * The key corresponding to the complex type in the breakdown.
      */
-    key: keyof StatisticsComplexBreakdown;
+    key: StatisticsComplexType;
 
     /**
      * The base label for the progress bar item, used for display purposes.

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services';
-import { EditionStatistics, StatisticsProgressBarItem } from '@awg-views/statistics-view/models';
+import { EditionStatistics } from '@awg-views/statistics-view/models';
 import { EditionStatisticsService } from '@awg-views/statistics-view/services';
 
 /**
@@ -24,17 +24,6 @@ export class StatisticsViewComponent {
      * It keeps the instance of the injected EditionStatisticsService.
      */
     protected readonly _editionStatisticsService = inject(EditionStatisticsService);
-
-    /**
-     * Public readonly variable: complexBreakdownItems.
-     *
-     * It defines the items for the complex breakdown progress bars.
-     */
-    readonly complexBreakdownItems: StatisticsProgressBarItem[] = [
-        { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
-        { key: 'mnr', baseLabel: 'M-number', colorClass: 'bg-secondary' },
-        { key: 'mnrX', baseLabel: 'M*-number', colorClass: 'bg-info' },
-    ];
 
     /**
      * Public readonly signal: statisticsData.

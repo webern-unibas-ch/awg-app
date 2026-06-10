@@ -30,59 +30,11 @@
                     >
 
                     <!-- Complex Types Breakdown -->
-                    @if (statisticsData) {
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="awg-statistics-card card h-100">
-                                    <div class="card-header">
-                                        <h4 class="card-title mb-0">Complex Types Distribution</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        @for (item of complexBreakdownItems; track item.key) {
-                                            <div class="mb-3">
-                                                <awg-statistics-progress-bar
-                                                    [config]="{
-                                                        mode: 'absolute',
-                                                        available: statisticsData.complexBreakdown[item.key],
-                                                        total: statisticsData.totalComplexes,
-                                                    }"
-                                                    [headerLabel]="item.baseLabel + ' Complexes'"
-                                                    [showPercentageLabel]="false"
-                                                    [customClasses]="item.colorClass"
-                                                    [useCustomClassesOnly]="true">
-                                                </awg-statistics-progress-bar>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                    <awg-statistics-complex-breakdown
+                        [availableComplexBreakdown]="statisticsData.availableComplexBreakdown"
+                        [complexBreakdown]="statisticsData.complexBreakdown"
+                        [totalComplexes]="statisticsData.totalComplexes"></awg-statistics-complex-breakdown>
 
-                            <div class="col-md-6">
-                                <div class="awg-statistics-card card h-100">
-                                    <div class="card-header">
-                                        <h4 class="card-title mb-0">Available Complex Types</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        @for (item of complexBreakdownItems; track item.key) {
-                                            <div class="mb-3">
-                                                <awg-statistics-progress-bar
-                                                    [config]="{
-                                                        mode: 'ratio',
-                                                        available: statisticsData.availableComplexBreakdown[item.key],
-                                                        total: statisticsData.complexBreakdown[item.key],
-                                                    }"
-                                                    [headerLabel]="
-                                                        'Available ' + item.baseLabel + (item.key !== 'opus' ? 's' : '')
-                                                    "
-                                                    [showPercentageLabel]="false">
-                                                </awg-statistics-progress-bar>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
                     <!-- Series Breakdown -->
                     @if (statisticsData?.seriesBreakdown?.length) {
                         <div class="awg-statistics-card card">
