@@ -7,7 +7,7 @@ import {
 } from '@awg-views/edition-view/models/edition-outline.model';
 
 import {
-    EditionStatistics,
+    Statistics,
     StatisticsComplexCounter,
     StatisticsComplexType,
     StatisticsSectionBreakdown,
@@ -15,7 +15,7 @@ import {
 } from '@awg-views/statistics-view/models';
 
 /**
- * The EditionStatistics service.
+ * The Statistics service.
  *
  * It handles the calculation and provision of statistics
  * for the edition outline data.
@@ -33,10 +33,10 @@ export class EditionStatisticsService {
      *
      * @param {EditionOutlineSeries[]} editionOutline The edition outline data.
      *
-     * @returns {EditionStatistics} The calculated statistics.
+     * @returns {Statistics} The calculated statistics.
      */
-    getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): EditionStatistics {
-        const stats = new EditionStatistics();
+    getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): Statistics {
+        const stats = new Statistics();
 
         editionOutline.forEach(series => {
             stats.totalSeries++;
@@ -47,11 +47,13 @@ export class EditionStatisticsService {
 
             series.sections.forEach(section => {
                 stats.totalSections++;
+                seriesStats.totalSections++;
+
                 const sectionStats = new StatisticsSectionBreakdown(section.section.short, section.disabled);
 
                 if (!section.disabled) {
                     stats.activeSections++;
-                    seriesStats.sections++;
+                    seriesStats.activeSections++;
                     hasActiveContent = true;
                 }
 
@@ -62,7 +64,7 @@ export class EditionStatisticsService {
 
                 // Calculate progress rate for this section
                 sectionStats.progressRate = this._calculateProgressRate(
-                    sectionStats.availableComplexes,
+                    sectionStats.activeComplexes,
                     sectionStats.totalComplexes
                 );
 
@@ -92,15 +94,15 @@ export class EditionStatisticsService {
     /**
      * Private method: _calculateProgressRate.
      *
-     * It calculates a progressrate from available and total values.
+     * It calculates a progressrate from active and total values.
      *
-     * @param {number} available The number of available items.
+     * @param {number} active The number of active items.
      * @param {number} total The total number of items.
      *
      * @returns {number} The rounded percentage rate.
      */
-    private _calculateProgressRate(available: number, total: number): number {
-        return total > 0 ? Math.round((available / total) * 100) : 0;
+    private _calculateProgressRate(active: number, total: number): number {
+        return total > 0 ? Math.round((active / total) * 100) : 0;
     }
 
     /**
@@ -128,16 +130,16 @@ export class EditionStatisticsService {
      *
      * @param {StatisticsComplexCounter[]} targets The statistics targets to update.
      * @param {StatisticsComplexType} complexType The complex category.
-     * @param {boolean} isAvailable Flag indicating whether the complex is available.
+     * @param {boolean} isActive Flag indicating whether the complex is active.
      *
      * @returns {void} Registers the complex in all targets by calling their registerComplex method.
      */
     private _incrementComplexCounters(
         targets: StatisticsComplexCounter[],
         complexType: StatisticsComplexType,
-        isAvailable: boolean
+        isActive: boolean
     ): void {
-        targets.forEach(target => target.registerComplex(complexType, isAvailable));
+        targets.forEach(target => target.registerComplex(complexType, isActive));
     }
 
     /**
@@ -159,7 +161,7 @@ export class EditionStatisticsService {
      *
      * It processes all complex types (opus, mnr, mnrX) for a section and updates all relevant statistics counters.
      *
-     * @param {EditionStatistics} stats The overall edition statistics.
+     * @param {Statistics} stats The overall edition statistics.
      * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
      * @param {Object} complexTypes The object containing the opus and mnr complex lists.
@@ -167,7 +169,7 @@ export class EditionStatisticsService {
      * @returns {boolean} True if at least one complex was processed, otherwise false.
      */
     private _processComplexes(
-        stats: EditionStatistics,
+        stats: Statistics,
         seriesStats: StatisticsSeriesBreakdown,
         sectionStats: StatisticsSectionBreakdown,
         complexTypes: EditionOutlineComplexTypes
@@ -195,7 +197,7 @@ export class EditionStatisticsService {
      *
      * It processes a list of complexes and updates all relevant statistics counters.
      *
-     * @param {EditionStatistics} stats The overall edition statistics.
+     * @param {Statistics} stats The overall edition statistics.
      * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
      * @param {EditionOutlineComplexItem[]} complexes The complexes to process.
@@ -204,7 +206,7 @@ export class EditionStatisticsService {
      * @returns {boolean} True if at least one complex was processed, otherwise false.
      */
     private _processComplexesByType(
-        stats: EditionStatistics,
+        stats: Statistics,
         seriesStats: StatisticsSeriesBreakdown,
         sectionStats: StatisticsSectionBreakdown,
         complexes: EditionOutlineComplexItem[] | undefined,

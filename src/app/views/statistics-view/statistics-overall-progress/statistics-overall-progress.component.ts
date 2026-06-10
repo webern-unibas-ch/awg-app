@@ -6,7 +6,7 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
  * The StatisticsOverallProgress Component
  *
  * It displays the overall progress of the statistics view,
- * showing the progress rate and the number of available complexes out of the total complexes.
+ * showing the progress rate and the number of active complexes out of the total complexes.
  */
 @Component({
     selector: 'awg-statistics-overall-progress',
@@ -24,11 +24,11 @@ export class StatisticsOverallProgressComponent {
     progressRate = input.required<number>();
 
     /**
-     * Input signal: availableComplexes.
+     * Input signal: activeComplexes.
      *
-     * It holds the number of available complexes.
+     * It holds the number of active complexes.
      */
-    availableComplexes = input.required<number>();
+    activeComplexes = input.required<number>();
 
     /**
      * Input signal: totalComplexes.

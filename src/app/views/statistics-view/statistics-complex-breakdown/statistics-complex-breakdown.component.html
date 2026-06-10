@@ -5,7 +5,7 @@
                 <h4 class="card-title mb-0">Complex Types Distribution</h4>
             </div>
             <div class="card-body">
-                @for (item of complexBreakdownItems; track item.key) {
+                @for (item of COMPLEX_BREAKDOWN_ITEMS; track item.key) {
                     <div class="mb-3">
                         <awg-statistics-progress-bar
                             [config]="getProgressBarConfig(item.key, 'absolute')"
@@ -21,16 +21,16 @@
     </div>
 
     <div class="col-md-6">
-        <div class="awg-statistics-available-card awg-statistics-card card h-100">
+        <div class="awg-statistics-activity-card awg-statistics-card card h-100">
             <div class="card-header">
-                <h4 class="card-title mb-0">Available Complex Types</h4>
+                <h4 class="card-title mb-0">Active Complex Types</h4>
             </div>
             <div class="card-body">
-                @for (item of complexBreakdownItems; track item.key) {
+                @for (item of COMPLEX_BREAKDOWN_ITEMS; track item.key) {
                     <div class="mb-3">
                         <awg-statistics-progress-bar
                             [config]="getProgressBarConfig(item.key, 'ratio')"
-                            [headerLabel]="'Available ' + item.baseLabel + (item.key !== 'opus' ? 's' : '')"
+                            [headerLabel]="'Active ' + item.baseLabel + (item.key !== 'opus' ? 's' : '')"
                             [showPercentageLabel]="false">
                         </awg-statistics-progress-bar>
                     </div>

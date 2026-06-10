@@ -5,6 +5,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
+import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
+
 import { StatisticsProgressBarComponent } from './statistics-progress-bar.component';
 
 describe('StatisticsProgressBarComponent', () => {
@@ -319,7 +321,6 @@ describe('StatisticsProgressBarComponent', () => {
                 const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
                 const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                console.log('Progress div classes:', progressEl.classList);
                 expectToBe(progressEl.classList.length, 4);
                 expectToContain(progressEl.classList, 'awg-statistics-progress');
                 expectToContain(progressEl.classList, 'progress');
@@ -419,7 +420,11 @@ describe('StatisticsProgressBarComponent', () => {
 
                 describe('... in ratio/absolute mode (with progressHeaderValue)', () => {
                     beforeEach(() => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 75, total: 100 });
+                        fixture.componentRef.setInput('config', {
+                            mode: 'ratio',
+                            active: 75,
+                            total: 100,
+                        } as StatisticsProgressBarConfig);
                         fixture.componentRef.setInput('headerLabel', 'Progress Label');
                         fixture.detectChanges();
                     });
@@ -471,7 +476,11 @@ describe('StatisticsProgressBarComponent', () => {
                     });
 
                     it('... should display the progressHeaderValue as absolute value in second span in progress-header div (absolute mode)', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 75, total: 100 });
+                        fixture.componentRef.setInput('config', {
+                            mode: 'absolute',
+                            active: 75,
+                            total: 100,
+                        } as StatisticsProgressBarConfig);
                         fixture.detectChanges();
 
                         const headerDes = getAndExpectDebugElementByCss(
@@ -566,19 +575,33 @@ describe('StatisticsProgressBarComponent', () => {
 
                 describe('... should return an empty string regardless of values', () => {
                     it('... in percentage mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 90 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'percentage',
+                            percentage: 75,
+                        };
+                        fixture.componentRef.setInput('config', config);
 
                         expectToBe(component.progressBarColorType(), '');
                     });
 
                     it('... in ratio mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 90, total: 120 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'ratio',
+                            active: 90,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
 
                         expectToBe(component.progressBarColorType(), '');
                     });
 
                     it('... in absolute mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 90, total: 120 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'absolute',
+                            active: 90,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
 
                         expectToBe(component.progressBarColorType(), '');
                     });
@@ -592,122 +615,166 @@ describe('StatisticsProgressBarComponent', () => {
 
                 describe('... should return `success` for width >= 80', () => {
                     it('... in percentage mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 80 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        const successCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'percentage', percentage: 80 },
+                            { mode: 'percentage', percentage: 90 },
+                            { mode: 'percentage', percentage: 100 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 90 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        successCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 100 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                            expectToBe(component.progressBarColorType(), 'success');
+                        });
                     });
 
                     it('... in ratio mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 96, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        const successCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'ratio', active: 96, total: 120 },
+                            { mode: 'ratio', active: 108, total: 120 },
+                            { mode: 'ratio', active: 120, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 108, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        successCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 120, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                            expectToBe(component.progressBarColorType(), 'success');
+                        });
                     });
 
                     it('... in absolute mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 96, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        const successCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'absolute', active: 96, total: 120 },
+                            { mode: 'absolute', active: 108, total: 120 },
+                            { mode: 'absolute', active: 120, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 108, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                        successCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 120, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'success');
+                            expectToBe(component.progressBarColorType(), 'success');
+                        });
                     });
                 });
 
                 describe('... should return `warning` for width >= 50 and < 80', () => {
                     it('... in percentage mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 50 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        const warningCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'percentage', percentage: 50 },
+                            { mode: 'percentage', percentage: 60 },
+                            { mode: 'percentage', percentage: 79 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 60 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        warningCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 79 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                            expectToBe(component.progressBarColorType(), 'warning');
+                        });
                     });
 
                     it('... in ratio mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 60, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        const warningCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'ratio', active: 60, total: 120 },
+                            { mode: 'ratio', active: 72, total: 120 },
+                            { mode: 'ratio', active: 95, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 72, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        warningCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 95, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                            expectToBe(component.progressBarColorType(), 'warning');
+                        });
                     });
 
                     it('... in absolute mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 60, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        const warningCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'absolute', active: 60, total: 120 },
+                            { mode: 'absolute', active: 72, total: 120 },
+                            { mode: 'absolute', active: 95, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 72, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                        warningCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 95, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'warning');
+                            expectToBe(component.progressBarColorType(), 'warning');
+                        });
                     });
                 });
 
                 describe('... should return `danger` for widht >= 1 and < 50', () => {
                     it('... in percentage mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 1 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        const dangerCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'percentage', percentage: 1 },
+                            { mode: 'percentage', percentage: 25 },
+                            { mode: 'percentage', percentage: 49 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 25 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        dangerCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 49 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                            expectToBe(component.progressBarColorType(), 'danger');
+                        });
                     });
 
                     it('... in ratio mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 1, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        const dangerCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'ratio', active: 1, total: 120 },
+                            { mode: 'ratio', active: 30, total: 120 },
+                            { mode: 'ratio', active: 59, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 30, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        dangerCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 59, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                            expectToBe(component.progressBarColorType(), 'danger');
+                        });
                     });
 
                     it('... in absolute mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 1, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        const dangerCases: StatisticsProgressBarConfig[] = [
+                            { mode: 'absolute', active: 1, total: 120 },
+                            { mode: 'absolute', active: 30, total: 120 },
+                            { mode: 'absolute', active: 59, total: 120 },
+                        ];
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 30, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                        dangerCases.forEach(config => {
+                            fixture.componentRef.setInput('config', config);
 
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 59, total: 120 });
-                        expectToBe(component.progressBarColorType(), 'danger');
+                            expectToBe(component.progressBarColorType(), 'danger');
+                        });
                     });
                 });
 
                 describe('... should return light for width === 0', () => {
                     it('... in percantage mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 0 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'percentage',
+                            percentage: 0,
+                        };
+                        fixture.componentRef.setInput('config', config);
+
                         expectToBe(component.progressBarColorType(), 'light');
                     });
 
                     it('... in ratio mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'ratio', available: 0, total: 120 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'ratio',
+                            active: 0,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
+
                         expectToBe(component.progressBarColorType(), 'light');
                     });
 
                     it('... in absolute mode', () => {
-                        fixture.componentRef.setInput('config', { mode: 'absolute', available: 0, total: 120 });
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'absolute',
+                            active: 0,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
+
                         expectToBe(component.progressBarColorType(), 'light');
                     });
                 });
@@ -757,77 +824,82 @@ describe('StatisticsProgressBarComponent', () => {
 
             describe('... in ratio mode', () => {
                 it('... should return 0 if total is 0', () => {
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 30, total: 0 });
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'ratio',
+                        active: 30,
+                        total: 0,
+                    };
+                    fixture.componentRef.setInput('config', config);
                     fixture.detectChanges();
 
                     expectToBe(component.progressBarWidth(), 0);
                 });
-                it('... should calculate width as percentage of available vs total in ratio mode', () => {
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 0, total: 120 });
-                    fixture.detectChanges();
+                it('... should calculate width as percentage of active vs total in ratio mode', () => {
+                    const testCases = [
+                        { active: 0, expectedWidth: 0 },
+                        { active: 30, expectedWidth: 25 },
+                        { active: 60, expectedWidth: 50 },
+                        { active: 90, expectedWidth: 75 },
+                        { active: 120, expectedWidth: 100 },
+                    ];
 
-                    expectToBe(component.progressBarWidth(), 0);
+                    testCases.forEach(testCase => {
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'ratio',
+                            active: testCase.active,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
+                        fixture.detectChanges();
 
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 30, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 25);
-
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 60, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 50);
-
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 90, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 75);
-
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: 120, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 100);
+                        expectToBe(component.progressBarWidth(), testCase.expectedWidth);
+                    });
                 });
             });
 
             describe('... in absolute mode', () => {
                 it('... should return 0 if total is 0', () => {
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 30, total: 0 });
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'absolute',
+                        active: 30,
+                        total: 0,
+                    };
+                    fixture.componentRef.setInput('config', config);
                     fixture.detectChanges();
 
                     expectToBe(component.progressBarWidth(), 0);
                 });
 
-                it('... should calculate width as percentage of available vs total', () => {
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 0, total: 120 });
-                    fixture.detectChanges();
+                it('... should calculate width as percentage of active vs total', () => {
+                    const testCases = [
+                        { active: 0, expectedWidth: 0 },
+                        { active: 30, expectedWidth: 25 },
+                        { active: 60, expectedWidth: 50 },
+                        { active: 90, expectedWidth: 75 },
+                        { active: 120, expectedWidth: 100 },
+                    ];
 
-                    expectToBe(component.progressBarWidth(), 0);
+                    testCases.forEach(testCase => {
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'absolute',
+                            active: testCase.active,
+                            total: 120,
+                        };
+                        fixture.componentRef.setInput('config', config);
+                        fixture.detectChanges();
 
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 30, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 25);
-
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 60, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 50);
-
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 90, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 75);
-
-                    fixture.componentRef.setInput('config', { mode: 'absolute', available: 120, total: 120 });
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressBarWidth(), 100);
+                        expectToBe(component.progressBarWidth(), testCase.expectedWidth);
+                    });
                 });
             });
 
             it('... should return 0 for unknown mode (default)', () => {
-                fixture.componentRef.setInput('config', { mode: 'unknown', available: 30, total: 120 } as any);
+                const config: StatisticsProgressBarConfig = {
+                    mode: 'unknown' as any,
+                    active: 30,
+                    total: 120,
+                };
+                fixture.componentRef.setInput('config', config);
                 fixture.detectChanges();
 
                 expectToBe(component.progressBarWidth(), 0);
@@ -847,34 +919,50 @@ describe('StatisticsProgressBarComponent', () => {
                     expectToBe(component.progressHeaderValue(), '');
                 });
 
-                it('... when mode is ratio but available is undefined', () => {
-                    fixture.componentRef.setInput('config', { mode: 'ratio', available: undefined, total: 120 } as any);
+                it('... when mode is ratio but active is undefined', () => {
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'ratio',
+                        active: undefined,
+                        total: 120,
+                    };
+                    fixture.componentRef.setInput('config', config);
                     fixture.detectChanges();
 
                     expectToBe(component.progressHeaderValue(), '');
                 });
 
-                it('... when mode is absolute but available is undefined', () => {
-                    fixture.componentRef.setInput('config', {
+                it('... when mode is absolute but active is undefined', () => {
+                    const config: StatisticsProgressBarConfig = {
                         mode: 'absolute',
-                        available: undefined,
+                        active: undefined,
                         total: 120,
-                    } as any);
+                    };
+                    fixture.componentRef.setInput('config', config);
                     fixture.detectChanges();
 
                     expectToBe(component.progressHeaderValue(), '');
                 });
             });
 
-            it('... should return available/total ratio as string in ratio mode', () => {
-                fixture.componentRef.setInput('config', { mode: 'ratio', available: 75, total: 120 });
+            it('... should return active/total ratio as string in ratio mode', () => {
+                const config: StatisticsProgressBarConfig = {
+                    mode: 'ratio',
+                    active: 75,
+                    total: 120,
+                };
+                fixture.componentRef.setInput('config', config);
                 fixture.detectChanges();
 
                 expectToBe(component.progressHeaderValue(), '75 / 120');
             });
 
-            it('... should return available value as string in absolute mode', () => {
-                fixture.componentRef.setInput('config', { mode: 'absolute', available: 75, total: 120 });
+            it('... should return active value as string in absolute mode', () => {
+                const config: StatisticsProgressBarConfig = {
+                    mode: 'absolute',
+                    active: 75,
+                    total: 120,
+                };
+                fixture.componentRef.setInput('config', config);
                 fixture.detectChanges();
 
                 expectToBe(component.progressHeaderValue(), '75');

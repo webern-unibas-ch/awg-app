@@ -7,7 +7,7 @@
  *
  */
 export {
-    EditionStatistics,
+    Statistics,
     StatisticsBreakDownBadge,
     StatisticsComplexBreakdown,
     StatisticsComplexCounter,

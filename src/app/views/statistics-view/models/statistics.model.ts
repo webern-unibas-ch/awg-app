@@ -15,8 +15,8 @@ export type StatisticsComplexType = keyof StatisticsComplexBreakdown;
  */
 export type StatisticsProgressBarConfig =
     | { mode: 'percentage'; percentage: number }
-    | { mode: 'ratio'; available: number; total: number }
-    | { mode: 'absolute'; available: number; total: number };
+    | { mode: 'ratio'; active: number; total: number }
+    | { mode: 'absolute'; active: number; total: number };
 
 /**
  * The StatisticsBreakDownBadge interface.
@@ -49,9 +49,9 @@ export interface StatisticsComplexCounter {
      * The counter function to register one complex in statistics.
      *
      * @param complexType The complex type.
-     * @param isAvailable Flag indicating whether the complex is available.
+     * @param isActive Flag indicating whether the complex is active.
      */
-    registerComplex: (complexType: StatisticsComplexType, isAvailable: boolean) => void;
+    registerComplex: (complexType: StatisticsComplexType, isActive: boolean) => void;
 }
 
 /**
@@ -150,9 +150,9 @@ abstract class StatisticsBreakdownBase {
     totalComplexes = 0;
 
     /**
-     * The number of available complexes.
+     * The number of active complexes.
      */
-    availableComplexes = 0;
+    activeComplexes = 0;
 
     /**
      * The progress rate.
@@ -165,9 +165,9 @@ abstract class StatisticsBreakdownBase {
     complexBreakdown: StatisticsComplexBreakdown;
 
     /**
-     * The breakdown of available complexes by category.
+     * The breakdown of active complexes by category.
      */
-    availableComplexBreakdown: StatisticsComplexBreakdown;
+    activeComplexBreakdown: StatisticsComplexBreakdown;
 
     /**
      * Constructor of the StatisticsBreakdownBase class.
@@ -176,22 +176,22 @@ abstract class StatisticsBreakdownBase {
      */
     protected constructor() {
         this.complexBreakdown = new StatisticsComplexBreakdown();
-        this.availableComplexBreakdown = new StatisticsComplexBreakdown();
+        this.activeComplexBreakdown = new StatisticsComplexBreakdown();
     }
 
     /**
      * Registers one complex in statistics.
      *
      * @param complexType The complex type.
-     * @param isAvailable Flag indicating whether the complex is available.
+     * @param isActive Flag indicating whether the complex is active.
      */
-    registerComplex(complexType: StatisticsComplexType, isAvailable: boolean): void {
+    registerComplex(complexType: StatisticsComplexType, isActive: boolean): void {
         this.totalComplexes++;
         this.complexBreakdown[complexType]++;
 
-        if (isAvailable) {
-            this.availableComplexes++;
-            this.availableComplexBreakdown[complexType]++;
+        if (isActive) {
+            this.activeComplexes++;
+            this.activeComplexBreakdown[complexType]++;
         }
     }
 }
@@ -199,7 +199,7 @@ abstract class StatisticsBreakdownBase {
 /**
  * The StatisticsSectionBreakdown class.
  *
- * It provides default zero values for section breakdown counters.
+ * It includes a section identifier and disabled flag.
  */
 export class StatisticsSectionBreakdown extends StatisticsBreakdownBase {
     /**
@@ -230,7 +230,7 @@ export class StatisticsSectionBreakdown extends StatisticsBreakdownBase {
 /**
  * The StatisticsSeriesBreakdown class.
  *
- * It provides default zero values for series breakdown counters.
+ * It includes a series identifier, the number of sections in the series, and the breakdown by sections within the series.
  */
 export class StatisticsSeriesBreakdown extends StatisticsBreakdownBase {
     /**
@@ -239,9 +239,14 @@ export class StatisticsSeriesBreakdown extends StatisticsBreakdownBase {
     series: string;
 
     /**
-     * The number of sections in the series.
+     * The number of total sections in the series.
      */
-    sections = 0;
+    totalSections = 0;
+
+    /**
+     * The number of active sections in the series (sections with at least one active complex).
+     */
+    activeSections = 0;
 
     /**
      * The breakdown by sections within the series.
@@ -262,11 +267,11 @@ export class StatisticsSeriesBreakdown extends StatisticsBreakdownBase {
 }
 
 /**
- * The EditionStatistics class.
+ * The Statistics class.
  *
- * It provides default zero values for the complete edition statistics.
+ * It provides default zero values for the complete statistics.
  */
-export class EditionStatistics extends StatisticsBreakdownBase {
+export class Statistics extends StatisticsBreakdownBase {
     /**
      * The total number of series.
      */
@@ -283,7 +288,7 @@ export class EditionStatistics extends StatisticsBreakdownBase {
     totalSections = 0;
 
     /**
-     * The number of active sections (section with at least one available complex).
+     * The number of active sections (section with at least one active complex).
      */
     activeSections = 0;
 
@@ -293,7 +298,7 @@ export class EditionStatistics extends StatisticsBreakdownBase {
     seriesBreakdown: StatisticsSeriesBreakdown[] = [];
 
     /**
-     * Constructor of the EditionStatistics class.
+     * Constructor of the Statistics class.
      *
      * It initializes the edition statistics with default zero values and empty breakdowns.
      */

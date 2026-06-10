@@ -13,7 +13,7 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
  *
  * It displays a breakdown of the complex statistics in the statistics view,
  * showing the distribution of complex types and
- * ratio of available complexes for each complex category.
+ * ratio of active complexes for each complex category.
  */
 @Component({
     selector: 'awg-statistics-complex-breakdown',
@@ -24,11 +24,11 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
 })
 export class StatisticsComplexBreakdownComponent {
     /**
-     * Input signal: availableComplexBreakdown.
+     * Input signal: activeComplexBreakdown.
      *
-     * It holds the number of available complexes for the complex breakdown.
+     * It holds the number of active complexes for the complex breakdown.
      */
-    availableComplexBreakdown = input.required<StatisticsComplexBreakdown>();
+    activeComplexBreakdown = input.required<StatisticsComplexBreakdown>();
 
     /**
      * Input signal: complexBreakdown.
@@ -45,11 +45,11 @@ export class StatisticsComplexBreakdownComponent {
     totalComplexes = input.required<number>();
 
     /**
-     * Public readonly variable: complexBreakdownItems.
+     * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.
      *
      * It defines the items for the complex breakdown progress bars.
      */
-    readonly complexBreakdownItems: StatisticsProgressBarItem[] = [
+    readonly COMPLEX_BREAKDOWN_ITEMS: StatisticsProgressBarItem[] = [
         { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
         { key: 'mnr', baseLabel: 'M-number', colorClass: 'bg-secondary' },
         { key: 'mnrX', baseLabel: 'M*-number', colorClass: 'bg-info' },
@@ -69,14 +69,14 @@ export class StatisticsComplexBreakdownComponent {
         if (mode === 'ratio') {
             return {
                 mode: 'ratio',
-                available: this.availableComplexBreakdown()[key],
+                active: this.activeComplexBreakdown()[key],
                 total: this.complexBreakdown()[key],
             };
         }
 
         return {
             mode: 'absolute',
-            available: this.complexBreakdown()[key],
+            active: this.complexBreakdown()[key],
             total: this.totalComplexes(),
         };
     }

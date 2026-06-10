@@ -41,7 +41,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
     let fixture: ComponentFixture<StatisticsComplexBreakdownComponent>;
     let compDe: DebugElement;
 
-    let expectedAvailableComplexBreakdown: StatisticsComplexBreakdown;
+    let expectedActiveComplexBreakdown: StatisticsComplexBreakdown;
     let expectedComplexBreakdown: StatisticsComplexBreakdown;
     let expectedTotalComplexes: number;
     let expectedComplexBreakdownItems: StatisticsProgressBarItem[];
@@ -61,7 +61,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedAvailableComplexBreakdown = new StatisticsComplexBreakdown({
+        expectedActiveComplexBreakdown = new StatisticsComplexBreakdown({
             opus: 4,
             mnr: 2,
             mnrX: 2,
@@ -81,7 +81,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
         // Set required input signal with default value for initial tests
         fixture.componentRef.setInput(
-            'availableComplexBreakdown',
+            'activeComplexBreakdown',
             new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
         );
         fixture.componentRef.setInput('complexBreakdown', new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }));
@@ -93,9 +93,9 @@ describe('StatisticsComplexBreakdownComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `availableComplexBreakdown`', () => {
+        it('... should have required `activeComplexBreakdown`', () => {
             expectToEqual(
-                component.availableComplexBreakdown(),
+                component.activeComplexBreakdown(),
                 new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
             );
         });
@@ -108,8 +108,8 @@ describe('StatisticsComplexBreakdownComponent', () => {
             expectToEqual(component.totalComplexes(), 0);
         });
 
-        it('... should have `complexBreakdownItems`', () => {
-            expectToEqual(component.complexBreakdownItems, expectedComplexBreakdownItems);
+        it('... should have `COMPLEX_BREAKDOWN_ITEMS`', () => {
+            expectToEqual(component.COMPLEX_BREAKDOWN_ITEMS, expectedComplexBreakdownItems);
         });
 
         describe('VIEW', () => {
@@ -127,9 +127,9 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 getAndExpectDebugElementByCss(colDes[0], 'div.awg-statisctics-distribution-card', 1, 1);
             });
 
-            it('... should contain one available card in second div', () => {
+            it('... should contain one activity card in second div', () => {
                 const colDes = getAndExpectDebugElementByCss(compDe, 'div.col-md-6', 2, 2);
-                getAndExpectDebugElementByCss(colDes[1], 'div.awg-statistics-available-card', 1, 1);
+                getAndExpectDebugElementByCss(colDes[1], 'div.awg-statistics-activity-card', 1, 1);
             });
 
             describe('... distribution card', () => {
@@ -209,80 +209,100 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 });
             });
 
-            describe('... available card', () => {
-                it('... should have correct classes on available card div', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+            describe('... activity card', () => {
+                it('... should have correct classes on activity card div', () => {
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    const availCardEl: HTMLDivElement = availCardDes[0].nativeElement;
+                    const activityCardEl: HTMLDivElement = activityCardDes[0].nativeElement;
 
-                    expectToBe(availCardEl.classList.length, 4);
-                    expectToContain(availCardEl.classList, 'awg-statistics-card');
-                    expectToContain(availCardEl.classList, 'awg-statistics-available-card');
-                    expectToContain(availCardEl.classList, 'card');
-                    expectToContain(availCardEl.classList, 'h-100');
+                    expectToBe(activityCardEl.classList.length, 4);
+                    expectToContain(activityCardEl.classList, 'awg-statistics-card');
+                    expectToContain(activityCardEl.classList, 'awg-statistics-activity-card');
+                    expectToContain(activityCardEl.classList, 'card');
+                    expectToContain(activityCardEl.classList, 'h-100');
                 });
 
                 it('... should contain one card header div', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(availCardDes[0], 'div.card-header', 1, 1);
+                    getAndExpectDebugElementByCss(activityCardDes[0], 'div.card-header', 1, 1);
                 });
 
                 it('... should contain h4 title element in card header', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    const availCardHeaderDes = getAndExpectDebugElementByCss(availCardDes[0], 'div.card-header', 1, 1);
-                    getAndExpectDebugElementByCss(availCardHeaderDes[0], 'h4.card-title', 1, 1);
+                    const activityCardHeaderDes = getAndExpectDebugElementByCss(
+                        activityCardDes[0],
+                        'div.card-header',
+                        1,
+                        1
+                    );
+                    getAndExpectDebugElementByCss(activityCardHeaderDes[0], 'h4.card-title', 1, 1);
                 });
 
                 it('... should contain correct title in card header', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    const availCardHeaderDes = getAndExpectDebugElementByCss(availCardDes[0], 'div.card-header', 1, 1);
+                    const activityCardHeaderDes = getAndExpectDebugElementByCss(
+                        activityCardDes[0],
+                        'div.card-header',
+                        1,
+                        1
+                    );
 
-                    const hDes = getAndExpectDebugElementByCss(availCardHeaderDes[0], 'h4.card-title', 1, 1);
+                    const hDes = getAndExpectDebugElementByCss(activityCardHeaderDes[0], 'h4.card-title', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToEqual(hEl.textContent?.trim(), 'Available Complex Types');
+                    expectToEqual(hEl.textContent?.trim(), 'Active Complex Types');
                 });
 
                 it('... should contain one card body', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(availCardDes[0], 'div.card-body', 1, 1);
+                    getAndExpectDebugElementByCss(activityCardDes[0], 'div.card-body', 1, 1);
                 });
 
                 it('... should contain no div with progress bar components in card body yet', () => {
-                    const availCardDes = getAndExpectDebugElementByCss(
+                    const activityCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statistics-available-card',
+                        'div.awg-statistics-activity-card',
                         1,
                         1
                     );
-                    const availCardBodyDes = getAndExpectDebugElementByCss(availCardDes[0], 'div.card-body', 1, 1);
+                    const activityCardBodyDes = getAndExpectDebugElementByCss(
+                        activityCardDes[0],
+                        'div.card-body',
+                        1,
+                        1
+                    );
 
-                    getAndExpectDebugElementByCss(availCardBodyDes[0], 'div', 0, 0);
-                    getAndExpectDebugElementByDirective(availCardBodyDes[0], StatisticsProgressBarStubComponent, 0, 0);
+                    getAndExpectDebugElementByCss(activityCardBodyDes[0], 'div', 0, 0);
+                    getAndExpectDebugElementByDirective(
+                        activityCardBodyDes[0],
+                        StatisticsProgressBarStubComponent,
+                        0,
+                        0
+                    );
                 });
             });
         });
@@ -290,15 +310,15 @@ describe('StatisticsComplexBreakdownComponent', () => {
         describe('AFTER initial data binding', () => {
             beforeEach(() => {
                 // Set input signals with test data
-                fixture.componentRef.setInput('availableComplexBreakdown', expectedAvailableComplexBreakdown);
+                fixture.componentRef.setInput('activeComplexBreakdown', expectedActiveComplexBreakdown);
                 fixture.componentRef.setInput('complexBreakdown', expectedComplexBreakdown);
                 fixture.componentRef.setInput('totalComplexes', expectedTotalComplexes);
 
                 fixture.detectChanges();
             });
 
-            it('... should have updated `availableComplexBreakdown`', () => {
-                expectToEqual(component.availableComplexBreakdown(), expectedAvailableComplexBreakdown);
+            it('... should have updated `activeComplexBreakdown`', () => {
+                expectToEqual(component.activeComplexBreakdown(), expectedActiveComplexBreakdown);
             });
 
             it('... should have updated `complexBreakdown`', () => {
@@ -309,8 +329,8 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 expectToEqual(component.totalComplexes(), expectedTotalComplexes);
             });
 
-            it('... should have `complexBreakdownItems` unchanged', () => {
-                expectToEqual(component.complexBreakdownItems, expectedComplexBreakdownItems);
+            it('... should have `COMPLEX_BREAKDOWN_ITEMS` unchanged', () => {
+                expectToEqual(component.COMPLEX_BREAKDOWN_ITEMS, expectedComplexBreakdownItems);
             });
 
             describe('VIEW', () => {
@@ -349,7 +369,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'absolute',
-                                available: expectedComplexBreakdown[expectedComplexBreakdownItems[index].key],
+                                active: expectedComplexBreakdown[expectedComplexBreakdownItems[index].key],
                                 total: expectedTotalComplexes,
                             };
                             const expectedLabel = expectedComplexBreakdownItems[index].baseLabel + ' Complexes';
@@ -364,17 +384,17 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     });
                 });
 
-                describe('... available card', () => {
+                describe('... activity card', () => {
                     it('... should contain 3 progress bar components in card body', () => {
-                        const availCardBodyDes = getAndExpectDebugElementByCss(
+                        const activityCardBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-statistics-available-card > div.card-body',
+                            'div.awg-statistics-activity-card > div.card-body',
                             1,
                             1
                         );
 
                         getAndExpectDebugElementByDirective(
-                            availCardBodyDes[0],
+                            activityCardBodyDes[0],
                             StatisticsProgressBarStubComponent,
                             3,
                             3
@@ -382,14 +402,14 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     });
 
                     it('... should pass down corect inputs to progress bar components', () => {
-                        const availCardBodyDes = getAndExpectDebugElementByCss(
+                        const activityCardBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-statistics-available-card > div.card-body',
+                            'div.awg-statistics-activity-card > div.card-body',
                             1,
                             1
                         );
                         const progressBarDes = getAndExpectDebugElementByDirective(
-                            availCardBodyDes[0],
+                            activityCardBodyDes[0],
                             StatisticsProgressBarStubComponent,
                             3,
                             3
@@ -399,13 +419,11 @@ describe('StatisticsComplexBreakdownComponent', () => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'ratio',
-                                available: expectedAvailableComplexBreakdown[expectedComplexBreakdownItems[index].key],
+                                active: expectedActiveComplexBreakdown[expectedComplexBreakdownItems[index].key],
                                 total: expectedComplexBreakdown[expectedComplexBreakdownItems[index].key],
                             };
                             const expectedLabel =
-                                'Available ' +
-                                expectedComplexBreakdownItems[index].baseLabel +
-                                (index === 0 ? '' : 's');
+                                'Active ' + expectedComplexBreakdownItems[index].baseLabel + (index === 0 ? '' : 's');
 
                             expectToEqual(progressBarCmp.config(), expectedConfig);
                             expectToBe(progressBarCmp.headerLabel(), expectedLabel);
@@ -424,7 +442,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     const key = 'mnr';
                     const expectedConfig: StatisticsProgressBarConfig = {
                         mode: 'ratio',
-                        available: expectedAvailableComplexBreakdown[key],
+                        active: expectedActiveComplexBreakdown[key],
                         total: expectedComplexBreakdown[key],
                     };
 
@@ -435,7 +453,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     const key = 'mnrX';
                     const expectedConfig: StatisticsProgressBarConfig = {
                         mode: 'absolute',
-                        available: expectedComplexBreakdown[key],
+                        active: expectedComplexBreakdown[key],
                         total: expectedTotalComplexes,
                     };
 

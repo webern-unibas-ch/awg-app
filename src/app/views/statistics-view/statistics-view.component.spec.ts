@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vitest';
 
-import { EditionStatistics, StatisticsComplexBreakdown } from './models';
+import { Statistics, StatisticsComplexBreakdown } from './models';
 import { EditionStatisticsService } from './services';
 
 import { StatisticsViewComponent } from './statistics-view.component';
@@ -34,7 +34,7 @@ class StatisticsSummaryCardsStubComponent {
     activeSeries = input.required<number>();
     activeSections = input.required<number>();
     totalComplexes = input.required<number>();
-    availableComplexes = input.required<number>();
+    activeComplexes = input.required<number>();
 }
 
 @Component({
@@ -84,42 +84,43 @@ describe('StatisticsViewComponent', () => {
             totalSections: 15,
             activeSections: 5,
             totalComplexes: 100,
-            availableComplexes: 75,
+            activeComplexes: 75,
             progressRate: 75,
             seriesBreakdown: [
                 {
-                    series: '1',
-                    sections: 2,
+                    series: 'I',
+                    totalSections: 5,
+                    activeSections: 2,
                     totalComplexes: 50,
-                    availableComplexes: 40,
+                    activeComplexes: 40,
                     progressRate: 40, // (0 + 80) / 2 = 40%
                     sectionBreakdown: [
                         {
                             section: '1',
                             disabled: true,
                             totalComplexes: 0,
-                            availableComplexes: 0,
+                            activeComplexes: 0,
                             progressRate: 0,
                             complexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                            availableComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                            activeComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
                         },
                         {
                             section: '5',
                             disabled: false,
                             totalComplexes: 50,
-                            availableComplexes: 40,
+                            activeComplexes: 40,
                             progressRate: 80,
                             complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                            availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                            activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                         },
                     ],
                     complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                    availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                    activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                 },
             ],
             complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
-            availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-        } as EditionStatistics);
+            activeComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
+        } as Statistics);
 
         fixture.detectChanges();
     });
@@ -150,7 +151,7 @@ describe('StatisticsViewComponent', () => {
             component.calculateStatistics();
             expect(component.statistics).toBeDefined();
             expectToBe(component.statistics.totalComplexes, 100);
-            expectToBe(component.statistics.availableComplexes, 75);
+            expectToBe(component.statistics.activeComplexes, 75);
         });
 
         it('... should call updateStatisticsCards', () => {
@@ -167,42 +168,42 @@ describe('StatisticsViewComponent', () => {
                 activeSeries: 2,
                 totalSections: 5,
                 totalComplexes: 100,
-                availableComplexes: 75,
+                activeComplexes: 75,
                 progressRate: 75,
                 seriesBreakdown: [
                     {
                         series: '1',
                         sections: 2,
                         totalComplexes: 50,
-                        availableComplexes: 40,
+                        activeComplexes: 40,
                         progressRate: 40, // (0 + 80) / 2 = 40%
                         sectionBreakdown: [
                             {
                                 section: '1',
                                 disabled: true,
                                 totalComplexes: 0,
-                                availableComplexes: 0,
+                                activeComplexes: 0,
                                 progressRate: 0,
                                 complexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                                availableComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
+                                activeComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
                             },
                             {
                                 section: '5',
                                 disabled: false,
                                 totalComplexes: 50,
-                                availableComplexes: 40,
+                                activeComplexes: 40,
                                 progressRate: 80,
                                 complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                                availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                                activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                             },
                         ],
                         complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                        availableComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
+                        activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
                     },
                 ],
                 complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
-                availableComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-            } as EditionStatistics;
+                activeComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
+            } as Statistics;
         });
 
         it('... should populate statisticsSummaryCards array', () => {
@@ -214,7 +215,7 @@ describe('StatisticsViewComponent', () => {
         it('... should set correct card data', () => {
             component.updateStatisticsCards();
 
-            const [seriesCard, sectionsCard, complexesCard, availableCard] = component.statisticsSummaryCards;
+            const [seriesCard, sectionsCard, complexesCard, activeCard] = component.statisticsSummaryCards;
 
             expectToBe(seriesCard.title, 'Active Series');
             expectToBe(seriesCard.value, 2);
@@ -231,10 +232,10 @@ describe('StatisticsViewComponent', () => {
             expectToBe(complexesCard.icon, 'fas fa-music');
             expectToBe(complexesCard.bgClass, 'bg-secondary');
 
-            expectToBe(availableCard.title, 'Available Complexes');
-            expectToBe(availableCard.value, 75);
-            expectToBe(availableCard.icon, 'fas fa-check-circle');
-            expectToBe(availableCard.bgClass, 'bg-success');
+            expectToBe(activeCard.title, 'Active Complexes');
+            expectToBe(activeCard.value, 75);
+            expectToBe(activeCard.icon, 'fas fa-check-circle');
+            expectToBe(activeCard.bgClass, 'bg-success');
         });
 
         it('... should return early if statistics is not set', () => {

@@ -105,7 +105,7 @@ describe('EditionStatisticsService', () => {
                 totalSections: number;
                 activeSections: number;
                 totalComplexes: number;
-                availableComplexes: number;
+                activeComplexes: number;
                 progressRate: number;
             }
         ): void => {
@@ -114,7 +114,7 @@ describe('EditionStatisticsService', () => {
             expectToBe(stats.totalSections, summary.totalSections);
             expectToBe(stats.activeSections, summary.activeSections);
             expectToBe(stats.totalComplexes, summary.totalComplexes);
-            expectToBe(stats.availableComplexes, summary.availableComplexes);
+            expectToBe(stats.activeComplexes, summary.activeComplexes);
             expectToBe(stats.progressRate, summary.progressRate);
         };
 
@@ -131,7 +131,7 @@ describe('EditionStatisticsService', () => {
                 totalSections: 0,
                 activeSections: 0,
                 totalComplexes: 0,
-                availableComplexes: 0,
+                activeComplexes: 0,
                 progressRate: 0,
             });
         });
@@ -145,7 +145,7 @@ describe('EditionStatisticsService', () => {
                 totalSections: 1,
                 activeSections: 1,
                 totalComplexes: 3,
-                availableComplexes: 2,
+                activeComplexes: 2,
                 progressRate: 67,
             });
 
@@ -158,10 +158,10 @@ describe('EditionStatisticsService', () => {
 
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].section, '5');
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].totalComplexes, 3);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].availableComplexes, 2);
+            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].activeComplexes, 2);
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].progressRate, 67);
 
-            // Test series availability rate (should match single section rate)
+            // Test series activity rate (should match single section rate)
             expectToBe(stats.seriesBreakdown[0].progressRate, 67);
         });
 
@@ -169,7 +169,7 @@ describe('EditionStatisticsService', () => {
             const stats = service.getStatisticsFromOutline(sectionAverageOutline);
 
             // Section 1: 0% (disabled, no complexes)
-            // Section 2A: 100% (2 complexes, all available)
+            // Section 2A: 100% (2 complexes, all active)
             // Section 3: 0% (disabled, no complexes)
             // Series average: (0 + 100 + 0) / 3 = 33%
 
@@ -190,20 +190,20 @@ describe('EditionStatisticsService', () => {
                 expectToBe((service as any)._calculateProgressRate(10, 0), 0);
             });
 
-            it('... available is 0', () => {
+            it('... active is 0', () => {
                 expectToBe((service as any)._calculateProgressRate(0, 10), 0);
             });
 
-            it('... both available and total are 0', () => {
+            it('... both active and total are 0', () => {
                 expectToBe((service as any)._calculateProgressRate(0, 0), 0);
             });
         });
 
-        it('... should return 100 when available equals total', () => {
+        it('... should return 100 when active equals total', () => {
             expectToBe((service as any)._calculateProgressRate(5, 5), 100);
         });
 
-        it('... should return the rounded percentage of available over total', () => {
+        it('... should return the rounded percentage of active over total', () => {
             expectToBe((service as any)._calculateProgressRate(1, 3), 33);
             expectToBe((service as any)._calculateProgressRate(2, 3), 67);
             expectToBe((service as any)._calculateProgressRate(1, 4), 25);
@@ -241,7 +241,7 @@ describe('EditionStatisticsService', () => {
             expect((service as any)._incrementComplexCounters).toBeDefined();
         });
 
-        it('... should call registerComplex on each target with given type and availability', () => {
+        it('... should call registerComplex on each target with given type and activity', () => {
             const targetA = { registerComplex: vi.fn() };
             const targetB = { registerComplex: vi.fn() };
 
@@ -251,7 +251,7 @@ describe('EditionStatisticsService', () => {
             expectSpyCall(targetB.registerComplex, 1, ['opus', true]);
         });
 
-        it('... should pass isAvailable as false when complex is not available', () => {
+        it('... should pass isActive as false when complex is not active', () => {
             const target = { registerComplex: vi.fn() };
 
             (service as any)._incrementComplexCounters([target], 'mnr', false);

@@ -118,7 +118,7 @@ export class StatisticsProgressBarComponent {
                 if (cfg.total === 0) {
                     return 0;
                 }
-                return Math.round((cfg.available / cfg.total) * 100);
+                return Math.round((cfg.active / cfg.total) * 100);
             default:
                 return 0;
         }
@@ -133,10 +133,10 @@ export class StatisticsProgressBarComponent {
     progressHeaderValue = computed(() => {
         const cfg = this.config();
 
-        if (cfg.mode === 'percentage' || cfg.available === undefined) {
+        if (cfg.mode === 'percentage' || cfg.active === undefined) {
             return '';
         }
 
-        return cfg.mode === 'ratio' ? `${cfg.available} / ${cfg.total}` : `${cfg.available}`;
+        return cfg.mode === 'ratio' ? `${cfg.active} / ${cfg.total}` : `${cfg.active}`;
     });
 }

@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services';
-import { EditionStatistics } from '@awg-views/statistics-view/models';
+import { Statistics } from '@awg-views/statistics-view/models';
 import { EditionStatisticsService } from '@awg-views/statistics-view/services';
-import { EDITION_ROUTE_CONSTANTS } from '../edition-view/edition-route-constants';
 
 /**
  * The Statistics view component.
@@ -31,14 +30,7 @@ export class StatisticsViewComponent {
      *
      * It holds the statistics data for the edition complexes.
      */
-    readonly statisticsData = signal<EditionStatistics>(
+    readonly statisticsData = signal<Statistics>(
         this._editionStatisticsService.getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
     );
-
-    /**
-     * Readonly variable: editionRouteConstants.
-     *
-     * It keeps the edition route constants for the router links in the template.
-     */
-    readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
 }

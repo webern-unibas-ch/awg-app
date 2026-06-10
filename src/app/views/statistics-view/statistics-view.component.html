@@ -3,13 +3,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <!-- Page Header -->
+                    <!-- Statistics Header -->
                     <div
                         class="awg-statistics-view-header awg-jumbotron mb-4 p-3 pt-4 text-center shadow border rounded-3">
                         <h1 class="h2">Edition Statistics</h1>
                         <p class="lead text-muted">
-                            Overview of available edition complexes in the online edition of the Anton Webern
-                            Gesamtausgabe
+                            Overview of active edition complexes in the online edition of the Anton Webern Gesamtausgabe
                         </p>
                     </div>
 
@@ -17,139 +16,26 @@
                     <awg-statistics-summary
                         [activeSeries]="statisticsData.activeSeries"
                         [activeSections]="statisticsData.activeSections"
-                        [availableComplexes]="statisticsData.availableComplexes"
+                        [activeComplexes]="statisticsData.activeComplexes"
                         [totalComplexes]="statisticsData.totalComplexes">
                     </awg-statistics-summary>
 
                     <!-- Overall Progress -->
                     <awg-statistics-overall-progress
                         [progressRate]="statisticsData.progressRate"
-                        [availableComplexes]="statisticsData.availableComplexes"
+                        [activeComplexes]="statisticsData.activeComplexes"
                         [totalComplexes]="statisticsData.totalComplexes">
                     </awg-statistics-overall-progress>
 
                     <!-- Complex Types Breakdown -->
                     <awg-statistics-complex-breakdown
-                        [availableComplexBreakdown]="statisticsData.availableComplexBreakdown"
+                        [activeComplexBreakdown]="statisticsData.activeComplexBreakdown"
                         [complexBreakdown]="statisticsData.complexBreakdown"
                         [totalComplexes]="statisticsData.totalComplexes"></awg-statistics-complex-breakdown>
 
                     <!-- Series Breakdown -->
-                    @if (statisticsData?.seriesBreakdown?.length) {
-                        <div class="awg-statistics-card card">
-                            <div class="card-header">
-                                <h3 class="card-title mb-0">Series & Sections Breakdown</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table" style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 15%">Series / Section</th>
-                                                <th class="text-center" style="width: 10%">Total Complexes</th>
-                                                <th class="text-center">Distribution</th>
-                                                <th class="text-center">Available</th>
-                                                <th class="text-center" style="width: 50%">Progress</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @for (series of statisticsData.seriesBreakdown; track series.series) {
-                                                <!-- Series Row -->
-                                                <tr class="awg-statistics-series-breakdown table-primary">
-                                                    <td>
-                                                        <strong [class.text-muted]="series.sections === 0"
-                                                            >Series {{ series.series }}</strong
-                                                        >
-                                                        <small class="text-muted ms-2"
-                                                            >({{ series.sections }} active
-                                                            {{ series.sections === 1 ? 'section' : 'sections' }})</small
-                                                        >
-                                                    </td>
-                                                    <td class="text-center" [class.text-muted]="series.sections === 0">
-                                                        <strong>{{ series.totalComplexes }}</strong>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if (series.totalComplexes > 0) {
-                                                            <awg-statistics-breakdown-badge
-                                                                [breakdown]="series.complexBreakdown">
-                                                            </awg-statistics-breakdown-badge>
-                                                        }
-                                                    </td>
-                                                    <td class="text-center" [class.text-muted]="series.sections === 0">
-                                                        <strong>{{ series.availableComplexes }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        <awg-statistics-progress-bar
-                                                            [config]="{
-                                                                mode: 'percentage',
-                                                                percentage: series.progressRate,
-                                                            }"
-                                                            [height]="'20px'"
-                                                            [boldPercentageLabel]="true">
-                                                        </awg-statistics-progress-bar>
-                                                    </td>
-                                                </tr>
-                                                <!-- Section Rows -->
-                                                @for (section of series.sectionBreakdown; track section.section) {
-                                                    <tr class="awg-statistics-section-breakdown table-light">
-                                                        <td class="ps-4">
-                                                            <span class="text-muted">└ </span>
-                                                            <a
-                                                                [class.text-muted]="section.disabled"
-                                                                [class.pe-none]="section.disabled"
-                                                                [style.text-decoration]="
-                                                                    section.disabled ? 'none' : null
-                                                                "
-                                                                [routerLink]="
-                                                                    section.disabled
-                                                                        ? null
-                                                                        : [
-                                                                              editionRouteConstants.EDITION.route,
-                                                                              editionRouteConstants.SERIES.route,
-                                                                              series.series.length,
-                                                                              editionRouteConstants.SECTION.route,
-                                                                              section.section,
-                                                                          ]
-                                                                "
-                                                                routerLinkActive="active">
-                                                                Section {{ series.series }}/{{ section.section }}
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center" [class.text-muted]="section.disabled">
-                                                            {{ section.totalComplexes }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            @if (section.totalComplexes > 0) {
-                                                                <awg-statistics-breakdown-badge
-                                                                    [breakdown]="section.complexBreakdown">
-                                                                </awg-statistics-breakdown-badge>
-                                                            }
-                                                        </td>
-                                                        <td class="text-center" [class.text-muted]="section.disabled">
-                                                            {{ section.availableComplexes }}
-                                                        </td>
-                                                        <td>
-                                                            @if (section.totalComplexes > 0) {
-                                                                <awg-statistics-progress-bar
-                                                                    [config]="{
-                                                                        mode: 'percentage',
-                                                                        percentage: section.progressRate,
-                                                                    }"></awg-statistics-progress-bar>
-                                                            } @else {
-                                                                <awg-statistics-progress-bar
-                                                                    [config]="{ mode: 'percentage', percentage: 0 }">
-                                                                </awg-statistics-progress-bar>
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    <awg-statistics-series-breakdown
+                        [seriesBreakdown]="statisticsData.seriesBreakdown"></awg-statistics-series-breakdown>
                 </div>
             </div>
         </div>

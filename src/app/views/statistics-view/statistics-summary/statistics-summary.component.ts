@@ -40,11 +40,11 @@ export class StatisticsSummaryComponent {
     totalComplexes = input.required<number>();
 
     /**
-     * Input signal: availableComplexes.
+     * Input signal: activeComplexes.
      *
-     * It holds the number of available complexes.
+     * It holds the number of active complexes.
      */
-    availableComplexes = input.required<number>();
+    activeComplexes = input.required<number>();
 
     /**
      * Computed signal: summaryCards.
@@ -71,8 +71,8 @@ export class StatisticsSummaryComponent {
             bgClass: 'bg-secondary',
         },
         {
-            title: 'Available Complexes',
-            value: this.availableComplexes(),
+            title: 'Active Complexes',
+            value: this.activeComplexes(),
             icon: faCheckCircle,
             bgClass: 'bg-success',
         },
