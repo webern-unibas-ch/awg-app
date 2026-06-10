@@ -17,14 +17,18 @@ export class StatisticsSeriesBreakdownComponent {
     /**
      * Input signal: seriesBreakdown.
      *
-     * It holds the breakdown of series for the edition breakdown.
+     * It holds the breakdown of series.
      */
     seriesBreakdown = input.required<StatisticsSeriesBreakdown[]>();
 
     /**
-     * Readonly variable: editionRouteConstants.
+     * Readonly variable: ROUTES.
      *
      * It keeps the edition route constants for the router links in the template.
      */
-    readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
+    readonly ROUTES = {
+        edition: EDITION_ROUTE_CONSTANTS.EDITION,
+        series: EDITION_ROUTE_CONSTANTS.SERIES,
+        section: EDITION_ROUTE_CONSTANTS.SECTION,
+    };
 }

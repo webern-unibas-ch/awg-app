@@ -7,11 +7,14 @@
             <table class="table" style="width: 100%">
                 <thead>
                     <tr>
-                        <th style="width: 15%">Series / Section</th>
-                        <th class="text-center" style="width: 10%">Total Complexes</th>
+                        <th rowspan="2" class="text.center align-bottom" style="width: 15%">Series / Section</th>
+                        <th colspan="3" class="text-center table-light border-bottom-0">Complexes</th>
+                        <th rowspan="2" class="text-center align-bottom" style="width: 50%">Progress</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Total</th>
                         <th class="text-center">Distribution</th>
                         <th class="text-center">Active</th>
-                        <th class="text-center" style="width: 50%">Progress</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +35,7 @@
                             </td>
                             <td class="text-center">
                                 @if (series.totalComplexes > 0) {
-                                    <awg-statistics-breakdown-badge [breakdown]="series.complexBreakdown">
+                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown">
                                     </awg-statistics-breakdown-badge>
                                 }
                             </td>
@@ -63,10 +66,10 @@
                                             section.disabled
                                                 ? null
                                                 : [
-                                                      editionRouteConstants.EDITION.route,
-                                                      editionRouteConstants.SERIES.route,
+                                                      ROUTES.edition.route,
+                                                      ROUTES.series.route,
                                                       series.series.length,
-                                                      editionRouteConstants.SECTION.route,
+                                                      ROUTES.section.route,
                                                       section.section,
                                                   ]
                                         "
@@ -79,7 +82,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if (section.totalComplexes > 0) {
-                                        <awg-statistics-breakdown-badge [breakdown]="section.complexBreakdown">
+                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown">
                                         </awg-statistics-breakdown-badge>
                                     }
                                 </td>
