@@ -56,7 +56,7 @@
                                         <tbody>
                                             @for (series of statisticsData.seriesBreakdown; track series.series) {
                                                 <!-- Series Row -->
-                                                <tr class="table-primary">
+                                                <tr class="awg-statistics-series-breakdown table-primary">
                                                     <td>
                                                         <strong [class.text-muted]="series.sections === 0"
                                                             >Series {{ series.series }}</strong
@@ -92,12 +92,29 @@
                                                 </tr>
                                                 <!-- Section Rows -->
                                                 @for (section of series.sectionBreakdown; track section.section) {
-                                                    <tr class="table-light">
+                                                    <tr class="awg-statistics-section-breakdown table-light">
                                                         <td class="ps-4">
                                                             <span class="text-muted">└ </span>
-                                                            <span [class.text-muted]="section.disabled"
-                                                                >Section {{ section.section }}</span
-                                                            >
+                                                            <a
+                                                                [class.text-muted]="section.disabled"
+                                                                [class.pe-none]="section.disabled"
+                                                                [style.text-decoration]="
+                                                                    section.disabled ? 'none' : null
+                                                                "
+                                                                [routerLink]="
+                                                                    section.disabled
+                                                                        ? null
+                                                                        : [
+                                                                              editionRouteConstants.EDITION.route,
+                                                                              editionRouteConstants.SERIES.route,
+                                                                              series.series.length,
+                                                                              editionRouteConstants.SECTION.route,
+                                                                              section.section,
+                                                                          ]
+                                                                "
+                                                                routerLinkActive="active">
+                                                                Section {{ series.series }}/{{ section.section }}
+                                                            </a>
                                                         </td>
                                                         <td class="text-center" [class.text-muted]="section.disabled">
                                                             {{ section.totalComplexes }}
