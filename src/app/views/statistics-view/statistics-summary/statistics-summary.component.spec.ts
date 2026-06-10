@@ -13,10 +13,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsSummaryCardData } from '../models';
-import { StatisticsSummaryCardComponent } from '../statistics-summary-card';
+import { StatisticsSummaryCardData } from '@awg-views/statistics-view/models';
+import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
 
-import { StatisticsSummaryCardsComponent } from './statistics-summary-cards.component';
+import { StatisticsSummaryComponent } from './statistics-summary.component';
 
 // Mock components
 @Component({
@@ -30,9 +30,9 @@ class StatisticsSummaryCardStubComponent {
     bgClass = input<string>();
 }
 
-describe('StatisticsSummaryCardsComponent', () => {
-    let component: StatisticsSummaryCardsComponent;
-    let fixture: ComponentFixture<StatisticsSummaryCardsComponent>;
+describe('StatisticsSummaryComponent', () => {
+    let component: StatisticsSummaryComponent;
+    let fixture: ComponentFixture<StatisticsSummaryComponent>;
     let compDe: DebugElement;
 
     let expectedActiveSeries: number;
@@ -43,15 +43,15 @@ describe('StatisticsSummaryCardsComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StatisticsSummaryCardsComponent],
+            imports: [StatisticsSummaryComponent],
         })
-            .overrideComponent(StatisticsSummaryCardsComponent, {
+            .overrideComponent(StatisticsSummaryComponent, {
                 remove: { imports: [StatisticsSummaryCardComponent] },
                 add: { imports: [StatisticsSummaryCardStubComponent] },
             })
             .compileComponents();
 
-        fixture = TestBed.createComponent(StatisticsSummaryCardsComponent);
+        fixture = TestBed.createComponent(StatisticsSummaryComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -158,26 +158,26 @@ describe('StatisticsSummaryCardsComponent', () => {
 
         describe('VIEW', () => {
             it('... should contain one cards div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-cards', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
             });
 
             it('... should have correct classes on cards div', () => {
-                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-cards', 1, 1);
+                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const cardsEl: HTMLElement = cardsDes[0].nativeElement;
 
                 expectToBe(cardsEl.classList.length, 3);
-                expectToContain(cardsEl.classList, 'awg-statistics-summary-cards');
+                expectToContain(cardsEl.classList, 'awg-statistics-summary');
                 expectToContain(cardsEl.classList, 'row');
                 expectToContain(cardsEl.classList, 'mb-4');
             });
 
             it('... should contain 4 div.col components in cards div', () => {
-                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-cards', 1, 1);
+                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
             });
 
             it('... should contain one card component (stubbed) in each col div', () => {
-                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-cards', 1, 1);
+                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const colDes = getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
 
                 colDes.forEach(colDe => {
@@ -186,7 +186,7 @@ describe('StatisticsSummaryCardsComponent', () => {
             });
 
             it('... should pass down correct card data to each card component', () => {
-                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-cards', 1, 1);
+                const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const cardDes = getAndExpectDebugElementByDirective(
                     cardsDes[0],
                     StatisticsSummaryCardStubComponent,

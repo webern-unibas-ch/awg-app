@@ -1,15 +1,21 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { StatisticsProgressBarComponent } from '../statistics-progress-bar';
+import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
 
+/**
+ * The StatisticsOverallProgress Component
+ *
+ * It displays the overall progress of the statistics view,
+ * showing the progress rate and the number of available complexes out of the total complexes.
+ */
 @Component({
-    selector: 'awg-statistics-overall-progress-card',
-    templateUrl: './statistics-overall-progress-card.component.html',
-    styleUrl: './statistics-overall-progress-card.component.scss',
+    selector: 'awg-statistics-overall-progress',
+    templateUrl: './statistics-overall-progress.component.html',
+    styleUrl: './statistics-overall-progress.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsProgressBarComponent],
 })
-export class StatisticsOverallProgressCardComponent {
+export class StatisticsOverallProgressComponent {
     /**
      * Input signal: progressRate.
      *

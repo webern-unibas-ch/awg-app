@@ -26,7 +26,7 @@ class StatisticsProgressBarStubComponent {
 }
 
 @Component({
-    selector: 'awg-statistics-summary-cards',
+    selector: 'awg-statistics-summary',
     template: '',
     standalone: false,
 })

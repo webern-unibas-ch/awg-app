@@ -2,22 +2,22 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import { StatisticsSummaryCardData } from '../models';
-import { StatisticsSummaryCardComponent } from '../statistics-summary-card';
+import { StatisticsSummaryCardData } from '@awg-views/statistics-view/models';
+import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
 
 /**
- * The StatisticsSummaryCards component.
+ * The StatisticsSummary component.
  *
- * It displays a set of statistics summary cards with title, value, and icon.
+ * It displays the statistics summary with summary cards.
  */
 @Component({
-    selector: 'awg-statistics-summary-cards',
-    templateUrl: './statistics-summary-cards.component.html',
-    styleUrl: './statistics-summary-cards.component.scss',
+    selector: 'awg-statistics-summary',
+    templateUrl: './statistics-summary.component.html',
+    styleUrl: './statistics-summary.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsSummaryCardComponent],
 })
-export class StatisticsSummaryCardsComponent {
+export class StatisticsSummaryComponent {
     /**
      * Input signal: activeSeries.
      *

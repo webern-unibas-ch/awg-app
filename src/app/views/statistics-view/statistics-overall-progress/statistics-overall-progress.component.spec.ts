@@ -11,9 +11,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsProgressBarConfig } from '../models';
-import { StatisticsProgressBarComponent } from '../statistics-progress-bar';
-import { StatisticsOverallProgressCardComponent } from './statistics-overall-progress-card.component';
+import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
+import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+
+import { StatisticsOverallProgressComponent } from './statistics-overall-progress.component';
 
 // Mock components
 @Component({
@@ -32,8 +33,8 @@ class StatisticsProgressBarStubComponent {
 }
 
 describe('StatisticsOverallProgressComponent', () => {
-    let component: StatisticsOverallProgressCardComponent;
-    let fixture: ComponentFixture<StatisticsOverallProgressCardComponent>;
+    let component: StatisticsOverallProgressComponent;
+    let fixture: ComponentFixture<StatisticsOverallProgressComponent>;
     let compDe: DebugElement;
 
     let expectedProgressRate: number;
@@ -42,15 +43,15 @@ describe('StatisticsOverallProgressComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StatisticsOverallProgressCardComponent],
+            imports: [StatisticsOverallProgressComponent],
         })
-            .overrideComponent(StatisticsOverallProgressCardComponent, {
+            .overrideComponent(StatisticsOverallProgressComponent, {
                 remove: { imports: [StatisticsProgressBarComponent] },
                 add: { imports: [StatisticsProgressBarStubComponent] },
             })
             .compileComponents();
 
-        fixture = TestBed.createComponent(StatisticsOverallProgressCardComponent);
+        fixture = TestBed.createComponent(StatisticsOverallProgressComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -84,27 +85,22 @@ describe('StatisticsOverallProgressComponent', () => {
 
         describe('VIEW', () => {
             it('... should contain one card div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress-card', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress', 1, 1);
             });
 
             it('... should have correct classes on card div', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress-card', 1, 1);
+                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
                 expectToBe(cardEl.classList.length, 4);
                 expectToContain(cardEl.classList, 'awg-statistics-card');
-                expectToContain(cardEl.classList, 'awg-statistics-overall-progress-card');
+                expectToContain(cardEl.classList, 'awg-statistics-overall-progress');
                 expectToContain(cardEl.classList, 'card');
                 expectToContain(cardEl.classList, 'mb-4');
             });
 
             it('... should contain one card header div', () => {
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-overall-progress-card > div.card-header',
-                    1,
-                    1
-                );
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress > div.card-header', 1, 1);
             });
 
             it('... should contain h3 title element in card header', () => {
@@ -120,7 +116,7 @@ describe('StatisticsOverallProgressComponent', () => {
             });
 
             it('... should contain one card body div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress-card > div.card-body', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress > div.card-body', 1, 1);
             });
 
             it('... should contain one progress bar component (stubbed) in card body', () => {

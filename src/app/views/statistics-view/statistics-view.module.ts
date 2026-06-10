@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { StatisticsBreakdownBadgeComponent } from './statistics-breakdown-badge';
 import { StatisticsComplexBreakdownComponent } from './statistics-complex-breakdown';
-import { StatisticsOverallProgressCardComponent } from './statistics-overall-progress-card';
+import { StatisticsOverallProgressComponent } from './statistics-overall-progress';
 import { StatisticsProgressBarComponent } from './statistics-progress-bar';
+import { StatisticsSummaryComponent } from './statistics-summary';
 import { StatisticsSummaryCardComponent } from './statistics-summary-card';
-import { StatisticsSummaryCardsComponent } from './statistics-summary-cards';
 import { StatisticsViewRoutingModule, routedStatisticsViewComponents } from './statistics-view-routing.module';
 
 /**
@@ -22,9 +22,9 @@ import { StatisticsViewRoutingModule, routedStatisticsViewComponents } from './s
         StatisticsViewRoutingModule,
         StatisticsBreakdownBadgeComponent,
         StatisticsComplexBreakdownComponent,
-        StatisticsOverallProgressCardComponent,
+        StatisticsOverallProgressComponent,
         StatisticsProgressBarComponent,
-        StatisticsSummaryCardsComponent,
+        StatisticsSummaryComponent,
         StatisticsSummaryCardComponent,
     ],
     declarations: [routedStatisticsViewComponents],

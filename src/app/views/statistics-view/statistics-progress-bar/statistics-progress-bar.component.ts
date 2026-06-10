@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { StatisticsProgressBarConfig } from '../models';
+import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
 
 /**
  * The StatisticsProgressBarComponent component.

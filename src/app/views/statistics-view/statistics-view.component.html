@@ -14,20 +14,19 @@
                     </div>
 
                     <!-- Summary Cards -->
-                    <awg-statistics-summary-cards
+                    <awg-statistics-summary
                         [activeSeries]="statisticsData.activeSeries"
                         [activeSections]="statisticsData.activeSections"
-                        [totalComplexes]="statisticsData.totalComplexes"
-                        [availableComplexes]="statisticsData.availableComplexes">
-                    </awg-statistics-summary-cards>
+                        [availableComplexes]="statisticsData.availableComplexes"
+                        [totalComplexes]="statisticsData.totalComplexes">
+                    </awg-statistics-summary>
 
                     <!-- Overall Progress -->
-                    <awg-statistics-overall-progress-card
+                    <awg-statistics-overall-progress
                         [progressRate]="statisticsData.progressRate"
                         [availableComplexes]="statisticsData.availableComplexes"
                         [totalComplexes]="statisticsData.totalComplexes">
-                        ></awg-statistics-overall-progress-card
-                    >
+                    </awg-statistics-overall-progress>
 
                     <!-- Complex Types Breakdown -->
                     <awg-statistics-complex-breakdown
