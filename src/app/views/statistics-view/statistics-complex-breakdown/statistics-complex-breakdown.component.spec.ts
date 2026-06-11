@@ -117,7 +117,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
             it('... should contain one distribution card in first div', () => {
                 const colDes = getAndExpectDebugElementByCss(compDe, 'div.col-md-6', 2, 2);
-                getAndExpectDebugElementByCss(colDes[0], 'div.awg-statisctics-distribution-card', 1, 1);
+                getAndExpectDebugElementByCss(colDes[0], 'div.awg-statistics-distribution-card', 1, 1);
             });
 
             it('... should contain one activity card in second div', () => {
@@ -129,7 +129,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should have correct classes on distribution card div', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -137,7 +137,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
                     expectToBe(distCardEl.classList.length, 4);
                     expectToContain(distCardEl.classList, 'awg-statistics-card');
-                    expectToContain(distCardEl.classList, 'awg-statisctics-distribution-card');
+                    expectToContain(distCardEl.classList, 'awg-statistics-distribution-card');
                     expectToContain(distCardEl.classList, 'card');
                     expectToContain(distCardEl.classList, 'h-100');
                 });
@@ -145,7 +145,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should contain one card header div', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -155,7 +155,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should contain h4 title element in card header', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -166,7 +166,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should contain correct title in card header', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -181,7 +181,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should contain one card body', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -191,7 +191,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                 it('... should contain no div with progress bar components in card body yet', () => {
                     const distCardDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-statisctics-distribution-card',
+                        'div.awg-statistics-distribution-card',
                         1,
                         1
                     );
@@ -321,7 +321,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     it('... should contain 3 progress bar components in card body', () => {
                         const distCardBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-statisctics-distribution-card > div.card-body',
+                            'div.awg-statistics-distribution-card > div.card-body',
                             1,
                             1
                         );
@@ -337,7 +337,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     it('... should pass down corect inputs to progress bar components', () => {
                         const distCardBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-statisctics-distribution-card > div.card-body',
+                            'div.awg-statistics-distribution-card > div.card-body',
                             1,
                             1
                         );
