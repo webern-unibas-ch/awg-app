@@ -36,9 +36,9 @@ export class StatisticsComplexBreakdownComponent {
      * It defines the items for the complex breakdown progress bars.
      */
     readonly COMPLEX_BREAKDOWN_ITEMS: StatisticsProgressBarItem[] = [
-        { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
-        { key: 'mnr', baseLabel: 'M-number', colorClass: 'bg-secondary' },
-        { key: 'mnrX', baseLabel: 'M*-number', colorClass: 'bg-info' },
+        { key: 'opus', baseLabel: 'Opus', colorType: 'primary' },
+        { key: 'mnr', baseLabel: 'M-number', colorType: 'secondary' },
+        { key: 'mnrX', baseLabel: 'M*-number', colorType: 'info' },
     ];
 
     /**

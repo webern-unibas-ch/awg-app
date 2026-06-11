@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
+
 import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
 
 /**
@@ -12,6 +14,7 @@ import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
     templateUrl: './statistics-progress-bar.component.html',
     styleUrls: ['./statistics-progress-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgbProgressbar],
 })
 export class StatisticsProgressBarComponent {
     /**
@@ -36,14 +39,6 @@ export class StatisticsProgressBarComponent {
      * @default '15px'
      */
     height = input<string>('15px');
-
-    /**
-     * Input signal: minWidth.
-     *
-     * It holds the minimum width of the progress bar for responsive behavior.
-     * @default '120px'
-     */
-    minWidth = input<string>('120px');
 
     /**
      * Input signal: showPercentageLabel.

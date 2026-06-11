@@ -30,7 +30,6 @@ class StatisticsProgressBarStubComponent {
     config = input.required<StatisticsProgressBarConfig>();
     headerLabel = input<string>();
     height = input<string>('15px');
-    minWidth = input<string>('120px');
     showPercentageLabel = input<boolean>(true);
     boldPercentageLabel = input<boolean>(false);
     customClasses = input<string>('');
@@ -75,9 +74,9 @@ describe('StatisticsComplexBreakdownComponent', () => {
         };
 
         expectedComplexBreakdownItems = [
-            { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
-            { key: 'mnr', baseLabel: 'M-number', colorClass: 'bg-secondary' },
-            { key: 'mnrX', baseLabel: 'M*-number', colorClass: 'bg-info' },
+            { key: 'opus', baseLabel: 'Opus', colorType: 'primary' },
+            { key: 'mnr', baseLabel: 'M-number', colorType: 'secondary' },
+            { key: 'mnrX', baseLabel: 'M*-number', colorType: 'info' },
         ];
 
         // Set required input signal with default value for initial tests
@@ -360,7 +359,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                                 total: data.totalComplexes,
                             };
                             const expectedLabel = item.baseLabel + ' Complexes';
-                            const expectedClass = item.colorClass;
+                            const expectedClass = item.colorType;
 
                             expectToEqual(progressBarCmp.config(), expectedConfig);
                             expectToBe(progressBarCmp.headerLabel(), expectedLabel);
