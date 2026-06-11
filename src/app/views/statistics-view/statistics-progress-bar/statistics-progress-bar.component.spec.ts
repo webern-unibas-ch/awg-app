@@ -820,6 +820,26 @@ describe('StatisticsProgressBarComponent', () => {
 
                     expectToBe(component.progressBarWidth(), 100);
                 });
+
+                it('... should clamp percentage to 100 if the configured percentage is greater than 100', () => {
+                    fixture.componentRef.setInput('config', {
+                        mode: 'percentage',
+                        percentage: 125,
+                    });
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 100);
+                });
+
+                it('... should clamp percentage to 0 if the configured percentage is negative', () => {
+                    fixture.componentRef.setInput('config', {
+                        mode: 'percentage',
+                        percentage: -50,
+                    });
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 0);
+                });
             });
 
             describe('... in ratio mode', () => {
@@ -854,6 +874,30 @@ describe('StatisticsProgressBarComponent', () => {
 
                         expectToBe(component.progressBarWidth(), testCase.expectedWidth);
                     });
+                });
+
+                it('... should clamp percentage to 100 if the configured active/total ratio is greater than 100%', () => {
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'ratio',
+                        active: 150,
+                        total: 120,
+                    };
+                    fixture.componentRef.setInput('config', config);
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 100);
+                });
+
+                it('... should clamp percentage to 0 if the configured active/total ratio is negative', () => {
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'ratio',
+                        active: -30,
+                        total: 120,
+                    };
+                    fixture.componentRef.setInput('config', config);
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 0);
                 });
             });
 
@@ -890,6 +934,30 @@ describe('StatisticsProgressBarComponent', () => {
 
                         expectToBe(component.progressBarWidth(), testCase.expectedWidth);
                     });
+                });
+
+                it('... should clamp percentage to 100 if the configured active vs. total value is greater than 100%', () => {
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'absolute',
+                        active: 150,
+                        total: 120,
+                    };
+                    fixture.componentRef.setInput('config', config);
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 100);
+                });
+
+                it('... should clamp percentage to 0 if the configured active vs. total value is negative', () => {
+                    const config: StatisticsProgressBarConfig = {
+                        mode: 'absolute',
+                        active: -30,
+                        total: 120,
+                    };
+                    fixture.componentRef.setInput('config', config);
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 0);
                 });
             });
 

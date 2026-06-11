@@ -110,18 +110,22 @@ export class StatisticsProgressBarComponent {
     progressBarWidth = computed(() => {
         const cfg = this.config();
 
+        let width = 0;
+
         switch (cfg.mode) {
             case 'percentage':
-                return cfg.percentage ?? 0;
+                width = cfg.percentage ?? 0;
+                break;
             case 'absolute':
             case 'ratio':
-                if (cfg.total === 0) {
-                    return 0;
+                if (cfg.total !== 0) {
+                    width = Math.round((cfg.active / cfg.total) * 100);
                 }
-                return Math.round((cfg.active / cfg.total) * 100);
-            default:
-                return 0;
+                break;
         }
+
+        // Ensure width is between 0 and 100
+        return Math.max(0, Math.min(100, width));
     });
 
     /**
