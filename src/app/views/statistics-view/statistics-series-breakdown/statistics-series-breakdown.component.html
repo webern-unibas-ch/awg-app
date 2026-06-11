@@ -1,4 +1,4 @@
-<div class="awg-statistics-series-breakdown awg-statistics-card card">
+<div class="awg-statistics-edition-breakdown awg-statistics-card card">
     <div class="card-header">
         <h3 class="card-title mb-0">Series & Sections Breakdown</h3>
     </div>
@@ -7,7 +7,7 @@
             <table class="table" style="width: 100%">
                 <thead>
                     <tr>
-                        <th rowspan="2" class="text.center align-bottom" style="width: 15%">Series / Section</th>
+                        <th rowspan="2" class="text-center align-bottom" style="width: 15%">Series / Section</th>
                         <th colspan="3" class="text-center table-light border-bottom-0">Complexes</th>
                         <th rowspan="2" class="text-center align-bottom" style="width: 50%">Progress</th>
                     </tr>
@@ -90,16 +90,11 @@
                                     {{ section.activeComplexes }}
                                 </td>
                                 <td>
-                                    @if (section.totalComplexes > 0) {
-                                        <awg-statistics-progress-bar
-                                            [config]="{
-                                                mode: 'percentage',
-                                                percentage: section.progressRate,
-                                            }"></awg-statistics-progress-bar>
-                                    } @else {
-                                        <awg-statistics-progress-bar [config]="{ mode: 'percentage', percentage: 0 }">
-                                        </awg-statistics-progress-bar>
-                                    }
+                                    <awg-statistics-progress-bar
+                                        [config]="{
+                                            mode: 'percentage',
+                                            percentage: section.totalComplexes > 0 ? section.progressRate : 0,
+                                        }"></awg-statistics-progress-bar>
                                 </td>
                             </tr>
                         }
