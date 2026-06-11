@@ -103,7 +103,7 @@ describe('StatisticsViewComponent', () => {
 
     beforeEach(() => {
         // Mock return value for getStatisticsFromOutline (needs to be set before component creation)
-        mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
+        mockStatisticsService.getStatisticsFromOutline.mockReturnValue({} as Statistics);
 
         // Create component fixture
         fixture = TestBed.createComponent(StatisticsViewComponent);
@@ -185,7 +185,7 @@ describe('StatisticsViewComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have a signal `statisticsData` (initialized with data from StatisticsService)', () => {
-            expectToEqual(component.statisticsData(), expectedStatisticsData);
+            expectToEqual(component.statisticsData(), {});
 
             expect(mockStatisticsService.getStatisticsFromOutline).toHaveBeenCalled();
         });
@@ -441,111 +441,4 @@ describe('StatisticsViewComponent', () => {
             });
         });
     });
-
-    /*
-    Describe('#calculateStatistics', () => {
-        it('... should call StatisticsService.calculateStatistics', () => {
-            component.calculateStatistics();
-            expect(mockStatisticsService.calculateStatistics).toHaveBeenCalled();
-        });
-
-        it('... should set statistics property', () => {
-            component.calculateStatistics();
-            expect(component.statistics).toBeDefined();
-            expectToBe(component.statistics.totalComplexes, 100);
-            expectToBe(component.statistics.activeComplexes, 75);
-        });
-
-        it('... should call updateStatisticsCards', () => {
-            vi.spyOn(component, 'updateStatisticsCards');
-            component.calculateStatistics();
-            expect(component.updateStatisticsCards).toHaveBeenCalled();
-        });
-    });
-
-    describe('#updateStatisticsCards', () => {
-        beforeEach(() => {
-            component.statistics = {
-                totalSeries: 3,
-                activeSeries: 2,
-                totalSections: 5,
-                totalComplexes: 100,
-                activeComplexes: 75,
-                progressRate: 75,
-                seriesBreakdown: [
-                    {
-                        series: '1',
-                        sections: 2,
-                        totalComplexes: 50,
-                        activeComplexes: 40,
-                        progressRate: 40, // (0 + 80) / 2 = 40%
-                        sectionBreakdown: [
-                            {
-                                section: '1',
-                                disabled: true,
-                                totalComplexes: 0,
-                                activeComplexes: 0,
-                                progressRate: 0,
-                                complexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                                activeComplexBreakdown: { opus: 0, mnr: 0, mnrX: 0 },
-                            },
-                            {
-                                section: '5',
-                                disabled: false,
-                                totalComplexes: 50,
-                                activeComplexes: 40,
-                                progressRate: 80,
-                                complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                                activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
-                            },
-                        ],
-                        complexBreakdown: { opus: 5, mnr: 30, mnrX: 15 },
-                        activeComplexBreakdown: { opus: 4, mnr: 25, mnrX: 11 },
-                    },
-                ],
-                complexBreakdown: { opus: 20, mnr: 60, mnrX: 20 },
-                activeComplexBreakdown: { opus: 15, mnr: 45, mnrX: 15 },
-            } as Statistics;
-        });
-
-        it('... should populate statisticsSummaryCards array', () => {
-            component.updateStatisticsCards();
-            expect(component.statisticsSummaryCards).toBeDefined();
-            expectToBe(component.statisticsSummaryCards.length, 4);
-        });
-
-        it('... should set correct card data', () => {
-            component.updateStatisticsCards();
-
-            const [seriesCard, sectionsCard, complexesCard, activeCard] = component.statisticsSummaryCards;
-
-            expectToBe(seriesCard.title, 'Active Series');
-            expectToBe(seriesCard.value, 2);
-            expectToBe(seriesCard.icon, 'fas fa-list');
-            expectToBe(seriesCard.bgClass, 'bg-primary');
-
-            expectToBe(sectionsCard.title, 'Active Sections');
-            expectToBe(sectionsCard.value, 5);
-            expectToBe(sectionsCard.icon, 'fas fa-folder');
-            expectToBe(sectionsCard.bgClass, 'bg-info');
-
-            expectToBe(complexesCard.title, 'Total Complexes');
-            expectToBe(complexesCard.value, 100);
-            expectToBe(complexesCard.icon, 'fas fa-music');
-            expectToBe(complexesCard.bgClass, 'bg-secondary');
-
-            expectToBe(activeCard.title, 'Active Complexes');
-            expectToBe(activeCard.value, 75);
-            expectToBe(activeCard.icon, 'fas fa-check-circle');
-            expectToBe(activeCard.bgClass, 'bg-success');
-        });
-
-        it('... should return early if statistics is not set', () => {
-            component.statistics = null;
-
-            component.updateStatisticsCards();
-
-            expectToEqual(component.statisticsSummaryCards, []);
-        });
-    }); */
 });
