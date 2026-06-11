@@ -27,8 +27,8 @@ class StatisticsProgressBarStubComponent {
     height = input<string>('15px');
     showPercentageLabel = input<boolean>(true);
     boldPercentageLabel = input<boolean>(false);
-    customClasses = input<string>('');
-    useCustomClassesOnly = input<boolean>(false);
+    customType = input<string>('');
+    useCustomTypeOnly = input<boolean>(false);
 }
 
 describe('StatisticsOverallProgressComponent', () => {

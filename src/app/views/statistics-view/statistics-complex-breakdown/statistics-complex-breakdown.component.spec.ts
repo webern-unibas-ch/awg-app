@@ -32,8 +32,8 @@ class StatisticsProgressBarStubComponent {
     height = input<string>('15px');
     showPercentageLabel = input<boolean>(true);
     boldPercentageLabel = input<boolean>(false);
-    customClasses = input<string>('');
-    useCustomClassesOnly = input<boolean>(false);
+    customType = input<string>('');
+    useCustomTypeOnly = input<boolean>(false);
 }
 
 describe('StatisticsComplexBreakdownComponent', () => {
@@ -359,13 +359,13 @@ describe('StatisticsComplexBreakdownComponent', () => {
                                 total: data.totalComplexes,
                             };
                             const expectedLabel = item.baseLabel + ' Complexes';
-                            const expectedClass = item.colorType;
+                            const expectedType = item.colorType;
 
                             expectToEqual(progressBarCmp.config(), expectedConfig);
                             expectToBe(progressBarCmp.headerLabel(), expectedLabel);
                             expectToBe(progressBarCmp.showPercentageLabel(), false);
-                            expectToBe(progressBarCmp.customClasses(), expectedClass);
-                            expectToBe(progressBarCmp.useCustomClassesOnly(), true);
+                            expectToBe(progressBarCmp.customType(), expectedType);
+                            expectToBe(progressBarCmp.useCustomTypeOnly(), true);
                         });
                     });
                 });

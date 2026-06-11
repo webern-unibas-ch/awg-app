@@ -15,7 +15,7 @@
     <ngb-progressbar
         class="flex-grow-1"
         [class.me-2]="showPercentageLabel()"
-        [type]="progressBarColorType() || customClasses()"
+        [type]="progressBarColorType() || customType()"
         [height]="height()"
         [value]="progressBarWidth()"
         [ariaLabel]="headerLabel() || 'Progress Bar'" />

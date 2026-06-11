@@ -57,29 +57,29 @@ export class StatisticsProgressBarComponent {
     boldPercentageLabel = input<boolean>(false);
 
     /**
-     * Input signal: customClasses.
+     * Input signal: customType.
      *
-     * It holds additional CSS classes to apply to the progress bar.
+     * It holds a custom type to apply to the progress bar.
      * @default ''
      */
-    customClasses = input<string>('');
+    customType = input<string>('');
 
     /**
-     * Input signal: useCustomClassesOnly.
+     * Input signal: useCustomTypeOnly.
      *
-     * It holds a flag whether to use only custom classes and skip automatic class logic.
+     * It holds a flag whether to use only custom type and skip automatic color type logic.
      * @default false
      */
-    useCustomClassesOnly = input<boolean>(false);
+    useCustomTypeOnly = input<boolean>(false);
 
     /**
      * Computed signal: progressBarColorType.
      *
      * It returns the appropriate abstract color type for the progress bar based on percentage,
-     * or an empty string if custom classes should be used exclusively.
+     * or an empty string if custom type should be used exclusively.
      */
     progressBarColorType = computed<'success' | 'warning' | 'danger' | 'light' | ''>(() => {
-        if (this.useCustomClassesOnly()) {
+        if (this.useCustomTypeOnly()) {
             return '';
         }
 

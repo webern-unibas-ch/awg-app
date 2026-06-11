@@ -25,8 +25,8 @@ describe('StatisticsProgressBarComponent', () => {
     let expectedHeight: string;
     let expectedShowPercentageLabel: boolean;
     let expectedBoldPercentageLabel: boolean;
-    let expectedCustomClasses: string;
-    let expectedUseCustomClassesOnly: boolean;
+    let expectedCustomType: string;
+    let expectedUseCustomTypeOnly: boolean;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -42,8 +42,8 @@ describe('StatisticsProgressBarComponent', () => {
         expectedHeight = '20px';
         expectedShowPercentageLabel = true;
         expectedBoldPercentageLabel = true;
-        expectedCustomClasses = 'custom-class';
-        expectedUseCustomClassesOnly = false;
+        expectedCustomType = 'custom-type';
+        expectedUseCustomTypeOnly = false;
 
         // Set required input signal with default value for initial tests
         fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 0 });
@@ -74,12 +74,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), false);
         });
 
-        it('... should have default `customClasses`', () => {
-            expectToBe(component.customClasses(), '');
+        it('... should have default `customType`', () => {
+            expectToBe(component.customType(), '');
         });
 
-        it('... should have default `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), false);
+        it('... should have default `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), false);
         });
 
         describe('VIEW', () => {
@@ -163,12 +163,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), false);
         });
 
-        it('... should have default `customClasses`', () => {
-            expectToBe(component.customClasses(), '');
+        it('... should have default `customType`', () => {
+            expectToBe(component.customType(), '');
         });
 
-        it('... should have default `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), false);
+        it('... should have default `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), false);
         });
 
         it('... should have computed `progressBarColorType` (light due to percentage=0)', () => {
@@ -226,8 +226,8 @@ describe('StatisticsProgressBarComponent', () => {
             fixture.componentRef.setInput('height', expectedHeight);
             fixture.componentRef.setInput('showPercentageLabel', expectedShowPercentageLabel);
             fixture.componentRef.setInput('boldPercentageLabel', expectedBoldPercentageLabel);
-            fixture.componentRef.setInput('customClasses', expectedCustomClasses);
-            fixture.componentRef.setInput('useCustomClassesOnly', expectedUseCustomClassesOnly);
+            fixture.componentRef.setInput('customType', expectedCustomType);
+            fixture.componentRef.setInput('useCustomTypeOnly', expectedUseCustomTypeOnly);
 
             fixture.detectChanges();
         });
@@ -252,12 +252,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), expectedBoldPercentageLabel);
         });
 
-        it('... should have updated `customClasses`', () => {
-            expectToBe(component.customClasses(), expectedCustomClasses);
+        it('... should have updated `customType`', () => {
+            expectToBe(component.customType(), expectedCustomType);
         });
 
-        it('... should have updated `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), expectedUseCustomClassesOnly);
+        it('... should have updated `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), expectedUseCustomTypeOnly);
         });
 
         it('... should have computed `progressBarColorType` (`warning` due to percentage=75)', () => {
@@ -441,9 +441,9 @@ describe('StatisticsProgressBarComponent', () => {
                 });
             });
 
-            describe('... when useCustomClassesOnly is true', () => {
+            describe('... when useCustomTypeOnly is true', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', true);
+                    fixture.componentRef.setInput('useCustomTypeOnly', true);
                     fixture.detectChanges();
                 });
 
@@ -451,11 +451,11 @@ describe('StatisticsProgressBarComponent', () => {
                     expectToBe(component.progressBarColorType(), '');
                 });
 
-                it('... should not have color types on NgbProgressbar, but custom classes only', () => {
+                it('... should not have color types on NgbProgressbar, but custom type only', () => {
                     const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                     const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
 
-                    expectToBe(progressCmp.type, 'custom-class');
+                    expectToBe(progressCmp.type, 'custom-type');
                 });
             });
 
@@ -500,9 +500,9 @@ describe('StatisticsProgressBarComponent', () => {
                 expect(component.progressBarColorType()).toBeDefined();
             });
 
-            describe('... with useCustomClassesOnly true', () => {
+            describe('... with useCustomTypeOnly true', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', true);
+                    fixture.componentRef.setInput('useCustomTypeOnly', true);
                 });
 
                 describe('... should return an empty string regardless of values', () => {
@@ -540,9 +540,9 @@ describe('StatisticsProgressBarComponent', () => {
                 });
             });
 
-            describe('... with useCustomClassesOnly false', () => {
+            describe('... with useCustomTypeOnly false', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', false);
+                    fixture.componentRef.setInput('useCustomTypeOnly', false);
                 });
 
                 describe('... should return `success` for width >= 80', () => {
