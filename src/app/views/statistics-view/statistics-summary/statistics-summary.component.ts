@@ -32,7 +32,9 @@ export class StatisticsSummaryComponent {
      */
     summaryCards = computed<StatisticsSummaryCardData[]>(() => {
         const data = this.summaryData();
-        if (!data) return [];
+        if (!data) {
+            return [];
+        }
 
         return [
             {
