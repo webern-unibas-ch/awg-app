@@ -422,7 +422,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectedSeriesBreakdownData.length
                         );
 
-                        seriesTrDes.forEach((seriesTrDe, index) => {
+                        seriesTrDes.forEach(seriesTrDe => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const expectedBadgeCount = mockData[0].totalComplexes > 0 ? 1 : 0;
 
