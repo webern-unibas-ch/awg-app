@@ -50,7 +50,9 @@ export class StatisticsViewComponent {
      */
     complexBreakdownData = computed<StatisticsComplexBreakdownData | null>(() => {
         const data = this.statisticsData();
-        if (!data) {return null;}
+        if (!data) {
+            return null;
+        }
 
         return {
             activeComplexBreakdown: data.activeComplexBreakdown,
@@ -66,7 +68,9 @@ export class StatisticsViewComponent {
      */
     overallProgressData = computed<StatisticsOverallProgressData | null>(() => {
         const data = this.statisticsData();
-        if (!data) {return null;}
+        if (!data) {
+            return null;
+        }
 
         return {
             progressRate: data.progressRate,
@@ -82,7 +86,9 @@ export class StatisticsViewComponent {
      */
     summaryData = computed<StatisticsSummaryData | null>(() => {
         const data = this.statisticsData();
-        if (!data) {return null;}
+        if (!data) {
+            return null;
+        }
 
         return {
             activeSeries: data.activeSeries,

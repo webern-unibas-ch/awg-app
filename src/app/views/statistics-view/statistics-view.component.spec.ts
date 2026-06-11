@@ -388,7 +388,7 @@ describe('StatisticsViewComponent', () => {
             it('... should compute complex breakdown data based on statisticsData', () => {
                 const complexBreakdownData = component.complexBreakdownData();
 
-                expect(complexBreakdownData).toEqual({
+                expectToEqual(complexBreakdownData, {
                     activeComplexBreakdown: expectedStatisticsData.activeComplexBreakdown,
                     complexBreakdown: expectedStatisticsData.complexBreakdown,
                     totalComplexes: expectedStatisticsData.totalComplexes,
@@ -410,7 +410,7 @@ describe('StatisticsViewComponent', () => {
             it('... should compute overall progress data based on statisticsData', () => {
                 const overallProgressData = component.overallProgressData();
 
-                expect(overallProgressData).toEqual({
+                expectToEqual(overallProgressData, {
                     progressRate: expectedStatisticsData.progressRate,
                     activeComplexes: expectedStatisticsData.activeComplexes,
                     totalComplexes: expectedStatisticsData.totalComplexes,
@@ -432,7 +432,7 @@ describe('StatisticsViewComponent', () => {
             it('... should compute summary data based on statisticsData', () => {
                 const summaryData = component.summaryData();
 
-                expect(summaryData).toEqual({
+                expectToEqual(summaryData, {
                     activeSeries: expectedStatisticsData.activeSeries,
                     activeSections: expectedStatisticsData.activeSections,
                     activeComplexes: expectedStatisticsData.activeComplexes,

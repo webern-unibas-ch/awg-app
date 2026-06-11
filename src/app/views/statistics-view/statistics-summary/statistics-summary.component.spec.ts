@@ -125,8 +125,8 @@ describe('StatisticsSummaryComponent', () => {
 
         it('... should have computed `summaryCards` based on `statisticsData`', () => {
             const summaryCards = component.summaryCards();
-            expect(summaryCards.length).toBe(4);
 
+            expectToBe(summaryCards.length, 4);
             summaryCards.forEach((card, index) => {
                 expectToBe(card.title, expectedSummaryCards[index].title);
                 expectToBe(card.value, expectedSummaryCards[index].value);
