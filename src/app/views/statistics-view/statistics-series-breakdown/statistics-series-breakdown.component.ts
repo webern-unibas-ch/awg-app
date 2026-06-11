@@ -6,6 +6,12 @@ import { StatisticsSeriesBreakdown } from '@awg-views/statistics-view/models';
 import { StatisticsBreakdownBadgeComponent } from '@awg-views/statistics-view/statistics-breakdown-badge';
 import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
 
+/**
+ * The StatisticsSeriesBreakdown component.
+ *
+ * It displays a breakdown of the series statistics in the statistics view,
+ * showing the distribution of active and disabled sections for each series.
+ */
 @Component({
     selector: 'awg-statistics-series-breakdown',
     templateUrl: './statistics-series-breakdown.component.html',

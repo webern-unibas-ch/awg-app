@@ -2,7 +2,9 @@ import { Routes } from '@angular/router';
 
 import { StatisticsViewComponent } from './statistics-view.component';
 
-/* Routes for the StatisticsView */
+/**
+ * The routes for the statistics view.
+ */
 export const STATISTICS_VIEW_ROUTES: Routes = [
     {
         path: '',
