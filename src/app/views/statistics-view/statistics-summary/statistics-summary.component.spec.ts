@@ -107,7 +107,7 @@ describe('StatisticsSummaryComponent', () => {
 
         describe('VIEW', () => {
             it('... should contain no cards div yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'awg-statistics-summary-card', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary-card', 0, 0);
             });
         });
     });
