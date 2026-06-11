@@ -1,0 +1,41 @@
+@if (headerLabel()) {
+    <div
+        class="awg-statistics-progress-header mb-1"
+        [class.d-flex]="progressHeaderValue() !== ''"
+        [class.justify-content-between]="progressHeaderValue() !== ''">
+        <span>{{ headerLabel() }}</span>
+
+        @if (progressHeaderValue() !== '') {
+            <span>{{ progressHeaderValue() }}</span>
+        }
+    </div>
+}
+
+<div class="awg-statistics-progress-container d-flex align-items-center">
+    <div
+        class="awg-statistics-progress progress flex-grow-1"
+        [class.me-2]="showPercentageLabel()"
+        [style.height]="height()"
+        [style.min-width]="minWidth()">
+        <div
+            class="awg-statistics-progress-bar progress-bar"
+            [class]="customClasses()"
+            [class.bg-success]="progressBarColorType() === 'success'"
+            [class.bg-warning]="progressBarColorType() === 'warning'"
+            [class.bg-danger]="progressBarColorType() === 'danger'"
+            [class.bg-light]="progressBarColorType() === 'light'"
+            role="progressbar"
+            [style.width.%]="progressBarWidth()"
+            [attr.aria-valuenow]="progressBarWidth()"
+            aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+    @if (showPercentageLabel()) {
+        <small
+            class="text-nowrap awg-statistics-progress-label"
+            [class.fw-bold]="boldPercentageLabel()"
+            [class.text-muted]="progressBarWidth() === 0"
+            >{{ progressBarWidth() }}%</small
+        >
+    }
+</div>

@@ -1,11 +1,10 @@
-import { DebugElement, NgModule, inject } from '@angular/core';
+import { DebugElement, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarXmark, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { NgbConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 

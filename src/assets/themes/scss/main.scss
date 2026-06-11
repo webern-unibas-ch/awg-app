@@ -210,6 +210,26 @@ footer {
     color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
 }
 
+.awg-statistics-card {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.15s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+
+        .card-title {
+            color: #495057;
+            font-weight: 600;
+        }
+    }
+}
+
 /****** ACCORDION ******/
 .accordion-button {
     &.collapsed,

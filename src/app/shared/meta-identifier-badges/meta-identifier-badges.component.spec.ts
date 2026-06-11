@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LOGOS_DATA } from '@awg-core/core-data';
 import { MetaIdentifiers } from '@awg-core/core-models';
@@ -122,7 +122,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
                     const img = el.querySelector('img.awg-meta-identifier-badge-icon') as HTMLImageElement;
                     expect(img).toBeTruthy();
-                    expect(img.src).toContain(expectedLinks[i].src);
+                    expectToContain(img.src, expectedLinks[i].src);
                     expectToBe(img.alt, expectedLinks[i].label);
                 });
             });

@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
-                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }}">
+                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }} text-nowrap">
                         {{ tableHeader.label }}
                     </th>
                 }

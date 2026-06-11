@@ -3,9 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import { faScrewdriverWrench, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import {
     expectToBe,

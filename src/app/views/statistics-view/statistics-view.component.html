@@ -1,0 +1,31 @@
+@if (statisticsData(); as statisticsData) {
+    <div class="awg-statistics-view">
+        <div class="container-fluid">
+            <div class="row">
+                <main class="col">
+                    <!-- Statistics Header -->
+                    <header
+                        class="awg-statistics-view-header awg-jumbotron mb-4 p-3 pt-4 text-center shadow border rounded-3">
+                        <h2>Statistics</h2>
+                        <p class="lead text-muted">
+                            Overview of key metrics in the online edition of the Anton Webern Gesamtausgabe
+                        </p>
+                    </header>
+
+                    <awg-statistics-summary [summaryData]="summaryData()"> </awg-statistics-summary>
+
+                    <awg-statistics-overall-progress [overallProgressData]="overallProgressData()">
+                    </awg-statistics-overall-progress>
+
+                    <awg-statistics-complex-breakdown
+                        [complexBreakdownData]="complexBreakdownData()"></awg-statistics-complex-breakdown>
+
+                    <awg-statistics-series-breakdown
+                        [seriesBreakdownData]="statisticsData.seriesBreakdown"></awg-statistics-series-breakdown>
+                </main>
+            </div>
+        </div>
+    </div>
+} @else {
+    <p>No statistics data available.</p>
+}
