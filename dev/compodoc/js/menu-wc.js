@@ -917,6 +917,30 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SparqlTableComponent.html" data-type="entity-link" >SparqlTableComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/StatisticsBreakdownBadgeComponent.html" data-type="entity-link" >StatisticsBreakdownBadgeComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsComplexBreakdownComponent.html" data-type="entity-link" >StatisticsComplexBreakdownComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsOverallProgressComponent.html" data-type="entity-link" >StatisticsOverallProgressComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsProgressBarComponent.html" data-type="entity-link" >StatisticsProgressBarComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsSeriesBreakdownComponent.html" data-type="entity-link" >StatisticsSeriesBreakdownComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsSummaryCardComponent.html" data-type="entity-link" >StatisticsSummaryCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsSummaryComponent.html" data-type="entity-link" >StatisticsSummaryComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StatisticsViewComponent.html" data-type="entity-link" >StatisticsViewComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TextcriticsListComponent.html" data-type="entity-link" >TextcriticsListComponent</a>
                             </li>
                             <li class="link">
@@ -1206,6 +1230,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SourceList.html" data-type="entity-link" >SourceList</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Statistics.html" data-type="entity-link" >Statistics</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/StatisticsBreakdownBase.html" data-type="entity-link" >StatisticsBreakdownBase</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/StatisticsComplexBreakdown.html" data-type="entity-link" >StatisticsComplexBreakdown</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/StatisticsSectionBreakdown.html" data-type="entity-link" >StatisticsSectionBreakdown</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/StatisticsSeriesBreakdown.html" data-type="entity-link" >StatisticsSeriesBreakdown</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/TableData.html" data-type="entity-link" >TableData</a>
                             </li>
                             <li class="link">
@@ -1313,6 +1352,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/LoadingService.html" data-type="entity-link" >LoadingService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/StatisticsService.html" data-type="entity-link" >StatisticsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StorageService.html" data-type="entity-link" >StorageService</a>
@@ -1459,6 +1501,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/RDFStoreSelectResponseTripleSegment.html" data-type="entity-link" >RDFStoreSelectResponseTripleSegment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StatisticsBreakDownBadge.html" data-type="entity-link" >StatisticsBreakDownBadge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StatisticsComplexCounter.html" data-type="entity-link" >StatisticsComplexCounter</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StatisticsProgressBarItem.html" data-type="entity-link" >StatisticsProgressBarItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableRows.html" data-type="entity-link" >TableRows</a>

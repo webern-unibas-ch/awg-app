@@ -230,6 +230,9 @@
                             <a href="#mockEditionOutline" title="src/testing/mock-data/mockEditionOutline.ts" ><b>mockEditionOutline</b>&nbsp;&nbsp;&nbsp;(src/.../mockEditionOutline.ts)</a>
                         </li>
                         <li>
+                            <a href="#mockStatisticsData" title="src/testing/mock-data/mockStatisticsData.ts" ><b>mockStatisticsData</b>&nbsp;&nbsp;&nbsp;(src/.../mockStatisticsData.ts)</a>
+                        </li>
+                        <li>
                             <a href="#mockStorage" title="src/testing/mock-helper/mock-storage.ts" ><b>mockStorage</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
@@ -288,6 +291,9 @@
                         </li>
                         <li>
                             <a href="#routedStructureViewComponents" title="src/app/views/structure-view/structure-view-routing.module.ts" ><b>routedStructureViewComponents</b>&nbsp;&nbsp;&nbsp;(src/.../structure-view-routing.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STATISTICS_VIEW_ROUTES" title="src/app/views/statistics-view/statistics-view.routes.ts" ><b>STATISTICS_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../statistics-view.routes.ts)</a>
                         </li>
                         <li>
                             <a href="#w" title="src/polyfills.ts" ><b>w</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</a>
@@ -515,7 +521,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.6.0-216-gd3651f02c&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.6.0-217-g21b757294&#x27;</code>
                     </td>
                 </tr>
 
@@ -547,7 +553,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-06-10&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-06-11&#x27;</code>
                     </td>
                 </tr>
 
@@ -3970,6 +3976,79 @@ for the edition view.</p>
         </tbody>
     </table>
 </section>
+    <h3>src/testing/mock-data/mockStatisticsData.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mockStatisticsData"></a>
+                    <span class="name">
+                        <span ><b>mockStatisticsData</b></span>
+                        <a href="#mockStatisticsData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    /**
+     * Test helper data constant: mockSeriesBreakdown.
+     *
+     * It provides a mocked mockSeriesBreakdown object.
+     */
+    mockSeriesBreakdown: {
+        series: &#x27;TestSeries&#x27;,
+        activeSections: 1,
+        totalSections: 2,
+        activeComplexes: 5,
+        totalComplexes: 10,
+        activeComplexBreakdown: { mnr: 1, mnrX: 1, opus: 3 },
+        complexBreakdown: { mnr: 3, mnrX: 2, opus: 5 },
+        progressRate: 50,
+        sectionBreakdown: [
+            {
+                section: &#x27;TestSection1&#x27;,
+                disabled: false,
+                activeComplexes: 5,
+                totalComplexes: 10,
+                activeComplexBreakdown: { mnr: 1, mnrX: 1, opus: 3 },
+                complexBreakdown: { mnr: 3, mnrX: 2, opus: 5 },
+                progressRate: 50,
+            },
+            {
+                section: &#x27;TestSection2&#x27;,
+                disabled: true,
+                activeComplexes: 0,
+                totalComplexes: 0,
+                activeComplexBreakdown: { mnr: 0, mnrX: 0, opus: 0 },
+                complexBreakdown: { mnr: 0, mnrX: 0, opus: 0 },
+                progressRate: 0,
+            },
+        ],
+    },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Test helper data file: mockStatisticsData.</p>
+<p>It provides mocks for data used in the context of the statistics view of the app.</p>
+<p>Exposed to be called from tests.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/testing/mock-helper/mock-window.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4613,6 +4692,47 @@ and <a href="../components/EditionSeriesDetailComponent.html">EditionSeriesDetai
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/StructureViewModule.html">StructureViewModule</a>:
 <a href="../components/StructureViewComponent.html">StructureViewComponent</a>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/statistics-view/statistics-view.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STATISTICS_VIEW_ROUTES"></a>
+                    <span class="name">
+                        <span ><b>STATISTICS_VIEW_ROUTES</b></span>
+                        <a href="#STATISTICS_VIEW_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        path: &#x27;&#x27;,
+        component: StatisticsViewComponent,
+        data: { title: &#x27;AWG Online Edition – Statistics&#x27; },
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes for the statistics view.</p>
 </div>
                 </td>
             </tr>

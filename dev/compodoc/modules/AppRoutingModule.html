@@ -182,6 +182,11 @@ const APP_ROUTES: Routes &#x3D; [
         pathMatch: &#x27;full&#x27;,
     },
     {
+        path: &#x27;statistics&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/statistics-view/statistics-view.routes&#x27;).then(m &#x3D;&gt; m.STATISTICS_VIEW_ROUTES)&quot;,
+    },
+    {
         path: &#x27;structure&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)&quot;,
     },
