@@ -3,21 +3,52 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe } from '@testing/expect-helper';
 
-import { EditionOutlineComplexItem } from '@awg-app/views/edition-view/models';
+import { EditionOutlineSeries } from '@awg-app/views/edition-view/models';
 
+import { EditionOutlineComplexTypes } from '@awg-app/views/edition-view/models/edition-outline.model';
+import { Statistics, StatisticsSectionBreakdown, StatisticsSeriesBreakdown } from '../../models';
 import { StatisticsService } from './statistics.service';
+
+// Helper function to create a mock complex item
+function createOutlineMock(seriesRoute: string, sectionsInput: any[]) {
+    return [
+        {
+            series: { route: seriesRoute, full: `Series ${seriesRoute}`, short: seriesRoute },
+            sections: sectionsInput.map(sec => ({
+                section: { short: sec.short },
+                disabled: sec.disabled ?? false,
+                content: {
+                    complexTypes: {
+                        opus: (sec.opus ?? []).map((d: boolean) => ({
+                            disabled: d,
+                            complex: { complexId: { route: '/op' } },
+                        })),
+                        mnr: (sec.mnr ?? []).map((d: boolean) => ({
+                            disabled: d,
+                            complex: { complexId: { route: '/m' } },
+                        })),
+                        mnrX: (sec.mnrX ?? []).map((d: boolean) => ({
+                            disabled: d,
+                            complex: { complexId: { route: '/mx' } },
+                        })),
+                    },
+                },
+            })),
+        },
+    ] as unknown as EditionOutlineSeries[];
+}
 
 describe('StatisticsService', () => {
     let service: StatisticsService;
 
     let incrementSpy: Spy;
-    let processComplexesByTypeSpy: Spy;
 
-    let emptyOutline: any;
-    let singleSeriesSampleOutline: any;
-    let sectionAverageOutline: any;
+    let emptyOutline: EditionOutlineSeries[];
+    let inactiveSeriesOutline: EditionOutlineSeries[];
+    let singleSeriesSampleOutline: EditionOutlineSeries[];
+    let sectionAverageOutline: EditionOutlineSeries[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
@@ -25,67 +56,24 @@ describe('StatisticsService', () => {
         service = TestBed.inject(StatisticsService);
 
         // Test data
-        emptyOutline = [] as any;
+        emptyOutline = [] as EditionOutlineSeries[];
 
-        singleSeriesSampleOutline = [
-            {
-                series: { route: '1', full: 'Series 1' },
-                sections: [
-                    {
-                        section: { short: '5' },
-                        disabled: false,
-                        content: {
-                            complexTypes: {
-                                opus: [
-                                    { disabled: false, complex: { complexId: { route: '/op25' } } },
-                                    { disabled: true, complex: { complexId: { route: '/op26' } } },
-                                ],
-                                mnr: [{ disabled: false, complex: { complexId: { route: '/m28' } } }],
-                            },
-                        },
-                    },
-                ],
-            },
-        ] as any;
+        inactiveSeriesOutline = createOutlineMock('3', [
+            { short: '1', disabled: true, opus: [true, true], mnr: [true] },
+        ]);
 
-        sectionAverageOutline = [
-            {
-                series: { route: '2', full: 'Series 2' },
-                sections: [
-                    {
-                        section: { short: '1' },
-                        disabled: true,
-                        content: {
-                            complexTypes: { opus: [], mnr: [] },
-                        },
-                    },
-                    {
-                        section: { short: '2A' },
-                        disabled: false,
-                        content: {
-                            complexTypes: {
-                                opus: [
-                                    { disabled: false, complex: { complexId: { route: '/op27' } } },
-                                    { disabled: false, complex: { complexId: { route: '/op28' } } },
-                                ],
-                                mnr: [],
-                            },
-                        },
-                    },
-                    {
-                        section: { short: '3' },
-                        disabled: true,
-                        content: {
-                            complexTypes: { opus: [], mnr: [] },
-                        },
-                    },
-                ],
-            },
-        ] as any;
+        singleSeriesSampleOutline = createOutlineMock('1', [
+            { short: '5', disabled: false, opus: [false, true], mnr: [false] },
+        ]);
+
+        sectionAverageOutline = createOutlineMock('2', [
+            { short: '1', disabled: true },
+            { short: '2A', disabled: false, opus: [false, false] },
+            { short: '3', disabled: true },
+        ]);
 
         // Spies
         incrementSpy = vi.spyOn(service as any, '_incrementComplexCounters');
-        processComplexesByTypeSpy = vi.spyOn(service as any, '_processComplexesByType');
     });
 
     afterEach(() => {
@@ -138,6 +126,8 @@ describe('StatisticsService', () => {
 
         it('... should calculate correct statistics for sample data', () => {
             const stats = service.getStatisticsFromOutline(singleSeriesSampleOutline);
+            const seriesBreakdown = stats.seriesBreakdown;
+            const sectionBreakdown = stats.seriesBreakdown[0].sectionBreakdown;
 
             expectSummary(stats, {
                 totalSeries: 1,
@@ -150,19 +140,19 @@ describe('StatisticsService', () => {
             });
 
             // Test section breakdown
-            expect(stats.seriesBreakdown).toBeDefined();
-            expectToBe(stats.seriesBreakdown.length, 1);
+            expect(seriesBreakdown).toBeDefined();
+            expectToBe(seriesBreakdown.length, 1);
 
-            expect(stats.seriesBreakdown[0].sectionBreakdown).toBeDefined();
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown.length, 1);
+            expect(sectionBreakdown).toBeDefined();
+            expectToBe(sectionBreakdown.length, 1);
 
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].section, '5');
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].totalComplexes, 3);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].activeComplexes, 2);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].progressRate, 67);
+            expectToBe(sectionBreakdown[0].section, '5');
+            expectToBe(sectionBreakdown[0].totalComplexes, 3);
+            expectToBe(sectionBreakdown[0].activeComplexes, 2);
+            expectToBe(sectionBreakdown[0].progressRate, 67);
 
             // Test series activity rate (should match single section rate)
-            expectToBe(stats.seriesBreakdown[0].progressRate, 67);
+            expectToBe(seriesBreakdown[0].progressRate, 67);
         });
 
         it('... should calculate series progress as average of all sections', () => {
@@ -177,6 +167,17 @@ describe('StatisticsService', () => {
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].progressRate, 0);
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[1].progressRate, 100);
             expectToBe(stats.seriesBreakdown[0].sectionBreakdown[2].progressRate, 0);
+        });
+
+        it('... should not increment activeSeries if a series has no active content', () => {
+            const stats = service.getStatisticsFromOutline(inactiveSeriesOutline);
+
+            expectToBe(stats.totalSeries, 1);
+            expectToBe(stats.activeSeries, 0);
+
+            expectToBe(stats.totalComplexes, 3);
+            expectToBe(stats.activeComplexes, 0);
+            expectToBe(stats.progressRate, 0);
         });
     });
 
@@ -300,387 +301,118 @@ describe('StatisticsService', () => {
     });
 
     describe('#_processComplexes()', () => {
-        let stats: any;
-        let seriesStats: any;
-        let sectionStats: any;
+        let stats: Statistics;
+        let seriesStats: StatisticsSeriesBreakdown;
+        let sectionStats: StatisticsSectionBreakdown;
 
         beforeEach(() => {
-            stats = { registerComplex: vi.fn() };
-            seriesStats = { registerComplex: vi.fn() };
-            sectionStats = { registerComplex: vi.fn() };
+            stats = new Statistics();
+            seriesStats = new StatisticsSeriesBreakdown('TestSeries');
+            sectionStats = new StatisticsSectionBreakdown('TestSection', false);
+
+            vi.spyOn(stats, 'registerComplex');
+            vi.spyOn(seriesStats, 'registerComplex');
+            vi.spyOn(sectionStats, 'registerComplex');
         });
 
         it('... should have a method `_processComplexes`', () => {
             expect((service as any)._processComplexes).toBeDefined();
         });
 
-        describe('... should return false when ...', () => {
-            it('... both opus and mnr arrays are empty', () => {
-                const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
-                    opus: [],
-                    mnr: [],
-                });
+        it('... should do nothing if complexTypes is undefined', () => {
+            (service as any)._processComplexes(stats, seriesStats, sectionStats, undefined);
 
-                expectToBe(result, false);
-            });
+            expectToBe(stats.totalComplexes, 0);
+            expectToBe(seriesStats.totalComplexes, 0);
+            expectToBe(sectionStats.totalComplexes, 0);
 
-            it('... both opus and mnr arrays are undefined', () => {
-                const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
-                    opus: undefined,
-                    mnr: undefined,
-                });
-
-                expectToBe(result, false);
-                expect(incrementSpy).not.toHaveBeenCalled();
-            });
-
-            it('... opus is undefined and mnr is empty', () => {
-                const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
-                    opus: undefined,
-                    mnr: [],
-                });
-
-                expectToBe(result, false);
-                expect(incrementSpy).not.toHaveBeenCalled();
-            });
-
-            it('... opus is empty and mnr is undefined', () => {
-                const result = (service as any)._processComplexes(stats, seriesStats, sectionStats, {
-                    opus: [],
-                    mnr: undefined,
-                });
-
-                expectToBe(result, false);
-                expect(incrementSpy).not.toHaveBeenCalled();
-            });
+            expectSpyCall(incrementSpy, 0);
         });
 
-        describe('... should return true and trigger `processComplexesByType` when ...', () => {
-            it('... only opus complexes are present', () => {
-                const expectedOpusComplexes = [{ disabled: false, complex: { complexId: { route: '/op25' } } }];
-                const expectedComplexTypes = { opus: expectedOpusComplexes, mnr: [] };
+        it('... should correctly count total and active opus complexes', () => {
+            const complexTypes: EditionOutlineComplexTypes = {
+                opus: [
+                    { disabled: false, complex: { complexId: { route: '/op1' } } },
+                    { disabled: false, complex: { complexId: { route: '/op2' } } },
+                    { disabled: true, complex: { complexId: { route: '/op3' } } },
+                ],
+                mnr: [],
+            } as EditionOutlineComplexTypes;
 
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
+            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
 
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
+            expectToBe(stats.totalComplexes, 3);
+            expectToBe(stats.complexBreakdown.opus, 3);
+            expectToBe(stats.complexBreakdown.mnr, 0);
+            expectToBe(stats.complexBreakdown.mnrX, 0);
 
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... only disabled opus complexes are present', () => {
-                const expectedOpusComplexes = [{ disabled: true, complex: { complexId: { route: '/op26' } } }];
-                const expectedComplexTypes = { opus: expectedOpusComplexes, mnr: [] };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... only mnr complexes are present', () => {
-                const expectedMnrComplexes = [{ disabled: false, complex: { complexId: { route: '/m28' } } }];
-                const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... only disabled mnr complexes are present', () => {
-                const expectedMnrComplexes = [{ disabled: true, complex: { complexId: { route: '/m29' } } }];
-                const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... mnr complexes are classified as `mnrX` when route starts with `/mx`', () => {
-                const expectedMnrComplexes = [{ disabled: false, complex: { complexId: { route: '/mx401' } } }];
-                const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... mnr complexes are classified as `mnr` when route does not start with `/mx`', () => {
-                const expectedMnrComplexes = [{ disabled: true, complex: { complexId: { route: '/m28' } } }];
-                const expectedComplexTypes = { opus: [], mnr: expectedMnrComplexes };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-
-            it('... both opus and mnr groups are processed together', () => {
-                const expectedOpusComplexes = [{ disabled: false, complex: { complexId: { route: '/op25' } } }];
-                const expectedMnrComplexes = [
-                    { disabled: false, complex: { complexId: { route: '/m28' } } },
-                    { disabled: true, complex: { complexId: { route: '/mx401' } } },
-                ];
-                const expectedComplexTypes = { opus: expectedOpusComplexes, mnr: expectedMnrComplexes };
-
-                const result = (service as any)._processComplexes(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    expectedComplexTypes
-                );
-
-                expectToBe(result, true);
-                expectSpyCall(processComplexesByTypeSpy, 2);
-
-                const callArgs = processComplexesByTypeSpy.mock.calls;
-
-                expectToBe(callArgs[0][0], stats);
-                expectToBe(callArgs[0][1], seriesStats);
-                expectToBe(callArgs[0][2], sectionStats);
-                expectToBe(callArgs[0][3], expectedComplexTypes.opus);
-                expectToEqual(callArgs[0][4], expect.any(Function));
-
-                expectToBe(callArgs[1][0], stats);
-                expectToBe(callArgs[1][1], seriesStats);
-                expectToBe(callArgs[1][2], sectionStats);
-                expectToBe(callArgs[1][3], expectedComplexTypes.mnr);
-                expectToEqual(callArgs[1][4], expect.any(Function));
-            });
-        });
-    });
-
-    describe('#_processComplexesByType()', () => {
-        it('... should have a method `_processComplexesByType`', () => {
-            expect((service as any)._processComplexesByType).toBeDefined();
+            expectToBe(stats.activeComplexes, 2);
+            expectToBe(stats.activeComplexBreakdown.opus, 2);
+            expectToBe(stats.activeComplexBreakdown.mnr, 0);
+            expectToBe(stats.activeComplexBreakdown.mnrX, 0);
         });
 
-        describe('... should return false when ...', () => {
-            it('... complexes array is undefined', () => {
-                const target = { registerComplex: vi.fn() };
-                expectToBe(
-                    (service as any)._processComplexesByType(target, target, target, undefined, () => 'opus'),
-                    false
-                );
-            });
+        it('... should correctly count and separate mnr and mnrX complexes', () => {
+            const complexTypes: EditionOutlineComplexTypes = {
+                opus: [],
+                mnr: [
+                    { disabled: false, complex: { complexId: { route: '/m30' } } },
+                    { disabled: false, complex: { complexId: { route: '/mx402' } } },
+                ],
+            } as EditionOutlineComplexTypes;
 
-            it('... complexes array is empty', () => {
-                const target = { registerComplex: vi.fn() };
-                expectToBe(
-                    (service as any)._processComplexesByType(target, target, target, [], () => 'opus'),
-                    false
-                );
-            });
+            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
+
+            expectToBe(stats.totalComplexes, 2);
+            expectToBe(stats.complexBreakdown.opus, 0);
+            expectToBe(stats.complexBreakdown.mnr, 1);
+            expectToBe(stats.complexBreakdown.mnrX, 1);
+
+            expectToBe(stats.activeComplexes, 2);
+            expectToBe(stats.activeComplexBreakdown.opus, 0);
+            expectToBe(stats.activeComplexBreakdown.mnr, 1);
+            expectToBe(stats.activeComplexBreakdown.mnrX, 1);
         });
-        describe('... should return true and trigger `_incrementComplexCounters` when ...', () => {
-            let stats: any;
-            let seriesStats: any;
-            let sectionStats: any;
 
-            beforeEach(() => {
-                stats = { registerComplex: vi.fn() };
-                seriesStats = { registerComplex: vi.fn() };
-                sectionStats = { registerComplex: vi.fn() };
+        it('... should trigger the increment counters with correct parameters for all complex types', () => {
+            const complexTypes: EditionOutlineComplexTypes = {
+                opus: [
+                    { disabled: false, complex: { complexId: { route: '/op1' } } },
+                    { disabled: false, complex: { complexId: { route: '/op2' } } },
+                    { disabled: true, complex: { complexId: { route: '/op3' } } },
+                ],
+                mnr: [
+                    { disabled: false, complex: { complexId: { route: '/m30' } } },
+                    { disabled: false, complex: { complexId: { route: '/mx402' } } },
+                ],
+            } as EditionOutlineComplexTypes;
+
+            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
+
+            const expectedTotalCalls = complexTypes.opus.length + complexTypes.mnr.length;
+            expectSpyCall(incrementSpy, expectedTotalCalls);
+
+            complexTypes.opus.forEach((complex, index) => {
+                expect(incrementSpy).toHaveBeenNthCalledWith(
+                    index + 1,
+                    [stats, seriesStats, sectionStats],
+                    'opus',
+                    !complex.disabled
+                );
             });
 
-            it('... opus complexes are provided', () => {
-                const complexes = [
-                    { complex: { complexId: { route: '/op25' } }, disabled: false },
-                    { complex: { complexId: { route: '/op26' } }, disabled: true },
-                ];
+            complexTypes.mnr.forEach((complex, index) => {
+                const expectedType = complex.complex.complexId.route.includes('/mx') ? 'mnrX' : 'mnr';
 
-                const result = (service as any)._processComplexesByType(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    complexes,
-                    () => 'opus'
+                // Calls for opus complexes come first, then mnr complexes
+                const callNumber = complexTypes.opus.length + index + 1;
+
+                expect(incrementSpy).toHaveBeenNthCalledWith(
+                    callNumber,
+                    [stats, seriesStats, sectionStats],
+                    expectedType,
+                    !complex.disabled
                 );
-
-                expectToBe(result, true);
-
-                expectSpyCall(incrementSpy, 2);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'opus', true);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'opus', false);
-            });
-
-            it('... mnr complexes are provided', () => {
-                const complexes = [
-                    { complex: { complexId: { route: '/m28' } }, disabled: false },
-                    { complex: { complexId: { route: '/m29' } }, disabled: true },
-                ];
-
-                const result = (service as any)._processComplexesByType(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    complexes,
-                    () => 'mnr'
-                );
-
-                expectToBe(result, true);
-
-                expectSpyCall(incrementSpy, 2);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnr', true);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnr', false);
-            });
-
-            it('... when mnrX complexes are provided', () => {
-                const complexes = [
-                    { complex: { complexId: { route: '/mx28' } }, disabled: false },
-                    { complex: { complexId: { route: '/mx29' } }, disabled: true },
-                ];
-
-                const result = (service as any)._processComplexesByType(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    complexes,
-                    () => 'mnrX'
-                );
-
-                expectToBe(result, true);
-
-                expectSpyCall(incrementSpy, 2);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnrX', true);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnrX', false);
-            });
-
-            it('... should use getComplexType resolver to determine complex type', () => {
-                const complexes = [
-                    { complex: { complexId: { route: '/m28' } }, disabled: false },
-                    { complex: { complexId: { route: '/mx29' } }, disabled: true },
-                ];
-
-                const result = (service as any)._processComplexesByType(
-                    stats,
-                    seriesStats,
-                    sectionStats,
-                    complexes,
-                    (complex: EditionOutlineComplexItem) =>
-                        complex.complex.complexId.route.startsWith('/mx') ? 'mnrX' : 'mnr'
-                );
-
-                expectToBe(result, true);
-
-                expectSpyCall(incrementSpy, 2);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnr', true);
-                expect(incrementSpy).toHaveBeenCalledWith([stats, seriesStats, sectionStats], 'mnrX', false);
             });
         });
     });

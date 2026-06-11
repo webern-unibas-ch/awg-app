@@ -43,8 +43,6 @@ export class StatisticsService {
 
             const seriesStats = new StatisticsSeriesBreakdown(series.series.short);
 
-            let hasActiveContent = false;
-
             series.sections.forEach(section => {
                 stats.totalSections++;
                 seriesStats.totalSections++;
@@ -54,13 +52,10 @@ export class StatisticsService {
                 if (!section.disabled) {
                     stats.activeSections++;
                     seriesStats.activeSections++;
-                    hasActiveContent = true;
                 }
 
                 // Count all complexes in section
-                hasActiveContent =
-                    this._processComplexes(stats, seriesStats, sectionStats, section.content.complexTypes) ||
-                    hasActiveContent;
+                this._processComplexes(stats, seriesStats, sectionStats, section.content.complexTypes);
 
                 // Calculate progress rate for this section
                 sectionStats.progressRate = this._calculateProgressRate(
@@ -73,7 +68,7 @@ export class StatisticsService {
             });
 
             // Only count series that have active content
-            if (hasActiveContent) {
+            if (seriesStats.activeSections > 0 || seriesStats.activeComplexes > 0) {
                 stats.activeSeries++;
             }
 
@@ -166,61 +161,25 @@ export class StatisticsService {
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
      * @param {Object} complexTypes The object containing the opus and mnr complex lists.
      *
-     * @returns {boolean} True if at least one complex was processed, otherwise false.
+     * @returns {void} Processes all complexes and updates the counters in the provided statistics objects.
      */
     private _processComplexes(
         stats: Statistics,
         seriesStats: StatisticsSeriesBreakdown,
         sectionStats: StatisticsSectionBreakdown,
         complexTypes: EditionOutlineComplexTypes
-    ): boolean {
-        const hasOpusComplexes = this._processComplexesByType(
-            stats,
-            seriesStats,
-            sectionStats,
-            complexTypes.opus,
-            () => 'opus'
-        );
-        const hasMnrComplexes = this._processComplexesByType(
-            stats,
-            seriesStats,
-            sectionStats,
-            complexTypes.mnr,
-            complex => (this._isMnrX(complex) ? 'mnrX' : 'mnr')
-        );
-
-        return hasOpusComplexes || hasMnrComplexes;
-    }
-
-    /**
-     * Private method: _processComplexesByType.
-     *
-     * It processes a list of complexes and updates all relevant statistics counters.
-     *
-     * @param {Statistics} stats The overall edition statistics.
-     * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
-     * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
-     * @param {EditionOutlineComplexItem[]} complexes The complexes to process.
-     * @param {Function} getComplexType Resolver function for the complex category.
-     *
-     * @returns {boolean} True if at least one complex was processed, otherwise false.
-     */
-    private _processComplexesByType(
-        stats: Statistics,
-        seriesStats: StatisticsSeriesBreakdown,
-        sectionStats: StatisticsSectionBreakdown,
-        complexes: EditionOutlineComplexItem[] | undefined,
-        getComplexType: (complex: EditionOutlineComplexItem) => StatisticsComplexType
-    ): boolean {
-        if (!complexes?.length) {
-            return false;
+    ): void {
+        if (!complexTypes) {
+            return;
         }
 
-        complexes.forEach(complex => {
-            const complexType = getComplexType(complex);
-            this._incrementComplexCounters([stats, seriesStats, sectionStats], complexType, !complex.disabled);
+        complexTypes.opus?.forEach(complex => {
+            this._incrementComplexCounters([stats, seriesStats, sectionStats], 'opus', !complex.disabled);
         });
 
-        return true;
+        complexTypes.mnr?.forEach(complex => {
+            const type = this._isMnrX(complex) ? 'mnrX' : 'mnr';
+            this._incrementComplexCounters([stats, seriesStats, sectionStats], type, !complex.disabled);
+        });
     }
 }
