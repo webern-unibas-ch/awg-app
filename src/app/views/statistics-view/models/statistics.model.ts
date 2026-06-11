@@ -8,6 +8,17 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 export type StatisticsComplexType = keyof StatisticsComplexBreakdown;
 
 /**
+ * The StatisticsComplexBreakdownData type.
+ *
+ * It defines the structure for the complex breakdown data used in the statistics view,
+ * by picking the relevant properties from the StatisticsBreakdownBase class.
+ */
+export type StatisticsComplexBreakdownData = Pick<
+    StatisticsBreakdownBase,
+    'activeComplexBreakdown' | 'complexBreakdown' | 'totalComplexes'
+>;
+
+/**
  * The StatisticsProgressBarConfig type.
  *
  * It defines the valid configuration options for the StatisticsProgressBarComponent,
@@ -17,6 +28,28 @@ export type StatisticsProgressBarConfig =
     | { mode: 'percentage'; percentage: number }
     | { mode: 'ratio'; active: number; total: number }
     | { mode: 'absolute'; active: number; total: number };
+
+/**
+ * The StatisticsOverallProgressData type.
+ *
+ * It defines the structure for the overall progress data used in the statistics view,
+ * by picking the relevant properties from the StatisticsBreakdownBase class.
+ */
+export type StatisticsOverallProgressData = Pick<
+    StatisticsBreakdownBase,
+    'progressRate' | 'activeComplexes' | 'totalComplexes'
+>;
+
+/**
+ * The StatisticsSummaryData type.
+ *
+ * It defines the structure for the summary data used in the statistics view,
+ * by picking the relevant properties from the Statistics class.
+ */
+export type StatisticsSummaryData = Pick<
+    Statistics,
+    'activeSeries' | 'activeSections' | 'activeComplexes' | 'totalComplexes'
+>;
 
 /**
  * The StatisticsBreakDownBadge interface.

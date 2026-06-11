@@ -2,41 +2,27 @@
     <div class="awg-statistics-view">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
+                <main class="col">
                     <!-- Statistics Header -->
-                    <div
+                    <header
                         class="awg-statistics-view-header awg-jumbotron mb-4 p-3 pt-4 text-center shadow border rounded-3">
                         <h1 class="h2">Edition Statistics</h1>
                         <p class="lead text-muted">
                             Overview of active edition complexes in the online edition of the Anton Webern Gesamtausgabe
                         </p>
-                    </div>
+                    </header>
 
-                    <!-- Summary Cards -->
-                    <awg-statistics-summary
-                        [activeSeries]="statisticsData.activeSeries"
-                        [activeSections]="statisticsData.activeSections"
-                        [activeComplexes]="statisticsData.activeComplexes"
-                        [totalComplexes]="statisticsData.totalComplexes">
-                    </awg-statistics-summary>
+                    <awg-statistics-summary [summaryData]="summaryData()"> </awg-statistics-summary>
 
-                    <!-- Overall Progress -->
-                    <awg-statistics-overall-progress
-                        [progressRate]="statisticsData.progressRate"
-                        [activeComplexes]="statisticsData.activeComplexes"
-                        [totalComplexes]="statisticsData.totalComplexes">
+                    <awg-statistics-overall-progress [overallProgressData]="overallProgressData()">
                     </awg-statistics-overall-progress>
 
-                    <!-- Complex Types Breakdown -->
                     <awg-statistics-complex-breakdown
-                        [activeComplexBreakdown]="statisticsData.activeComplexBreakdown"
-                        [complexBreakdown]="statisticsData.complexBreakdown"
-                        [totalComplexes]="statisticsData.totalComplexes"></awg-statistics-complex-breakdown>
+                        [complexBreakdownData]="complexBreakdownData()"></awg-statistics-complex-breakdown>
 
-                    <!-- Series Breakdown -->
                     <awg-statistics-series-breakdown
-                        [seriesBreakdown]="statisticsData.seriesBreakdown"></awg-statistics-series-breakdown>
-                </div>
+                        [seriesBreakdownData]="statisticsData.seriesBreakdown"></awg-statistics-series-breakdown>
+                </main>
             </div>
         </div>
     </div>

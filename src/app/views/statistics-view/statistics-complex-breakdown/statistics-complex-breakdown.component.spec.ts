@@ -13,6 +13,7 @@ import {
 
 import {
     StatisticsComplexBreakdown,
+    StatisticsComplexBreakdownData,
     StatisticsProgressBarConfig,
     StatisticsProgressBarItem,
 } from '@awg-views/statistics-view/models';
@@ -41,9 +42,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
     let fixture: ComponentFixture<StatisticsComplexBreakdownComponent>;
     let compDe: DebugElement;
 
-    let expectedActiveComplexBreakdown: StatisticsComplexBreakdown;
-    let expectedComplexBreakdown: StatisticsComplexBreakdown;
-    let expectedTotalComplexes: number;
+    let expectedComplexBreakdownData: StatisticsComplexBreakdownData;
     let expectedComplexBreakdownItems: StatisticsProgressBarItem[];
 
     beforeEach(async () => {
@@ -61,17 +60,19 @@ describe('StatisticsComplexBreakdownComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedActiveComplexBreakdown = new StatisticsComplexBreakdown({
-            opus: 4,
-            mnr: 2,
-            mnrX: 2,
-        });
-        expectedComplexBreakdown = new StatisticsComplexBreakdown({
-            opus: 8,
-            mnr: 4,
-            mnrX: 4,
-        });
-        expectedTotalComplexes = 16;
+        expectedComplexBreakdownData = {
+            activeComplexBreakdown: new StatisticsComplexBreakdown({
+                opus: 4,
+                mnr: 2,
+                mnrX: 2,
+            }),
+            complexBreakdown: new StatisticsComplexBreakdown({
+                opus: 8,
+                mnr: 4,
+                mnrX: 4,
+            }),
+            totalComplexes: 16,
+        };
 
         expectedComplexBreakdownItems = [
             { key: 'opus', baseLabel: 'Opus', colorClass: 'bg-primary' },
@@ -80,12 +81,11 @@ describe('StatisticsComplexBreakdownComponent', () => {
         ];
 
         // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput(
-            'activeComplexBreakdown',
-            new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
-        );
-        fixture.componentRef.setInput('complexBreakdown', new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }));
-        fixture.componentRef.setInput('totalComplexes', 0);
+        fixture.componentRef.setInput('complexBreakdownData', {
+            activeComplexBreakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }),
+            complexBreakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }),
+            totalComplexes: 0,
+        });
     });
 
     it('should create', () => {
@@ -93,19 +93,12 @@ describe('StatisticsComplexBreakdownComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `activeComplexBreakdown`', () => {
-            expectToEqual(
-                component.activeComplexBreakdown(),
-                new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
-            );
-        });
-
-        it('... should have required `complexBreakdown`', () => {
-            expectToEqual(component.complexBreakdown(), new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }));
-        });
-
-        it('... should have required `totalComplexes`', () => {
-            expectToEqual(component.totalComplexes(), 0);
+        it('... should have required `complexBreakdownData`', () => {
+            expectToEqual(component.complexBreakdownData(), {
+                activeComplexBreakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }),
+                complexBreakdown: new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }),
+                totalComplexes: 0,
+            });
         });
 
         it('... should have `COMPLEX_BREAKDOWN_ITEMS`', () => {
@@ -310,23 +303,13 @@ describe('StatisticsComplexBreakdownComponent', () => {
         describe('AFTER initial data binding', () => {
             beforeEach(() => {
                 // Set input signals with test data
-                fixture.componentRef.setInput('activeComplexBreakdown', expectedActiveComplexBreakdown);
-                fixture.componentRef.setInput('complexBreakdown', expectedComplexBreakdown);
-                fixture.componentRef.setInput('totalComplexes', expectedTotalComplexes);
+                fixture.componentRef.setInput('complexBreakdownData', expectedComplexBreakdownData);
 
                 fixture.detectChanges();
             });
 
-            it('... should have updated `activeComplexBreakdown`', () => {
-                expectToEqual(component.activeComplexBreakdown(), expectedActiveComplexBreakdown);
-            });
-
-            it('... should have updated `complexBreakdown`', () => {
-                expectToEqual(component.complexBreakdown(), expectedComplexBreakdown);
-            });
-
-            it('... should have updated `totalComplexes`', () => {
-                expectToEqual(component.totalComplexes(), expectedTotalComplexes);
+            it('... should have updated `complexBreakdownData`', () => {
+                expectToEqual(component.complexBreakdownData(), expectedComplexBreakdownData);
             });
 
             it('... should have `COMPLEX_BREAKDOWN_ITEMS` unchanged', () => {
@@ -367,13 +350,17 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
                         progressBarDes.forEach((pbDe, index) => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
+
+                            const data = expectedComplexBreakdownData;
+                            const item = expectedComplexBreakdownItems[index];
+
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'absolute',
-                                active: expectedComplexBreakdown[expectedComplexBreakdownItems[index].key],
-                                total: expectedTotalComplexes,
+                                active: data.complexBreakdown[item.key],
+                                total: data.totalComplexes,
                             };
-                            const expectedLabel = expectedComplexBreakdownItems[index].baseLabel + ' Complexes';
-                            const expectedClass = expectedComplexBreakdownItems[index].colorClass;
+                            const expectedLabel = item.baseLabel + ' Complexes';
+                            const expectedClass = item.colorClass;
 
                             expectToEqual(progressBarCmp.config(), expectedConfig);
                             expectToBe(progressBarCmp.headerLabel(), expectedLabel);
@@ -417,13 +404,15 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
                         progressBarDes.forEach((pbDe, index) => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
+
+                            const data = expectedComplexBreakdownData;
+                            const item = expectedComplexBreakdownItems[index];
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'ratio',
-                                active: expectedActiveComplexBreakdown[expectedComplexBreakdownItems[index].key],
-                                total: expectedComplexBreakdown[expectedComplexBreakdownItems[index].key],
+                                active: data.activeComplexBreakdown[item.key],
+                                total: data.complexBreakdown[item.key],
                             };
-                            const expectedLabel =
-                                'Active ' + expectedComplexBreakdownItems[index].baseLabel + (index === 0 ? '' : 's');
+                            const expectedLabel = 'Active ' + item.baseLabel + (index === 0 ? '' : 's');
 
                             expectToEqual(progressBarCmp.config(), expectedConfig);
                             expectToBe(progressBarCmp.headerLabel(), expectedLabel);
@@ -438,26 +427,48 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     expect(component.getProgressBarConfig).toBeDefined();
                 });
 
-                it('... should return correct config for `ratio` mode', () => {
-                    const key = 'mnr';
-                    const expectedConfig: StatisticsProgressBarConfig = {
-                        mode: 'ratio',
-                        active: expectedActiveComplexBreakdown[key],
-                        total: expectedComplexBreakdown[key],
-                    };
+                it('... should return default config if no data available', () => {
+                    // Set input signal to null
+                    fixture.componentRef.setInput('complexBreakdownData', null);
+                    fixture.detectChanges();
 
-                    expectToEqual(component.getProgressBarConfig(key, 'ratio'), expectedConfig);
+                    const expectedConfig: StatisticsProgressBarConfig = { mode: 'absolute', active: 0, total: 0 };
+                    const items = expectedComplexBreakdownItems;
+
+                    items.forEach(item => {
+                        expectToEqual(component.getProgressBarConfig(item.key, 'ratio'), expectedConfig);
+                        expectToEqual(component.getProgressBarConfig(item.key, 'absolute'), expectedConfig);
+                    });
+                });
+
+                it('... should return correct config for `ratio` mode', () => {
+                    const data = expectedComplexBreakdownData;
+                    const items = expectedComplexBreakdownItems;
+
+                    items.forEach(item => {
+                        const expectedConfig: StatisticsProgressBarConfig = {
+                            mode: 'ratio',
+                            active: data.activeComplexBreakdown[item.key],
+                            total: data.complexBreakdown[item.key],
+                        };
+
+                        expectToEqual(component.getProgressBarConfig(item.key, 'ratio'), expectedConfig);
+                    });
                 });
 
                 it('... should return correct config for `absolute` mode', () => {
-                    const key = 'mnrX';
-                    const expectedConfig: StatisticsProgressBarConfig = {
-                        mode: 'absolute',
-                        active: expectedComplexBreakdown[key],
-                        total: expectedTotalComplexes,
-                    };
+                    const data = expectedComplexBreakdownData;
+                    const items = expectedComplexBreakdownItems;
 
-                    expectToEqual(component.getProgressBarConfig(key, 'absolute'), expectedConfig);
+                    items.forEach(item => {
+                        const expectedConfig: StatisticsProgressBarConfig = {
+                            mode: 'absolute',
+                            active: data.complexBreakdown[item.key],
+                            total: data.totalComplexes,
+                        };
+
+                        expectToEqual(component.getProgressBarConfig(item.key, 'absolute'), expectedConfig);
+                    });
                 });
             });
         });

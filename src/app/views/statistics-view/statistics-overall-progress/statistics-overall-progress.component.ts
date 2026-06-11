@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { StatisticsOverallProgressData } from '@awg-views/statistics-view/models';
 import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
 
 /**
@@ -17,23 +18,9 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
 })
 export class StatisticsOverallProgressComponent {
     /**
-     * Input signal: progressRate.
+     * Input signal: overallProgressData.
      *
-     * It holds the overall progress rate.
+     * It holds the overall progress data.
      */
-    progressRate = input.required<number>();
-
-    /**
-     * Input signal: activeComplexes.
-     *
-     * It holds the number of active complexes.
-     */
-    activeComplexes = input.required<number>();
-
-    /**
-     * Input signal: totalComplexes.
-     *
-     * It holds the total number of complexes.
-     */
-    totalComplexes = input.required<number>();
+    overallProgressData = input.required<StatisticsOverallProgressData>();
 }

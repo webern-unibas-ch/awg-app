@@ -17,9 +17,9 @@ export class StatisticsSeriesBreakdownComponent {
     /**
      * Input signal: seriesBreakdown.
      *
-     * It holds the breakdown of series.
+     * It holds the series breakdown data.
      */
-    seriesBreakdown = input.required<StatisticsSeriesBreakdown[]>();
+    seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
 
     /**
      * Readonly variable: ROUTES.

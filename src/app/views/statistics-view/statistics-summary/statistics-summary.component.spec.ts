@@ -13,7 +13,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsSummaryCardData } from '@awg-views/statistics-view/models';
+import { StatisticsSummaryCardData, StatisticsSummaryData } from '@awg-views/statistics-view/models';
 import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
 
 import { StatisticsSummaryComponent } from './statistics-summary.component';
@@ -35,10 +35,7 @@ describe('StatisticsSummaryComponent', () => {
     let fixture: ComponentFixture<StatisticsSummaryComponent>;
     let compDe: DebugElement;
 
-    let expectedActiveSeries: number;
-    let expectedActiveSections: number;
-    let expectedTotalComplexes: number;
-    let expectedActiveComplexes: number;
+    let expectedSummaryData: StatisticsSummaryData;
     let expectedSummaryCards: StatisticsSummaryCardData[];
 
     beforeEach(async () => {
@@ -56,38 +53,42 @@ describe('StatisticsSummaryComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedActiveSeries = 5;
-        expectedActiveSections = 10;
-        expectedTotalComplexes = 15;
-        expectedActiveComplexes = 8;
+        expectedSummaryData = {
+            activeSeries: 5,
+            activeSections: 10,
+            activeComplexes: 8,
+            totalComplexes: 15,
+        };
 
         expectedSummaryCards = [
-            { title: 'Active Series', value: expectedActiveSeries, icon: faList, bgClass: 'bg-primary' },
+            { title: 'Active Series', value: expectedSummaryData.activeSeries, icon: faList, bgClass: 'bg-primary' },
             {
                 title: 'Active Sections',
-                value: expectedActiveSections,
+                value: expectedSummaryData.activeSections,
                 icon: faFolder,
                 bgClass: 'bg-info',
             },
             {
                 title: 'Total Complexes',
-                value: expectedTotalComplexes,
+                value: expectedSummaryData.totalComplexes,
                 icon: faMusic,
                 bgClass: 'bg-secondary',
             },
             {
                 title: 'Active Complexes',
-                value: expectedActiveComplexes,
+                value: expectedSummaryData.activeComplexes,
                 icon: faCheckCircle,
                 bgClass: 'bg-success',
             },
         ];
 
         // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('activeSeries', 0);
-        fixture.componentRef.setInput('activeSections', 0);
-        fixture.componentRef.setInput('totalComplexes', 0);
-        fixture.componentRef.setInput('activeComplexes', 0);
+        fixture.componentRef.setInput('summaryData', {
+            activeSeries: 0,
+            activeSections: 0,
+            activeComplexes: 0,
+            totalComplexes: 0,
+        });
     });
 
     it('should create', () => {
@@ -95,20 +96,13 @@ describe('StatisticsSummaryComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `activeSeries`', () => {
-            expectToEqual(component.activeSeries(), 0);
-        });
-
-        it('... should have required `activeSections`', () => {
-            expectToEqual(component.activeSections(), 0);
-        });
-
-        it('... should have required `totalComplexes`', () => {
-            expectToEqual(component.totalComplexes(), 0);
-        });
-
-        it('... should have required `activeComplexes`', () => {
-            expectToEqual(component.activeComplexes(), 0);
+        it('... should have required `summaryData`', () => {
+            expectToEqual(component.summaryData(), {
+                activeSeries: 0,
+                activeSections: 0,
+                activeComplexes: 0,
+                totalComplexes: 0,
+            });
         });
 
         describe('VIEW', () => {
@@ -121,27 +115,12 @@ describe('StatisticsSummaryComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent updating the input signal
-            fixture.componentRef.setInput('activeSeries', expectedActiveSeries);
-            fixture.componentRef.setInput('activeSections', expectedActiveSections);
-            fixture.componentRef.setInput('totalComplexes', expectedTotalComplexes);
-            fixture.componentRef.setInput('activeComplexes', expectedActiveComplexes);
+            fixture.componentRef.setInput('summaryData', expectedSummaryData);
             fixture.detectChanges();
         });
 
-        it('... should have updated `activeSeries`', () => {
-            expectToEqual(component.activeSeries(), expectedActiveSeries);
-        });
-
-        it('... should have updated `activeSections`', () => {
-            expectToEqual(component.activeSections(), expectedActiveSections);
-        });
-
-        it('... should have updated `totalComplexes`', () => {
-            expectToEqual(component.totalComplexes(), expectedTotalComplexes);
-        });
-
-        it('... should have updated `activeComplexes`', () => {
-            expectToEqual(component.activeComplexes(), expectedActiveComplexes);
+        it('... should have updated `summaryData`', () => {
+            expectToEqual(component.summaryData(), expectedSummaryData);
         });
 
         it('... should have computed `summaryCards` based on `statisticsData`', () => {
@@ -210,15 +189,21 @@ describe('StatisticsSummaryComponent', () => {
                 expect(component.summaryCards).toBeDefined();
             });
 
-            it('... should return correct summary card data based on inputs', () => {
-                fixture.componentRef.setInput('activeSeries', expectedActiveSeries);
-                fixture.componentRef.setInput('activeSections', expectedActiveSections);
-                fixture.componentRef.setInput('totalComplexes', expectedTotalComplexes);
-                fixture.componentRef.setInput('activeComplexes', expectedActiveComplexes);
+            it('... should return empty array if `summaryData` is null', () => {
+                fixture.componentRef.setInput('summaryData', null);
 
                 const summaryCards = component.summaryCards();
 
-                expect(summaryCards.length).toBe(4);
+                expectToBe(summaryCards.length, 0);
+                expectToEqual(summaryCards, []);
+            });
+
+            it('... should return correct summary card data based on summaryData input', () => {
+                fixture.componentRef.setInput('summaryData', expectedSummaryData);
+
+                const summaryCards = component.summaryCards();
+
+                expectToBe(summaryCards.length, 4);
                 summaryCards.forEach((card, index) => {
                     expectToBe(card.title, expectedSummaryCards[index].title);
                     expectToBe(card.value, expectedSummaryCards[index].value);

@@ -1,6 +1,6 @@
-@if (summaryCards().length > 0) {
+@if (summaryCards(); as summaryCards) {
     <div class="awg-statistics-summary row mb-4">
-        @for (card of summaryCards(); track card.title) {
+        @for (card of summaryCards; track card.title) {
             <div class="col-md-3 mb-3">
                 <awg-statistics-summary-card
                     [title]="card.title"

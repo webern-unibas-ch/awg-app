@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import {
-    StatisticsComplexBreakdown,
+    StatisticsComplexBreakdownData,
     StatisticsComplexType,
     StatisticsProgressBarConfig,
     StatisticsProgressBarItem,
@@ -24,25 +24,11 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
 })
 export class StatisticsComplexBreakdownComponent {
     /**
-     * Input signal: activeComplexBreakdown.
+     * Input signal: complexBreakdownData.
      *
-     * It holds the number of active complexes for the complex breakdown.
+     * It holds the complex breakdown data.
      */
-    activeComplexBreakdown = input.required<StatisticsComplexBreakdown>();
-
-    /**
-     * Input signal: complexBreakdown.
-     *
-     * It holds the number of complexes for the complex breakdown.
-     */
-    complexBreakdown = input.required<StatisticsComplexBreakdown>();
-
-    /**
-     * Input signal: totalComplexes.
-     *
-     * It holds the total number of complexes.
-     */
-    totalComplexes = input.required<number>();
+    complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
 
     /**
      * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.
@@ -66,18 +52,23 @@ export class StatisticsComplexBreakdownComponent {
      * @returns The config object for the progress bar.
      */
     getProgressBarConfig(key: StatisticsComplexType, mode: 'ratio' | 'absolute'): StatisticsProgressBarConfig {
+        const data = this.complexBreakdownData();
+        if (!data) {
+            return { mode: 'absolute', active: 0, total: 0 };
+        }
+
         if (mode === 'ratio') {
             return {
                 mode: 'ratio',
-                active: this.activeComplexBreakdown()[key],
-                total: this.complexBreakdown()[key],
+                active: data.activeComplexBreakdown[key],
+                total: data.complexBreakdown[key],
             };
         }
 
         return {
             mode: 'absolute',
-            active: this.complexBreakdown()[key],
-            total: this.totalComplexes(),
+            active: data.complexBreakdown[key],
+            total: data.totalComplexes,
         };
     }
 }

@@ -11,7 +11,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
+import { StatisticsOverallProgressData, StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
 import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
 
 import { StatisticsOverallProgressComponent } from './statistics-overall-progress.component';
@@ -37,9 +37,7 @@ describe('StatisticsOverallProgressComponent', () => {
     let fixture: ComponentFixture<StatisticsOverallProgressComponent>;
     let compDe: DebugElement;
 
-    let expectedProgressRate: number;
-    let expectedActiveComplexes: number;
-    let expectedTotalComplexes: number;
+    let expectedOverallProgressData: StatisticsOverallProgressData;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -56,14 +54,17 @@ describe('StatisticsOverallProgressComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedProgressRate = 50;
-        expectedActiveComplexes = 8;
-        expectedTotalComplexes = 16;
-
+        expectedOverallProgressData = {
+            progressRate: 50,
+            activeComplexes: 8,
+            totalComplexes: 16,
+        };
         // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('progressRate', 0);
-        fixture.componentRef.setInput('activeComplexes', 0);
-        fixture.componentRef.setInput('totalComplexes', 0);
+        fixture.componentRef.setInput('overallProgressData', {
+            progressRate: 0,
+            activeComplexes: 0,
+            totalComplexes: 0,
+        });
     });
 
     it('should create', () => {
@@ -71,25 +72,36 @@ describe('StatisticsOverallProgressComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `progressRate`', () => {
-            expectToBe(component.progressRate(), 0);
-        });
-
-        it('... should have required `activeComplexes`', () => {
-            expectToBe(component.activeComplexes(), 0);
-        });
-
-        it('... should have required `totalComplexes`', () => {
-            expectToBe(component.totalComplexes(), 0);
+        it('... should have required `overallProgressData`', () => {
+            expectToEqual(component.overallProgressData(), { progressRate: 0, activeComplexes: 0, totalComplexes: 0 });
         });
 
         describe('VIEW', () => {
-            it('... should contain one card div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress', 1, 1);
+            it('... should contain no overall progress card div yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress.card', 0, 0);
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Set input signals with test data
+            fixture.componentRef.setInput('overallProgressData', expectedOverallProgressData);
+
+            fixture.detectChanges();
+        });
+
+        it('... should have updated `overallProgressData`', () => {
+            expectToEqual(component.overallProgressData(), expectedOverallProgressData);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one overall progress card div', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress.card', 1, 1);
             });
 
-            it('... should have correct classes on card div', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress', 1, 1);
+            it('... should have correct classes on overall progress card div', () => {
+                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress.card', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
                 expectToBe(cardEl.classList.length, 4);
@@ -125,39 +137,6 @@ describe('StatisticsOverallProgressComponent', () => {
                 getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarStubComponent, 1, 1);
             });
 
-            it('... should contain one centered div with no content yet', () => {
-                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const infoDes = getAndExpectDebugElementByCss(cardBodyDes[0], 'div.text-center', 1, 1);
-                const infoEl: HTMLDivElement = infoDes[0].nativeElement;
-
-                expectToBe(infoEl.textContent, '');
-            });
-        });
-    });
-
-    describe('AFTER initial data binding', () => {
-        beforeEach(() => {
-            // Set input signals with test data
-            fixture.componentRef.setInput('progressRate', expectedProgressRate);
-            fixture.componentRef.setInput('activeComplexes', expectedActiveComplexes);
-            fixture.componentRef.setInput('totalComplexes', expectedTotalComplexes);
-
-            fixture.detectChanges();
-        });
-
-        it('... should have updated `progressRate`', () => {
-            expectToBe(component.progressRate(), expectedProgressRate);
-        });
-
-        it('... should have updated `activeComplexes`', () => {
-            expectToBe(component.activeComplexes(), expectedActiveComplexes);
-        });
-
-        it('... should have updated `totalComplexes`', () => {
-            expectToBe(component.totalComplexes(), expectedTotalComplexes);
-        });
-
-        describe('VIEW', () => {
             it('... should pass down correct values (incl. progress rate) to progress bar component', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 const progressBarDes = getAndExpectDebugElementByDirective(
@@ -168,7 +147,10 @@ describe('StatisticsOverallProgressComponent', () => {
                 );
                 const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
 
-                expectToEqual(progressBarCmp.config(), { mode: 'percentage', percentage: expectedProgressRate });
+                expectToEqual(progressBarCmp.config(), {
+                    mode: 'percentage',
+                    percentage: expectedOverallProgressData.progressRate,
+                });
                 expectToBe(progressBarCmp.headerLabel(), 'Edition Completion');
                 expectToBe(progressBarCmp.height(), '20px');
                 expectToBe(progressBarCmp.showPercentageLabel(), true);
@@ -182,7 +164,7 @@ describe('StatisticsOverallProgressComponent', () => {
 
                 expectToContain(
                     infoEl.textContent?.trim(),
-                    `${expectedActiveComplexes} of ${expectedTotalComplexes} currently enabled edition complexes active`
+                    `${expectedOverallProgressData.activeComplexes} of ${expectedOverallProgressData.totalComplexes} currently enabled edition complexes active`
                 );
             });
         });

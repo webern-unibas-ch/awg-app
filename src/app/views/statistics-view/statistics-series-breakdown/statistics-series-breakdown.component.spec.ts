@@ -55,7 +55,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     let fixture: ComponentFixture<StatisticsSeriesBreakdownComponent>;
     let compDe: DebugElement;
 
-    let expectedSeriesBreakdown: StatisticsSeriesBreakdown[];
+    let expectedSeriesBreakdownData: StatisticsSeriesBreakdown[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -72,12 +72,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        expectedSeriesBreakdown = [
+        expectedSeriesBreakdownData = [
             structuredClone(mockStatisticsData.mockSeriesBreakdown) as StatisticsSeriesBreakdown,
         ];
 
         // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('seriesBreakdown', []);
+        fixture.componentRef.setInput('seriesBreakdownData', []);
         fixture.detectChanges();
     });
 
@@ -86,8 +86,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `seriesBreakdown` (empty)', () => {
-            expectToEqual(component.seriesBreakdown(), []);
+        it('... should have required `seriesBreakdownData` (empty)', () => {
+            expectToEqual(component.seriesBreakdownData(), []);
         });
 
         it('... should have `ROUTES` with edition route constants', () => {
@@ -208,12 +208,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent updating the input signals
-            fixture.componentRef.setInput('seriesBreakdown', expectedSeriesBreakdown);
+            fixture.componentRef.setInput('seriesBreakdownData', expectedSeriesBreakdownData);
             fixture.detectChanges();
         });
 
-        it('... should have updated `seriesBreakdown`', () => {
-            expectToEqual(component.seriesBreakdown(), expectedSeriesBreakdown);
+        it('... should have updated `seriesBreakdownData`', () => {
+            expectToEqual(component.seriesBreakdownData(), expectedSeriesBreakdownData);
         });
 
         it('... should have `ROUTES` with edition route constants unchanged', () => {
@@ -232,8 +232,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     getAndExpectDebugElementByCss(
                         tbodyDes[0],
                         'tr.awg-statistics-series-breakdown',
-                        expectedSeriesBreakdown.length,
-                        expectedSeriesBreakdown.length
+                        expectedSeriesBreakdownData.length,
+                        expectedSeriesBreakdownData.length
                     );
                 });
 
@@ -241,8 +241,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     const seriesTrDes = getAndExpectDebugElementByCss(
                         compDe,
                         'tbody tr.awg-statistics-series-breakdown',
-                        expectedSeriesBreakdown.length,
-                        expectedSeriesBreakdown.length
+                        expectedSeriesBreakdownData.length,
+                        expectedSeriesBreakdownData.length
                     );
 
                     seriesTrDes.forEach(seriesTrDe => {
@@ -255,8 +255,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -264,23 +264,23 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            const expectedSeriesLabel = 'Series ' + expectedSeriesBreakdown[index].series;
+                            const expectedSeriesLabel = 'Series ' + expectedSeriesBreakdownData[index].series;
 
                             expectToBe(strongEl.textContent?.trim(), expectedSeriesLabel);
                         });
                     });
 
                     it('... should mute series label if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdown) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
                         mockData[0].activeSections = 0;
-                        fixture.componentRef.setInput('seriesBreakdown', mockData);
+                        fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -297,8 +297,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -306,7 +306,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const smallDes = getAndExpectDebugElementByCss(tdDes[0], 'small.text-muted', 1, 1);
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                            const expectedActiveSectionsText = `(${expectedSeriesBreakdown[index].activeSections} active section)`;
+                            const expectedActiveSectionsText = `(${expectedSeriesBreakdownData[index].activeSections} active section)`;
 
                             expectToBe(smallEl.classList.contains('text-muted'), true);
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
@@ -314,16 +314,16 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should adjust section indicator depending on number of active sections', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdown) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
                         mockData[0].activeSections = 2;
-                        fixture.componentRef.setInput('seriesBreakdown', mockData);
+                        fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -343,8 +343,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -357,22 +357,22 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectToBe(tdEl.classList.contains('text-center'), true);
                             expectToBe(
                                 strongEl.textContent?.trim(),
-                                expectedSeriesBreakdown[index].totalComplexes.toString()
+                                expectedSeriesBreakdownData[index].totalComplexes.toString()
                             );
                         });
                     });
 
                     it('... should mute total complexes if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdown) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
                         mockData[0].activeSections = 0;
-                        fixture.componentRef.setInput('seriesBreakdown', mockData);
+                        fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -390,14 +390,14 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach(seriesTrDe => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
-                            const expectedBadgeCount = expectedSeriesBreakdown[0].totalComplexes > 0 ? 1 : 0;
+                            const expectedBadgeCount = expectedSeriesBreakdownData[0].totalComplexes > 0 ? 1 : 0;
 
                             expectToBe(tdEl.classList.contains('text-center'), true);
                             getAndExpectDebugElementByDirective(
@@ -410,16 +410,16 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should not have breakdown badge component if total complexes is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdown) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
                         mockData[0].totalComplexes = 0;
-                        fixture.componentRef.setInput('seriesBreakdown', mockData);
+                        fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -439,8 +439,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -453,7 +453,10 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             );
                             const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeStubComponent);
 
-                            expectToEqual(badgeCmp.breakdown(), expectedSeriesBreakdown[index].activeComplexBreakdown);
+                            expectToEqual(
+                                badgeCmp.breakdown(),
+                                expectedSeriesBreakdownData[index].activeComplexBreakdown
+                            );
                         });
                     });
                 });
@@ -463,8 +466,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -477,22 +480,22 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectToBe(tdEl.classList.contains('text-center'), true);
                             expectToBe(
                                 strongEl.textContent?.trim(),
-                                expectedSeriesBreakdown[index].activeComplexes.toString()
+                                expectedSeriesBreakdownData[index].activeComplexes.toString()
                             );
                         });
                     });
 
                     it('... should mute active complexes if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdown) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
                         mockData[0].activeSections = 0;
-                        fixture.componentRef.setInput('seriesBreakdown', mockData);
+                        fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach((seriesTrDe, index) => {
@@ -510,8 +513,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach(seriesTrDe => {
@@ -524,8 +527,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const seriesTrDes = getAndExpectDebugElementByCss(
                             compDe,
                             'tbody tr.awg-statistics-series-breakdown',
-                            expectedSeriesBreakdown.length,
-                            expectedSeriesBreakdown.length
+                            expectedSeriesBreakdownData.length,
+                            expectedSeriesBreakdownData.length
                         );
 
                         seriesTrDes.forEach(seriesTrDe => {
@@ -539,7 +542,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'percentage',
-                                percentage: expectedSeriesBreakdown[0].progressRate,
+                                percentage: expectedSeriesBreakdownData[0].progressRate,
                             };
                             const expectedHeight = '20px';
                             const expectedBoldPercentageLabel = true;
@@ -556,7 +559,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 it('... should contain as many section rows in table body as section breakdowns in data', () => {
                     const tbodyDes = getAndExpectDebugElementByCss(compDe, 'tbody', 1, 1);
 
-                    expectedSeriesBreakdown.forEach(series => {
+                    expectedSeriesBreakdownData.forEach(series => {
                         const expectedSectionRows = series.sectionBreakdown.length;
                         getAndExpectDebugElementByCss(
                             tbodyDes[0],
@@ -568,7 +571,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 });
 
                 it('... should contain 5 data cells (td) in each section breakdown row', () => {
-                    expectedSeriesBreakdown.forEach(series => {
+                    expectedSeriesBreakdownData.forEach(series => {
                         const expectedSectionRows = series.sectionBreakdown.length;
                         const sectionTrDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -584,7 +587,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                 describe('... first section data cell (td)', () => {
                     it('... should display correct section label', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -648,7 +651,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                 describe('... second section data cell (td)', () => {
                     it('... should display centered total complexes', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -669,7 +672,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should mute total complexes if section is disabled', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -692,7 +695,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                 describe('... third section data cell (td)', () => {
                     it('... should have centered breakdown badge component if total complexes is greater zero', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -719,7 +722,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should pass down corect inputs to breakdown badge component', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -752,7 +755,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                 describe('... fourth section data cell (td)', () => {
                     it('... should display centered active complexes', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -773,7 +776,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should mute active complexes if section is disabled', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -796,7 +799,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                 describe('... fifth section data cell (td)', () => {
                     it('... should have progress bar component', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -813,7 +816,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should pass down corect inputs to progress bar component', () => {
-                        expectedSeriesBreakdown.forEach(series => {
+                        expectedSeriesBreakdownData.forEach(series => {
                             const expectedSectionRows = series.sectionBreakdown.length;
                             const sectionTrDes = getAndExpectDebugElementByCss(
                                 compDe,
