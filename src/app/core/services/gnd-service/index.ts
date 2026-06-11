@@ -1,1 +1,0 @@
-export * from './gnd.service';
