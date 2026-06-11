@@ -9,4 +9,3 @@
 export { mockAnalytics } from './mock-analytics';
 export { mockCache } from './mock-cache';
 export { mockConsole } from './mock-console';
-export { mockWindow } from './mock-window';
