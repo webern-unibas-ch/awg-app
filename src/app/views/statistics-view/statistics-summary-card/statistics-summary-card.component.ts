@@ -33,14 +33,14 @@ export class StatisticsSummaryCardComponent {
     /**
      * Input signal: icon.
      *
-     * It keeps the FontAwesome icon class for the statsitics summary card.
+     * It keeps the FontAwesome icon class for the statistics summary card.
      */
     icon = input<IconDefinition>();
 
     /**
      * Input signal: bgClass.
      *
-     * It keeps the background color class for the statsitics summary card.
+     * It keeps the background color class for the statistics summary card.
      */
     bgClass = input<string>();
 }

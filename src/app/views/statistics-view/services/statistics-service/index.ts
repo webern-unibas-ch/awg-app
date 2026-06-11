@@ -1,9 +1,9 @@
 /**
  *
- *              EditionStatisticsService
+ *              StatisticsService
  *
- * This file exports the EditionStatisticsService
- * that is used for the edition statistics.
+ * This file exports the StatisticsService
+ * that is used for the statistics.
  *
  */
 export * from './statistics.service';
