@@ -1,8 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services';
-import { Statistics } from '@awg-views/statistics-view/models';
-import { EditionStatisticsService } from '@awg-views/statistics-view/services';
+import {
+    Statistics,
+    StatisticsComplexBreakdownData,
+    StatisticsOverallProgressData,
+    StatisticsSummaryData,
+} from '@awg-views/statistics-view/models';
+import { StatisticsService } from '@awg-views/statistics-view/services';
+
+import { StatisticsComplexBreakdownComponent } from '@awg-views/statistics-view/statistics-complex-breakdown';
+import { StatisticsOverallProgressComponent } from '@awg-views/statistics-view/statistics-overall-progress';
+import { StatisticsSeriesBreakdownComponent } from '@awg-views/statistics-view/statistics-series-breakdown';
+import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistics-summary';
 
 /**
  * The Statistics view component.
@@ -19,18 +29,18 @@ import { EditionStatisticsService } from '@awg-views/statistics-view/services';
 })
 export class StatisticsViewComponent {
     /**
-     * Private readonly injection variable: _editionStatisticsService.
+     * Private readonly injection variable: _statisticsService.
      *
-     * It keeps the instance of the injected EditionStatisticsService.
+     * It keeps the instance of the injected StatisticsService.
      */
-    protected readonly _editionStatisticsService = inject(EditionStatisticsService);
+    protected readonly _statisticsService = inject(StatisticsService);
 
     /**
-     * Public readonly signal: statisticsData.
+     * Public signal: statisticsData.
      *
      * It holds the statistics data for the edition complexes.
      */
-    readonly statisticsData = signal<Statistics>(
-        this._editionStatisticsService.getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
+    statisticsData = signal<Statistics | null>(
+        this._statisticsService.getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
     );
 }

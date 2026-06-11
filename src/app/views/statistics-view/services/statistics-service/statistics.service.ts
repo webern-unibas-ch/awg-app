@@ -25,7 +25,7 @@ import {
 @Injectable({
     providedIn: 'root',
 })
-export class EditionStatisticsService {
+export class StatisticsService {
     /**
      * Public method: calculateStatistics.
      *

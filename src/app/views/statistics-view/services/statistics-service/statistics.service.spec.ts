@@ -7,10 +7,10 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 
 import { EditionOutlineComplexItem } from '@awg-app/views/edition-view/models';
 
-import { EditionStatisticsService } from './edition-statistics.service';
+import { StatisticsService } from './statistics.service';
 
-describe('EditionStatisticsService', () => {
-    let service: EditionStatisticsService;
+describe('StatisticsService', () => {
+    let service: StatisticsService;
 
     let incrementSpy: Spy;
     let processComplexesByTypeSpy: Spy;
@@ -22,7 +22,7 @@ describe('EditionStatisticsService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({});
 
-        service = TestBed.inject(EditionStatisticsService);
+        service = TestBed.inject(StatisticsService);
 
         // Test data
         emptyOutline = [] as any;
