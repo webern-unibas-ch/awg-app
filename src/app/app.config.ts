@@ -135,36 +135,6 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the URL of the DSP API endpoint
-     * ({@link http://api.dasch.swiss/v2/}).
-     *
-     * @returns {string}
-     */
-    public static get DSP_API_URL(): string {
-        return 'https://api.dasch.swiss/v2/';
-    }
-
-    /**
-     * Getter for the URL of the INSERI Instance
-     * ({@link https://apps.inseri.swiss}).
-     *
-     * @returns {string}
-     */
-    public static get INSERI_URL(): string {
-        return 'https://apps.inseri.swiss/';
-    }
-
-    /**
-     * Getter for the URL of the localhost
-     * ({@link http://localhost:4200}).
-     *
-     * @returns {string}
-     */
-    public static get LOCALHOST_URL(): string {
-        return 'http://localhost:4200';
-    }
-
-    /**
      * Getter for the OSM external link.
      *
      * @returns {string}

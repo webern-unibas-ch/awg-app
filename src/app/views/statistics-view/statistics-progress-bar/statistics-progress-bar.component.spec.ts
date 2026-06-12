@@ -3,10 +3,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
 
+import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
 import { StatisticsProgressBarComponent } from './statistics-progress-bar.component';
 
 describe('StatisticsProgressBarComponent', () => {
@@ -16,15 +23,14 @@ describe('StatisticsProgressBarComponent', () => {
 
     let expectedPercentage: number;
     let expectedHeight: string;
-    let expectedMinWidth: string;
     let expectedShowPercentageLabel: boolean;
     let expectedBoldPercentageLabel: boolean;
-    let expectedCustomClasses: string;
-    let expectedUseCustomClassesOnly: boolean;
+    let expectedCustomType: string;
+    let expectedUseCustomTypeOnly: boolean;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StatisticsProgressBarComponent],
+            imports: [StatisticsProgressBarComponent, NgbProgressbar],
         }).compileComponents();
 
         fixture = TestBed.createComponent(StatisticsProgressBarComponent);
@@ -34,11 +40,10 @@ describe('StatisticsProgressBarComponent', () => {
         // Test data
         expectedPercentage = 75;
         expectedHeight = '20px';
-        expectedMinWidth = '100px';
         expectedShowPercentageLabel = true;
         expectedBoldPercentageLabel = true;
-        expectedCustomClasses = 'custom-class';
-        expectedUseCustomClassesOnly = false;
+        expectedCustomType = 'custom-type';
+        expectedUseCustomTypeOnly = false;
 
         // Set required input signal with default value for initial tests
         fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 0 });
@@ -61,10 +66,6 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.height(), '15px');
         });
 
-        it('... should have default `minWidth`', () => {
-            expectToBe(component.minWidth(), '120px');
-        });
-
         it('... should have default `showPercentageLabel`', () => {
             expectToBe(component.showPercentageLabel(), true);
         });
@@ -73,12 +74,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), false);
         });
 
-        it('... should have default `customClasses`', () => {
-            expectToBe(component.customClasses(), '');
+        it('... should have default `customType`', () => {
+            expectToBe(component.customType(), '');
         });
 
-        it('... should have default `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), false);
+        it('... should have default `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), false);
         });
 
         describe('VIEW', () => {
@@ -103,63 +104,36 @@ describe('StatisticsProgressBarComponent', () => {
                 expectToContain(containerEl.classList, 'align-items-center');
             });
 
-            it('... should contain one progress div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+            it('... should contain one NgbProgressbar', () => {
+                getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
             });
 
-            it('... should have progress and flex-grow-1 classes on progress div', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+            it('... should have flex-grow-1 classes on NgbProgressbar', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                 const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                expectToContain(progressEl.classList, 'progress');
+                expectToContain(progressEl.classList, 'progress'); // Default class of NgbProgressbar
                 expectToContain(progressEl.classList, 'flex-grow-1');
             });
 
-            it('... should not have me-2 class on progress div yet', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+            it('... should not have me-2 class on NgbProgressbar yet', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                 const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                expectToBe(progressEl.classList.length, 3);
-                expectToContain(progressEl.classList, 'awg-statistics-progress');
-                expectToContain(progressEl.classList, 'progress');
+                expectToBe(progressEl.classList.length, 2);
+                expectToContain(progressEl.classList, 'progress'); // Default class of NgbProgressbar
                 expectToContain(progressEl.classList, 'flex-grow-1');
                 expectToBe(progressEl.classList.contains('me-2'), false);
             });
 
-            it('... should not have style height and min-width set on progress div yet', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
+            it('... should not pass down type, height, value or ariaLabel yet', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
 
-                expectToBe(progressEl.style.height, '');
-                expectToBe(progressEl.style.minWidth, '');
-            });
-
-            it('... should contain one progress bar div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-            });
-
-            it('... should have progress-bar class on progress bar div', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToContain(progressBarEl.classList, 'progress-bar');
-            });
-
-            it('... should not have custom or color classes on progress bar div yet', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.classList.length, 2);
-                expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
-                expectToContain(progressBarEl.classList, 'progress-bar');
-            });
-
-            it('... should not have style width or aria-valuenow set in progress bar yet', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.style.width, '');
-                expectToBe(progressBarEl.getAttribute('aria-valuenow'), null);
+                expect(progressCmp.height).toBeUndefined();
+                expect(progressCmp.type).toBeUndefined();
+                expectToBe(progressCmp.value, 0); // Default value of NgbProgressbar
+                expectToBe(progressCmp.ariaLabel, 'progress bar'); // Default label of NgbProgressbar
             });
 
             it('... should not show percentage label yet', () => {
@@ -181,10 +155,6 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.height(), '15px');
         });
 
-        it('... should have default `minWidth`', () => {
-            expectToBe(component.minWidth(), '120px');
-        });
-
         it('... should have default `showPercentageLabel`', () => {
             expectToBe(component.showPercentageLabel(), true);
         });
@@ -193,12 +163,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), false);
         });
 
-        it('... should have default `customClasses`', () => {
-            expectToBe(component.customClasses(), '');
+        it('... should have default `customType`', () => {
+            expectToBe(component.customType(), '');
         });
 
-        it('... should have default `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), false);
+        it('... should have default `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), false);
         });
 
         it('... should have computed `progressBarColorType` (light due to percentage=0)', () => {
@@ -206,41 +176,24 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have me-2 class on progress div', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+            it('... should have me-2 class on NgbProgressbar', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                 const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                expectToBe(progressEl.classList.length, 4);
-                expectToContain(progressEl.classList, 'awg-statistics-progress');
-                expectToContain(progressEl.classList, 'progress');
+                expectToBe(progressEl.classList.length, 3);
+                expectToContain(progressEl.classList, 'progress'); // Default class of NgbProgressbar
                 expectToContain(progressEl.classList, 'flex-grow-1');
                 expectToContain(progressEl.classList, 'me-2');
             });
 
-            it('... should have default style height and min-width set on progress div', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
+            it('... should pass down default height, value, type and ariaLabel to NgbProgressbar', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
 
-                expectToBe(progressEl.style.height, '15px');
-                expectToBe(progressEl.style.minWidth, '120px');
-            });
-
-            it('... should not have custom, but color classes on progress bar div (bg-danger due to percentage=0)', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.classList.length, 3);
-                expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
-                expectToContain(progressBarEl.classList, 'progress-bar');
-                expectToContain(progressBarEl.classList, 'bg-light');
-            });
-
-            it('... should have style width or aria-valuenow set in progress bar (0)', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.style.width, '0%');
-                expectToBe(progressBarEl.getAttribute('aria-valuenow'), '0');
+                expectToBe(progressCmp.height, '15px');
+                expectToBe(progressCmp.value, 0); // Due to percentage=0
+                expectToBe(progressCmp.type, 'light'); // Due to percentage=0
+                expectToBe(progressCmp.ariaLabel, 'Progress Bar');
             });
 
             it('... should show percentage label (0%)', () => {
@@ -271,11 +224,10 @@ describe('StatisticsProgressBarComponent', () => {
             // Simulate the parent updating the input signals
             fixture.componentRef.setInput('config', { mode: 'percentage', percentage: expectedPercentage });
             fixture.componentRef.setInput('height', expectedHeight);
-            fixture.componentRef.setInput('minWidth', expectedMinWidth);
             fixture.componentRef.setInput('showPercentageLabel', expectedShowPercentageLabel);
             fixture.componentRef.setInput('boldPercentageLabel', expectedBoldPercentageLabel);
-            fixture.componentRef.setInput('customClasses', expectedCustomClasses);
-            fixture.componentRef.setInput('useCustomClassesOnly', expectedUseCustomClassesOnly);
+            fixture.componentRef.setInput('customType', expectedCustomType);
+            fixture.componentRef.setInput('useCustomTypeOnly', expectedUseCustomTypeOnly);
 
             fixture.detectChanges();
         });
@@ -292,10 +244,6 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.height(), expectedHeight);
         });
 
-        it('... should have updated `minWidth`', () => {
-            expectToBe(component.minWidth(), expectedMinWidth);
-        });
-
         it('... should have updated `showPercentageLabel`', () => {
             expectToBe(component.showPercentageLabel(), expectedShowPercentageLabel);
         });
@@ -304,12 +252,12 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.boldPercentageLabel(), expectedBoldPercentageLabel);
         });
 
-        it('... should have updated `customClasses`', () => {
-            expectToBe(component.customClasses(), expectedCustomClasses);
+        it('... should have updated `customType`', () => {
+            expectToBe(component.customType(), expectedCustomType);
         });
 
-        it('... should have updated `useCustomClassesOnly`', () => {
-            expectToBe(component.useCustomClassesOnly(), expectedUseCustomClassesOnly);
+        it('... should have updated `useCustomTypeOnly`', () => {
+            expectToBe(component.useCustomTypeOnly(), expectedUseCustomTypeOnly);
         });
 
         it('... should have computed `progressBarColorType` (`warning` due to percentage=75)', () => {
@@ -317,42 +265,24 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have me-2 class on progress div', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+            it('... should have me-2 class on NgbProgressbar', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                 const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                expectToBe(progressEl.classList.length, 4);
-                expectToContain(progressEl.classList, 'awg-statistics-progress');
+                expectToBe(progressEl.classList.length, 3);
                 expectToContain(progressEl.classList, 'progress');
                 expectToContain(progressEl.classList, 'flex-grow-1');
                 expectToContain(progressEl.classList, 'me-2');
             });
 
-            it('... should have style height and min-width set on progress div', () => {
-                const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
-                const progressEl: HTMLDivElement = progressDes[0].nativeElement;
+            it('... should pass down correct height, value, type and ariaLabel to NgbProgressbar', () => {
+                const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
 
-                expectToBe(progressEl.style.height, expectedHeight);
-                expectToBe(progressEl.style.minWidth, expectedMinWidth);
-            });
-
-            it('... should have custom and color classes on progress bar div (bg-warning due to percentage=75)', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.classList.length, 4);
-                expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
-                expectToContain(progressBarEl.classList, 'progress-bar');
-                expectToContain(progressBarEl.classList, 'custom-class');
-                expectToContain(progressBarEl.classList, 'bg-warning');
-            });
-
-            it('... should have style width or aria-valuenow set in progress bar (depending on percentage)', () => {
-                const progressBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress-bar', 1, 1);
-                const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                expectToBe(progressBarEl.style.width, '75%');
-                expectToBe(progressBarEl.getAttribute('aria-valuenow'), '75');
+                expectToBe(progressCmp.height, '20px');
+                expectToBe(progressCmp.value, 75);
+                expectToBe(progressCmp.type, 'warning');
+                expectToBe(progressCmp.ariaLabel, 'Progress Bar');
             });
 
             it('... should show percentage label (75%)', () => {
@@ -415,6 +345,13 @@ describe('StatisticsProgressBarComponent', () => {
                         const headerSpanEl: HTMLSpanElement = headerSpanDes[0].nativeElement;
 
                         expectToBe(headerSpanEl.textContent?.trim(), 'Progress Label');
+                    });
+
+                    it('... should pass down the headerLabel to NgbProgressbar', () => {
+                        const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                        const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+
+                        expectToBe(progressCmp.ariaLabel, 'Progress Label');
                     });
                 });
 
@@ -494,35 +431,31 @@ describe('StatisticsProgressBarComponent', () => {
 
                         expectToBe(headerSpanEl.textContent?.trim(), '75');
                     });
+
+                    it('... should pass down the headerLabel to NgbProgressbar', () => {
+                        const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                        const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+
+                        expectToBe(progressCmp.ariaLabel, 'Progress Label');
+                    });
                 });
             });
 
-            describe('... when useCustomClassesOnly is true', () => {
+            describe('... when useCustomTypeOnly is true', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', true);
+                    fixture.componentRef.setInput('useCustomTypeOnly', true);
                     fixture.detectChanges();
-                });
-
-                it('... should not have color classes on progress bar div, but custom classes only', () => {
-                    const progressBarDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-statistics-progress-bar',
-                        1,
-                        1
-                    );
-                    const progressBarEl: HTMLDivElement = progressBarDes[0].nativeElement;
-
-                    expectToBe(progressBarEl.classList.length, 3);
-                    expectToContain(progressBarEl.classList, 'awg-statistics-progress-bar');
-                    expectToContain(progressBarEl.classList, 'progress-bar');
-                    expectToContain(progressBarEl.classList, 'custom-class');
-                    expectToBe(progressBarEl.classList.contains('bg-warning'), false);
-                    expectToBe(progressBarEl.classList.contains('bg-success'), false);
-                    expectToBe(progressBarEl.classList.contains('bg-danger'), false);
                 });
 
                 it('... should have computed `progressBarColorType` return empty string', () => {
                     expectToBe(component.progressBarColorType(), '');
+                });
+
+                it('... should not have color types on NgbProgressbar, but custom type only', () => {
+                    const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
+                    const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+
+                    expectToBe(progressCmp.type, 'custom-type');
                 });
             });
 
@@ -532,12 +465,11 @@ describe('StatisticsProgressBarComponent', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should not have me-2 class on progress div', () => {
-                    const progressDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-progress', 1, 1);
+                it('... should not have me-2 class on NgbProgressbar', () => {
+                    const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                     const progressEl: HTMLDivElement = progressDes[0].nativeElement;
 
-                    expectToBe(progressEl.classList.length, 3);
-                    expectToContain(progressEl.classList, 'awg-statistics-progress');
+                    expectToBe(progressEl.classList.length, 2);
                     expectToContain(progressEl.classList, 'progress');
                     expectToContain(progressEl.classList, 'flex-grow-1');
                     expectToBe(progressEl.classList.contains('me-2'), false);
@@ -568,9 +500,9 @@ describe('StatisticsProgressBarComponent', () => {
                 expect(component.progressBarColorType()).toBeDefined();
             });
 
-            describe('... with useCustomClassesOnly true', () => {
+            describe('... with useCustomTypeOnly true', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', true);
+                    fixture.componentRef.setInput('useCustomTypeOnly', true);
                 });
 
                 describe('... should return an empty string regardless of values', () => {
@@ -608,9 +540,9 @@ describe('StatisticsProgressBarComponent', () => {
                 });
             });
 
-            describe('... with useCustomClassesOnly false', () => {
+            describe('... with useCustomTypeOnly false', () => {
                 beforeEach(() => {
-                    fixture.componentRef.setInput('useCustomClassesOnly', false);
+                    fixture.componentRef.setInput('useCustomTypeOnly', false);
                 });
 
                 describe('... should return `success` for width >= 80', () => {

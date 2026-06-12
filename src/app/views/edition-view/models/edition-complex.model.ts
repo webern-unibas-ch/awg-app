@@ -180,7 +180,7 @@ export class EditionComplex {
         this.complexId = new EditionRouteConstant();
         this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
-        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll(/\//g, '_');
+        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll('/', '_');
         this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 

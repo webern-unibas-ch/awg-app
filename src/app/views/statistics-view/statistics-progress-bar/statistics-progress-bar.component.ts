@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
+
 import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
 
 /**
@@ -12,6 +14,7 @@ import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
     templateUrl: './statistics-progress-bar.component.html',
     styleUrls: ['./statistics-progress-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgbProgressbar],
 })
 export class StatisticsProgressBarComponent {
     /**
@@ -38,14 +41,6 @@ export class StatisticsProgressBarComponent {
     height = input<string>('15px');
 
     /**
-     * Input signal: minWidth.
-     *
-     * It holds the minimum width of the progress bar for responsive behavior.
-     * @default '120px'
-     */
-    minWidth = input<string>('120px');
-
-    /**
      * Input signal: showPercentageLabel.
      *
      * It holds a flag whether to show the percentage label next to the bar.
@@ -62,29 +57,29 @@ export class StatisticsProgressBarComponent {
     boldPercentageLabel = input<boolean>(false);
 
     /**
-     * Input signal: customClasses.
+     * Input signal: customType.
      *
-     * It holds additional CSS classes to apply to the progress bar.
+     * It holds a custom type to apply to the progress bar.
      * @default ''
      */
-    customClasses = input<string>('');
+    customType = input<string>('');
 
     /**
-     * Input signal: useCustomClassesOnly.
+     * Input signal: useCustomTypeOnly.
      *
-     * It holds a flag whether to use only custom classes and skip automatic class logic.
+     * It holds a flag whether to use only custom type and skip automatic color type logic.
      * @default false
      */
-    useCustomClassesOnly = input<boolean>(false);
+    useCustomTypeOnly = input<boolean>(false);
 
     /**
      * Computed signal: progressBarColorType.
      *
      * It returns the appropriate abstract color type for the progress bar based on percentage,
-     * or an empty string if custom classes should be used exclusively.
+     * or an empty string if custom type should be used exclusively.
      */
     progressBarColorType = computed<'success' | 'warning' | 'danger' | 'light' | ''>(() => {
-        if (this.useCustomClassesOnly()) {
+        if (this.useCustomTypeOnly()) {
             return '';
         }
 
