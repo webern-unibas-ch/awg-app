@@ -1,0 +1,1048 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >StatisticsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/statistics-view/services/statistics-service/statistics.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The Statistics service.</p>
+<p>It handles the calculation and provision of statistics
+for the edition outline data.</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_calculateCombinedProgressRate" >_calculateCombinedProgressRate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_calculateProgressRate" >_calculateProgressRate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_incrementComplexCounters" >_incrementComplexCounters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_isMnrX" >_isMnrX</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_processComplexes" >_processComplexes</a>
+                            </li>
+                            <li>
+                                <a href="#getStatisticsFromOutline" >getStatisticsFromOutline</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_calculateCombinedProgressRate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_calculateCombinedProgressRate</b></span>
+                        <a href="#_calculateCombinedProgressRate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_calculateCombinedProgressRate(progressRates: number[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _calculateCombinedProgressRate.</p>
+<p>It calculates a rounded average value from a list of progress rates.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>progressRates</td>
+                                            <td>
+                                                        <code>number[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The list of progress rates to average.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded averageprogress rate, or 0 if the list is empty.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_calculateProgressRate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_calculateProgressRate</b></span>
+                        <a href="#_calculateProgressRate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_calculateProgressRate(active: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _calculateProgressRate.</p>
+<p>It calculates a progressrate from active and total values.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>active</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The number of active items.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>total</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The total number of items.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded percentage rate.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_incrementComplexCounters"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_incrementComplexCounters</b></span>
+                        <a href="#_incrementComplexCounters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_incrementComplexCounters(targets: <a href="../interfaces/StatisticsComplexCounter.html" target="_self">StatisticsComplexCounter[]</a>, complexType: <a href="../miscellaneous/typealiases.html#StatisticsComplexType" target="_self">StatisticsComplexType</a>, isActive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _incrementComplexCounters.</p>
+<p>It registers one complex for all given statistics targets.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>targets</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StatisticsComplexCounter.html" target="_self" >StatisticsComplexCounter[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The statistics targets to update.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>complexType</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#StatisticsComplexType" target="_self" >StatisticsComplexType</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The complex category.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>isActive</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Flag indicating whether the complex is active.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Registers the complex in all targets by calling their registerComplex method.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isMnrX"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_isMnrX</b></span>
+                        <a href="#_isMnrX"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_isMnrX(complex: <a href="../interfaces/EditionOutlineComplexItem.html" target="_self">EditionOutlineComplexItem | undefined</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _isMnrX.</p>
+<p>It checks whether a complex belongs to the MNR_X category.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>complex</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem | undefined</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The complex object to inspect.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the complex route starts with <code>/mx</code>, otherwise false.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_processComplexes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_processComplexes</b></span>
+                        <a href="#_processComplexes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_processComplexes(stats: <a href="../classes/Statistics.html" target="_self">Statistics</a>, seriesStats: <a href="../classes/StatisticsSeriesBreakdown.html" target="_self">StatisticsSeriesBreakdown</a>, sectionStats: <a href="../classes/StatisticsSectionBreakdown.html" target="_self">StatisticsSectionBreakdown</a>, complexTypes: <a href="../interfaces/EditionOutlineComplexTypes.html" target="_self">EditionOutlineComplexTypes</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _processComplexes.</p>
+<p>It processes all complex types (opus, mnr, mnrX) for a section and updates all relevant statistics counters.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>stats</td>
+                                            <td>
+                                                            <code><a href="../classes/Statistics.html" target="_self" >Statistics</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The overall edition statistics.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>seriesStats</td>
+                                            <td>
+                                                            <code><a href="../classes/StatisticsSeriesBreakdown.html" target="_self" >StatisticsSeriesBreakdown</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current series statistics.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionStats</td>
+                                            <td>
+                                                            <code><a href="../classes/StatisticsSectionBreakdown.html" target="_self" >StatisticsSectionBreakdown</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current section statistics.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>complexTypes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineComplexTypes.html" target="_self" >EditionOutlineComplexTypes</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The object containing the opus and mnr complex lists.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Processes all complexes and updates the counters in the provided statistics objects.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStatisticsFromOutline"></a>
+                    <span class="name">
+                        <span ><b>getStatisticsFromOutline</b></span>
+                        <a href="#getStatisticsFromOutline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStatisticsFromOutline(editionOutline: <a href="../interfaces/EditionOutlineSeries.html" target="_self">EditionOutlineSeries[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: calculateStatistics.</p>
+<p>It calculates comprehensive statistics from the edition outline data.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionOutline</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The edition outline data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Statistics.html" target="_self" >Statistics</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated statistics.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineComplexTypes,
+} from &#x27;@awg-views/edition-view/models/edition-outline.model&#x27;;
+
+import {
+    Statistics,
+    StatisticsComplexCounter,
+    StatisticsComplexType,
+    StatisticsSectionBreakdown,
+    StatisticsSeriesBreakdown,
+} from &#x27;@awg-views/statistics-view/models&#x27;;
+
+/**
+ * The Statistics service.
+ *
+ * It handles the calculation and provision of statistics
+ * for the edition outline data.
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class StatisticsService {
+    /**
+     * Public method: calculateStatistics.
+     *
+     * It calculates comprehensive statistics from the edition outline data.
+     *
+     * @param {EditionOutlineSeries[]} editionOutline The edition outline data.
+     *
+     * @returns {Statistics} The calculated statistics.
+     */
+    getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): Statistics {
+        const stats &#x3D; new Statistics();
+
+        editionOutline.forEach(series &#x3D;&gt; {
+            stats.totalSeries++;
+
+            const seriesStats &#x3D; new StatisticsSeriesBreakdown(series.series.short);
+
+            series.sections.forEach(section &#x3D;&gt; {
+                stats.totalSections++;
+                seriesStats.totalSections++;
+
+                const sectionStats &#x3D; new StatisticsSectionBreakdown(section.section.short, section.disabled);
+
+                if (!section.disabled) {
+                    stats.activeSections++;
+                    seriesStats.activeSections++;
+                }
+
+                // Count all complexes in section
+                this._processComplexes(stats, seriesStats, sectionStats, section.content.complexTypes);
+
+                // Calculate progress rate for this section
+                sectionStats.progressRate &#x3D; this._calculateProgressRate(
+                    sectionStats.activeComplexes,
+                    sectionStats.totalComplexes
+                );
+
+                // Add section to series breakdown
+                seriesStats.sectionBreakdown.push(sectionStats);
+            });
+
+            // Only count series that have active content
+            if (seriesStats.activeSections &gt; 0 || seriesStats.activeComplexes &gt; 0) {
+                stats.activeSeries++;
+            }
+
+            // Calculate progress rate for this series based on average of all section progress
+            const sectionProgressRates: number[] &#x3D; seriesStats.sectionBreakdown.map(section &#x3D;&gt; section.progressRate);
+            seriesStats.progressRate &#x3D; this._calculateCombinedProgressRate(sectionProgressRates);
+
+            stats.seriesBreakdown.push(seriesStats);
+        });
+
+        // Calculate overall progress rate as average of all series progress
+        const seriesProgressRates: number[] &#x3D; stats.seriesBreakdown.map(series &#x3D;&gt; series.progressRate);
+        stats.progressRate &#x3D; this._calculateCombinedProgressRate(seriesProgressRates);
+
+        return stats;
+    }
+
+    /**
+     * Private method: _calculateProgressRate.
+     *
+     * It calculates a progressrate from active and total values.
+     *
+     * @param {number} active The number of active items.
+     * @param {number} total The total number of items.
+     *
+     * @returns {number} The rounded percentage rate.
+     */
+    private _calculateProgressRate(active: number, total: number): number {
+        return total &gt; 0 ? Math.round((active / total) * 100) : 0;
+    }
+
+    /**
+     * Private method: _calculateCombinedProgressRate.
+     *
+     * It calculates a rounded average value from a list of progress rates.
+     *
+     * @param {number[]} progressRates The list of progress rates to average.
+     *
+     * @returns {number} The rounded averageprogress rate, or 0 if the list is empty.
+     */
+    private _calculateCombinedProgressRate(progressRates: number[]): number {
+        if (!progressRates.length) {
+            return 0;
+        }
+
+        const sum &#x3D; progressRates.reduce((total, value) &#x3D;&gt; total + value, 0);
+        return Math.round(sum / progressRates.length);
+    }
+
+    /**
+     * Private method: _incrementComplexCounters.
+     *
+     * It registers one complex for all given statistics targets.
+     *
+     * @param {StatisticsComplexCounter[]} targets The statistics targets to update.
+     * @param {StatisticsComplexType} complexType The complex category.
+     * @param {boolean} isActive Flag indicating whether the complex is active.
+     *
+     * @returns {void} Registers the complex in all targets by calling their registerComplex method.
+     */
+    private _incrementComplexCounters(
+        targets: StatisticsComplexCounter[],
+        complexType: StatisticsComplexType,
+        isActive: boolean
+    ): void {
+        targets.forEach(target &#x3D;&gt; target.registerComplex(complexType, isActive));
+    }
+
+    /**
+     * Private method: _isMnrX.
+     *
+     * It checks whether a complex belongs to the MNR_X category.
+     *
+     * @param {unknown} complex The complex object to inspect.
+     *
+     * @returns {boolean} True if the complex route starts with &#x60;/mx&#x60;, otherwise false.
+     */
+    private _isMnrX(complex: EditionOutlineComplexItem | undefined): boolean {
+        const route &#x3D; complex?.complex?.complexId?.route;
+        return typeof route &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; route.startsWith(&#x27;/mx&#x27;);
+    }
+
+    /**
+     * Private method: _processComplexes.
+     *
+     * It processes all complex types (opus, mnr, mnrX) for a section and updates all relevant statistics counters.
+     *
+     * @param {Statistics} stats The overall edition statistics.
+     * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
+     * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
+     * @param {Object} complexTypes The object containing the opus and mnr complex lists.
+     *
+     * @returns {void} Processes all complexes and updates the counters in the provided statistics objects.
+     */
+    private _processComplexes(
+        stats: Statistics,
+        seriesStats: StatisticsSeriesBreakdown,
+        sectionStats: StatisticsSectionBreakdown,
+        complexTypes: EditionOutlineComplexTypes
+    ): void {
+        if (!complexTypes) {
+            return;
+        }
+
+        complexTypes.opus?.forEach(complex &#x3D;&gt; {
+            this._incrementComplexCounters([stats, seriesStats, sectionStats], &#x27;opus&#x27;, !complex.disabled);
+        });
+
+        complexTypes.mnr?.forEach(complex &#x3D;&gt; {
+            const type &#x3D; this._isMnrX(complex) ? &#x27;mnrX&#x27; : &#x27;mnr&#x27;;
+            this._incrementComplexCounters([stats, seriesStats, sectionStats], type, !complex.disabled);
+        });
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'StatisticsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
