@@ -65,7 +65,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsSeriesBreakdownComponent],
-            providers: [provideRouter([{ path: '**', component: class DummyComponent {} }])],
+            providers: [provideRouter([])],
         })
             .overrideComponent(StatisticsSeriesBreakdownComponent, {
                 remove: { imports: [StatisticsBreakdownBadgeComponent, StatisticsProgressBarComponent] },
@@ -678,7 +678,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should navigate to the correct section when clicked', async () => {
-                        const navigateSpy = vi.spyOn(router, 'navigateByUrl');
+                        const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
                         const sectionRows = getAllSectionRows();
 
