@@ -468,7 +468,15 @@
                                 "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [[]]
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b–12b, 14b–16b",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
                             }
                         ]
                     },

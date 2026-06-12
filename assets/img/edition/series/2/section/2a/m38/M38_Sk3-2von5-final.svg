@@ -153,7 +153,7 @@
       <path id="path1043" d="m817.33 114.775.962-.094q-.01.204-.01.246 0 .345.172.695.177.35.475.538.304.183.638.183.44 0 .894-.303.455-.303.737-.883.283-.58.283-1.15 0-.644-.382-1.03-.376-.387-.993-.387-.413 0-.784.198-.366.199-.685.596l-.826-.057 1.155-3.921h3.743l-.183.868h-2.912l-.575 1.95q.324-.236.664-.35.345-.12.706-.12.878 0 1.443.58t.565 1.589q0 .883-.387 1.631-.387.742-1.067 1.145-.674.397-1.458.397-.66 0-1.166-.298-.508-.298-.764-.82-.25-.523-.25-1.046 0-.052.004-.157z" style="font-style:italic;font-variant:normal;font-weight:400;font-stretch:normal;font-size:10.7074px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333"/>
     </g>
   </g>
-  <g id="g16" class="link-box">
+  <g id="g16" class="link-box-todo">
     <path id="rect60942" d="M174.482 181.516h651.67v117.99h-651.67Z" style="fill:none;stroke:#777;stroke-width:.910664;stroke-opacity:1"/>
     <g id="text61028" aria-label="M* 404 Sk1 T. 12–15" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333" transform="translate(36.677 -.5)">
       <path id="path1047" d="M353.556 243.779v-15.27h4.614l2.77 10.416 2.74-10.416h4.625v15.27h-2.865v-12.02l-3.03 12.02h-2.97l-3.02-12.02v12.02z" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333"/>
@@ -224,7 +224,7 @@
       </g>
     </g>
   </g>
-  <g id="g955" class="tkk" transform="translate(35.677 -.5)">
+  <g id="awg-tkk-m38_sk3-004" class="tkk" transform="translate(35.677 -.5)">
     <g id="text61016" aria-label="˙" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004">
       <path id="path1116" d="M830.787 287.329c-.312-.558-1.083-.64-1.427-.672-.918-.115-1.673.114-2.165.393-.492.295-1.148.853-1.46 1.673-.114.328-.344.984-.016 1.542.328.524 1.132.672 1.575.705.738.065 1.41-.05 1.918-.312.509-.246 1.214-.918 1.526-1.755.114-.311.311-1.115.049-1.574m-.377.279c.311.541-.312 1.082-.771 1.377-.345.23-.623.394-.951.574s-.624.345-1 .525c-.51.263-1.28.525-1.608-.016-.312-.541.312-1.083.787-1.378.345-.23.64-.41.968-.59s.59-.345.967-.525c.509-.246 1.28-.508 1.608.033" style="font-size:16.39999962px;font-family:Maestro;fill:#777;fill-opacity:1;stroke-width:1.33333004"/>
     </g>

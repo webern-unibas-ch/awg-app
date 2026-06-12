@@ -701,48 +701,55 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-001",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1.  Note",
                                             "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-002",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "(1/4)",
                                             "comment": "Rasur im System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-003",
                                             "measure": "25",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "H rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-004",
                                             "measure": "25",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> rasiert; Ansatz zu <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-005",
                                             "measure": "7",
                                             "system": "",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[ff]')}}</span>?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-006",
                                             "measure": "31",
                                             "system": "Klav. o.",
                                             "position": "2/4–6/8",
                                             "comment": "Rasur über dem System: Ende des Legatobogens versetzt von 6/8 nach 2/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_1-007",
                                             "measure": "34",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
@@ -758,36 +765,41 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-001",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter dem System: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter dem System: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-002",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Oberstimmenschicht: a<sup>1 </sup>zu 1. Note und cis<sup>2</sup> zu 2. Note hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-003",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "1–2/8",
                                             "comment": "Unterstimmenschicht: d<sup>1</sup>–fis<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-004",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze über dem System darüber: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze über dem System darüber: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf1_Ba_corr_2-005",
                                             "measure": "30 <br />bis 31",
                                             "system": "Klav. u.",
                                             "position": "3/4 <br />1. Note",
@@ -816,7 +828,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "brauner Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -989,96 +1001,111 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Bleistift und Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-001",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: g überschreibt f."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-002",
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "2/8",
                                             "comment": "Oberstimmenschicht: a überschreibt g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-003",
                                             "measure": "23",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Punktierte Halbe Note E/H ersetzt gestrichene Halbe Note e/h."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-004",
                                             "measure": "24 <br />bis 25",
                                             "system": "Klav. u.",
                                             "position": "1. Note <br />1. Note",
                                             "comment": "Unterstimmenschicht: Rasur im System. Ante correcturam: Legatobogen von punktierter Halber Note H in T. 24 zu Viertelnote gis in T. 25."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-005",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Punktierte Halbe Note überschreibt Ansatz zu Notenköpfen für Viertelnote A/cis/e."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-006",
                                             "measure": "26",
                                             "system": "Klav. u.",
                                             "position": "(3/4)",
                                             "comment": "Rasur im System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-007",
                                             "measure": "27 <br />bis 28",
                                             "system": "Klav. o.",
                                             "position": "3/4 <br />3/4",
                                             "comment": "Ende des Legatobogens versetzt von T. 28 3/4 nach T. 27 3/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-008",
                                             "measure": "28 <br />bis 29",
                                             "system": "Klav. o.",
                                             "position": "1/8–6/8",
                                             "comment": "Unterstimmenschicht mit Bleistift vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-009",
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "Rasur im System (vgl. Korrekturen 2)."
+                                            "comment": "Rasur im System (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-010",
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-011",
                                             "measure": "29",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "Unterstimmenschicht: d<sup>2</sup> überschreibt c<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-012",
                                             "measure": "31",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Mit Bleistift vorskizziertes <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Cis/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis ersetzt cis/[<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]cis<sup>1</sup>; cis<sup>1</sup> mit Bleistift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-013",
                                             "measure": "31",
                                             "system": "Klav. o.",
                                             "position": "2–6/8",
                                             "comment": "Unterstimmenschicht mit Bleistift vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-014",
                                             "measure": "32",
                                             "system": "Klav. o.",
                                             "position": "1/8–6/8",
                                             "comment": "Unterstimmenschicht mit Bleistift vorskizziert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_1-015",
                                             "measure": "32",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
@@ -1094,44 +1121,50 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 46: <a (click)=\"ref.selectSvgSheet({complexId: 'm46', sheetId: 'M46_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-001",
                                             "measure": "19–20",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Linie mit braunem Buntstift unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-002",
                                             "measure": "23 bis 36",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal mit braunem Buntstift gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-003",
                                             "measure": "27",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup> überschreibt e<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-004",
                                             "measure": "27 <br />bis 28",
                                             "system": "Klav. o.",
                                             "position": "6/8 <br />1/8",
                                             "comment": "Unterstimmenschicht: Ligaturbogen zu e<sup>1</sup>–e<sup>1 </sup>nachgezeichnet."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-005",
                                             "measure": "28",
                                             "system": "Klav. o.",
                                             "position": "(1/4)",
-                                            "comment": "Viertelnote e<sup>2</sup> mit Bleistift hinzugefügt (vgl. Korrekturen 1)."
+                                            "comment": "Viertelnote e<sup>2</sup> mit Bleistift hinzugefügt (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm46', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m46_tf2_C_corr_2-006",
                                             "measure": "32",
-                                            "system": "Klav o.",
+                                            "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: f<sup>2</sup> gestrichen."
                                         }

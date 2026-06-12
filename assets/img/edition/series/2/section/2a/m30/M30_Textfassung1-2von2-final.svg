@@ -299,7 +299,7 @@
   <path id="path3978" stroke-miterlimit="10" d="M382.373 117.865V107.73" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path3980" stroke-miterlimit="10" d="M380.81 107.729h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path3982" stroke-miterlimit="10" d="M380.81 117.865h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g6275" class="tkk" transform="translate(38.931 .264)">
+  <g id="awg-tkk-m30_tf1-002" class="tkk" transform="translate(38.931 .264)">
     <g id="g3986" style="fill:#000;fill-opacity:1">
       <use xlink:href="#glyph-3-1" id="use3984" width="100%" height="100%" x="369.721" y="62.757"/>
     </g>
@@ -443,7 +443,7 @@
   </g>
   <path id="path4190" stroke-miterlimit="10" d="M589.01 145.108v-12.422" style="fill:none;stroke:#000;stroke-width:.66000003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path4192" d="m540.892 137.307 48.418-5.82v2.34l-48.418 5.82" style="fill:#000;fill-opacity:1;fill-rule:evenodd"/>
-  <g id="g6279" class="tkk" transform="translate(38.931 .264)">
+  <g id="awg-tkk-m30_tf1-003" class="tkk" transform="translate(38.931 .264)">
     <g id="g4196" style="fill:#000;fill-opacity:1">
       <use xlink:href="#glyph-3-1" id="use4194" width="100%" height="100%" x="495.901" y="135.477"/>
     </g>
@@ -1102,7 +1102,7 @@
   <path id="path5218" stroke-miterlimit="10" d="M409.853 473.123v-10.14" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path5220" stroke-miterlimit="10" d="M408.29 462.983h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path5222" stroke-miterlimit="10" d="M408.29 473.123h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g6283" class="tkk" transform="translate(38.931 .264)">
+  <g id="awg-tkk-m30_tf1-004" class="tkk" transform="translate(38.931 .264)">
     <g id="g5226" style="fill:#000;fill-opacity:1">
       <use xlink:href="#glyph-3-1" id="use5224" width="100%" height="100%" x="238.86" y="505.799"/>
     </g>
@@ -1303,7 +1303,7 @@
   </g>
   <path id="path5534" stroke-miterlimit="10" d="M281.572 659.904v75.36" style="fill:none;stroke:#000;stroke-width:.89999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path5536" stroke-miterlimit="10" d="M446.931 659.904v75.36" style="fill:none;stroke:#000;stroke-width:.89999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g6321" class="tkk" transform="translate(38.931 .264)">
+  <g id="awg-tkk-m30_tf1-006" class="tkk" transform="translate(38.931 .264)">
     <path id="path5538" stroke-miterlimit="10" d="M2364.258 759.83V445.833" style="fill:none;stroke:#000;stroke-width:3.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1" transform="matrix(.24 0 0 -.24 0 842)"/>
   </g>
   <path id="path5540" stroke-miterlimit="10" d="M66.412 659.904H606.77" style="fill:none;stroke:#000;stroke-width:.54000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
@@ -1588,7 +1588,7 @@
   <path id="path6034" d="M236.693 677.483c3.297 4.32 9.957 4.32 13.258 0l-.18-.122c-3.121 3.243-9.781 3.243-12.898 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd"/>
   <path id="path6036" d="M264.353 649.404c7.258-5.043 21.297-5.043 28.5 0l-.121.18c-7.082-4.082-21.121-4.082-28.262 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd"/>
   <path id="path6038" d="M264.591 668.123c6.602-3.48 19.68-3.48 26.282 0l-.063.18c-6.539-2.52-19.617-2.52-26.16 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd"/>
-  <g id="g6318" class="tkk" transform="translate(38.931 .264)">
+  <g id="awg-tkk-m30_tf1-005" class="tkk" transform="translate(38.931 .264)">
     <g id="g5662" style="fill:#000;fill-opacity:1">
       <use xlink:href="#glyph-0-4" id="use5660" width="100%" height="100%" x="86.76" y="720.899"/>
     </g>

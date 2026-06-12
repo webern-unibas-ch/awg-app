@@ -15,42 +15,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g2815",
+                                "svgGroupId": "awg-tkk-m30_tf1-001",
                                 "measure": "8",
                                 "system": "Klav. u.",
                                 "position": "2/8",
                                 "comment": "Oberstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g6275",
+                                "svgGroupId": "awg-tkk-m30_tf1-002",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Unterstimmenschicht: Hilfslinie unter dem Notenkopf weggelassen (vgl. auch Korrekturen mit Bleistift)."
                             },
                             {
-                                "svgGroupId": "g6279",
+                                "svgGroupId": "awg-tkk-m30_tf1-003",
                                 "measure": "15",
                                 "system": "Klav. u.",
                                 "position": "4/8",
                                 "comment": "Gemeinsamer Notenkopf für Ober- und Unterstimmenschicht korrigiert zu zwei separate Notenköpfe."
                             },
                             {
-                                "svgGroupId": "g6283",
+                                "svgGroupId": "awg-tkk-m30_tf1-004",
                                 "measure": "20",
                                 "system": "Klav. u.",
                                 "position": "1–2/8",
                                 "comment": "Oberstimmenschicht: Viertelnoten b/es<sup>1</sup>–a/es<sup>1</sup> korrigiert zu Achtelnoten mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g6318",
+                                "svgGroupId": "awg-tkk-m30_tf1-005",
                                 "measure": "22",
                                 "system": "Klav. u.",
                                 "position": "1–3/8",
                                 "comment": "sic."
                             },
                             {
-                                "svgGroupId": "g6321",
+                                "svgGroupId": "awg-tkk-m30_tf1-006",
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "Taktende",
@@ -74,399 +74,399 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1187",
+                                "svgGroupId": "awg-tkk-m30_sk1-001",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "5/8",
                                 "comment": "Oberstimmenschicht: sic. Hilfslinien unterhalb von vermutlich als b/d<sup>1</sup> gedachter Viertelnote."
                             },
                             {
-                                "svgGroupId": "g1186",
+                                "svgGroupId": "awg-tkk-m30_sk1-002",
                                 "measure": "4",
                                 "system": "1",
                                 "position": "3. Note",
                                 "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g1174",
+                                "svgGroupId": "awg-tkk-m30_sk1-003",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: es überschreibt f."
                             },
                             {
-                                "svgGroupId": "g1178",
+                                "svgGroupId": "awg-tkk-m30_sk1-004",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "letzte Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                             },
                             {
-                                "svgGroupId": "g1182",
+                                "svgGroupId": "awg-tkk-m30_sk1-005",
                                 "measure": "6",
                                 "system": "2",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Achtelpause überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b."
                             },
                             {
-                                "svgGroupId": "g1058",
+                                "svgGroupId": "awg-tkk-m30_sk1-006",
                                 "measure": "{7A–10B}",
                                 "system": "4–5",
                                 "position": "",
                                 "comment": "Akkolade pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1067",
+                                "svgGroupId": "awg-tkk-m30_sk1-007",
                                 "measure": "{8A}",
                                 "system": "5",
                                 "position": "3/8",
                                 "comment": "e überschreibt c."
                             },
                             {
-                                "svgGroupId": "g1075",
+                                "svgGroupId": "awg-tkk-m30_sk1-008",
                                 "measure": "{8A}",
                                 "system": "5",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: C radiert und ersetzt durch c."
                             },
                             {
-                                "svgGroupId": "g1062",
+                                "svgGroupId": "awg-tkk-m30_sk1-009",
                                 "measure": "{9A–10B}",
                                 "system": "4–5",
                                 "position": "1–3/4",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g827",
+                                "svgGroupId": "awg-tkk-m30_sk1-010",
                                 "measure": "{11A–16A}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Akkolade pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1116",
+                                "svgGroupId": "awg-tkk-m30_sk1-011",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "3/8",
                                 "comment": "as<sup>2</sup> gestrichen und ersetzt durch f<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "text1949",
+                                "svgGroupId": "awg-tkk-m30_sk1-012",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "(3/8)",
                                 "comment": "Nicht entzifferbare, gestrichene Schicht über dem System."
                             },
                             {
-                                "svgGroupId": "g1122",
+                                "svgGroupId": "awg-tkk-m30_sk1-013",
                                 "measure": "7B",
                                 "system": "10",
                                 "position": "4/8",
                                 "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder as<sup>1</sup>?)."
                             },
                             {
-                                "svgGroupId": "g1137",
+                                "svgGroupId": "awg-tkk-m30_sk1-014",
                                 "measure": "8B",
                                 "system": "11",
                                 "position": "1–3/8",
                                 "comment": "Oberstimmenschicht: b–a–g überschreibt as–g–f."
                             },
                             {
-                                "svgGroupId": "g1151",
+                                "svgGroupId": "awg-tkk-m30_sk1-015",
                                 "measure": "8B",
                                 "system": "11",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: As–G überschreibt B–As und punktierte Viertelnote F."
                             },
                             {
-                                "svgGroupId": "g1161",
+                                "svgGroupId": "awg-tkk-m30_sk1-016",
                                 "measure": "9C",
                                 "system": "10",
                                 "position": "(1/4)",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1157",
+                                "svgGroupId": "awg-tkk-m30_sk1-017",
                                 "measure": "9C",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Des gestrichen."
                             },
                             {
-                                "svgGroupId": "g998",
+                                "svgGroupId": "awg-tkk-m30_sk1-018",
                                 "measure": "9D",
                                 "system": "13",
                                 "position": "",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–f<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g2571",
+                                "svgGroupId": "awg-tkk-m30_sk1-019",
                                 "measure": "{9D–12B}",
                                 "system": "13",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1132",
+                                "svgGroupId": "awg-tkk-m30_sk1-020",
                                 "measure": "9E–10E",
                                 "system": "14",
                                 "position": "letzte Note bis 1. Note",
                                 "comment": "Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g1140",
+                                "svgGroupId": "awg-tkk-m30_sk1-021",
                                 "measure": "10E",
                                 "system": "14",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: ges<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1156",
+                                "svgGroupId": "awg-tkk-m30_sk1-022",
                                 "measure": "10E",
                                 "system": "14",
                                 "position": "4–6/8",
                                 "comment": "ges<sup>1</sup>–b<sup>1</sup>–ges<sup>1</sup> überschreibt b<sup>1</sup>–ges<sup>1</sup>–b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1179",
+                                "svgGroupId": "awg-tkk-m30_sk1-023",
                                 "measure": "12C",
                                 "system": "14",
                                 "position": "3/8",
                                 "comment": "des<sup>3</sup>/f<sup>3</sup> überschreibt c<sup>2</sup>/es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1162",
+                                "svgGroupId": "awg-tkk-m30_sk1-024",
                                 "measure": "12C",
                                 "system": "15",
                                 "position": "3/8",
                                 "comment": "b überschreibt B."
                             },
                             {
-                                "svgGroupId": "g1188",
+                                "svgGroupId": "awg-tkk-m30_sk1-025",
                                 "measure": "12C",
                                 "system": "14",
                                 "position": "3. Note",
                                 "comment": "d<sup>2</sup> überschreibt es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1166",
+                                "svgGroupId": "awg-tkk-m30_sk1-026",
                                 "measure": "12C",
                                 "system": "15",
                                 "position": "4–6/8",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g1197",
+                                "svgGroupId": "awg-tkk-m30_sk1-027",
                                 "measure": "{13B–15B}",
                                 "system": "14–15",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1193",
+                                "svgGroupId": "awg-tkk-m30_sk1-028",
                                 "measure": "{13B}",
                                 "system": "14",
                                 "position": "1/8",
                                 "comment": "Unterstimmenschicht: h<sup>1</sup> überschreibt f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1213",
+                                "svgGroupId": "awg-tkk-m30_sk1-029",
                                 "measure": "{14B}",
                                 "system": "15",
                                 "position": "4–6/8",
                                 "comment": "Unterstimmenschicht: c<sup>2</sup>–es<sup>2</sup>–c<sup>2</sup> überschreibt es<sup>2</sup>–c<sup>2</sup>–es<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1123",
+                                "svgGroupId": "awg-tkk-m30_sk1-030",
                                 "measure": "16B",
                                 "system": "17",
                                 "position": "3. Note",
                                 "comment": "g<sup>1</sup> ersetzt durch b<sup>1</sup>/g<sup>2</sup>/b<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1117",
+                                "svgGroupId": "awg-tkk-m30_sk1-031",
                                 "measure": "{13C}",
                                 "system": "16–17",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1112",
+                                "svgGroupId": "awg-tkk-m30_sk1-032",
                                 "measure": "{13C}",
                                 "system": "16",
                                 "position": "3. Note",
                                 "comment": "f<sup>2</sup> überschreibt des<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1134",
+                                "svgGroupId": "awg-tkk-m30_sk1-033",
                                 "measure": "14C",
                                 "system": "16",
                                 "position": "5–6/8",
                                 "comment": "dis<sup>1</sup>–h überschreibt dis<sup>2</sup>–h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1120",
+                                "svgGroupId": "awg-tkk-m30_sk1-034",
                                 "measure": "18",
                                 "system": "1",
                                 "position": "2. Note",
                                 "comment": "Augmentationspunkt gestrichen."
                             },
                             {
-                                "svgGroupId": "g1135",
+                                "svgGroupId": "awg-tkk-m30_sk1-035",
                                 "measure": "19",
                                 "system": "2",
                                 "position": "3.–4. Note",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g1131",
+                                "svgGroupId": "awg-tkk-m30_sk1-036",
                                 "measure": "19",
                                 "system": "1",
                                 "position": "6/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1172",
+                                "svgGroupId": "awg-tkk-m30_sk1-037",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "<i>b</i> über dem System gestrichen."
                             },
                             {
-                                "svgGroupId": "g1233",
+                                "svgGroupId": "awg-tkk-m30_sk1-038",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "(1/4)",
                                 "comment": "Viertelnote gestrichen (Tonhöhe undeutlich)."
                             },
                             {
-                                "svgGroupId": "g1167",
+                                "svgGroupId": "awg-tkk-m30_sk1-039",
                                 "measure": "21",
                                 "system": "2",
                                 "position": "1/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B ersetzt durch B<sub>1</sub>."
                             },
                             {
-                                "svgGroupId": "g1160",
+                                "svgGroupId": "awg-tkk-m30_sk1-040",
                                 "measure": "21",
                                 "system": "1",
                                 "position": "2. Note",
                                 "comment": "g<sup>1</sup> gestrichen und ersetzt durch b<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1121",
+                                "svgGroupId": "awg-tkk-m30_sk1-041",
                                 "measure": "22",
                                 "system": "5",
                                 "position": "4. Note",
                                 "comment": "Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des gestrichen."
                             },
                             {
-                                "svgGroupId": "g1129",
+                                "svgGroupId": "awg-tkk-m30_sk1-042",
                                 "measure": "{23A}",
                                 "system": "4",
                                 "position": "",
                                 "comment": "Noten gestrichen."
                             },
                             {
-                                "svgGroupId": "g1107",
+                                "svgGroupId": "awg-tkk-m30_sk1-043",
                                 "measure": "23B",
                                 "system": "4",
                                 "position": "2/8",
                                 "comment": "f<sup>1</sup> überschreibt des<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1113",
+                                "svgGroupId": "awg-tkk-m30_sk1-044",
                                 "measure": "23B",
                                 "system": "4",
                                 "position": "3/8",
                                 "comment": "es<sup>1</sup> überschreibt c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1144",
+                                "svgGroupId": "awg-tkk-m30_sk1-045",
                                 "measure": "{24A}",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "heses<sup>1</sup> überschreibt as<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1148",
+                                "svgGroupId": "awg-tkk-m30_sk1-046",
                                 "measure": "{24A}",
                                 "system": "24–5",
                                 "position": "Taktmitte",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g1155",
+                                "svgGroupId": "awg-tkk-m30_sk1-047",
                                 "measure": "{24A}",
                                 "system": "4",
                                 "position": "letzte Note",
                                 "comment": "Viertelnote überschreibt Achtelnote."
                             },
                             {
-                                "svgGroupId": "g1159",
+                                "svgGroupId": "awg-tkk-m30_sk1-048",
                                 "measure": "{24A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1164",
+                                "svgGroupId": "awg-tkk-m30_sk1-049",
                                 "measure": "24B",
                                 "system": "4",
                                 "position": "1. Note",
                                 "comment": "e<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1168",
+                                "svgGroupId": "awg-tkk-m30_sk1-050",
                                 "measure": "24B",
                                 "system": "5",
                                 "position": "2/8",
                                 "comment": "Notenkopf c<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g1071",
+                                "svgGroupId": "awg-tkk-m30_sk1-051",
                                 "measure": "25(4–6/8)",
                                 "system": "7",
                                 "position": "1.–2. Note",
                                 "comment": "ges<sup>2</sup>–fes<sup>2</sup> überschreibt b<sup>2</sup>–as<sup>2</sup>. "
                             },
                             {
-                                "svgGroupId": "g1101",
+                                "svgGroupId": "awg-tkk-m30_sk1-052",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "1/8",
                                 "comment": " c<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1108",
+                                "svgGroupId": "awg-tkk-m30_sk1-053",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "4. Note",
                                 "comment": "a<sup>1</sup> überschreibt ges<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1114",
+                                "svgGroupId": "awg-tkk-m30_sk1-054",
                                 "measure": "27",
                                 "system": "7",
                                 "position": "6/8",
                                 "comment": "h<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g37",
+                                "svgGroupId": "awg-tkk-m30_sk1-055",
                                 "measure": "{28A–29A}",
                                 "system": "7",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g1118",
+                                "svgGroupId": "awg-tkk-m30_sk1-056",
                                 "measure": "{28A}",
                                 "system": "7",
                                 "position": "4/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1125",
+                                "svgGroupId": "awg-tkk-m30_sk1-057",
                                 "measure": "28B",
                                 "system": "8",
                                 "position": "(1/4)",
@@ -478,14 +478,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g2",
+                    "svgGroupId": "awg-lb-m30_sk1k-to-m31_sk1a",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk1a"
                     }
                 },
                 {
-                    "svgGroupId": "g4",
+                    "svgGroupId": "awg-lb-m30_sk1k-to-m31_sk1b",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M31_Sk1b"

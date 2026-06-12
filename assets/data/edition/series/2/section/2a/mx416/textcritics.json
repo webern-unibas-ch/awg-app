@@ -26,28 +26,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-mx416_sk1-001",
                                 "measure": "{1A}",
                                 "system": "16–15",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-mx416_sk1-002",
                                 "measure": "3",
                                 "system": "15",
                                 "position": "(3/8)",
                                 "comment": "Metrisch falsch platzierte Viertelnote d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-mx416_sk1-003",
                                 "measure": "4",
                                 "system": "16",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-mx416_sk1-004",
                                 "measure": "8",
                                 "system": "16",
                                 "position": "1. Note",

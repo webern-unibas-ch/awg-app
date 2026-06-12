@@ -101,7 +101,7 @@
 <h1>AWG App</h1>
 <p><img src="https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg" alt="GitHub package.json version" class="img-responsive">
 <a href="https://github.com/angular/angular"><img src="https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular" alt="GitHub package.json dependency version (prod)" class="img-responsive"></a>
-<img src="https://img.shields.io/badge/node.js-%3E=v20.19.0-blue" alt="Node.js version" class="img-responsive">
+<img src="https://img.shields.io/badge/node.js-%3E=v22.22.0-blue" alt="Node.js version" class="img-responsive">
 <img src="https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app" alt="GitHub commit activity" class="img-responsive">
 <img src="https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg" alt="CI Workflow" class="img-responsive">
 <a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6" alt="codecov" class="img-responsive"></a>
@@ -185,15 +185,17 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
 </li>
 </ul>
 <h2>Testing</h2>
-<p>This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.</p>
+<p>This project uses a dynamic testing approach with Vitest for unit tests in Angular. Code coverage is measured with CodeCov.</p>
 <p>We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.</p>
 <p>To assist with this, the following commands are provided:</p>
 <ul>
 <li><p><code>yarn test</code>: Launches the test runner.</p>
 </li>
-<li><p><code>yarn test:cov</code>: Runs the tests and generates a coverage report.</p>
+<li><p><code>yarn test:local</code>: Runs the tests in a local browser environment.</p>
 </li>
-<li><p><code>yarn test:cov:serve</code>: Runs the tests, generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
+<li><p><code>yarn test:cov</code>: Runs the tests (headless) and generates a coverage report.</p>
+</li>
+<li><p><code>yarn test:cov:serve</code>: Runs the tests (headless), generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
 </li>
 </ul>
 <h2>Contributing</h2>

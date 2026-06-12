@@ -234,54 +234,62 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M75_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1/4",
-                                            "comment": "Unterstimmenschicht:Halbe Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-002",
                                             "measure": "4",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Viertelnote überschreibt mit Oberstimmenschicht zusammengehalste punktierte Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-003",
                                             "measure": "5",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Auf Rasur; ausgenommen 2/8 in Klav. o."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-004",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1–2/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-005",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Auf Rasur. Ante correcturam: Viertelnote e."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-006",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "3/8",
                                             "comment": "E rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-007",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_1-008",
                                             "measure": "10",
                                             "system": "Klav.",
                                             "position": "2. Note",
@@ -297,12 +305,13 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M75_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m75_tf1_B_corr_2-001",
                                             "measure": "1–13",
                                             "system": "Klav.",
                                             "position": "",

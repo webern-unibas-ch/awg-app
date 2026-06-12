@@ -189,7 +189,7 @@
   <path id="line230" d="M291.577 256.15v15.802" style="fill:none;stroke:#000;stroke-width:.603998"/>
   <path id="path232" fill="#000" fill-rule="nonzero" stroke="none" d="M259.459 270.67h32.42v2.563h-32.42z" style="stroke-width:1.33333"/>
   <path id="path234" fill="#000" fill-rule="nonzero" stroke="none" d="M259.459 266.828h32.42v2.562h-32.42z" style="stroke-width:1.33333"/>
-  <g id="g1085" class="tkk">
+  <g id="awg-tkk-m22_sk4-010" class="tkk">
     <path id="polyline100" d="m196.672 164.98 14.734 17.137" style="fill:none;stroke:#000;stroke-width:.962539" transform="matrix(.75906 0 0 -.72558 148.203 383.757)"/>
     <g id="text236" aria-label="œ" style="font-size:20.4999px;font-family:Maestro;stroke-width:1.33333">
       <path id="path9012" d="M299.981 257.879q.205-.553.615-1.025.43-.471.984-.82.554-.369 1.19-.553.635-.205 1.29-.205.657 0 1.149.225.492.205.779.574.287.349.348.84.082.472-.123 1.026-.205.553-.635 1.025-.431.492-.984.84-.554.369-1.21.554-.635.205-1.27.205-.657 0-1.149-.226-.471-.205-.779-.574-.287-.369-.348-.861-.062-.471.143-1.025"/>
@@ -362,7 +362,7 @@
   <path id="line288" d="M380.975 266.4v15.802" style="fill:none;stroke:#000;stroke-width:.603998"/>
   <path id="path290" fill="#000" fill-rule="nonzero" stroke="none" d="M338.18 280.921h42.62v2.563h-42.618z" style="stroke-width:1.25624"/>
   <path id="path292" fill="#000" fill-rule="nonzero" stroke="none" d="M338.18 277.077h42.62v2.563h-42.618z" style="stroke-width:1.25624"/>
-  <g id="g1066" class="tkk">
+  <g id="awg-tkk-m22_sk4-012" class="tkk">
     <path id="line268" d="M347.838 252.966h7.902" style="fill:none;stroke:#777;stroke-width:.847998"/>
     <path id="line270" d="M347.838 247.842h7.902" style="fill:none;stroke:#777;stroke-width:.847998"/>
     <g id="text272" aria-label="œ" style="font-size:15.3749px;font-family:Maestro;fill:#777;stroke-width:1.33333" transform="translate(1.185 .611)">
@@ -377,14 +377,14 @@
     <path id="line278" d="M349.422 248.696v33.74" style="fill:none;stroke:#777;stroke-width:.603998"/>
     <path id="line284-0" d="M356.786 263.497v17.847" style="fill:none;stroke:#000;stroke-width:.557773"/>
   </g>
-  <g id="g1089" class="tkk">
+  <g id="awg-tkk-m22_sk4-011" class="tkk">
     <g id="text248" aria-label="œ" style="font-size:20.4999px;font-family:Maestro;stroke-width:1.33333">
       <path id="path8791" d="M310.017 268.13q.205-.554.615-1.025.43-.472.984-.82.554-.37 1.189-.554.636-.205 1.292-.205t1.148.226q.492.205.779.574.287.348.348.84.082.472-.123 1.025-.205.554-.635 1.025-.431.492-.984.84-.554.37-1.21.554-.635.205-1.271.205-.656 0-1.148-.225-.471-.205-.779-.574-.287-.37-.348-.861-.062-.472.143-1.025"/>
     </g>
     <path id="polyline100-3" d="m196.672 164.98 14.734 17.137" style="fill:none;stroke:#000;stroke-width:.962539" transform="matrix(.75906 0 0 -.72558 158.314 394.035)"/>
   </g>
   <path id="line92" d="M161.87 273.233h835.372" style="fill:none;stroke:#000;stroke-width:.603998"/>
-  <g id="g4" class="tkk">
+  <g id="awg-tkk-m22_sk4-013" class="tkk">
     <path id="line326-7" d="M448.364 286.573h6.887" style="fill:none;stroke:#777;stroke-width:.734388;stroke-opacity:.866667"/>
     <g id="text374" aria-label="œ" style="font-size:20.4999px;font-family:Maestro;stroke-width:1.33333">
       <path id="path8929" d="M439.21 260.442q.205-.554.615-1.025.43-.472.984-.82.554-.37 1.19-.554.635-.205 1.29-.205.657 0 1.149.226.492.205.779.574.287.348.348.84.082.472-.123 1.025-.205.554-.635 1.025-.43.492-.984.84-.554.37-1.21.554-.635.205-1.27.205-.657 0-1.149-.225-.471-.205-.779-.574-.287-.37-.348-.861-.062-.472.143-1.025"/>

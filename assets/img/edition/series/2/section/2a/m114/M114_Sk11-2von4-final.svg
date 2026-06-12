@@ -83,7 +83,7 @@
   <path id="text176" d="M226.208 175.095q.218-.59.656-1.094.459-.503 1.05-.874.59-.394 1.267-.59.678-.22 1.378-.22t1.225.241q.524.219.83.612.307.372.372.897.088.503-.131 1.093t-.678 1.093q-.46.525-1.05.897-.59.394-1.29.59-.677.219-1.355.219-.7 0-1.225-.24-.503-.22-.83-.613-.307-.393-.373-.918-.065-.503.154-1.093" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"/>
   <path id="text178" d="M220.546 173.717v3.258l2.143-.7v-3.258zm-.634-2.056v-3.564h.634v3.346l2.143-.7v-3.192h.634v2.995l.853-.284v2.274l-.853.284v3.237l.853-.263v2.253l-.853.284v3.564h-.634v-3.367l-2.143.7v3.236h-.634v-3.018l-.94.306v-2.274l.94-.306v-3.258l-.94.306v-2.252z" aria-label="#" style="font-size:21.8666px;font-family:Maestro;stroke-width:1.33333"/>
   <path id="line180" d="M226.354 175.983v27.79" style="fill:none;stroke:#000;stroke-width:.643998"/>
-  <g id="g-tkk-7" class="tkk">
+  <g id="awg-tkk-m114_sk11-007" class="tkk">
     <path id="line182" d="M258.149 188.74h9.338" style="fill:none;stroke:#000;stroke-width:.903998"/>
     <path id="line184" d="M258.149 183.273h9.338" style="fill:none;stroke:#000;stroke-width:.903998"/>
     <path id="line186" d="M258.149 177.806h9.338" style="fill:none;stroke:#000;stroke-width:.903998"/>
@@ -263,13 +263,13 @@
       <path id="path1579-0" d="M240.15 37.311h-1.273V24.614h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     </g>
   </g>
-  <g id="g-tkk-9" class="tkk">
+  <g id="awg-tkk-m114_sk11-009" class="tkk">
     <path id="path1" d="M384.21 196.033c10.972-1.369 17.199-3.688 14.985 3.193-.96 2.984-37.378 64.443-38.584 71.603-.463 2.752 2.865 1.404 4.452 1.113 5.546-1.386 35.215-20.405 42.665-24.115" style="fill:none;stroke:#000;stroke-width:.680315"/>
   </g>
-  <g id="g-tkk-10" class="tkk">
+  <g id="awg-tkk-m114_sk11-010" class="tkk">
     <path id="path2" d="M458.184 276.023c49.7-36.03 227.253-130.116 159.9-122.43-41.067 4.687-199.684 69.829-161.013 83.104 40.315 13.84 249.839-97.714 109.074.371-5.843 3.515-7.056 8.623-.371 8.904 22.978.968 66.586-22.244 89.958-16.356 14.274 3.597-44.934 45.563-47.294 46.778" style="fill:none;stroke:#000;stroke-width:.680315"/>
   </g>
-  <g id="g-tkk-8" class="tkk">
+  <g id="awg-tkk-m114_sk11-008" class="tkk">
     <path id="polyline160" d="m239.338 125.55 13.837-7.858" style="fill:none;stroke:#000;stroke-width:.483" transform="translate(34.387 32.83)scale(1.33333)"/>
   </g>
 </svg>

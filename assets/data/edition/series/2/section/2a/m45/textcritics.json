@@ -15,77 +15,77 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_tf1-001",
                                 "measure": "1",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_tf1-002",
                                 "measure": "4",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_tf1-003",
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Notenkopf zu cis<sup>2</sup> weggelassen."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_tf1-004",
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von letzter Note der Unterstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_tf1-005",
                                 "measure": "17",
                                 "system": "Klav.",
                                 "position": "2–3/4",
                                 "comment": "Noten der Ober- und Unterstimmenschicht (mit Ausnahme von h<sup>1</sup> auf 2/4) rekonstruiert nach Schreibschicht ante correcturam und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_Sk3'})\"><strong>Sk3</strong></a> (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a>)."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_tf1-006",
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Beginn der Geltungsstrichelung versetzt von 3/4."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_tf1-007",
                                 "measure": "26",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "Auch Fis<sub>1</sub>/Fis denkbar. Mit Bleistift hinzugefügtes <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> als Teil von <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> hier nicht berücksichtigt (vgl. Korrekturen 2 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF2b'})\">Textfassung 2</a>)."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_tf1-008",
                                 "measure": "vor 33",
                                 "system": "Klav.",
                                 "position": "",
                                 "comment": "Tonartvorzeichnung: Auflösungszeichen für h ergänzt."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "awg-tkk-m45_tf1-009",
                                 "measure": "35",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "Ende der Decrescendogabel versetzt von Taktende."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "awg-tkk-m45_tf1-010",
                                 "measure": "38",
                                 "system": "Klav.",
                                 "position": "8/8",
                                 "comment": "Ende der Decrescendogabel versetzt von zwischen 7/8 und 8/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "awg-tkk-m45_tf1-011",
                                 "measure": "39 <br />bis 40",
                                 "system": "Klav. o.",
                                 "position": "letzte Note <br />1. Note",
@@ -101,7 +101,7 @@
             "label": "M 45 Textfassung 2",
             "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a> enthalten Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2 in <strong>B</strong></a> betreffen auf Textfassung 2. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und nach <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_1'})\">Korrekturen 1 in <strong>C<sup>a</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> enthält T. 7–18 (Bl. 1r System 1–2/4–5/7a–8a) und T. 27–47 (Bl. 1r System 7b–8b/10–11/16–14) für Textfassung 2, die T. 7–18 bzw. T. 27–32 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> (Streichungen, Einschubzeichen, Verweiszeichen) mit Bleistift und Tinte eingetragen. T. 44–46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> sind nur durch den Hinweis „usw.“ stellvertreten, der implizit auf T. 8–10 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> als einzig denkbare Anschlussstelle verweist.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> weisen zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2 in <strong>B</strong></a> betreffen Textfassung 2. Der Zustand post correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> und nach <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_1'})\">Korrekturen 1 in <strong>C<sup>a</sup></strong></a> konstituiert eine kohärente Textfassung. <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> enthält T. 7–18 (Bl. 1<sup>r</sup> System 1–2/4–5/7a–8a) und T. 27–47 (Bl. 1<sup>r</sup> System 7b–8b/10–11/16–14) für Textfassung 2, die T. 7–18 bzw. T. 27–32 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> (Streichungen, Einschubzeichen, Verweiszeichen) mit Bleistift und Tinte eingetragen. T. 44–46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> sind nur durch den Hinweis „usw.“ stellvertreten, der implizit auf T. 8–10 in <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> als einzig denkbare Anschlussstelle verweist.",
                 "Hauptquellen für die Textedition der Studienkomposition für Klavier M 45 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B'})\"><strong>B</strong></a> post correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "commentary": {
@@ -111,98 +111,98 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_tf2-001",
                                 "measure": "1",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_tf2-002",
                                 "measure": "4",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 2/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_tf2-003",
                                 "measure": "7",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Ende der Decrescendogabel ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a>. (<a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>: Einschub zwischen T. 6 und 7, Ende der Decrescendogabel fehlt, vgl. auch Quellenbewertung.)"
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_tf2-004",
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Beginn der Geltungsstrichelung versetzt von 3/4."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_tf2-005",
                                 "measure": "26",
                                 "system": "Klav.",
                                 "position": "5/8",
                                 "comment": "<em>cresc.</em> und Geltungsstrichelung aus <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a> weggelassen mit Blick auf den Einschub ab T. 27 und das dort folgende <em>cresc.</em> mit Geltungsstrichelung (vgl. Quellenbewertung)."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_tf2-006",
                                 "measure": "31",
                                 "system": "Klav.",
                                 "position": "3/4",
                                 "comment": "Beginn der Decrescendogabel versetzt von zwischen 4/8 und 5/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_tf2-007",
                                 "measure": "vor 37",
                                 "system": "Klav.",
                                 "position": "",
                                 "comment": "Tonartvorzeichnung: Auflösungszeichen für h ergänzt."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_tf2-008",
                                 "measure": "39",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
                                 "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von letzter Note der Unterstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "awg-tkk-m45_tf2-009",
                                 "measure": "42",
                                 "system": "Klav. u.",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Viertelnote korrigiert zu Halber Note mit Blick auf metrischen Kontext."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "awg-tkk-m45_tf2-010",
                                 "measure": "50",
                                 "system": "Klav. u.",
                                 "position": "3/8",
                                 "comment": "Ende der Decrescendogabel versetzt von Taktende."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "awg-tkk-m45_tf2-011",
                                 "measure": "53",
                                 "system": "Klav.",
                                 "position": "6/8",
                                 "comment": "Ende der Decrescendogabel versetzt von zwischen 5/8 und 6/8."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "awg-tkk-m45_tf2-012",
                                 "measure": "54",
                                 "system": "Klav. o.",
                                 "position": "3/4",
                                 "comment": "Ende des Legatobogens versetzt von T. 55 1. Note mit Blick auf Einschub ab T. 55 (vgl. Quellenbewertung)."
                             },
                             {
-                                "svgGroupId": "g-tkk-13",
+                                "svgGroupId": "awg-tkk-m45_tf2-013",
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "Taktanfang",
                                 "comment": "Bassschlüssel als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "g-tkk-14",
+                                "svgGroupId": "awg-tkk-m45_tf2-014",
                                 "measure": "56",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
@@ -213,7 +213,6 @@
                 ]
             }
         },
-
         {
             "id": "M45_Sk1",
             "label": "M 45 Sk1",
@@ -227,504 +226,504 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk1-001",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "A: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk1-002",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "2/4 ",
                                 "comment": "fis gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk1-003",
                                 "measure": "2",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk1-004",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_sk1-005",
                                 "measure": "3",
                                 "system": "1",
                                 "position": "3/8",
                                 "comment": "g<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_sk1-006",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "3/8",
                                 "comment": "Oberstimmenschicht: Achtelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_sk1-007",
                                 "measure": "3",
                                 "system": "2",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_sk1-008",
                                 "measure": "5",
                                 "system": "1",
                                 "position": "1/8",
                                 "comment": "Achtelnote e<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "awg-tkk-m45_sk1-009",
                                 "measure": "5",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "awg-tkk-m45_sk1-010",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "awg-tkk-m45_sk1-011",
                                 "measure": "6",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "awg-tkk-m45_sk1-012",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "3/4",
                                 "comment": "Unterstimmenschicht: d<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-13",
+                                "svgGroupId": "awg-tkk-m45_sk1-013",
                                 "measure": "8",
                                 "system": "1",
                                 "position": "1/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-14",
+                                "svgGroupId": "awg-tkk-m45_sk1-014",
                                 "measure": "8",
                                 "system": "2",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-15",
+                                "svgGroupId": "awg-tkk-m45_sk1-015",
                                 "measure": "8",
                                 "system": "2",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-16",
+                                "svgGroupId": "awg-tkk-m45_sk1-016",
                                 "measure": "10A",
                                 "system": "3",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup> überschreibt fis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-17",
+                                "svgGroupId": "awg-tkk-m45_sk1-017",
                                 "measure": "12A",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Notenkopf h<sup>1</sup> radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-18",
+                                "svgGroupId": "awg-tkk-m45_sk1-018",
                                 "measure": "9B",
                                 "system": "4",
                                 "position": "letzte Note",
                                 "comment": "Gis: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-19",
+                                "svgGroupId": "awg-tkk-m45_sk1-019",
                                 "measure": "10B",
                                 "system": "3",
                                 "position": "letzte Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-20",
+                                "svgGroupId": "awg-tkk-m45_sk1-020",
                                 "measure": "11B",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-21",
+                                "svgGroupId": "awg-tkk-m45_sk1-021",
                                 "measure": "12B",
                                 "system": "6",
                                 "position": "letzte Note",
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-22",
+                                "svgGroupId": "awg-tkk-m45_sk1-022",
                                 "measure": "10C(3–4/4)",
                                 "system": "5",
                                 "position": "2/2",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-23",
+                                "svgGroupId": "awg-tkk-m45_sk1-023",
                                 "measure": "10C(3–4/4) <br />bis 11C",
                                 "system": "5",
                                 "position": "2/2 <br />bis 1/4",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-24",
+                                "svgGroupId": "awg-tkk-m45_sk1-024",
                                 "measure": "11C",
                                 "system": "5",
                                 "position": "5/8",
                                 "comment": "Unterstimmenschicht: Achtelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-25",
+                                "svgGroupId": "awg-tkk-m45_sk1-025",
                                 "measure": "11C",
                                 "system": "6",
                                 "position": "1–2/2",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-26",
+                                "svgGroupId": "awg-tkk-m45_sk1-026",
                                 "measure": "9C",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-27",
+                                "svgGroupId": "awg-tkk-m45_sk1-027",
                                 "measure": "10D",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis überschreibt Halbe Note [<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>]dis."
                             },
                             {
-                                "svgGroupId": "g-tkk-28",
+                                "svgGroupId": "awg-tkk-m45_sk1-028",
                                 "measure": "10D",
                                 "system": "8",
                                 "position": "(2/4)",
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-29",
+                                "svgGroupId": "awg-tkk-m45_sk1-029",
                                 "measure": "10D",
                                 "system": "8",
                                 "position": "3/4",
                                 "comment": "d gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-30",
+                                "svgGroupId": "awg-tkk-m45_sk1-030",
                                 "measure": "11D",
                                 "system": "7",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-31",
+                                "svgGroupId": "awg-tkk-m45_sk1-031",
                                 "measure": "11D",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Mittel- und Unterstimmenschicht: Viertelnote d überschreibt Halbe Note H."
                             },
                             {
-                                "svgGroupId": "g-tkk-32",
+                                "svgGroupId": "awg-tkk-m45_sk1-032",
                                 "measure": "11D",
                                 "system": "7",
                                 "position": "5–6/8",
                                 "comment": "Achtelnoten cis<sup>2</sup>–a<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-33",
+                                "svgGroupId": "awg-tkk-m45_sk1-033",
                                 "measure": "{12D–13B}",
                                 "system": "7–8",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-34",
+                                "svgGroupId": "awg-tkk-m45_sk1-034",
                                 "measure": "{12D}",
                                 "system": "8",
                                 "position": "2/4",
                                 "comment": "Viertelnote Cis/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-35",
+                                "svgGroupId": "awg-tkk-m45_sk1-035",
                                 "measure": "12E",
                                 "system": "8",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-36",
+                                "svgGroupId": "awg-tkk-m45_sk1-036",
                                 "measure": "12E",
                                 "system": "8",
                                 "position": "2/4",
                                 "comment": "Unterstimmenschicht: Viertelnote E<sub>1</sub>/E radiert."
                             },
                             {
-                                "svgGroupId": "g-tkk-37",
+                                "svgGroupId": "awg-tkk-m45_sk1-037",
                                 "measure": "{13C}",
                                 "system": "7",
                                 "position": "1–2/8",
                                 "comment": "Achtelnoten a<sup>1</sup>–fis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-38",
+                                "svgGroupId": "awg-tkk-m45_sk1-038",
                                 "measure": "13D",
                                 "system": "10",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-39",
+                                "svgGroupId": "awg-tkk-m45_sk1-039",
                                 "measure": "13E",
                                 "system": "10",
                                 "position": "(3/4)",
                                 "comment": "Triolenziffer gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-40",
+                                "svgGroupId": "awg-tkk-m45_sk1-040",
                                 "measure": "15A",
                                 "system": "10",
                                 "position": "letzte Note",
                                 "comment": "d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-41",
+                                "svgGroupId": "awg-tkk-m45_sk1-041",
                                 "measure": "17A",
                                 "system": "10",
                                 "position": "4. Note",
                                 "comment": "h<sup>1</sup> überschreibt a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-42",
+                                "svgGroupId": "awg-tkk-m45_sk1-042",
                                 "measure": "13F",
                                 "system": "12",
                                 "position": "3–4/8",
                                 "comment": "a<sup>1</sup>–cis<sup>1</sup> überschreibt cis<sup>1</sup>–fis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-43",
+                                "svgGroupId": "awg-tkk-m45_sk1-043",
                                 "measure": "14D",
                                 "system": "12",
                                 "position": "1–2/8",
                                 "comment": "cis<sup>3</sup>–cis<sup>2</sup> überschreibt cis<sup>2</sup>–cis<sup>3</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-44",
+                                "svgGroupId": "awg-tkk-m45_sk1-044",
                                 "measure": "14D",
                                 "system": "13",
                                 "position": "6. Note",
                                 "comment": "h überschreibt e."
                             },
                             {
-                                "svgGroupId": "g-tkk-45",
+                                "svgGroupId": "awg-tkk-m45_sk1-045",
                                 "measure": "14D",
                                 "system": "12",
                                 "position": "5–6/8",
                                 "comment": "fis<sup>2</sup>–dis<sup>2</sup> überschreibt d<sup>3</sup>–h<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-46",
+                                "svgGroupId": "awg-tkk-m45_sk1-046",
                                 "measure": "16B",
                                 "system": "12",
                                 "position": "1–2/8",
                                 "comment": "Achtelnoten cis<sup>3</sup>–cis<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-47",
+                                "svgGroupId": "awg-tkk-m45_sk1-047",
                                 "measure": "17B",
                                 "system": "13",
                                 "position": "(1/4)",
                                 "comment": "Entzifferung unklar. Unter der gültigen Schicht sind überschriebene Triolenachtel (?) auf der Höhe von gis, e und cis erkennbar."
                             },
                             {
-                                "svgGroupId": "g-tkk-48",
+                                "svgGroupId": "awg-tkk-m45_sk1-048",
                                 "measure": "17B",
                                 "system": "13",
                                 "position": "4. Note",
                                 "comment": "Fis überschreibt fis; Triolenachtel Fis überschreibt Halbe Note Fis."
                             },
                             {
-                                "svgGroupId": "g-tkk-49",
+                                "svgGroupId": "awg-tkk-m45_sk1-049",
                                 "measure": "17B",
                                 "system": "12",
                                 "position": "5–6/8",
                                 "comment": "gis<sup>1</sup>–fis<sup>1</sup> überschreibt gis<sup>2</sup>–fis<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-50",
+                                "svgGroupId": "awg-tkk-m45_sk1-050",
                                 "measure": "18B",
                                 "system": "12",
                                 "position": "1–2/8",
                                 "comment": "e<sup>2</sup>–e<sup>1</sup> überschreibt e<sup>1</sup>–g."
                             },
                             {
-                                "svgGroupId": "g-tkk-51",
+                                "svgGroupId": "awg-tkk-m45_sk1-051",
                                 "measure": "18B",
                                 "system": "12",
                                 "position": "5–6/8",
                                 "comment": "Entzifferung unklar. Mehrere Noten gestrichen und überschrieben."
                             },
                             {
-                                "svgGroupId": "g-tkk-52",
+                                "svgGroupId": "awg-tkk-m45_sk1-052",
                                 "measure": "22A",
                                 "system": "14",
                                 "position": "2–3/4",
                                 "comment": "Viertelnoten a<sup>1</sup>–g<sup>1</sup> überschreiben Achtelnoten b<sup>1</sup>–a<sup>1</sup> und Viertelnote g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-53",
+                                "svgGroupId": "awg-tkk-m45_sk1-053",
                                 "measure": "21B",
                                 "system": "15",
                                 "position": "1. Note",
                                 "comment": "d<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-54",
+                                "svgGroupId": "awg-tkk-m45_sk1-054",
                                 "measure": "22B",
                                 "system": "14",
                                 "position": "2/4",
                                 "comment": "a<sup>2</sup>: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-55",
+                                "svgGroupId": "awg-tkk-m45_sk1-055",
                                 "measure": "22B",
                                 "system": "15",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-56",
+                                "svgGroupId": "awg-tkk-m45_sk1-056",
                                 "measure": "24",
                                 "system": "17",
                                 "position": "2/4",
                                 "comment": "Viertelnote f überschreibt Halbe Note F."
                             },
                             {
-                                "svgGroupId": "g-tkk-57",
+                                "svgGroupId": "awg-tkk-m45_sk1-057",
                                 "measure": "27A",
                                 "system": "16",
                                 "position": "(2/4)",
                                 "comment": "Achtelbalken gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-58",
+                                "svgGroupId": "awg-tkk-m45_sk1-058",
                                 "measure": "28A",
                                 "system": "17",
                                 "position": "2. Note",
                                 "comment": "Halbe Note [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]H überschreibt Viertelnote e."
                             },
                             {
-                                "svgGroupId": "g-tkk-59",
+                                "svgGroupId": "awg-tkk-m45_sk1-059",
                                 "measure": "29A",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "gis<sup>1</sup>: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-60",
+                                "svgGroupId": "awg-tkk-m45_sk1-060",
                                 "measure": "29A",
                                 "system": "17",
                                 "position": "3/8–3/4",
                                 "comment": "Achtelnoten F–G und Viertelnote E gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-61",
+                                "svgGroupId": "awg-tkk-m45_sk1-061",
                                 "measure": "{27B}",
                                 "system": "18–19",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-62",
+                                "svgGroupId": "awg-tkk-m45_sk1-062",
                                 "measure": "27C",
                                 "system": "19",
                                 "position": "6/8",
                                 "comment": "c/c<sup>1</sup> überschreibt F/f."
                             },
                             {
-                                "svgGroupId": "g-tkk-63",
+                                "svgGroupId": "awg-tkk-m45_sk1-063",
                                 "measure": "{28B}",
                                 "system": "18–19",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-64",
+                                "svgGroupId": "awg-tkk-m45_sk1-064",
                                 "measure": "{28B}",
                                 "system": "19",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-65",
+                                "svgGroupId": "awg-tkk-m45_sk1-065",
                                 "measure": "{28B}",
                                 "system": "18",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu c<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-66",
+                                "svgGroupId": "awg-tkk-m45_sk1-066",
                                 "measure": "31B",
                                 "system": "20",
                                 "position": "1. Note",
                                 "comment": "gis<sup>1</sup> überschreibt fis<sup>1</sup>; gis<sup>1</sup> mitsamt Balkierung zu nachfolgendem fis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-67",
+                                "svgGroupId": "awg-tkk-m45_sk1-067",
                                 "measure": "32B",
                                 "system": "21",
                                 "position": "5–6/8",
                                 "comment": "Oberstimmenschicht: Achtelnoten gis–a ersetzt durch fis–gis mittels Streichung von gis und Überschreibung von a zu fis."
                             },
                             {
-                                "svgGroupId": "g-tkk-68",
+                                "svgGroupId": "awg-tkk-m45_sk1-068",
                                 "measure": "33",
                                 "system": "21",
                                 "position": "1. Note",
                                 "comment": "Fis: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-69",
+                                "svgGroupId": "awg-tkk-m45_sk1-069",
                                 "measure": "35",
                                 "system": "21",
                                 "position": "1–2/4",
                                 "comment": "Unterstimmenschicht: Geltungsstrichelung zu Oktavierung gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-70",
+                                "svgGroupId": "awg-tkk-m45_sk1-070",
                                 "measure": "35",
                                 "system": "20",
                                 "position": "2.–3. Note",
                                 "comment": "Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-71",
+                                "svgGroupId": "awg-tkk-m45_sk1-071",
                                 "measure": "36",
                                 "system": "21",
                                 "position": "1/8",
                                 "comment": "Oberstimmenschicht: a überschreibt gis."
                             },
                             {
-                                "svgGroupId": "g-tkk-72",
+                                "svgGroupId": "awg-tkk-m45_sk1-072",
                                 "measure": "36",
                                 "system": "20",
                                 "position": "2/8",
@@ -736,59 +735,73 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-1b",
-                    "linkTo": {
-                        "complexId": "m45",
-                        "sheetId": "M45_Sk1b"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-1c",
+                    "svgGroupId": "awg-lb-m45_sk1b-to-m45_sk1c",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1c"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-1h",
-                    "linkTo": {
-                        "complexId": "m45",
-                        "sheetId": "M45_Sk1h"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-1i",
-                    "linkTo": {
-                        "complexId": "m45",
-                        "sheetId": "M45_Sk1i"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-1j",
-                    "linkTo": {
-                        "complexId": "m45",
-                        "sheetId": "M45_Sk1j"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-1k",
-                    "linkTo": {
-                        "complexId": "m45",
-                        "sheetId": "M45_Sk1k"
-                    }
-                },
-                {
-                    "svgGroupId": "g-lb-1_1",
+                    "svgGroupId": "awg-lb-m45_sk1c-to-m45_sk1_1",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1_1"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-1_2",
+                    "svgGroupId": "awg-lb-m45_sk1c-to-m45_sk1b",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1e-to-m45_sk1_2",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1h-to-m45_sk1i",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1i-to-m45_sk1h",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1h"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1i-to-m45_sk1k",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1k"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1j-to-m45_sk1k",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1k"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1k-to-m45_sk1i",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1i"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m45_sk1k-to-m45_sk1j",
+                    "linkTo": {
+                        "complexId": "m45",
+                        "sheetId": "M45_Sk1j"
                     }
                 }
             ]
@@ -806,7 +819,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk1_1-001",
                                 "measure": "x+1",
                                 "system": "6",
                                 "position": "1. Note",
@@ -818,7 +831,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-1c",
+                    "svgGroupId": "awg-lb-m45_sk1_1-to-m45_sk1c",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1c"
@@ -838,7 +851,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-1e",
+                    "svgGroupId": "awg-lb-m45_sk1_2-to-m45_sk1e",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1e"
@@ -859,56 +872,56 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-001",
                                 "measure": "{28A}",
                                 "system": "22–23",
                                 "position": "nach 2/8",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-002",
                                 "measure": "{28A}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-003",
                                 "measure": "{28B}",
                                 "system": "",
                                 "position": "",
                                 "comment": "Takt pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-004",
                                 "measure": "{28B}",
                                 "system": "23",
                                 "position": "3–4/8",
                                 "comment": "cis<sup>1</sup>–h überschreibt cis–H."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-005",
                                 "measure": "28C",
                                 "system": "22",
                                 "position": "2/8",
                                 "comment": "Oberstimmenschicht: gis<sup>1</sup> überschreibt d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-006",
                                 "measure": "28+1",
                                 "system": "22",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-007",
                                 "measure": "28+1",
                                 "system": "22",
                                 "position": "letzte Note",
                                 "comment": "Halbe Note cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1</sup> überschreibt Viertelnote gis/cis<sup>1</sup>/e<sup>1</sup>/gis<sup>1<sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_sk1_3-008",
                                 "measure": "28+2",
                                 "system": "23",
                                 "position": "letzte Note",
@@ -920,7 +933,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-2-1",
+                    "svgGroupId": "awg-lb-m45_sk1_3-to-m45_sk2_1",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk2_1"
@@ -941,21 +954,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk2-001",
                                 "measure": "40",
                                 "system": "25",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk2-002",
                                 "measure": "42",
                                 "system": "24–25",
                                 "position": "2–3/4",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk2-003",
                                 "measure": "45",
                                 "system": "25",
                                 "position": "1. Note",
@@ -967,7 +980,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-3b",
+                    "svgGroupId": "awg-lb-m45_sk2-to-m45_sk3b",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk3b"
@@ -988,14 +1001,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk2_1-001",
                                 "measure": "40",
                                 "system": "23",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk2_1-002",
                                 "measure": "40",
                                 "system": "23",
                                 "position": "1. Note",
@@ -1007,7 +1020,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-1-3",
+                    "svgGroupId": "awg-lb-m45_sk2_1-to-m45_sk1_3",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk1_3"
@@ -1026,84 +1039,84 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk3-001",
                                 "measure": "12A",
                                 "system": "27",
                                 "position": "5. Note",
                                 "comment": "h überschreibt cis<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk3-002",
                                 "measure": "12B",
                                 "system": "27",
                                 "position": "1/4",
                                 "comment": "Notenköpfe fis<sup>1</sup> und cis<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk3-003",
                                 "measure": "13",
                                 "system": "26",
                                 "position": "1/4",
                                 "comment": "Unterstimmenschicht: h<sup>1</sup> überschreibt a<sup>1</sup>; Ligatur zu a<sup>1</sup> auf 3/8 gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk3-004",
                                 "measure": "13",
                                 "system": "27",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_sk3-005",
                                 "measure": "{14A}",
                                 "system": "27",
                                 "position": "",
                                 "comment": "Noten und Schlüssel pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_sk3-006",
                                 "measure": "{15A}",
                                 "system": "26",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_sk3-007",
                                 "measure": "15B",
                                 "system": "26",
                                 "position": "2/4",
                                 "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>2</sup> überschreibt fis<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_sk3-008",
                                 "measure": "15B",
                                 "system": "27",
                                 "position": "2. Note",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "awg-tkk-m45_sk3-009",
                                 "measure": "16",
                                 "system": "26",
                                 "position": "3/8",
                                 "comment": "Mittelstimmenschicht: d<sup>2</sup>/fis<sup>2</sup> überschreibt cis<sup>2</sup>/e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "awg-tkk-m45_sk3-010",
                                 "measure": "17",
                                 "system": "24",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "awg-tkk-m45_sk3-011",
                                 "measure": "17",
                                 "system": "24",
                                 "position": "2/8",
                                 "comment": "Oberstimmenschicht: gis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "awg-tkk-m45_sk3-012",
                                 "measure": "17",
                                 "system": "24",
                                 "position": "4–6/8",
@@ -1115,7 +1128,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-2",
+                    "svgGroupId": "awg-lb-m45_sk3b-to-m45_sk2",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk2"
@@ -1136,21 +1149,21 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk4-001",
                                 "measure": "1",
                                 "system": "2",
                                 "position": "2. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk4-002",
                                 "measure": "6",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk4-003",
                                 "measure": "7",
                                 "system": "2",
                                 "position": "1. Note",
@@ -1174,175 +1187,175 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk5-001",
                                 "measure": "7",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk5-002",
                                 "measure": "7",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Achtelnote der Oberstimmenschicht überschreibt punktierte Halbe Note der Unterstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk5-003",
                                 "measure": "9",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Mittelstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk5-004",
                                 "measure": "9",
                                 "system": "1",
                                 "position": "(3/4)",
                                 "comment": "Achteltriole [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>/[<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]g<sup>2</sup>–fis<sup>1</sup>/fis<sup>2</sup>–e<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/e<sup>2</sup> überschreibt Achtelnoten h<sup>1</sup>–e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_sk5-005",
                                 "measure": "9",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "Mittelstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g-tkk-6",
+                                "svgGroupId": "awg-tkk-m45_sk5-006",
                                 "measure": "10A",
                                 "system": "2",
                                 "position": "3/4",
                                 "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g überschreibt a."
                             },
                             {
-                                "svgGroupId": "g-tkk-7",
+                                "svgGroupId": "awg-tkk-m45_sk5-007",
                                 "measure": "10B(2–3/4)",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "a überschreibt h."
                             },
                             {
-                                "svgGroupId": "g-tkk-8",
+                                "svgGroupId": "awg-tkk-m45_sk5-008",
                                 "measure": "10B(2–3/4)",
                                 "system": "2",
                                 "position": "(1/4)",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-9",
+                                "svgGroupId": "awg-tkk-m45_sk5-009",
                                 "measure": "10C(2–3/4)",
                                 "system": "2",
                                 "position": "(1/4)",
                                 "comment": "h: Viertelnote der Unterstimmenschicht überschreibt Achtelnote der Oberstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g-tkk-10",
+                                "svgGroupId": "awg-tkk-m45_sk5-010",
                                 "measure": "{11A}",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Note gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-11",
+                                "svgGroupId": "awg-tkk-m45_sk5-011",
                                 "measure": "11B",
                                 "system": "3",
                                 "position": "2. Note",
                                 "comment": "fis<sup>2</sup> überschreibt e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-12",
+                                "svgGroupId": "awg-tkk-m45_sk5-012",
                                 "measure": "11B",
                                 "system": "4",
                                 "position": "2. Note",
                                 "comment": "D gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-13",
+                                "svgGroupId": "awg-tkk-m45_sk5-013",
                                 "measure": "13",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Oberstimmenschich: cis<sup>2</sup> überschreibt e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g-tkk-14",
+                                "svgGroupId": "awg-tkk-m45_sk5-014",
                                 "measure": "13",
                                 "system": "4",
                                 "position": "3/8",
                                 "comment": "cis<sup>1</sup>: Achtelnote der Oberstimmenschicht überschreibt Halbe Note der Unterstimmenschicht."
                             },
                             {
-                                "svgGroupId": "g-tkk-15",
+                                "svgGroupId": "awg-tkk-m45_sk5-015",
                                 "measure": "{14A}",
                                 "system": "3",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-16",
+                                "svgGroupId": "awg-tkk-m45_sk5-016",
                                 "measure": "14B",
                                 "system": "3",
                                 "position": "1.–2. Note",
                                 "comment": "Unterstimmenschicht: Ligatur gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-17",
+                                "svgGroupId": "awg-tkk-m45_sk5-017",
                                 "measure": "15A",
                                 "system": "3–4",
                                 "position": "(1/4)",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-18",
+                                "svgGroupId": "awg-tkk-m45_sk5-018",
                                 "measure": "15A",
                                 "system": "4",
                                 "position": "",
                                 "comment": "Metrisch ungenau positionierte Viertelnote Gis<sub>1</sub>/E(?) gestrichen. Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-19",
+                                "svgGroupId": "awg-tkk-m45_sk5-019",
                                 "measure": "16A",
                                 "system": "6–7",
                                 "position": "(1/4)",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-20",
+                                "svgGroupId": "awg-tkk-m45_sk5-020",
                                 "measure": "16A",
                                 "system": "6",
                                 "position": "(3/4)",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-21",
+                                "svgGroupId": "awg-tkk-m45_sk5-021",
                                 "measure": "{17A}",
                                 "system": "6–7",
                                 "position": "",
                                 "comment": "Noten pauschal gestrichen; Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-22",
+                                "svgGroupId": "awg-tkk-m45_sk5-022",
                                 "measure": "{18A}",
                                 "system": "6",
                                 "position": "1. Note",
                                 "comment": "Note gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-23",
+                                "svgGroupId": "awg-tkk-m45_sk5-023",
                                 "measure": "17B",
                                 "system": "6",
                                 "position": "(2–3/4)",
                                 "comment": "cis<sup>1</sup>/cis<sup>2</sup> auf 5/8 überschreibt fis<sup>1</sup>/fis<sup>2</sup> auf 4/8; Noten von 2/4–6/8 pauschal gestrichen; Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g-tkk-25",
+                                "svgGroupId": "awg-tkk-m45_sk5-024",
                                 "measure": "18C",
                                 "system": "9",
                                 "position": "1–2/4",
                                 "comment": "Halbe Note A<sub>1</sub>/A überschreibt Viertelnoten A<sub>1</sub>/A–e."
                             },
                             {
-                                "svgGroupId": "g-tkk-26",
+                                "svgGroupId": "awg-tkk-m45_sk5-025",
                                 "measure": "18C",
                                 "system": "9",
                                 "position": "",
@@ -1354,14 +1367,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-5c",
+                    "svgGroupId": "awg-lb-m45_sk5d-to-m45_sk5c",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk5c"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-6a",
+                    "svgGroupId": "awg-lb-m45_sk5e-to-m45_sk6a",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk6a"
@@ -1382,28 +1395,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk6-001",
                                 "measure": "{27A}",
                                 "system": "9",
                                 "position": "1–4/8",
                                 "comment": "Noten pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk6-002",
                                 "measure": "28",
                                 "system": "10",
                                 "position": "(2–3/8)",
                                 "comment": "Nicht entzifferbares Symbol im Notensystem."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk6-003",
                                 "measure": "35",
                                 "system": "14",
                                 "position": "2/8",
                                 "comment": "d<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk6-004",
                                 "measure": "nach 37",
                                 "system": "14–15",
                                 "position": "",
@@ -1415,14 +1428,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-5e",
+                    "svgGroupId": "awg-lb-m45_sk6a-to-m45_sk5e",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk5e"
                     }
                 },
                 {
-                    "svgGroupId": "g-lb-7",
+                    "svgGroupId": "awg-lb-m45_sk6b-to-m45_sk7",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk7"
@@ -1443,35 +1456,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g-tkk-1",
+                                "svgGroupId": "awg-tkk-m45_sk7-001",
                                 "measure": "41",
                                 "system": "12",
                                 "position": "3/4",
                                 "comment": "cis<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-2",
+                                "svgGroupId": "awg-tkk-m45_sk7-002",
                                 "measure": "42",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Achtelnoten cis<sup>1</sup>–h gestrichen."
                             },
                             {
-                                "svgGroupId": "g-tkk-3",
+                                "svgGroupId": "awg-tkk-m45_sk7-003",
                                 "measure": "43",
                                 "system": "11",
                                 "position": "1. Note",
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-4",
+                                "svgGroupId": "awg-tkk-m45_sk7-004",
                                 "measure": "43",
                                 "system": "12",
                                 "position": "letzte Note",
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g-tkk-5",
+                                "svgGroupId": "awg-tkk-m45_sk7-005",
                                 "measure": "47",
                                 "system": "12",
                                 "position": "1. Note",
@@ -1483,7 +1496,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g-lb-6b",
+                    "svgGroupId": "awg-lb-m45_sk7-to-m45_sk6b",
                     "linkTo": {
                         "complexId": "m45",
                         "sheetId": "M45_Sk6b"

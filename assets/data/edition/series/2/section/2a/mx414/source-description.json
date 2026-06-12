@@ -565,7 +565,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1612,60 +1612,69 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 414: <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-001",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "1–2/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-002",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "2–3/4",
                                             "comment": "Halbe Note überschreibt Viertelnote und ersetzt gestrichene Viertelnote auf 3/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-003",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-004",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-005",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "(2/4)",
                                             "comment": "Oberstimmenschicht: Rasur im System. Ante correcturam: Viertelnote g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-006",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "3–4/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-007",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Viertelnote c<sup>1</sup> überschreibt als Unterstimme nach unten gehalste Halbe Note c<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-008",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Oberstimmenschicht: Viertelnote überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_1-009",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
@@ -1678,25 +1687,27 @@
                     },
                     {
                         "id": "source_B_corr_2",
-                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift und rotem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 414: <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_2-001",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: a<sup>1</sup> überschreibt g<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx414_tf1_B_corr_2-002",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Mit braunem Buntstift gestrichen."
+                                            "comment": "Mit rotem Buntstift gestrichen."
                                         }
                                     ]
                                 }

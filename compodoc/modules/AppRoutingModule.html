@@ -173,10 +173,6 @@ const APP_ROUTES: Routes &#x3D; [
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)&quot;,
     },
     {
-        path: &#x27;data&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule)&quot;,
-    },
-    {
         path: &#x27;edition&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)&quot;,
     },
@@ -184,6 +180,11 @@ const APP_ROUTES: Routes &#x3D; [
         path: &#x27;editions&#x27;,
         redirectTo: &#x27;edition&#x27;,
         pathMatch: &#x27;full&#x27;,
+    },
+    {
+        path: &#x27;statistics&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/statistics-view/statistics-view.routes&#x27;).then(m &#x3D;&gt; m.STATISTICS_VIEW_ROUTES)&quot;,
     },
     {
         path: &#x27;structure&#x27;,

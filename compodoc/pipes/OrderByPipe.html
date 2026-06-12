@@ -1192,7 +1192,7 @@ export class OrderByPipe implements PipeTransform {
      * @param value
      */
     static isString(value: any): boolean {
-        return typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; || value instanceof String;
+        return typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; || Object.prototype.toString.call(value) &#x3D;&#x3D;&#x3D; &#x27;[object String]&#x27;;
     }
 
     /**
@@ -1227,10 +1227,10 @@ export class OrderByPipe implements PipeTransform {
         if (a &#x3D;&#x3D;&#x3D; b) {
             return 0;
         }
-        if (a &#x3D;&#x3D; null) {
+        if (Number.isNaN(a) || a &#x3D;&#x3D; null) {
             return 1;
         }
-        if (b &#x3D;&#x3D; null) {
+        if (Number.isNaN(b) || b &#x3D;&#x3D; null) {
             return -1;
         }
         return a &gt; b ? 1 : -1;
@@ -1244,7 +1244,7 @@ export class OrderByPipe implements PipeTransform {
      * @returns {string[]}
      */
     static parseExpression(expression: string): string[] {
-        expression &#x3D; expression.replace(/\[(\w+)\]/g, &#x27;.$1&#x27;);
+        expression &#x3D; expression.replaceAll(/\[(\w+)\]/g, &#x27;.$1&#x27;);
         expression &#x3D; expression.replace(/^\./, &#x27;&#x27;);
         return expression.split(&#x27;.&#x27;);
     }
@@ -1331,7 +1331,7 @@ export class OrderByPipe implements PipeTransform {
         isCaseInsensitive?: boolean,
         comparator?: Function
     ): T[] {
-        const isDeepLink &#x3D; expression &amp;&amp; expression.indexOf(&#x27;.&#x27;) !&#x3D;&#x3D; -1;
+        const isDeepLink &#x3D; expression?.includes(&#x27;.&#x27;);
 
         if (isDeepLink) {
             expression &#x3D; OrderByPipe.parseExpression(expression);

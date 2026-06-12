@@ -1123,7 +1123,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "3–4a",
+                                            "system": "3–4b",
                                             "measure": "7–8",
                                             "linkTo": "M22_Sk27_1b"
                                         }
@@ -1154,7 +1154,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "6–7",
+                                            "system": "6a–7a",
                                             "measure": "{6–8}",
                                             "linkTo": "M22_Sk25b"
                                         }
@@ -1178,7 +1178,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "8–9",
+                                            "system": "6b–9",
                                             "measure": "1–5",
                                             "linkTo": "M22_Sk26a"
                                         }
@@ -3376,7 +3376,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],

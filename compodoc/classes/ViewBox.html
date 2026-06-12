@@ -284,6 +284,11 @@ It takes folio settings as input to return the main svg view box values.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;100%&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:20</a></div>
@@ -315,6 +320,11 @@ It takes folio settings as input to return the main svg view box values.</p>
                     <td class="col-md-4">
                         <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;100%&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -384,14 +394,14 @@ It takes folio settings as input to return the main svg view box values.</p>
      *
      * Set to &#x60;100%&#x60; by default.
      */
-    svgWidth: string;
+    svgWidth &#x3D; &#x27;100%&#x27;;
 
     /**
      * The height of the svg (string).
      *
      * Set to &#x60;100%&#x60; by default.
      */
-    svgHeight: string;
+    svgHeight &#x3D; &#x27;100%&#x27;;
 
     /**
      * The svg viewBox attribute (string).
@@ -413,8 +423,6 @@ It takes folio settings as input to return the main svg view box values.</p>
      */
     constructor(width: number, height: number) {
         // Set the viewBox string
-        this.svgWidth &#x3D; &#x27;100%&#x27;;
-        this.svgHeight &#x3D; &#x27;100%&#x27;;
         this.viewBox &#x3D; &#x60;0 0 ${width} ${height}&#x60;;
     }
 }

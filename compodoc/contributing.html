@@ -116,13 +116,12 @@ email, or any other method with the owners of this repository before making a ch
 <li><a href="#issue-reporting">Issue Reporting</a></li>
 </ul>
 </li>
-<li><a href="#quick-start-guide">Angular quick start guide</a><ul>
+<li><a href="#angular-quick-start-guide">Angular quick start guide</a><ul>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#development-server">Development server</a></li>
 <li><a href="#code-scaffolding">Code scaffolding</a></li>
 <li><a href="#build">Build</a></li>
 <li><a href="#running-unit-tests">Running unit tests</a></li>
-<li><a href="#running-end-to-end-tests">Running end-to-end tests</a></li>
 <li><a href="#further-help">Further help</a></li>
 </ul>
 </li>
@@ -140,15 +139,17 @@ email, or any other method with the owners of this repository before making a ch
 </li>
 </ul>
 <h3>Testing</h3>
-<p>This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.</p>
+<p>This project uses a dynamic testing approach with Vitest for unit tests in Angular. Code coverage is measured with CodeCov.</p>
 <p>We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.</p>
 <p>To assist with this, the following commands are provided:</p>
 <ul>
 <li><p><code>yarn test</code>: Launches the test runner.</p>
 </li>
-<li><p><code>yarn test:cov</code>: Runs the tests and generates a coverage report.</p>
+<li><p><code>yarn test:local</code>: Runs the tests in a local browser environment.</p>
 </li>
-<li><p><code>yarn test:cov:serve</code>: Runs the tests, generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
+<li><p><code>yarn test:cov</code>: Runs the tests (headless) and generates a coverage report.</p>
+</li>
+<li><p><code>yarn test:cov:serve</code>: Runs the tests (headless), generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
 </li>
 </ul>
 <h3>Branching / Git flow</h3>
@@ -231,7 +232,7 @@ email, or any other method with the owners of this repository before making a ch
 <p>If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.</p>
 <p>For security concerns, please do not create a public issue. Instead, send an email directly to &lt;info-awg[at]unibas.ch&gt;, following our <a href="SECURITY.md">Security Policy</a>. We take all security issues seriously and will respond as quickly as possible to resolve the matter.</p>
 <h2>Angular quick start guide</h2>
-<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.0.3. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code>or <code>yarn</code>).</p>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 21. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code> or <code>yarn</code>).</p>
 <h3>Development server</h3>
 <p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
 <h3>Code scaffolding</h3>
@@ -239,9 +240,7 @@ email, or any other method with the owners of this repository before making a ch
 <h3>Build</h3>
 <p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
 <h3>Running unit tests</h3>
-<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
-<h3>Running end-to-end tests</h3>
-<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://vitest.dev/">Vitest</a>.</p>
 <h3>Further help</h3>
 <p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>.</p>
 <h2>Code of Conduct</h2>

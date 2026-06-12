@@ -140,9 +140,6 @@
                             <a href="#EditionSvgOverlayTypes" title="src/app/views/edition-view/models/edition-svg-overlay.model.ts" ><b>EditionSvgOverlayTypes</b>&nbsp;&nbsp;&nbsp;(src/.../edition-svg-overlay.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#GndEventType" title="src/app/core/services/gnd-service/gnd.service.ts" ><b>GndEventType</b>&nbsp;&nbsp;&nbsp;(src/.../gnd.service.ts)</a>
-                        </li>
-                        <li>
                             <a href="#MetaSectionTypes" title="src/app/core/core-models/meta.model.ts" ><b>MetaSectionTypes</b>&nbsp;&nbsp;&nbsp;(src/.../meta.model.ts)</a>
                         </li>
                         <li>
@@ -150,9 +147,6 @@
                         </li>
                         <li>
                             <a href="#PrefixForm" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/prefix.model.ts" ><b>PrefixForm</b>&nbsp;&nbsp;&nbsp;(src/.../prefix.model.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#StorageType" title="src/app/core/services/storage-service/storage.service.ts" ><b>StorageType</b>&nbsp;&nbsp;&nbsp;(src/.../storage.service.ts)</a>
                         </li>
                         <li>
                             <a href="#ViewHandleTypes" title="src/app/shared/view-handle-button-group/view-handle.model.ts" ><b>ViewHandleTypes</b>&nbsp;&nbsp;&nbsp;(src/.../view-handle.model.ts)</a>
@@ -264,88 +258,39 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>The EditionSvgOverlayTypes enumeration.</p>
-<p>It stores the possible svg overlay types.</p>
+<p>It stores the possible svg overlay type selectors and related
+attribute-name constants (e.g., data attributes used to identify overlays).</p>
 </div>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;measure
+                                &nbsp;dataTkkId
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>Takt</code>
+                                <i>Value : </i><code>data-tkk-id</code>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;system
+                                &nbsp;linkBox
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>System</code>
+                                <i>Value : </i><code>link-box</code>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;tka
+                                &nbsp;tkk
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>Anmerkung</code>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>src/app/core/services/gnd-service/gnd.service.ts</h3>
-    <section data-compodoc="block-enums">
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="GndEventType"></a>
-                        <span class="name "><b>GndEventType</b><a href="#GndEventType"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>The GndEventType enumeration.</p>
-<p>It stores the possible GND event types.</p>
-</div>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;SET
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>set</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;GET
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>get</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;REMOVE
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>remove</code>
+                                <i>Value : </i><code>tkk</code>
                             </td>
                         </tr>
             </tbody>
@@ -477,46 +422,6 @@ specific to Turtle or SPARQL prefix clause.</p>
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>long</code>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>src/app/core/services/storage-service/storage.service.ts</h3>
-    <section data-compodoc="block-enums">
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="StorageType"></a>
-                        <span class="name "><b>StorageType</b><a href="#StorageType"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>The StorageType enumeration.</p>
-<p>It stores the possible storage types.</p>
-</div>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;localStorage
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>localStorage</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;sessionStorage
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>sessionStorage</code>
                             </td>
                         </tr>
             </tbody>
