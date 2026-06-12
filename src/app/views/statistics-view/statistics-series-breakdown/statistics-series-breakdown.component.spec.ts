@@ -1,11 +1,14 @@
 import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, RouterLink } from '@angular/router';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { click } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -16,6 +19,7 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import {
     StatisticsComplexBreakdown,
     StatisticsProgressBarConfig,
+    StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
 } from '@awg-views/statistics-view/models';
 import { StatisticsBreakdownBadgeComponent } from '@awg-views/statistics-view/statistics-breakdown-badge';
@@ -54,6 +58,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     let fixture: ComponentFixture<StatisticsSeriesBreakdownComponent>;
     let compDe: DebugElement;
 
+    let router: Router;
+
     let expectedSeriesBreakdownData: StatisticsSeriesBreakdown[];
 
     beforeEach(async () => {
@@ -70,6 +76,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
         fixture = TestBed.createComponent(StatisticsSeriesBreakdownComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        router = TestBed.inject(Router);
 
         expectedSeriesBreakdownData = [
             structuredClone(mockStatisticsData.mockSeriesBreakdown) as StatisticsSeriesBreakdown,
@@ -555,296 +563,266 @@ describe('StatisticsSeriesBreakdownComponent', () => {
             });
 
             describe('Section Breakdown Rows', () => {
-                it('... should contain as many section rows in table body as section breakdowns in data', () => {
-                    const tbodyDes = getAndExpectDebugElementByCss(compDe, 'tbody', 1, 1);
+                // Interface for helper function
+                interface SectionTestContext {
+                    sectionTrDe: DebugElement;
+                    tdDes: DebugElement[];
+                    seriesData: StatisticsSeriesBreakdown;
+                    sectionData: StatisticsSectionBreakdown;
+                }
 
+                // Helper function to get all section rows with their context data for easier testing
+                function getAllSectionRows(): SectionTestContext[] {
+                    const contexts: SectionTestContext[] = [];
+
+                    const tbodyDes = getAndExpectDebugElementByCss(compDe, 'tbody', 1, 1);
                     expectedSeriesBreakdownData.forEach(series => {
-                        const expectedSectionRows = series.sectionBreakdown.length;
-                        getAndExpectDebugElementByCss(
+                        const sectionTrDes = getAndExpectDebugElementByCss(
                             tbodyDes[0],
                             `tr.awg-statistics-section-breakdown`,
-                            expectedSectionRows,
-                            expectedSectionRows
+                            series.sectionBreakdown.length,
+                            series.sectionBreakdown.length
                         );
+
+                        sectionTrDes.forEach((sectionTrDe, index) => {
+                            const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
+                            contexts.push({
+                                sectionTrDe: sectionTrDe,
+                                tdDes: tdDes,
+                                seriesData: series,
+                                sectionData: series.sectionBreakdown[index],
+                            });
+                        });
                     });
+                    return contexts;
+                }
+
+                it('... should contain as many section rows in table body as section breakdowns in data', () => {
+                    const sectionRows = getAllSectionRows();
+                    const expectedSectionRowCount = expectedSeriesBreakdownData.reduce(
+                        (sum, series) => sum + series.sectionBreakdown.length,
+                        0
+                    );
+
+                    expectToBe(sectionRows.length, expectedSectionRowCount);
                 });
 
                 it('... should contain 5 data cells (td) in each section breakdown row', () => {
-                    expectedSeriesBreakdownData.forEach(series => {
-                        const expectedSectionRows = series.sectionBreakdown.length;
-                        const sectionTrDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            `tr.awg-statistics-section-breakdown`,
-                            expectedSectionRows,
-                            expectedSectionRows
-                        );
-                        sectionTrDes.forEach(sectionTrDe => {
-                            getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                        });
+                    const sectionRows = getAllSectionRows();
+
+                    sectionRows.forEach(({ tdDes }) => {
+                        expectToBe(tdDes.length, 5);
                     });
                 });
 
                 describe('... first section data cell (td)', () => {
-                    it('... should display correct section label', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                    it('... should display correct section prefixes and labels', () => {
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
+                        sectionRows.forEach(({ tdDes, seriesData, sectionData }) => {
+                            // Prefix
+                            const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+                            expectToBe(spanEl.textContent?.trim(), '└');
 
-                                // Span prefix
-                                const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
-                                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-                                const expectedSectionPrefix = '└ ';
+                            // Section Label
+                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                            const expectedSectionLabel = `Section ${seriesData.series}/${sectionData.section}`;
 
-                                expectToBe(spanEl.classList.contains('text-muted'), true);
-                                expectToBe(spanEl.textContent?.trim(), expectedSectionPrefix.trim());
-
-                                // Link with section label
-                                const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
-                                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-                                const section = series.sectionBreakdown[index];
-                                const expectedSectionLabel = 'Section ' + series.series + '/' + section.section;
-
-                                expectToBe(aEl.textContent?.trim(), expectedSectionLabel);
-
-                                if (section.disabled) {
-                                    expectToBe(aEl.classList.contains('text-muted'), true);
-                                    expectToBe(aEl.classList.contains('pe-none'), true);
-                                    expectToBe(aEl.style.textDecoration, 'none');
-                                    const routerLinkDes = getAndExpectDebugElementByDirective(
-                                        tdDes[0],
-                                        RouterLink,
-                                        1,
-                                        1
-                                    );
-                                    const routerLinkInstance = routerLinkDes[0].injector.get(RouterLink);
-                                    expectToBe(routerLinkInstance.href, null);
-                                } else {
-                                    expectToBe(aEl.classList.contains('text-muted'), false);
-                                    expectToBe(aEl.classList.contains('pe-none'), false);
-                                    expectToBe(aEl.style.textDecoration, '');
-
-                                    const routerLinkDes = getAndExpectDebugElementByDirective(
-                                        tdDes[0],
-                                        RouterLink,
-                                        1,
-                                        1
-                                    );
-                                    const routerLinkInstance = routerLinkDes[0].injector.get(RouterLink);
-                                    const { edition, series: routeSeries, section: routeSection } = component.ROUTES;
-                                    const expectedLink = `${edition.route}/${routeSeries.route}/${series.series.length}/${routeSection.route}/${section.section}`;
-
-                                    expectToBe(routerLinkInstance.href, expectedLink);
-                                }
-                            });
+                            expectToBe(aEl.textContent?.trim(), expectedSectionLabel);
                         });
+                    });
+
+                    it('... should apply correct CSS classes and styles based on disabled state', () => {
+                        const sectionRows = getAllSectionRows();
+
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            // Prefix
+                            const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
+                            expectToBe(spanDes[0].nativeElement.classList.contains('text-muted'), true);
+
+                            // Section Label
+                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                            if (sectionData.disabled) {
+                                expectToBe(aEl.classList.contains('text-muted'), true);
+                                expectToBe(aEl.classList.contains('pe-none'), true);
+                                expectToBe(aEl.style.textDecoration, 'none');
+                            } else {
+                                expectToBe(aEl.classList.contains('text-muted'), false);
+                                expectToBe(aEl.classList.contains('pe-none'), false);
+                                expectToBe(aEl.style.textDecoration, '');
+                            }
+                        });
+                    });
+
+                    it('... should bind the correct target paths to RouterLink', () => {
+                        const sectionRows = getAllSectionRows();
+
+                        sectionRows.forEach(({ tdDes, seriesData, sectionData }) => {
+                            const routerLinkDes = getAndExpectDebugElementByDirective(tdDes[0], RouterLink, 1, 1);
+                            const routerLinkInstance = routerLinkDes[0].injector.get(RouterLink);
+
+                            if (sectionData.disabled) {
+                                expectToBe(routerLinkInstance.urlTree, null);
+                            } else {
+                                const { edition, series: routeSeries, section: routeSection } = component.ROUTES;
+                                const expectedLink = `${edition.route}/${routeSeries.route}/${seriesData.series.length}/${routeSection.route}/${sectionData.section}`;
+
+                                const actualUrl = routerLinkInstance.urlTree?.toString();
+                                expectToBe(actualUrl, expectedLink);
+                            }
+                        });
+                    });
+
+                    it('... should navigate to the correct section when clicked', async () => {
+                        const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+                        const sectionRows = getAllSectionRows();
+
+                        for (const { tdDes, seriesData, sectionData } of sectionRows) {
+                            if (sectionData.disabled) {
+                                continue;
+                            }
+
+                            navigateSpy.mockClear();
+
+                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                            click(aEl as HTMLElement);
+                            await detectChangesOnPush(fixture);
+
+                            const firstCallArg = navigateSpy.mock.calls[0][0];
+                            const actualUrl = firstCallArg.toString();
+
+                            const { edition, series: routeSeries, section: routeSection } = component.ROUTES;
+                            const expectedLink = `${edition.route}/${routeSeries.route}/${seriesData.series.length}/${routeSection.route}/${sectionData.section}`;
+
+                            expectToContain(actualUrl, expectedLink);
+                        }
+
+                        navigateSpy.mockRestore();
                     });
                 });
 
                 describe('... second section data cell (td)', () => {
                     it('... should display centered total complexes', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
-                                const section = series.sectionBreakdown[index];
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
 
-                                expectToBe(tdEl.classList.contains('text-center'), true);
-                                expectToBe(tdEl.textContent?.trim(), section.totalComplexes.toString());
-                            });
+                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToBe(tdEl.textContent?.trim(), sectionData.totalComplexes.toString());
                         });
                     });
 
                     it('... should mute total complexes if section is disabled', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
-                                const section = series.sectionBreakdown[index];
-                                const shouldBeMuted = section.disabled === true;
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
+                            const shouldBeMuted = sectionData.disabled === true;
 
-                                expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
-                            });
+                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
                         });
                     });
                 });
 
                 describe('... third section data cell (td)', () => {
-                    it('... should have centered breakdown badge component if total complexes is greater zero', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
+                    it('... should contain one centered breakdown badge component if total complexes is greater zero', () => {
+                        const sectionRows = getAllSectionRows();
+
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
+                            const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
+
+                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            getAndExpectDebugElementByDirective(
+                                tdDes[2],
+                                StatisticsBreakdownBadgeStubComponent,
+                                expectedBadgeCount,
+                                expectedBadgeCount
                             );
-
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
-                                const section = series.sectionBreakdown[index];
-                                const expectedBadgeCount = section.totalComplexes > 0 ? 1 : 0;
-
-                                expectToBe(tdEl.classList.contains('text-center'), true);
-                                getAndExpectDebugElementByDirective(
-                                    tdDes[2],
-                                    StatisticsBreakdownBadgeStubComponent,
-                                    expectedBadgeCount,
-                                    expectedBadgeCount
-                                );
-                            });
                         });
                     });
 
                     it('... should pass down corect inputs to breakdown badge component', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
+                        const sectionRows = getAllSectionRows();
+
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
+                            const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
+
+                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            const badgeDes = getAndExpectDebugElementByDirective(
+                                tdDes[2],
+                                StatisticsBreakdownBadgeStubComponent,
+                                expectedBadgeCount,
+                                expectedBadgeCount
                             );
-
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
-                                const section = series.sectionBreakdown[index];
-                                const expectedBadgeCount = section.totalComplexes > 0 ? 1 : 0;
-
-                                expectToBe(tdEl.classList.contains('text-center'), true);
-                                const badgeDes = getAndExpectDebugElementByDirective(
-                                    tdDes[2],
-                                    StatisticsBreakdownBadgeStubComponent,
-                                    expectedBadgeCount,
-                                    expectedBadgeCount
-                                );
-                                if (expectedBadgeCount > 0) {
-                                    const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeStubComponent);
-                                    expectToEqual(badgeCmp.breakdown(), section.activeComplexBreakdown);
-                                }
-                            });
+                            if (expectedBadgeCount > 0) {
+                                const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeStubComponent);
+                                expectToEqual(badgeCmp.breakdown(), sectionData.activeComplexBreakdown);
+                            }
                         });
                     });
                 });
 
                 describe('... fourth section data cell (td)', () => {
                     it('... should display centered active complexes', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
-                                const section = series.sectionBreakdown[index];
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
 
-                                expectToBe(tdEl.classList.contains('text-center'), true);
-                                expectToBe(tdEl.textContent?.trim(), section.activeComplexes.toString());
-                            });
+                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToBe(tdEl.textContent?.trim(), sectionData.activeComplexes.toString());
                         });
                     });
 
                     it('... should mute active complexes if section is disabled', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
-                                const section = series.sectionBreakdown[index];
-                                const shouldBeMuted = section.disabled === true;
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
+                            const shouldBeMuted = sectionData.disabled === true;
 
-                                expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
-                            });
+                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
                         });
                     });
                 });
 
                 describe('... fifth section data cell (td)', () => {
-                    it('... should have progress bar component', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
-                            );
+                    it('... should contain one progress bar component', () => {
+                        const sectionRows = getAllSectionRows();
 
-                            sectionTrDes.forEach(sectionTrDe => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarStubComponent, 1, 1);
-                            });
+                        sectionRows.forEach(({ tdDes }) => {
+                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarStubComponent, 1, 1);
                         });
                     });
 
                     it('... should pass down corect inputs to progress bar component', () => {
-                        expectedSeriesBreakdownData.forEach(series => {
-                            const expectedSectionRows = series.sectionBreakdown.length;
-                            const sectionTrDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                `tr.awg-statistics-section-breakdown`,
-                                expectedSectionRows,
-                                expectedSectionRows
+                        const sectionRows = getAllSectionRows();
+
+                        sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const progressBarDes = getAndExpectDebugElementByDirective(
+                                tdDes[4],
+                                StatisticsProgressBarStubComponent,
+                                1,
+                                1
                             );
+                            const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
+                            const expectedPercentage = sectionData.totalComplexes > 0 ? sectionData.progressRate : 0;
+                            const expectedConfig: StatisticsProgressBarConfig = {
+                                mode: 'percentage',
+                                percentage: expectedPercentage,
+                            };
 
-                            sectionTrDes.forEach((sectionTrDe, index) => {
-                                const tdDes = getAndExpectDebugElementByCss(sectionTrDe, 'td', 5, 5);
-                                const progressBarDes = getAndExpectDebugElementByDirective(
-                                    tdDes[4],
-                                    StatisticsProgressBarStubComponent,
-                                    1,
-                                    1
-                                );
-
-                                const progressBarCmp = progressBarDes[0].injector.get(
-                                    StatisticsProgressBarStubComponent
-                                );
-                                const section = series.sectionBreakdown[index];
-                                const expectedPercentage = section.totalComplexes > 0 ? section.progressRate : 0;
-                                const expectedConfig: StatisticsProgressBarConfig = {
-                                    mode: 'percentage',
-                                    percentage: expectedPercentage,
-                                };
-
-                                expectToEqual(progressBarCmp.config(), expectedConfig);
-                            });
+                            expectToEqual(progressBarCmp.config(), expectedConfig);
                         });
                     });
                 });
