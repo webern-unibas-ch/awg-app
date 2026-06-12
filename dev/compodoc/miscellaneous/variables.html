@@ -152,9 +152,6 @@
                             <a href="#consoleMessages" title="src/testing/mock-helper/mock-console.ts" ><b>consoleMessages</b>&nbsp;&nbsp;&nbsp;(src/.../mock-console.ts)</a>
                         </li>
                         <li>
-                            <a href="#createInMemoryStorage" title="src/testing/mock-helper/mock-storage.ts" ><b>createInMemoryStorage</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
-                        </li>
-                        <li>
                             <a href="#currentId" title="src/app/shared/compile-html/compile-html.component.ts" ><b>currentId</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
                         </li>
                         <li>
@@ -186,9 +183,6 @@
                         </li>
                         <li>
                             <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts" ><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../d3-force-simulation.model.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#globalObj" title="src/testing/mock-helper/mock-storage.ts" ><b>globalObj</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
                             <a href="#gtag" title="src/app/core/services/analytics-sercvice/analytics.service.ts" ><b>gtag</b>&nbsp;&nbsp;&nbsp;(src/.../analytics.service.ts)</a>
@@ -231,12 +225,6 @@
                         </li>
                         <li>
                             <a href="#mockStatisticsData" title="src/testing/mock-data/mockStatisticsData.ts" ><b>mockStatisticsData</b>&nbsp;&nbsp;&nbsp;(src/.../mockStatisticsData.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#mockStorage" title="src/testing/mock-helper/mock-storage.ts" ><b>mockStorage</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#mockWindow" title="src/testing/mock-helper/mock-window.ts" ><b>mockWindow</b>&nbsp;&nbsp;&nbsp;(src/.../mock-window.ts)</a>
                         </li>
                         <li>
                             <a href="#MODAL_CONTENT_SNIPPETS" title="src/app/shared/modal/data/modal-content-snippets.data.ts" ><b>MODAL_CONTENT_SNIPPETS</b>&nbsp;&nbsp;&nbsp;(src/.../modal-content-snippets.data.ts)</a>
@@ -297,9 +285,6 @@
                         </li>
                         <li>
                             <a href="#w" title="src/polyfills.ts" ><b>w</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#windowStore" title="src/testing/mock-helper/mock-window.ts" ><b>windowStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-window.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -521,7 +506,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.6.0-217-g21b757294&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.6.0-218-gda6677172&#x27;</code>
                     </td>
                 </tr>
 
@@ -553,7 +538,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-06-11&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-06-12&#x27;</code>
                     </td>
                 </tr>
 
@@ -720,180 +705,6 @@
                 <td class="col-md-4">
                     <div class="io-description"><p>Test helper: mockConsole.</p>
 <p>It mocks the console to catch console output.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/testing/mock-helper/mock-storage.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createInMemoryStorage"></a>
-                    <span class="name">
-                        <span ><b>createInMemoryStorage</b></span>
-                        <a href="#createInMemoryStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>(): Storage &#x3D;&gt; {
-    const store &#x3D; new Map&lt;string, string&gt;();
-
-    return {
-        get length() {
-            return store.size;
-        },
-        clear() {
-            store.clear();
-        },
-        getItem(key: string): string | null {
-            return store.get(key) ?? null;
-        },
-        key(index: number): string | null {
-            return Array.from(store.keys())[index] ?? null;
-        },
-        removeItem(key: string) {
-            store.delete(key);
-        },
-        setItem(key: string, value: string) {
-            store.set(key, value);
-        },
-    };
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Creates an in-memory Storage implementation.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="globalObj"></a>
-                    <span class="name">
-                        <span ><b>globalObj</b></span>
-                        <a href="#globalObj"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>globalThis as Window &amp; typeof globalThis</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>The global object reference for window, used to ensure storage availability and restore original descriptors in tests.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mockStorage"></a>
-                    <span class="name">
-                        <span ><b>mockStorage</b></span>
-                        <a href="#mockStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-    captureStorageDescriptors(types: WindowStorageType[]): IStorageDescriptorMap {
-        return types.reduce((descriptors: IStorageDescriptorMap, type: WindowStorageType) &#x3D;&gt; {
-            descriptors[type] &#x3D; Object.getOwnPropertyDescriptor(globalObj, type);
-            return descriptors;
-        }, {});
-    },
-
-    ensureStorage(type: WindowStorageType): Storage {
-        try {
-            const availableStorage &#x3D; globalObj[type];
-            if (availableStorage) {
-                return availableStorage;
-            }
-        } catch {
-            // Some environments (e.g., jsdom with opaque origins) throw on window storage access.
-            // In that case we still need a stable in-memory storage for tests.
-        }
-
-        const fallbackStorage &#x3D; createInMemoryStorage();
-        Object.defineProperty(globalObj, type, {
-            configurable: true,
-            value: fallbackStorage,
-        });
-
-        return fallbackStorage;
-    },
-
-    clearStorages(types: WindowStorageType[]): void {
-        types.forEach((type: WindowStorageType) &#x3D;&gt; {
-            try {
-                const storage &#x3D; globalObj[type];
-                storage.clear();
-            } catch {
-                // Ignore access errors for unavailable/blocked storages.
-            }
-        });
-    },
-
-    restoreStorageDescriptors(descriptors: IStorageDescriptorMap): void {
-        const storageTypes: WindowStorageType[] &#x3D; [&#x27;localStorage&#x27;, &#x27;sessionStorage&#x27;];
-
-        storageTypes.forEach((type: WindowStorageType) &#x3D;&gt; {
-            const descriptor &#x3D; descriptors[type];
-            if (descriptor) {
-                Object.defineProperty(globalObj, type, descriptor);
-            } else {
-                Reflect.deleteProperty(globalObj, type);
-            }
-        });
-    },
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Test helper: mockStorage.</p>
-<p>It ensures window storage availability and can restore original descriptors.</p>
 </div>
                 </td>
             </tr>
@@ -4042,83 +3853,6 @@ for the edition view.</p>
                     <div class="io-description"><p>Test helper data file: mockStatisticsData.</p>
 <p>It provides mocks for data used in the context of the statistics view of the app.</p>
 <p>Exposed to be called from tests.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/testing/mock-helper/mock-window.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mockWindow"></a>
-                    <span class="name">
-                        <span ><b>mockWindow</b></span>
-                        <a href="#mockWindow"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/IMockWindow.html" target="_self" >IMockWindow</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-    postMessage: (message: { gnd: string }, targetOrigin: string | WindowPostMessageOptions) &#x3D;&gt; {
-        windowStore.push([message, targetOrigin]);
-    },
-    get: (index: number): storedPostMessageType &#x3D;&gt; windowStore[index],
-    clear: () &#x3D;&gt; {
-        windowStore &#x3D; [];
-    },
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Test helper: mockWindow.</p>
-<p>It mocks the window object to catch postMessage events.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="windowStore"></a>
-                    <span class="name">
-                        <span ><b>windowStore</b></span>
-                        <a href="#windowStore"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#storedPostMessageType" target="_self" >Array&lt;storedPostMessageType&gt;</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Internal variable: windowStore.</p>
-<p>It keeps the postMessage events.</p>
 </div>
                 </td>
             </tr>

@@ -1104,9 +1104,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GndEvent.html" data-type="entity-link" >GndEvent</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/Graph.html" data-type="entity-link" >Graph</a>
                             </li>
                             <li class="link">
@@ -1342,9 +1339,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/GndService.html" data-type="entity-link" >GndService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/GraphVisualizerService.html" data-type="entity-link" >GraphVisualizerService</a>
                                 </li>
                                 <li class="link">
@@ -1355,9 +1349,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StatisticsService.html" data-type="entity-link" >StatisticsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/StorageService.html" data-type="entity-link" >StorageService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ToastService.html" data-type="entity-link" >ToastService</a>
@@ -1462,12 +1453,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IMockConsole.html" data-type="entity-link" >IMockConsole</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IMockWindow.html" data-type="entity-link" >IMockWindow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IStorageDescriptorMap.html" data-type="entity-link" >IStorageDescriptorMap</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>

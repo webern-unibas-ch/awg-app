@@ -1331,7 +1331,7 @@ export class OrderByPipe implements PipeTransform {
         isCaseInsensitive?: boolean,
         comparator?: Function
     ): T[] {
-        const isDeepLink &#x3D; expression &amp;&amp; expression.includes(&#x27;.&#x27;);
+        const isDeepLink &#x3D; expression?.includes(&#x27;.&#x27;);
 
         if (isDeepLink) {
             expression &#x3D; OrderByPipe.parseExpression(expression);
