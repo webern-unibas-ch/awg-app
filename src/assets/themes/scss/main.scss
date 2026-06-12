@@ -29,15 +29,15 @@ a[role='link'][tabindex='0']:hover {
     text-decoration: none;
 }
 a.dropdown-item,
-a.awg-svg-sheet-nav-link:hover,
+a.awg-svg-sheet-facet-link:hover,
 .nav-tabs > li > a {
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
 a.awg-edition-intro-nav-link:hover,
-a.awg-svg-sheet-nav-link,
-a.awg-svg-sheet-nav-link:hover,
+a.awg-svg-sheet-facet-link,
+a.awg-svg-sheet-facet-link:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
     border-bottom: none !important;
@@ -45,19 +45,18 @@ a.awg-svg-sheet-nav-link:hover,
 }
 a.dropdown-item:hover,
 button.dropdown-item:hover,
-a.awg-svg-sheet-nav-link.active,
+a.awg-svg-sheet-facet-link.active,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-nav > li.nav-item.dropdown.active > a,
 .navbar-nav > li > a:focus:not(#dropdownNavEdition),
 .navbar-nav > li > a:active:not(#dropdownNavEdition) {
     color: $link-color !important;
 }
-/* no border color for svg-sheet-nav-link */
-a.awg-svg-sheet-nav-link.active,
-a.awg-svg-sheet-nav-link:active,
-a.awg-svg-sheet-nav-link:hover,
-a.awg-svg-sheet-nav-link:focus,
-a.awg-svg-sheet-nav-link:active {
+/* no border color for svg-sheet-facet-link */
+a.awg-svg-sheet-facet-link.active,
+a.awg-svg-sheet-facet-link:active,
+a.awg-svg-sheet-facet-link:hover,
+a.awg-svg-sheet-facet-link:focus {
     border-color: transparent !important;
 }
 
@@ -211,6 +210,26 @@ footer {
     color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
 }
 
+.awg-statistics-card {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.15s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+
+        .card-title {
+            color: #495057;
+            font-weight: 600;
+        }
+    }
+}
+
 /****** ACCORDION ******/
 .accordion-button {
     &.collapsed,
@@ -282,15 +301,28 @@ footer {
 }
 
 /****** IMAGES ******/
-#unibaslogo {
-    height: 50px;
-    cursor: pointer;
+.awg-jumbotron-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+.img-thumbnail {
+    height: 100px;
+    width: auto;
+    padding: 0px;
+    margin: 2px 0px;
+}
+
 #sagwlogo {
-    height: 50px;
+    height: 75px;
     cursor: pointer;
 }
 #snflogo {
+    height: 50px;
+    cursor: pointer;
+}
+#unibaslogo {
     height: 50px;
     cursor: pointer;
 }
@@ -304,18 +336,6 @@ footer {
 }
 .webernlogo span {
     font-weight: 100;
-}
-
-.img-thumbnail {
-    height: 100px;
-    width: auto;
-    padding: 0px;
-    margin: 2px 0px;
-}
-.awg-jumbotron-image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 /****** SVG ******/
@@ -367,6 +387,14 @@ span.facet-badge {
     background-color: rgba(119, 119, 119, 1) !important; /* rgba converted HEX #777 */
 }
 
+/****** TOOLTIPS ******/
+.awg-group-id-tooltip .tooltip-inner {
+    font-family: $font-family-monospace;
+    font-size: 0.75rem;
+    margin-right: 1em;
+    border: 1px solid var(--bs-border-color);
+}
+
 /****** DETAILS ******/
 details summary {
     list-style: none;
@@ -401,16 +429,8 @@ details[open] summary::before {
     font-variant: small-caps;
 }
 
-%inlineblock {
-    display: inline-block;
-}
-@mixin tab($margin) {
-    @extend %inlineblock;
-    margin-left: $margin;
-}
-
 .tab {
-    @include tab(25px);
+    padding-left: 25px;
 }
 
 .indent {
@@ -420,14 +440,6 @@ details[open] summary::before {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.unicode {
-    font-size: 3em;
-    line-height: 12px;
-    position: relative;
-    vertical-align: bottom;
-    top: 7.5px;
 }
 
 /****** COLOURS ******/
@@ -467,4 +479,20 @@ details[open] summary::before {
 }
 .glyph.note {
     font-size: 16px;
+}
+.glyph.unicode {
+    position: relative;
+    vertical-align: bottom;
+    top: 7.5px;
+}
+
+/****** EDITION SNIPPET ******/
+.awg-edition-tkk-snippet {
+    max-height: 4em;
+    width: auto;
+    cursor: pointer;
+    display: inline-block;
+}
+.awg-edition-tkk-snippet + br + .awg-edition-tkk-snippet {
+    margin-top: 0.25em; /* add margin between consecutive snippets */
 }

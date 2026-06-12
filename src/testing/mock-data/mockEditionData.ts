@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import {
-    EDITION_CATALOGUE_TYPE_CONSTANTS,
-    EDITION_ROUTE_CONSTANTS,
-} from '@awg-views/edition-view/edition-route-constants';
-
 /**
  * Test helper data file: mockEditionData.
  *
@@ -13,92 +8,6 @@ import {
  * Exposed to be called from tests.
  */
 export const mockEditionData = {
-    /**
-     * Test helper data constant: mockEditionComplexesList.
-     *
-     * It provides a mocked editionComplexesList object.
-     */
-    mockEditionComplexesList: {
-        OP3: {
-            titleStatement: {
-                title: '<em>Vier Lieder</em>',
-                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
-                catalogueNumber: '12',
-            },
-            publicationStatement: {
-                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-            },
-            respStatement: {
-                editors: [
-                    {
-                        name: 'Thomas Ahrend',
-                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
-                    },
-                ],
-                lastModified: '7. August 2024',
-            },
-            complexId: {
-                route: '/op12',
-                short: 'op.&nbsp;12',
-                full: '<em>Vier Lieder</em> op.&nbsp;12',
-            },
-            baseRoute: '/edition/complex/op12/',
-        },
-        OP25: {
-            titleStatement: {
-                title: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em>',
-                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
-                catalogueNumber: '25',
-            },
-            publicationStatement: {
-                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-            },
-            respStatement: {
-                editors: [
-                    {
-                        name: 'Thomas Ahrend',
-                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
-                    },
-                ],
-                lastModified: '7. August 2024',
-            },
-            complexId: {
-                route: '/op25',
-                short: 'op.&nbsp;25',
-                full: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op.&nbsp;25',
-            },
-            baseRoute: '/edition/complex/op25/',
-        },
-        M22: {
-            titleStatement: {
-                title: 'Studienkomposition für Klavier/Streichquartett',
-                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
-                catalogueNumber: '22',
-            },
-            publicationStatement: {
-                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-            },
-            respStatement: {
-                editors: [
-                    {
-                        name: 'Michael Matter',
-                        homepage: 'https://anton-webern.ch/de/projekt/mitarbeitende.html',
-                    },
-                ],
-                lastModified: '7. August 2024',
-            },
-            complexId: {
-                route: '/m22',
-                short: 'M&nbsp;22',
-                full: 'Studienkomposition für Klavier/Streichquartett M&nbsp;22',
-            },
-            baseRoute: '/edition/complex/m22/',
-        },
-    },
-
     /**
      * Test helper data constant: mockFolioConvoluteData.
      *
@@ -168,6 +77,7 @@ export const mockEditionData = {
                         ],
                     },
                 ],
+                linkTo: '',
             },
             {
                 convoluteId: 'B',
@@ -316,17 +226,17 @@ export const mockEditionData = {
             {
                 id: 'de',
                 content: [
-                    "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
-                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
-                    "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                    "<p class='block-lead'>Die AWG gliedert sich in drei Serien:</p>",
+                    "<p>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</p>",
+                    "<p class='block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
                 ],
             },
             {
                 id: 'en',
                 content: [
-                    "<span class='no-indent'>The AWG is divided into three series:</span>",
-                    "<span class='no-indent spacebreak'>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
-                    "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                    "<p class='block-lead'>The AWG is divided into three series:</p>",
+                    "<p>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</p>",
+                    "<p class='block-lead small'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
                 ],
             },
         ],
@@ -747,17 +657,22 @@ export const mockEditionData = {
                                 preamble: 'Korrekturen 1:',
                                 comments: [
                                     {
-                                        measure: '3–4',
-                                        system: '',
-                                        position: '',
-                                        comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
-                                    },
-                                    {
-                                        measure: '4',
-                                        system: 'Klav. o.',
-                                        position: '',
-                                        comment:
-                                            'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                        blockHeader: '',
+                                        blockComments: [
+                                            {
+                                                measure: '3–4',
+                                                system: '',
+                                                position: '',
+                                                comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                            },
+                                            {
+                                                measure: '4',
+                                                system: 'Klav. o.',
+                                                position: '',
+                                                comment:
+                                                    'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                            },
+                                        ],
                                     },
                                 ],
                             },

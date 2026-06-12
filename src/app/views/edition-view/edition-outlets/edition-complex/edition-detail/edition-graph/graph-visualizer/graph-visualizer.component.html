@@ -8,7 +8,7 @@
                     <awg-triples-editor
                         [triples]="triples"
                         [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showErrorMessage($event)"
+                        (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetTriplesRequest)="resetTriples()"
                         (updateTriplesRequest)="triples = $event"></awg-triples-editor>
@@ -19,7 +19,7 @@
                         [queryList]="queryList"
                         [query]="query"
                         [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showErrorMessage($event)"
+                        (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetQueryRequest)="resetQuery($event)"
                         (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>
@@ -28,19 +28,17 @@
         </div>
         <!-- Results -->
         <div [ngClass]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
-            <!-- CONSTRUCT -->
-            <!-- awg-graph-construct-result -->
             @if (query.queryType === 'construct') {
                 <awg-construct-results
                     #queryConstructResultAcc
-                    [queryResult$]="queryResult$"
+                    [queryResult$]="$any(queryResult$)"
                     [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                     [isFullscreen]="isFullscreen"
                     (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
             } @else {
                 @if (query.queryType === 'select') {
                     <awg-select-results
-                        [queryResult$]="queryResult$"
+                        [queryResult$]="$any(queryResult$)"
                         [queryTime]="queryTime"
                         [isFullscreen]="isFullscreen"
                         (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>

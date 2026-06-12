@@ -1,18 +1,15 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import eslintJs from '@eslint/js';
 import angularEslint from 'angular-eslint';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
+import prettierPlugin from 'eslint-plugin-prettier';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import url from 'node:url';
 import typescriptEslint from 'typescript-eslint';
-
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-const compat = new FlatCompat({ baseDirectory: __dirname });
 
 const ecmaVersion = 2022;
 
-export default typescriptEslint.config(
+export default defineConfig(
     // Global ignore
     {
         ignores: [
@@ -37,23 +34,17 @@ export default typescriptEslint.config(
             globals: {
                 ...globals.browser,
                 ...globals.node,
-                ...globals.jasmine,
+                ...globals.vitest,
             },
         },
     },
 
-    // Extends ...
+    // TS config
     eslintJs.configs.recommended,
-    // ...typescriptEslint.configs.recommended.map(config => ({
-    //    ...config,
-    //    files: ['**/*.ts'],
-    // })),
     ...angularEslint.configs.tsRecommended.map(config => ({
         ...config,
         files: ['**/*.ts'],
     })),
-
-    // TS config
     {
         files: ['**/*.ts'],
 
@@ -264,19 +255,20 @@ export default typescriptEslint.config(
     },
 
     // HTML config
-    {
-        extends: [angularEslint.configs.templateRecommended, angularEslint.configs.templateAccessibility],
-        files: ['**/*.html'],
-        rules: {},
-    },
-    ...compat.extends('plugin:prettier/recommended').map(config => ({
+    ...angularEslint.configs.templateRecommended.map(config => ({
         ...config,
         files: ['**/*.html'],
-        ignores: ['**/*inline-template-*.component.html'],
+    })),
+    ...angularEslint.configs.templateAccessibility.map(config => ({
+        ...config,
+        files: ['**/*.html'],
     })),
     {
         files: ['**/*.html'],
         ignores: ['**/*inline-template-*.component.html'],
+        plugins: {
+            prettier: prettierPlugin,
+        },
         rules: {
             'prettier/prettier': [
                 'error',

@@ -8,12 +8,14 @@ import {
     TemplateRef,
     ViewChild,
 } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -31,7 +33,8 @@ import { ModalComponent } from './modal.component';
     standalone: false,
 })
 class WrapperComponent implements AfterViewInit {
-    @ViewChild(ModalComponent) modalComponentRef: ModalComponent;
+    @ViewChild(ModalComponent)
+    modalComponentRef: ModalComponent;
     modal: TemplateRef<any>;
     private _cdr = inject(ChangeDetectorRef);
 
@@ -47,7 +50,9 @@ export class MockNgbModalRef {
         title: undefined,
         content: undefined,
     };
-    result: Promise<any> = new Promise(resolve => resolve(''));
+    result: Promise<any> = new Promise(() => {
+        // Keep pending by default; individual tests set resolve/reject behavior explicitly.
+    });
 }
 
 describe('ModalComponent', () => {
@@ -74,13 +79,13 @@ describe('ModalComponent', () => {
     const expectedSnippetKey2 = 'OP12_SHEET_COMING_SOON';
     const expectedUnknownSnippetKey = 'UNKNOWN_SNIPPET_KEY';
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbModalModule],
             declarations: [WrapperComponent, ModalComponent, CompileHtmlComponent],
             providers: [NgbModal],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(WrapperComponent);
@@ -96,11 +101,12 @@ describe('ModalComponent', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on the modal service
-        ngbModalOpenSpy = spyOn(ngbModal, 'open').and.returnValue(mockModalRef as any);
+        ngbModalOpenSpy = vi.spyOn(ngbModal, 'open').mockReturnValue(mockModalRef as any);
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        // Clear mocks after each test
+        vi.restoreAllMocks();
     });
 
     it('... should create the component', () => {
@@ -160,15 +166,17 @@ describe('ModalComponent', () => {
             const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
             expectToBe(btnEl.textContent, '');
+            expectToBe(btnEl.getAttribute('aria-label'), 'Close modal');
         });
 
         it('... should have one div.modal-body', () => {
             getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
         });
 
-        it('... should render the modal content in div.modal-body', () => {
+        it('... should render the modal content in div.modal-body', async () => {
             component.open(expectedSnippetKey1);
-            fixture.detectChanges();
+
+            await detectChangesOnPush(fixture);
 
             const bodyDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
             const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
@@ -213,18 +221,18 @@ describe('ModalComponent', () => {
             expect(component.closeResult).toBeUndefined();
         });
 
-        it('... should set the correct modal content if snippet is known', () => {
+        it('... should set the correct modal content if snippet is known', async () => {
             expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1]);
 
             component.open(expectedSnippetKey2);
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
 
             expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey2]);
         });
 
-        it('... should set the modal content to empty string if snippet is unknown', () => {
+        it('... should set the modal content to empty string if snippet is unknown', async () => {
             component.open(expectedUnknownSnippetKey);
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
 
             expectToBe(component.modalContent, '');
         });
@@ -235,27 +243,27 @@ describe('ModalComponent', () => {
             mockModalRef.result = new Promise(resolve => resolve(closeMessage));
 
             component.open(expectedSnippetKey1);
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
 
-            await expectAsync(
+            await expect(
                 ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-            ).toBeResolvedTo(closeMessage);
+            ).resolves.toEqual(closeMessage);
 
             expectToBe(component.closeResult, expectedCloseResult);
         });
 
-        describe('should return the dismiss reason of the modal', async () => {
+        describe('should return the dismiss reason of the modal', () => {
             it('... when clicking on close button', async () => {
                 const dismissEvent = 'Click on dismiss button';
                 const expectedDismissReason = `Dismissed with: ${dismissEvent}`;
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });
@@ -266,11 +274,11 @@ describe('ModalComponent', () => {
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });
@@ -281,11 +289,11 @@ describe('ModalComponent', () => {
                 mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture);
 
-                await expectAsync(
+                await expect(
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
-                ).toBeRejectedWith(dismissEvent);
+                ).rejects.toEqual(dismissEvent);
 
                 expectToBe(component.closeResult, expectedDismissReason);
             });

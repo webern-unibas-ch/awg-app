@@ -6,7 +6,4 @@
  * for the GraphVisualizer.
  *
  */
-
-import { DEFAULT_PREFIXES } from './default-prefixes.data';
-
-export { DEFAULT_PREFIXES };
+export { DEFAULT_PREFIXES } from './default-prefixes.data';

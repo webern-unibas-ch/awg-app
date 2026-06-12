@@ -565,7 +565,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1612,30 +1612,34 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 413: <a (click)=\"ref.selectSvgSheet({complexId: 'mx413', sheetId: 'Mx413_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-001",
                                             "measure": "5",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-002",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "a überschreibt g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-003",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Halbe Note überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_1-004",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "3/4",
@@ -1651,16 +1655,17 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 413: <a (click)=\"ref.selectSvgSheet({complexId: 'mx413', sheetId: 'Mx413_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx413_tf1_B_corr_2-001",
                                             "measure": "6",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Alternative Version unter und über den Systemen: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter und über den Systemen: <br />##Abbildung##"
                                         }
                                     ]
                                 }

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 import { Observable } from 'rxjs';
 
 import { UtilityService } from '@awg-core/services';
-import { QueryResult } from '../models';
+import { QuerySelectResult } from '../models';
 
 /**
  * The SelectResults component.
@@ -25,7 +25,7 @@ export class SelectResultsComponent {
      * It keeps the query result as an observable.
      */
     @Input()
-    queryResult$: Observable<QueryResult>;
+    queryResult$: Observable<QuerySelectResult | string | undefined>;
 
     /**
      * Input variable: queryTime.
@@ -75,11 +75,14 @@ export class SelectResultsComponent {
      *
      * It checks if a given queryResult is not empty.
      *
-     * @param {QueryResult} queryResult The given queryResult.
+     * @param {QuerySelectResult} queryResult The given queryResult.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isQueryResultNotEmpty(queryResult: QueryResult): boolean {
+    isQueryResultNotEmpty(queryResult: QuerySelectResult | string): queryResult is QuerySelectResult {
+        if (typeof queryResult === 'string') {
+            return false;
+        }
         const { head, body } = queryResult;
         return this._utils.isNotEmptyArray(head?.vars) && this._utils.isNotEmptyArray(body?.bindings);
     }

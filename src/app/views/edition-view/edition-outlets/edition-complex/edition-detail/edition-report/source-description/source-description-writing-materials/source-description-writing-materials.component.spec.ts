@@ -1,5 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -24,11 +26,11 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
     let expectedTrademarks: typeof EDITION_TRADEMARKS_DATA;
     let expectedWritingMaterials: SourceDescriptionWritingMaterial[];
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [SourceDescriptionWritingMaterialsComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionWritingMaterialsComponent);
@@ -66,18 +68,26 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-writing-materials', 1, 1);
             });
 
-            it('... should contain only 1 span in paragraph', () => {
+            it('... should contain 2 spans in paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-writing-materials', 1, 1);
-                getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
+                getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
+            });
+
+            it('... should contain a span with class `awg-source-description-writing-materials-content`', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-writing-materials-content', 1, 1);
             });
 
             it('... should display correct label in smallcaps', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-writing-materials', 1, 1);
-                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-writing-materials-label',
+                    1,
+                    1
+                );
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent.trim(), 'Beschreibstoff:');
-                expect(spanEl).toHaveClass('smallcaps');
+                expect(spanEl.classList.contains('smallcaps')).toBe(true);
             });
         });
     });

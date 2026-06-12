@@ -621,42 +621,48 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-001",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Metrisch falsch platzierte Viertelnote gis/e<sup>1</sup> gestrichen. Und versetzt nach 4/4."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-002",
                                             "measure": "7",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Ober- und Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-003",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "3. Note",
                                             "comment": "Oberstimmenschicht: g<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-004",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "5. Note",
                                             "comment": "Unterstimmenschicht: c<sup>2</sup> überschreibt a<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-005",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "8. Note",
                                             "comment": "Oberstimmenschicht: f<sup>2</sup> überschreibt e<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_1-006",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
@@ -672,174 +678,202 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-001",
                                             "measure": "1",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>1 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-002",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>2 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-003",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>3 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-004",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "Oberstimmenschicht: <em>as </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-005",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "5. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-006",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-007",
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Viertelnote f hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-008",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-009",
                                             "measure": "3",
                                             "system": "Klav.",
                                             "position": "8/8",
                                             "comment": "Kreuz zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-010",
                                             "measure": "4–5",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte eingekreist und pauschal gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-011",
                                             "measure": "4",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-012",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "1.–4. Note",
                                             "comment": "<em>8<sup>-----</sup> </em>zwischen den Systemen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-013",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Taktwiederholungszeichen am Taktemde hinzugefügt, <em>4 </em>und<em> 5</em> über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-014",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>6 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-015",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>7 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-016",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-017",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "(4/8)",
                                             "comment": "Achtelnote <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis hinzugefügt und mit Viertelnote Fis/fis zu zwei Achtelnoten zusammengebalkt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-018",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Viertelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis und d/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as im System darüber notiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-019",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "Taktende",
                                             "comment": "Pfeil unter dem System zu T. 11."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-020",
                                             "measure": "8 <br />bis 9",
                                             "system": "Klav. u.",
                                             "position": "4/4 <br />1/4",
                                             "comment": "<em>4 Stufen darüber </em>unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-021",
                                             "measure": "9",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt eingeklammert und pauschal gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-022",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "<em>8 </em>über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-023",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "(4/4)",
                                             "comment": "Achteltriole h<sup>1</sup>–g<sup>1</sup>–h überschreibt Achtelnoten h<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-024",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "(4/4)",
                                             "comment": "Achteltriole h–H–f überschreibt Achtelnoten h–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-025",
                                             "measure": "10 <br />bis 11",
                                             "system": "Klav. u.",
                                             "position": "letzte Note <br />1/4",
                                             "comment": "Schräg abfallende Linie im und unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-026",
                                             "measure": "11",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Achteltriole f<sup>1</sup>–e<sup>1</sup>–d<sup>1</sup> überschreibt Viertelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-027",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Achteltriole e–E–A überschreibt Viertelpause, wieder gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf1_Ba_corr_2-028",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
@@ -1306,96 +1340,111 @@
                         "label": "Korrekturen 1 in <strong>D<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-001",
                                             "measure": "54",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: E überschreibt C."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-002",
                                             "measure": "55",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Unterstimmenschicht: c überschreibt H."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-003",
                                             "measure": "57",
                                             "system": "Klav. o.",
                                             "position": "2/4 bis 4/4",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von 4/4 nach 3/4, dann von 2/4 nach 3/4? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-004",
                                             "measure": "58",
                                             "system": "Klav. u.",
                                             "position": "8/8",
                                             "comment": "cis<sup>1</sup> überschreibt e<sup>1</sup>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-005",
                                             "measure": "60",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: h<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-006",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "5.–6. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-007",
                                             "measure": "69",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-008",
                                             "measure": "70",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "ais<sup>1</sup> geändert zu fis<sup>1</sup> durch Streichung einer Hilfslinie."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-009",
                                             "measure": "71",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "d<sup>1</sup> überschreibt f<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-010",
                                             "measure": "72",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Halbe Note überschreibt Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-011",
                                             "measure": "72",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "e<sup>2</sup> überschreibt f<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-012",
                                             "measure": "74",
                                             "system": "Klav. u.",
                                             "position": "2/2",
                                             "comment": "Oberstimmenschicht: Hals nach unten gestrichen und ersetzt durch Hals nach oben."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-013",
                                             "measure": "74",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Unterstimmenschicht: Hals nach oben ersetzt durch Hals nach unten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-014",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "6.–7. Note",
                                             "comment": "Oberstimmenschicht: Hals nach unten gestrichen und ersetzt durch Hals nach oben."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_1-015",
                                             "measure": "82",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
@@ -1411,250 +1460,290 @@
                         "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-001",
                                             "measure": "51",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-002",
                                             "measure": "55",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-003",
                                             "measure": "57",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-004",
                                             "measure": "59",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-005",
                                             "measure": "60",
                                             "system": "Klav. o.",
                                             "position": "1.–3. Note",
                                             "comment": "Untere Oktave gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-006",
                                             "measure": "61",
                                             "system": "Klav.",
                                             "position": "1–4/4",
                                             "comment": "Crescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-007",
                                             "measure": "61",
                                             "system": "Klav. u.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-008",
                                             "measure": "62",
                                             "system": "Klav.",
                                             "position": "(2/8)",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-009",
                                             "measure": "62",
                                             "system": "Klav.",
                                             "position": "3/4–8/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-010",
                                             "measure": "64",
                                             "system": "Klav.",
                                             "position": "2/4–4/4",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-011",
                                             "measure": "65",
                                             "system": "Klav.",
                                             "position": "(4/8)",
                                             "comment": "<em>dim. </em>hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-012",
                                             "measure": "66",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-013",
                                             "measure": "68",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-014",
                                             "measure": "68 <br />bis 72",
                                             "system": "Klav.",
                                             "position": "2/4 <br />7/8",
                                             "comment": "<em>cres. </em>[sic] mit Geltungsstrichelung hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-015",
                                             "measure": "69",
                                             "system": "Klav. o.",
                                             "position": "1.–3. Note",
                                             "comment": "Untere Oktave gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-016",
                                             "measure": "69",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Viertelnote überschreibt Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-017",
                                             "measure": "70",
                                             "system": "Klav.",
                                             "position": "1. Note",
                                             "comment": "<em>cresc</em>[.]<em> </em>hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-018",
                                             "measure": "70",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>3</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-019",
                                             "measure": "70",
                                             "system": "Klav. u.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c/c<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-020",
                                             "measure": "70",
                                             "system": "Klav. u.",
                                             "position": "7/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f/f<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-021",
                                             "measure": "71",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>/e<sup>3</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-022",
                                             "measure": "73",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "<em>stark </em>hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-023",
                                             "measure": "73",
                                             "system": "Klav. u.",
                                             "position": "1–4/4",
                                             "comment": "Untere Oktave D–Cis–E<sub>1</sub>–F hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-024",
                                             "measure": "73 <br />bis 74",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />4/4",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-025",
                                             "measure": "74 <br />bis 76",
                                             "system": "Klav. o.",
                                             "position": "5. Note <br />letzte Note",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-026",
                                             "measure": "74",
                                             "system": "Klav.",
                                             "position": "4/4",
                                             "comment": "Decrescendogabel hinzugefügt, überschrieben zu Crescendogabel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-027",
                                             "measure": "75",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-028",
                                             "measure": "76",
                                             "system": "Klav.",
                                             "position": "1/4–6/8",
                                             "comment": "Decrescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-029",
                                             "measure": "77",
                                             "system": "Klav.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-030",
                                             "measure": "77 <br />bis 80",
                                             "system": "Klav. o.",
                                             "position": "1. Note <br />8/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-031",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "1–4/8",
                                             "comment": "Noten mit rotem Buntstift unterstrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-032",
                                             "measure": "78 <br />bis 79",
                                             "system": "Klav.",
                                             "position": "8/8 <br />(6/8)",
                                             "comment": "Crescendogabel unter den Systemen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-033",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "Oberstimmenschicht: gis<sup>1</sup> überschrieben zu as<sup>1</sup> mit rotem Buntstift."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-034",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "2–3/8",
                                             "comment": "Oberstimmenschicht: gis<sup>2</sup> mit rotem Buntstift gestrichen, as<sup>2</sup> auf 3/8 geändert zu Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-035",
                                             "measure": "79",
                                             "system": "Klav. u.",
                                             "position": "1.–3. Note",
                                             "comment": "Noten mit rotem Buntstift unterstrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-036",
                                             "measure": "79",
                                             "system": "Klav.",
                                             "position": "3/4",
                                             "comment": "<em>cresc. </em>hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-037",
                                             "measure": "80",
                                             "system": "Klav.",
                                             "position": "1–8/8",
                                             "comment": "Crescendogabel hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-038",
                                             "measure": "80",
                                             "system": "Klav. o.",
                                             "position": "Taktende",
                                             "comment": "Verweiszeichen mit Bleistift und Einschubzeichen mit rotem Buntstift über dem System: Einschubstelle für die in Sk6 skizzierten Takte."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-039",
                                             "measure": "81–86",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf2_Da_corr_2-040",
                                             "measure": "82",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Alternative Skizze für Klav. o. über dem System: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze für Klav. o. über dem System: <br />##Abbildung##"
                                         }
                                     ]
                                 }
@@ -1796,202 +1885,389 @@
                         "label": "Korrekturen 1 in <strong>F<sup>R1</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-001",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "c<sup>1</sup> der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalstes c<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-002",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-003",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "7/8",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-004",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/A<sub>1</sub> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-005",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "2/2",
                                             "comment": "Note eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-006",
                                             "measure": "40",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-007",
                                             "measure": "45",
                                             "system": "Klav. u.",
                                             "position": "(4/4)",
                                             "comment": "Oberstimmenschicht: Viertelnote a gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-008",
                                             "measure": "47",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Hals nach unten ersetzt Hals nach oben."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-009",
                                             "measure": "48",
                                             "system": "Klav. u.",
                                             "position": "2/2",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-010",
                                             "measure": "60",
                                             "system": "Klav.",
                                             "position": "1. Note bis 3/4",
                                             "comment": "<em>e </em>unter der 1. Note von Klav. o. und über der 2. Note von Klav. u. Beide <em>e </em>durch eine Linie verbunden."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-011",
                                             "measure": "69",
                                             "system": "Klav.",
                                             "position": "1. Note bis 3/4",
                                             "comment": "<em>fis </em>unter der 1. Note von Klav. o.und über der 2. Note von Klav. u. Beide <em>fis </em>durch eine Linie verbunden."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-012",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-013",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu his überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem B."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-014",
                                             "measure": "78",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Oberstimmenschicht: Notenhals nach oben ersetzt Notenhals nach unten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-015",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-016",
                                             "measure": "85",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "fis<sup>2</sup> überschreibt e<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-017",
                                             "measure": "85",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-018",
                                             "measure": "86",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Achtelfähnchen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-019",
                                             "measure": "86",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-020",
                                             "measure": "89",
                                             "system": "Klav. o.",
                                             "position": "5/8",
                                             "comment": "Achtelnote eingekreist; <em>d </em>über der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-021",
                                             "measure": "98",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu F überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-022",
                                             "measure": "{100}",
                                             "system": "",
                                             "position": "",
                                             "comment": "Takt gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-023",
                                             "measure": "101",
                                             "system": "Klav. o.",
                                             "position": "(4/4)",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-024",
                                             "measure": "104",
                                             "system": "Klav. u.",
                                             "position": "7. Note",
                                             "comment": "Gis überschreibt Ais."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-025",
                                             "measure": "106",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-026",
                                             "measure": "127",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-027",
                                             "measure": "127",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-028",
                                             "measure": "145",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Triolenziffer und -klammer gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-029",
                                             "measure": "145",
                                             "system": "Klav. o.",
                                             "position": "2/2",
                                             "comment": "Halbe Note d gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-030",
                                             "measure": "146",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Triolenziffer und-klammer gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-031",
                                             "measure": "146",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis gestrichen? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_1-032",
                                             "measure": "146",
                                             "system": "Klav. o.",
                                             "position": "2/2",
                                             "comment": "Halbe Note d gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_FR1_corr_2",
+                        "label": "Korrekturen 2 in <strong>F<sup>R1</sup></strong> (mit Kugelschreiber)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-001",
+                                            "measure": "1–20",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Notenlinien teilweise nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-002",
+                                            "measure": "9",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstrich nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-003",
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/4",
+                                            "comment": "Triolenziffern nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-004",
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Sämtliche Akzidenzien nachgezogen mit Ausnahme von <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> (9. Note)."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-005",
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Ligatur zu g nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-006",
+                                            "measure": "13",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstrich nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-007",
+                                            "measure": "14 <br />bis 15",
+                                            "system": "Klav. o.",
+                                            "position": "2/4 <br />4/4",
+                                            "comment": "Oberstimmenschicht: Legatobogen nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-008",
+                                            "measure": "16–19",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstriche nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-009",
+                                            "measure": "17",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-010",
+                                            "measure": "18",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-011",
+                                            "measure": "19 <br />bis 20",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note <br />1/2",
+                                            "comment": "Notenköpfe von D<sub>1</sub>–D<sub>1</sub> nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-012",
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Viertelpause nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-013",
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Viertelpause nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-014",
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Ligatur zu T. 21 nachgezogen. F<sup>2</sup>: Seitenwechsel."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-015",
+                                            "measure": "35",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/2",
+                                            "comment": "Legatobogen nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-016",
+                                            "measure": "44",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> nachgezogen oder <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-017",
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Notenkopf nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-018",
+                                            "measure": "45",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-019",
+                                            "measure": "49",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Notenkopf von h nachgezogen."
+                                        },
+                                        {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR1_corr_2-020",
+                                            "measure": "88",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>zurückhaltend </em>nachgezogen."
                                         }
                                     ]
                                 }
@@ -2135,198 +2411,230 @@
                         "label": "Korrekturen 1 in <strong>F<sup>R2</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-001",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "c<sup>1</sup> der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalstes c<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-002",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-003",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "7/8",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-004",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu A/A<sub>1</sub> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-005",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "2/2",
                                             "comment": "Note eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-006",
                                             "measure": "40",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-007",
                                             "measure": "45",
                                             "system": "Klav. u.",
                                             "position": "(4/4)",
                                             "comment": "Oberstimmenschicht: Viertelnote a gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-008",
                                             "measure": "47",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Hals nach unten ersetzt Hals nach oben."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-009",
                                             "measure": "48",
                                             "system": "Klav. u.",
                                             "position": "2/2",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-010",
                                             "measure": "60",
                                             "system": "Klav.",
                                             "position": "1. Note bis 3/4",
                                             "comment": "<em>e </em>unter der 1. Note von Klav. o. und über der 2. Note von Klav. u. Beide <em>e </em>durch eine Linie verbunden."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-011",
                                             "measure": "69",
                                             "system": "Klav.",
                                             "position": "1. Note bis 3/4",
                                             "comment": "<em>fis </em>unter der 1. Note von Klav. o.und über der 2. Note von Klav. u. Beide <em>fis </em>durch eine Linie verbunden."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-012",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-013",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu his überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem B."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-014",
                                             "measure": "78",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Oberstimmenschicht: Notenhals nach oben ersetzt Notenhals nach unten."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-015",
                                             "measure": "79",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-016",
                                             "measure": "85",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "fis<sup>2</sup> überschreibt e<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-017",
                                             "measure": "85",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-018",
                                             "measure": "86",
                                             "system": "Klav. u.",
                                             "position": "2. Note",
                                             "comment": "Achtelfähnchen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-019",
                                             "measure": "86",
                                             "system": "Klav.",
                                             "position": "5/8",
                                             "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-020",
                                             "measure": "89",
                                             "system": "Klav. o.",
                                             "position": "5/8",
                                             "comment": "Achtelnote eingekreist; <em>d </em>über der Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-021",
                                             "measure": "98",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu F überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-022",
                                             "measure": "{100}",
                                             "system": "",
                                             "position": "",
                                             "comment": "Takt gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-023",
                                             "measure": "101",
                                             "system": "Klav. o.",
                                             "position": "(4/4)",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-024",
                                             "measure": "104",
                                             "system": "Klav. u.",
                                             "position": "7. Note",
                                             "comment": "Gis überschreibt Ais."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-025",
                                             "measure": "106",
                                             "system": "Klav.",
                                             "position": "Taktanfang",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-026",
                                             "measure": "127",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-027",
                                             "measure": "127",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-028",
                                             "measure": "145",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Triolenziffer und -klammer gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-029",
                                             "measure": "145",
                                             "system": "Klav. o.",
                                             "position": "2/2",
                                             "comment": "Halbe Note d gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-030",
                                             "measure": "146",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Triolenziffer und-klammer gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-031",
                                             "measure": "146",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis gestrichen? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_1-032",
                                             "measure": "146",
                                             "system": "Klav. o.",
                                             "position": "2/2",
@@ -2342,126 +2650,146 @@
                         "label": "Korrekturen 2 in <strong>F<sup>R2</sup></strong> (mit Kugelschreiber)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-001",
                                             "measure": "1–20",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Notenlinien teilweise nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-002",
                                             "measure": "9",
                                             "system": "Klav.",
                                             "position": "Taktende",
                                             "comment": "Taktstrich nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-003",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1–3/4",
                                             "comment": "Triolenziffern nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-004",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Sämtliche Akzidenzien nachgezogen mit Ausnahme von <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> (9. Note)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-005",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "5.–6. Note",
                                             "comment": "Ligatur zu g nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-006",
                                             "measure": "13",
                                             "system": "Klav.",
                                             "position": "Taktende",
                                             "comment": "Taktstrich nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-007",
                                             "measure": "14 <br />bis 15",
                                             "system": "Klav. o.",
                                             "position": "2/4 <br />4/4",
                                             "comment": "Oberstimmenschicht: Legatobogen nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-008",
                                             "measure": "16–19",
                                             "system": "Klav.",
                                             "position": "Taktende",
                                             "comment": "Taktstriche nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-009",
                                             "measure": "17",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu As nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-010",
                                             "measure": "18",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-011",
                                             "measure": "19 <br />bis 20",
                                             "system": "Klav. u.",
                                             "position": "letzte Note <br />1/2",
                                             "comment": "Notenköpfe von D<sub>1</sub>–D<sub>1</sub> nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-012",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "Viertelpause nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-013",
                                             "measure": "20",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Viertelpause nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-014",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Ligatur zu T. 21 nachgezogen. F<sup>2</sup>: Seitenwechsel."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-015",
                                             "measure": "35",
                                             "system": "Klav. o.",
                                             "position": "1–2/2",
                                             "comment": "Legatobogen nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-016",
                                             "measure": "44",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> nachgezogen oder <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-017",
                                             "measure": "45",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Notenkopf nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-018",
                                             "measure": "45",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-019",
                                             "measure": "49",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Notenkopf von h nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_2-020",
                                             "measure": "88",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
@@ -2477,132 +2805,153 @@
                         "label": "Korrekturen 3 in <strong>F<sup>R2</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-001",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "(2/4)",
                                             "comment": "Oberstimmenschicht: Pfeil vom linken Seitenrand her: <em>F<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> G<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> G<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> | ?</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-002",
                                             "measure": "6",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-003",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "9. Note",
                                             "comment": "Noten eingekreist, Pfeil zum rechten Seitenrand: <em>F | F</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-004",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "10. Note",
                                             "comment": "Noten eingekreist, Pfeil zum rechten Seitenrand: <em>E | E</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-005",
                                             "measure": "nach 30",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "<em>sketches </em>am rechten Seitenrand."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-006",
                                             "measure": "38",
                                             "system": "Klav. o.",
                                             "position": "7/8",
                                             "comment": "Note eingekreist, Pfeil zum rechten Seitenrand: <em>g<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span></em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-007",
                                             "measure": "58",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-008",
                                             "measure": "60",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des nachgezogen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-009",
                                             "measure": "60",
                                             "system": "Klav. o.",
                                             "position": "7/8, 4/4",
                                             "comment": "Ober- und Unterstimmenschicht: Noten eingekreist, Pfeil vom rechten Seitenrand her: <em>F<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> | B<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> | g</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-010",
                                             "measure": "61",
                                             "system": "Klav. o.",
                                             "position": "1/4",
                                             "comment": "Note eingekreist, Pfeil zum linken Seitenrand: <em>F<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> | A<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> | F<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span></em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-011",
                                             "measure": "63",
                                             "system": "Klav. o.",
                                             "position": "3. Note, 3/4",
                                             "comment": "Ober- und Unterstimmenschicht: Note eingekreist; <em>E<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> | g</em> am linken Seitenrand."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-012",
                                             "measure": "63",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "Ober- und Unterstimmenschicht: Note eingekreist; <em>D<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> | A<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span></em> am linken Seitenrand."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-013",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "2/4",
                                             "comment": "Unterstimmenschicht: a<sup>1</sup> überschreibt g<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-014",
                                             "measure": "66",
                                             "system": "Klav. o.",
                                             "position": "3/4",
                                             "comment": "Note eingekreist, Pfeil zum linken Seitenrand: <em>G<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> | C | B</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-015",
                                             "measure": "69",
                                             "system": "Klav. o.",
                                             "position": "3.–4. Note, 6. Note",
                                             "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>3</sup>, as<sup>2</sup> und es<sup>3</sup> hinzugefügt; Pfeil vom linken Seitenrand her: <em>Sketch || ?</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-016",
                                             "measure": "76",
                                             "system": "Klav. u.",
                                             "position": "1.–3. Note",
                                             "comment": "Triolenziffer hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-017",
                                             "measure": "80",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "Ober- und Unterstimmenschicht: Note eingekreist, Pfeil vom linken Seitenrand her: <em>E | G<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> | E</em>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-018",
                                             "measure": "85",
                                             "system": "Klav. o.",
                                             "position": "4. Note",
                                             "comment": "Note eingekreist."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-019",
                                             "measure": "92",
                                             "system": "Klav. u.",
                                             "position": "2/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Fis/fis hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-020",
                                             "measure": "94",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "<em>?</em> über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m112_tf3_FR2_corr_3-021",
                                             "measure": "113",
                                             "system": "Klav. o.",
                                             "position": "2. Note",

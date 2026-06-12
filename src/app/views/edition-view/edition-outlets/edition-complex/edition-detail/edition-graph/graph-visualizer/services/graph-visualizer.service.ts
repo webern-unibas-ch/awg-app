@@ -12,7 +12,8 @@ import {
     NamespaceType,
     PrefixForm,
     QueryResult,
-    QueryResultBindings,
+    QuerySelectResult,
+    QuerySelectResultBindings,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
     RDFStoreSelectResponse,
@@ -96,43 +97,68 @@ export class GraphVisualizerService {
      * @param {string} ttlString The given turtle string.
      * @param {string} [mimeType] The optional given mimetype.
      *
-     * @returns {Promise<Triple[]>} A promise of the query result triples.
+     * @returns {Promise<QueryResult>} A promise of the query result.
      */
-    doQuery(
-        queryType: string,
-        query: string,
-        ttlString: string,
-        mimeType?: string
-    ): Promise<string | QueryResult | Triple[]> {
+    async doQuery(queryType: string, query: string, ttlString: string, mimeType?: string): Promise<QueryResult> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
 
-        return this._createStore(rdfstore)
-            .then(store => {
-                this._store = store;
+        const store = await this._createStore(rdfstore);
+        this._store = store;
 
-                return this._loadTriplesInStore(store, ttlString, mimeType);
-            })
-            .then(() => this._executeQuery(this._store, query))
-            .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
-                // Reformat data if select query
-                if (queryType === 'select') {
-                    const response = res as RDFStoreSelectResponse;
-                    const selectResponse = this._prepareSelectResponse(response);
-                    return selectResponse.data;
-                }
+        await this._loadTriplesInStore(store, ttlString, mimeType);
+        const res: RDFStoreConstructResponse | RDFStoreSelectResponse = await this._executeQuery(this._store, query);
 
-                // Reformat data if construct query
-                if (queryType === 'construct') {
-                    const response = res as RDFStoreConstructResponse;
-                    const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
-                    const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
-                    return constructResponse;
-                }
+        // Reformat data if select query
+        if (queryType === 'select') {
+            const response = res as RDFStoreSelectResponse;
+            const selectResponse = this._prepareSelectResponse(response);
+            return selectResponse.data;
+        }
 
-                return undefined;
-            });
+        // Reformat data if construct query
+        if (queryType === 'construct') {
+            const response = res as RDFStoreConstructResponse;
+            const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
+            const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
+            return constructResponse;
+        }
+
+        return undefined;
+    }
+
+    /**
+     * Public method: extractLabelsFromTriples.
+     *
+     * It extracts any existing labels from the RDF triples data.
+     * Subject URIs are transformed using PrefixPipe - only those matching
+     * default prefixes get shortened to prefix form, others remain as full URIs.
+     *
+     * @param {Triple[]} triples The given triple array.
+     *
+     * @returns {Map<string, string>} A map of URI (shortened or full) to label mappings.
+     */
+    extractLabelsFromTriples(triples: Triple[]): Map<string, string> {
+        const labelMap = new Map<string, string>();
+
+        if (!triples) {
+            return labelMap;
+        }
+
+        const rdfsLabelShort = 'rdfs:label';
+        const rdfsLabelLong = this._prefixPipe.transform('rdfs:label', PrefixForm.LONG);
+
+        triples.forEach(triple => {
+            const predId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+
+            if (predId === rdfsLabelShort || triple.predicate === rdfsLabelLong) {
+                const subjId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
+                labelMap.set(subjId, triple.object);
+            }
+        });
+
+        return labelMap;
     }
 
     /**
@@ -243,8 +269,13 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<any>} A promise of the rdfstore instance.
      */
-    private _createStore(store: typeof rdfstore): Promise<any> {
+    private _createStore(store: any): Promise<any> {
         return new Promise((resolve, reject) => {
+            if (!store?.create) {
+                reject(new Error('rdfstore is not available in the current runtime.'));
+                return;
+            }
+
             store.create((err, createdStore) => {
                 if (err) {
                     reject(err);
@@ -326,7 +357,7 @@ export class GraphVisualizerService {
 
         // Find WHERE clause
         const start = query.toLowerCase().indexOf(where.toLowerCase());
-        const queryStr = start !== -1 ? query.slice(start) : query;
+        const queryStr = start === -1 ? query : query.slice(start);
 
         // Find prefixes in query using matchAll
         const matches = queryStr.matchAll(regex);
@@ -397,9 +428,9 @@ export class GraphVisualizerService {
      *
      * @param {RDFStoreSelectResponse} selectResponse The given select response.
      *
-     * @returns {QueryResultBindings[]} The array of bindings.
+     * @returns {QuerySelectResultBindings[]} The array of bindings.
      */
-    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QueryResultBindings[] {
+    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QuerySelectResultBindings[] {
         const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
         const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
         const keyMap = {
@@ -471,11 +502,11 @@ export class GraphVisualizerService {
      *
      * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
      *
-     * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
+     * @returns  {status: number; data: QuerySelectResult | string } An object with a status code, and the data as QuerySelectResult or string.
      */
     private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
         status: number;
-        data: QueryResult | string;
+        data: QuerySelectResult | string;
     } {
         if (!selectResponse) {
             return { status: 404, data: undefined };
@@ -490,7 +521,7 @@ export class GraphVisualizerService {
         const selectResponseBindings = this._prepareMappedBindings(selectResponse);
 
         // Re-format data
-        const reformatted: QueryResult = {
+        const reformatted: QuerySelectResult = {
             head: { vars: selectResponseKeys },
             body: { bindings: selectResponseBindings },
         };

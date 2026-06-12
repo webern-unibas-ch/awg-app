@@ -1,8 +1,0 @@
-<!-- resourceDetailData content -->
-@if (resourceDetailData?.content) {
-    <awg-resource-detail-html-content
-        [content]="resourceDetailData?.content"
-        (gndRequest)="exposeGnd($event)"
-        (resourceRequest)="navigateToResource($event)">
-    </awg-resource-detail-html-content>
-}

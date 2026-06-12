@@ -1,8 +1,9 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AbbrDirective } from './abbr.directive';
 
@@ -56,10 +57,6 @@ describe('AbbrDirective (DONE)', () => {
         ]);
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
     it('... should replace abbreviations with <abbr> elements', () => {
         fixture.detectChanges(); // Trigger initial data binding
 
@@ -97,8 +94,8 @@ describe('AbbrDirective (DONE)', () => {
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         expect(pEl.innerHTML).not.toContain('<abbr title="Klavier">Klaviert</abbr>');
-        expect(pEl.innerHTML).toContain('<abbr title="Klavier oben">Klav. o.</abbr>');
-        expect(pEl.innerHTML).toContain('<abbr title="Gesang">Ges.</abbr>');
+        expectToContain(pEl.innerHTML, '<abbr title="Klavier oben">Klav. o.</abbr>');
+        expectToContain(pEl.innerHTML, '<abbr title="Gesang">Ges.</abbr>');
     });
 
     it('... should handle empty text', () => {
@@ -108,6 +105,6 @@ describe('AbbrDirective (DONE)', () => {
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-        expect(pEl.innerHTML).toBe('');
+        expectToBe(pEl.innerHTML, '');
     });
 });

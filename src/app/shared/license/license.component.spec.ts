@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LicenseComponent } from './license.component';
@@ -10,7 +12,10 @@ describe('LicenseComponent', () => {
     let fixture: ComponentFixture<LicenseComponent>;
     let compDe: DebugElement;
 
-    let expectedLicenseIcons: Array<{ src: string; alt: string }>;
+    let expectedLicenseIcons: Array<{
+        src: string;
+        alt: string;
+    }>;
     let expectedLicenseLink: string;
     let expectedLicenseText: string;
 
@@ -18,7 +23,9 @@ describe('LicenseComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [LicenseComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(LicenseComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -55,7 +62,7 @@ describe('LicenseComponent', () => {
             it('... should contain one anchor with correct href and rel attributes', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.href, expectedLicenseLink);
                 expectToBe(aEl.rel, 'license');
@@ -64,7 +71,7 @@ describe('LicenseComponent', () => {
             it('... should contain license text in anchor', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToContain(aEl.textContent, expectedLicenseText);
             });
@@ -81,7 +88,7 @@ describe('LicenseComponent', () => {
                 const imgDes = getAndExpectDebugElementByCss(spanDes[0], 'img', 3, 3);
 
                 imgDes.forEach((imgDe, index) => {
-                    const imgEl: HTMLImageElement = imgDe.nativeElement as HTMLImageElement;
+                    const imgEl: HTMLImageElement = imgDe.nativeElement;
                     expectToBe(imgEl.src, expectedLicenseIcons[index].src);
                     expectToBe(imgEl.alt, expectedLicenseIcons[index].alt);
                 });

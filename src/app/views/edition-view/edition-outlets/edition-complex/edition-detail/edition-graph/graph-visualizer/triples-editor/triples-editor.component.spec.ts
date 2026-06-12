@@ -1,10 +1,12 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
-import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -28,10 +30,14 @@ import { TriplesEditorComponent } from './triples-editor.component';
     standalone: false,
 })
 class CodeMirrorStubComponent {
-    @Input() mode: CmMode;
-    @Input() content: string;
-    @Output() contentChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output() editor: EditorView;
+    @Input()
+    mode: CmMode;
+    @Input()
+    content: string;
+    @Output()
+    contentChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output()
+    editor: EditorView;
 }
 
 describe('TriplesEditorComponent (DONE)', () => {
@@ -64,12 +70,12 @@ describe('TriplesEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TriplesEditorComponent);
@@ -82,18 +88,20 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         expectedTriples = 'example:Test example:has example:Success';
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        onEditorInputChangeSpy = spyOn(component, 'onEditorInputChange').and.callThrough();
-        performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
-        isAccordionItemCollapsedSpy = spyOn(component, 'isAccordionItemCollapsed').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
-        emitErrorMessageSpy = spyOn(component.errorMessageRequest, 'emit').and.callThrough();
-        emitPerformQueryRequestSpy = spyOn(component.performQueryRequest, 'emit').and.callThrough();
-        emitResetTriplesRequestSpy = spyOn(component.resetTriplesRequest, 'emit').and.callThrough();
-        emitUpdateTriplesRequestSpy = spyOn(component.updateTriplesRequest, 'emit').and.callThrough();
+        // Spies
+        onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
+        performQuerySpy = vi.spyOn(component, 'performQuery');
+        isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        resetTriplesSpy = vi.spyOn(component, 'resetTriples');
+        emitErrorMessageSpy = vi.spyOn(component.errorMessageRequest, 'emit');
+        emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
+        emitResetTriplesRequestSpy = vi.spyOn(component.resetTriplesRequest, 'emit');
+        emitUpdateTriplesRequestSpy = vi.spyOn(component.updateTriplesRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -197,7 +205,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(btnEl.textContent, 'RDF Triples');
                     });
 
-                    it('... should toggle item body on click', () => {
+                    it('... should toggle item body on click', async () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
@@ -226,7 +234,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item is open
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -241,7 +249,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -258,7 +266,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 describe('with open item', () => {
                     let bodyDes: DebugElement[];
 
-                    beforeEach(() => {
+                    beforeEach(async () => {
                         // Open item by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -270,7 +278,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body is open
                         const collapseDes = getAndExpectDebugElementByCss(
@@ -286,7 +294,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
                     });
 
-                    it('... should toggle item body on click', () => {
+                    it('... should toggle item body on click', async () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
@@ -315,7 +323,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item is closed
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -330,7 +338,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body is open again
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -366,7 +374,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(btnEl2.textContent, 'Clear');
                     });
 
-                    it('... should trigger `performQuery()` by click on Query button', () => {
+                    it('... should trigger `performQuery()` by click on Query button', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -379,13 +387,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click query button
                         click(btnEl0 as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(performQuerySpy, 1);
                         expectSpyCall(resetTriplesSpy, 0);
                     });
 
-                    it('... should trigger `resetTriples()` by click on Reset button', () => {
+                    it('... should trigger `resetTriples()` by click on Reset button', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -398,13 +406,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click reset button
                         click(btnEl1 as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(performQuerySpy, 0);
                         expectSpyCall(resetTriplesSpy, 1);
                     });
 
-                    it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', () => {
+                    it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -417,7 +425,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click clear button
                         click(btnEl2 as HTMLElement);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         expectSpyCall(onEditorInputChangeSpy, 1, '');
                     });
@@ -427,7 +435,7 @@ describe('TriplesEditorComponent (DONE)', () => {
             describe('in fullscreen mode', () => {
                 let bodyDes: DebugElement[];
 
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -439,7 +447,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body
                     bodyDes = getAndExpectDebugElementByCss(
@@ -491,7 +499,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'RDF Triples');
                 });
 
-                it('... should not toggle item body on click', () => {
+                it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-header',
@@ -516,7 +524,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -548,7 +556,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl2.textContent, 'Clear');
                 });
 
-                it('... should trigger `performQuery()` by click on Query button', () => {
+                it('... should trigger `performQuery()` by click on Query button', async () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
                     const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
@@ -556,13 +564,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(resetTriplesSpy, 0);
                 });
 
-                it('... should trigger `resetTriples()` by click on Reset button', () => {
+                it('... should trigger `resetTriples()` by click on Reset button', async () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
                     const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
@@ -570,13 +578,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click reset button
                     click(btnEl1 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 0);
                     expectSpyCall(resetTriplesSpy, 1);
                 });
 
-                it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', () => {
+                it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
                     const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
@@ -584,7 +592,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click clear button
                     click(btnEl2 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                 });
@@ -621,7 +629,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
             });
 
-            it('... should trigger with empty string from click on Clear button', () => {
+            it('... should trigger with empty string from click on Clear button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -634,12 +642,12 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click clear button
                 click(btnEl2 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
             });
 
-            it('... should emit updateTriplesRequest on click', () => {
+            it('... should emit updateTriplesRequest on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -652,7 +660,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click clear button
                 click(btnEl2 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
                 expectSpyCall(emitUpdateTriplesRequestSpy, 1);
@@ -706,7 +714,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
-            it('... should trigger on click on Query button', () => {
+            it('... should trigger on click on Query button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -719,13 +727,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 1);
             });
 
             describe('... should emit on click', () => {
-                it('`performQueryRequest` if querystring is given', () => {
+                it('`performQueryRequest` if querystring is given', async () => {
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -738,18 +746,18 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
                     expectSpyCall(emitErrorMessageSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
+                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
                     const expectedErrorMessage = new ToastMessage('Empty triples', 'Please enter triple content.');
 
                     component.triples = '';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -763,7 +771,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
@@ -792,25 +800,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.resetTriples).toBeDefined();
             });
 
-            it('... should trigger on click on Reset button', () => {
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
-                );
-                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-
-                expectToBe(btnEl1.textContent, 'Reset');
-
-                // Click query button
-                click(btnEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(resetTriplesSpy, 1);
-            });
-
-            it('... should emit request on click', () => {
+            it('... should trigger on click on Reset button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -823,7 +813,25 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click reset button
                 click(btnEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
+
+                expectSpyCall(resetTriplesSpy, 1);
+            });
+
+            it('... should emit request on click', async () => {
+                const btnDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
+                    3,
+                    3
+                );
+                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+
+                expectToBe(btnEl1.textContent, 'Reset');
+
+                // Click reset button
+                click(btnEl1 as HTMLElement);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
                 expectSpyCall(emitResetTriplesRequestSpy, 1);

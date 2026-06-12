@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-/* Routing Module */
-import { SideInfoRoutingModule, routedSideInfoComponents } from './side-info-routing.module';
-
 /**
  * The side info module.
  *
@@ -12,7 +9,7 @@ import { SideInfoRoutingModule, routedSideInfoComponents } from './side-info-rou
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, SideInfoRoutingModule],
-    declarations: [routedSideInfoComponents],
+    imports: [SharedModule],
+    declarations: [],
 })
 export class SideInfoModule {}

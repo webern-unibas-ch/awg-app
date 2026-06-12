@@ -1,0 +1,14 @@
+@if (summaryCards(); as summaryCards) {
+    <div class="awg-statistics-summary row mb-4">
+        @for (card of summaryCards; track card.title) {
+            <div class="col-md-3 mb-3">
+                <awg-statistics-summary-card
+                    [title]="card.title"
+                    [value]="card.value"
+                    [icon]="card.icon"
+                    [bgClass]="card.bgClass">
+                </awg-statistics-summary-card>
+            </div>
+        }
+    </div>
+}

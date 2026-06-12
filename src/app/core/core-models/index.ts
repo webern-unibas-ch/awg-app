@@ -6,10 +6,13 @@
  * for the core app.
  *
  */
-
-import { GeoNames } from './geo-names.model';
-import { JdnDate } from './jdn-date.model';
-import { Logo, Logos } from './logos.model';
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from './meta.model';
-
-export { GeoNames, JdnDate, Logo, Logos, Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure };
+export { Logo, Logos } from './logos.model';
+export {
+    Meta,
+    MetaContact,
+    MetaIdentifiers,
+    MetaPage,
+    MetaPerson,
+    MetaSectionTypes,
+    MetaStructure,
+} from './meta.model';

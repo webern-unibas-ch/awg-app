@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
-                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }}">
+                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }} text-nowrap">
                         {{ tableHeader.label }}
                     </th>
                 }
@@ -27,14 +27,36 @@
                     textcriticalComment of textcriticalCommentBlock.blockComments;
                     track textcriticalComment.svgGroupId
                 ) {
-                    <tr>
+                    <tr
+                        [id]="textcriticalComment.svgGroupId + '-entry'"
+                        [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
+                        [ngbTooltip]="textcriticalComment.svgGroupId"
+                        tooltipClass="awg-group-id-tooltip"
+                        placement="left"
+                        class="awg-edition-tka-table-comment">
                         <td [awgAbbr]="textcriticalComment.measure"></td>
                         <td [awgAbbr]="textcriticalComment.system"></td>
                         <td [innerHTML]="textcriticalComment.position"></td>
-                        <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
+                        <td>
+                            <span
+                                [compile-html]="
+                                    ref.getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
+                                "
+                                [compile-html-ref]="ref"></span>
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     }
 </table>
+
+<ng-template #snippetModalTemplate let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Abbildung: {{ snippetId }}</h5>
+        <button type="button" class="btn-close" aria-label="Close modal" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body text-center">
+        <img [src]="snippetSrc" alt="Abbildung: {{ snippetId }}" class="img-fluid" />
+    </div>
+</ng-template>

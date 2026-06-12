@@ -1,0 +1,108 @@
+<div class="awg-statistics-edition-breakdown awg-statistics-card card">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Series & Sections Breakdown</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th scope="col" rowspan="2" class="text-center align-bottom" style="width: 15%">
+                            Series / Section
+                        </th>
+                        <th scope="colgroup" colspan="3" class="text-center table-light border-bottom-0">Complexes</th>
+                        <th scope="col" rowspan="2" class="text-center align-bottom" style="width: 50%">Progress</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">Total</th>
+                        <th scope="col" class="text-center">Distribution</th>
+                        <th scope="col" class="text-center">Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (series of seriesBreakdownData(); track series.series) {
+                        <!-- Series Row -->
+                        <tr class="awg-statistics-series-breakdown table-primary">
+                            <td>
+                                <strong [class.text-muted]="series.activeSections === 0"
+                                    >Series {{ series.series }}</strong
+                                >
+                                <small class="text-muted ms-2"
+                                    >({{ series.activeSections }} active
+                                    {{ series.activeSections === 1 ? 'section' : 'sections' }})</small
+                                >
+                            </td>
+                            <td class="text-center" [class.text-muted]="series.activeSections === 0">
+                                <strong>{{ series.totalComplexes }}</strong>
+                            </td>
+                            <td class="text-center">
+                                @if (series.totalComplexes > 0) {
+                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown">
+                                    </awg-statistics-breakdown-badge>
+                                }
+                            </td>
+                            <td class="text-center" [class.text-muted]="series.activeSections === 0">
+                                <strong>{{ series.activeComplexes }}</strong>
+                            </td>
+                            <td>
+                                <awg-statistics-progress-bar
+                                    [config]="{
+                                        mode: 'percentage',
+                                        percentage: series.progressRate,
+                                    }"
+                                    [height]="'20px'"
+                                    [boldPercentageLabel]="true">
+                                </awg-statistics-progress-bar>
+                            </td>
+                        </tr>
+                        <!-- Section Rows -->
+                        @for (section of series.sectionBreakdown; track section.section) {
+                            <tr class="awg-statistics-section-breakdown table-light">
+                                <td class="ps-4">
+                                    <span class="text-muted">└ </span>
+                                    <a
+                                        [class.text-muted]="section.disabled"
+                                        [class.pe-none]="section.disabled"
+                                        [style.text-decoration]="section.disabled ? 'none' : null"
+                                        [routerLink]="
+                                            section.disabled
+                                                ? null
+                                                : [
+                                                      ROUTES.edition.route,
+                                                      ROUTES.series.route,
+                                                      series.series.length,
+                                                      ROUTES.section.route,
+                                                      section.section,
+                                                  ]
+                                        "
+                                        routerLinkActive="active">
+                                        Section {{ series.series }}/{{ section.section }}
+                                    </a>
+                                </td>
+                                <td class="text-center" [class.text-muted]="section.disabled">
+                                    {{ section.totalComplexes }}
+                                </td>
+                                <td class="text-center">
+                                    @if (section.totalComplexes > 0) {
+                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown">
+                                        </awg-statistics-breakdown-badge>
+                                    }
+                                </td>
+                                <td class="text-center" [class.text-muted]="section.disabled">
+                                    {{ section.activeComplexes }}
+                                </td>
+                                <td>
+                                    <awg-statistics-progress-bar
+                                        [config]="{
+                                            mode: 'percentage',
+                                            percentage: section.totalComplexes > 0 ? section.progressRate : 0,
+                                        }"></awg-statistics-progress-bar>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

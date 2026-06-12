@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,7 +19,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { QueryResult } from '../models';
+import { QuerySelectResult } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
@@ -34,9 +36,12 @@ class SparqlNoResultsStubComponent {}
     standalone: false,
 })
 class SparqlTableStubComponent {
-    @Input() queryResult: QueryResult;
-    @Input() queryTime: number;
-    @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    queryResult: QuerySelectResult;
+    @Input()
+    queryTime: number;
+    @Output()
+    clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({
@@ -51,8 +56,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QueryResult;
-    let expectedQueryResult$: Observable<QueryResult>;
+    let expectedQueryResult: QuerySelectResult | string;
+    let expectedQueryResult$: Observable<QuerySelectResult | string>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
@@ -72,8 +77,8 @@ describe('SelectResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [
                 SelectResultsComponent,
@@ -82,7 +87,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SelectResultsComponent);
@@ -102,13 +107,15 @@ describe('SelectResultsComponent (DONE)', () => {
         expectedQueryTime = 5000;
         expectedIsFullscreen = false;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        emitClickedTableRequestSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        isQueryResultNotEmptySpy = spyOn(component, 'isQueryResultNotEmpty').and.callThrough();
-        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
+        // Spies
+        emitClickedTableRequestSpy = vi.spyOn(component.clickedTableRequest, 'emit');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');
+        tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -158,11 +165,11 @@ describe('SelectResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `queryResult` input', waitForAsync(() => {
+        it('... should have `queryResult` input', async () => {
             expectToEqual(component.queryResult$, expectedQueryResult$);
-            expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-            expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedQueryResult);
-        }));
+            await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+            await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedQueryResult);
+        });
 
         it('... should have `queryTime` input', () => {
             expectToBe(component.queryTime, expectedQueryTime);
@@ -216,7 +223,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should toggle item body on click', () => {
+                it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -241,7 +248,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body is collapsed
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -257,7 +264,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body is open again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -273,10 +280,10 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', () => {
+                    it('... queryResult$ is EMPTY', async () => {
                         // Mock empty observable
                         component.queryResult$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -288,10 +295,10 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is undefined', () => {
+                    it('... queryResult$ is undefined', async () => {
                         // Mock undefined response
                         component.queryResult$ = undefined;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -303,10 +310,10 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is null', () => {
+                    it('... queryResult$ is null', async () => {
                         // Mock null response
                         component.queryResult$ = null;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -320,10 +327,10 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... no results are available', () => {
+                    it('... no results are available', async () => {
                         // Mock empty response
                         component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -336,11 +343,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head is undefined', () => {
+                    it('... queryResult.head is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -353,11 +360,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.body is undefined', () => {
+                    it('... queryResult.body is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -370,11 +377,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head and queryResult.body are undefined', () => {
+                    it('... queryResult.head and queryResult.body are undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const body = getAndExpectDebugElementByCss(
                             compDe,
@@ -412,10 +419,10 @@ describe('SelectResultsComponent (DONE)', () => {
             });
 
             describe('in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen mode
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
@@ -461,7 +468,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should not toggle item body on click', () => {
+                it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -488,7 +495,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -504,10 +511,10 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', () => {
+                    it('... queryResult$ is EMPTY', async () => {
                         // Mock empty observable
                         component.queryResult$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -519,10 +526,10 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is undefined', () => {
+                    it('... queryResult$ is undefined', async () => {
                         // Mock undefined response
                         component.queryResult$ = undefined;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -534,10 +541,10 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is null', () => {
+                    it('... queryResult$ is null', async () => {
                         // Mock null response
                         component.queryResult$ = null;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -551,10 +558,10 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... no results are available', () => {
+                    it('... no results are available', async () => {
                         // Mock empty response
                         component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -567,11 +574,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head is undefined', () => {
+                    it('... queryResult.head is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -584,11 +591,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.body is undefined', () => {
+                    it('... queryResult.body is undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -601,11 +608,11 @@ describe('SelectResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.head and queryResult.body are undefined', () => {
+                    it('... queryResult.head and queryResult.body are undefined', async () => {
                         // Mock undefined response
                         const undefinedQueryResult = { head: undefined, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         const body = getAndExpectDebugElementByCss(
                             compDe,
@@ -673,7 +680,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
             });
 
-            it('... should be triggered by change of queryResult', () => {
+            it('... should be triggered by change of queryResult', async () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                 // Mock another queryResult
@@ -683,89 +690,101 @@ describe('SelectResultsComponent (DONE)', () => {
                 };
                 component.queryResult$ = observableOf(queryResult);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(isQueryResultNotEmptySpy, 4, queryResult);
             });
 
             describe('... should return false if ...', () => {
-                it('... queryResult.head is undefined', () => {
+                it('... queryResult is a string message', async () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
+
+                    const noResultsMessage = 'Query returned no results';
+                    component.queryResult$ = observableOf(noResultsMessage);
+
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, noResultsMessage);
+                    expectToBe(component.isQueryResultNotEmpty(noResultsMessage), false);
+                });
+
+                it('... queryResult.head is undefined', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock undefined response
                     const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
                     component.queryResult$ = observableOf(undefinedQueryResult);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
                 });
 
-                it('... queryResult.body is undefined', () => {
+                it('... queryResult.body is undefined', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock undefined response
                     const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
                     component.queryResult$ = observableOf(undefinedQueryResult);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
                 });
 
-                it('... queryResult.head and queryResult.body are undefined', () => {
+                it('... queryResult.head and queryResult.body are undefined', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock undefined response
                     const undefinedQueryResult = { head: undefined, body: undefined };
                     component.queryResult$ = observableOf(undefinedQueryResult);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
                 });
 
-                it('... queryResult.head.vars is empty array', () => {
+                it('... queryResult.head.vars is empty array', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock empty response
                     const emptyQueryResult = { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } };
                     component.queryResult$ = observableOf(emptyQueryResult);
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
 
-                it('... queryResult.body.bindings is empty array', () => {
+                it('... queryResult.body.bindings is empty array', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock empty response
                     const emptyQueryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [] } };
                     component.queryResult$ = observableOf(emptyQueryResult);
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
 
-                it('... queryResult.head.vars & queryResult.body.bindings are empty arrays', () => {
+                it('... queryResult.head.vars & queryResult.body.bindings are empty arrays', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                     // Mock empty response
                     const emptyQueryResult = { head: { vars: [] }, body: { bindings: [] } };
                     component.queryResult$ = observableOf(emptyQueryResult);
 
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
             });
 
-            it('... should return true if queryResult.head.vars && queryResult.body.bindings is not empty (length > 0)', () => {
+            it('... should return true if queryResult.head.vars && queryResult.body.bindings is not empty (length > 0)', async () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult);
 
                 // Mock non-empty response
@@ -774,7 +793,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     body: { bindings: [{ testKey: 'AnotherTestValue' }] },
                 };
                 component.queryResult$ = observableOf(nonEmptyQueryResult);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(isQueryResultNotEmptySpy, 4, nonEmptyQueryResult);
                 expectToBe(component.isQueryResultNotEmpty(nonEmptyQueryResult), true);

@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular)](https://github.com/angular/angular)
-![Node.js version](https://img.shields.io/badge/node.js-%3E=v20.19.0-blue)
+![Node.js version](https://img.shields.io/badge/node.js-%3E=v22.22.0-blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app)
 ![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6)](https://codecov.io/gh/webern-unibas-ch/awg-app)
@@ -91,7 +91,7 @@ Releases for this project are automatically managed via Continuous Integration (
 
 ## Testing
 
-This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.
+This project uses a dynamic testing approach with Vitest for unit tests in Angular. Code coverage is measured with CodeCov.
 
 We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.
 
@@ -99,9 +99,11 @@ To assist with this, the following commands are provided:
 
 - `yarn test`: Launches the test runner.
 
-- `yarn test:cov`: Runs the tests and generates a coverage report.
+- `yarn test:local`: Runs the tests in a local browser environment.
 
-- `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
+- `yarn test:cov`: Runs the tests (headless) and generates a coverage report.
+
+- `yarn test:cov:serve`: Runs the tests (headless), generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
 
 ## Contributing
 

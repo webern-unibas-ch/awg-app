@@ -6,14 +6,15 @@ import {
     withInterceptorsFromDi,
 } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Data } from '@angular/router';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, of as observableOf } from 'rxjs';
 import { defaultIfEmpty } from 'rxjs/operators';
-import Spy = jasmine.Spy;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
@@ -134,40 +135,30 @@ describe('EditionDataService (DONE)', () => {
         expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
         expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
 
-        expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
-        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
+        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
 
         // Spies on console logs
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
-        generateAssetPathSpy = spyOn(editionDataService as any, '_generateAssetPath').and.callThrough();
-        getFolioConvoluteDataSpy = spyOn(editionDataService as any, '_getFolioConvoluteData').and.callThrough();
-        getGraphDataSpy = spyOn(editionDataService as any, '_getGraphData').and.callThrough();
-        getIntroDataSpy = spyOn(editionDataService as any, '_getIntroData').and.callThrough();
-        getJsonDataSpy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
-        getPrefaceDataSpy = spyOn(editionDataService as any, '_getPrefaceData').and.callThrough();
-        getRowTablesDataSpy = spyOn(editionDataService as any, '_getRowTablesData').and.callThrough();
-        getSourceListDataSpy = spyOn(editionDataService as any, '_getSourceListData').and.callThrough();
-        getSourceDescriptionListDataSpy = spyOn(
-            editionDataService as any,
-            '_getSourceDescriptionListData'
-        ).and.callThrough();
-        getSourceEvaluationListDataSpy = spyOn(
-            editionDataService as any,
-            '_getSourceEvaluationListData'
-        ).and.callThrough();
-        getSvgSheetsDataSpy = spyOn(editionDataService as any, '_getSvgSheetsData').and.callThrough();
-        getTextcriticsListDataSpy = spyOn(editionDataService as any, '_getTextcriticsListData').and.callThrough();
+        generateAssetPathSpy = vi.spyOn(editionDataService as any, '_generateAssetPath');
+        getFolioConvoluteDataSpy = vi.spyOn(editionDataService as any, '_getFolioConvoluteData');
+        getGraphDataSpy = vi.spyOn(editionDataService as any, '_getGraphData');
+        getIntroDataSpy = vi.spyOn(editionDataService as any, '_getIntroData');
+        getJsonDataSpy = vi.spyOn(editionDataService as any, '_getJsonData');
+        getPrefaceDataSpy = vi.spyOn(editionDataService as any, '_getPrefaceData');
+        getRowTablesDataSpy = vi.spyOn(editionDataService as any, '_getRowTablesData');
+        getSourceListDataSpy = vi.spyOn(editionDataService as any, '_getSourceListData');
+        getSourceDescriptionListDataSpy = vi.spyOn(editionDataService as any, '_getSourceDescriptionListData');
+        getSourceEvaluationListDataSpy = vi.spyOn(editionDataService as any, '_getSourceEvaluationListData');
+        getSvgSheetsDataSpy = vi.spyOn(editionDataService as any, '_getSvgSheetsData');
+        getTextcriticsListDataSpy = vi.spyOn(editionDataService as any, '_getTextcriticsListData');
     });
 
-    // After every test, assert that there are no more pending requests
     afterEach(() => {
         // Clear mock stores after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -179,7 +170,7 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('httpTestingController', () => {
-        it('... should issue a mocked http get request', waitForAsync(() => {
+        it('... should issue a mocked http get request', () => {
             const testData: Data = { name: 'TestData' };
 
             httpClient.get<Data>('/foo/bar').subscribe({
@@ -198,7 +189,7 @@ describe('EditionDataService (DONE)', () => {
 
             // Respond with mocked data
             call.flush(testData);
-        }));
+        });
     });
 
     describe('#getEditionGraphData()', () => {
@@ -207,57 +198,57 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
-            }));
+            });
 
-            it('... should call #getGraphData', waitForAsync(() => {
+            it('... should call #getGraphData', () => {
                 // Call service function
                 editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getGraphDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct url', () => {
                 // Call service function
                 editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getGraphDataSpy, 1);
                 expectSpyCall(getJsonDataSpy, 1, expectedGraphFilePath);
-            }));
+            });
 
-            it('... should perform an HTTP GET request to graph file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to graph file', () => {
                 // Call service function
                 editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -276,12 +267,12 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return an Observable(GraphList)', waitForAsync(() => {
+                it('... should return an Observable(GraphList)', () => {
                     const gl = new GraphList();
                     gl.graph = [];
                     gl.graph.push(new Graph());
@@ -289,7 +280,7 @@ describe('EditionDataService (DONE)', () => {
 
                     const expectedResult = gl;
 
-                    getGraphDataSpy.and.returnValue(observableOf(expectedResult));
+                    getGraphDataSpy.mockReturnValue(observableOf(expectedResult));
 
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
@@ -298,17 +289,17 @@ describe('EditionDataService (DONE)', () => {
                             expectToBe(res.graph[0].id, 'test-graph-id');
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getGraphDataSpy, 1);
-                }));
+                });
 
-                it('... should return an empty GraphList Observable per default', waitForAsync(() => {
+                it('... should return an empty GraphList Observable per default', () => {
                     const expectedResult = new GraphList();
 
-                    getGraphDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
+                    getGraphDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
 
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
@@ -316,16 +307,16 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getGraphDataSpy, 1);
-                }));
+                });
             });
 
             describe('fail', () => {
-                it('... should log an error for every failed request', waitForAsync(() => {
+                it('... should log an error for every failed request', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -334,7 +325,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -358,9 +349,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [] if request failed', waitForAsync(() => {
+                it('... should return [] if request failed', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -369,7 +360,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -389,7 +380,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
             });
         });
     });
@@ -400,57 +391,57 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
-            }));
+            });
 
-            it('... should call #getIntroData', waitForAsync(() => {
+            it('... should call #getIntroData', () => {
                 // Call service function
                 editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getIntroDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct url', () => {
                 // Call service function
                 editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getIntroDataSpy, 1);
                 expectSpyCall(getJsonDataSpy, 1, expectedIntroFilePath);
-            }));
+            });
 
-            it('... should perform an HTTP GET request to intro file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to intro file', () => {
                 // Call service function
                 editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -469,12 +460,12 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return an Observable(IntroList)', waitForAsync(() => {
+                it('... should return an Observable(IntroList)', () => {
                     const il = new IntroList();
                     il.intro = [];
                     il.intro.push(new Intro());
@@ -482,7 +473,7 @@ describe('EditionDataService (DONE)', () => {
 
                     const expectedResult = il;
 
-                    getIntroDataSpy.and.returnValue(observableOf(expectedResult));
+                    getIntroDataSpy.mockReturnValue(observableOf(expectedResult));
 
                     // Call service function (success)
                     editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
@@ -491,17 +482,17 @@ describe('EditionDataService (DONE)', () => {
                             expectToBe(res.intro[0].id, 'test-intro-id');
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getIntroDataSpy, 1);
-                }));
+                });
 
-                it('... should return an empty IntroList Observable per default', waitForAsync(() => {
+                it('... should return an empty IntroList Observable per default', () => {
                     const expectedResult = new IntroList();
 
-                    getIntroDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
+                    getIntroDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
 
                     // Call service function (success)
                     editionDataService.getEditionComplexIntroData(expectedEditionComplex).subscribe({
@@ -509,16 +500,16 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getIntroDataSpy, 1);
-                }));
+                });
             });
 
             describe('fail', () => {
-                it('... should log an error for every failed request', waitForAsync(() => {
+                it('... should log an error for every failed request', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -527,7 +518,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -551,9 +542,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [] if request failed', waitForAsync(() => {
+                it('... should return [] if request failed', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -562,7 +553,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -582,7 +573,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
             });
         });
     });
@@ -599,57 +590,57 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
-            }));
+            });
 
-            it('... should call #getIntroData', waitForAsync(() => {
+            it('... should call #getIntroData', () => {
                 // Call service function
                 editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getIntroDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct url', () => {
                 // Call service function
                 editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getIntroDataSpy, 1);
                 expectSpyCall(getJsonDataSpy, 1, expectedIntroFilePath);
-            }));
+            });
 
-            it('... should perform an HTTP GET request to intro file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to intro file', () => {
                 // Call service function
                 editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -668,12 +659,12 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return an Observable(IntroList)', waitForAsync(() => {
+                it('... should return an Observable(IntroList)', () => {
                     const il = new IntroList();
                     il.intro = [];
                     il.intro.push(new Intro());
@@ -681,7 +672,7 @@ describe('EditionDataService (DONE)', () => {
 
                     const expectedResult = il;
 
-                    getIntroDataSpy.and.returnValue(observableOf(expectedResult));
+                    getIntroDataSpy.mockReturnValue(observableOf(expectedResult));
 
                     // Call service function (success)
                     editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
@@ -690,17 +681,17 @@ describe('EditionDataService (DONE)', () => {
                             expectToBe(res.intro[0].id, 'test-intro-id');
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getIntroDataSpy, 1);
-                }));
+                });
 
-                it('... should return an empty IntroList Observable per default', waitForAsync(() => {
+                it('... should return an empty IntroList Observable per default', () => {
                     const expectedResult = new IntroList();
 
-                    getIntroDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
+                    getIntroDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
 
                     // Call service function (success)
                     editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
@@ -708,16 +699,16 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getIntroDataSpy, 1);
-                }));
+                });
             });
 
             describe('fail', () => {
-                it('... should log an error for every failed request', waitForAsync(() => {
+                it('... should log an error for every failed request', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -726,7 +717,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -750,9 +741,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [] if request failed', waitForAsync(() => {
+                it('... should return [] if request failed', () => {
                     const expectedResult = [];
 
                     // Call service function (success)
@@ -761,7 +752,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -781,7 +772,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
             });
         });
     });
@@ -792,57 +783,57 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionPrefaceData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPathBaseRoute);
-            }));
+            });
 
-            it('... should call #_getPrefaceData', waitForAsync(() => {
+            it('... should call #_getPrefaceData', () => {
                 // Call service function
                 editionDataService.getEditionPrefaceData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getPrefaceDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct url', () => {
                 // Call service function
                 editionDataService.getEditionPrefaceData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getPrefaceDataSpy, 1);
                 expectSpyCall(getJsonDataSpy, 1, expectedPrefaceFilePath);
-            }));
+            });
 
-            it('... should perform an HTTP GET request to preface file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to preface file', () => {
                 // Call service function
                 editionDataService.getEditionPrefaceData().subscribe({
                     next: res => {
                         expectToEqual(res, new PrefaceList());
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -862,16 +853,14 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('success', () => {
-            it('... should return an Observable(PrefaceList)', waitForAsync(() => {
-                const rt = expectedPrefaceData;
+            it('... should return an Observable(PrefaceList)', () => {
+                const expectedResult = structuredClone(expectedPrefaceData);
 
-                const expectedResult = rt;
-
-                getPrefaceDataSpy.and.returnValue(observableOf(expectedResult));
+                getPrefaceDataSpy.mockReturnValue(observableOf(expectedResult));
 
                 // Call service function (success)
                 editionDataService.getEditionPrefaceData().subscribe({
@@ -881,17 +870,17 @@ describe('EditionDataService (DONE)', () => {
                         expectToBe(res.preface[1].id, 'en');
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getPrefaceDataSpy, 1);
-            }));
+            });
 
-            it('... should return an empty PrefaceList Observable per default', waitForAsync(() => {
+            it('... should return an empty PrefaceList Observable per default', () => {
                 const expectedResult = new PrefaceList();
 
-                getPrefaceDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
+                getPrefaceDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
 
                 // Call service function (success)
                 editionDataService.getEditionPrefaceData().subscribe({
@@ -899,16 +888,16 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getPrefaceDataSpy, 1);
-            }));
+            });
         });
 
         describe('fail', () => {
-            it('... should log an error for every failed request', waitForAsync(() => {
+            it('... should log an error for every failed request', () => {
                 const expectedResult = [];
 
                 // Call service function (success)
@@ -917,7 +906,7 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -942,9 +931,9 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
 
-            it('... should return [] if request failed', waitForAsync(() => {
+            it('... should return [] if request failed', () => {
                 const expectedResult = [];
 
                 // Call service function (success)
@@ -953,7 +942,7 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -974,7 +963,7 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
     });
 
@@ -984,28 +973,28 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
-            }));
+            });
 
-            it('... should call #getSourceListData, #getSourceDescriptionListData, #getSourceEvaluationListData, #getTextcriticsListData', waitForAsync(() => {
+            it('... should call #getSourceListData, #getSourceDescriptionListData, #getSourceEvaluationListData, #getTextcriticsListData', () => {
                 // Call service function
                 editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1013,34 +1002,34 @@ describe('EditionDataService (DONE)', () => {
                 expectSpyCall(getSourceDescriptionListDataSpy, 1);
                 expectSpyCall(getSourceEvaluationListDataSpy, 1);
                 expectSpyCall(getTextcriticsListDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct urls', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct urls', () => {
                 // Call service function
                 editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getJsonDataSpy, 4);
-                expectToBe(getJsonDataSpy.calls.allArgs()[0][0], expectedSourceListFilePath);
-                expectToBe(getJsonDataSpy.calls.allArgs()[1][0], expectedSourceDescriptionFilePath);
-                expectToBe(getJsonDataSpy.calls.allArgs()[2][0], expectedSourceEvaluationFilePath);
-                expectToBe(getJsonDataSpy.calls.allArgs()[3][0], expectedTextcriticsFilePath);
-            }));
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[0][0], expectedSourceListFilePath);
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[1][0], expectedSourceDescriptionFilePath);
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[2][0], expectedSourceEvaluationFilePath);
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[3][0], expectedTextcriticsFilePath);
+            });
 
-            it('... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file', () => {
                 // Call service function
                 editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1070,12 +1059,12 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return a forkJoined Observable(SourceList, SourceDescriptionList, SourceEvaluationList,  TextcriticsList)', waitForAsync(() => {
+                it('... should return a forkJoined Observable(SourceList, SourceDescriptionList, SourceEvaluationList,  TextcriticsList)', () => {
                     const sl = new SourceList();
                     sl.sources = [];
                     sl.sources.push(new Source());
@@ -1098,10 +1087,10 @@ describe('EditionDataService (DONE)', () => {
 
                     const expectedResult = [sl, sdl, sel, tcl];
 
-                    getSourceListDataSpy.and.returnValue(observableOf(sl));
-                    getSourceDescriptionListDataSpy.and.returnValue(observableOf(sdl));
-                    getSourceEvaluationListDataSpy.and.returnValue(observableOf(sel));
-                    getTextcriticsListDataSpy.and.returnValue(observableOf(tcl));
+                    getSourceListDataSpy.mockReturnValue(observableOf(sl));
+                    getSourceDescriptionListDataSpy.mockReturnValue(observableOf(sdl));
+                    getSourceEvaluationListDataSpy.mockReturnValue(observableOf(sel));
+                    getTextcriticsListDataSpy.mockReturnValue(observableOf(tcl));
 
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
@@ -1125,7 +1114,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToBe(resTcl.textcritics[0].id, 'test-textcritics-id');
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1133,9 +1122,9 @@ describe('EditionDataService (DONE)', () => {
                     expectSpyCall(getSourceDescriptionListDataSpy, 1);
                     expectSpyCall(getSourceEvaluationListDataSpy, 1);
                     expectSpyCall(getTextcriticsListDataSpy, 1);
-                }));
+                });
 
-                it('... should return an empty forkJoined Observable per default', waitForAsync(() => {
+                it('... should return an empty forkJoined Observable per default', () => {
                     const expectedResult = [
                         new SourceList(),
                         new SourceDescriptionList(),
@@ -1143,14 +1132,14 @@ describe('EditionDataService (DONE)', () => {
                         new TextcriticsList(),
                     ];
 
-                    getSourceListDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(new SourceList())));
-                    getSourceDescriptionListDataSpy.and.returnValue(
+                    getSourceListDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(new SourceList())));
+                    getSourceDescriptionListDataSpy.mockReturnValue(
                         EMPTY.pipe(defaultIfEmpty(new SourceDescriptionList()))
                     );
-                    getSourceEvaluationListDataSpy.and.returnValue(
+                    getSourceEvaluationListDataSpy.mockReturnValue(
                         EMPTY.pipe(defaultIfEmpty(new SourceEvaluationList()))
                     );
-                    getTextcriticsListDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
+                    getTextcriticsListDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
@@ -1159,7 +1148,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res, expectedResult);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1167,11 +1156,11 @@ describe('EditionDataService (DONE)', () => {
                     expectSpyCall(getSourceDescriptionListDataSpy, 1);
                     expectSpyCall(getSourceEvaluationListDataSpy, 1);
                     expectSpyCall(getTextcriticsListDataSpy, 1);
-                }));
+                });
             });
 
             describe('fail', () => {
-                it('... should log an error for every failed request', waitForAsync(() => {
+                it('... should log an error for every failed request', () => {
                     const expectedResult = [[], [], [], []];
 
                     // Call service function (success)
@@ -1186,7 +1175,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1219,27 +1208,27 @@ describe('EditionDataService (DONE)', () => {
                     // Check for console output
                     expectSpyCall(consoleSpy, 4);
                     expectToBe(
-                        consoleSpy.calls.allArgs()[0][0],
+                        vi.mocked(consoleSpy).mock.calls[0][0],
                         `_getJsonData failed: Http failure response for ${call[0]?.request.url}: 400 ERROR_LOADING_SOURCELIST`
                     );
                     expectToBe(
-                        consoleSpy.calls.allArgs()[1][0],
+                        vi.mocked(consoleSpy).mock.calls[1][0],
                         `_getJsonData failed: Http failure response for ${call[1]?.request.url}: 400 ERROR_LOADING_SOURCELISTDESCRIPTION`
                     );
                     expectToBe(
-                        consoleSpy.calls.allArgs()[2][0],
+                        vi.mocked(consoleSpy).mock.calls[2][0],
                         `_getJsonData failed: Http failure response for ${call[2]?.request.url}: 400 ERROR_LOADING_SOURCELISTEVALUATION`
                     );
                     expectToBe(
-                        consoleSpy.calls.allArgs()[3][0],
+                        vi.mocked(consoleSpy).mock.calls[3][0],
                         `_getJsonData failed: Http failure response for ${call[3]?.request.url}: 400 ERROR_LOADING_TEXTCRITICS`
                     );
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], [], [], []] if all requests failed', waitForAsync(() => {
+                it('... should return [[], [], [], []] if all requests failed', () => {
                     const expectedResult = [[], [], [], []];
 
                     // Call service function (success)
@@ -1254,7 +1243,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1289,9 +1278,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [sourceList, [], [], []] if all but sourceList request failed', waitForAsync(() => {
+                it('... should return [sourceList, [], [], []] if all but sourceList request failed', () => {
                     const expectedResult = [new SourceList(), [], [], []];
 
                     // Call service function (success)
@@ -1306,7 +1295,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1341,9 +1330,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], sourceDescriptionList, [], []] if all but sourceDescriptionList request failed', waitForAsync(() => {
+                it('... should return [[], sourceDescriptionList, [], []] if all but sourceDescriptionList request failed', () => {
                     const expectedResult = [[], new SourceDescriptionList(), [], []];
 
                     // Call service function (success)
@@ -1358,7 +1347,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1390,9 +1379,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], [], sourceEvaluationList, []] if all but sourceEvaluationList request failed', waitForAsync(() => {
+                it('... should return [[], [], sourceEvaluationList, []] if all but sourceEvaluationList request failed', () => {
                     const expectedResult = [[], [], new SourceEvaluationList(), []];
 
                     // Call service function (success)
@@ -1407,7 +1396,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1439,9 +1428,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], [], [], textcritics] if all but textcritics request failed', waitForAsync(() => {
+                it('... should return [[], [], [], textcritics] if all but textcritics request failed', () => {
                     const expectedResult = [[], [], [], new TextcriticsList()];
 
                     // Call service function (success)
@@ -1456,7 +1445,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1488,9 +1477,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [sourcelist, SourceDescriptionList, SourceEvaluationList, []] if textcritics request failed', waitForAsync(() => {
+                it('... should return [sourcelist, SourceDescriptionList, SourceEvaluationList, []] if textcritics request failed', () => {
                     const expectedResult = [
                         new SourceList(),
                         new SourceDescriptionList(),
@@ -1510,7 +1499,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1539,9 +1528,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [sourceList, [], [], textcritics] if middle requests failed', waitForAsync(() => {
+                it('... should return [sourceList, [], [], textcritics] if middle requests failed', () => {
                     const expectedResult = [new SourceList(), [], [], new TextcriticsList()];
 
                     // Call service function (success)
@@ -1556,7 +1545,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1588,9 +1577,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], descriptionList, evaluationList, textcritics] if sourcelist request failed', waitForAsync(() => {
+                it('... should return [[], descriptionList, evaluationList, textcritics] if sourcelist request failed', () => {
                     const expectedResult = [
                         [],
                         new SourceDescriptionList(),
@@ -1610,7 +1599,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -1636,7 +1625,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
             });
         });
     });
@@ -1647,57 +1636,57 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionRowTablesData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPathBaseRoute);
-            }));
+            });
 
-            it('... should call #_getRowTablesData', waitForAsync(() => {
+            it('... should call #_getRowTablesData', () => {
                 // Call service function
                 editionDataService.getEditionRowTablesData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getRowTablesDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct url', () => {
                 // Call service function
                 editionDataService.getEditionRowTablesData().subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getRowTablesDataSpy, 1);
                 expectSpyCall(getJsonDataSpy, 1, expectedRowTablesFilePath);
-            }));
+            });
 
-            it('... should perform an HTTP GET request to rowTables file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to rowTables file', () => {
                 // Call service function
                 editionDataService.getEditionRowTablesData().subscribe({
                     next: res => {
                         expectToEqual(res, new EditionRowTablesList());
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1717,16 +1706,16 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('success', () => {
-            it('... should return an Observable(EditionRowTablesList)', waitForAsync(() => {
+            it('... should return an Observable(EditionRowTablesList)', () => {
                 const rt = expectedRowTablesData;
 
                 const expectedResult = rt;
 
-                getRowTablesDataSpy.and.returnValue(observableOf(expectedResult));
+                getRowTablesDataSpy.mockReturnValue(observableOf(expectedResult));
 
                 // Call service function (success)
                 editionDataService.getEditionRowTablesData().subscribe({
@@ -1735,17 +1724,17 @@ describe('EditionDataService (DONE)', () => {
                         expectToBe(res.rowTables[0].id, 'SkRT');
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getRowTablesDataSpy, 1);
-            }));
+            });
 
-            it('... should return an empty EditionRowTablesList Observable per default', waitForAsync(() => {
+            it('... should return an empty EditionRowTablesList Observable per default', () => {
                 const expectedResult = new EditionRowTablesList();
 
-                getRowTablesDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
+                getRowTablesDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(expectedResult)));
 
                 // Call service function (success)
                 editionDataService.getEditionRowTablesData().subscribe({
@@ -1753,16 +1742,16 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getRowTablesDataSpy, 1);
-            }));
+            });
         });
 
         describe('fail', () => {
-            it('... should log an error for every failed request', waitForAsync(() => {
+            it('... should log an error for every failed request', () => {
                 const expectedResult = [];
 
                 // Call service function (success)
@@ -1771,7 +1760,7 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1796,9 +1785,9 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
 
-            it('... should return [] if request failed', waitForAsync(() => {
+            it('... should return [] if request failed', () => {
                 const expectedResult = [];
 
                 // Call service function (success)
@@ -1807,7 +1796,7 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(res, expectedResult);
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1828,7 +1817,7 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
     });
 
@@ -1838,61 +1827,61 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('request', () => {
-            it('... should set assetPath', waitForAsync(() => {
+            it('... should set assetPath', () => {
                 // Call service function
                 editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
-            }));
+            });
 
-            it('... should call #getFolioConvoluteData, #getSvgSheetsData, #getTextcriticsListData', waitForAsync(() => {
+            it('... should call #getFolioConvoluteData, #getSvgSheetsData, #getTextcriticsListData', () => {
                 // Call service function
                 editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getFolioConvoluteDataSpy, 1);
                 expectSpyCall(getSvgSheetsDataSpy, 1);
                 expectSpyCall(getTextcriticsListDataSpy, 1);
-            }));
+            });
 
-            it('... should trigger #getJsonData with correct urls', waitForAsync(() => {
+            it('... should trigger #getJsonData with correct urls', () => {
                 // Call service function
                 editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
                 expectSpyCall(getJsonDataSpy, 3);
-                expectToBe(getJsonDataSpy.calls.allArgs()[0][0], expectedFolioConvoluteFilePath);
-                expectToBe(getJsonDataSpy.calls.allArgs()[1][0], expectedSheetsFilePath);
-                expectToBe(getJsonDataSpy.calls.allArgs()[2][0], expectedTextcriticsFilePath);
-            }));
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[0][0], expectedFolioConvoluteFilePath);
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[1][0], expectedSheetsFilePath);
+                expectToBe(vi.mocked(getJsonDataSpy).mock.calls[2][0], expectedTextcriticsFilePath);
+            });
 
-            it('... should perform an HTTP GET request to convolute, sheets & textcritics file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to convolute, sheets & textcritics file', () => {
                 // Call service function
                 editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
                     },
                     error: () => {
-                        fail('should not call error');
+                        throw new Error('should not call error');
                     },
                 });
 
@@ -1919,12 +1908,12 @@ describe('EditionDataService (DONE)', () => {
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
-            }));
+            });
         });
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return a forkJoined Observable(FolioConvoluteList, EditionSvgSheetList,  TextcriticsList)', waitForAsync(() => {
+                it('... should return a forkJoined Observable(FolioConvoluteList, EditionSvgSheetList,  TextcriticsList)', () => {
                     const fcl = new FolioConvoluteList();
                     fcl.convolutes = [];
                     fcl.convolutes.push(new FolioConvolute());
@@ -1946,9 +1935,9 @@ describe('EditionDataService (DONE)', () => {
 
                     const expectedResult = [fcl, esl, tcl];
 
-                    getFolioConvoluteDataSpy.and.returnValue(observableOf(fcl));
-                    getSvgSheetsDataSpy.and.returnValue(observableOf(esl));
-                    getTextcriticsListDataSpy.and.returnValue(observableOf(tcl));
+                    getFolioConvoluteDataSpy.mockReturnValue(observableOf(fcl));
+                    getSvgSheetsDataSpy.mockReturnValue(observableOf(esl));
+                    getTextcriticsListDataSpy.mockReturnValue(observableOf(tcl));
 
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
@@ -1971,21 +1960,21 @@ describe('EditionDataService (DONE)', () => {
                             expectToBe(resTcl.textcritics[0].id, 'test-textcritics-id');
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getFolioConvoluteDataSpy, 1);
                     expectSpyCall(getSvgSheetsDataSpy, 1);
                     expectSpyCall(getTextcriticsListDataSpy, 1);
-                }));
+                });
 
-                it('... should return an empty forkJoined Observable per default', waitForAsync(() => {
+                it('... should return an empty forkJoined Observable per default', () => {
                     const expectedResult = [new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()];
 
-                    getFolioConvoluteDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(new FolioConvoluteList())));
-                    getSvgSheetsDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(new EditionSvgSheetList())));
-                    getTextcriticsListDataSpy.and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
+                    getFolioConvoluteDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(new FolioConvoluteList())));
+                    getSvgSheetsDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(new EditionSvgSheetList())));
+                    getTextcriticsListDataSpy.mockReturnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
@@ -1998,18 +1987,18 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], expectedResult[2] as TextcriticsList);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
                     expectSpyCall(getFolioConvoluteDataSpy, 1);
                     expectSpyCall(getSvgSheetsDataSpy, 1);
                     expectSpyCall(getTextcriticsListDataSpy, 1);
-                }));
+                });
             });
 
             describe('fail', () => {
-                it('... should log an error for every failed request', waitForAsync(() => {
+                it('... should log an error for every failed request', () => {
                     const expectedResult = [[], [], []];
 
                     // Call service function (success)
@@ -2023,7 +2012,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2053,23 +2042,23 @@ describe('EditionDataService (DONE)', () => {
 
                     expectSpyCall(consoleSpy, 3);
                     expectToBe(
-                        consoleSpy.calls.allArgs()[0][0],
+                        vi.mocked(consoleSpy).mock.calls[0][0],
                         `_getJsonData failed: Http failure response for ${call[0]?.request.url}: 400 ERROR_LOADING_FOLIOCONVOLUTELIST`
                     );
                     expectToBe(
-                        consoleSpy.calls.allArgs()[1][0],
+                        vi.mocked(consoleSpy).mock.calls[1][0],
                         `_getJsonData failed: Http failure response for ${call[1]?.request.url}: 400 ERROR_LOADING_EDITIONSVGSHEETLIST`
                     );
                     expectToBe(
-                        consoleSpy.calls.allArgs()[2][0],
+                        vi.mocked(consoleSpy).mock.calls[2][0],
                         `_getJsonData failed: Http failure response for ${call[2]?.request.url}: 400 ERROR_LOADING_TEXTCRITICSLIST`
                     );
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], [], []] if all requests failed', waitForAsync(() => {
+                it('... should return [[], [], []] if all requests failed', () => {
                     const expectedResult = [[], [], []];
 
                     // Call service function (success)
@@ -2083,7 +2072,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2116,9 +2105,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [folioConvoluteList, [], []] if all but folioConvoluteList request failed', waitForAsync(() => {
+                it('... should return [folioConvoluteList, [], []] if all but folioConvoluteList request failed', () => {
                     const expectedResult = [new FolioConvoluteList(), [], []];
 
                     // Call service function (success)
@@ -2132,7 +2121,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2162,9 +2151,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], editionSvgSheetList, []] if all but editionSvgSheetList request failed', waitForAsync(() => {
+                it('... should return [[], editionSvgSheetList, []] if all but editionSvgSheetList request failed', () => {
                     const expectedResult = [[], new EditionSvgSheetList(), []];
 
                     // Call service function (success)
@@ -2178,7 +2167,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2208,9 +2197,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], [], textcriticsList] if all but textcriticsList request failed', waitForAsync(() => {
+                it('... should return [[], [], textcriticsList] if all but textcriticsList request failed', () => {
                     const expectedResult = [[], [], new TextcriticsList()];
 
                     // Call service function (success)
@@ -2224,7 +2213,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2254,9 +2243,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [folioConvoluteList, editionSvgSheetList, []] if textcriticsList request failed', waitForAsync(() => {
+                it('... should return [folioConvoluteList, editionSvgSheetList, []] if textcriticsList request failed', () => {
                     const expectedResult = [new FolioConvoluteList(), new EditionSvgSheetList(), []];
 
                     // Call service function (success)
@@ -2270,7 +2259,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], []);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2297,9 +2286,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [folioConvoluteList, [], textcriticsList] if middle request failed', waitForAsync(() => {
+                it('... should return [folioConvoluteList, [], textcriticsList] if middle request failed', () => {
                     const expectedResult = [new FolioConvoluteList(), [], new TextcriticsList()];
 
                     // Call service function (success)
@@ -2313,7 +2302,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2340,9 +2329,9 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
 
-                it('... should return [[], editionSvgSheetList, textcriticsList] if folioConvoluteList request failed', waitForAsync(() => {
+                it('... should return [[], editionSvgSheetList, textcriticsList] if folioConvoluteList request failed', () => {
                     const expectedResult = [[], new EditionSvgSheetList(), new TextcriticsList()];
 
                     // Call service function (success)
@@ -2356,7 +2345,7 @@ describe('EditionDataService (DONE)', () => {
                             expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
-                            fail('should not call error');
+                            throw new Error('should not call error');
                         },
                     });
 
@@ -2383,7 +2372,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Assert that there are no more pending requests
                     httpTestingController.verify();
-                }));
+                });
             });
         });
     });
@@ -2473,7 +2462,7 @@ describe('EditionDataService (DONE)', () => {
             expect((editionDataService as any)._getJsonData).toBeDefined();
         });
 
-        it('... should return an Observable<any>', waitForAsync(() => {
+        it('... should return an Observable<any>', () => {
             const expectedPath = 'test-url';
             const expectedData = { test: 'data' };
 
@@ -2485,7 +2474,7 @@ describe('EditionDataService (DONE)', () => {
                     expect(res).toEqual(expectedData);
                 },
                 error: () => {
-                    fail('should not call error');
+                    throw new Error('should not call error');
                 },
             });
 
@@ -2494,6 +2483,6 @@ describe('EditionDataService (DONE)', () => {
             call.flush(expectedData);
 
             httpTestingController.verify();
-        }));
+        });
     });
 });

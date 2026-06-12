@@ -1,6 +1,10 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
+import { NgbModal, NgbModalModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -17,9 +21,14 @@ import { mockEditionData } from '@testing/mock-data';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet, TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
-import { EditionGlyphService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-view/services';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
+
+// Mock class for NgbModalRef
+export class MockNgbModalRef {
+    result: Promise<any> = new Promise(resolve => resolve('x'));
+}
 
 describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
@@ -28,6 +37,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     let mockDocument: Document;
 
+    let ngbModal: NgbModal;
+    let ngbModalOpenSpy: Spy;
+    let getCommentSpy: Spy;
     let getGlyphSpy: Spy;
     let getTableHeaderStringsSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -37,21 +49,28 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
     let editionGlyphServiceGetGlyphSpy: Spy;
+    let editionSnippetServiceGetCommentSpy: Spy;
 
     let mockEditionGlyphService: Partial<EditionGlyphService>;
+    let mockEditionSnippetService: Partial<EditionSnippetService>;
 
     let expectedReportFragment: string;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
+    let expectedSnippetId: string;
+    let expectedSnippetSrc: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedCommentary: TextcriticalCommentary;
-    let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
+    let expectedTableHeaderStrings: {
+        [key: string]: TkaTableHeaderColumn[];
+    };
+    let expectedTotalCommentRows: number;
     let expectedTotalRows: number;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         mockEditionGlyphService = {
             getGlyph: (glyphString: string): string => {
                 switch (glyphString) {
@@ -65,11 +84,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
             },
         };
 
-        TestBed.configureTestingModule({
+        mockEditionSnippetService = {
+            getComment: (comment: string): string => comment,
+        };
+
+        await TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
-            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
+            imports: [NgbModalModule, NgbTooltip],
+            providers: [
+                NgbModal,
+                { provide: EditionGlyphService, useValue: mockEditionGlyphService },
+                { provide: EditionSnippetService, useValue: mockEditionSnippetService },
+            ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionTkaTableComponent);
@@ -78,24 +106,26 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         mockDocument = TestBed.inject(DOCUMENT);
         mockEditionGlyphService = TestBed.inject(EditionGlyphService);
+        mockEditionSnippetService = TestBed.inject(EditionSnippetService);
+        ngbModal = TestBed.inject(NgbModal);
 
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedCommentary = JSON.parse(
-            JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1).commentary)
-        );
+        expectedSnippetSrc = 'assets/img/edition/snippets/testGroup.png';
+        expectedSnippetId = 'testGroup';
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].commentary);
 
-        const totalBlockHeaders = expectedCommentary.comments.filter(block => block.blockHeader).length;
-        const totalBlockComments = expectedCommentary.comments.reduce(
+        const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
+        expectedTotalCommentRows = expectedCommentary.comments.reduce(
             (acc, block) => acc + block.blockComments.length,
             0
         );
-        expectedTotalRows = totalBlockHeaders + totalBlockComments;
+        expectedTotalRows = totalBlockHeaderRows + expectedTotalCommentRows;
 
         expectedIsRowTable = false;
         expectedTableHeaderStrings = {
@@ -120,19 +150,23 @@ describe('EditionTkaTableComponent (DONE)', () => {
         };
 
         // Spies
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        getCommentSpy = vi.spyOn(component, 'getComment');
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        getTableHeaderStringsSpy = vi.spyOn(component, 'getTableHeaderStrings');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
 
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
+        editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
+        editionSnippetServiceGetCommentSpy = vi.spyOn(mockEditionSnippetService, 'getComment');
+        ngbModalOpenSpy = vi.spyOn(ngbModal, 'open').mockReturnValue(new MockNgbModalRef() as any);
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -150,6 +184,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         it('... should have `ref`', () => {
             expectToBe(component.ref, component);
+        });
+
+        it('... should have `snippetId` as empty string', () => {
+            expectToBe(component.snippetId, '');
+        });
+
+        it('... should have `snippetSrc` as empty string', () => {
+            expectToBe(component.snippetSrc, '');
         });
 
         it('... should have tableHeaderStrings', () => {
@@ -170,7 +212,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.commentary = expectedCommentary;
+            component.commentary = structuredClone(expectedCommentary);
             component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
@@ -178,7 +220,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('... should have commentary', () => {
-            expectToBe(component.commentary, expectedCommentary);
+            expectToEqual(component.commentary, expectedCommentary);
         });
 
         describe('VIEW', () => {
@@ -190,9 +232,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
             });
 
-            it('... should contain no table caption if commentary.preamble is empty', () => {
-                component.commentary.preamble = '';
-                detectChangesOnPush(fixture);
+            it('... should contain no table caption if commentary.preamble is empty', async () => {
+                const commentaryWithoutPreamble = structuredClone(expectedCommentary);
+                commentaryWithoutPreamble.preamble = '';
+
+                component.commentary = commentaryWithoutPreamble;
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
@@ -201,9 +246,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
             });
 
-            it('... should contain no table head or body if commentary.comments are empty', () => {
-                component.commentary.comments = [];
-                detectChangesOnPush(fixture);
+            it('... should contain no table head or body if commentary.comments are empty', async () => {
+                const commentaryWithoutComments = structuredClone(expectedCommentary);
+                commentaryWithoutComments.comments = [];
+
+                component.commentary = commentaryWithoutComments;
+                await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
@@ -233,9 +281,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
                 });
 
-                it('... should display rowTable table header if `isRowTable` flag is given', () => {
+                it('... should display rowTable table header if `isRowTable` flag is given', async () => {
                     component.isRowTable = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
@@ -246,9 +294,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display corrections table header if `isCorrections` flag is given', () => {
+                it('... should display corrections table header if `isCorrections` flag is given', async () => {
                     component.isCorrections = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
@@ -269,9 +317,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display default table header with adjusted comment colum if `isSketchId` flag is true', () => {
+                it('... should display default table header with adjusted comment colum if `isSketchId` flag is true', async () => {
                     component.isSketchId = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const expected = expectedTableHeaderStrings['default'];
                     expected[3].label = 'Kommentar';
@@ -393,6 +441,111 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         });
                     });
                 });
+
+                it('... should have the suffixed svgGroupId as id on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            const trEl: HTMLTableRowElement = rowDes[rowIndex].nativeElement;
+                            expectToBe(trEl.getAttribute('id'), comment.svgGroupId + '-entry');
+                            rowIndex++;
+                        });
+                    });
+                });
+
+                it('... should have the raw svgGroupId in data-svg-group-id attribute on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            const trEl: HTMLTableRowElement = rowDes[rowIndex].nativeElement;
+                            expectToBe(trEl.getAttribute('data-svg-group-id'), comment.svgGroupId);
+                            rowIndex++;
+                        });
+                    });
+                });
+
+                it('... should have a tooltip with the svgGroupId on each comment row (tr)', () => {
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'tr.awg-edition-tka-table-comment',
+                        expectedTotalCommentRows,
+                        expectedTotalCommentRows
+                    );
+
+                    let rowIndex = 0;
+                    expectedCommentary.comments.forEach(block => {
+                        block.blockComments.forEach(comment => {
+                            // NgbTooltip is on the tr element itself, so get it directly from its injector
+                            const tooltipCmp = rowDes[rowIndex].injector.get(NgbTooltip) as NgbTooltip;
+
+                            expectToBe(tooltipCmp.ngbTooltip as string, comment.svgGroupId);
+                            expectToBe(tooltipCmp.tooltipClass, 'awg-group-id-tooltip');
+                            expectToBe(tooltipCmp.placement as string, 'left');
+
+                            rowIndex++;
+                        });
+                    });
+                });
+            });
+        });
+
+        describe('#getComment()', () => {
+            it('... should have a method `getComment`', () => {
+                expect(component.getComment).toBeDefined();
+            });
+
+            it('... should trigger on change detection', async () => {
+                // 6 blockComments in detected content
+                expectSpyCall(getCommentSpy, 6);
+
+                component.isRowTable = true;
+                await detectChangesOnPush(fixture);
+
+                expectSpyCall(getCommentSpy, 12);
+            });
+
+            it('... should call `getComment` method from EditionSnippetService with correct parameters', () => {
+                // 6 blockComments in detected content
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 6);
+
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+                const svgGroupId = 'testGroup';
+
+                component.getComment(comment, svgGroupId);
+
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 7, [comment, svgGroupId]);
+            });
+
+            it('... should return the result of `getComment` from EditionSnippetService', () => {
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+                const svgGroupId = 'testGroup';
+
+                const result = component.getComment(comment, svgGroupId);
+
+                expectToBe(result, mockEditionSnippetService.getComment(comment, svgGroupId));
+            });
+
+            it('... should forward undefined svgGroupId to EditionSnippetService', () => {
+                const comment = 'Viertelnote überschreibt Halbe Note.';
+
+                const result = component.getComment(comment, undefined);
+
+                expectSpyCall(editionSnippetServiceGetCommentSpy, 7, [comment, undefined]);
+                expectToBe(result, mockEditionSnippetService.getComment(comment, undefined));
             });
         });
 
@@ -401,12 +554,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.getGlyph).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 // 2 glyphs in detected content
                 expectSpyCall(getGlyphSpy, 2);
 
                 component.isRowTable = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 4);
             });
@@ -432,34 +585,34 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.getTableHeaderStrings).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 expectSpyCall(getTableHeaderStringsSpy, 1);
 
                 component.isRowTable = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 2);
 
                 component.isSketchId = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 3);
             });
 
-            it('... should return rowTable header if `isRowTable` flag is given', () => {
+            it('... should return rowTable header if `isRowTable` flag is given', async () => {
                 component.isRowTable = true;
                 component.isSketchId = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['rowTable']);
             });
 
-            it('... should return rowTable header with adjusted comment colum if `isSketchId` flag is true', () => {
+            it('... should return rowTable header with adjusted comment colum if `isSketchId` flag is true', async () => {
                 component.isRowTable = true;
                 component.isSketchId = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['rowTable'];
                 expected[3].label = 'Kommentar';
@@ -469,42 +622,42 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expected);
             });
 
-            it('... should return corrections table header if `isCorrections` flag is given', () => {
+            it('... should return corrections table header if `isCorrections` flag is given', async () => {
                 component.isCorrections = true;
                 component.isSketchId = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
             });
 
-            it('... should not change corrections table header if `isSketchId` flag is true', () => {
+            it('... should not change corrections table header if `isSketchId` flag is true', async () => {
                 component.isCorrections = true;
                 component.isSketchId = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
             });
 
-            it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', () => {
+            it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', async () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
                 component.isSketchId = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['default']);
             });
 
-            it('... should return default table header with adjusted comment colum if `isSketchId` flag is true', () => {
+            it('... should return default table header with adjusted comment colum if `isSketchId` flag is true', async () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
                 component.isSketchId = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['default'];
                 expected[3].label = 'Kommentar';
@@ -520,7 +673,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -536,10 +689,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -596,12 +749,53 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
+        describe('#openSnippet()', () => {
+            it('... should have a method `openSnippet`', () => {
+                expect(component.openSnippet).toBeDefined();
+            });
+
+            describe('... should not open modal if', () => {
+                it('... src is undefined', () => {
+                    component.openSnippet(undefined);
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+
+                it('... src is null', () => {
+                    component.openSnippet(null);
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+
+                it('... src is empty string', () => {
+                    component.openSnippet('');
+
+                    expectSpyCall(ngbModalOpenSpy, 0);
+                });
+            });
+
+            it('... should set snippetSrc and snippetId and open modal with correct options', () => {
+                component.openSnippet(expectedSnippetSrc, expectedSnippetId);
+
+                expectToBe(component.snippetSrc, expectedSnippetSrc);
+                expectToBe(component.snippetId, expectedSnippetId);
+                expectSpyCall(ngbModalOpenSpy, 1, [component.snippetModalTemplate, { size: 'xl', centered: true }]);
+            });
+
+            it('... should default snippetId to empty string if not provided', () => {
+                component.openSnippet(expectedSnippetSrc);
+
+                expectToBe(component.snippetId, '');
+                expectSpyCall(ngbModalOpenSpy, 1);
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -616,10 +810,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Click on first anchor with modal call
-                clickAndAwaitChanges(aDes[1], fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 component.openModal(undefined);
@@ -639,7 +833,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -655,10 +849,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(aDes[2], fixture);
+                await clickAndAwaitChanges(aDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

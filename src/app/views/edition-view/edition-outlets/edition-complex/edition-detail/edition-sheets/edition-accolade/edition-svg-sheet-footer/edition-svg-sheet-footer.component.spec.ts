@@ -1,10 +1,11 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import Spy = jasmine.Spy;
 
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -32,11 +33,17 @@ class EditionTkaEvaluationsStubComponent {
     @Input()
     evaluations: string[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -47,7 +54,8 @@ class EditionTkaEvaluationsStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'commentary';
+    @Input()
+    labelType: 'evaluation' | 'commentary';
 }
 
 @Component({
@@ -65,11 +73,17 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetFooterComponent (DONE)', () => {
@@ -109,7 +123,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             ],
             providers: [UtilityService],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetFooterComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -118,10 +134,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
@@ -129,15 +145,16 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedChevronRightIcon = faChevronRight;
 
         // Spies
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -187,8 +204,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
+            component.selectedTextcritics = structuredClone(expectedSelectedTextcritics);
+            component.selectedTextcriticalCommentary = structuredClone(expectedSelectedTextcriticalCommentary);
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -208,9 +225,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should not contain anything in outer div.awg-edition-svg-sheet-footer if selectedTextcritics is undefined', () => {
+            it('... should not contain anything in outer div.awg-edition-svg-sheet-footer if selectedTextcritics is undefined', async () => {
                 component.selectedTextcritics = undefined;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
@@ -258,9 +275,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(faIconIns(), expectedChevronRightIcon);
             });
 
-            it('... should display chevronDown icon in evaluation paragraph if showEvaluation = true', () => {
+            it('... should display chevronDown icon in evaluation paragraph if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -316,9 +333,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'evaluation');
             });
 
-            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', () => {
-                component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                detectChangesOnPush(fixture);
+            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
+                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -346,10 +363,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
 
-                it('... evaluations array is empty', () => {
+                it('... evaluations array is empty', async () => {
                     component.showEvaluation = true;
-                    component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                    detectChangesOnPush(fixture);
+                    component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
+                    await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -362,9 +379,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', () => {
+            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -376,9 +393,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
             });
 
-            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', () => {
+            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', async () => {
                 component.showEvaluation = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -397,21 +414,21 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     EditionTkaEvaluationsStubComponent
                 ) as EditionTkaEvaluationsStubComponent;
 
-                expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
+                expectToEqual(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
-            it('... should contain no textcritics div.card if showTka is false', () => {
+            it('... should contain no textcritics div.card if showTka is false', async () => {
                 component.showTkA = false;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 0, 0);
             });
 
-            it('... should contain one textcritics div.card if showTka is true (and selectedTextcritics is defined)', () => {
+            it('... should contain one textcritics div.card if showTka is true (and selectedTextcritics is defined)', async () => {
                 component.showTkA = true;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
@@ -516,9 +533,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -612,9 +629,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -662,9 +679,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsStubComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', async () => {
                     component.showEvaluation = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -737,16 +754,16 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.toggleEvaluation).toBeDefined();
             });
 
-            it('... should toggle `showEvaluation`', () => {
+            it('... should toggle `showEvaluation`', async () => {
                 expectToBe(component.showEvaluation, false);
 
                 component.toggleEvaluation();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.showEvaluation, true);
 
                 component.toggleEvaluation();
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectToBe(component.showEvaluation, false);
             });

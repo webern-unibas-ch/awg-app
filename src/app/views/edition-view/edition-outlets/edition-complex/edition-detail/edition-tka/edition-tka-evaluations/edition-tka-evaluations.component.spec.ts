@@ -1,12 +1,14 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -45,7 +47,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedEvaluations: string[];
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         mockEditionGlyphService = {
             getGlyph: (glyphString: string): string => {
                 switch (glyphString) {
@@ -59,11 +61,11 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
             },
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [EditionTkaEvaluationsComponent, CompileHtmlComponent],
             providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);
@@ -77,24 +79,25 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_B';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedEvaluations = mockEditionData.mockTextcriticsData.textcritics.at(1).evaluations;
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].evaluations);
 
         // Spies on functions
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
 
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
+        editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -120,14 +123,14 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.evaluations = expectedEvaluations;
+            component.evaluations = structuredClone(expectedEvaluations);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have evaluations', () => {
-            expectToBe(component.evaluations, expectedEvaluations);
+            expectToEqual(component.evaluations, expectedEvaluations);
         });
 
         describe('VIEW', () => {
@@ -182,10 +185,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 expect(component.getGlyph).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 expectSpyCall(getGlyphSpy, 1);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 2);
             });
@@ -210,7 +213,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -223,10 +226,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // Click on anchor (with navigateToReportFragment call)
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                await clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -288,7 +291,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -301,10 +304,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // Click on anchor (with openModal call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                await clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 component.openModal(undefined);
@@ -324,7 +327,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -337,10 +340,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
 
                 // Click on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

@@ -1,10 +1,12 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, ReplaySubject, lastValueFrom, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -71,23 +73,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Test data
-        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
+        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        editionDataServiceGetRowTablesDataSpy = spyOn(
-            mockEditionDataService,
-            'getEditionRowTablesData'
-        ).and.callThrough();
-        editionStateServiceUpdateIsRowTablesViewSpy = spyOn(
-            mockEditionStateService,
-            'updateIsRowTableView'
-        ).and.callThrough();
-        editionStateServiceClearIsRowTablesViewSpy = spyOn(
-            mockEditionStateService,
-            'clearIsRowTableView'
-        ).and.callThrough();
+        // Spies
+        editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');
+        editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'updateIsRowTableView');
+        editionStateServiceClearIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'clearIsRowTableView');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -128,10 +123,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expectSpyCall(editionDataServiceGetRowTablesDataSpy, 1);
         });
 
-        it('... should have rowTablesData$', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolvedTo(expectedRowTablesData);
-        }));
+        it('... should have rowTablesData$', async () => {
+            await expect(lastValueFrom(component.rowTablesData$)).resolves.not.toThrow();
+            await expect(lastValueFrom(component.rowTablesData$)).resolves.toEqual(expectedRowTablesData);
+        });
 
         describe('VIEW', () => {
             it('... should contain 1 outer div.row', () => {
@@ -286,33 +281,32 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink, index) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
-                });
+                }
             });
 
             it('... can get correct queryParams from template', () => {
-                routerLinks.forEach((routerLink, index) => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const expectedQueryParams = { id: expectedRowTablesData.rowTables[index].id };
 
                     expectToEqual(routerLink.queryParams, expectedQueryParams);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
 

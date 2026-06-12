@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { click } from '@testing/click-helper';
 import {
     expectToBe,
@@ -40,20 +41,16 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     const expectedPageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
     const expectedAwgContactUrl = 'https://anton-webern.ch/de/info/kontakt.html';
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [PageNotFoundViewComponent, HeadingStubComponent, RouterLinkStubDirective],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PageNotFoundViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

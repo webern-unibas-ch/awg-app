@@ -1,11 +1,13 @@
 import { DebugElement, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import {
     expectSpyCall,
@@ -31,13 +33,13 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let onViewChangeSpy: Spy;
     let viewChangeRequestSpy: Spy;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbTooltip, ReactiveFormsModule],
             declarations: [ViewHandleButtonGroupComponent],
             providers: [UntypedFormBuilder],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
@@ -53,10 +55,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         expectedSelectedViewType = ViewHandleTypes.GRAPH;
 
         // Spies
-        createFormGroupSpy = spyOn(component as any, '_createFormGroup').and.callThrough();
-        listenToUserInputChangeSpy = spyOn(component as any, '_listenToUserInputChange').and.callThrough();
-        onViewChangeSpy = spyOn(component as any, '_onViewChange').and.callThrough();
-        viewChangeRequestSpy = spyOn(component.viewChangeRequest, 'emit').and.callThrough();
+        createFormGroupSpy = vi.spyOn(component as any, '_createFormGroup');
+        listenToUserInputChangeSpy = vi.spyOn(component as any, '_listenToUserInputChange');
+        onViewChangeSpy = vi.spyOn(component as any, '_onViewChange');
+        viewChangeRequestSpy = vi.spyOn(component.viewChangeRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -301,7 +307,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 // Directly trigger ngOnChanges
                 component.selectedViewType = ViewHandleTypes.GRID;
                 component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [component.selectedViewType], false),
+                    selectedViewType: new SimpleChange(component.selectedViewType, component.selectedViewType, false),
                 });
 
                 expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
@@ -313,7 +319,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 // Directly trigger ngOnChanges
                 component.selectedViewType = ViewHandleTypes.GRID;
                 component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [ViewHandleTypes.GRID], true),
+                    selectedViewType: new SimpleChange(component.selectedViewType, ViewHandleTypes.GRID, true),
                 });
 
                 expectSpyCall(createFormGroupSpy, 1, (component.selectedViewType = ViewHandleTypes.GRAPH));
@@ -468,7 +474,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
 
                 it('... view has type `never`', () => {
-                    let expectedView: never;
+                    const expectedView = undefined as never;
 
                     (component as any)._onViewChange(expectedView);
                     fixture.detectChanges();

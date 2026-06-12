@@ -15,35 +15,35 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g2790",
+                                "svgGroupId": "awg-tkk-m41_tf1-001",
                                 "measure": "5",
                                 "system": "Klav. u.",
                                 "position": "3/4",
                                 "comment": "g ergänzt mit Blick auf Ligaturbogen von 2/4."
                             },
                             {
-                                "svgGroupId": "g3049",
+                                "svgGroupId": "awg-tkk-m41_tf1-002",
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "6/8",
                                 "comment": "Anfang des Ligaturbogens zu a<sup>2</sup> in T. 26 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm41', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 25."
                             },
                             {
-                                "svgGroupId": "g3053",
+                                "svgGroupId": "awg-tkk-m41_tf1-003",
                                 "measure": "26",
                                 "system": "Klav. u.",
                                 "position": "1/4",
                                 "comment": "E mit <em>8</em>-Zeichen aufgelöst zu E<sub>1</sub>/E (vgl. Einleitung: Zur Edition)."
                             },
                             {
-                                "svgGroupId": "g3057",
+                                "svgGroupId": "awg-tkk-m41_tf1-004",
                                 "measure": "28",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
                                 "comment": "C<sub>1</sub>/E korrigiert zu E<sub>1</sub>/E mit Blick auf harmonischen Kontext."
                             },
                             {
-                                "svgGroupId": "g3061",
+                                "svgGroupId": "awg-tkk-m41_tf1-005",
                                 "measure": "29",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
@@ -67,172 +67,221 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1149",
+                                "svgGroupId": "awg-tkk-m41_sk1-001",
                                 "measure": "{2A–3A}",
                                 "system": "1–2",
                                 "position": "",
                                 "comment": "Takte pauschal gestrichen."
                             },
                             {
-                                "svgGroupId": "g246",
+                                "svgGroupId": "awg-tkk-m41_sk1-002",
                                 "measure": "{3A}",
                                 "system": "1",
                                 "position": "4/8 ",
                                 "comment": "f<sup>2</sup> überschreibt e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1105",
+                                "svgGroupId": "awg-tkk-m41_sk1-003",
                                 "measure": "2B",
                                 "system": "1",
                                 "position": "1/4",
                                 "comment": "Viertelpause überschreibt Achtelpause; Achtelpause überschreibt Viertelpause."
                             },
                             {
-                                "svgGroupId": "g1100",
+                                "svgGroupId": "awg-tkk-m41_sk1-004",
                                 "measure": "2B",
                                 "system": "2",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Viertelnote überschreibt punktierte Halbe Note."
                             },
                             {
-                                "svgGroupId": "g1113",
+                                "svgGroupId": "awg-tkk-m41_sk1-005",
                                 "measure": "2B",
                                 "system": "1",
                                 "position": "2/8",
                                 "comment": "a<sup>1</sup> überschreibt g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1125",
+                                "svgGroupId": "awg-tkk-m41_sk1-006",
                                 "measure": "2B",
                                 "system": "1",
                                 "position": "2–3/4",
                                 "comment": "Viertelnote a<sup>1</sup> überschreibt Achtelpause und Achtelnote a<sup>1</sup>; Halbe Note g<sup>1</sup> überschreibt Viertelnoten a<sup>1</sup>–g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1144",
+                                "svgGroupId": "awg-tkk-m41_sk1-007",
                                 "measure": "3B",
                                 "system": "1",
                                 "position": "2–5/8",
                                 "comment": "c<sup>1</sup>–g<sup>1</sup>–a<sup>1</sup>–c<sup>2</sup> überschreibt f<sup>1</sup>–d<sup>2</sup>–f<sup>1</sup>–g<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1511",
+                                "svgGroupId": "awg-tkk-m41_sk1-008",
                                 "measure": "6",
                                 "system": "4",
                                 "position": "2–4/8",
                                 "comment": "Achtelnote c<sup>1</sup> und Viertelnote g<sup>1</sup> gestrichen und ersetzt durch Achtelnoten a<sup>2</sup>–g<sup>2</sup>–e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1514",
+                                "svgGroupId": "awg-tkk-m41_sk1-009",
                                 "measure": "7",
                                 "system": "4",
                                 "position": "1.–2. Note",
                                 "comment": "Achtelnoten c<sup>2</sup>–c<sup>3</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1524",
+                                "svgGroupId": "awg-tkk-m41_sk1-010",
                                 "measure": "7",
                                 "system": "4",
                                 "position": "5–6/8",
                                 "comment": "h<sup>1</sup>–g<sup>1</sup> überschreibt a<sup>1</sup>–f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1527",
+                                "svgGroupId": "awg-tkk-m41_sk1-011",
                                 "measure": "8",
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "Viertelnote gis/e<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1538",
+                                "svgGroupId": "awg-tkk-m41_sk1-012",
                                 "measure": "8",
                                 "system": "4",
                                 "position": "5–6/8",
                                 "comment": "h<sup>2</sup>–e<sup>2</sup> überschreibt e<sup>2</sup>–c<sup>2<sup>."
                             },
                             {
-                                "svgGroupId": "g1556",
+                                "svgGroupId": "awg-tkk-m41_sk1-013",
                                 "measure": "9–10",
                                 "system": "4",
                                 "position": "2/4–1/8",
                                 "comment": "a<sup>2</sup>–c<sup>2</sup> überschreibt c<sup>2</sup>–e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1564",
+                                "svgGroupId": "awg-tkk-m41_sk1-014",
                                 "measure": "9",
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "e/c<sup>1</sup> überschreibt c/a."
                             },
                             {
-                                "svgGroupId": "g1572",
+                                "svgGroupId": "awg-tkk-m41_sk1-015",
                                 "measure": "11",
                                 "system": "5",
                                 "position": "2/4",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>G/e überschreibt H/g."
                             },
                             {
-                                "svgGroupId": "g1188",
+                                "svgGroupId": "awg-tkk-m41_sk1-016",
+                                "measure": "12",
+                                "system": "7",
+                                "position": "2/8",
+                                "comment": "c<sup>2</sup> überschreibt a<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-017",
+                                "measure": "13",
+                                "system": "8",
+                                "position": "1/4",
+                                "comment": "H<sub>1</sub> überschreibt G<sub>1</sub>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-018",
+                                "measure": "14",
+                                "system": "7",
+                                "position": "3/4",
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-019",
+                                "measure": "15",
+                                "system": "7",
+                                "position": "1–2/8",
+                                "comment": "e<sup>2</sup>–d<sup>2</sup> überschreibt d<sup>2</sup>–e<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-020",
+                                "measure": "15",
+                                "system": "7",
+                                "position": "letzte Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-021",
+                                "measure": "16",
+                                "system": "7",
+                                "position": "1/4",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-022",
+                                "measure": "16",
+                                "system": "7",
+                                "position": "2/4",
+                                "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-023",
+                                "measure": "17",
+                                "system": "7",
+                                "position": "2/4",
+                                "comment": "Viertelnote c<sup>2</sup> radiert."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m41_sk1-024",
                                 "measure": "18",
                                 "system": "10",
                                 "position": "2/8",
                                 "comment": "g<sup>3</sup> überschreibt f<sup>3</sup>."
                             },
                             {
-                                "svgGroupId": "g1203",
+                                "svgGroupId": "awg-tkk-m41_sk1-025",
                                 "measure": "18",
                                 "system": "10",
                                 "position": "3/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>3</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>3</sup>."
                             },
                             {
-                                "svgGroupId": "g1569",
-                                "measure": "14",
-                                "system": "4",
-                                "position": "1. Note",
-                                "comment": "Viertelnote [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
-                            },
-                            {
-                                "svgGroupId": "g1209",
+                                "svgGroupId": "awg-tkk-m41_sk1-026",
                                 "measure": "20",
                                 "system": "10",
                                 "position": "2/8",
                                 "comment": "Achtelpause überschreibt Achtelnote a<sup>1</sup>/c<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1234",
+                                "svgGroupId": "awg-tkk-m41_sk1-027",
                                 "measure": "20",
                                 "system": "10",
                                 "position": "2/4",
                                 "comment": "Viertelpause überschreibt Halbe Note g<sup>1</sup>/h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1249",
+                                "svgGroupId": "awg-tkk-m41_sk1-028",
                                 "measure": "23",
                                 "system": "11",
                                 "position": "1/4",
                                 "comment": "Viertelnote A<sub>1</sub> überschreibt Halbe Note A."
                             },
                             {
-                                "svgGroupId": "g1002",
+                                "svgGroupId": "awg-tkk-m41_sk1-029",
                                 "measure": "24A",
                                 "system": "14",
                                 "position": "1/4",
                                 "comment": "Viertelnote G<sub>1</sub> überschreibt Halbe Note <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>As."
                             },
                             {
-                                "svgGroupId": "g990",
+                                "svgGroupId": "awg-tkk-m41_sk1-030",
                                 "measure": "24A",
                                 "system": "13",
                                 "position": "2/8",
                                 "comment": "d<sup>2</sup> überschreibt e<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g999",
+                                "svgGroupId": "awg-tkk-m41_sk1-031",
                                 "measure": "26",
                                 "system": "14",
                                 "position": "1/4",
-                                "comment": "Viertelnote E überschreibt punktierte Halbe Note E."
+                                "comment": "Viertelnote überschreibt punktierte Halbe Note."
                             }
                         ]
                     }
@@ -240,14 +289,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g4",
+                    "svgGroupId": "awg-lb-m41_sk1f-to-m41_sk1_1b",
                     "linkTo": {
                         "complexId": "m41",
                         "sheetId": "M41_Sk1_1b"
                     }
                 },
                 {
-                    "svgGroupId": "g5",
+                    "svgGroupId": "awg-lb-m41_sk1f-to-m41_sk1_2",
                     "linkTo": {
                         "complexId": "m41",
                         "sheetId": "M41_Sk1_2"
@@ -268,14 +317,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g166",
+                                "svgGroupId": "awg-tkk-m41_sk1_1-001",
                                 "measure": "24",
                                 "system": "12",
                                 "position": "4.–5. Note",
                                 "comment": "Achtelbalken gestrichen."
                             },
                             {
-                                "svgGroupId": "g189",
+                                "svgGroupId": "awg-tkk-m41_sk1_1-002",
                                 "measure": "26",
                                 "system": "12",
                                 "position": "1.–2. Note",
@@ -287,17 +336,17 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g8",
-                    "linkTo": {
-                        "complexId": "m41",
-                        "sheetId": "M41_Sk1f"
-                    }
-                },
-                {
-                    "svgGroupId": "g9",
+                    "svgGroupId": "awg-lb-m41_sk1_1b-to-m41_sk1_2",
                     "linkTo": {
                         "complexId": "m41",
                         "sheetId": "M41_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m41_sk1_1b-to-m41_sk1f",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M41_Sk1f"
                     }
                 }
             ]
@@ -315,28 +364,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1117",
+                                "svgGroupId": "awg-tkk-m41_sk1_2-001",
                                 "measure": "30",
                                 "system": "16",
                                 "position": "1/8",
                                 "comment": "Notenkopf d<sup>1</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g1114",
+                                "svgGroupId": "awg-tkk-m41_sk1_2-002",
                                 "measure": "30",
                                 "system": "16",
                                 "position": "1–2/8",
-                                "comment": "f<sup>1</sup>–a<sup>1</sup> überschreibt a<sup>21/sup>–f<sup>1</sup>."
+                                "comment": "f<sup>1</sup>–a<sup>1</sup> überschreibt a<sup>1</sup>–f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1131",
+                                "svgGroupId": "awg-tkk-m41_sk1_2-003",
                                 "measure": "30",
                                 "system": "16",
                                 "position": "3–4/8",
                                 "comment": "h–c<sup>1</sup> überschreibt c<sup>1</sup>–d<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1134",
+                                "svgGroupId": "awg-tkk-m41_sk1_2-004",
                                 "measure": "31",
                                 "system": "17",
                                 "position": "(2–3/4)",
@@ -348,14 +397,14 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g6",
+                    "svgGroupId": "awg-lb-m41_sk1_2-to-m41_sk1_1b",
                     "linkTo": {
                         "complexId": "m41",
                         "sheetId": "M41_Sk1_1b"
                     }
                 },
                 {
-                    "svgGroupId": "g7",
+                    "svgGroupId": "awg-lb-m41_sk1_2-to-m41_sk1f",
                     "linkTo": {
                         "complexId": "m41",
                         "sheetId": "M41_Sk1f"

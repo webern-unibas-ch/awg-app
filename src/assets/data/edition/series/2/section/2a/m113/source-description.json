@@ -1886,300 +1886,349 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M113_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-001",
                                             "measure": "2",
                                             "system": "Klav. o.",
                                             "position": "1–3/8",
                                             "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: Oberstimmenschicht nach unten gehalst."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-002",
                                             "measure": "6 <br />bis 7",
                                             "system": "Klav. o.",
                                             "position": "letzte Note <br />3/8",
                                             "comment": "Ende des Legatobogens versetzt von T. 6 letzte Note nach T. 7 3/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-003",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "1/8 <br />8. Note",
                                             "comment": "Legatobogen gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-004",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1–2/16",
                                             "comment": "Oberstimmenschicht: Balkierung überschreibt Sechzehntel- und Achtelfähnchen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-005",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Unterstimmenschicht: Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-006",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "6/16–6/8",
                                             "comment": "Ende des Legatobogens versetzt von 6/16 nach 6/8."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-007",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "c gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-008",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "(4/16)",
                                             "comment": "Metrisch falsch platzierte Viertelnote c gestrichen und auf (3/8) versetzt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-009",
                                             "measure": "{14}",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-010",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "7–12/16",
                                             "comment": "Achtelnoten b–F–B geändert zu Sechzehntelnoten; Sechzehntelpausen auf 8/16, 10/16 und 12/16 hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-011",
                                             "measure": "{16–17}",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-012",
                                             "measure": "{16}",
                                             "system": "Klav. o.",
                                             "position": "3. Note",
                                             "comment": "Achtelnote überschreibt Sechzehntelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-013",
                                             "measure": "{16}",
                                             "system": "Klav. o.",
                                             "position": "12/16",
                                             "comment": "Sechzehntelnote überschreibt Achtelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-014",
                                             "measure": "18",
                                             "system": "Klav. u.",
                                             "position": "7–10/16",
                                             "comment": "Halsung und Balken nach unten gestrichen und nach oben versetzt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-015",
                                             "measure": "20",
                                             "system": "Klav. u.",
                                             "position": "8/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-016",
                                             "measure": "22",
                                             "system": "Klav. o.",
                                             "position": "6/16",
                                             "comment": "Ende des Legatobogens versetzt von 3/8 nach 6/16."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-017",
                                             "measure": "30",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-018",
                                             "measure": "nach 31",
                                             "system": "Klav. u.",
                                             "position": "",
                                             "comment": "Viertelnote gis/c<sup>1</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-019",
                                             "measure": "38",
                                             "system": "Klav. o.",
                                             "position": "1. Pause",
                                             "comment": "Sechzehntelpause überschreibt punktierte Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-020",
                                             "measure": "38",
                                             "system": "Klav. o.",
                                             "position": "1.–2. Note",
                                             "comment": "Oberstimmenschicht: Balkierung überschreibt Achtelfähnchen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-021",
                                             "measure": "38 <br />bis 39",
                                             "system": "Klav. o.",
                                             "position": "letzte Note <br />5. Note",
                                             "comment": "Ende des Legatobogens zweimal versetzt: von T. 38 letzte Note nach T. 39 1. Note, nach T. 39 5. Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-022",
                                             "measure": "39",
                                             "system": "Klav. o.",
                                             "position": "1–3/8",
                                             "comment": "Unterstimmenschicht: Notenhälse und Balken auf Rasur. Ante correcturam: f<sup>1</sup>–e<sup>1</sup>–d<sup>1</sup>?"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-023",
                                             "measure": "41",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für d."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-024",
                                             "measure": "{42}",
                                             "system": "",
                                             "position": "",
                                             "comment": "Takt pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-025",
                                             "measure": "{42}",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: Notenkopf cis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-026",
                                             "measure": "{42}",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-027",
                                             "measure": "42",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-028",
                                             "measure": "45",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für f überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> für a."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-029",
                                             "measure": "50",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Rasur im System. Ante correcturam: Achtelnote gis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-030",
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-031",
                                             "measure": "{51}",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "fis<sup>1</sup> überschreibt g<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-032",
                                             "measure": "51",
-                                            "system": "klav. o.",
+                                            "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "f<sup>1</sup> überschreibt g<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-033",
                                             "measure": "53",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-034",
                                             "measure": "54",
                                             "system": "Klav. u.",
                                             "position": "5/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-035",
                                             "measure": "54 <br />bis 56",
                                             "system": "Klav.",
                                             "position": "1. Note <br />letzte Note",
                                             "comment": "Ende des Legatobogens versetzt von T. 54 1. Note nach T. 56 letzte Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-036",
                                             "measure": "56",
                                             "system": "Klav. u.",
                                             "position": "5–6/8",
                                             "comment": "<em>8 tiefer </em>unter dem System gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-037",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Oberstimmenschicht: d<sup>2</sup> überschreibt cis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-038",
                                             "measure": "64",
                                             "system": "Klav. o.",
                                             "position": "5. Note",
                                             "comment": "Oberstimmenschicht: cis<sup>2</sup> überschreibt h<sup>2 </sup>(vgl. TkA)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-039",
                                             "measure": "65",
                                             "system": "Klav.",
                                             "position": "(6/8)",
                                             "comment": "<em>usw.</em> zwischen den Systemen (vgl. TkA)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-040",
                                             "measure": "nach 65",
                                             "system": "Klav. o.",
                                             "position": "1–3/8",
                                             "comment": "Achtelnoten a<sup>2</sup>–g<sup>2</sup>–f<sup>2</sup> gestrichen (vgl. TkA)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-041",
                                             "measure": "vor 70",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "gis<sup>2</sup> und <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b<sup>2 </sup>gestrichen (vgl. TkA)."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-042",
                                             "measure": "72",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Balkierung zu 9/16 überschreibt Achtelfähnchen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-043",
                                             "measure": "73",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Punktierte Viertelnote überschreibt punktierte Halbe Note."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-044",
                                             "measure": "73",
                                             "system": "Klav. u.",
                                             "position": "5–12/16",
                                             "comment": "Ende des Legatobogens versetzt von 5/16 nach 12/16."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-045",
                                             "measure": "78",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> ür b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für g."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-046",
                                             "measure": "78",
                                             "system": "Klav. u.",
                                             "position": "3/16",
                                             "comment": "F überschreibt A."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-047",
                                             "measure": "80",
                                             "system": "Klav. o.",
                                             "position": "1.­–2. Note",
                                             "comment": "Zwei zusammengebalkte Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>/d<sup>2</sup>–b<sup>2</sup> geändert zu Achtelnote und Viertelnote."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-048",
                                             "measure": "80",
                                             "system": "Klav. u.",
                                             "position": "4/8",
                                             "comment": "Achtelpause überschreibt Notenkopf zu A."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_1-049",
                                             "measure": "83 <br />bis 84",
                                             "system": "Klav. o.",
                                             "position": "6/8 <br />1. Note",
@@ -2195,168 +2244,195 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M113_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "(10/16)",
                                             "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-002",
                                             "measure": "2 <br />bis 3",
                                             "system": "Klav. u.",
                                             "position": "4/8 <br />1/8",
                                             "comment": "Legatobogen hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-003",
                                             "measure": "3",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-004",
                                             "measure": "3",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "h überschrieben zu Achtelpause."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-005",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "10–12/16",
                                             "comment": "Balkierung zwischen 10/16 und 11/16 gestrichen; Sechzehntelnote F<sub>1</sub>/F am Schluss hinzugefügt und mit A<sub>1</sub>/A–G<sub>1</sub>/G zu Sechzehnteltriole zusammengebalkt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-006",
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "11/16",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-007",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "Unterstimmenschicht: d<sup>2</sup> ersetzt durch f<sup>1</sup>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-008",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "(6/8)",
                                             "comment": "Oberstimmenschicht: f<sup>2</sup>–g<sup>2</sup>–a<sup>2</sup> überschrieben zu f<sup>2</sup> –d<sup>2</sup>–c<sup>2</sup>? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-009",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "6/8",
                                             "comment": "Oberstimmenschicht: Achtelnote f hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-010",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "6/8",
                                             "comment": "Unterstimmenschicht: H gestrichen und ersetzt durch c? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-011",
                                             "measure": "17",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takt pauschal gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-012",
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "4/16",
                                             "comment": "Nicht entzifferbare Korrektur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-013",
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "9/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-014",
                                             "measure": "19",
                                             "system": "Klav. u.",
                                             "position": "10–12/16",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis–H–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Dis überschreibt a–fis–H."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-015",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "1/8",
                                             "comment": "Unterstimmenschicht: Achtelnote c<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-016",
                                             "measure": "24",
                                             "system": "Klav. o.",
                                             "position": "4/8",
                                             "comment": "Unterstimmenschicht: Viertelnote b<sup>1</sup> gestrichen und durch Viertelnote d<sup>1</sup>–g<sup>1</sup> ersetzt, diese gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-017",
                                             "measure": "28 <br />bis 29",
                                             "system": "Klav. o.",
                                             "position": "4. Note <br />3/8",
                                             "comment": "Klammer über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-018",
                                             "measure": "29",
                                             "system": "Klav. u.",
                                             "position": "1–3/8",
                                             "comment": "Achtelpause und Achtelnoten überschrieben zu Sechzehntelpause und Sechzehntelnoten Cis–G–cis–g–cis<sup>1</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-019",
                                             "measure": "29",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "Einschubzeichen über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-020",
                                             "measure": "29",
                                             "system": "Klav. u.",
                                             "position": "4/8",
                                             "comment": "Kreuz unter dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-021",
                                             "measure": "nach 39",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Wellenförmige Linie zwischen den Systemen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-022",
                                             "measure": "43",
                                             "system": "Klav. o.",
                                             "position": "5.–6. Note",
                                             "comment": "Kreuz im System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-023",
                                             "measure": "45",
                                             "system": "Klav. o.",
                                             "position": "5.–6. Note",
                                             "comment": "Legatobogen hinzugefügt? Entzifferung unsicher."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-024",
                                             "measure": "46–47",
                                             "system": "",
                                             "position": "",
-                                            "comment": "Alternative Skizze unter den Systemen: <br />##Abbildung##"
+                                            "comment": "Korrekturskizze unter den Systemen: <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-025",
                                             "measure": "48",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
                                             "comment": "Kreuz über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-026",
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
                                             "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br />##Abbildung##"
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m113_tf1_C_corr_2-027",
                                             "measure": "51 <br />bis 52",
                                             "system": "Klav. u.",
                                             "position": "1. Note <br />(1/4)",

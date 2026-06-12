@@ -1,6 +1,9 @@
 import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ToastComponent } from './toast.component';
@@ -12,7 +15,8 @@ import { Toast, ToastService } from './toast.service';
     standalone: false,
 })
 class MockTemplateComponent {
-    @ViewChild('template', { static: true }) public template: TemplateRef<any>;
+    @ViewChild('template', { static: true })
+    public template: TemplateRef<any>;
 }
 
 // Mock ngb-toast component
@@ -43,12 +47,12 @@ describe('ToastComponent (DONE)', () => {
 
     let expectedToast: Toast;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [ToastComponent, MockTemplateComponent, NgbToastStubComponent],
             providers: [ToastService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ToastComponent);
@@ -123,13 +127,13 @@ describe('ToastComponent (DONE)', () => {
                 expectToBe(toastCmp.delay, expectedToast.options.delay);
             });
 
-            it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', () => {
+            it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', async () => {
                 toastService.remove(expectedToast);
                 const otherToast = new Toast('Other message', { header: 'header', className: 'bg-danger' });
                 toastService.add(otherToast);
 
                 // Apply changes
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture);
 
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;

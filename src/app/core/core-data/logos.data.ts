@@ -4,8 +4,6 @@ import { Logos } from '@awg-core/core-models';
  * Object constant with a set of logos.
  *
  * It provides metadata for the logos used in the app.
- *
- * Available logos: `unibas`, `snf`, `angular`, `bootstrap`.
  */
 export const LOGOS_DATA: Logos = {
     angular: {
@@ -32,9 +30,21 @@ export const LOGOS_DATA: Logos = {
         alt: 'Logo GitHub',
         href: 'https://github.com/webern-unibas-ch/awg-app',
     },
+    gnd: {
+        id: 'gndlogo',
+        src: 'assets/img/logos/gnd.svg',
+        alt: 'Logo GND',
+        href: 'https://d-nb.info/gnd/',
+    },
+    orcid: {
+        id: 'orcidlogo',
+        src: 'assets/img/logos/orcid.svg',
+        alt: 'Logo ORCID',
+        href: 'https://orcid.org/',
+    },
     sagw: {
         id: 'sagwlogo',
-        src: 'assets/img/logos/sagw.jpg',
+        src: 'assets/img/logos/sagw.svg',
         alt: 'Logo SAGW',
         href: 'https://sagw.ch/sagw/',
     },
@@ -55,5 +65,11 @@ export const LOGOS_DATA: Logos = {
         src: 'assets/img/logos/uni.svg',
         alt: 'Logo Uni Basel',
         href: 'https://www.unibas.ch',
+    },
+    viaf: {
+        id: 'viaflogo',
+        src: 'assets/img/logos/viaf.svg',
+        alt: 'Logo VIAF',
+        href: 'https://viaf.org/viaf/',
     },
 };

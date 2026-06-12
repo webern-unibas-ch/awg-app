@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
 import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -38,22 +39,20 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailPlaceholderComponent, AlertInfoStubComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedSeries = JSON.parse(JSON.stringify(EditionOutlineService.getEditionOutline()[0]));
-        expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
+        expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
+        expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
 
         const series = expectedSelectedSeries.series.short;
         const section = expectedSelectedSection.section.short;
-        expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
     });
 
     it('should create', () => {
@@ -85,8 +84,8 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = expectedSelectedSeries;
-            component.selectedSection = expectedSelectedSection;
+            component.selectedSeries = structuredClone(expectedSelectedSeries);
+            component.selectedSection = structuredClone(expectedSelectedSection);
 
             // Trigger initial data binding
             fixture.detectChanges();

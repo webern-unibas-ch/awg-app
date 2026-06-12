@@ -1,5 +1,7 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -18,17 +20,17 @@ describe('SparqlNoResultsComponent (DONE)', () => {
 
     let expectedLogos: Logos;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Stub service for test purposes
         mockCoreService = {
             getLogos: () => expectedLogos,
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [SparqlNoResultsComponent],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SparqlNoResultsComponent);
@@ -38,10 +40,12 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         // Test data
         expectedLogos = LOGOS_DATA;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
+        // Spies
+        vi.spyOn(component, 'provideMetaData');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

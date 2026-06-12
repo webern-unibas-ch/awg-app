@@ -15,7 +15,7 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g820",
+                                "svgGroupId": "awg-tkk-m36_tf1-001",
                                 "measure": "11",
                                 "system": "Klav.",
                                 "position": "3/4",
@@ -39,67 +39,74 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g1046",
+                                "svgGroupId": "awg-tkk-m36_sk1-001",
                                 "measure": "3",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "Halbe Note g<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> überschreibt Viertelnote c<sup>2</sup>/e<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "g1058",
+                                "svgGroupId": "awg-tkk-m36_sk1-002",
                                 "measure": "5",
                                 "system": "16",
                                 "position": "1. Note",
                                 "comment": "Punktierte Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "awg-tkk-m36_sk1-003",
                                 "measure": "6",
                                 "system": "17",
                                 "position": "3/4",
                                 "comment": "Metrisch falsch gesetzter Notenkopf e gestrichen."
                             },
                             {
-                                "svgGroupId": "g975",
+                                "svgGroupId": "awg-tkk-m36_sk1-004",
                                 "measure": "7",
                                 "system": "14",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt d<sub>1</sub>."
                             },
                             {
-                                "svgGroupId": "g13",
+                                "svgGroupId": "awg-tkk-m36_sk1-005",
                                 "measure": "7",
                                 "system": "15",
                                 "position": "(2/4)",
                                 "comment": "Viertelnote e gstrichen? Entzifferung unsicher."
                             },
                             {
-                                "svgGroupId": "g1040",
+                                "svgGroupId": "awg-tkk-m36_sk1-006",
                                 "measure": "8 <br />bis 9",
                                 "system": "13",
                                 "position": "3/4 <br />1/4",
                                 "comment": "a<sup>1</sup>–a<sup>1</sup> überschreibt h<sup>1</sup>–h<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "awg-tkk-m36_sk1-007",
                                 "measure": "11",
                                 "system": "13",
                                 "position": "1/4",
                                 "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g10",
+                                "svgGroupId": "awg-tkk-m36_sk1-008",
                                 "measure": "12",
                                 "system": "12",
                                 "position": "1. Note",
                                 "comment": "h überschreibt a."
                             },
                             {
-                                "svgGroupId": "g111",
+                                "svgGroupId": "awg-tkk-m36_sk1-009",
                                 "measure": "12",
                                 "system": "12",
                                 "position": "2/4",
                                 "comment": "Entzifferung unsicher. Die Viertelnote mit Hilfslinien ist vergleichsweise tief gesetzt und möglicherweise auch lesbar als H<sub>1</sub> im Bassschlüssel analog Tintenniederschrift."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-m36_sk1-010",
+                                "measure": "16",
+                                "system": "15",
+                                "position": "1. Note",
+                                "comment": "a radiert."
                             }
                         ]
                     }
@@ -107,45 +114,73 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g2",
-                    "linkTo": {
-                        "complexId": "m36",
-                        "sheetId": "M36_Sk1d"
-                    }
-                },
-                {
-                    "svgGroupId": "g5",
-                    "linkTo": {
-                        "complexId": "m36",
-                        "sheetId": "M36_Sk1e"
-                    }
-                },
-                {
-                    "svgGroupId": "g6",
-                    "linkTo": {
-                        "complexId": "m36",
-                        "sheetId": "M36_Sk1a"
-                    }
-                },
-                {
-                    "svgGroupId": "g8",
-                    "linkTo": {
-                        "complexId": "m36",
-                        "sheetId": "M36_Sk1b"
-                    }
-                },
-                {
-                    "svgGroupId": "g11",
+                    "svgGroupId": "awg-lb-m36_sk1b-to-m35_42_sk1b",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M35_42_Sk1b"
                     }
                 },
                 {
-                    "svgGroupId": "g12",
+                    "svgGroupId": "awg-lb-m36_sk1b-to-m36_sk1c",
                     "linkTo": {
                         "complexId": "m36",
                         "sheetId": "M36_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1b-to-m36_sk1e",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1c-to-m35_42_sk1b",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1c-to-m36_sk1b",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1c-to-m36_sk1d",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1d-to-m35_42_sk1b",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M35_42_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1d-to-m36_sk1c",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1e-to-m36_sk1a",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1a"
+                    }
+                },
+                {
+                    "svgGroupId": "awg-lb-m36_sk1e-to-m36_sk1b",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M36_Sk1b"
                     }
                 }
             ]

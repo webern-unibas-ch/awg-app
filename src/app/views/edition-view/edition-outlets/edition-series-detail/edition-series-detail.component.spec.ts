@@ -2,9 +2,9 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -60,19 +60,16 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         expectedSeriesId = expectedSelectedSeries.series.route;
 
         // Spies
-        updateSeriesFromRouteSpy = spyOn(component, 'updateSeriesFromRoute').and.callThrough();
-        editionOutlineServiceGetEditionSeriesByIdSpy = spyOn(
-            EditionOutlineService,
-            'getEditionSeriesById'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSeriesSpy = spyOn(
+        updateSeriesFromRouteSpy = vi.spyOn(component, 'updateSeriesFromRoute');
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
+        editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
             mockEditionStateService,
             'updateSelectedEditionSeries'
-        ).and.callThrough();
+        );
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

@@ -1,6 +1,8 @@
 import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare, IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +42,10 @@ class EditionFolioViewerStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('EditionConvoluteComponent (DONE)', () => {
@@ -76,12 +81,12 @@ describe('EditionConvoluteComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
             declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionConvoluteComponent);
@@ -89,11 +94,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
+        expectedSelectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
         expectedSquareIcon = faSquare;
 
@@ -112,13 +117,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
             },
         ];
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        // Spies
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -164,8 +171,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.selectedConvolute = expectedSelectedConvolute;
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.selectedConvolute = structuredClone(expectedSelectedConvolute);
+            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();

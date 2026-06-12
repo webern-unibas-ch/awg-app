@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,9 +30,12 @@ import { ConstructResultsComponent } from './construct-results.component';
     standalone: false,
 })
 class ForceGraphStubComponent {
-    @Input() currentQueryResultTriples: Triple[];
-    @Input() height: number;
-    @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
+    @Input()
+    currentQueryResultTriples: Triple[];
+    @Input()
+    height: number;
+    @Output()
+    clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
 @Component({
@@ -73,8 +78,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
             declarations: [
                 ConstructResultsComponent,
@@ -83,7 +88,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ConstructResultsComponent);
@@ -100,13 +105,15 @@ describe('ConstructResultsComponent (DONE)', () => {
         };
         expectedQueryResult$ = observableOf([expectedQueryResult]);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        emitClickedNodeRequestSpy = spyOn(component.clickedNodeRequest, 'emit').and.callThrough();
-        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
-        isQueryResultNotEmptySpy = spyOn(component, 'isQueryResultNotEmpty').and.callThrough();
-        nodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
+        // Spies
+        emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
+        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
+        isQueryResultNotEmptySpy = vi.spyOn(component, 'isQueryResultNotEmpty');
+        nodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -223,7 +230,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should toggle item body on click', () => {
+                it('... should toggle item body on click', async () => {
                     // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -251,7 +258,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body is collapsed
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -267,7 +274,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body is open again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -283,10 +290,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', () => {
+                    it('... queryResult$ is EMPTY', async () => {
                         // Mock empty observable
                         component.queryResult$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -299,10 +306,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is undefined', () => {
+                    it('... queryResult$ is undefined', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf(undefined);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -315,10 +322,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is null', () => {
+                    it('... queryResult$ is null', async () => {
                         // Mock null response
                         component.queryResult$ = observableOf(null);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -333,10 +340,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... queryResult is empty array', () => {
+                    it('... queryResult is empty array', async () => {
                         // Mock empty array
                         component.queryResult$ = observableOf([]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -349,12 +356,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult is undefined or empty string', () => {
+                    it('... queryResult is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             { subject: undefined, predicate: undefined, object: undefined },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -368,7 +375,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         // Mock empty response
                         component.queryResult$ = observableOf([{ subject: '', predicate: '', object: '' }]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -381,7 +388,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.subject is undefined or empty string', () => {
+                    it('... queryResult.subject is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -390,7 +397,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -410,7 +417,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -423,7 +430,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.predicate is undefined or empty string', () => {
+                    it('... queryResult.predicate is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -432,7 +439,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -452,7 +459,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -465,7 +472,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.object is undefined or empty string', () => {
+                    it('... queryResult.object is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -474,7 +481,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: undefined,
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -494,7 +501,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: '',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -533,10 +540,10 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             describe('in fullscreen mode', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Set fullscreen mode
                     component.isFullscreen = true;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
@@ -587,7 +594,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should not toggle item body on click', () => {
+                it('... should not toggle item body on click', async () => {
                     // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -615,7 +622,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -631,10 +638,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', () => {
+                    it('... queryResult$ is EMPTY', async () => {
                         // Mock empty observable
                         component.queryResult$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -647,10 +654,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is undefined', () => {
+                    it('... queryResult$ is undefined', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf(undefined);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -663,10 +670,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... queryResult$ is null', () => {
+                    it('... queryResult$ is null', async () => {
                         // Mock null response
                         component.queryResult$ = observableOf(null);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -681,10 +688,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... queryResult is empty array', () => {
+                    it('... queryResult is empty array', async () => {
                         // Mock empty array
                         component.queryResult$ = observableOf([]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -697,12 +704,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult is undefined or empty string', () => {
+                    it('... queryResult is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             { subject: undefined, predicate: undefined, object: undefined },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -716,7 +723,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         // Mock empty response
                         component.queryResult$ = observableOf([{ subject: '', predicate: '', object: '' }]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -729,7 +736,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.subject is undefined or empty string', () => {
+                    it('... queryResult.subject is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -738,7 +745,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -758,7 +765,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -771,7 +778,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.predicate is undefined or empty string', () => {
+                    it('... queryResult.predicate is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -780,7 +787,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -800,7 +807,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: 'example:Success',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -813,7 +820,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
                     });
 
-                    it('... queryResult.object is undefined or empty string', () => {
+                    it('... queryResult.object is undefined or empty string', async () => {
                         // Mock undefined response
                         component.queryResult$ = observableOf([
                             {
@@ -822,7 +829,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: undefined,
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -842,7 +849,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                                 object: '',
                             },
                         ]);
-                        detectChangesOnPush(fixture);
+                        await detectChangesOnPush(fixture);
 
                         // Item body
                         getAndExpectDebugElementByCss(
@@ -911,7 +918,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
             });
 
-            it('... should be triggered by change of queryResult', () => {
+            it('... should be triggered by change of queryResult', async () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock another queryResult
@@ -921,25 +928,25 @@ describe('ConstructResultsComponent (DONE)', () => {
                     object: 'example:AnotherSuccess',
                 };
                 component.queryResult$ = observableOf([anotherQueryResult]);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(isQueryResultNotEmptySpy, 4, anotherQueryResult[0]);
             });
 
             describe('... should return false if ...', () => {
-                it('... queryResult is empty array', () => {
+                it('... queryResult is empty array', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock empty response
                     const emptyQueryResult = [];
                     component.queryResult$ = observableOf(emptyQueryResult);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
 
-                it('... queryResult.subject is undefined or empty string', () => {
+                it('... queryResult.subject is undefined or empty string', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
@@ -949,7 +956,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: 'example:Success',
                     };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
@@ -961,13 +968,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: 'example:Success',
                     };
                     component.queryResult$ = observableOf([emptyQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
-                it('... queryResult.predicate is undefined or empty string', () => {
+                it('... queryResult.predicate is undefined or empty string', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
@@ -977,7 +984,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: 'example:Success',
                     };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
@@ -989,13 +996,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: 'example:Success',
                     };
                     component.queryResult$ = observableOf([emptyQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
-                it('... queryResult.object is undefined or empty string', () => {
+                it('... queryResult.object is undefined or empty string', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
@@ -1005,7 +1012,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: undefined,
                     };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
@@ -1017,19 +1024,19 @@ describe('ConstructResultsComponent (DONE)', () => {
                         object: '',
                     };
                     component.queryResult$ = observableOf([emptyQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
-                it('... queryResult.subject, queryResult.predicate and queryResult.object are undefined or empty string', () => {
+                it('... queryResult.subject, queryResult.predicate and queryResult.object are undefined or empty string', async () => {
                     expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = { subject: undefined, predicate: undefined, object: undefined };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
@@ -1037,14 +1044,14 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Mock empty response
                     const emptyQueryResult = { subject: '', predicate: '', object: '' };
                     component.queryResult$ = observableOf([emptyQueryResult]);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
             });
 
-            it('... should return true if queryResult is not empty', () => {
+            it('... should return true if queryResult is not empty', async () => {
                 expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock non-empty response
@@ -1054,7 +1061,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     object: 'example:Success',
                 };
                 component.queryResult$ = observableOf([nonEmptyQueryResult]);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(isQueryResultNotEmptySpy, 4, nonEmptyQueryResult[0]);
                 expectToBe(component.isQueryResultNotEmpty([nonEmptyQueryResult]), true);

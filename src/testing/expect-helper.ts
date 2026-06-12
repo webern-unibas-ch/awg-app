@@ -1,6 +1,13 @@
 import { DebugElement, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
+
+import { expect } from 'vitest';
+
+interface Spy {
+    mock: {
+        calls: any[][];
+    };
+}
 
 // Test helper functions for expectation statements
 
@@ -38,7 +45,7 @@ function expectDebugElement(
         : `should have ${expectedFailMsg} ${selector}`;
 
     expect(des).toBeDefined();
-    expect(des.length).withContext(failMsg).toBe(expected);
+    expect(des.length, failMsg).toBe(expected);
 }
 
 /**
@@ -125,7 +132,7 @@ export function getAndExpectDebugElementByDirective(
  */
 export function expectToBe(source: any, expected: any): void {
     expect(source).toBeDefined();
-    expect(source).withContext(`should be ${expected}`).toBe(expected);
+    expect(source, `should be ${expected}`).toBe(expected);
 }
 
 /**
@@ -142,7 +149,7 @@ export function expectToBe(source: any, expected: any): void {
  */
 export function expectToContain(source: any, expected: any): void {
     expect(source).toBeDefined();
-    expect(source).withContext(`should contain ${expected}`).toContain(expected);
+    expect(source, `should contain ${expected}`).toContain(expected);
 }
 
 /**
@@ -159,7 +166,7 @@ export function expectToContain(source: any, expected: any): void {
  */
 export function expectToEqual(source: any, expected: any): void {
     expect(source).toBeDefined();
-    expect(source).withContext(`should equal ${expected}`).toEqual(expected);
+    expect(source, `should equal ${expected}`).toEqual(expected);
 }
 
 /**
@@ -176,10 +183,14 @@ export function expectToEqual(source: any, expected: any): void {
  * @returns {void} Throws the expectation statements.
  */
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
-    if (expectedMostRecentValue && expectedMostRecentValue instanceof Object) {
-        expect(spy.calls.mostRecent().args[index]).toEqual(expectedMostRecentValue);
+    const recentCall = spy.mock.calls.at(-1);
+
+    // Use a realm-safe object check so DOM objects from different globals
+    // (e.g. jsdom document elements) are compared by value, not identity.
+    if (expectedMostRecentValue !== null && typeof expectedMostRecentValue === 'object') {
+        expect(recentCall?.[index]).toEqual(expectedMostRecentValue);
     } else {
-        expect(spy.calls.mostRecent().args[index]).toBe(expectedMostRecentValue);
+        expect(recentCall?.[index]).toBe(expectedMostRecentValue);
     }
 }
 
@@ -208,7 +219,7 @@ export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecen
     expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
     // If spy was called, check if it was called with value x
-    if (spy.calls.any() !== false) {
+    if (spy.mock.calls.length > 0) {
         if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
             expectedMostRecentValue.forEach((value, index) => {
                 expectRecentSpyCall(spy, value, index);

@@ -10,13 +10,14 @@ import {
     withInterceptorsFromDi,
 } from '@angular/common/http';
 import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
-import { throwError as observableThrowError } from 'rxjs';
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { throwError as observableThrowError } from 'rxjs';
+
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { getInterceptorInstance } from '@testing/interceptor-helper';
 import { mockCache, mockConsole } from '@testing/mock-helper';
@@ -68,24 +69,21 @@ describe('CachingInterceptor (DONE)', () => {
         );
 
         // Spies on service functions
-        interceptSpy = spyOn(cachingInterceptor, 'intercept').and.callThrough();
-        cacheGetSpy = spyOn(httpCacheService, 'get').and.callFake(mockCache.get);
-        cachePutSpy = spyOn(httpCacheService, 'put').and.callFake(mockCache.put);
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        interceptSpy = vi.spyOn(cachingInterceptor, 'intercept');
+        cacheGetSpy = vi.spyOn(httpCacheService, 'get').mockImplementation(mockCache.get);
+        cachePutSpy = vi.spyOn(httpCacheService, 'put').mockImplementation(mockCache.put);
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
         // After every test, assert that there are no more pending requests
         httpTestingController.verify();
 
-        // Clear mock stores after each test
+        // Clear mocks after each test
         (httpCacheService as any).cachedResponses = new Map<string, HttpResponse<any>>();
         mockCache.clear();
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should test if interceptor instance is created', () => {
@@ -93,7 +91,7 @@ describe('CachingInterceptor (DONE)', () => {
     });
 
     describe('httpTestingController', () => {
-        it('... should issue a mocked http get request', waitForAsync(() => {
+        it('... should issue a mocked http get request', () => {
             const testData: Data = { name: 'TestData' };
 
             httpClient.get<Data>('/foo/bar').subscribe({
@@ -112,7 +110,7 @@ describe('CachingInterceptor (DONE)', () => {
 
             // Respond with mocked data
             call.flush(testData);
-        }));
+        });
     });
 
     describe('mock test objects (self-test)', () => {
@@ -122,7 +120,7 @@ describe('CachingInterceptor (DONE)', () => {
         const expectedRequest = new HttpRequest('GET', expectedUrl);
         const expectedResponse = new HttpResponse({ status: 201, statusText: 'Created', body: testData });
 
-        it('... should use mock cache', waitForAsync(() => {
+        it('... should use mock cache', () => {
             // Create cached response via cache service
             httpCacheService.put(expectedRequest, expectedResponse);
 
@@ -135,12 +133,12 @@ describe('CachingInterceptor (DONE)', () => {
             expectToEqual(httpCacheService.get(expectedRequest), expectedResponse);
             // Real service does not have created response
             expectToBe((httpCacheService as any)._cachedResponses.has(expectedRequest.urlWithParams), false);
-        }));
+        });
 
-        it('... should clear mock cache after each run', waitForAsync(() => {
+        it('... should clear mock cache after each run', () => {
             expectToBe(mockCache.get(expectedRequest), null);
             expectToBe(httpCacheService.get(expectedRequest), null);
-        }));
+        });
 
         it('... should use mock console', () => {
             console.error('Test');
@@ -166,7 +164,7 @@ describe('CachingInterceptor (DONE)', () => {
         });
         let call: TestRequest;
 
-        it('... should intercept HTTP requests', waitForAsync(() => {
+        it('... should intercept HTTP requests', () => {
             // Subscribe to GET Http Request
             httpClient.get<Data>(expectedUrl).subscribe({
                 next: data => {
@@ -180,10 +178,10 @@ describe('CachingInterceptor (DONE)', () => {
             });
 
             expectSpyCall(interceptSpy, 1, call.request);
-        }));
+        });
 
         describe('no GET request', () => {
-            it('... should do nothing if POST request', waitForAsync(() => {
+            it('... should do nothing if POST request', () => {
                 // Subscribe to PUT Http Request
                 httpClient.post<Data>(expectedUrl, testData).subscribe({
                     next: data => {
@@ -202,9 +200,9 @@ describe('CachingInterceptor (DONE)', () => {
                 expectSpyCall(interceptSpy, 1, call.request);
                 expectSpyCall(cacheGetSpy, 0, call.request);
                 expectSpyCall(cachePutSpy, 0, call.request);
-            }));
+            });
 
-            it('... should do nothing if PUT request', waitForAsync(() => {
+            it('... should do nothing if PUT request', () => {
                 // Subscribe to PUT Http Request
                 httpClient.put<Data>(expectedUrl, testData).subscribe({
                     next: data => {
@@ -223,11 +221,11 @@ describe('CachingInterceptor (DONE)', () => {
                 expectSpyCall(interceptSpy, 1, call.request);
                 expectSpyCall(cacheGetSpy, 0, call.request);
                 expectSpyCall(cachePutSpy, 0, call.request);
-            }));
+            });
         });
 
         describe('GET request', () => {
-            it('... should check for existing requests in cache via httpCacheService', waitForAsync(() => {
+            it('... should check for existing requests in cache via httpCacheService', () => {
                 const expectedRequest = new HttpRequest('GET', expectedUrl);
 
                 // Mock cache is empty
@@ -287,9 +285,9 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // Mock cache still has response
                 expectToEqual(mockCache.get(expectedRequest), expectedResponse);
-            }));
+            });
 
-            it('... should put new requests to cache via httpCacheService', waitForAsync(() => {
+            it('... should put new requests to cache via httpCacheService', () => {
                 const expectedRequest = new HttpRequest('GET', expectedUrl);
 
                 // No cached response in cache
@@ -324,17 +322,19 @@ describe('CachingInterceptor (DONE)', () => {
                 // Expect new cached response
                 expect(mockCache.get(expectedRequest)).toBeTruthy();
                 expectToEqual(mockCache.get(expectedRequest), expectedResponse);
-            }));
+            });
 
-            it('... should throw an error and log to console if request fails with HttpErrorResponse', waitForAsync(() => {
+            it('... should throw an error and log to console if request fails with HttpErrorResponse', () => {
                 // Spy on HTTP handler to handle another response
-                const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+                const httpHandlerSpy = {
+                    handle: vi.fn().mockName('HttpHandler.handle'),
+                };
                 const expectedError = new HttpErrorResponse({
                     status: 401,
                     statusText: 'error',
                     url: expectedUrl,
                 });
-                httpHandlerSpy.handle.and.returnValue(observableThrowError(() => expectedError));
+                httpHandlerSpy.handle.mockReturnValue(observableThrowError(() => expectedError));
 
                 // Set log message and spy on console
                 const expectedLogMessage = 'CachingInterceptor: Processing http error';
@@ -360,25 +360,29 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // Add another request to the stack
                 cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
-                    next: () => fail('should have been failed'),
+                    next: () => {
+                        throw new Error('should have been failed');
+                    },
                     error: err => {
                         expectToEqual(err, expectedError);
                     },
                     complete: () => {
-                        fail('should have been failed');
+                        throw new Error('should have been failed');
                     },
                 });
 
                 expectSpyCall(cachePutSpy, 0);
                 expectSpyCall(consoleSpy, 1, expectedLogMessage);
                 expectToBe(mockConsole.get(0), expectedLogMessage);
-            }));
+            });
 
-            it('... should throw an error, but not log to console if request fails with another error', waitForAsync(() => {
+            it('... should throw an error, but not log to console if request fails with another error', () => {
                 // Spy on HTTP handler to handle another response
-                const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+                const httpHandlerSpy = {
+                    handle: vi.fn().mockName('HttpHandler.handle'),
+                };
                 const expectedError = new Error('error');
-                httpHandlerSpy.handle.and.returnValue(observableThrowError(() => expectedError));
+                httpHandlerSpy.handle.mockReturnValue(observableThrowError(() => expectedError));
 
                 // Spy on console
                 expectSpyCall(consoleSpy, 0);
@@ -402,19 +406,21 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // Add another request to the stack
                 cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
-                    next: () => fail('should not call next'),
+                    next: () => {
+                        throw new Error('should not call next');
+                    },
                     error: err => {
                         expectToEqual(err, expectedError);
                     },
                     complete: () => {
-                        fail('should not complete');
+                        throw new Error('should not complete');
                     },
                 });
 
                 expectSpyCall(cachePutSpy, 0);
                 expectSpyCall(consoleSpy, 0);
                 expect(mockConsole.get(0)).toBeUndefined();
-            }));
+            });
         });
     });
 });

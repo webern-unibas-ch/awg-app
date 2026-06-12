@@ -1,9 +1,10 @@
 import { JsonPipe } from '@angular/common';
 import { Component, DebugElement, Input, NgModule, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -15,8 +16,6 @@ import {
 } from '@testing/expect-helper';
 
 import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
-
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
@@ -33,33 +32,33 @@ function getNavLinks(fixture: ComponentFixture<any>): HTMLElement[] {
 function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], shouldHaveNavItemClass = false) {
     const links = getNavLinks(fixture);
 
-    expect(links.length)
-        .withContext(`expected to find ${expected.length} links, but found ${links.length}`)
-        .toBe(expected.length);
+    expect(links.length, `expected to find ${expected.length} links, but found ${links.length}`).toBe(expected.length);
 
     links.forEach(({ classList }, i) => {
-        expect(classList.contains('nav-link')).withContext(`link should have 'nav-link' class`).toBe(true);
+        expect(classList.contains('nav-link'), `link should have 'nav-link' class`).toBe(true);
 
-        expect(classList.contains('active'))
-            .withContext(`link should ${expected[i] ? '' : 'not'} have 'active' class`)
-            .toBe(expected[i]);
+        expect(classList.contains('active'), `link should ${expected[i] ? '' : 'not'} have 'active' class`).toBe(
+            expected[i]
+        );
 
-        expect(classList.contains('nav-item'))
-            .withContext(`link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`)
-            .toBe(shouldHaveNavItemClass);
+        expect(
+            classList.contains('nav-item'),
+            `link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`
+        ).toBe(shouldHaveNavItemClass);
     });
 }
 
 function expectNavContents(fixture: ComponentFixture<any>, expected: string[], activeIndex = 0) {
     const contents = getNavContents(fixture);
-    expect(contents.length)
-        .withContext(`expected to find ${expected.length} contents, but found ${contents.length}`)
-        .toBe(expected.length);
+    expect(contents.length, `expected to find ${expected.length} contents, but found ${contents.length}`).toBe(
+        expected.length
+    );
 
     for (let i = 0; i < expected.length; ++i) {
-        expect(contents[i].classList.contains('active'))
-            .withContext(`content should ${i === activeIndex ? '' : 'not'} have 'active' class`)
-            .toBe(i === activeIndex);
+        expect(
+            contents[i].classList.contains('active'),
+            `content should ${i === activeIndex ? '' : 'not'} have 'active' class`
+        ).toBe(i === activeIndex);
     }
 }
 
@@ -76,7 +75,7 @@ function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[]
 })
 class NgxJsonViewerStubComponent {
     @Input()
-    json: ResourceFullResponseJson | {};
+    json: unknown;
 }
 
 describe('JsonViewerComponent (DONE)', () => {
@@ -85,7 +84,7 @@ describe('JsonViewerComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedHeader: string;
-    let expectedData: ResourceFullResponseJson;
+    let expectedData: unknown;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
@@ -98,12 +97,12 @@ describe('JsonViewerComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbNavWithConfigModule],
             declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(JsonViewerComponent);
@@ -111,13 +110,20 @@ describe('JsonViewerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedHeader = 'Converted JSON response from Salsah-API';
-        expectedData = new ResourceFullResponseJson();
-        expectedData.status = 1;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        expectedHeader = 'JSON Viewer Test Data';
+        expectedData = {
+            status: 1,
+            message: 'Test response',
+            data: {
+                id: 123,
+                name: 'Test Item',
+                values: [1, 2, 3],
+                metadata: {
+                    created: '2026-03-04',
+                    updated: '2026-03-04',
+                },
+            },
+        };
     });
 
     it('... should create', () => {

@@ -1,7 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
     expectToBe,
     expectToContain,
@@ -69,14 +70,14 @@ describe('FooterComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedLogos: Logos;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Stub service for test purposes
         mockCoreService = {
             getMetaDataSection: sectionType => META_DATA[sectionType],
             getLogos: () => expectedLogos,
         };
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             declarations: [
                 FooterComponent,
                 FooterCopyrightStubComponent,
@@ -86,7 +87,7 @@ describe('FooterComponent (DONE)', () => {
             ],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterComponent);
@@ -97,14 +98,12 @@ describe('FooterComponent (DONE)', () => {
         expectedLogos = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
+        // Spies
+        vi.spyOn(component, 'provideMetaData');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {

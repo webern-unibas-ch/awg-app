@@ -1,9 +1,9 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
@@ -28,7 +28,8 @@ import { EditionIntroNavComponent } from './edition-intro-nav.component';
 class LanguageSwitcherStubComponent {
     @Input()
     currentLanguage: number;
-    @Output() languageChangeRequest = new EventEmitter<number>();
+    @Output()
+    languageChangeRequest = new EventEmitter<number>();
 }
 
 describe('EditionIntroNavComponent (DONE)', () => {
@@ -53,28 +54,28 @@ describe('EditionIntroNavComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionIntroNavComponent, LanguageSwitcherStubComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
-        expectedIntroBlockContent = JSON.parse(JSON.stringify(mockEditionData.mockIntroData.intro[0].content));
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroData.intro[0].content);
         expectedNotesLabel = 'Test notes label';
         expectedCurrentLanguage = 0;
 
         expectedLinkParam = '.';
         expectedNotesFragment = 'notes';
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
-        emitLanguageChangeRequestSpy = spyOn(component.languageChangeRequest, 'emit').and.callThrough();
+        // Spies
+        setLanguageSpy = vi.spyOn(component, 'setLanguage');
+        emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should create', () => {

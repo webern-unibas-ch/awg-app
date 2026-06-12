@@ -1,11 +1,11 @@
 import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import { faScrewdriverWrench, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -37,12 +37,12 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedScrewdriverWrenchIcon: IconDefinition;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [FooterPoweredbyComponent, FooterLogoStubComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterPoweredbyComponent);
@@ -53,10 +53,6 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         expectedLogos = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedScrewdriverWrenchIcon = faScrewdriverWrench;
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {

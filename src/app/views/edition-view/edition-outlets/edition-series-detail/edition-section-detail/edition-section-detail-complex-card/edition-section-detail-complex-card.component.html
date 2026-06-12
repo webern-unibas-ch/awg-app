@@ -26,7 +26,11 @@
                                 }
                                 <br />
                                 Versionsdatum:
-                                <span class="version">{{ complex.complex.respStatement.lastModified }}</span>
+                                <span class="version">{{
+                                    complex.complex.respStatement.lastModified === '---'
+                                        ? '---'
+                                        : (complex.complex.respStatement.lastModified | date: 'longDate')
+                                }}</span>
                             </small>
                         </p>
                     }

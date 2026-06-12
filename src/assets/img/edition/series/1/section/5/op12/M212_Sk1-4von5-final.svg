@@ -563,7 +563,7 @@
     <path id="path1670" d="M226.566 85.708v2.039h-7.695q.125-1.156.75-2.188.625-1.039 2.469-2.75 1.484-1.383 1.82-1.875.453-.68.453-1.343 0-.735-.398-1.125-.39-.399-1.086-.399-.688 0-1.094.414t-.469 1.375l-2.187-.219q.195-1.812 1.226-2.601 1.032-.79 2.579-.79 1.695 0 2.664.915.968.914.968 2.273 0 .774-.28 1.477-.274.695-.876 1.46-.398.509-1.437 1.462t-1.32 1.265q-.274.313-.446.61z" style="font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;"/>
     <path id="path1672" d="M235.473 85.708v2.039h-7.696q.125-1.156.75-2.188.625-1.039 2.469-2.75 1.484-1.383 1.82-1.875.453-.68.453-1.343 0-.735-.398-1.125-.39-.399-1.086-.399-.687 0-1.094.414-.406.414-.468 1.375l-2.188-.219q.195-1.812 1.227-2.601 1.03-.79 2.578-.79 1.695 0 2.664.915.969.914.969 2.273 0 .774-.282 1.477-.273.695-.875 1.46-.398.509-1.437 1.462t-1.32 1.265q-.274.313-.446.61z" style="font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;"/>
   </g>
-  <g id="g1194" class="tkk">
+  <g id="awg-tkk-m212_sk1-017" class="tkk">
     <path id="polyline298" d="m621.562 293.922 7.594-11.391" style="fill:none;stroke:#000;stroke-width:.398" transform="translate(0 -42.512)scale(1.33333)"/>
     <path id="line614" d="M832.013 366.132v15" style="fill:none;stroke:#000;stroke-width:.530665"/>
     <g id="text616" aria-label="œ" style="font-size:18px;font-family:Maestro;stroke-width:1.33333">
@@ -586,7 +586,7 @@
     <path id="polyline1137" d="m621.562 293.922 7.594-11.391" style="fill:none;stroke:#000;stroke-width:.398" transform="translate(0 -17.757)scale(1.33333)"/>
     <path id="polyline1139" d="m621.562 293.922 7.594-11.391" style="fill:none;stroke:#000;stroke-width:.398" transform="translate(0 32.243)scale(1.33333)"/>
   </g>
-  <g id="g1276" class="tkk">
+  <g id="awg-tkk-m212_sk1-016" class="tkk">
     <path id="line534" d="M796.162 219.987v-18.854" style="fill:none;stroke:#000;stroke-width:.53066534"/>
     <g id="text536" aria-label="œ" style="font-size:18px;font-family:Maestro;stroke-width:1.33333">
       <path id="path1605" d="M790.83 216.901q.18-.486.54-.9.378-.414.864-.72.486-.324 1.044-.486.558-.18 1.134-.18t1.008.198q.432.18.684.504.252.306.306.738.072.414-.108.9t-.558.9q-.378.432-.864.738-.486.324-1.062.486-.558.18-1.116.18-.576 0-1.008-.198-.414-.18-.684-.504-.252-.324-.306-.756-.054-.414.126-.9"/>
@@ -599,7 +599,7 @@
     </g>
     <path id="polyline1730" d="m788.638 224.499 10.44-6.994" style="fill:none;stroke:#000;stroke-width:.53066534"/>
   </g>
-  <g id="g1243" class="tkk">
+  <g id="awg-tkk-m212_sk1-018" class="tkk">
     <path id="line230" d="M906.638 255.133v72" style="fill:none;stroke:#000;stroke-width:.530665"/>
     <path id="line232" d="M909.747 255.133v72" style="fill:none;stroke:#000;stroke-width:2.25066"/>
     <path id="line234" d="M906.638 201.133v126" style="fill:none;stroke:#000;stroke-width:.530665"/>
@@ -608,7 +608,7 @@
     <path id="polyline1215" d="m675.984 226.562 12.094-17.578" style="fill:none;stroke:#000;stroke-width:.398" transform="translate(0 -80.512)scale(1.33333)"/>
     <path id="polyline1217" d="m675.984 226.562 12.094-17.578" style="fill:none;stroke:#000;stroke-width:.398" transform="translate(0 27.488)scale(1.33333)"/>
   </g>
-  <g id="g1256" class="tkk">
+  <g id="awg-tkk-m212_sk1-015" class="tkk">
     <g id="text498" aria-label="n" style="font-size:13.5px;font-family:Maestro;fill:#7d7d7d;stroke-width:.999997">
       <path id="path1592" d="M590.127 342.028v2.12l1.539-.406v-2.12zm1.89-1.81v7.71h-.351v-2.89l-1.877.486v-7.803h.338v3.01z"/>
     </g>

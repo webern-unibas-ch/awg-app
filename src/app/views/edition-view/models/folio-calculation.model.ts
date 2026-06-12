@@ -326,7 +326,7 @@ export class FolioCalculationContentSegmentVertices {
                 offset = 0;
         }
 
-        const yValue = isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
+        const yValue = isStart ? systemLines[0].START_POINT.y : systemLines.at(-1).END_POINT.y;
         const correction = this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
@@ -974,12 +974,12 @@ export class FolioCalculationSystems {
      * from the calculated folio sheet, the systems string and the zoom factor.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     * @param {number} factor The given zoom factor.
      * @param {string} systems The given systems string.
      * @param {boolean} systemsReversed The given reversed flag.
-     * @param {number} factor The given zoom factor.
      */
-    constructor(sheet: FolioCalculationSheet, systems: string, systemsReversed: boolean = false, factor: number) {
-        this.NUMBER_OF_SYSTEMS = systems ? parseInt(systems, 10) : 0;
+    constructor(sheet: FolioCalculationSheet, factor: number, systems: string, systemsReversed: boolean = false) {
+        this.NUMBER_OF_SYSTEMS = systems ? Number.parseInt(systems, 10) : 0;
         this.SYSTEMS_REVERSED = systemsReversed;
         this.ZOOM_FACTOR = factor;
 
@@ -1063,9 +1063,9 @@ export class FolioCalculation {
         this.SHEET = new FolioCalculationSheet(folioSettings, folioData.folioId, folioData.trademarkPosition);
         this.SYSTEMS = new FolioCalculationSystems(
             this.SHEET,
+            folioSettings.factor,
             folioData.systems,
-            folioData.reversed,
-            folioSettings.factor
+            folioData.reversed
         );
         this.CONTENT_SEGMENTS = folioData.content.map(
             (content: FolioContent) =>

@@ -1,8 +1,10 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { lastValueFrom, Observable, of as observableOf, ReplaySubject } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -29,7 +31,8 @@ import { EditionPrefaceComponent } from './edition-preface.component';
 class LanguageSwitcherStubComponent {
     @Input()
     currentLanguage: number;
-    @Output() languageChangeRequest = new EventEmitter<number>();
+    @Output()
+    languageChangeRequest = new EventEmitter<number>();
 }
 
 describe('EditionPrefaceComponent (DONE)', () => {
@@ -88,25 +91,21 @@ describe('EditionPrefaceComponent (DONE)', () => {
         mockEditionStateService = TestBed.inject(EditionStateService);
 
         // Test data
-        expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedCurrentLanguage = 0;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
+        // Spies
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        setLanguageSpy = vi.spyOn(component, 'setLanguage');
 
-        editionDataServiceGetPrefaceDataSpy = spyOn(mockEditionDataService, 'getEditionPrefaceData').and.callThrough();
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
-        editionStateServiceUpdateIsPrefaceViewSpy = spyOn(
-            mockEditionStateService,
-            'updateIsPrefaceView'
-        ).and.callThrough();
-        editionStateServiceClearIsPrefaceViewSpy = spyOn(
-            mockEditionStateService,
-            'clearIsPrefaceView'
-        ).and.callThrough();
+        editionDataServiceGetPrefaceDataSpy = vi.spyOn(mockEditionDataService, 'getEditionPrefaceData');
+        editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
+        editionStateServiceUpdateIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'updateIsPrefaceView');
+        editionStateServiceClearIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'clearIsPrefaceView');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -162,10 +161,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
         });
 
-        it('... should have prefaceData$', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.prefaceData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.prefaceData$)).toBeResolvedTo(expectedPrefaceData);
-        }));
+        it('... should have prefaceData$', async () => {
+            await expect(lastValueFrom(component.prefaceData$)).resolves.not.toThrow();
+            await expect(lastValueFrom(component.prefaceData$)).resolves.toEqual(expectedPrefaceData);
+        });
 
         describe('VIEW', () => {
             it('... should contain 1 outer div.awg-preface-view', () => {
@@ -187,25 +186,25 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 expectToEqual(switcherCmp.currentLanguage, expectedCurrentLanguage);
             });
 
-            it('... should contain as many preface paragraph elements in div.awg-preface-view as content items in preview data (german)', () => {
+            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (german)', () => {
                 // Div debug element
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-preface-para',
+                    'div.awg-edition-preface-block',
                     expectedPrefaceData.preface[0].content.length,
                     expectedPrefaceData.preface[0].content.length
                 );
             });
 
-            it('... should contain as many preface paragraph elements in div.awg-preface-view as content items in preview data (english)', () => {
+            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (english)', () => {
                 // Div debug element
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-preface-para',
+                    'div.awg-edition-preface-block',
                     expectedPrefaceData.preface[1].content.length,
                     expectedPrefaceData.preface[1].content.length
                 );
@@ -217,10 +216,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 expect(component.getGlyph).toBeDefined();
             });
 
-            it('... should trigger on change detection', () => {
+            it('... should trigger on change detection', async () => {
                 expectSpyCall(getGlyphSpy, 1);
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 2);
             });

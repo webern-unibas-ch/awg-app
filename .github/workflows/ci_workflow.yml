@@ -16,9 +16,6 @@ permissions:
 
 # globals
 env:
-    # general settings
-    MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
-
     # dev settings
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
@@ -32,16 +29,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.19, 22.16, 24.x]
+                node-version: [22.22, 24.16, 26.x]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
               with:
                   fetch-depth: 2
 
@@ -55,8 +52,8 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 22.16 # upload coverage report for current node version only
-              uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+              if: matrix.node-version == 24.16 # upload coverage report for current node version only
+              uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
@@ -70,16 +67,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
               with:
                   fetch-depth: 2
 
@@ -93,24 +90,26 @@ jobs:
                   yarn run lint
 
     sonar:
+        # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
+        if: github.event_name != 'pull_request' && github.repository_owner == vars.MAIN_REPO_OWNER
         name: Sonar scanning (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
 
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
               with:
-                  fetch-depth: 2
+                  fetch-depth: 0 # fetch all history, needed for SonarQube analysis
 
             - name: Common Node setup
               uses: ./.github/actions/common-node-setup
@@ -118,8 +117,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Perform SonarQube scan
-              if: github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarQube scan only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # v7.0.0
+              uses: SonarSource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e # v8.2.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -131,19 +129,19 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.19, 22.16, 24.x]
+                node-version: [22.22, 24.16, 26.x]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
               with:
                   fetch-depth: 0 # fetch all history, needed for git sha
 
@@ -175,8 +173,8 @@ jobs:
 
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
-              if: matrix.node-version == 22.16 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-              uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+              if: matrix.node-version == 24.16 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -199,16 +197,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -216,7 +214,7 @@ jobs:
                   path: ${{ env.DEV_GH_PAGES_DIR }}
 
             - name: Download build artifacts
-              uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+              uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -271,16 +269,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
             - name: Common Node setup
               uses: ./.github/actions/common-node-setup
@@ -311,10 +309,10 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [22.16]
+                node-version: [24.16]
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+              uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
               with:
                   egress-policy: audit
 
@@ -325,7 +323,7 @@ jobs:
             - name: Create Release
               id: create_release
               if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-              uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+              uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}

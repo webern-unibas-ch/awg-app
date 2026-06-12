@@ -1,0 +1,15 @@
+.awg-meta-identifier-badge {
+    margin-left: 0.1em;
+
+    &:hover .awg-meta-identifier-badge-icon {
+        opacity: 0.7;
+    }
+}
+
+.awg-meta-identifier-badge-icon {
+    height: 0.65em;
+    width: auto;
+    vertical-align: super;
+    opacity: 1;
+    transition: opacity 0.15s ease;
+}

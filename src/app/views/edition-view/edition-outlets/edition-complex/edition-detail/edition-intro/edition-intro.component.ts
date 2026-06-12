@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
@@ -20,6 +20,7 @@ import { EditionDataService, EditionOutlineService, EditionStateService } from '
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class EditionIntroComponent implements OnDestroy, OnInit {
@@ -336,7 +337,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Initializes the scroll listener.
      */
     private _initScrollListener(): void {
-        fromEvent(window, 'scroll')
+        fromEvent(globalThis, 'scroll')
             .pipe(throttleTime(200), takeUntil(this._destroyed$))
             .subscribe({
                 next: event => this._onIntroScroll(event),
@@ -413,7 +414,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     private _onIntroScroll(event: Event): void {
         if (event?.type === 'scroll') {
-            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            const scrollPosition = globalThis.scrollY || document.documentElement.scrollTop;
             const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
             const introNavLinks: NodeListOf<HTMLAnchorElement> =
                 document.querySelectorAll('a.awg-edition-intro-nav-link');

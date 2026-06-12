@@ -36,11 +36,11 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     @Input() suppliedClasses: Map<string, boolean>;
 
     /**
-     * Input variable: hasAvailableTkaOverlays.
+     * Input variable: hasAvailableTkkOverlays.
      *
-     * It keeps the information whether there are available tka overlays.
+     * It keeps the information whether there are available tkk overlays.
      */
-    @Input() hasAvailableTkaOverlays: boolean;
+    @Input() hasAvailableTkkOverlays: boolean;
 
     /**
      * Output variable: selectOverlaysRequest.
@@ -136,11 +136,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      * @returns {void} Toggles the visibility of the tkk classes highlighting.
      */
     toggleTkkClassesHighlight(isVisible?: boolean): void {
-        if (isVisible !== undefined) {
-            this.tkkHighlightingVisible = isVisible;
-        } else {
-            this.tkkHighlightingVisible = !this.tkkHighlightingVisible;
-        }
+        this.tkkHighlightingVisible = isVisible ?? !this.tkkHighlightingVisible;
+
         this.toggleTkkClassesHighlightRequest.emit(this.tkkHighlightingVisible);
 
         // Update allClassesVisible flag
@@ -170,8 +167,8 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      */
     private _updateAllClassesVisibility(): void {
         const allValues = [...Array.from(this.suppliedClasses.values()), this.tkkHighlightingVisible];
-        const allValuesTrue = allValues.every(value => value);
-        const allValuesFalse = allValues.every(value => !value);
+        const allValuesTrue = allValues.every(Boolean); // Check if all values are true
+        const allValuesFalse = !allValues.some(Boolean); // Check if nothing is true (i.e., all are false)
 
         if (allValuesTrue || allValuesFalse) {
             this.allClassesVisible = allValues[0];

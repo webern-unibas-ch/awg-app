@@ -1,9 +1,10 @@
-import { DebugElement, NgModule, inject } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, inject, NgModule } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarXmark, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { NgbConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -30,12 +31,12 @@ describe('DisclaimerWorkeditionsComponent', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
             declarations: [DisclaimerWorkeditionsComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(DisclaimerWorkeditionsComponent);

@@ -2,10 +2,11 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { Observable, of as observableOf } from 'rxjs';
+
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -68,23 +69,17 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         expectedSectionId = expectedSelectedSection.section.route;
 
         // Spies
-        updateSectionFromRouteSpy = spyOn(component, 'updateSectionFromRoute').and.callThrough();
-        editionOutlineServiceGetEditionSectionByIdSpy = spyOn(
-            EditionOutlineService,
-            'getEditionSectionById'
-        ).and.callThrough();
-        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionStateService,
-            'getSelectedEditionSeries'
-        ).and.callThrough();
-        editionStateServiceUpdateSelectedEditionSectionSpy = spyOn(
+        updateSectionFromRouteSpy = vi.spyOn(component, 'updateSectionFromRoute');
+        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
+        editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
             mockEditionStateService,
             'updateSelectedEditionSection'
-        ).and.callThrough();
+        );
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

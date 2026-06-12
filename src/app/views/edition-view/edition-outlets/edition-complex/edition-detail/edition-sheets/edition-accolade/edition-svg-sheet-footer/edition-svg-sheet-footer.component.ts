@@ -8,7 +8,7 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
 /**
  * The EditionSvgSheetFooter component.
  *
- * It contains the footer of the svg sheet navigation section
+ * It contains the footer of the svg sheet section
  * of the edition view of the app
  * and lets the user display textcritical comments.
  */

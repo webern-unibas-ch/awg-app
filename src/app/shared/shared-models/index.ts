@@ -6,7 +6,4 @@
  * throughout the app.
  *
  */
-
-import { SliderConfig } from './slider-config.model';
-
-export { SliderConfig };
+export { SliderConfig } from './slider-config.model';

@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 // Shared modules
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { CodeMirrorModule } from './codemirror/codemirror.module';
 import { CompileHtmlModule } from './compile-html';
@@ -23,6 +22,7 @@ import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { LicenseComponent } from './license/license.component';
+import { MetaIdentifierBadgesComponent } from './meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
@@ -56,7 +56,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         CompileHtmlModule,
         CodeMirrorModule,
         FontAwesomeModule,
-        NgxGalleryModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
     ],
@@ -70,6 +69,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         JsonViewerComponent,
         LanguageSwitcherComponent,
         LicenseComponent,
+        MetaIdentifierBadgesComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
@@ -91,7 +91,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         RouterModule,
         CompileHtmlModule,
         FontAwesomeModule,
-        NgxGalleryModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
 
@@ -104,6 +103,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         JsonViewerComponent,
         LanguageSwitcherComponent,
         LicenseComponent,
+        MetaIdentifierBadgesComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,

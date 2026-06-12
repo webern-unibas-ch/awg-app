@@ -6,11 +6,6 @@
  * that are used for testing.
  *
  */
-
-import { mockAnalytics } from './mock-analytics';
-import { mockCache } from './mock-cache';
-import { mockConsole } from './mock-console';
-import { mockLocalStorage, mockSessionStorage } from './mock-storage';
-import { mockWindow } from './mock-window';
-
-export { mockAnalytics, mockCache, mockConsole, mockLocalStorage, mockSessionStorage, mockWindow };
+export { mockAnalytics } from './mock-analytics';
+export { mockCache } from './mock-cache';
+export { mockConsole } from './mock-console';

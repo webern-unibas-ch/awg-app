@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
     styleUrls: ['./view-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class ViewContainerComponent {

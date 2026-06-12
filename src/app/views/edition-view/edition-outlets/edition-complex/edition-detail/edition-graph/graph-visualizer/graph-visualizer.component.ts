@@ -8,7 +8,7 @@ import { EMPTY, from, Observable } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, QueryResult, Triple } from './models';
+import { D3SimulationNode, QueryResult } from './models';
 
 import { GraphVisualizerService } from './services';
 
@@ -22,7 +22,7 @@ import { GraphVisualizerService } from './services';
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
 export class GraphVisualizerComponent implements OnInit {
@@ -73,9 +73,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples or QueryResult.
+     * It keeps the result of the query as an observable of QueryResult.
      */
-    queryResult$: Observable<Triple[] | QueryResult>;
+    queryResult$: Observable<QueryResult>;
 
     /**
      * Public variable: queryTime.
@@ -147,7 +147,7 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
 
-        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.queryList = structuredClone(this.graphRDFInputData.queryList);
         const resetted = query
             ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
             : this.queryList[0];
@@ -194,7 +194,15 @@ export class GraphVisualizerComponent implements OnInit {
         if (!node) {
             return;
         }
-        console.info('GraphVisualizerComponent# graphClick on node', node);
+
+        this.showToastMessage(
+            new ToastMessage(
+                node.id,
+                `GraphVisualizerComponent# graphClick on node ${node.id}\n\n Label: ${node.label}`,
+                5000
+            ),
+            'info'
+        );
     }
 
     /**
@@ -220,27 +228,32 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: showErrorMessage.
+     * Public method: showToastMessage.
      *
-     * It shows a given error message for a given duration.
+     * It shows a given toast message with the specified type.
      *
      * @param {ToastMessage} toastMessage The given toast message.
+     * @param {'error' | 'info'} type The type of message to display.
      *
-     * @returns {void} Shows the error message.
+     * @returns {void} Shows the message.
      */
-    showErrorMessage(toastMessage: ToastMessage): void {
+    showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
         if (!toastMessage?.message) {
             return;
         }
 
         const toast = new Toast(toastMessage.message, {
             header: toastMessage.name,
-            classname: 'bg-danger text-light',
+            classname: type === 'error' ? 'bg-danger text-light' : 'bg-info text-light',
             delay: toastMessage.duration,
         });
         this._toastService.add(toast);
 
-        console.error(toastMessage.name, ':', toastMessage.message);
+        if (type === 'error') {
+            console.error(toastMessage.name, ':', toastMessage.message);
+        } else {
+            console.info(toastMessage.name, ':', toastMessage.message);
+        }
     }
 
     /**
@@ -252,13 +265,13 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise<Triple[]>} The result of the query as a promise of triple array.
+     * @returns {Promise<QueryResult>} The result of the query.
      */
-    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<QueryResult> {
         // Capture start time of query
         const t1 = Date.now();
 
-        let result;
+        let result: QueryResult;
 
         // Perform query with client based rdfstore
         try {
@@ -270,10 +283,13 @@ export class GraphVisualizerComponent implements OnInit {
             console.error('#queryLocalstore got error:', err);
 
             if (err.message && err.name) {
-                if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage(new ToastMessage(err.name, 'The query did not return any results.', 5000));
+                if (err.message.includes('undefined')) {
+                    this.showToastMessage(
+                        new ToastMessage(err.name, 'The query did not return any results.', 5000),
+                        'error'
+                    );
                 }
-                this.showErrorMessage(new ToastMessage(err.name, err.message, 5000));
+                this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
             }
 
             // Capture query time

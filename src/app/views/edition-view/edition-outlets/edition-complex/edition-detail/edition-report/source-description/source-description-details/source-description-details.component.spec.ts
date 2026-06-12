@@ -1,6 +1,8 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -35,11 +37,13 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedReportFragment: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             declarations: [SourceDescriptionDetailsComponent, CompileHtmlComponent],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionDetailsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -55,21 +59,20 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
         expectedReportFragment = 'source_G';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-    }));
+        // Spies
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();
@@ -100,14 +103,14 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Simulate the parent setting the input properties
             component.details = expectedDetails;
             component.detailsClass = expectedDetailsClass;
             component.detailsLabel = expectedDetailsLabel;
 
             // Trigger initial data binding
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
         });
 
         it('... should have `details`', () => {
@@ -123,15 +126,15 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer paragraph if no details are given', () => {
-                component.details = [];
-                detectChangesOnPush(fixture);
-
-                getAndExpectDebugElementByCss(compDe, 'p', 0, 0);
-            });
-
             it('... should contain one outer paragraph when details are given', () => {
                 getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
+            });
+
+            it('... should contain no outer paragraph if no details are given', async () => {
+                component.details = [];
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'p', 0, 0);
             });
 
             it('... the outer paragraph should have the detailsClass appended to its class name', () => {
@@ -141,9 +144,9 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expectToBe(pEl.className, `awg-source-description-${expectedDetailsClass}`);
             });
 
-            it('... should contain no span with the detailsLabel if not given', () => {
+            it('... should contain no span with the detailsLabel if not given', async () => {
                 component.detailsLabel = '';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'span.smallcaps', 0, 0);
             });
@@ -159,15 +162,29 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
             });
 
+            it('... should contain a span with class `awg-source-description-details-content`', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-details-content', 1, 1);
+            });
+
             it('... should contain twice as many spans as details after the first label span', () => {
                 // Expected length is the length of the details array times 2 (for the punctuation marks)
                 const expectedLength = expectedDetails.length * 2;
 
-                getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', expectedLength, expectedLength);
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    expectedLength,
+                    expectedLength
+                );
             });
 
             it('... should contain the details in the first spans', () => {
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    6,
+                    6
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -179,7 +196,12 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain the punctuation marks in the other spans', () => {
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    6,
+                    6
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -192,11 +214,16 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain no punctuation marks if detailsClass equals `conditions`', () => {
+            it('... should contain no punctuation marks if detailsClass equals `conditions`', async () => {
                 component.detailsClass = 'conditions';
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 3, 3);
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'span.awg-source-description-details-content > span',
+                    3,
+                    3
+                );
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
@@ -211,19 +238,19 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -232,13 +259,13 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, {
                     complexId: expectedComplexId,
                     fragmentId: expectedReportFragment,
                 });
-            }));
+            });
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
@@ -300,19 +327,19 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -321,10 +348,10 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[2], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -357,19 +384,19 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click', async () => {
                 expectedDetails = [
                     `testDetails1 <a (click)="ref.navigateToReportFragment({complexId: '${expectedComplexId}', fragmentId: '${expectedReportFragment}'})">Test anchor</a>`,
                     `testDetails2 <a (click)="ref.openModal('${expectedModalSnippet}')">Test anchor</a>`,
                     `testDetails3 <a (click)="ref.selectSvgSheet({complexId: '${expectedComplexId}', sheetId: '${expectedSheetId}'})">Test anchor</a>`,
                 ];
                 component.details = expectedDetails;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span:not(:first-child)',
+                    'span.awg-source-description-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -378,10 +405,10 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[4], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;

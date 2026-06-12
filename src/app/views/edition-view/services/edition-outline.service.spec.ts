@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -23,13 +23,13 @@ describe('EditionOutlineService (DONE)', () => {
         TestBed.configureTestingModule({});
 
         // Spies for service methods
-        initializeEditionOutlineSpy = spyOn(EditionOutlineService, 'initializeEditionOutline').and.callThrough();
-        setEditionOutlineSpy = spyOn(EditionOutlineService, 'setEditionOutline').and.callThrough();
-        fetchEditionOutlineDataSpy = spyOn(EditionOutlineService as any, '_fetchEditionOutlineData').and.callThrough();
+        initializeEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'initializeEditionOutline');
+        setEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'setEditionOutline');
+        fetchEditionOutlineDataSpy = vi.spyOn(EditionOutlineService as any, '_fetchEditionOutlineData');
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -61,7 +61,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = EditionOutlineService.getEditionOutline();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe([]);
+            expect(editionOutline).not.toEqual([]);
 
             // Test for samples
             expect(editionOutline.length).toBeGreaterThan(0);
@@ -80,7 +80,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = EditionOutlineService.getEditionOutline();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe([]);
+            expect(editionOutline).not.toEqual([]);
 
             // Test for samples
             expect(editionOutline.length).toBeGreaterThan(0);
@@ -247,7 +247,7 @@ describe('EditionOutlineService (DONE)', () => {
             const editionOutline = (EditionOutlineService as any)._fetchEditionOutlineData();
 
             expect(editionOutline).toBeDefined();
-            expect(editionOutline).not.toBe({});
+            expect(editionOutline).not.toEqual({});
             expect(Object.keys(editionOutline).length).toBeGreaterThan(0);
             expect(editionOutline.outline).toBeDefined();
 

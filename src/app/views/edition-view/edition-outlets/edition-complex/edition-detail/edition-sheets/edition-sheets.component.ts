@@ -72,6 +72,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     isFullscreen = false;
 
     /**
+     * Public variable: isSheetFacetMinimized.
+     *
+     * It keeps the toggle state of the sheet facet.
+     */
+    isSheetFacetMinimized = false;
+
+    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -264,7 +271,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It evaluates the id of the previous or next SVG sheet
      * based on the given direction and calls it with onSvgSheetSelect.
      *
-     * @param {number} direction - A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {number} direction - A number indicating the direction of browsing. -1 for previous and 1 for next.
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
@@ -371,6 +378,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         };
 
         this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Public method: onToggleSheetFacet.
+     *
+     * It sets/updates the sheet facet state and the isSheetFacetMinimized flag.
+     *
+     * @param {boolean} isMinimized A boolean indicating the minimized state of the sheet facet.
+     * @returns {void} Sets/updates the sheet facet state and the isSheetFacetMinimized flag.
+     */
+    onToggleSheetFacet(isMinimized: boolean): void {
+        this.isSheetFacetMinimized = isMinimized;
     }
 
     /**

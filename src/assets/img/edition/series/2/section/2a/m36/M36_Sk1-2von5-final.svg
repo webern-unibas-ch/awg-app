@@ -84,7 +84,7 @@
     </g>
   </g>
   <path id="rect7566" d="M635.366 241.01h88.151v75.623h-88.15z" style="fill:#fff;stroke:none;stroke-width:1.33333004"/>
-  <g id="g975" class="tkk" transform="translate(37.677)">
+  <g id="awg-tkk-m36_sk1-004" class="tkk" transform="translate(37.677)">
     <g id="text7606" aria-label="." style="font-size:21.86669922px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path994" d="M826.352 223.035c0 .612.503 1.115 1.137 1.115s1.137-.503 1.137-1.115c0-.613-.503-1.094-1.137-1.094s-1.137.481-1.137 1.094" style="font-size:21.86669922px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>
     </g>
@@ -152,7 +152,7 @@
   </g>
   <path id="polyline7666" d="M883.16 296.81v2.744h27.957" style="fill:none;stroke:#000;stroke-width:.6425197;stroke-dasharray:none"/>
   <path id="polyline7668" d="M920.672 299.55h25.738v-2.734" style="fill:none;stroke:#000;stroke-width:.644"/>
-  <g id="g13" class="tkk">
+  <g id="awg-tkk-m36_sk1-005" class="tkk">
     <path id="polyline7544" d="m872.254 277.399 13.768-10.978" style="fill:none;stroke:#000;stroke-width:.643999"/>
   </g>
   <g id="g4" class="supplied measureN">
@@ -160,7 +160,7 @@
       <path id="path1065" d="M788.525 116.966q.125-.774.533-1.862.486-1.312 1.276-2.603.789-1.297 1.756-2.228h-3.822l.183-.867h4.894l-.178.867q-1.244 1.093-2.175 2.819-1.082 1.991-1.48 3.874z" style="font-style:italic;font-variant:normal;font-weight:400;font-stretch:normal;font-size:10.7074px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:1.33333"/>
     </g>
   </g>
-  <g id="g5" class="link-box">
+  <g id="awg-lb-m36_sk1b-to-m36_sk1e" class="link-box">
     <path id="rect7568" d="M635.366 241.01h88.151v75.623h-88.15z" style="fill:none;stroke:#777;stroke-width:.910666;stroke-opacity:1"/>
     <g id="text7682" aria-label="Sk1 T. 16" style="font-size:12.8px;font-family:&quot;Times New Roman&quot;;fill:#000;stroke-width:1.33333" transform="translate(37.677)">
       <path id="path1069" d="m620.065 267 3-.29q.27 1.51 1.093 2.218.834.708 2.24.708 1.49 0 2.24-.625.76-.635.76-1.479 0-.541-.323-.916-.313-.386-1.105-.667-.541-.188-2.468-.667-2.479-.614-3.479-1.51-1.406-1.26-1.406-3.073 0-1.166.656-2.177.667-1.02 1.906-1.552 1.25-.53 3.01-.53 2.875 0 4.323 1.26 1.458 1.26 1.531 3.364l-3.083.135q-.198-1.177-.854-1.687-.646-.52-1.948-.52-1.344 0-2.104.551-.49.354-.49.948 0 .542.459.927.583.49 2.833 1.02 2.25.532 3.323 1.105 1.083.562 1.687 1.552.615.979.615 2.427 0 1.312-.73 2.458-.729 1.146-2.062 1.708-1.333.552-3.323.552-2.895 0-4.447-1.333-1.552-1.344-1.854-3.906" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1"/>
@@ -228,7 +228,7 @@
     </g>
     <path id="path717-2" d="M829.709 264.6h-1.948v19.396h1.948" style="fill:none;stroke:#777;stroke-width:.653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
   </g>
-  <g id="g12" class="link-box">
+  <g id="awg-lb-m36_sk1b-to-m36_sk1c" class="link-box">
     <path d="M694.133 150.472v88.123h105.553v-62.033h72.57v62.033H963.1v-88.123" style="fill:#fff;stroke:#777;stroke-width:.955968;stroke-opacity:1"/>
     <g id="text9905" aria-label="Sk1 T. 8–11" style="font-size:12.8px;font-family:&quot;Times New Roman&quot;;fill:#000;stroke-width:1.33333" transform="translate(37.677)">
       <path id="path1160" d="m738.78 168.714 3-.292q.271 1.51 1.094 2.218.834.709 2.24.709 1.49 0 2.24-.625.76-.636.76-1.48 0-.54-.323-.916-.313-.385-1.104-.666-.542-.188-2.469-.667-2.479-.615-3.479-1.51-1.406-1.26-1.406-3.073 0-1.167.656-2.177.667-1.02 1.906-1.552 1.25-.531 3.01-.531 2.875 0 4.323 1.26 1.458 1.26 1.531 3.364l-3.083.136q-.198-1.177-.854-1.688-.646-.52-1.948-.52-1.343 0-2.104.552-.49.354-.49.948 0 .541.459.927.583.49 2.833 1.02 2.25.532 3.323 1.104 1.083.563 1.687 1.552.615.98.615 2.427 0 1.313-.73 2.458-.729 1.146-2.062 1.709-1.333.552-3.322.552-2.896 0-4.448-1.334-1.552-1.343-1.854-3.905" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1"/>
@@ -247,7 +247,7 @@
     <path id="path9" d="M878.352 272.238c-.59 1.552.437 2.842 2.274 2.864s3.783-1.224 4.373-2.799c.569-1.552-.437-2.82-2.296-2.842-1.836-.022-3.783 1.224-4.351 2.777" style="font-size:21.8667px;font-family:Maestro;fill:#000;stroke-width:1.33333"/>
   </g>
   <path id="path10" d="M881.837 272.14v-15.412" style="fill:none;stroke:#000;stroke-width:.64252;stroke-dasharray:none"/>
-  <g id="g11" class="link-box">
+  <g id="awg-lb-m36_sk1b-to-m35_42_sk1b" class="link-box">
     <path id="rect7554" d="M175.264 150.472v88.123h516.125v-88.123" style="fill:#fff;stroke:#777;stroke-width:1"/>
     <g id="text7686" aria-label="M 35/42 Sk1 T. 8(1–2/4)–9B" style="font-size:12.8px;font-family:&quot;Times New Roman&quot;;fill:#000;stroke-width:1.33333" transform="translate(30.368 3.996)">
       <path id="path1180" d="M270.172 209.867v-15.27h4.614l2.77 10.416 2.74-10.416h4.624v15.27h-2.864v-12.02l-3.03 12.02h-2.97l-3.02-12.02v12.02z" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1"/>

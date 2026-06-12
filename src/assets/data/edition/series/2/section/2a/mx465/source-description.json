@@ -1005,18 +1005,20 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a (click)=\"ref.selectSvgSheet({complexId: 'mx465', sheetId: 'Mx465_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_1-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_1-002",
                                             "measure": "7",
                                             "system": "Klav. o.",
                                             "position": "2. Note",
@@ -1032,36 +1034,41 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a (click)=\"ref.selectSvgSheet({complexId: 'mx465', sheetId: 'Mx465_TF1'})\">einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_2-001",
                                             "measure": "1",
                                             "system": "Klav.",
                                             "position": "1.–3. Note",
                                             "comment": "Linie zwischen g<sup>1</sup> und e<sup>1</sup> in Klav. o. sowie C und A in Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_2-002",
                                             "measure": "1 <br />bis 2",
                                             "system": "Klav. o.",
                                             "position": "4/4 <br />1. Note",
                                             "comment": "Linie zwischen h<sup>1 </sup>und a<sup>1</sup> sowie e<sup>1</sup> und d<sup>1</sup> zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_2-003",
                                             "measure": "5–8",
                                             "system": "Klav. o.",
                                             "position": "",
                                             "comment": "Bogen über dem System."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_2-004",
                                             "measure": "5",
                                             "system": "Klav.",
                                             "position": "3/4–4/4",
                                             "comment": "Linie zwischen c<sup>2</sup> und h<sup>1</sup> in Klav. o. sowie f und e in Klav. u. zur Verdeutlichung der offenen Quintparallele."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-mx465_tf1_B_corr_2-005",
                                             "measure": "7",
                                             "system": "",
                                             "position": "3/4–4/4",

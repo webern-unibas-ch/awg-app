@@ -1,7 +1,9 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -13,7 +15,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { click } from '@testing/click-helper';
 import { EditionSectionDetailIntroCardComponent } from './edition-section-detail-intro-card.component';
 
 describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
@@ -35,18 +36,16 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailIntroCardComponent, RouterLinkStubDirective],
         }).compileComponents();
+    });
 
+    beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionDetailIntroCardComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSelectedSeries = JSON.parse(JSON.stringify(EditionOutlineService.getEditionOutline()[0]));
-        expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
+        expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
     });
 
     it('should create', () => {
@@ -71,8 +70,8 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = expectedSelectedSeries;
-            component.selectedSection = expectedSelectedSection;
+            component.selectedSeries = structuredClone(expectedSelectedSeries);
+            component.selectedSection = structuredClone(expectedSelectedSection);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -172,7 +171,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective) => {
+                for (const routerLink of routerLinks) {
                     const expectedRouterLink = [
                         '/edition',
                         'series',
@@ -182,11 +181,11 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                         'intro',
                     ];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
-                });
+                }
             });
 
-            it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
+            it('... can click all links in template', async () => {
+                for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = [
                         '/edition',
@@ -199,11 +198,10 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
                     expectToBe(routerLink.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                });
+                }
             });
         });
     });

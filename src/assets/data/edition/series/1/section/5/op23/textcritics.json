@@ -15,182 +15,182 @@
                         "blockHeader": "<strong>I</strong> („Das dunkle Herz“ M 314: einzige Textfassung)",
                         "blockComments": [
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-001",
                                 "measure": "3",
                                 "system": "Klav.",
                                 "position": "8/8",
                                 "comment": "Ende der Crescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-002",
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "1/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 5."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-003",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "8/8",
                                 "comment": "Anfang der Decrescendogabel versetzt von T. 7 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-004",
                                 "measure": "8",
                                 "system": "Ges.",
                                 "position": "7–8/8",
                                 "comment": "Längenstrich ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-005",
                                 "measure": "10",
                                 "system": "Klav.",
                                 "position": "8/8",
                                 "comment": "Anfang der Decrescendogabel versetzt von T. 11 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-006",
                                 "measure": "11",
                                 "system": "Klav. o.",
                                 "position": "7/8",
                                 "comment": "Fermate ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam und analog Ges. und Klav. u."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-007",
                                 "measure": "13",
                                 "system": "Klav. o.",
                                 "position": "5/8",
                                 "comment": "Achtelpause als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-008",
                                 "measure": "15",
                                 "system": "Klav.",
                                 "position": "1. Note",
                                 "comment": "Ende der Decrescendogabel versetzt von Ende T. 14 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-009",
                                 "measure": "17",
                                 "system": "Ges.",
                                 "position": "1/8",
                                 "comment": "Ende der Decrescendogabel versetzt von Ende T. 16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-010",
                                 "measure": "17",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "Tenutostrich ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-011",
                                 "measure": "17 <br />bis 18",
                                 "system": "Klav. o.",
                                 "position": "Taktende <br />Taktanfang",
                                 "comment": "Violinschlüssel versetzt von vor T. 18 2/8 und Kustos ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 17."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-012",
                                 "measure": "19",
                                 "system": "Ges.",
                                 "position": "1. Note",
                                 "comment": "Ende der Decrescendogabel versetzt von Ende T. 18 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-013",
                                 "measure": "20",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-014",
                                 "measure": "22",
                                 "system": "Ges.",
                                 "position": "1. Note",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-015",
                                 "measure": "22",
                                 "system": "Klav. o.",
                                 "position": "2/4",
                                 "comment": "Tenutostrich ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-016",
                                 "measure": "vor 23",
                                 "system": "Klav. o.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-017",
                                 "measure": "vor 37",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-018",
                                 "measure": "37",
                                 "system": "Ges.",
                                 "position": "5–6/8",
                                 "comment": "Längenstrich ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-019",
                                 "measure": "37",
                                 "system": "Klav. u.",
                                 "position": "4/8",
                                 "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-020",
                                 "measure": "38",
                                 "system": "Ges.",
                                 "position": "3–4/8",
                                 "comment": "Text: <em>Flü-ße</em> korrigiert zu <em>Flüs-se</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-021",
                                 "measure": "38",
                                 "system": "Klav. u.",
                                 "position": "6/8",
                                 "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-022",
                                 "measure": "vor 41",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-023",
                                 "measure": "vor 43",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-024",
                                 "measure": "vor 46",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-025",
                                 "measure": "49",
                                 "system": "Ges.",
                                 "position": "2. Note",
                                 "comment": "Fermate ergänzt analog Klav. u. 5/8. Siehe auch TkA zu Klav. o."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m314_tf1-026",
                                 "measure": "49",
                                 "system": "Klav. o.",
                                 "position": "3/4",
@@ -202,98 +202,98 @@
                         "blockHeader": "<strong>II</strong> („Es stürzt aus Höhen Frische“ M 313: einzige Textfassung)",
                         "blockComments": [
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-001",
                                 "measure": "vor 8",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-002",
                                 "measure": "vor 9",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-003",
                                 "measure": "10",
                                 "system": "Klav.",
                                 "position": "9/8",
                                 "comment": "Anfang der Decrescendogabel versetzt von 10/8 mit Blick auf T. 8 6/8 und T. 9 5/8."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-004",
                                 "measure": "11",
                                 "system": "Klav.",
                                 "position": "6/8",
                                 "comment": "Anfang der Decrescendogabel versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-005",
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "1/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b<sup>2</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 13."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-006",
                                 "measure": "17",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
                                 "comment": "sic: Halsrichtung nach unten."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-007",
                                 "measure": "vor 18",
                                 "system": "Klav. o.",
                                 "position": "",
                                 "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-008",
                                 "measure": "21",
                                 "system": "Ges.",
                                 "position": "1/4",
                                 "comment": "Ende der Decrescendogabel versetzt von Ende T. 20 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-009",
                                 "measure": "vor 22",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-010",
                                 "measure": "22",
                                 "system": "Ges.",
                                 "position": "4–5/8",
                                 "comment": "Text sic: Silbentrennung <em>ein-an</em>(-der)."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-011",
                                 "measure": "22",
                                 "system": "Klav. o.",
                                 "position": "10/8",
                                 "comment": "Fermate ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-012",
                                 "measure": "23",
                                 "system": "Klav. u.",
                                 "position": "1/8",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: Akkoladenwechsel nach T. 22."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-013",
                                 "measure": "25",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Triolenziffer und -klammer ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m313_tf1-014",
                                 "measure": "26",
                                 "system": "Ges.",
                                 "position": "1. Note",
@@ -305,98 +305,98 @@
                         "blockHeader": "<strong>III</strong> („Herr Jesus mein“ M 312: einzige Textfassung)",
                         "blockComments": [
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-001",
                                 "measure": "3",
                                 "system": "Klav. u.",
                                 "position": "11/16",
                                 "comment": "Sechzehntelpause (Unterstimme) als redundant weggelassen."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-002",
                                 "measure": "5",
                                 "system": "Klav. u.",
                                 "position": "2.–3. Note",
                                 "comment": "Bogen (von Vorschlagsnote zu 6/16) ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-003",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "2/16",
                                 "comment": "Ende der Decrescendogabel versetzt von Ende T. 5 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-004",
                                 "measure": "10",
                                 "system": "Klav.",
                                 "position": "8/32",
                                 "comment": "<em>Ped.</em> versetzt von 7/32 bzw. 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-005",
                                 "measure": "11",
                                 "system": "Klav. o.",
                                 "position": "vor 2. Note",
                                 "comment": "Bassschlüssel versetzt von vor 4/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-006",
                                 "measure": "11",
                                 "system": "Klav.",
                                 "position": "5/32",
                                 "comment": "<em>cresc.</em> versetzt von 4/32 (Pause)."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-007",
                                 "measure": "15",
                                 "system": "Klav. u.",
                                 "position": "7/32",
                                 "comment": "Staccatopunkt ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-008",
                                 "measure": "15",
                                 "system": "Klav. o.",
                                 "position": "9/32",
                                 "comment": "Staccatopunkt ergänzt."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-009",
                                 "measure": "vor 22",
                                 "system": "Klav. o.",
                                 "position": "",
                                 "comment": "Violinschlüssel versetzt von vor 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-010",
                                 "measure": "vor 22",
                                 "system": "Klav. u.",
                                 "position": "",
                                 "comment": "Bassschlüssel versetzt von vor 3/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-011",
                                 "measure": "22",
                                 "system": "Ges.",
                                 "position": "6/16",
                                 "comment": "Ende der Crescendogabel versetzt von 5/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-012",
                                 "measure": "26",
                                 "system": "Klav.",
                                 "position": "6/32",
                                 "comment": "Ende der Decrescendogabel versetzt von 7/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-013",
                                 "measure": "27",
                                 "system": "Klav.",
                                 "position": "2/32",
                                 "comment": "Ende der Crescendogabel versetzt von Ende T. 26 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
                             },
                             {
-                                "svgGroupId": "TODO",
+                                "svgGroupId": "awg-tkk-m312_tf1-014",
                                 "measure": "28",
                                 "system": "Klav.",
                                 "position": "2/32",
@@ -420,42 +420,42 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "awg-tkk-m312_sk1-001",
                                 "measure": "2",
                                 "system": "1",
                                 "position": "3. Note",
                                 "comment": "Achtelbalken überschreibt Ansatz zu Achtelbalken."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "awg-tkk-m312_sk1-002",
                                 "measure": "3",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "Radiert."
                             },
                             {
-                                "svgGroupId": "g12",
+                                "svgGroupId": "awg-tkk-m312_sk1-003",
                                 "measure": "3",
                                 "system": "3",
                                 "position": "nach 4/8",
                                 "comment": "Gestrichenes Zeichen: Möglicherweise Ansatz zu Notenkopf g<sup>2</sup>?"
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "awg-tkk-m312_sk1-004",
                                 "measure": "4",
                                 "system": "3",
                                 "position": "nach 8/16",
                                 "comment": "Taktstrich und Taktziffer <em>5</em> gestrichen."
                             },
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "awg-tkk-m312_sk1-005",
                                 "measure": "5",
                                 "system": "3",
                                 "position": "nach 4/16",
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g10",
+                                "svgGroupId": "awg-tkk-m312_sk1-006",
                                 "measure": "6",
                                 "system": "3",
                                 "position": "nach 2/8",
@@ -467,14 +467,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5",
-                    "linkTo": {
-                        "complexId": "op23",
-                        "sheetId": "M312_Sk4d"
-                    }
-                },
-                {
-                    "svgGroupId": "g6",
+                    "svgGroupId": "awg-lb-m312_sk1-to-m312_sk1_1",
                     "linkTo": {
                         "complexId": "op23",
                         "sheetId": "M312_Sk1_1"
@@ -495,14 +488,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "awg-tkk-m312_sk1_1-001",
                                 "measure": "Bl. 27<sup>r</sup>",
                                 "system": "1",
                                 "position": "3. Reihenton",
                                 "comment": "g<sup>1</sup> gestrichen und zunächst ersetzt durch a<sup>1</sup>. Dann ersetzt durch Tonbuchstabe g über dem System. Siehe auch Kommentar zu 11.–12. Reihenton."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "awg-tkk-m312_sk1_1-002",
                                 "measure": "Bl. 27<sup>r</sup>",
                                 "system": "1",
                                 "position": "11.–12. Reihenton",
@@ -514,7 +507,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g6",
+                    "svgGroupId": "awg-lb-m312_sk1_1-to-m312_sk1",
                     "linkTo": {
                         "complexId": "op23",
                         "sheetId": "M312_Sk1"
@@ -535,28 +528,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g427",
+                                "svgGroupId": "awg-tkk-m312_sk3-001",
                                 "measure": "{1A}",
                                 "system": "15",
                                 "position": "8/16",
                                 "comment": "Balken überschreibt Sechzehntelfähnchen."
                             },
                             {
-                                "svgGroupId": "g428",
+                                "svgGroupId": "awg-tkk-m312_sk3-002",
                                 "measure": "{2A}",
                                 "system": "12",
                                 "position": "1–3/16",
                                 "comment": "Sechzehntelpause zu 3/16 radiert, Sechzehntelbalken zu 1/16 und Sechzehntelpause zu 2/16 hinzugefügt."
                             },
                             {
-                                "svgGroupId": "g1374",
+                                "svgGroupId": "awg-tkk-m312_sk3-003",
                                 "measure": "{1B}",
                                 "system": "11",
                                 "position": "1/16",
                                 "comment": "Punktierte Achtelpause gestrichen und ersetzt durch Sechzehntelpause."
                             },
                             {
-                                "svgGroupId": "g1377",
+                                "svgGroupId": "awg-tkk-m312_sk3-004",
                                 "measure": "{1A–2A}, {1B}",
                                 "system": "10–11 / [12–16]",
                                 "position": "",
@@ -565,30 +558,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": [
-                {
-                    "svgGroupId": "g1406",
-                    "linkTo": {
-                        "complexId": "op23",
-                        "sheetId": "M312_Sk3_1"
-                    }
-                },
-                {
-                    "svgGroupId": "g1412",
-                    "linkTo": {
-                        "complexId": "op23",
-                        "sheetId": "M312_Sk3_2"
-                    }
-                },
-                {
-                    "svgGroupId": "g1418",
-                    "linkTo": {
-                        "complexId": "op23",
-                        "sheetId": "M312_Sk3_3"
-                    }
-                }
-            ]
+            }
         },
         {
             "id": "SkRT",
@@ -604,63 +574,63 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "text620",
+                                "svgGroupId": "awg-tkk-op23_skrt-001",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1a",
                                 "position": "G<sub>gis</sub>",
                                 "comment": "Reihennummerierung <em>I</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text622",
+                                "svgGroupId": "awg-tkk-op23_skrt-002",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1b",
                                 "position": "K<sub>h</sub>",
                                 "comment": "Reihennummerierung <em>II</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text624",
+                                "svgGroupId": "awg-tkk-op23_skrt-003",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2a",
                                 "position": "U<sub>gis</sub>",
                                 "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text626",
+                                "svgGroupId": "awg-tkk-op23_skrt-004",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2b",
                                 "position": "KU<sub>f</sub>",
                                 "comment": "Reihennummerierung <em>IV</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g998",
+                                "svgGroupId": "awg-tkk-op23_skrt-005",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "2b",
                                 "position": "KU<sub>f</sub>: 8. Reihenton",
                                 "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> als Ansatz zu ges<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "text628",
+                                "svgGroupId": "awg-tkk-op23_skrt-006",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3a",
                                 "position": "G<sub>d</sub>",
                                 "comment": "Reihennummerierung <em>V</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text630",
+                                "svgGroupId": "awg-tkk-op23_skrt-007",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "3b",
                                 "position": "K<sub>f</sub>",
                                 "comment": "Reihennummerierung <em>VI</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text632",
+                                "svgGroupId": "awg-tkk-op23_skrt-008",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4a",
                                 "position": "U<sub>d</sub>",
                                 "comment": "Reihennummerierung <em>VII</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "text634",
+                                "svgGroupId": "awg-tkk-op23_skrt-009",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "4b",
                                 "position": "KU<sub>h</sub>",
@@ -685,14 +655,14 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "text244",
+                                "svgGroupId": "awg-tkk-m314_sk1-001",
                                 "measure": "1",
                                 "system": "1",
                                 "position": "1. Note",
                                 "comment": "<em>IV</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "awg-tkk-m314_sk1-002",
                                 "measure": "1",
                                 "system": "1",
                                 "position": "2.–3. Note",
@@ -704,7 +674,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1418",
+                    "svgGroupId": "awg-lb-m314_sk1-to-m314_sk2",
                     "linkTo": {
                         "complexId": "op23",
                         "sheetId": "M314_Sk2"
@@ -726,28 +696,28 @@
                         "blockHeader": "",
                         "blockComments": [
                             {
-                                "svgGroupId": "g348",
+                                "svgGroupId": "awg-tkk-m314_sk2-001",
                                 "measure": "vor 1",
                                 "system": "4–5",
                                 "position": "",
                                 "comment": "Klammer für Klaviersysteme gestrichen."
                             },
                             {
-                                "svgGroupId": "g349",
+                                "svgGroupId": "awg-tkk-m314_sk2-002",
                                 "measure": "1",
                                 "system": "3",
                                 "position": "1/4",
                                 "comment": "f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch f<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g351",
+                                "svgGroupId": "awg-tkk-m314_sk2-003",
                                 "measure": "2",
                                 "system": "3",
                                 "position": "1. Note",
                                 "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g354",
+                                "svgGroupId": "awg-tkk-m314_sk2-004",
                                 "measure": "7",
                                 "system": "3",
                                 "position": "4.–5. Note",
@@ -759,7 +729,7 @@
             },
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1418",
+                    "svgGroupId": "awg-lb-m314_sk2-to-m314_sk1",
                     "linkTo": {
                         "complexId": "op23",
                         "sheetId": "M314_Sk1"

@@ -15,18 +15,7 @@
  ************************************************/
 
 import { CommonModule } from '@angular/common';
-import {
-    Compiler,
-    Component,
-    inject,
-    Injectable,
-    Input,
-    ModuleWithProviders,
-    NgModule,
-    NgModuleFactory,
-    OnChanges,
-    Type,
-} from '@angular/core';
+import { Component, Injectable, Input, ModuleWithProviders, NgModule, OnChanges, Type } from '@angular/core';
 
 /**
  * Function: compileHtml.reverse(str)
@@ -42,7 +31,7 @@ const reverse = (str: string): string => str.split('').reverse().join('');
  * @returns {string}
  */
 const random = (): string => {
-    const crypto = window.crypto || (<any>window).msCrypto;
+    const crypto = globalThis.crypto || (<any>globalThis).msCrypto;
     const array = new Uint32Array(1);
 
     return Math.floor(crypto.getRandomValues(array)[0]).toString(16);
@@ -95,7 +84,7 @@ const nextId = (): string => {
     selector: '[compile-html]',
     template: `
         @if (html !== undefined && html !== null && html.trim() !== '') {
-            <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
+            <ng-container *ngComponentOutlet="dynamicComponent; ngModule: dynamicModuleClass"></ng-container>
         }
     `,
     standalone: false,
@@ -150,18 +139,11 @@ export class CompileHtmlComponent implements OnChanges {
     dynamicComponent: any;
 
     /**
-     * Public variable: dynamicModule.
+     * Public variable: dynamicModuleClass.
      *
-     * It keeps the module declarations for the component that is to be created dynamically.
+     * It keeps the module class for the component that is to be created dynamically (for Angular 21+).
      */
-    dynamicModule: NgModuleFactory<any> | any;
-
-    /**
-     * Private readonly injection variable: _compiler.
-     *
-     * It keeps the instance of the injected Angular Compiler.
-     */
-    private readonly _compiler = inject(Compiler);
+    dynamicModuleClass: any;
 
     /**
      * Angular life cycle hook: ngOnChanges.
@@ -177,7 +159,7 @@ export class CompileHtmlComponent implements OnChanges {
      * Public method: update.
      *
      * It updates the [dynamicComponent]{@link CompileHtmlComponent#dynamicComponent}
-     * and [dynamicModule]{@link CompileHtmlComponent#dynamicModule}
+     * and [dynamicModuleClass]{@link CompileHtmlComponent#dynamicModuleClass}
      * and triggers their creation methods.
      *
      * @returns {void} The new dynamic component and its module.
@@ -186,12 +168,12 @@ export class CompileHtmlComponent implements OnChanges {
         try {
             if (this.html === undefined || this.html === null || this.html.trim() === '') {
                 this.dynamicComponent = undefined;
-                this.dynamicModule = undefined;
+                this.dynamicModuleClass = undefined;
                 return;
             }
 
             this.dynamicComponent = this._createNewComponent(this.html, this.ref);
-            this.dynamicModule = this._compiler.compileModuleSync(this._createComponentModule(this.dynamicComponent));
+            this.dynamicModuleClass = this._createComponentModule(this.dynamicComponent);
         } catch (e) {
             if (this.errorHandler === undefined) {
                 throw e;

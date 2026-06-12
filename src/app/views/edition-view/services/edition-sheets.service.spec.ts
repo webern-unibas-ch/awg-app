@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper/mock-console';
@@ -39,23 +39,20 @@ describe('EditionSheetsService (DONE)', () => {
         editionSheetsService = TestBed.inject(EditionSheetsService);
 
         // Test data
-        expectedFolioConvolutes = mockEditionData.mockFolioConvoluteData.convolutes;
-        expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedSheets = mockEditionData.mockSvgSheetList.sheets;
-        expectedTextcriticsArray = mockEditionData.mockTextcriticsData.textcritics;
-        expectedTextcriticalCommentary = expectedTextcriticsArray.at(1).commentary;
+        expectedFolioConvolutes = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes);
+        expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets);
+        expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsData.textcritics);
+        expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[1].commentary);
 
         // Spies on service functions
-        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
         // Clear mock objects after each test
         mockConsole.clear();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -106,7 +103,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no textcritics are found for the given sheet', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3);
                 const expectedResult = new Textcritics();
 
                 const textcritics = editionSheetsService.findTextcritics(
@@ -119,8 +116,8 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should find the textcritics for the given sheet', () => {
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-            const expectedResult = expectedTextcriticsArray.at(1);
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+            const expectedResult = structuredClone(expectedTextcriticsArray[1]);
 
             const textcritics = editionSheetsService.findTextcritics(expectedTextcriticsArray, expectedSelectedSheet);
 
@@ -134,7 +131,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return undefined if the given sheet is not found in any section of the given sheet list', () => {
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk6));
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk6);
 
             const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
 
@@ -143,7 +140,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct edition type for a given sheet found in', () => {
             it('... the sketchEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
                 const expectedResult = 'sketchEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -152,7 +149,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_TF1);
                 const expectedResult = 'textEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -161,7 +158,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_WE1);
                 const expectedResult = 'workEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -181,19 +178,19 @@ describe('EditionSheetsService (DONE)', () => {
 
             beforeEach(() => {
                 expectedOrderOfSheets = [
-                    mockEditionData.mockSvgSheet_Sk1,
-                    mockEditionData.mockSvgSheet_Sk2a,
-                    mockEditionData.mockSvgSheet_Sk2b,
-                    mockEditionData.mockSvgSheet_Sk3a,
-                    mockEditionData.mockSvgSheet_Sk3b,
-                    mockEditionData.mockSvgSheet_Sk3c,
-                    mockEditionData.mockSvgSheet_Sk4,
-                    mockEditionData.mockSvgSheet_Sk5,
+                    structuredClone(mockEditionData.mockSvgSheet_Sk1),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk2a),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk2b),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk3a),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk3b),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk3c),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk4),
+                    structuredClone(mockEditionData.mockSvgSheet_Sk5),
                 ];
             });
 
             it('... when direction is +1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const direction = 1;
 
                 expectedOrderOfSheets.forEach((selectedSheet, index) => {
@@ -215,7 +212,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const direction = -1;
 
                 expectedOrderOfSheets.reverse().forEach((selectedSheet, index) => {
@@ -239,8 +236,8 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the id of the selected sheet', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
-                expectedSelectedSheet = expectedSheetArray.at(-1);
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1));
                 const direction = 1;
 
                 const nextSheetId = editionSheetsService.getNextSheetId(
@@ -253,8 +250,8 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1 and the sheet array does not have a previous sheet', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
-                expectedSelectedSheet = expectedSheetArray.at(0);
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+                expectedSelectedSheet = structuredClone(expectedSheetArray[0]);
                 const direction = -1;
 
                 const nextSheetId = editionSheetsService.getNextSheetId(
@@ -309,7 +306,9 @@ describe('EditionSheetsService (DONE)', () => {
 
             it('... if no comments match the given overlay', () => {
                 const expectedResult = { preamble: 'This is a preamble.', comments: [] };
-                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'notExistingId', true)];
+                expectedOverlays = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
+                ];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
@@ -325,7 +324,12 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     expectedOverlays.push(
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+                        new EditionSvgOverlay(
+                            EditionSvgOverlayTypes.tkk,
+                            blockComment.svgGroupId,
+                            blockComment.svgGroupId,
+                            true
+                        )
                     );
                 });
             });
@@ -344,7 +348,12 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     expectedOverlays = [
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true),
+                        new EditionSvgOverlay(
+                            EditionSvgOverlayTypes.tkk,
+                            blockComment.svgGroupId,
+                            blockComment.svgGroupId,
+                            true
+                        ),
                     ];
 
                     const expectedResult = {
@@ -369,19 +378,25 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should find comments for multiple selected items by id', () => {
             const selectedBlockComments = [
-                expectedTextcriticalCommentary.comments.at(0).blockComments.at(0),
-                expectedTextcriticalCommentary.comments.at(-1).blockComments.at(0),
+                structuredClone(expectedTextcriticalCommentary.comments[0].blockComments[0]),
+                structuredClone(expectedTextcriticalCommentary.comments.at(-1).blockComments[0]),
             ];
 
             expectedOverlays = selectedBlockComments.map(
-                blockComment => new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+                blockComment =>
+                    new EditionSvgOverlay(
+                        EditionSvgOverlayTypes.tkk,
+                        blockComment.svgGroupId,
+                        blockComment.svgGroupId,
+                        true
+                    )
             );
 
             const expectedResult = {
                 preamble: expectedTextcriticalCommentary.preamble,
                 comments: selectedBlockComments.map(blockComment => ({
                     ...expectedTextcriticalCommentary.comments.find(comment =>
-                        comment.blockComments.includes(blockComment)
+                        comment.blockComments.some(bc => bc.svgGroupId === blockComment.svgGroupId)
                     ),
                     blockComments: [blockComment],
                 })),
@@ -457,7 +472,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the selected sheet is in the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_WE1);
 
                 const convolute = editionSheetsService.selectConvolute(
                     expectedFolioConvolutes,
@@ -469,7 +484,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the selected sheet is in the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_TF1);
 
                 const convolute = editionSheetsService.selectConvolute(
                     expectedFolioConvolutes,
@@ -482,8 +497,8 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return a convolute object if the selected sheet is in the sketchEditions section of the given sheet list', () => {
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-            const expectedResult = expectedFolioConvolutes[0];
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+            const expectedResult = structuredClone(expectedFolioConvolutes[0]);
 
             const convolute = editionSheetsService.selectConvolute(
                 expectedFolioConvolutes,
@@ -495,8 +510,8 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the correct convolute object', () => {
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-            const expectedResultA = expectedFolioConvolutes[0];
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+            const expectedResultA = structuredClone(expectedFolioConvolutes[0]);
 
             const convoluteA = editionSheetsService.selectConvolute(
                 expectedFolioConvolutes,
@@ -506,8 +521,8 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectToEqual(convoluteA, expectedResultA);
 
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3));
-            const expectedResultB = expectedFolioConvolutes[1];
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3);
+            const expectedResultB = structuredClone(expectedFolioConvolutes[1]);
 
             const convoluteB = editionSheetsService.selectConvolute(
                 expectedFolioConvolutes,
@@ -561,7 +576,7 @@ describe('EditionSheetsService (DONE)', () => {
         describe('... should log an error message if', () => {
             it('... the given sheet list is missing all expected edition types', () => {
                 const incompleteSheets = {
-                    anyEditionType: expectedSheets.workEditions,
+                    anyEditionType: structuredClone(expectedSheets.workEditions),
                 } as any;
 
                 editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
@@ -575,8 +590,8 @@ describe('EditionSheetsService (DONE)', () => {
 
             it('... the given sheet list is missing some expected edition types', () => {
                 const incompleteSheets = {
-                    workEditions: expectedSheets.workEditions,
-                    textEditions: expectedSheets.textEditions,
+                    workEditions: structuredClone(expectedSheets.workEditions),
+                    textEditions: structuredClone(expectedSheets.textEditions),
                 } as any;
 
                 editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
@@ -591,7 +606,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct sheet if', () => {
             it('...  the given id is in the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_WE1);
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -599,7 +614,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the given id is in the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_TF1);
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -607,7 +622,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the given id is in the sketchEditions section of the given sheet list', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -648,12 +663,12 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct id of the next partial sheet within the same sheet', () => {
             it('... when direction is +1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 1;
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
                 const expectedPartial = 'a';
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2b);
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
 
                 const direction = 1;
@@ -670,12 +685,12 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 1;
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2b);
                 const expectedPartial = 'b';
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
@@ -693,12 +708,12 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct id of the next partial sheet when the next sheet has partials, too', () => {
             it('... when direction is +1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 1;
                 const expectedPartial = 'b';
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2b);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3a));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3a);
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = 1;
 
@@ -714,12 +729,12 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 2;
                 const expectedPartial = 'a';
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3a));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3a);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2b);
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
@@ -737,12 +752,12 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct id of the next non-partial sheet', () => {
             it('... when direction is +1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 2;
                 const expectedPartial = 'c';
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3c));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3c);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = 1;
 
@@ -758,12 +773,12 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 1;
                 const expectedPartial = 'a';
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = -1;
 
@@ -787,11 +802,11 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct id of the next non-partial sheet', () => {
             it('... when direction is +1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 3;
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk5);
                 const direction = 1;
 
                 const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
@@ -805,11 +820,11 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 4;
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk5);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
+                const expectedNextSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
                 const direction = -1;
 
                 const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
@@ -825,9 +840,9 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the id of the selected sheet', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = expectedSheetArray.length - 1;
-                expectedSelectedSheet = expectedSheetArray.at(-1);
+                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
                 const direction = 1;
 
@@ -842,9 +857,9 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... when direction is -1 and the sheet array does not have a previous sheet', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = 0;
-                expectedSelectedSheet = expectedSheetArray.at(0);
+                expectedSelectedSheet = structuredClone(expectedSheetArray[0]);
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
                 const direction = -1;
 
@@ -873,7 +888,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the given id is undefined', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
 
                 const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, undefined);
 
@@ -881,7 +896,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the given id is not in the given sheet list', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
 
                 const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, 'notExistingId');
 
@@ -889,8 +904,8 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the given id with partial is not in the given sheet list', () => {
-                const expectedSheetArray = expectedSheets['sketchEditions'];
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+                const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
                 const index = editionSheetsService['_findSvgSheetIndexById'](
                     expectedSheetArray,
@@ -902,14 +917,14 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the index of an svg sheet identified by its id within a given array of sheets', () => {
-            const expectedSheetArray = expectedSheets['sketchEditions'];
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+            const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
 
             const index0 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index0, 0);
 
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk5);
 
             const index4 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
@@ -917,14 +932,14 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should find the index of an svg sheet with partials identified by its id within a given array of sheets', () => {
-            const expectedSheetArray = expectedSheets['sketchEditions'];
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
+            const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
 
             const index1 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index1, 1);
 
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3c));
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3c);
 
             const index2 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
@@ -939,7 +954,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return -1 if', () => {
             it('... the given sheet does not contain any partials', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
                 const expectedId = expectedSelectedSheet.id;
 
                 const index = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedId);
@@ -948,7 +963,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the partial id is not found in the content of the given sheet', () => {
-                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+                expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
                 const expectedId = expectedSelectedSheet.id + 'nonExistingPartialId';
 
                 const index = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedId);
@@ -958,7 +973,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the correct index of a given id with partial found in the content of the given sheet', () => {
-            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+            expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
             const expectedIdA = expectedSelectedSheet.id + 'a';
 
             const indexA = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedIdA);
@@ -979,9 +994,9 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the correct sheet and content for a non-partial id', () => {
-            const expectedSheetArray = expectedSheets['sketchEditions'];
+            const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
             const expectedIndex = 0;
-            expectedSelectedSheet = expectedSheetArray[expectedIndex];
+            expectedSelectedSheet = structuredClone(expectedSheetArray[expectedIndex]);
 
             const sheet = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,
@@ -993,13 +1008,13 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the correct sheet and content for a partial id', () => {
-            const expectedSheetArray = expectedSheets['sketchEditions'];
+            const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
             const expectedIndex = 1;
-            expectedSelectedSheet = expectedSheetArray[expectedIndex];
+            expectedSelectedSheet = structuredClone(expectedSheetArray[expectedIndex]);
 
             const expectedSheetWithPartialIdA = expectedSelectedSheet.id + 'a';
-            const expectedSheetWithPartialContentA = { ...expectedSelectedSheet };
-            expectedSheetWithPartialContentA.content = [expectedSelectedSheet.content[0]];
+            const expectedSheetWithPartialContentA = structuredClone(expectedSelectedSheet);
+            expectedSheetWithPartialContentA.content = [structuredClone(expectedSelectedSheet.content[0])];
 
             const sheet = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,
@@ -1010,8 +1025,8 @@ describe('EditionSheetsService (DONE)', () => {
             expectToEqual(sheet, expectedSheetWithPartialContentA);
 
             const expectedSheetWithPartialIdB = expectedSelectedSheet.id + 'b';
-            const expectedSheetWithPartialContentB = { ...expectedSelectedSheet };
-            expectedSheetWithPartialContentB.content = [expectedSelectedSheet.content[1]];
+            const expectedSheetWithPartialContentB = structuredClone(expectedSelectedSheet);
+            expectedSheetWithPartialContentB.content = [structuredClone(expectedSelectedSheet.content[1])];
 
             const sheetB = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,

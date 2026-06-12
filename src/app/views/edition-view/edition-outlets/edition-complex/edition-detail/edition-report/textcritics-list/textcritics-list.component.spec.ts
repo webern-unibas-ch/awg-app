@@ -1,6 +1,8 @@
 import { Component, DebugElement, DOCUMENT, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import Spy = jasmine.Spy;
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -39,11 +41,17 @@ class EditionTkaEvaluationsStubComponent {
     @Input()
     evaluations: string[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 @Component({
@@ -54,7 +62,8 @@ class EditionTkaEvaluationsStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'commentary';
+    @Input()
+    labelType: 'evaluation' | 'commentary';
 }
 
 @Component({
@@ -72,11 +81,17 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{
+        complexId: string;
+        fragmentId: string;
+    }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{
+        complexId: string;
+        sheetId: string;
+    }> = new EventEmitter();
 }
 
 describe('TextcriticsListComponent (DONE)', () => {
@@ -112,8 +127,8 @@ describe('TextcriticsListComponent (DONE)', () => {
         }
     }
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 TextcriticsListComponent,
@@ -125,7 +140,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             ],
             providers: [UtilityService],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TextcriticsListComponent);
@@ -138,21 +153,22 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
+        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
 
         // Spies
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
+        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
+        openModalSpy = vi.spyOn(component, 'openModal');
+        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
+        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
+    });
+
+    afterEach(() => {
+        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -178,7 +194,7 @@ describe('TextcriticsListComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticsData = expectedTextcriticsData;
+            component.textcriticsData = structuredClone(expectedTextcriticsData);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -281,7 +297,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const expectedButtonLabel = mockDocument.createElement('span');
                     expectedButtonLabel.innerHTML = expectedTextcriticsData.textcritics[index].label;
 
-                    expect(btnEl).toHaveClass('text-start');
+                    expect(btnEl.classList.contains('text-start')).toBe(true);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
                 });
             });
@@ -309,7 +325,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     const expectedButtonLabel = 'Zum edierten Notentext';
 
-                    expect(btnEl).toHaveClass('btn-outline-info');
+                    expect(btnEl.classList.contains('btn-outline-info')).toBe(true);
                     expectToBe(btnEl.disabled, false);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel);
                 });
@@ -318,13 +334,13 @@ describe('TextcriticsListComponent (DONE)', () => {
             describe('... if textcritics are related to work edition', () => {
                 let textcriticsDataWithWorkEdition: TextcriticsList;
 
-                beforeEach(() => {
-                    textcriticsDataWithWorkEdition = JSON.parse(JSON.stringify(expectedTextcriticsData));
+                beforeEach(async () => {
+                    textcriticsDataWithWorkEdition = structuredClone(expectedTextcriticsData);
                     textcriticsDataWithWorkEdition.textcritics[0].id = 'op12_WE';
                     textcriticsDataWithWorkEdition.textcritics[1].id = 'op25_WE';
 
-                    component.textcriticsData = textcriticsDataWithWorkEdition;
-                    detectChangesOnPush(fixture);
+                    component.textcriticsData = structuredClone(textcriticsDataWithWorkEdition);
+                    await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain another button with DisclaimerWorkeditions component in button group ', () => {
@@ -351,7 +367,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1).toHaveClass('btn-outline-info');
+                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
                 });
@@ -380,14 +396,14 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1).toHaveClass('btn-outline-info');
+                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
                         expectToBe(btnEl1.disabled, true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
                 });
             });
 
-            it('... should toggle first item body on click on first header', () => {
+            it('... should toggle first item body on click on first header', async () => {
                 const totalItems = expectedTextcriticsData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
@@ -415,7 +431,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -431,7 +447,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -446,7 +462,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
             });
 
-            it('... should toggle second item body on click on second header', () => {
+            it('... should toggle second item body on click on second header', async () => {
                 const totalItems = expectedTextcriticsData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
@@ -474,7 +490,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -490,7 +506,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -506,7 +522,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... with open body', () => {
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Open bodies
                     const headerDes0 = getAndExpectDebugElementByCss(
                         compDe,
@@ -539,7 +555,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Click header buttons to open body
                     click(btnEl0 as HTMLElement);
                     click(btnEl1 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
                 });
 
                 describe('...  if evaluations array is empty', () => {
@@ -579,7 +595,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl).toHaveClass('text-muted');
+                        expect(smallEl.classList.contains('text-muted')).toBe(true);
                     });
                 });
 
@@ -702,7 +718,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl).toHaveClass('text-muted');
+                        expect(smallEl.classList.contains('text-muted')).toBe(true);
                     });
                 });
 
@@ -827,32 +843,32 @@ describe('TextcriticsListComponent (DONE)', () => {
                 it('... id is undefined', () => {
                     const result = component.isWorkEditionId(undefined);
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is null', () => {
                     const result = component.isWorkEditionId(null);
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is empty string', () => {
                     const result = component.isWorkEditionId('');
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
 
                 it('... id is not a work edition id', () => {
                     const result = component.isWorkEditionId('test_id');
 
-                    expect(result).toBeFalse();
+                    expect(result).toBe(false);
                 });
             });
 
             it('... should return true if id is a work edition id', () => {
                 const result = component.isWorkEditionId('op12_WE');
 
-                expect(result).toBeTrue();
+                expect(result).toBe(true);
             });
         });
 
@@ -862,7 +878,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', () => {
+                it('... EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -881,7 +897,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -900,7 +916,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -919,7 +935,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
@@ -995,7 +1011,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', () => {
+                it('... EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1014,7 +1030,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1031,7 +1047,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1050,7 +1066,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
@@ -1095,7 +1111,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from ...', () => {
-                it('...  EditionTkaEvaluationsComponent', () => {
+                it('...  EditionTkaEvaluationsComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1114,7 +1130,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1132,7 +1148,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
 
-                it('... EditionTkaTableComponent', () => {
+                it('... EditionTkaTableComponent', async () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1151,7 +1167,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // Click header buttons to open body
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
