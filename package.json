@@ -99,7 +99,7 @@
         "@angular/localize": "^21.2.14",
         "@angular/platform-browser": "^21.2.14",
         "@angular/platform-browser-dynamic": "^21.2.14",
-        "@angular/platform-server": "^21.2.14",
+        "@angular/platform-server": "^21.2.15",
         "@angular/router": "^21.2.14",
         "@codemirror/legacy-modes": "^6.5.3",
         "@fortawesome/angular-fontawesome": "^4.0.0",
