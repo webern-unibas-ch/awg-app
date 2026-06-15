@@ -131,7 +131,7 @@
         "@eslint/eslintrc": "^3.3.4",
         "@eslint/js": "^10.0.1",
         "@types/d3": "^7.4.3",
-        "@types/node": "^25.9.2",
+        "@types/node": "^25.9.3",
         "@vitest/browser-playwright": "^4.1.8",
         "@vitest/coverage-v8": "^4.1.8",
         "angular-cli-ghpages": "^3.0.3",
