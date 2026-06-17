@@ -135,14 +135,14 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the OSM external link.
+     * Getter for the contact map external link.
      *
      * @returns {string}
      */
-    public static get OSM_LINK_URL(): string {
-        const osmLinkRoot = 'https://www.openstreetmap.org/';
-        const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
-        return osmLinkRoot + osmLinkId;
+    public static get CONTACT_MAP_LINK_URL(): string {
+        const mapLinkRoot = 'https://www.openstreetmap.org/';
+        const mapLinkId = '?mlat=47.55897&mlon=7.58451#map=19/47.55897/7.58451';
+        return mapLinkRoot + mapLinkId;
     }
 
     /**
@@ -156,17 +156,17 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the unsanitized OSM embed link.
+     * Getter for the unsanitized contact map embed link.
      *
      * @returns {string}
      */
-    public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
+    public static get CONTACT_MAP_UNSAFE_EMBED_URL(): string {
+        const mapApi = 'https://www.openstreetmap.org/export/embed.html';
         const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
         const layer = 'layer=mapnik';
         const marker = '47.55896585846639%2C7.584506571292877';
 
-        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
+        return mapApi + '?' + bbox + '&' + layer + '&' + marker;
     }
 
     /**

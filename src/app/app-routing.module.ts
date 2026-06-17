@@ -20,7 +20,7 @@ const APP_ROUTES: Routes = [
     // Lazy loaded routes
     {
         path: 'contact',
-        loadChildren: () => import('@awg-views/contact-view/contact-view.module').then(m => m.ContactViewModule),
+        loadChildren: () => import('@awg-views/contact-view/contact-view.routes').then(m => m.CONTACT_VIEW_ROUTES),
     },
     {
         path: 'edition',

@@ -3,16 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
-import { AddressComponent } from './address.component';
+import { ContactAddressComponent } from './contact-address.component';
 
-describe('AddressComponent (DONE)', () => {
-    let component: AddressComponent;
-    let fixture: ComponentFixture<AddressComponent>;
+describe('ContactAddressComponent (DONE)', () => {
+    let component: ContactAddressComponent;
+    let fixture: ComponentFixture<ContactAddressComponent>;
     let compDe: DebugElement;
 
     let expectedPageMetaData: MetaPage;
@@ -20,12 +20,12 @@ describe('AddressComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [AddressComponent],
+            imports: [ContactAddressComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AddressComponent);
+        fixture = TestBed.createComponent(ContactAddressComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -39,12 +39,12 @@ describe('AddressComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `pageMetaData` input', () => {
-            expect(component.pageMetaData).toBeUndefined();
+        it('... should have default `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData(), {});
         });
 
-        it('... should not have `contactMetaData` input', () => {
-            expect(component.contactMetaData).toBeUndefined();
+        it('... should have default `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData(), {});
         });
 
         describe('VIEW', () => {
@@ -52,12 +52,12 @@ describe('AddressComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'address', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'address p', 3, 3);
 
-                getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'address p.awg-address-content', 2, 2);
+                getAndExpectDebugElementByCss(compDe, 'address p#awg-contact-address-header', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'address p.awg-contact-address-content', 2, 2);
             });
 
             it('... should not render the address header link yet', () => {
-                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-contact-address-header a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.href, '');
@@ -65,15 +65,25 @@ describe('AddressComponent (DONE)', () => {
             });
 
             it('... should not render the address content information yet', () => {
-                const contentDes = getAndExpectDebugElementByCss(compDe, 'address p.awg-address-content', 2, 2);
+                const contentDes = getAndExpectDebugElementByCss(compDe, 'address p.awg-contact-address-content', 2, 2);
                 const content0Des = contentDes[0];
                 const content1Des = contentDes[1];
 
                 // Content1
-                const insitutionDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-institution', 1, 1);
-                const streetDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-street', 1, 1);
-                const postalCityDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-postal-city', 1, 1);
-                const countryDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-country', 1, 1);
+                const insitutionDes = getAndExpectDebugElementByCss(
+                    content0Des,
+                    'span#awg-contact-address-institution',
+                    1,
+                    1
+                );
+                const streetDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-contact-address-street', 1, 1);
+                const postalCityDes = getAndExpectDebugElementByCss(
+                    content0Des,
+                    'span#awg-contact-address-postal-city',
+                    1,
+                    1
+                );
+                const countryDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-contact-address-country', 1, 1);
 
                 const institutionEl: HTMLSpanElement = insitutionDes[0].nativeElement;
                 const streetEl: HTMLSpanElement = streetDes[0].nativeElement;
@@ -81,8 +91,8 @@ describe('AddressComponent (DONE)', () => {
                 const countryEl: HTMLSpanElement = countryDes[0].nativeElement;
 
                 // Content 2
-                const phoneDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-address-phone', 1, 1);
-                const emailDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-address-email a', 1, 1);
+                const phoneDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-contact-address-phone', 1, 1);
+                const emailDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-contact-address-email a', 1, 1);
 
                 const phoneEl: HTMLSpanElement = phoneDes[0].nativeElement;
                 const emailEl: HTMLAnchorElement = emailDes[0].nativeElement;
@@ -99,19 +109,42 @@ describe('AddressComponent (DONE)', () => {
         });
     });
 
-    describe('AFTER initial data binding', () => {
+    describe('AFTER initial data binding (default values)', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.pageMetaData = expectedPageMetaData;
-            component.contactMetaData = expectedContactMetaData;
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        it('... should have default `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData(), {});
+        });
+
+        it('... should have default `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData(), {});
+        });
+    });
+
+    describe('AFTER initial data binding (update)', () => {
+        beforeEach(() => {
+            // Simulate the parent updating the inputs
+            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+            fixture.componentRef.setInput('contactMetaData', expectedContactMetaData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        it('... should have updated `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        });
+
+        it('... should have updated `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData(), expectedContactMetaData);
+        });
+
         describe('VIEW', () => {
             it('... should render the address header link', () => {
-                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-contact-address-header a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.href, expectedPageMetaData.awgProjectUrl);
@@ -121,7 +154,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content institution information', () => {
                 const institutionDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-institution',
+                    'address p.awg-contact-address-content span#awg-contact-address-institution',
                     1,
                     1
                 );
@@ -133,7 +166,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content street information', () => {
                 const streetDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-street',
+                    'address p.awg-contact-address-content span#awg-contact-address-street',
                     1,
                     1
                 );
@@ -145,7 +178,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content postal city information', () => {
                 const postalCityDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-postal-city',
+                    'address p.awg-contact-address-content span#awg-contact-address-postal-city',
                     1,
                     1
                 );
@@ -160,7 +193,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content country information', () => {
                 const countryDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-country',
+                    'address p.awg-contact-address-content span#awg-contact-address-country',
                     1,
                     1
                 );
@@ -172,7 +205,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content phone information', () => {
                 const phoneDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-phone',
+                    'address p.awg-contact-address-content span#awg-contact-address-phone',
                     1,
                     1
                 );
@@ -187,7 +220,7 @@ describe('AddressComponent (DONE)', () => {
             it('... should render the address content email information', () => {
                 const emailDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'address p.awg-address-content span#awg-address-email a',
+                    'address p.awg-contact-address-content span#awg-contact-address-email a',
                     1,
                     1
                 );
