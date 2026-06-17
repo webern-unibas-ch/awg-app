@@ -141,7 +141,7 @@ export class AppConfig {
      */
     public static get CONTACT_MAP_LINK_URL(): string {
         const mapLinkRoot = 'https://www.openstreetmap.org/';
-        const mapLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
+        const mapLinkId = '?mlat=47.55897&mlon=7.58451#map=19/47.55897/7.58451';
         return mapLinkRoot + mapLinkId;
     }
 
