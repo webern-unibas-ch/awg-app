@@ -38,7 +38,8 @@ const APP_ROUTES: Routes = [
     },
     {
         path: 'structure',
-        loadChildren: () => import('@awg-views/structure-view/structure-view.module').then(m => m.StructureViewModule),
+        loadChildren: () =>
+            import('@awg-views/structure-view/structure-view.routes').then(m => m.STRUCTURE_VIEW_ROUTES),
     },
 
     // Fallback routes

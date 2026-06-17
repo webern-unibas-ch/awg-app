@@ -1,6 +1,6 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, Input, LOCALE_ID } from '@angular/core';
+import { Component, DebugElement, input, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -16,57 +16,56 @@ import {
 import { META_DATA } from '@awg-core/core-data';
 import { MetaIdentifiers, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 
-import { StructureInfoComponent } from './structure-info.component';
+import { StructureSideInfoComponent } from './structure-side-info.component';
 
 registerLocaleData(localeDeDE);
 
-// Mock MetaIdentifierBadges component
+// Mock components
 @Component({
     selector: 'awg-meta-identifier-badges',
     template: '',
-    standalone: false,
 })
 class MetaIdentifierBadgesStubComponent {
-    @Input()
-    identifiers: MetaIdentifiers | undefined;
+    identifiers = input<MetaIdentifiers>({});
 }
 
-describe('StructureInfoComponent (DONE)', () => {
-    let component: StructureInfoComponent;
-    let fixture: ComponentFixture<StructureInfoComponent>;
+describe('StructureSideInfoComponent (DONE)', () => {
+    let component: StructureSideInfoComponent;
+    let fixture: ComponentFixture<StructureSideInfoComponent>;
     let compDe: DebugElement;
 
     let mockCoreService: Partial<CoreService>;
 
-    const datePipe = new DatePipe('de-DE');
     let expectedStructureMetaData: MetaStructure;
-    const expectedStructureInfoHeader = 'Strukturmodell';
+    const expectedStructureSideInfoHeader = 'Strukturmodell';
 
     beforeEach(async () => {
-        // Stub service for test purposes
+        // Mock service for test purposes
         mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         await TestBed.configureTestingModule({
-            declarations: [StructureInfoComponent, MetaIdentifierBadgesStubComponent],
-            imports: [DatePipe],
+            imports: [StructureSideInfoComponent],
             providers: [
                 { provide: LOCALE_ID, useValue: 'de-DE' },
                 { provide: CoreService, useValue: mockCoreService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(StructureSideInfoComponent, {
+                remove: { imports: [MetaIdentifierBadgesComponent] },
+                add: { imports: [MetaIdentifierBadgesStubComponent] },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(StructureInfoComponent);
+        fixture = TestBed.createComponent(StructureSideInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
         expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
-
-        // Spies
-        vi.spyOn(component, 'provideMetaData');
     });
 
     afterEach(() => {
@@ -83,22 +82,12 @@ describe('StructureInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have structureInfoHeader', () => {
-            expectToBe(component.structureInfoHeader, expectedStructureInfoHeader);
+        it('... should have structureSideInfoHeader', () => {
+            expectToBe(component.STRUCTURE_SIDE_INFO_HEADER, expectedStructureSideInfoHeader);
         });
 
-        describe('#provideMetaData()', () => {
-            it('... should have a method `provideMetaData`', () => {
-                expect(component.provideMetaData).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-
-            it('... should not have structureMetaData', () => {
-                expect(component.structureMetaData).toBeUndefined();
-            });
+        it('... should have `structureMetaData` with expected data', () => {
+            expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
         describe('VIEW', () => {
@@ -112,7 +101,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body p', 4, 4);
             });
 
-            it('... should not render `structureInfoHeader` yet', () => {
+            it('... should not render `structureSideInfoHeader` yet', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-structure-info-header', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
@@ -133,7 +122,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
             });
 
-            it('... should not pass `identifiers` to MetaIdentifierBadgesComponent yet', () => {
+            it('... should pass down empty default values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(
                     authorDes[0],
@@ -143,7 +132,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 );
                 const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
 
-                expect(badgeCmp.identifiers).toBeUndefined();
+                expectToEqual(badgeCmp.identifiers(), {});
             });
 
             it('... should not render last modification date yet', () => {
@@ -157,29 +146,20 @@ describe('StructureInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Mock the call to the meta service in #provideMetaData
-            component.structureMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.structure);
-
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData()', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return structureMetaData', () => {
-                expectToEqual(component.structureMetaData, expectedStructureMetaData);
-            });
+        it('... should have `structureMetaData` with expected data', () => {
+            expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
         describe('VIEW', () => {
-            it('... should render `structureInfoHeader`', () => {
+            it('... should render `structureSideInfoHeader`', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-structure-info-header', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(hEl.textContent, expectedStructureInfoHeader);
+                expectToBe(hEl.textContent, expectedStructureSideInfoHeader);
             });
 
             it('... should render author link', () => {
@@ -192,7 +172,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 expectToBe(authorEl.innerHTML, expectedAuthor.name);
             });
 
-            it('... should pass down `identifiers` to MetaIdentifierBadgesComponent', () => {
+            it('... should pass down correct values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
                 const expectedIdentifiers = expectedStructureMetaData.authors[0].identifiers;
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(
@@ -203,10 +183,11 @@ describe('StructureInfoComponent (DONE)', () => {
                 );
                 const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
 
-                expectToEqual(badgeCmp.identifiers, expectedIdentifiers);
+                expectToEqual(badgeCmp.identifiers(), expectedIdentifiers);
             });
 
             it('... should render last modification date in correct format', () => {
+                const datePipe = new DatePipe('de-DE');
                 const expectedLastModified = datePipe.transform(expectedStructureMetaData.lastModified, 'longDate');
 
                 const lastmodDes = getAndExpectDebugElementByCss(compDe, 'span#awg-structure-info-lastmodified', 1, 1);

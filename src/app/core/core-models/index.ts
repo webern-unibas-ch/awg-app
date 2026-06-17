@@ -10,6 +10,7 @@ export { Logo, Logos } from './logos.model';
 export {
     Meta,
     MetaContact,
+    MetaIdentifierBadge,
     MetaIdentifiers,
     MetaPage,
     MetaPerson,

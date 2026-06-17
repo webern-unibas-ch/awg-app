@@ -1,11 +1,5 @@
-@for (idConfig of IDENTIFIER_CONFIGS; track idConfig.key) {
-    @if (identifiers?.[idConfig.key]) {
-        <a class="awg-meta-identifier-badge awg-logo-link" href="{{ idConfig.baseUrl }}{{ identifiers[idConfig.key] }}"
-            ><img
-                class="awg-meta-identifier-badge-icon"
-                [src]="idConfig.src"
-                [alt]="idConfig.label"
-                title="{{ idConfig.key | uppercase }}: {{ identifiers[idConfig.key] }}"
-        /></a>
-    }
+@for (badge of activeIdentifierBadges(); track badge.key) {
+    <a class="awg-meta-identifier-badge awg-logo-link" [href]="badge.fullUrl"
+        ><img class="awg-meta-identifier-badge-icon" [src]="badge.src" [alt]="badge.label" [title]="badge.titleText"
+    /></a>
 }
