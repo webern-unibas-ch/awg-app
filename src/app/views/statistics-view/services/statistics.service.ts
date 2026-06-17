@@ -12,7 +12,7 @@ import {
     StatisticsComplexType,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
-} from '@awg-views/statistics-view/models';
+} from '../models/statistics.model';
 
 /**
  * The Statistics service.
