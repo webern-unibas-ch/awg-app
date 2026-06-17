@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
+import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/statistics.model';
 
 /**
  * The StatisticsBreakdownBadge component.

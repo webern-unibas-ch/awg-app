@@ -19,6 +19,7 @@ export {
 export {
     EditionOutline,
     EditionOutlineComplexItem,
+    EditionOutlineComplexTypes,
     EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,

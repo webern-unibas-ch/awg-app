@@ -5,8 +5,8 @@ import {
     StatisticsComplexType,
     StatisticsProgressBarConfig,
     StatisticsProgressBarItem,
-} from '@awg-views/statistics-view/models';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+} from '../models/statistics.model';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 /**
  * The StatisticsComplexBreakdown Component

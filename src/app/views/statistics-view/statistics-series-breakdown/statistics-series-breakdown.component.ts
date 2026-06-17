@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { StatisticsSeriesBreakdown } from '@awg-views/statistics-view/models';
-import { StatisticsBreakdownBadgeComponent } from '@awg-views/statistics-view/statistics-breakdown-badge';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+
+import { StatisticsSeriesBreakdown } from '../models/statistics.model';
+import { StatisticsBreakdownBadgeComponent } from '../statistics-breakdown-badge/statistics-breakdown-badge.component';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 /**
  * The StatisticsSeriesBreakdown component.

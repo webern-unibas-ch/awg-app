@@ -5,10 +5,9 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
 
-import { EditionOutlineSeries } from '@awg-app/views/edition-view/models';
+import { EditionOutlineComplexTypes, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
-import { EditionOutlineComplexTypes } from '@awg-app/views/edition-view/models/edition-outline.model';
-import { Statistics, StatisticsSectionBreakdown, StatisticsSeriesBreakdown } from '../../models';
+import { Statistics, StatisticsSectionBreakdown, StatisticsSeriesBreakdown } from '../models/statistics.model';
 import { StatisticsService } from './statistics.service';
 
 // Helper function to create a mock complex item

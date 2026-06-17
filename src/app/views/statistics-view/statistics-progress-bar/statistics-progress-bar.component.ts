@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
 
-import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
+import { StatisticsProgressBarConfig } from '../models/statistics.model';
 
 /**
  * The StatisticsProgressBarComponent component.
