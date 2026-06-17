@@ -278,10 +278,10 @@
                             <a href="#routedEditionViewComponents" title="src/app/views/edition-view/edition-view-routing.module.ts" ><b>routedEditionViewComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-view-routing.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#routedStructureViewComponents" title="src/app/views/structure-view/structure-view-routing.module.ts" ><b>routedStructureViewComponents</b>&nbsp;&nbsp;&nbsp;(src/.../structure-view-routing.module.ts)</a>
+                            <a href="#STATISTICS_VIEW_ROUTES" title="src/app/views/statistics-view/statistics-view.routes.ts" ><b>STATISTICS_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../statistics-view.routes.ts)</a>
                         </li>
                         <li>
-                            <a href="#STATISTICS_VIEW_ROUTES" title="src/app/views/statistics-view/statistics-view.routes.ts" ><b>STATISTICS_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../statistics-view.routes.ts)</a>
+                            <a href="#STRUCTURE_VIEW_ROUTES" title="src/app/views/structure-view/structure-view.routes.ts" ><b>STRUCTURE_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../structure-view.routes.ts)</a>
                         </li>
                         <li>
                             <a href="#w" title="src/polyfills.ts" ><b>w</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</a>
@@ -506,7 +506,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-14-gb0f004dff&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-15-gab8f63abb&#x27;</code>
                     </td>
                 </tr>
 
@@ -4402,42 +4402,6 @@ and <a href="../components/EditionSeriesDetailComponent.html">EditionSeriesDetai
         </tbody>
     </table>
 </section>
-    <h3>src/app/views/structure-view/structure-view-routing.module.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routedStructureViewComponents"></a>
-                    <span class="name">
-                        <span ><b>routedStructureViewComponents</b></span>
-                        <a href="#routedStructureViewComponents"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[StructureViewComponent, StructureInfoComponent]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Routed components of the <a href="../modules/StructureViewModule.html">StructureViewModule</a>:
-<a href="../components/StructureViewComponent.html">StructureViewComponent</a>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
     <h3>src/app/views/statistics-view/statistics-view.routes.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4472,6 +4436,52 @@ and <a href="../components/EditionSeriesDetailComponent.html">EditionSeriesDetai
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The routes for the statistics view.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/structure-view/structure-view.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STRUCTURE_VIEW_ROUTES"></a>
+                    <span class="name">
+                        <span ><b>STRUCTURE_VIEW_ROUTES</b></span>
+                        <a href="#STRUCTURE_VIEW_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        path: &#x27;&#x27;,
+        component: StructureViewComponent,
+        data: { title: &#x27;AWG Online Edition – Structure&#x27; },
+    },
+    {
+        path: &#x27;&#x27;,
+        outlet: &#x27;side&#x27;,
+        component: StructureSideInfoComponent,
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes for the structure view.</p>
 </div>
                 </td>
             </tr>

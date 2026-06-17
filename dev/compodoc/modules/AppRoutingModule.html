@@ -188,7 +188,8 @@ const APP_ROUTES: Routes &#x3D; [
     },
     {
         path: &#x27;structure&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)&quot;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/structure-view/structure-view.routes&#x27;).then(m &#x3D;&gt; m.STRUCTURE_VIEW_ROUTES)&quot;,
     },
 
     // Fallback routes

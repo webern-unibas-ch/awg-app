@@ -214,7 +214,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/app/core/core-models/meta.model.ts:259</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/core/core-models/meta.model.ts:291</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/app/core/core-models/meta.model.ts:249</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/app/core/core-models/meta.model.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/app/core/core-models/meta.model.ts:254</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/app/core/core-models/meta.model.ts:286</a></div>
                         </td>
                     </tr>
 
@@ -307,6 +307,38 @@ to store the metadata for different parts of the app.</p>
     page &#x3D; &#x27;page&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;,
+}
+
+/**
+ * The MetaIdentifierBadge interface.
+ *
+ * It defines the structure of an authority identifier badge.
+ */
+export interface MetaIdentifierBadge {
+    /**
+     * The key of the badge, which corresponds to the authority identifier type (e.g., &#x27;gnd&#x27;, &#x27;viaf&#x27;, &#x27;orcid&#x27;).
+     */
+    key: keyof MetaIdentifiers;
+
+    /**
+     * The full URL for the badge.
+     */
+    fullUrl: string;
+
+    /**
+     * The source URL for the badge icon.
+     */
+    src: string;
+
+    /**
+     * The label for the badge.
+     */
+    label: string;
+
+    /**
+     * The title text for the badge.
+     */
+    titleText: string;
 }
 
 /**

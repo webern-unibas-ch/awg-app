@@ -211,7 +211,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/core/core-models/meta.model.ts:149</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/core/core-models/meta.model.ts:181</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +243,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/core/core-models/meta.model.ts:154</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/core/core-models/meta.model.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -272,6 +272,38 @@ to store the metadata about the structure overview.</p>
     page &#x3D; &#x27;page&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;,
+}
+
+/**
+ * The MetaIdentifierBadge interface.
+ *
+ * It defines the structure of an authority identifier badge.
+ */
+export interface MetaIdentifierBadge {
+    /**
+     * The key of the badge, which corresponds to the authority identifier type (e.g., &#x27;gnd&#x27;, &#x27;viaf&#x27;, &#x27;orcid&#x27;).
+     */
+    key: keyof MetaIdentifiers;
+
+    /**
+     * The full URL for the badge.
+     */
+    fullUrl: string;
+
+    /**
+     * The source URL for the badge icon.
+     */
+    src: string;
+
+    /**
+     * The label for the badge.
+     */
+    label: string;
+
+    /**
+     * The title text for the badge.
+     */
+    titleText: string;
 }
 
 /**

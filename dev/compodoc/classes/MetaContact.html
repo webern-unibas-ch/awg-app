@@ -217,7 +217,7 @@ to store the metadata about contact information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/core/core-models/meta.model.ts:172</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/core/core-models/meta.model.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -249,7 +249,7 @@ to store the metadata about contact information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/core/core-models/meta.model.ts:167</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/app/core/core-models/meta.model.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -281,7 +281,7 @@ to store the metadata about contact information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/core/core-models/meta.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/app/core/core-models/meta.model.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -313,7 +313,7 @@ to store the metadata about contact information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/core/core-models/meta.model.ts:202</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/app/core/core-models/meta.model.ts:234</a></div>
                         </td>
                     </tr>
 
@@ -342,6 +342,38 @@ to store the metadata about contact information.</p>
     page &#x3D; &#x27;page&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;,
+}
+
+/**
+ * The MetaIdentifierBadge interface.
+ *
+ * It defines the structure of an authority identifier badge.
+ */
+export interface MetaIdentifierBadge {
+    /**
+     * The key of the badge, which corresponds to the authority identifier type (e.g., &#x27;gnd&#x27;, &#x27;viaf&#x27;, &#x27;orcid&#x27;).
+     */
+    key: keyof MetaIdentifiers;
+
+    /**
+     * The full URL for the badge.
+     */
+    fullUrl: string;
+
+    /**
+     * The source URL for the badge icon.
+     */
+    src: string;
+
+    /**
+     * The label for the badge.
+     */
+    label: string;
+
+    /**
+     * The title text for the badge.
+     */
+    titleText: string;
 }
 
 /**
