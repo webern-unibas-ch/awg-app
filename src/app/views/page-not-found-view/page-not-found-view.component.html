@@ -1,19 +1,19 @@
 <div class="awg-page-not-found-view p-5 border rounded-3">
-    <awg-heading [id]="'awg-page-not-found-title'" [title]="pageNotFoundTitle"></awg-heading>
+    <awg-heading [id]="PAGE_NOT_FOUND_VIEW_ID" [title]="PAGE_NOT_FOUND_VIEW_TITLE"></awg-heading>
 
-    <div class="awg-page-not-found-body text-center">
-        <h5 id="awg-page-not-found-subtitle">{{ pageNotFoundSubTitle }}</h5>
+    <div class="awg-page-not-found-view-body text-center">
+        <h5 id="awg-page-not-found-view-subtitle">{{ PAGE_NOT_FOUND_VIEW_SUBTITLE }}</h5>
 
-        <div class="awg-page-not-found-image my-4">
-            <img [src]="pageNotFoundImgPath" class="img-fluid rounded" alt="Page not found" />
+        <div class="awg-page-not-found-view-image my-4">
+            <img [src]="PAGE_NOT_FOUND_VIEW_IMG_PATH" class="img-fluid rounded" alt="Page not found" />
         </div>
 
-        <p id="awg-page-not-found-contact">
-            Kontaktieren sie uns gerne unter:
-            <a [href]="awgContactUrl">anton-webern.ch</a>
+        <p id="awg-page-not-found-view-contact">
+            Kontaktieren Sie uns gerne unter:
+            <a [href]="AWG_CONTACT_URL">anton-webern.ch</a>
         </p>
 
-        <p id="awg-page-not-found-back" class="mt-4">
+        <p id="awg-page-not-found-view-back" class="mt-4">
             Zurück zur Startseite: <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
         </p>
     </div>

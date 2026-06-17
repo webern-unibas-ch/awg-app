@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { HeadingComponent } from './heading.component';
 
@@ -12,12 +12,12 @@ describe('HeadingComponent (DONE)', () => {
     let fixture: ComponentFixture<HeadingComponent>;
     let compDe: DebugElement;
 
-    let expectedTitle: string;
     let expectedId: string;
+    let expectedTitle: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [HeadingComponent],
+            imports: [HeadingComponent],
         }).compileComponents();
     });
 
@@ -28,7 +28,7 @@ describe('HeadingComponent (DONE)', () => {
 
         // Test data
         expectedTitle = 'Test Title';
-        expectedId = '23';
+        expectedId = 'test-heading-id';
     });
 
     it('... should create', () => {
@@ -36,9 +36,12 @@ describe('HeadingComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `title` and `id`', () => {
-            expect(component.title).toBeUndefined();
-            expect(component.id).toBeUndefined();
+        it('... should have default `id`', () => {
+            expectToBe(component.id(), '');
+        });
+
+        it('... should have default `title`', () => {
+            expectToBe(component.title(), '');
         });
 
         describe('VIEW', () => {
@@ -46,29 +49,84 @@ describe('HeadingComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
             });
+
+            it('... should have empty `id` on div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
+
+                expectToBe(divEl.id, '');
+            });
+
+            it('... should have empty `title` on h3', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent, '');
+            });
         });
     });
 
-    describe('AFTER initial data binding', () => {
+    describe('AFTER initial data binding (default values)', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.title = expectedTitle;
-            component.id = expectedId;
+            fixture.detectChanges();
+        });
+
+        it('... should have default `id`', () => {
+            expectToBe(component.id(), '');
+        });
+
+        it('... should have default `title`', () => {
+            expectToBe(component.title(), '');
+        });
+
+        describe('VIEW', () => {
+            it('... should have empty `id` on div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
+
+                expectToBe(divEl.id, '');
+            });
+
+            it('... should have empty `title` on h3', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent, '');
+            });
+        });
+    });
+
+    describe('AFTER initial data binding (update)', () => {
+        beforeEach(() => {
+            // Simulate the parent updating the input signals
+            fixture.componentRef.setInput('id', expectedId);
+            fixture.componentRef.setInput('title', expectedTitle);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('VIEW', () => {
-            it('... should pass down `title` and `id` to component', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
-                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+        it('... should have updated `id`', () => {
+            expectToBe(component.id(), expectedId);
+        });
 
+        it('... should have updated `title`', () => {
+            expectToBe(component.title(), expectedTitle);
+        });
+
+        describe('VIEW', () => {
+            it('... should have updated `id` on div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
+
+                expectToBe(divEl.id, expectedId);
+            });
+
+            it('... should have updated `title` on h3', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToContain(divEl.id, expectedId);
-                expectToContain(hEl.textContent, expectedTitle);
+                expectToBe(hEl.textContent, expectedTitle);
             });
         });
     });

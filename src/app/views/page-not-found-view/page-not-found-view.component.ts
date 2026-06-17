@@ -1,65 +1,57 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AppConfig } from '@awg-app/app.config';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 /**
  * The PageNotFoundView component.
  *
- * It contains the page not found view section of the app
- * with redirects to awg contact pages.
+ * It contains the page not found view of the app
+ * with redirects to the AWG contact pages.
  */
 @Component({
     selector: 'awg-page-not-found-view',
     templateUrl: './page-not-found-view.component.html',
     styleUrls: ['./page-not-found-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [HeadingComponent, RouterLink, RouterLinkActive],
 })
 export class PageNotFoundViewComponent {
     /**
-     * Public variable: pageNotFoundTitle.
+     * Public variable: PAGE_NOT_FOUND_VIEW_ID.
      *
-     * It keeps the title of the page not found section.
+     * It keeps the id for the heading component
+     * of the page not found view.
      */
-    pageNotFoundTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
+    readonly PAGE_NOT_FOUND_VIEW_ID = 'awg-page-not-found-view-heading';
 
     /**
-     * Public variable: pageNotFoundSubTitle.
+     * Public readonly variable: PAGE_NOT_FOUND_VIEW_TITLE.
      *
-     * It keeps the subtitle of the page not found section.
+     * It keeps the title for the heading component
+     * of the page not found view.
      */
-    pageNotFoundSubTitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
+    readonly PAGE_NOT_FOUND_VIEW_TITLE = 'Entschuldigung, diese Seite gibt es hier nicht…';
 
     /**
-     * Private readonly variable: _pageNotFoundImgPath.
+     * Public readonly variable: PAGE_NOT_FOUND_VIEW_SUBTITLE.
      *
-     * It keeps the path to the image of the page not found section.
+     * It keeps the subtitle of the page not found.
      */
-    private readonly _pageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
+    readonly PAGE_NOT_FOUND_VIEW_SUBTITLE = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
 
     /**
-     * Private readonly variable: _awgContactUrl.
+     * Public readonly variable: PAGE_NOT_FOUND_VIEW_IMG_PATH.
+     *
+     * It keeps the path to the image of the page not found view.
+     */
+    readonly PAGE_NOT_FOUND_VIEW_IMG_PATH = 'assets/img/page-not-found/Webern_Books.jpg';
+
+    /**
+     * Public readonly variable: AWG_CONTACT_URL.
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    private readonly _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'de/info/kontakt.html';
-
-    /**
-     * Getter for the path to the image of the page not found section.
-     *
-     * @returns {string} The path to the image of the page not found section.
-     */
-    get pageNotFoundImgPath(): string {
-        return this._pageNotFoundImgPath;
-    }
-
-    /**
-     * Getter for the URL of the contact page of the AWG project website
-     * ({@link https://anton-webern.ch/de/info/kontakt.html}).
-     *
-     * @returns {string} The url of the contact page of the AWG project website.
-     */
-    get awgContactUrl(): string {
-        return this._awgContactUrl;
-    }
+    readonly AWG_CONTACT_URL = AppConfig.AWG_PROJECT_URL + 'de/info/kontakt.html';
 }

@@ -58,6 +58,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
+        HeadingComponent,
     ],
     declarations: [
         AddressComponent,
@@ -65,7 +66,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AlertInfoComponent,
         DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
-        HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,
         LicenseComponent,
