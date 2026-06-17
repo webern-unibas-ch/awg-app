@@ -461,18 +461,18 @@ which is retrieved from the StatisticsService based on data from the EditionOutl
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, signal } from &#x27;@angular/core&#x27;;
 
 import { EditionOutlineService } from &#x27;@awg-views/edition-view/services&#x27;;
+
 import {
     Statistics,
     StatisticsComplexBreakdownData,
     StatisticsOverallProgressData,
     StatisticsSummaryData,
-} from &#x27;@awg-views/statistics-view/models&#x27;;
-import { StatisticsService } from &#x27;@awg-views/statistics-view/services&#x27;;
-
-import { StatisticsComplexBreakdownComponent } from &#x27;@awg-views/statistics-view/statistics-complex-breakdown&#x27;;
-import { StatisticsOverallProgressComponent } from &#x27;@awg-views/statistics-view/statistics-overall-progress&#x27;;
-import { StatisticsSeriesBreakdownComponent } from &#x27;@awg-views/statistics-view/statistics-series-breakdown&#x27;;
-import { StatisticsSummaryComponent } from &#x27;@awg-views/statistics-view/statistics-summary&#x27;;
+} from &#x27;./models/statistics.model&#x27;;
+import { StatisticsService } from &#x27;./services/statistics.service&#x27;;
+import { StatisticsComplexBreakdownComponent } from &#x27;./statistics-complex-breakdown/statistics-complex-breakdown.component&#x27;;
+import { StatisticsOverallProgressComponent } from &#x27;./statistics-overall-progress/statistics-overall-progress.component&#x27;;
+import { StatisticsSeriesBreakdownComponent } from &#x27;./statistics-series-breakdown/statistics-series-breakdown.component&#x27;;
+import { StatisticsSummaryComponent } from &#x27;./statistics-summary/statistics-summary.component&#x27;;
 
 /**
  * The Statistics view component.
