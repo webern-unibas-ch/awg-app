@@ -1,21 +1,21 @@
 <!-- sideinfo: structure -->
 <div class="card">
     <div class="card-body bg-light">
-        @let meta = structureMetaData();
+        @let structure = structureMetaData();
 
         <h5 id="awg-structure-info-header">{{ STRUCTURE_SIDE_INFO_HEADER }}</h5>
         <p>&#9671;</p>
         <p>
             Konzept/Grafik:
             <span class="awg-structure-info-author">
-                <a href="{{ meta.authors[0].homepage }}">{{ meta.authors[0].name }}</a>
-                <awg-meta-identifier-badges [identifiers]="meta.authors[0].identifiers" />
+                <a href="{{ structure.authors[0].homepage }}">{{ structure.authors[0].name }}</a>
+                <awg-meta-identifier-badges [identifiers]="structure.authors[0].identifiers" />
             </span>
         </p>
         <p>&#9671;</p>
         <p>
             Versionsdatum:
-            <span id="awg-structure-info-lastmodified">{{ meta.lastModified | date: 'longDate' }}</span>
+            <span id="awg-structure-info-lastmodified">{{ structure.lastModified | date: 'longDate' }}</span>
         </p>
     </div>
 </div>
