@@ -1,13 +1,13 @@
-import { UpperCasePipe } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { LOGOS_DATA } from '@awg-core/core-data';
-import { MetaIdentifiers } from '@awg-core/core-models';
+import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
 
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges.component';
 
@@ -16,18 +16,23 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     let fixture: ComponentFixture<MetaIdentifierBadgesComponent>;
     let compDe: DebugElement;
 
+    let mockCoreService: Partial<CoreService>;
+
     let expectedIdentifiers: MetaIdentifiers;
-    let expectedIdentifierConfigs: {
-        key: keyof MetaIdentifiers;
-        baseUrl: string;
-        src: string;
-        label: string;
-    }[];
+    let expectedActiveIdentifierBadges: MetaIdentifierBadge[];
 
     beforeEach(async () => {
+        mockCoreService = {
+            getLogos: () => LOGOS_DATA,
+        };
         await TestBed.configureTestingModule({
-            declarations: [MetaIdentifierBadgesComponent],
-            imports: [UpperCasePipe],
+            imports: [MetaIdentifierBadgesComponent],
+            providers: [
+                {
+                    provide: CoreService,
+                    useValue: mockCoreService,
+                },
+            ],
         }).compileComponents();
     });
 
@@ -38,25 +43,38 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
         // Test data
         expectedIdentifiers = { gnd: '129772429', viaf: '74941235' };
-        expectedIdentifierConfigs = (['gnd', 'viaf', 'orcid'] as (keyof MetaIdentifiers)[]).map(key => ({
-            key,
-            baseUrl: LOGOS_DATA[key].href,
-            src: LOGOS_DATA[key].src,
-            label: LOGOS_DATA[key].alt,
-        }));
+
+        const logosData = TestBed.inject(CoreService).getLogos();
+        expectedActiveIdentifierBadges = [
+            {
+                key: 'gnd',
+                fullUrl: logosData['gnd'].href + '129772429',
+                src: logosData['gnd'].src,
+                label: logosData['gnd'].alt,
+                titleText: 'GND: 129772429',
+            },
+            {
+                key: 'viaf',
+                fullUrl: logosData['viaf'].href + '74941235',
+                src: logosData['viaf'].src,
+                label: logosData['viaf'].alt,
+                titleText: 'VIAF: 74941235',
+            },
+        ];
     });
 
     it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    describe('BEFORE initial data binding', () => {
-        it('... should not have `identifiers`', () => {
-            expect(component.identifiers).toBeUndefined();
-        });
+    it('... injected service should use provided mockValue', () => {
+        const coreService = TestBed.inject(CoreService);
+        expectToBe(mockCoreService === coreService, true);
+    });
 
-        it('... should have `identifierConfigs`', () => {
-            expect(component.IDENTIFIER_CONFIGS).toEqual(expectedIdentifierConfigs);
+    describe('BEFORE initial data binding', () => {
+        it('... should have default `identifiers`', () => {
+            expectToEqual(component.identifiers(), {});
         });
 
         describe('VIEW', () => {
@@ -66,83 +84,125 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
         });
     });
 
-    describe('AFTER initial data binding', () => {
-        describe('... if identifiers is undefined', () => {
-            beforeEach(() => {
-                component.identifiers = undefined;
-                fixture.detectChanges();
-            });
+    describe('AFTER initial data binding (default values)', () => {
+        beforeEach(() => {
+            fixture.detectChanges();
+        });
 
-            it('... should contain no badge links', () => {
+        it('... should have default `identifiers`', () => {
+            expectToEqual(component.identifiers(), {});
+        });
+
+        it('... should have computed `activeIdentifierBadges` (empty array due to identifiers={})', () => {
+            const activeIdentifierBadges: MetaIdentifierBadge[] = component.activeIdentifierBadges();
+
+            expectToEqual(activeIdentifierBadges, []);
+            expectToBe(activeIdentifierBadges.length, 0);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain no badge links yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', 0, 0);
             });
         });
+    });
 
-        describe('... if identifiers has no entries', () => {
-            beforeEach(() => {
-                component.identifiers = {};
-                fixture.detectChanges();
-            });
+    describe('AFTER initial data binding (update)', () => {
+        beforeEach(() => {
+            // Simluate the parent updating the input
+            fixture.componentRef.setInput('identifiers', expectedIdentifiers);
 
-            it('... should contain no badge links', () => {
-                getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', 0, 0);
-            });
+            fixture.detectChanges();
         });
 
-        describe('... if identifiers is given', () => {
-            beforeEach(() => {
-                component.identifiers = expectedIdentifiers;
-                fixture.detectChanges();
-            });
+        it('... should have correct `identifiers`', () => {
+            expectToEqual(component.identifiers(), expectedIdentifiers);
+        });
 
+        it('... should have computed `activeIdentifierBadges`', () => {
+            const activeIdentifierBadges: MetaIdentifierBadge[] = component.activeIdentifierBadges();
+
+            expectToEqual(activeIdentifierBadges, expectedActiveIdentifierBadges);
+            expectToBe(activeIdentifierBadges.length, 2);
+
+            expectToBe(activeIdentifierBadges[0].key, expectedActiveIdentifierBadges[0].key);
+            expectToBe(activeIdentifierBadges[1].key, expectedActiveIdentifierBadges[1].key);
+
+            expectToBe(activeIdentifierBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
+            expectToBe(activeIdentifierBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
+
+            expectToBe(activeIdentifierBadges[0].src, expectedActiveIdentifierBadges[0].src);
+            expectToBe(activeIdentifierBadges[1].src, expectedActiveIdentifierBadges[1].src);
+
+            expectToBe(activeIdentifierBadges[0].label, expectedActiveIdentifierBadges[0].label);
+            expectToBe(activeIdentifierBadges[1].label, expectedActiveIdentifierBadges[1].label);
+
+            expectToBe(activeIdentifierBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
+            expectToBe(activeIdentifierBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
+        });
+
+        describe('VIEW', () => {
             it('... should render one badge link per present identifier', () => {
-                const presentCount = expectedIdentifierConfigs.filter(c => expectedIdentifiers[c.key]).length;
-                getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', presentCount, presentCount);
+                const expectedCount = component.activeIdentifierBadges().length;
+
+                getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', expectedCount, expectedCount);
             });
 
-            it('... should render badge links with correct href and icon', () => {
-                const expectedLinks = expectedIdentifierConfigs
-                    .filter(c => expectedIdentifiers[c.key])
-                    .map(c => ({
-                        href: c.baseUrl + (expectedIdentifiers[c.key] as string),
-                        src: c.src,
-                        label: c.label,
-                    }));
+            it('... should have correct href on each badge link', () => {
+                const expectedBadges = component.activeIdentifierBadges();
 
-                const badgeDes = getAndExpectDebugElementByCss(
+                const badgeAnchorDes = getAndExpectDebugElementByCss(
                     compDe,
                     'a.awg-meta-identifier-badge',
-                    expectedLinks.length,
-                    expectedLinks.length
+                    expectedBadges.length,
+                    expectedBadges.length
                 );
-                const badgeEls: HTMLAnchorElement[] = badgeDes.map(de => de.nativeElement);
 
-                badgeEls.forEach((el, i) => {
-                    expectToBe(el.href, expectedLinks[i].href);
+                badgeAnchorDes.forEach((badgeAnchorDe, index) => {
+                    const badgeAnchorEl: HTMLAnchorElement = badgeAnchorDe.nativeElement;
 
-                    const img = el.querySelector('img.awg-meta-identifier-badge-icon') as HTMLImageElement;
-                    expect(img).toBeTruthy();
-                    expectToContain(img.src, expectedLinks[i].src);
-                    expectToBe(img.alt, expectedLinks[i].label);
+                    expectToBe(badgeAnchorEl.href, expectedBadges[index].fullUrl);
                 });
             });
 
-            it('... should render each badge link with correct title attribute', () => {
-                const expectedLinks = expectedIdentifierConfigs.filter(c => expectedIdentifiers[c.key]);
+            it('... should have one image on each badge link', () => {
+                const expectedBadges = component.activeIdentifierBadges();
 
-                const badgeDes = getAndExpectDebugElementByCss(
+                const badgeAnchorDes = getAndExpectDebugElementByCss(
                     compDe,
                     'a.awg-meta-identifier-badge',
-                    expectedLinks.length,
-                    expectedLinks.length
+                    expectedBadges.length,
+                    expectedBadges.length
                 );
-                const badgeEls: HTMLAnchorElement[] = badgeDes.map(de => de.nativeElement);
 
-                badgeEls.forEach((el, i) => {
-                    const img = el.querySelector('img.awg-meta-identifier-badge-icon') as HTMLImageElement;
-                    expect(img).toBeTruthy();
-                    const expectedTitle = `${expectedLinks[i].key.toUpperCase()}: ${expectedIdentifiers[expectedLinks[i].key]}`;
-                    expectToBe(img.title, expectedTitle);
+                badgeAnchorDes.forEach(badgeAnchorDe => {
+                    getAndExpectDebugElementByCss(badgeAnchorDe, 'img.awg-meta-identifier-badge-icon', 1, 1);
+                });
+            });
+
+            it('... should render image with correct src, alt and title', () => {
+                const expectedBadges = component.activeIdentifierBadges();
+
+                const badgeAnchorDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'a.awg-meta-identifier-badge',
+                    expectedBadges.length,
+                    expectedBadges.length
+                );
+
+                badgeAnchorDes.forEach((badgeAnchorDe, index) => {
+                    const imgDes = getAndExpectDebugElementByCss(
+                        badgeAnchorDe,
+                        'img.awg-meta-identifier-badge-icon',
+                        1,
+                        1
+                    );
+                    const imgEl: HTMLImageElement = imgDes[0].nativeElement;
+
+                    expect(imgEl).toBeTruthy();
+                    expectToContain(imgEl.src, expectedBadges[index].src);
+                    expectToBe(imgEl.alt, expectedBadges[index].label);
+                    expectToBe(imgEl.title, expectedBadges[index].titleText);
                 });
             });
         });

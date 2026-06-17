@@ -59,6 +59,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
         HeadingComponent,
+        MetaIdentifierBadgesComponent,
     ],
     declarations: [
         AddressComponent,
@@ -69,7 +70,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         JsonViewerComponent,
         LanguageSwitcherComponent,
         LicenseComponent,
-        MetaIdentifierBadgesComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
