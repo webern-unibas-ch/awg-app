@@ -109,7 +109,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Simluate the parent updating the input
+            // Simulate the parent updating the input
             fixture.componentRef.setInput('identifiers', expectedIdentifiers);
 
             fixture.detectChanges();
