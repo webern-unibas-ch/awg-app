@@ -8,7 +8,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
  * The PageNotFoundView component.
  *
  * It contains the page not found view of the app
- * with redirects to awg contact pages.
+ * with redirects to the AWG contact pages.
  */
 @Component({
     selector: 'awg-page-not-found-view',
