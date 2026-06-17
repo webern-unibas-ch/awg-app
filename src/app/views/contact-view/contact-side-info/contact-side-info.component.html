@@ -1,0 +1,10 @@
+<!-- sideinfo: contact -->
+<div class="card">
+    <div class="card-body bg-light">
+        <h5 id="awg-contact-side-info-header" class="mb-3">{{ CONTACT_SIDE_INFO_HEADER }}</h5>
+        <awg-contact-address
+            [pageMetaData]="pageMetaData()"
+            [contactMetaData]="contactMetaData()"></awg-contact-address>
+        <awg-contact-map [embedUrl]="mapEmbedUrl()" [linkUrl]="mapLinkUrl()"></awg-contact-map>
+    </div>
+</div>
