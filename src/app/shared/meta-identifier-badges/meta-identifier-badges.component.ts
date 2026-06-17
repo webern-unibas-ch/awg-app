@@ -27,10 +27,10 @@ export class MetaIdentifierBadgesComponent {
      * Input signal: identifiers.
      *
      * It holds the authority identifiers of a person.
-     * @default {} as MetaIdentifiers
+     * @default undefined
      */
     // eslint-disable-next-line @typescript-eslint/member-ordering
-    identifiers = input<MetaIdentifiers>({} as MetaIdentifiers);
+    identifiers = input<MetaIdentifiers | undefined>(undefined);
 
     /**
      * Computed signal: activeIdentifierBadges.
@@ -39,7 +39,7 @@ export class MetaIdentifierBadgesComponent {
      */
     // eslint-disable-next-line @typescript-eslint/member-ordering
     activeIdentifierBadges = computed<MetaIdentifierBadge[]>(() => {
-        const currentIds = this.identifiers();
+        const currentIds = this.identifiers() ?? ({} as MetaIdentifiers);
         const logosData = this._coreService.getLogos();
 
         return (['gnd', 'viaf', 'orcid'] as (keyof MetaIdentifiers)[])

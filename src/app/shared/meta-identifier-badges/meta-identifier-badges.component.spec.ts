@@ -73,8 +73,8 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `identifiers`', () => {
-            expectToEqual(component.identifiers(), {});
+        it('... should have default `identifiers` (undefined)', () => {
+            expect(component.identifiers()).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -89,11 +89,11 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have default `identifiers`', () => {
-            expectToEqual(component.identifiers(), {});
+        it('... should have default `identifiers` (undefined)', () => {
+            expect(component.identifiers()).toBeUndefined();
         });
 
-        it('... should have computed `activeIdentifierBadges` (empty array due to identifiers={})', () => {
+        it('... should have computed `activeIdentifierBadges` (empty array due to identifiers=undefined)', () => {
             const activeIdentifierBadges: MetaIdentifierBadge[] = component.activeIdentifierBadges();
 
             expectToEqual(activeIdentifierBadges, []);
