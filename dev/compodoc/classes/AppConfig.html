@@ -211,13 +211,13 @@
                                     <a href="#DHLAB_URL" >DHLAB_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#OSM_LINK_URL" >OSM_LINK_URL</a>
+                                    <a href="#CONTACT_MAP_LINK_URL" >CONTACT_MAP_LINK_URL</a>
                                 </li>
                                 <li>
                                     <a href="#SALSAH_URL" >SALSAH_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#UNSAFE_OSM_EMBED_URL" >UNSAFE_OSM_EMBED_URL</a>
+                                    <a href="#CONTACT_MAP_UNSAFE_EMBED_URL" >CONTACT_MAP_UNSAFE_EMBED_URL</a>
                                 </li>
                                 <li>
                                     <a href="#AWG_APP_ZENODO_URL" >AWG_APP_ZENODO_URL</a>
@@ -711,14 +711,14 @@ of the AWG edition website (awg-app).
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="OSM_LINK_URL"></a>
-                        <span class="name"><b>OSM_LINK_URL</b><a href="#OSM_LINK_URL"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="CONTACT_MAP_LINK_URL"></a>
+                        <span class="name"><b>CONTACT_MAP_LINK_URL</b><a href="#CONTACT_MAP_LINK_URL"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>OSM_LINK_URL()</code></span>
+                        <span class="accessor"><b>get</b><code>CONTACT_MAP_LINK_URL()</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -728,7 +728,7 @@ of the AWG edition website (awg-app).
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Getter for the OSM external link.</p>
+                                <div class="io-description"><p>Getter for the contact map external link.</p>
 </div>
 
                                 <div>
@@ -782,14 +782,14 @@ of the AWG edition website (awg-app).
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="UNSAFE_OSM_EMBED_URL"></a>
-                        <span class="name"><b>UNSAFE_OSM_EMBED_URL</b><a href="#UNSAFE_OSM_EMBED_URL"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="CONTACT_MAP_UNSAFE_EMBED_URL"></a>
+                        <span class="name"><b>CONTACT_MAP_UNSAFE_EMBED_URL</b><a href="#CONTACT_MAP_UNSAFE_EMBED_URL"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>UNSAFE_OSM_EMBED_URL()</code></span>
+                        <span class="accessor"><b>get</b><code>CONTACT_MAP_UNSAFE_EMBED_URL()</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -799,7 +799,7 @@ of the AWG edition website (awg-app).
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Getter for the unsanitized OSM embed link.</p>
+                                <div class="io-description"><p>Getter for the unsanitized contact map embed link.</p>
 </div>
 
                                 <div>
@@ -991,14 +991,14 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the OSM external link.
+     * Getter for the contact map external link.
      *
      * @returns {string}
      */
-    public static get OSM_LINK_URL(): string {
-        const osmLinkRoot &#x3D; &#x27;https://www.openstreetmap.org/&#x27;;
-        const osmLinkId &#x3D; &#x27;?mlat&#x3D;47.55897&amp;amp;mlon&#x3D;7.58451#map&#x3D;19/47.55897/7.58451&#x27;;
-        return osmLinkRoot + osmLinkId;
+    public static get CONTACT_MAP_LINK_URL(): string {
+        const mapLinkRoot &#x3D; &#x27;https://www.openstreetmap.org/&#x27;;
+        const mapLinkId &#x3D; &#x27;?mlat&#x3D;47.55897&amp;mlon&#x3D;7.58451#map&#x3D;19/47.55897/7.58451&#x27;;
+        return mapLinkRoot + mapLinkId;
     }
 
     /**
@@ -1012,17 +1012,17 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the unsanitized OSM embed link.
+     * Getter for the unsanitized contact map embed link.
      *
      * @returns {string}
      */
-    public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmApi &#x3D; &#x27;https://www.openstreetmap.org/export/embed.html&#x27;;
+    public static get CONTACT_MAP_UNSAFE_EMBED_URL(): string {
+        const mapApi &#x3D; &#x27;https://www.openstreetmap.org/export/embed.html&#x27;;
         const bbox &#x3D; &#x27;bbox&#x3D;7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&#x27;;
         const layer &#x3D; &#x27;layer&#x3D;mapnik&#x27;;
         const marker &#x3D; &#x27;47.55896585846639%2C7.584506571292877&#x27;;
 
-        return osmApi + &#x27;?&#x27; + bbox + &#x27;&amp;&#x27; + layer + &#x27;&amp;&#x27; + marker;
+        return mapApi + &#x27;?&#x27; + bbox + &#x27;&amp;&#x27; + layer + &#x27;&amp;&#x27; + marker;
     }
 
     /**

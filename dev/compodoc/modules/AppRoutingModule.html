@@ -170,7 +170,7 @@ const APP_ROUTES: Routes &#x3D; [
     // Lazy loaded routes
     {
         path: &#x27;contact&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)&quot;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.routes&#x27;).then(m &#x3D;&gt; m.CONTACT_VIEW_ROUTES)&quot;,
     },
     {
         path: &#x27;edition&#x27;,
