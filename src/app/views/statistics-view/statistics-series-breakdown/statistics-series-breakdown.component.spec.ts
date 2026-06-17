@@ -16,14 +16,15 @@ import {
 import { mockStatisticsData } from '@testing/mock-data';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+
 import {
     StatisticsComplexBreakdown,
     StatisticsProgressBarConfig,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
-} from '@awg-views/statistics-view/models';
-import { StatisticsBreakdownBadgeComponent } from '@awg-views/statistics-view/statistics-breakdown-badge';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+} from '../models/statistics.model';
+import { StatisticsBreakdownBadgeComponent } from '../statistics-breakdown-badge/statistics-breakdown-badge.component';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdown.component';
 

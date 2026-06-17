@@ -11,8 +11,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsOverallProgressData, StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+import { StatisticsOverallProgressData, StatisticsProgressBarConfig } from '../models/statistics.model';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 import { StatisticsOverallProgressComponent } from './statistics-overall-progress.component';
 

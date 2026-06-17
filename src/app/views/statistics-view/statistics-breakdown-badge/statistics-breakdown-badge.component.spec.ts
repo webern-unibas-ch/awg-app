@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '@awg-views/statistics-view/models';
+import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/statistics.model';
 
 import { StatisticsBreakdownBadgeComponent } from './statistics-breakdown-badge.component';
 

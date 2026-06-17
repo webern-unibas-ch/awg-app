@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
+
 import {
     expectToBe,
     expectToContain,
@@ -11,9 +13,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
+import { StatisticsProgressBarConfig } from '../models/statistics.model';
 
-import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
 import { StatisticsProgressBarComponent } from './statistics-progress-bar.component';
 
 describe('StatisticsProgressBarComponent', () => {

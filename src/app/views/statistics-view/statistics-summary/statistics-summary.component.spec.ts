@@ -13,8 +13,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsSummaryCardData, StatisticsSummaryData } from '@awg-views/statistics-view/models';
-import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
+import { StatisticsSummaryCardData, StatisticsSummaryData } from '../models/statistics.model';
+import { StatisticsSummaryCardComponent } from '../statistics-summary-card/statistics-summary-card.component';
 
 import { StatisticsSummaryComponent } from './statistics-summary.component';
 

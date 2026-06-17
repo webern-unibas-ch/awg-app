@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services';
+
 import {
     Statistics,
     StatisticsComplexBreakdownData,
     StatisticsOverallProgressData,
     StatisticsSummaryData,
-} from '@awg-views/statistics-view/models';
-import { StatisticsService } from '@awg-views/statistics-view/services';
-
-import { StatisticsComplexBreakdownComponent } from '@awg-views/statistics-view/statistics-complex-breakdown';
-import { StatisticsOverallProgressComponent } from '@awg-views/statistics-view/statistics-overall-progress';
-import { StatisticsSeriesBreakdownComponent } from '@awg-views/statistics-view/statistics-series-breakdown';
-import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistics-summary';
+} from './models/statistics.model';
+import { StatisticsService } from './services/statistics.service';
+import { StatisticsComplexBreakdownComponent } from './statistics-complex-breakdown/statistics-complex-breakdown.component';
+import { StatisticsOverallProgressComponent } from './statistics-overall-progress/statistics-overall-progress.component';
+import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdown/statistics-series-breakdown.component';
+import { StatisticsSummaryComponent } from './statistics-summary/statistics-summary.component';
 
 /**
  * The Statistics view component.
