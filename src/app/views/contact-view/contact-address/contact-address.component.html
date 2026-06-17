@@ -1,0 +1,30 @@
+<address>
+    @let contact = contactMetaData();
+    @let page = pageMetaData();
+
+    <p id="awg-contact-address-header" class="smallcaps">
+        <strong>
+            <a href="{{ page?.awgProjectUrl }}">{{ page?.awgProjectName }}</a>
+        </strong>
+    </p>
+    <p class="awg-contact-address-content">
+        <span id="awg-contact-address-institution">{{ contact?.address?.institution }}</span>
+        <br />
+        <span id="awg-contact-address-street">{{ contact?.address?.street }}</span>
+        <br />
+        <span id="awg-contact-address-postal-city"
+            >{{ contact?.address?.postalCode }}&nbsp;{{ contact?.address?.city }}</span
+        >
+        <br />
+        <span id="awg-contact-address-country">{{ contact?.address?.country }}</span>
+    </p>
+    <p class="awg-contact-address-content">
+        <span id="awg-contact-address-phone">{{ contact?.phone?.label }}&nbsp;{{ contact?.phone?.number }}</span>
+        <br />
+        <span id="awg-contact-address-email"
+            >{{ contact?.email?.label }}&nbsp;<a href="{{ contact?.email?.mailto }}">{{
+                contact?.email?.safeString
+            }}</a></span
+        >
+    </p>
+</address>

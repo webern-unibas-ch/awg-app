@@ -13,7 +13,6 @@ import { CompileHtmlModule } from './compile-html';
 
 //
 // Shared components
-import { AddressComponent } from './address/address.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions/disclaimer-workeditions.component';
@@ -24,7 +23,6 @@ import { LanguageSwitcherComponent } from './language-switcher/language-switcher
 import { LicenseComponent } from './license/license.component';
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
-import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
@@ -62,7 +60,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         MetaIdentifierBadgesComponent,
     ],
     declarations: [
-        AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
         DisclaimerWorkeditionsComponent,
@@ -71,7 +68,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LanguageSwitcherComponent,
         LicenseComponent,
         ModalComponent,
-        OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
         ScrollToTopComponent,
         TableComponent,
@@ -93,8 +89,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
-
-        AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
         DisclaimerWorkeditionsComponent,
@@ -105,7 +99,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LicenseComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
-        OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
         ScrollToTopComponent,
         TableComponent,
