@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -696,6 +697,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             click(aEl as HTMLElement);
                             await detectChangesOnPush(fixture);
 
+                            expectSpyCall(navigateSpy, 1);
                             const firstCallArg = navigateSpy.mock.calls[0][0];
                             const actualUrl = firstCallArg.toString();
 

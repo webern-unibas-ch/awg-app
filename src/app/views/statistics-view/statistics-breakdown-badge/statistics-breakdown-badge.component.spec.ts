@@ -80,7 +80,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
         });
     });
 
-    describe('AFTER initial data binding (default)', () => {
+    describe('AFTER initial data binding (default values)', () => {
         beforeEach(() => {
             fixture.detectChanges();
         });
