@@ -45,7 +45,7 @@ const APP_ROUTES: Routes = [
     {
         path: '404',
         loadChildren: () =>
-            import('@awg-views/page-not-found-view/page-not-found-view.module').then(m => m.PageNotFoundViewModule),
+            import('@awg-views/page-not-found-view/page-not-found-view.routes').then(m => m.PAGE_NOT_FOUND_VIEW_ROUTES),
     },
     {
         path: '**',
