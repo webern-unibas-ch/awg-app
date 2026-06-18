@@ -11,9 +11,7 @@
                         Hinweise zur Nutzung
                     </button>
                 }
-                <awg-fullscreen-toggle
-                    [fsElement]="accoladeAcc"
-                    (toggleFullscreenRequest)="fullscreenToggle($event)"></awg-fullscreen-toggle>
+                <awg-fullscreen-toggle [fsElement]="accoladeAcc" (toggleFullscreenRequest)="fullscreenToggle($event)" />
             </div>
         </div>
         <div ngbAccordionCollapse>
@@ -32,8 +30,7 @@
                                 [isMinimized]="isSheetFacetMinimized"
                                 [selectedSvgSheet]="selectedSvgSheet"
                                 (selectSvgSheetRequest)="selectSvgSheet($event)"
-                                (toggleSheetFacetRequest)="toggleSheetFacet($event)">
-                            </awg-edition-svg-sheet-facet>
+                                (toggleSheetFacetRequest)="toggleSheetFacet($event)" />
                         </div>
 
                         <div
@@ -48,8 +45,7 @@
                                     [selectedSvgSheet]="selectedSvgSheet"
                                     (browseSvgSheetRequest)="browseSvgSheet($event)"
                                     (selectLinkBoxRequest)="selectLinkBox($event)"
-                                    (selectOverlaysRequest)="selectOverlays($event)">
-                                </awg-edition-svg-sheet-viewer>
+                                    (selectOverlaysRequest)="selectOverlays($event)" />
                             }
 
                             <!-- table for TkA -->
@@ -60,7 +56,7 @@
                                     [showTkA]="showTkA"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                         </div>
                     </div>

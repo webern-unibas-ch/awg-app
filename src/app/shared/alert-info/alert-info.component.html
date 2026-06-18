@@ -1,7 +1,7 @@
 @if (isOpen) {
     <ngb-alert [type]="type" (closed)="isOpen = false">
         <p class="no-para-margin text-muted text-center small">
-            <fa-icon [icon]="faCircleInfo" size="xl"></fa-icon>&nbsp;&nbsp;{{ infoMessage }}
+            <fa-icon [icon]="faCircleInfo" size="xl" />&nbsp;&nbsp;{{ infoMessage }}
         </p>
     </ngb-alert>
 }

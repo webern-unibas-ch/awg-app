@@ -20,15 +20,14 @@
                         [selectedConvolute]="selectedConvolute"
                         [selectedSvgSheet]="selectedSvgSheet"
                         (openModalRequest)="openModal($event)"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)">
-                    </awg-edition-folio-viewer>
+                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
 
                     <!-- convolute legend -->
                     <div class="awg-convolute-legend col-12">
                         Legende:&nbsp;
                         @for (legend of folioLegends; track legend) {
                             <span class="{{ legend.color }}">
-                                <fa-icon [icon]="faSquare"></fa-icon>
+                                <fa-icon [icon]="faSquare" />
                                 {{ legend.label }}
                             </span>
                         }

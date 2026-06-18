@@ -37,8 +37,7 @@
                             </td>
                             <td class="text-center">
                                 @if (series.totalComplexes > 0) {
-                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown">
-                                    </awg-statistics-breakdown-badge>
+                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown" />
                                 }
                             </td>
                             <td class="text-center" [class.text-muted]="series.activeSections === 0">
@@ -51,8 +50,7 @@
                                         percentage: series.progressRate,
                                     }"
                                     [height]="'20px'"
-                                    [boldPercentageLabel]="true">
-                                </awg-statistics-progress-bar>
+                                    [boldPercentageLabel]="true" />
                             </td>
                         </tr>
                         <!-- Section Rows -->
@@ -84,8 +82,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if (section.totalComplexes > 0) {
-                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown">
-                                        </awg-statistics-breakdown-badge>
+                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown" />
                                     }
                                 </td>
                                 <td class="text-center" [class.text-muted]="section.disabled">
@@ -96,7 +93,7 @@
                                         [config]="{
                                             mode: 'percentage',
                                             percentage: section.totalComplexes > 0 ? section.progressRate : 0,
-                                        }"></awg-statistics-progress-bar>
+                                        }" />
                                 </td>
                             </tr>
                         }

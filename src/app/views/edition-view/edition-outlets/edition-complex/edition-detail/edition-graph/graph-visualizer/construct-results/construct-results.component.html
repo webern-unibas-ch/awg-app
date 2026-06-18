@@ -16,13 +16,12 @@
                                 class="full-width"
                                 [currentQueryResultTriples]="queryResult"
                                 [height]="defaultForceGraphHeight"
-                                (clickedNodeRequest)="onGraphNodeClick($event)">
-                            </awg-force-graph>
+                                (clickedNodeRequest)="onGraphNodeClick($event)" />
                         } @else {
-                            <awg-sparql-no-results></awg-sparql-no-results>
+                            <awg-sparql-no-results />
                         }
                     } @else {
-                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+                        <awg-twelve-tone-spinner />
                     }
                 </ng-template>
             </div>

@@ -19,16 +19,16 @@
                         [(ngModel)]="sliderConfig.value"
                         (ngModelChange)="onZoomChange($event)" />
                     <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">
-                        <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
+                        <fa-icon [icon]="faCompressArrowsAlt" />
                     </button>
                 </div>
             </div>
             <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
                 <svg #svgSheetElement id="awg-edition-svg-sheet">
-                    <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
+                    <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
                 </svg>
 
-                <awg-license></awg-license>
+                <awg-license />
 
                 @if (hasAvailableTkkOverlays || suppliedClasses.size > 0) {
                     <awg-edition-svg-sheet-viewer-switch
@@ -36,15 +36,12 @@
                         [suppliedClasses]="suppliedClasses"
                         [hasAvailableTkkOverlays]="hasAvailableTkkOverlays"
                         (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
-                        (toggleTkkClassesHighlightRequest)="
-                            onTkkClassesHighlightToggle($event)
-                        "></awg-edition-svg-sheet-viewer-switch>
+                        (toggleTkkClassesHighlightRequest)="onTkkClassesHighlightToggle($event)" />
                 }
             </div>
 
             <!-- Next and previous buttons -->
-            <awg-edition-svg-sheet-viewer-nav
-                (browseSvgSheetRequest)="browseSvgSheet($event)"></awg-edition-svg-sheet-viewer-nav>
+            <awg-edition-svg-sheet-viewer-nav (browseSvgSheetRequest)="browseSvgSheet($event)" />
         </div>
     </div>
 }

@@ -1,8 +1,7 @@
 @if (introBlockContent) {
     <div class="awg-edition-intro-nav">
         <ul class="nav flex-column">
-            <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)">
-            </awg-language-switcher>
+            <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)" />
             <hr class="mt-0 mb-2" />
             @for (introBlock of introBlockContent; track $index) {
                 @if (introBlock.blockHeader) {

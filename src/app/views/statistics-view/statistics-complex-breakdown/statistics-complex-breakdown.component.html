@@ -12,8 +12,7 @@
                             [headerLabel]="item.baseLabel + ' Complexes'"
                             [showPercentageLabel]="false"
                             [customType]="item.colorType"
-                            [useCustomTypeOnly]="true">
-                        </awg-statistics-progress-bar>
+                            [useCustomTypeOnly]="true" />
                     </div>
                 }
             </div>
@@ -31,8 +30,7 @@
                         <awg-statistics-progress-bar
                             [config]="getProgressBarConfig(item.key, 'ratio')"
                             [headerLabel]="'Active ' + item.baseLabel + (item.key !== 'opus' ? 's' : '')"
-                            [showPercentageLabel]="false">
-                        </awg-statistics-progress-bar>
+                            [showPercentageLabel]="false" />
                     </div>
                 }
             </div>

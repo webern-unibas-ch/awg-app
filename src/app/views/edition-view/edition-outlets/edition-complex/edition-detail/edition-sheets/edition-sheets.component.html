@@ -1,15 +1,15 @@
 <!-- content: edition detail -->
 <div>
     <!-- modal -->
-    <awg-modal #modal></awg-modal>
+    <awg-modal #modal />
 
     <!-- loading spinner -->
     @if (isLoading$ | async) {
-        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+        <awg-twelve-tone-spinner />
     } @else {
         <!-- error message -->
         @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+            <awg-alert-error [errorObject]="errorObject" />
         } @else {
             <div class="awg-sheets-view">
                 <!-- accolade view -->
@@ -28,8 +28,7 @@
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectOverlaysRequest)="onOverlaySelect($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)">
-                </awg-edition-accolade>
+                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)" />
 
                 <!-- convolute view -->
                 @if (selectedConvolute && selectedSvgSheet) {
@@ -37,8 +36,7 @@
                         [selectedConvolute]="selectedConvolute"
                         [selectedSvgSheet]="selectedSvgSheet"
                         (openModalRequest)="modal.open($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-                    </awg-edition-convolute>
+                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
                 }
             </div>
         }

@@ -26,14 +26,14 @@
                 <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
                     <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.home }}</span>
-                    <fa-icon [icon]="navbarIcons.home"></fa-icon>
+                    <fa-icon [icon]="navbarIcons.home" />
                 </a>
             </li>
             <li class="nav-item" ngbDropdown [class.active]="isActiveRoute('/edition')">
                 <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
                     <!-- do not show text on sm devices, change order from md devices up -->
                     <span class="d-sm-none d-md-inline">{{ navbarLabels.edition }}</span>
-                    <fa-icon [icon]="navbarIcons.edition" class="order-md-minus-1"></fa-icon>
+                    <fa-icon [icon]="navbarIcons.edition" class="order-md-minus-1" />
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <h6 class="dropdown-header">{{ navbarLabels.general }}</h6>
@@ -94,7 +94,7 @@
                 <a class="nav-link d-flex" [routerLink]="['/structure']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
                     <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.structure }}</span>
-                    <fa-icon [icon]="navbarIcons.structure"></fa-icon>
+                    <fa-icon [icon]="navbarIcons.structure" />
                 </a>
             </li>
         </ul>
@@ -111,7 +111,7 @@
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
                     <span class="d-sm-none d-lg-inline">{{ navbarLabels.contact }}</span>
-                    <fa-icon [icon]="navbarIcons.contact"></fa-icon>
+                    <fa-icon [icon]="navbarIcons.contact" />
                 </a>
             </li>
         </ul>

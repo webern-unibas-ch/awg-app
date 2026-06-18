@@ -27,8 +27,7 @@
         <awg-table-pagination
             [collectionSize]="tableData.filteredRows?.length"
             [(page)]="paginatorOptions.page"
-            (pageChangeRequest)="onPageSizeChange(searchFilter)">
-        </awg-table-pagination>
+            (pageChangeRequest)="onPageSizeChange(searchFilter)" />
         <div ngbDropdown class="d-inline-block">
             <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>
                 {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
@@ -55,7 +54,7 @@
                     <th scope="col" (click)="onSort(headerLabel)" (keydown)="onSort(headerLabel)" tabindex="0">
                         {{ headerLabel }}&nbsp;
                         @if (headerLabel === tableOptions.selectedKey) {
-                            <fa-icon [icon]="tableOptions.sortIcon"></fa-icon>
+                            <fa-icon [icon]="tableOptions.sortIcon" />
                         }
                     </th>
                 }
@@ -76,9 +75,7 @@
                                     (keyup.enter)="onTableValueClick(row[headerLabel].value)"
                                     role="link"
                                     tabindex="0">
-                                    <ngb-highlight
-                                        [result]="row[headerLabel].label"
-                                        [term]="searchFilter"></ngb-highlight>
+                                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter" />
                                 </a>
                             }
                             @if (row[headerLabel].type === 'search') {
@@ -88,17 +85,11 @@
                                             <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />
                                         </span>
                                     }
-                                    <ngb-highlight
-                                        [result]="row[headerLabel].label"
-                                        [term]="searchFilter"></ngb-highlight
-                                ></span>
+                                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"
+                                /></span>
                             }
                             @if (row[headerLabel].type !== 'uri' && row[headerLabel].type !== 'search') {
-                                <span>
-                                    <ngb-highlight
-                                        [result]="row[headerLabel].label"
-                                        [term]="searchFilter"></ngb-highlight
-                                ></span>
+                                <span> <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter" /></span>
                             }
                         </td>
                     }
@@ -107,7 +98,7 @@
         </tbody>
     </table>
 } @else {
-    <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+    <awg-twelve-tone-spinner />
 }
 
 @if (tableData.filteredRows) {
@@ -116,8 +107,7 @@
         <awg-table-pagination
             [collectionSize]="tableData.filteredRows?.length"
             [(page)]="paginatorOptions.page"
-            (pageChangeRequest)="onPageSizeChange(searchFilter)">
-        </awg-table-pagination>
+            (pageChangeRequest)="onPageSizeChange(searchFilter)" />
         <div ngbDropdown class="d-inline-block">
             <button
                 class="btn btn-default awg-pagesize-dropdown-button"

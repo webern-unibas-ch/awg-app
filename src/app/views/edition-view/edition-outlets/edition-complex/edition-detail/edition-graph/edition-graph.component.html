@@ -1,7 +1,7 @@
 <!-- content: edition graph -->
 <div>
     <!-- modal -->
-    <awg-modal #modal></awg-modal>
+    <awg-modal #modal />
 
     <!-- graph -->
     @if (editionGraphData$ | async; as editionGraphData) {
@@ -54,7 +54,7 @@
 
                                 <awg-fullscreen-toggle
                                     [fsElement]="graphVisualizer.fs?.nativeElement"
-                                    (toggleFullscreenRequest)="onFullscreenToggle($event)"></awg-fullscreen-toggle>
+                                    (toggleFullscreenRequest)="onFullscreenToggle($event)" />
                             </h4>
                             <p>
                                 Diese interaktive Visualisierung basiert auf Mads Holten's
@@ -70,7 +70,7 @@
                             <awg-graph-visualizer
                                 #graphVisualizer
                                 [graphRDFInputData]="graph.rdfData"
-                                [isFullscreen]="isFullscreen"></awg-graph-visualizer>
+                                [isFullscreen]="isFullscreen" />
                         </div>
                     }
                     <!-- static image -->
@@ -86,10 +86,10 @@
     } @else {
         <!-- error message -->
         @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+            <awg-alert-error [errorObject]="errorObject" />
         } @else {
             <!-- loading spinner -->
-            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+            <awg-twelve-tone-spinner />
         }
     }
 </div>
