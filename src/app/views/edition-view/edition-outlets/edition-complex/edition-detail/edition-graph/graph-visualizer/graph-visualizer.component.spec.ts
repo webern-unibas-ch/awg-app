@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EmptyError, lastValueFrom, Observable } from 'rxjs';
+import { EmptyError, lastValueFrom, Observable, take } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -19,7 +19,7 @@ import { mockConsole } from '@testing/mock-helper';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, D3SimulationNodeType, QuerySelectResult, Triple } from './models';
+import { D3SimulationNode, D3SimulationNodeType, QueryResult, QuerySelectResult, Triple } from './models';
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
@@ -143,16 +143,22 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let showToastMessageSpy: Spy;
     let toastServiceAddSpy: Spy;
 
+    let lastQueryString = '';
+
     beforeEach(async () => {
+        lastQueryString = '';
+
         // Mocked dataStreamerService
         mockGraphVisualizerService = {
-            checkNamespacesInQuery: (queryString: string): string => queryString,
-            getQuerytype: (): string => 'construct',
-            doQuery: (): Promise<Triple[]> =>
-                new Promise((resolve, reject) => {
-                    resolve(expectedConstructResult);
-                    reject({ name: 'Error1', message: 'failed' });
-                }),
+            checkNamespacesInQuery: (queryString: string): string => {
+                lastQueryString = queryString;
+                return queryString;
+            },
+            getQuerytype: (): string => (lastQueryString.toLowerCase().includes('select') ? 'select' : 'construct'),
+            doQuery: (queryString: string): Promise<QueryResult> => {
+                const isSelectQuery = queryString.toLowerCase().includes('select');
+                return isSelectQuery ? Promise.resolve(expectedSelectResult) : Promise.resolve(expectedConstructResult);
+            },
         };
 
         await TestBed.configureTestingModule({
@@ -190,6 +196,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             queryType: 'construct',
             queryLabel: 'Test Query 2',
             queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
+        });
+        expectedGraphRDFData.queryList.push({
+            queryType: 'select',
+            queryLabel: 'Test Query 3',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
         });
         expectedGraphRDFData.triples =
             '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
@@ -327,7 +338,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         it('... should have queryResult', () => {
             expect(component.queryResult$).toBeDefined();
 
-            component.queryResult$.subscribe(result => {
+            component.queryResult$.pipe(take(1)).subscribe(result => {
                 expectToEqual(result, expectedConstructResult);
             });
         });
@@ -660,7 +671,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should trigger `_queryLocalStore` for select queries', async () => {
                 // Set select query type
-                serviceGetQueryTypeSpy.mockReturnValue('select');
+                component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
+                component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
 
                 // Perform query
                 component.performQuery();
@@ -670,7 +682,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'select',
-                    expectedGraphRDFData.queryList[0].queryString,
+                    expectedGraphRDFData.queryList[2].queryString,
                     expectedGraphRDFData.triples,
                 ]);
             });
@@ -690,7 +702,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for select queries', async () => {
                 // Set select query type
-                serviceGetQueryTypeSpy.mockReturnValue('select');
+                component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
+                component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
 
                 // Perform query
                 component.performQuery();
@@ -698,7 +711,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectToBe(component.query.queryType, 'select');
                 await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
             });
 
             it('... should set empty observable for update query types', async () => {
@@ -752,7 +765,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(serviceSpy, 1, expectedCallback);
             });
 
-            it('... should return query result on success', async () => {
+            it('... should return query result on success (construct)', async () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -769,6 +782,29 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
                 await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
+            });
+
+            it('... should return query result on success (select)', async () => {
+                // Set select query type
+                component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
+                component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
+
+                const expectedCallback = [
+                    'select',
+                    expectedGraphRDFData.queryList[2].queryString,
+                    expectedGraphRDFData.triples,
+                ];
+
+                // Perform query
+                component.performQuery();
+                await detectChangesOnPush(fixture);
+
+                await expect(
+                    graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
+                ).resolves.toEqual(expectedSelectResult);
+
+                await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
             });
 
             it('... should return string message on successful select query with no results', async () => {
@@ -1436,7 +1472,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     ) as ConstructResultsStubComponent;
 
                     expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.subscribe(result => {
+                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
                         expectToEqual(result, expectedConstructResult);
                     });
                 });
@@ -1469,8 +1505,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             describe('SelectResultsComponent', () => {
                 beforeEach(async () => {
-                    // Set select mode
-                    component.query.queryType = 'select';
+                    // Set select query type
+                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
+                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
+
+                    // Perform query to set SELECT queryResult
+                    component.performQuery();
                     await detectChangesOnPush(fixture);
                 });
 
@@ -1481,7 +1521,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     ) as SelectResultsStubComponent;
 
                     expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.subscribe(result => {
+                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
                         expectToEqual(result, expectedSelectResult);
                     });
                 });
