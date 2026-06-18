@@ -19,7 +19,7 @@
                                         @if (source.missing) {
                                             <span>[</span>
                                         }
-                                        <ng-container *ngTemplateOutlet="siglum"></ng-container>
+                                        <ng-container *ngTemplateOutlet="siglum" />
                                         @if (source.missing) {
                                             <span>]</span>
                                         }
@@ -31,10 +31,10 @@
                                             (keyup.enter)="onSourceClick(source)"
                                             role="link"
                                             tabindex="0">
-                                            <ng-container *ngTemplateOutlet="siglumMissingOrNot"></ng-container>
+                                            <ng-container *ngTemplateOutlet="siglumMissingOrNot" />
                                         </a>
                                     } @else {
-                                        <ng-container *ngTemplateOutlet="siglumMissingOrNot"></ng-container>
+                                        <ng-container *ngTemplateOutlet="siglumMissingOrNot" />
                                     }
                                 </span>
                             </th>

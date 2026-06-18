@@ -11,7 +11,7 @@
                     <div class="btn-group" role="group" aria-label="Button to sheets">
                         @if (isWorkEditionId(textcritics.id)) {
                             <button type="button" class="btn btn-sm btn-outline-info">
-                                <awg-disclaimer-workeditions></awg-disclaimer-workeditions>
+                                <awg-disclaimer-workeditions />
                             </button>
                         }
                         <button
@@ -28,27 +28,21 @@
                         <ng-template>
                             <div class="mb-4">
                                 <p class="smallcaps">
-                                    <awg-edition-tka-label
-                                        [id]="textcritics.id"
-                                        [labelType]="'evaluation'"></awg-edition-tka-label
-                                    >:
+                                    <awg-edition-tka-label [id]="textcritics.id" [labelType]="'evaluation'" />:
                                 </p>
                                 @if (UTILS.isNotEmptyArray(textcritics.evaluations)) {
                                     <awg-edition-tka-evaluations
                                         [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
-                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-evaluations>
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
                                 } @else {
-                                    <ng-container *ngTemplateOutlet="noContent"></ng-container>
+                                    <ng-container *ngTemplateOutlet="noContent" />
                                 }
                             </div>
                             <div>
                                 <p class="smallcaps">
-                                    <awg-edition-tka-label
-                                        [id]="textcritics.id"
-                                        [labelType]="'commentary'"></awg-edition-tka-label
-                                    >:
+                                    <awg-edition-tka-label [id]="textcritics.id" [labelType]="'commentary'" />:
                                 </p>
                                 @if (
                                     UTILS.isNotEmptyObject(textcritics.commentary) &&
@@ -60,10 +54,9 @@
                                         [isSketchId]="UTILS.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
-                                        (selectSvgSheetRequest)="selectSvgSheet($event)">
-                                    </awg-edition-tka-table>
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
                                 } @else {
-                                    <ng-container *ngTemplateOutlet="noContent"></ng-container>
+                                    <ng-container *ngTemplateOutlet="noContent" />
                                 }
                             </div>
                             <ng-template #noContent>

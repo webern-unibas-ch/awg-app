@@ -21,7 +21,7 @@
             <!-- Jumbotron -->
             <awg-edition-jumbotron
                 [jumbotronId]="editionViewId"
-                [jumbotronTitle]="editionRouteConstants.PREFACE.full"></awg-edition-jumbotron>
+                [jumbotronTitle]="editionRouteConstants.PREFACE.full" />
         </div>
     }
 
@@ -35,7 +35,7 @@
                 <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
             </h6>
             <!-- Jumbotron -->
-            <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'"></awg-edition-jumbotron>
+            <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'" />
         </div>
     }
 
@@ -68,7 +68,7 @@
             </h6>
             <awg-edition-jumbotron
                 [jumbotronId]="editionViewId"
-                [jumbotronTitle]="selectedEditionComplex.complexId.full"></awg-edition-jumbotron>
+                [jumbotronTitle]="selectedEditionComplex.complexId.full" />
 
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
@@ -108,7 +108,7 @@
                     </ng-template>
 
                     <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                        <ng-container *ngTemplateOutlet="breadCrumbEdition"></ng-container>
+                        <ng-container *ngTemplateOutlet="breadCrumbEdition" />
                     </a>
                     /
                     @if (selectedEditionSection) {
@@ -117,7 +117,7 @@
                         </ng-template>
 
                         <a [routerLink]="['./series', selectedEditionSeries.series.route]">
-                            <ng-container *ngTemplateOutlet="breadCrumbSeries"></ng-container>
+                            <ng-container *ngTemplateOutlet="breadCrumbSeries" />
                         </a>
                         /
                         @if (isIntroView) {
@@ -128,30 +128,28 @@
                                     'section',
                                     selectedEditionSection.section.route,
                                 ]">
-                                <ng-container *ngTemplateOutlet="breadCrumbSection"></ng-container>
+                                <ng-container *ngTemplateOutlet="breadCrumbSection" />
                             </a>
                             /
                             <span>{{ editionRouteConstants.EDITION_INTRO.full }}</span>
                         } @else {
                             <span>
-                                <ng-container *ngTemplateOutlet="breadCrumbSection"></ng-container>
+                                <ng-container *ngTemplateOutlet="breadCrumbSection" />
                             </span>
                         }
                     } @else {
-                        <ng-container *ngTemplateOutlet="breadCrumbSeries"></ng-container>
+                        <ng-container *ngTemplateOutlet="breadCrumbSeries" />
                         /
                     }
                 } @else {
-                    <ng-container *ngTemplateOutlet="breadCrumbEdition"></ng-container>
+                    <ng-container *ngTemplateOutlet="breadCrumbEdition" />
                     /
                 }
             </h6>
             <!-- Jumbotron -->
             <awg-edition-jumbotron
                 [jumbotronId]="editionViewId"
-                [jumbotronTitle]="
-                    isIntroView ? editionRouteConstants.EDITION_INTRO.full : editionViewTitle
-                "></awg-edition-jumbotron>
+                [jumbotronTitle]="isIntroView ? editionRouteConstants.EDITION_INTRO.full : editionViewTitle" />
         </div>
     }
 

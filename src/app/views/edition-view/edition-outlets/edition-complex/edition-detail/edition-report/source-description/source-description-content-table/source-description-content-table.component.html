@@ -20,10 +20,10 @@
                         "
                         role="link"
                         tabindex="0"
-                        ><ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"></ng-template
-                    ></a>
+                        ><ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"
+                    /></a>
                 } @else {
-                    <ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"></ng-template>
+                    <ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }" />
                 }
                 @if (folio.folioDescription) {
                     <span class="awg-source-description-content-item-folio-description"
@@ -71,13 +71,12 @@
                     <!-- get folio number in first column -->
                     @if (firstSystemGroup) {
                         @if (folio.folio) {
-                            <ng-template
-                                *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }"></ng-template>
+                            <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
                         } @else {
-                            <ng-template *ngTemplateOutlet="emptyCellTemplate"></ng-template>
+                            <ng-template *ngTemplateOutlet="emptyCellTemplate" />
                         }
                     } @else {
-                        <ng-template *ngTemplateOutlet="emptyCellTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="emptyCellTemplate" />
                     }
                     <!-- get systems in other columns -->
                     @for (
@@ -93,11 +92,8 @@
                             @if (system.system) {
                                 <span class="awg-source-description-content-item-system">
                                     <ng-template
-                                        *ngTemplateOutlet="
-                                            systemTemplate;
-                                            context: { $implicit: system.system }
-                                        "></ng-template
-                                ></span>
+                                        *ngTemplateOutlet="systemTemplate; context: { $implicit: system.system }"
+                                /></span>
                             }
 
                             @if (system.systemDescription || system.measure || system.row) {
@@ -135,14 +131,14 @@
                                                 *ngTemplateOutlet="
                                                     measureTemplate;
                                                     context: { $implicit: system.measure }
-                                                "></ng-template
-                                        ></a>
+                                                "
+                                        /></a>
                                     } @else {
                                         <ng-template
                                             *ngTemplateOutlet="
                                                 measureTemplate;
                                                 context: { $implicit: system.measure }
-                                            "></ng-template>
+                                            " />
                                     }
                                     <ng-template #measureTemplate let-measure
                                         ><span><span [awgAbbr]="'T.'"></span>&nbsp;{{ measure }}</span></ng-template
@@ -180,17 +176,11 @@
                                             role="link"
                                             tabindex="0"
                                             ><ng-template
-                                                *ngTemplateOutlet="
-                                                    rowTemplate;
-                                                    context: { $implicit: system.row }
-                                                "></ng-template>
+                                                *ngTemplateOutlet="rowTemplate; context: { $implicit: system.row }" />
                                         </a>
                                     } @else {
                                         <ng-template
-                                            *ngTemplateOutlet="
-                                                rowTemplate;
-                                                context: { $implicit: system.row }
-                                            "></ng-template>
+                                            *ngTemplateOutlet="rowTemplate; context: { $implicit: system.row }" />
                                     }
                                 </span>
                             }
@@ -208,7 +198,7 @@
             <!-- no folio system groups, only folio description -->
             <tr class="awg-source-description-content-table-row">
                 @if (folio.folio) {
-                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }"></ng-template>
+                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
                 }
             </tr>
         }

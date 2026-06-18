@@ -44,7 +44,7 @@
                                     detailsClass="conditions"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- writingMaterials -->
                             @if (
@@ -57,12 +57,10 @@
                                     detailsClass="writing-materials"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             } @else if (sourceDescription?.physDesc?.writingMaterials?.length) {
                                 <awg-source-description-writing-materials
-                                    [writingMaterials]="
-                                        sourceDescription.physDesc.writingMaterials
-                                    "></awg-source-description-writing-materials>
+                                    [writingMaterials]="sourceDescription.physDesc.writingMaterials" />
                             }
                             <!-- writingInstruments -->
                             @if (UTILS.isNotEmptyObject(sourceDescription.physDesc.writingInstruments)) {
@@ -85,7 +83,7 @@
                                     detailsClass="titles"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- date -->
                             @if (sourceDescription?.physDesc?.dates?.length) {
@@ -95,7 +93,7 @@
                                     detailsClass="dates"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- pagination -->
                             @if (sourceDescription?.physDesc?.paginations?.length) {
@@ -105,7 +103,7 @@
                                     detailsClass="paginations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- measureNumbers -->
                             @if (sourceDescription?.physDesc?.measureNumbers?.length) {
@@ -115,7 +113,7 @@
                                     detailsClass="measure-numbers"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- instrumentation -->
                             @if (sourceDescription?.physDesc?.instrumentations?.length) {
@@ -125,7 +123,7 @@
                                     detailsClass="instrumentations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- annotations -->
                             @if (sourceDescription?.physDesc?.annotations?.length) {
@@ -135,13 +133,13 @@
                                     detailsClass="annotations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- contents -->
                             @if (sourceDescription?.physDesc?.contents?.length) {
                                 <awg-source-description-contents
                                     [contents]="sourceDescription.physDesc.contents"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-contents>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
 
                             <!-- corrections -->
@@ -150,9 +148,7 @@
                                     [corrections]="sourceDescription.physDesc.corrections"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="
-                                        selectSvgSheet($event)
-                                    "></awg-source-description-corrections>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                         </div>
                     }

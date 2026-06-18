@@ -11,7 +11,7 @@
                         (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetTriplesRequest)="resetTriples()"
-                        (updateTriplesRequest)="triples = $event"></awg-triples-editor>
+                        (updateTriplesRequest)="triples = $event" />
                 </div>
                 <div [ngClass]="{ 'col-12 col-lg-6 py-0 ps-lg-0': !isFullscreen }">
                     <!-- awg-graph-sparql-editor -->
@@ -22,7 +22,7 @@
                         (errorMessageRequest)="showToastMessage($event, 'error')"
                         (performQueryRequest)="performQuery()"
                         (resetQueryRequest)="resetQuery($event)"
-                        (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>
+                        (updateQueryStringRequest)="query.queryString = $event" />
                 </div>
             </div>
         </div>
@@ -34,22 +34,20 @@
                     [queryResult$]="$any(queryResult$)"
                     [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                     [isFullscreen]="isFullscreen"
-                    (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
+                    (clickedNodeRequest)="onGraphNodeClick($event)" />
             } @else {
                 @if (query.queryType === 'select') {
                     <awg-select-results
                         [queryResult$]="$any(queryResult$)"
                         [queryTime]="queryTime"
                         [isFullscreen]="isFullscreen"
-                        (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>
+                        (clickedTableRequest)="onTableNodeClick($event)" />
                 } @else {
-                    <awg-unsupported-type-results
-                        [queryType]="query.queryType"
-                        [isFullscreen]="isFullscreen"></awg-unsupported-type-results>
+                    <awg-unsupported-type-results [queryType]="query.queryType" [isFullscreen]="isFullscreen" />
                 }
             }
         </div>
     </div>
 }
 
-<awg-toast aria-live="polite" aria-atomic="true"></awg-toast>
+<awg-toast aria-live="polite" aria-atomic="true" />

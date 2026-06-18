@@ -1,7 +1,7 @@
 <!-- content: intro -->
 <div>
     <!-- modal -->
-    <awg-modal #modal></awg-modal>
+    <awg-modal #modal />
 
     <!-- intro -->
     @if (editionIntroData$ | async; as editionIntroData) {
@@ -16,9 +16,7 @@
                             [editionRoute]="editionRouteConstants.EDITION.route"
                             [seriesRoute]="editionRouteConstants.SERIES.route"
                             [sectionRoute]="editionRouteConstants.SECTION.route"
-                            [introRoute]="
-                                editionRouteConstants.EDITION_INTRO.route
-                            "></awg-edition-intro-partial-disclaimer>
+                            [introRoute]="editionRouteConstants.EDITION_INTRO.route" />
                     }
                     <awg-edition-intro-content
                         class="col-12 col-xl-10"
@@ -27,29 +25,29 @@
                         (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
                         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                         (openModalRequest)="onModalOpen($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)"></awg-edition-intro-content>
+                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
 
                     <awg-edition-intro-nav
                         class="col-12 col-xl-2 d-none d-xl-block"
                         [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         [currentLanguage]="currentLanguage"
-                        (languageChangeRequest)="onLanguageSet($event)"></awg-edition-intro-nav>
+                        (languageChangeRequest)="onLanguageSet($event)" />
                 } @else {
                     <awg-edition-intro-placeholder
                         class="col-12"
                         [editionComplex]="editionComplex"
-                        [editionLabel]="editionRouteConstants.EDITION.short"></awg-edition-intro-placeholder>
+                        [editionLabel]="editionRouteConstants.EDITION.short" />
                 }
             </div>
         </div>
     } @else {
         <!-- error message -->
         @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+            <awg-alert-error [errorObject]="errorObject" />
         } @else {
             <!-- loading spinner -->
-            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+            <awg-twelve-tone-spinner />
         }
     }
 </div>

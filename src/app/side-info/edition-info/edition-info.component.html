@@ -99,8 +99,7 @@
                                             <span>
                                                 @if (editionComplex.disabled) {
                                                     <span class="text-muted">
-                                                        <ng-container
-                                                            *ngTemplateOutlet="editionInfoComplex"></ng-container>
+                                                        <ng-container *ngTemplateOutlet="editionInfoComplex" />
                                                     </span>
                                                 } @else {
                                                     <a
@@ -109,8 +108,7 @@
                                                             editionComplex.complex.baseRoute,
                                                             editionRouteConstants.EDITION_SHEETS.route,
                                                         ]">
-                                                        <ng-container
-                                                            *ngTemplateOutlet="editionInfoComplex"></ng-container>
+                                                        <ng-container *ngTemplateOutlet="editionInfoComplex" />
                                                     </a>
                                                 }
                                             </span>

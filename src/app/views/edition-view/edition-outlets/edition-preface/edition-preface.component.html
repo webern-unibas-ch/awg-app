@@ -1,7 +1,6 @@
 @if (prefaceData$ | async; as prefaceData) {
     <div class="awg-preface-view p-5 border rounded-3">
-        <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)">
-        </awg-language-switcher>
+        <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)" />
         @for (prefaceParagraph of prefaceData.preface[currentLanguage].content; track $index) {
             <div class="awg-edition-preface-block" [compile-html]="prefaceParagraph" [compile-html-ref]="this"></div>
         }

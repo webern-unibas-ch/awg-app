@@ -15,13 +15,12 @@
                             <awg-sparql-table
                                 [queryResult]="queryResult"
                                 [queryTime]="queryTime"
-                                (clickedTableRequest)="onTableNodeClick($event)">
-                            </awg-sparql-table>
+                                (clickedTableRequest)="onTableNodeClick($event)" />
                         } @else {
-                            <awg-sparql-no-results></awg-sparql-no-results>
+                            <awg-sparql-no-results />
                         }
                     } @else {
-                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+                        <awg-twelve-tone-spinner />
                     }
                 </ng-template>
             </div>

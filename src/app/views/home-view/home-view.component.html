@@ -1,16 +1,16 @@
 <!-- content: home -->
 <div class="awg-home-view p-5 border rounded-3">
     <!-- heading -->
-    <awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading>
+    <awg-heading [title]="homeViewTitle" [id]="homeViewId" />
 
     <!-- content-->
     <div class="awg-home-view-content">
-        <awg-alert-info [infoMessage]="disclaimerInfoMessage"></awg-alert-info>
+        <awg-alert-info [infoMessage]="disclaimerInfoMessage" />
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">
             @for (cardData of homeViewCardData; track $index) {
                 <div class="col">
-                    <awg-home-view-card [cardData]="cardData"></awg-home-view-card>
+                    <awg-home-view-card [cardData]="cardData" />
                 </div>
             }
         </div>

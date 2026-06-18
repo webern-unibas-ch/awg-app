@@ -5,7 +5,7 @@
 
     <!-- citation -->
     <!-- citation heading -->
-    <awg-heading [title]="CITATION_TITLE" [id]="CITATION_ID"></awg-heading>
+    <awg-heading [title]="CITATION_TITLE" [id]="CITATION_ID" />
 
     <!-- citation description -->
     <div class="awg-citation-description mb-5">
@@ -32,7 +32,7 @@
 
     <!-- documentation -->
     <!-- documentation heading -->
-    <awg-heading [title]="DOCUMENTATION_TITLE" [id]="DOCUMENTATION_ID"></awg-heading>
+    <awg-heading [title]="DOCUMENTATION_TITLE" [id]="DOCUMENTATION_ID" />
 
     <!-- documentation description -->
     <div class="awg-documentation-description mb-5">
@@ -56,7 +56,7 @@
 
     <!-- imprint -->
     <!-- imprint heading -->
-    <awg-heading [title]="IMPRINT_TITLE" [id]="IMPRINT_ID"></awg-heading>
+    <awg-heading [title]="IMPRINT_TITLE" [id]="IMPRINT_ID" />
 
     <!-- imprint description -->
     <div class="awg-imprint-description">
@@ -86,8 +86,7 @@
         <p>
             <span class="smallcaps">Programmierung &amp; Webdesign:</span><br />
             @for (developer of contact?.developers; track developer.name) {
-                {{ developer.name
-                }}<awg-meta-identifier-badges [identifiers]="developer.identifiers"></awg-meta-identifier-badges><br />
+                {{ developer.name }}<awg-meta-identifier-badges [identifiers]="developer.identifiers" /><br />
             }
             Wissenschaftlicher Mitarbeiter der {{ page.awgProjectName }}, Basel<br /><a
                 href="mailto:stefan.muennich@unibas.ch"

@@ -10,7 +10,7 @@
                 <awg-view-handle-button-group
                     [viewHandles]="viewHandles"
                     [selectedViewType]="selectedViewType"
-                    (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+                    (viewChangeRequest)="onViewChange($event)" />
             }
 
             <!-- Example Query Handle -->
@@ -70,7 +70,7 @@
                         ngDefaultControl
                         [mode]="cmSparqlMode"
                         [(content)]="query.queryString"
-                        (contentChange)="onEditorInputChange($event)"></awg-codemirror>
+                        (contentChange)="onEditorInputChange($event)" />
 
                     <!-- Handle buttons -->
                     <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
