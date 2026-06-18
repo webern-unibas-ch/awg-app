@@ -40,11 +40,11 @@ describe('ContactAddressComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have default `pageMetaData`', () => {
-            expectToEqual(component.pageMetaData(), {});
+            expectToEqual(component.pageMetaData(), {} as MetaPage);
         });
 
         it('... should have default `contactMetaData`', () => {
-            expectToEqual(component.contactMetaData(), {});
+            expectToEqual(component.contactMetaData(), {} as MetaContact);
         });
 
         describe('VIEW', () => {
@@ -116,11 +116,11 @@ describe('ContactAddressComponent (DONE)', () => {
         });
 
         it('... should have default `pageMetaData`', () => {
-            expectToEqual(component.pageMetaData(), {});
+            expectToEqual(component.pageMetaData(), {} as MetaPage);
         });
 
         it('... should have default `contactMetaData`', () => {
-            expectToEqual(component.contactMetaData(), {});
+            expectToEqual(component.contactMetaData(), {} as MetaContact);
         });
     });
 

@@ -39,7 +39,7 @@ class StatisticsComplexBreakdownStubComponent {
     template: '',
 })
 class StatisticsSeriesBreakdownStubComponent {
-    seriesBreakdownData = input.required<StatisticsSeriesBreakdown>();
+    seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
 }
 
 @Component({
@@ -185,7 +185,7 @@ describe('StatisticsViewComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have a signal `statisticsData` (initialized with data from StatisticsService)', () => {
-            expectToEqual(component.statisticsData(), {});
+            expectToEqual(component.statisticsData(), {} as Statistics);
 
             expect(mockStatisticsService.getStatisticsFromOutline).toHaveBeenCalled();
         });

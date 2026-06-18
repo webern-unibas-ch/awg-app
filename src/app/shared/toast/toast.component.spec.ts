@@ -31,7 +31,7 @@ class NgbToastStubComponent {
     @Input()
     class: string;
     @Input()
-    autohide: string;
+    autohide: boolean;
     @Input()
     delay: number;
     @Output()

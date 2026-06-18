@@ -87,14 +87,16 @@ describe('FullscreenService (DONE)', () => {
         });
 
         it('... should catch an error if `exitFullscreen` fails', async () => {
-            exitFullscreenSpy.mockReturnValue(Promise.reject(new Error('Test error')));
+            const err = new Error('Test error');
+            exitFullscreenSpy.mockReturnValue(Promise.reject(err));
 
             fullscreenService.closeFullscreen();
             await Promise.resolve();
 
+            const loggedError = mockConsole.get(0) as unknown as Error;
             expectSpyCall(exitFullscreenSpy, 1);
-            expectSpyCall(consoleSpy, 1, new Error('Test error'));
-            expectToEqual(mockConsole.get(0), new Error('Test error'));
+            expectSpyCall(consoleSpy, 1, err);
+            expectToBe(loggedError, err);
         });
     });
 
@@ -156,6 +158,7 @@ describe('FullscreenService (DONE)', () => {
         });
 
         it('... should catch an error if `requestFullscreen` fails', async () => {
+            const err = new Error('Test error');
             const element = mockDocument.createElement('div');
             // Redefine as configurable/writable for spy
             Object.defineProperty(element, 'requestFullscreen', {
@@ -163,16 +166,15 @@ describe('FullscreenService (DONE)', () => {
                 configurable: true,
                 writable: true,
             });
-            const requestFullscreenSpy = vi
-                .spyOn(element, 'requestFullscreen')
-                .mockReturnValue(Promise.reject(new Error('Test error')));
+            const requestFullscreenSpy = vi.spyOn(element, 'requestFullscreen').mockReturnValue(Promise.reject(err));
 
             fullscreenService.openFullscreen(element);
             await Promise.resolve();
 
+            const loggedError = mockConsole.get(0) as unknown as Error;
             expectSpyCall(requestFullscreenSpy, 1);
-            expectSpyCall(consoleSpy, 1, new Error('Test error'));
-            expectToEqual(mockConsole.get(0), new Error('Test error'));
+            expectSpyCall(consoleSpy, 1, err);
+            expectToEqual(loggedError, err);
         });
     });
 });

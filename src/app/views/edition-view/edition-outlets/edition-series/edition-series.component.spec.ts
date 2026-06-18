@@ -543,7 +543,7 @@ describe('EditionSeriesComponent (DONE)', () => {
             });
 
             it('...should set `editionOutline`', () => {
-                const anotherEditionOutline = structuredClone(mockEditionOutline);
+                const anotherEditionOutline: EditionOutlineSeries[] = structuredClone(mockEditionOutline);
                 anotherEditionOutline[0].series = EDITION_ROUTE_CONSTANTS.SERIES_2;
 
                 serviceGetEditionOutlineSpy.mockReturnValue(anotherEditionOutline);

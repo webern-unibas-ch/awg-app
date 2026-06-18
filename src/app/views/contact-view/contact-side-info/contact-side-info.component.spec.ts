@@ -148,8 +148,8 @@ describe('ContactSideInfoComponent (DONE)', () => {
                     ContactAddressStubComponent
                 ) as ContactAddressStubComponent;
 
-                expectToEqual(addressCmp.pageMetaData(), {});
-                expectToEqual(addressCmp.contactMetaData(), {});
+                expectToEqual(addressCmp.pageMetaData(), {} as MetaPage);
+                expectToEqual(addressCmp.contactMetaData(), {} as MetaContact);
             });
 
             it('... should contain one map component (stubbed)', () => {

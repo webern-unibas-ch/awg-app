@@ -10,6 +10,14 @@ import { environment } from 'environments/environment';
 declare let gtag: Function;
 
 /**
+ * The AnalyticsConfigEvent type.
+ *
+ * It defines the type for the Analytics event configuration.
+ */
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export type AnalyticsConfigEvent = [string, string, { page_path: string; send_page_view: boolean }];
+
+/**
  * The Analytics service.
  *
  * It handles the configuration for the GoogleAnalytics setup.
@@ -93,12 +101,18 @@ export class AnalyticsService {
             return;
         }
 
-        gtag('config', this._analyticsId, {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            page_path: page,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            send_page_view: this._sendPageView,
-        });
+        const configEvent: AnalyticsConfigEvent = [
+            'config',
+            this._analyticsId,
+            {
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                page_path: page,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                send_page_view: this._sendPageView,
+            },
+        ];
+
+        gtag(...configEvent);
     }
 
     /**

@@ -121,52 +121,52 @@ export function getAndExpectDebugElementByDirective(
 /**
  * Test helper function: expectToBe.
  *
- * It checks if a given source value is defined and if it is the same as the expected value ('toBe').
+ * It checks if a given actual value is defined and if it is the same as the expected value ('toBe').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value.
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToBe(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should be ${expected}`).toBe(expected);
+export function expectToBe<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should be ${expected}`).toBe(expected);
 }
 
 /**
  * Test helper function: expectToContain.
  *
- * It checks if a given source value is defined and if it contains the expected value ('toContain').
+ * It checks if a given actual value is defined and if it contains the expected value ('toContain').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should be contained.
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToContain(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should contain ${expected}`).toContain(expected);
+export function expectToContain<T>(actual: T extends Function ? never : T, expected: any): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should contain ${expected}`).toContain(expected);
 }
 
 /**
  * Test helper function: expectToEqual.
  *
- * It checks if a given source value is defined and if it equals the expected value ('toEqual').
+ * It checks if a given actual value is defined and if it equals the expected value ('toEqual').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToEqual(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should equal ${expected}`).toEqual(expected);
+export function expectToEqual<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should equal ${expected}`).toEqual(expected);
 }
 
 /**

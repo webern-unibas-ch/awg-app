@@ -48,7 +48,7 @@ class ConstructResultsStubComponent {
 })
 class SelectResultsStubComponent {
     @Input()
-    queryResult$: Observable<QuerySelectResult | string>;
+    queryResult$: Observable<QuerySelectResult | string | undefined>;
     @Input()
     queryTime: number;
     @Input()
@@ -128,7 +128,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let toastService: ToastService;
 
     let expectedGraphRDFData: GraphRDFData;
-    let expectedResult: Triple[];
+    let expectedConstructResult: Triple[];
+    let expectedSelectResult: QuerySelectResult | string | undefined;
     let expectedIsFullscreen: boolean;
 
     let consoleSpy: Spy;
@@ -149,7 +150,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             getQuerytype: (): string => 'construct',
             doQuery: (): Promise<Triple[]> =>
                 new Promise((resolve, reject) => {
-                    resolve(expectedResult);
+                    resolve(expectedConstructResult);
                     reject({ name: 'Error1', message: 'failed' });
                 }),
         };
@@ -193,13 +194,25 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData.triples =
             '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
 
-        expectedResult = [
+        expectedConstructResult = [
             {
                 subject: 'Test',
                 predicate: 'has',
                 object: 'Success',
             },
         ];
+        expectedSelectResult = {
+            head: { vars: ['test', 'has', 'success'] },
+            body: {
+                bindings: [
+                    {
+                        test: { type: 'uri', value: 'Test' },
+                        has: { type: 'uri', value: 'has' },
+                        success: { type: 'uri', value: 'Success' },
+                    },
+                ],
+            },
+        };
 
         expectedIsFullscreen = false;
 
@@ -315,7 +328,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expect(component.queryResult$).toBeDefined();
 
             component.queryResult$.subscribe(result => {
-                expectToEqual(result, expectedResult);
+                expectToEqual(result, expectedConstructResult);
             });
         });
 
@@ -328,7 +341,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             await expect(
                 graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-            ).resolves.toEqual(expectedResult);
+            ).resolves.toEqual(expectedConstructResult);
 
             expect(component.queryTime).toBeDefined();
             // Value is not predictable
@@ -672,7 +685,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectToBe(component.query.queryType, 'construct');
                 await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
             });
 
             it('... should get queryResult for select queries', async () => {
@@ -685,7 +698,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectToBe(component.query.queryType, 'select');
                 await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
             });
 
             it('... should set empty observable for update query types', async () => {
@@ -752,10 +765,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 await expect(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).resolves.toEqual(expectedResult);
+                ).resolves.toEqual(expectedConstructResult);
 
                 await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedResult);
+                await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
             });
 
             it('... should return string message on successful select query with no results', async () => {
@@ -1424,7 +1437,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.subscribe(result => {
-                        expectToEqual(result, expectedResult);
+                        expectToEqual(result, expectedConstructResult);
                     });
                 });
 
@@ -1469,7 +1482,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.subscribe(result => {
-                        expectToEqual(result, expectedResult);
+                        expectToEqual(result, expectedSelectResult);
                     });
                 });
 
