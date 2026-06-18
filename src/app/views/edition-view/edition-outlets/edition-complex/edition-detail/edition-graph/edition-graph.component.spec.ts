@@ -72,7 +72,7 @@ class GraphVisualizerStubComponent {
     isFullscreen: boolean;
     // Mock the viewChild fs
     get fs() {
-        return { nativeElement: '<div></div>' };
+        return { nativeElement: document.createElement('div') };
     }
 }
 

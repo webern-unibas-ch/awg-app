@@ -1498,7 +1498,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
 
                     result$.subscribe({
-                        next: (data: Observable<IntroList>) => {
+                        next: (data: IntroList) => {
                             expectToEqual(data, expectedEditionIntroData);
                         },
                         error: (err: any) => {
@@ -1597,7 +1597,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (data: Observable<IntroList>) => {
+                        next: (data: IntroList) => {
                             expectToEqual(data, expectedEditionIntroFilteredData);
                         },
                         error: (err: any) => {

@@ -7,7 +7,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
-import { AnalyticsService } from './analytics.service';
+import { AnalyticsConfigEvent, AnalyticsService } from './analytics.service';
 
 // Helper functions for  Analytics setup
 function setupAnalytics(service: AnalyticsService, endpoint: string, id: string, pageView?: boolean) {
@@ -218,7 +218,7 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should track the given page', () => {
-            const expectedAnalyticsEvent = [
+            const expectedAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -235,13 +235,13 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should track page changes', () => {
-            const expectedAnalyticsEvent = [
+            const expectedAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
-            const otherAnalyticsEvent = [
+            const otherAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
