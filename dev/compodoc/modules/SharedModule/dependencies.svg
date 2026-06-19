@@ -24,6 +24,10 @@
 <title>cluster_SharedModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 3974,-268 3974,-70 8,-70"/>
 </g>
+<g id="clust21" class="cluster">
+<title>cluster_SharedModule_exports</title>
+<polygon fill="none" stroke="black" points="69,-208 69,-260 3899,-260 3899,-208 69,-208"/>
+</g>
 <g id="clust20" class="cluster">
 <title>cluster_SharedModule_imports</title>
 <polygon fill="none" stroke="black" points="2963,-78 2963,-130 3966,-130 3966,-78 2963,-78"/>
@@ -31,10 +35,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_SharedModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 2955,-130 2955,-78 16,-78"/>
-</g>
-<g id="clust21" class="cluster">
-<title>cluster_SharedModule_exports</title>
-<polygon fill="none" stroke="black" points="69,-208 69,-260 3899,-260 3899,-208 69,-208"/>
 </g>
 <!-- AbbrDirective -->
 <g id="node1" class="node">
