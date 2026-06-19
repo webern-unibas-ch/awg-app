@@ -8,13 +8,14 @@ import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -188,7 +189,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
                     it('... should display item header button', () => {
@@ -219,7 +220,6 @@ describe('TriplesEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is closed
                         let itemBodyDes = getAndExpectDebugElementByCss(
@@ -230,11 +230,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item is open
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -248,8 +247,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -259,7 +257,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
                 });
 
@@ -274,11 +272,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is open
                         const collapseDes = getAndExpectDebugElementByCss(
@@ -308,7 +304,6 @@ describe('TriplesEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is open
                         let itemBodyDes = getAndExpectDebugElementByCss(
@@ -322,8 +317,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item is closed
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -334,11 +328,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is open again
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -386,8 +379,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(btnEl0.textContent, 'Query');
 
                         // Click query button
-                        click(btnEl0 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         expectSpyCall(performQuerySpy, 1);
                         expectSpyCall(resetTriplesSpy, 0);
@@ -405,8 +397,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(btnEl1.textContent, 'Reset');
 
                         // Click reset button
-                        click(btnEl1 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[1], fixture);
 
                         expectSpyCall(performQuerySpy, 0);
                         expectSpyCall(resetTriplesSpy, 1);
@@ -424,8 +415,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(btnEl2.textContent, 'Clear');
 
                         // Click clear button
-                        click(btnEl2 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[2], fixture);
 
                         expectSpyCall(onEditorInputChangeSpy, 1, '');
                     });
@@ -443,11 +433,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body
                     bodyDes = getAndExpectDebugElementByCss(
@@ -508,7 +496,6 @@ describe('TriplesEditorComponent (DONE)', () => {
                     );
 
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body does not close
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -523,8 +510,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -563,8 +549,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(resetTriplesSpy, 0);
@@ -577,8 +562,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl1.textContent, 'Reset');
 
                     // Click reset button
-                    click(btnEl1 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[1], fixture);
 
                     expectSpyCall(performQuerySpy, 0);
                     expectSpyCall(resetTriplesSpy, 1);
@@ -591,8 +575,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl2.textContent, 'Clear');
 
                     // Click clear button
-                    click(btnEl2 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[2], fixture);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                 });
@@ -608,11 +591,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `onEditorInputChange`', () => {
@@ -641,8 +622,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectToBe(btnEl2.textContent, 'Clear');
 
                 // Click clear button
-                click(btnEl2 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
             });
@@ -659,8 +639,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectToBe(btnEl2.textContent, 'Clear');
 
                 // Click clear button
-                click(btnEl2 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
                 expectSpyCall(emitUpdateTriplesRequestSpy, 1);
@@ -703,11 +682,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `performQuery`', () => {
@@ -726,8 +703,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectToBe(btnEl0.textContent, 'Query');
 
                 // Click query button
-                click(btnEl0 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(performQuerySpy, 1);
             });
@@ -745,8 +721,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
@@ -770,8 +745,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
@@ -789,11 +763,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `resetTriples`', () => {
@@ -812,8 +784,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectToBe(btnEl1.textContent, 'Reset');
 
                 // Click reset button
-                click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
             });
@@ -830,8 +801,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectToBe(btnEl1.textContent, 'Reset');
 
                 // Click reset button
-                click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
                 expectSpyCall(emitResetTriplesRequestSpy, 1);

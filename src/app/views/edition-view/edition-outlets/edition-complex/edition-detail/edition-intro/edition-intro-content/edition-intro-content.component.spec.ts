@@ -166,9 +166,10 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 );
 
                 sectionDes.forEach((sectionDe, index) => {
-                    expect(sectionDe.attributes['id']).toBe(
-                        index < expectedIntroBlockContent.length ? expectedIntroBlockContent[index].blockId : 'notes'
-                    );
+                    const expectedId =
+                        index < expectedIntroBlockContent.length ? expectedIntroBlockContent[index].blockId : 'notes';
+
+                    expectToBe(sectionDe.attributes['id'], expectedId);
                 });
             });
 
@@ -239,7 +240,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                         if (index < expectedIntroBlockContent.length) {
                             const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-                            expect(pEl.textContent).toBe(expectedIntroBlockContent[index].blockHeader);
+                            expectToBe(pEl.textContent, expectedIntroBlockContent[index].blockHeader);
                         }
                     });
                 });
@@ -330,7 +331,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     );
 
                     const notesSectionDe = sectionDes.at(-1);
-                    expect(notesSectionDe.attributes['id']).toBe('notes');
+                    expectToBe(notesSectionDe.attributes['id'], 'notes');
                 });
 
                 it('... should contain one horizontal line', () => {

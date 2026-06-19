@@ -5,12 +5,12 @@ import { By } from '@angular/platform-browser';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { click } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -25,40 +25,44 @@ function getNavContents(fixture: ComponentFixture<any>): HTMLElement[] {
     return Array.from(outletEl.children) as HTMLElement[];
 }
 
-function getNavLinks(fixture: ComponentFixture<any>): HTMLElement[] {
-    return fixture.debugElement.queryAll(By.directive(NgbNavLink)).map(debugElement => debugElement.nativeElement);
+function getNavLinks(fixture: ComponentFixture<any>): DebugElement[] {
+    return fixture.debugElement.queryAll(By.directive(NgbNavLink));
 }
 
 function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], shouldHaveNavItemClass = false) {
-    const links = getNavLinks(fixture);
+    const linkDes = getNavLinks(fixture);
 
-    expect(links.length, `expected to find ${expected.length} links, but found ${links.length}`).toBe(expected.length);
+    expectToBe(linkDes.length, expected.length);
 
-    links.forEach(({ classList }, i) => {
-        expect(classList.contains('nav-link'), `link should have 'nav-link' class`).toBe(true);
+    linkDes.forEach((linkDe, i) => {
+        const linkEl = linkDe.nativeElement;
 
-        expect(classList.contains('active'), `link should ${expected[i] ? '' : 'not'} have 'active' class`).toBe(
-            expected[i]
-        );
+        expectToContain(linkEl.classList, 'nav-link');
 
-        expect(
-            classList.contains('nav-item'),
-            `link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`
-        ).toBe(shouldHaveNavItemClass);
+        if (expected[i]) {
+            expectToContain(linkEl.classList, 'active');
+        } else {
+            expectToNotContain(linkEl.classList, 'active');
+        }
+
+        if (shouldHaveNavItemClass) {
+            expectToContain(linkEl.classList, 'nav-item');
+        } else {
+            expectToNotContain(linkEl.classList, 'nav-item');
+        }
     });
 }
 
 function expectNavContents(fixture: ComponentFixture<any>, expected: string[], activeIndex = 0) {
     const contents = getNavContents(fixture);
-    expect(contents.length, `expected to find ${expected.length} contents, but found ${contents.length}`).toBe(
-        expected.length
-    );
+    expectToBe(contents.length, expected.length);
 
     for (let i = 0; i < expected.length; ++i) {
-        expect(
-            contents[i].classList.contains('active'),
-            `content should ${i === activeIndex ? '' : 'not'} have 'active' class`
-        ).toBe(i === activeIndex);
+        if (i === activeIndex) {
+            expectToContain(contents[i].classList, 'active');
+        } else {
+            expectToNotContain(contents[i].classList, 'active');
+        }
     }
 }
 
@@ -153,7 +157,8 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should have one Formatted and one Plain navItem and display titles', () => {
-                const navLinks = getNavLinks(fixture);
+                const navLinkDes = getNavLinks(fixture);
+                const navLinks = navLinkDes.map(de => de.nativeElement);
 
                 expectToBe(navLinks[0].textContent, 'Formatted');
                 expectToBe(navLinks[1].textContent, 'Plain');
@@ -190,23 +195,21 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should change active navItem on click', async () => {
-                const navLinks = getNavLinks(fixture);
+                const navLinkDes = getNavLinks(fixture);
 
                 expectNavPanel(fixture, [true, false], ['content1']);
 
-                click(navLinks[1] as HTMLElement);
-                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+                await clickAndAwaitChanges(navLinkDes[1], fixture);
 
                 expectNavPanel(fixture, [false, true], ['content2']);
 
-                click(navLinks[0] as HTMLElement);
-                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+                await clickAndAwaitChanges(navLinkDes[0], fixture);
 
                 expectNavPanel(fixture, [true, false], ['content1']);
             });
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', async () => {
-                const navLinks = getNavLinks(fixture);
+                const navLinkDes = getNavLinks(fixture);
                 getAndExpectDebugElementByDirective(
                     compDe,
                     NgxJsonViewerStubComponent,
@@ -215,8 +218,7 @@ describe('JsonViewerComponent (DONE)', () => {
                     'in default (formatted) view'
                 );
 
-                click(navLinks[1] as HTMLElement);
-                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+                await clickAndAwaitChanges(navLinkDes[1], fixture);
 
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 0, 0, 'in plain view');
             });
@@ -229,11 +231,10 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should render `jsonViewerData` in Plain view', async () => {
-                const navLinks = getNavLinks(fixture);
+                const navLinkDes = getNavLinks(fixture);
 
                 // Change navLink to plain view
-                click(navLinks[1] as HTMLElement);
-                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+                await clickAndAwaitChanges(navLinkDes[1], fixture);
 
                 const navContent = getNavContents(fixture);
 

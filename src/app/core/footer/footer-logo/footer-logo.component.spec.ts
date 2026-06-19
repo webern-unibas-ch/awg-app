@@ -10,6 +10,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
 } from '@testing/expect-helper';
 
@@ -183,7 +184,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).not.toBeTruthy();
-                expect(imageEl.classList).not.toContain(cssClassFloatEnd);
+                expectToNotContain(imageEl.classList, cssClassFloatEnd);
 
                 // Not main footer logo
                 // Trigger changes in data binding
@@ -191,7 +192,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).not.toBeTruthy();
-                expect(imageEl.classList).not.toContain(cssClassFloatEnd);
+                expectToNotContain(imageEl.classList, cssClassFloatEnd);
             });
 
             it('... should have CSS class `my-2` applied only to main footer logos', async () => {
@@ -219,7 +220,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expect(imageDes[0].classes[cssClassMarginY2]).not.toBeTruthy();
-                expect(imageEl.classList).not.toContain(cssClassMarginY2);
+                expectToNotContain(imageEl.classList, cssClassMarginY2);
             });
 
             it('... should have [ngClass] resolve to correct classes', async () => {
@@ -283,7 +284,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 classList = component.getLogoClass(component.logo.id);
 
                 expect(classList).toBeTruthy();
-                expect(classList).not.toContain(cssClassFloatEnd);
+                expectToNotContain(classList, cssClassFloatEnd);
 
                 // Not main footer logo
                 // Trigger changes in data binding

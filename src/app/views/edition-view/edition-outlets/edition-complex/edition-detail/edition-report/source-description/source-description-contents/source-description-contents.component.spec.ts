@@ -8,6 +8,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -115,7 +116,7 @@ describe('SourceDescriptionContentsComponent', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('no-para-margin')).toBe(true);
+                expectToContain(pEl.classList, 'no-para-margin');
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -133,8 +134,8 @@ describe('SourceDescriptionContentsComponent', () => {
                 );
                 const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
 
-                expect(toggleSpanEl.classList.contains('small')).toBe(true);
-                expect(toggleSpanEl.classList.contains('text-muted')).toBe(true);
+                expectToContain(toggleSpanEl.classList, 'small');
+                expectToContain(toggleSpanEl.classList, 'text-muted');
             });
 
             it('... should not display a text in the toggle span yet', () => {
@@ -237,7 +238,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     detailDes.forEach(detailDe => {
                         const detailEl = detailDe.nativeElement;
 
-                        expect(detailEl.classList.contains('half-para-margin')).toBe(true);
+                        expectToContain(detailEl.classList, 'half-para-margin');
                     });
                 });
 
@@ -300,7 +301,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     summaryDes.forEach(summaryDe => {
                         const summaryEl = summaryDe.nativeElement;
 
-                        expect(summaryEl.classList.contains('no-para-margin')).toBe(true);
+                        expectToContain(summaryEl.classList, 'no-para-margin');
                     });
                 });
 

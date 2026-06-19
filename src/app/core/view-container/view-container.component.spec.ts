@@ -7,6 +7,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
     expectToContain,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -58,14 +59,14 @@ describe('ViewContainerComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                expect(divEl.classList).not.toContain('justify-content-center');
+                expectToNotContain(divEl.classList, 'justify-content-center');
             });
 
             it('... should contain one child div (maincontent) in `div.row`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                 const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                expectToBe(divEl0.classList.contains('awg-maincontent'), true);
+                expectToContain(divEl0.classList, 'awg-maincontent');
             });
 
             it('... should contain one router outlet (stubbed)', () => {
@@ -97,7 +98,7 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
                     const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                    expect(divEl.classList).not.toContain('justify-content-center');
+                    expectToNotContain(divEl.classList, 'justify-content-center');
                 });
 
                 it('... should contain two child divs in `div.row`', () => {
@@ -105,8 +106,8 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
                     const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
-                    expectToBe(divEl0.classList.contains('awg-maincontent'), true);
-                    expectToBe(divEl1.classList.contains('awg-side-outlet'), true);
+                    expectToContain(divEl0.classList, 'awg-maincontent');
+                    expectToContain(divEl1.classList, 'awg-side-outlet');
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
@@ -115,7 +116,7 @@ describe('ViewContainerComponent (DONE)', () => {
 
                     expectToContain(divEl.classList, 'col-md-8');
                     expectToContain(divEl.classList, 'col-xl-9');
-                    expect(divEl.classList).not.toContain('col-md-10');
+                    expectToNotContain(divEl.classList, 'col-md-10');
                 });
 
                 it('... should have correct grid classes on `div.awg-side-outlet`', () => {
@@ -164,7 +165,7 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
                     const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
-                    expectToBe(divEl0.classList.contains('awg-maincontent'), true);
+                    expectToContain(divEl0.classList, 'awg-maincontent');
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
@@ -172,8 +173,8 @@ describe('ViewContainerComponent (DONE)', () => {
                     const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expectToContain(divEl.classList, 'col-md-10');
-                    expect(divEl.classList).not.toContain('col-md-8');
-                    expect(divEl.classList).not.toContain('col-xl-9');
+                    expectToNotContain(divEl.classList, 'col-md-8');
+                    expectToNotContain(divEl.classList, 'col-xl-9');
                 });
 
                 it('... should contain one router outlet (stubbed)', () => {

@@ -6,7 +6,9 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -153,7 +155,11 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(aEl.classList.contains('disabled'), expectedSelectedSection.content.intro.disabled);
+                if (expectedSelectedSection.content.intro.disabled) {
+                    expectToContain(aEl.classList, 'disabled');
+                } else {
+                    expectToNotContain(aEl.classList, 'disabled');
+                }
             });
         });
 

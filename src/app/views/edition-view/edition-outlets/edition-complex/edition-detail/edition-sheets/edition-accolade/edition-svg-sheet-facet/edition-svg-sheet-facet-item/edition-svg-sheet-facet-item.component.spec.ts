@@ -11,6 +11,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -199,10 +200,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'active');
-                expect(aEl0.classList).not.toContain('text-muted');
+                expectToNotContain(aEl0.classList, 'text-muted');
 
                 expectToContain(aEl1.classList, 'text-muted');
-                expect(aEl1.classList).not.toContain('active');
+                expectToNotContain(aEl1.classList, 'active');
             });
 
             it('... should display sheet label in direct anchors (no partials)', () => {
@@ -312,7 +313,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                     const aEl: HTMLAnchorElement = aDe.nativeElement;
 
                     expectToContain(aEl.classList, 'text-muted');
-                    expect(aEl.classList).not.toContain('active');
+                    expectToNotContain(aEl.classList, 'active');
                 });
             });
 
@@ -330,10 +331,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 let aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'active');
-                expect(aEl0.classList).not.toContain('text-muted');
+                expectToNotContain(aEl0.classList, 'text-muted');
 
                 expectToContain(aEl1.classList, 'text-muted');
-                expect(aEl1.classList).not.toContain('active');
+                expectToNotContain(aEl1.classList, 'active');
 
                 component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3b);
                 await detectChangesOnPush(fixture);
@@ -348,10 +349,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 aEl1 = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'text-muted');
-                expect(aEl0.classList).not.toContain('active');
+                expectToNotContain(aEl0.classList, 'active');
 
                 expectToContain(aEl1.classList, 'active');
-                expect(aEl1.classList).not.toContain('text-muted');
+                expectToNotContain(aEl1.classList, 'text-muted');
             });
 
             it('... should have as many item anchors (.dropdown-item) in dropdown as partials in sheet content', () => {
@@ -387,10 +388,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'active');
-                expect(aEl0.classList).not.toContain('text-muted');
+                expectToNotContain(aEl0.classList, 'text-muted');
 
                 expectToContain(aEl1.classList, 'text-muted');
-                expect(aEl1.classList).not.toContain('active');
+                expectToNotContain(aEl1.classList, 'active');
             });
 
             it('... should display sheet labels in dropdown item anchors (with numbered partials)', () => {

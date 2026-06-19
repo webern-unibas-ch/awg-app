@@ -16,7 +16,7 @@ import {
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -509,11 +509,9 @@ describe('EditionGraphComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Click button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         expectSpyCall(modalOpenSpy, 1, 'HINT_EDITION_GRAPH');
                         expectToBe(modalCmp.modalContent, 'HINT_EDITION_GRAPH');

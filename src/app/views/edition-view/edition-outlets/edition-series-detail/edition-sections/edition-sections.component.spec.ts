@@ -6,13 +6,14 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf } from 'rxjs';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -319,8 +320,8 @@ describe('EditionSectionsComponent (DONE)', () => {
                             expectToContain(contentEl.classList, 'col-8');
                             expectToContain(contentEl.classList, 'col-sm-10');
                         } else {
-                            expect(contentEl.classList).not.toContain('col-8');
-                            expect(contentEl.classList).not.toContain('col-sm-10');
+                            expectToNotContain(contentEl.classList, 'col-8');
+                            expectToNotContain(contentEl.classList, 'col-sm-10');
                         }
                     });
                 });
@@ -387,7 +388,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (!expectedSection.disabled) {
                                 expectToContain(bodyEl.classList, 'awg-card-border-top');
                             } else {
-                                expect(bodyEl.classList).not.toContain('awg-card-border-top');
+                                expectToNotContain(bodyEl.classList, 'awg-card-border-top');
                             }
                         });
                     });
@@ -448,7 +449,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (expectedSelectedSeries.sections[index].disabled) {
                                 expectToContain(hEl.classList, 'text-muted');
                             } else {
-                                expect(hEl.classList).not.toContain('text-muted');
+                                expectToNotContain(hEl.classList, 'text-muted');
                             }
                         });
                     });
@@ -550,7 +551,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (expectedSection.disabled) {
                                 expectToContain(footerLinkEl.classList, 'disabled');
                             } else {
-                                expect(footerLinkEl.classList).not.toContain('disabled');
+                                expectToNotContain(footerLinkEl.classList, 'disabled');
                             }
                         });
                     });
@@ -625,26 +626,24 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... can click section link in template', () => {
+            it('... can click section link in template', async () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[0].section.route]);
             });
 
-            it('... should navigate to section page when section link is clicked', () => {
+            it('... should navigate to section page when section link is clicked', async () => {
                 const sectionLinkDe = linkDes[4];
                 const sectionLink = routerLinks[4];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[4].section.route]);
             });

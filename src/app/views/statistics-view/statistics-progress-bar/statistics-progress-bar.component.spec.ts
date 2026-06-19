@@ -9,6 +9,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -124,7 +125,7 @@ describe('StatisticsProgressBarComponent', () => {
                 expectToBe(progressEl.classList.length, 2);
                 expectToContain(progressEl.classList, 'progress'); // Default class of NgbProgressbar
                 expectToContain(progressEl.classList, 'flex-grow-1');
-                expectToBe(progressEl.classList.contains('me-2'), false);
+                expectToNotContain(progressEl.classList, 'me-2');
             });
 
             it('... should not pass down type, height, value or ariaLabel yet', () => {
@@ -208,14 +209,14 @@ describe('StatisticsProgressBarComponent', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
                 const labelEl: HTMLElement = labelDes[0].nativeElement;
 
-                expectToBe(labelEl.classList.contains('fw-bold'), false);
+                expectToNotContain(labelEl.classList, 'fw-bold');
             });
 
             it('... should have text-muted class on percentage label due to 0%', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
                 const labelEl: HTMLElement = labelDes[0].nativeElement;
 
-                expectToBe(labelEl.classList.contains('text-muted'), true);
+                expectToContain(labelEl.classList, 'text-muted');
             });
         });
     });
@@ -304,7 +305,7 @@ describe('StatisticsProgressBarComponent', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
                 const labelEl: HTMLElement = labelDes[0].nativeElement;
 
-                expectToBe(labelEl.classList.contains('text-muted'), false);
+                expectToNotContain(labelEl.classList, 'text-muted');
             });
 
             describe('... when headerLabel is given', () => {
@@ -331,8 +332,8 @@ describe('StatisticsProgressBarComponent', () => {
                         expectToBe(headerEl.classList.length, 2);
                         expectToContain(headerEl.classList, 'awg-statistics-progress-header');
                         expectToContain(headerEl.classList, 'mb-1');
-                        expectToBe(headerEl.classList.contains('d-flex'), false);
-                        expectToBe(headerEl.classList.contains('justify-content-between'), false);
+                        expectToNotContain(headerEl.classList, 'd-flex');
+                        expectToNotContain(headerEl.classList, 'justify-content-between');
                     });
 
                     it('... should display the headerLabel in only span in progress-header div', () => {
@@ -473,7 +474,7 @@ describe('StatisticsProgressBarComponent', () => {
                     expectToBe(progressEl.classList.length, 2);
                     expectToContain(progressEl.classList, 'progress');
                     expectToContain(progressEl.classList, 'flex-grow-1');
-                    expectToBe(progressEl.classList.contains('me-2'), false);
+                    expectToNotContain(progressEl.classList, 'me-2');
                 });
 
                 it('... should not show percentage label', () => {
@@ -491,7 +492,7 @@ describe('StatisticsProgressBarComponent', () => {
                     const labelDes = getAndExpectDebugElementByCss(compDe, 'small', 1, 1);
                     const labelEl: HTMLElement = labelDes[0].nativeElement;
 
-                    expectToBe(labelEl.classList.contains('fw-bold'), false);
+                    expectToNotContain(labelEl.classList, 'fw-bold');
                 });
             });
         });

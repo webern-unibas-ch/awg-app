@@ -2389,7 +2389,7 @@ describe('EditionDataService (DONE)', () => {
 
             const result = (editionDataService as any)._generateAssetPath(seriesRoute, sectionRoute);
 
-            expect(result).toBe(expectedPath);
+            expectToBe(result, expectedPath);
         });
 
         it('... should generate the correct path with complexIdRoute', () => {
@@ -2400,7 +2400,7 @@ describe('EditionDataService (DONE)', () => {
 
             const result = (editionDataService as any)._generateAssetPath(seriesRoute, sectionRoute, complexIdRoute);
 
-            expect(result).toBe(expectedPath);
+            expectToBe(result, expectedPath);
         });
     });
 
@@ -2470,8 +2470,7 @@ describe('EditionDataService (DONE)', () => {
 
             result.subscribe({
                 next: (res: any) => {
-                    expect(res).toBeTruthy();
-                    expect(res).toEqual(expectedData);
+                    expectToEqual(res, expectedData);
                 },
                 error: () => {
                     throw new Error('should not call error');

@@ -153,6 +153,23 @@ export function expectToContain<T>(actual: T extends Function ? never : T, expec
 }
 
 /**
+ * Test helper function: expectToNotContain.
+ *
+ * It checks if a given actual value is defined and if it does not contain the expected value ('not.toContain').
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should not be contained.
+ *
+ * @returns {void} Throws the expectation statements.
+ */
+export function expectToNotContain<T>(actual: T extends Function ? never : T, expected: any): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should not contain ${expected}`).not.toContain(expected);
+}
+
+/**
  * Test helper function: expectToEqual.
  *
  * It checks if a given actual value is defined and if it equals the expected value ('toEqual').

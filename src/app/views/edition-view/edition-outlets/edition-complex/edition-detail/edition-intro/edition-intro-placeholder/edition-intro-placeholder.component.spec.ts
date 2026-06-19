@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
@@ -65,8 +65,8 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('text-muted')).toBe(true);
-                expect(pEl.classList.contains('small')).toBe(true);
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'small');
             });
         });
     });
@@ -95,8 +95,8 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('text-muted')).toBe(true);
-                expect(pEl.classList.contains('small')).toBe(true);
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'small');
 
                 // Create intro placeholder
                 const fullComplexSpan = mockDocument.createElement('span');

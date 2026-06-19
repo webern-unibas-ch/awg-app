@@ -13,6 +13,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -323,7 +324,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                 const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
-                expect(accordionEl.classList).not.toContain('fullscreen');
+                expectToNotContain(accordionEl.classList, 'fullscreen');
 
                 // Set fullscreen
                 component.isFullscreen = true;
@@ -453,9 +454,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     const facetDivEl: HTMLDivElement = facetDivDes[0].nativeElement;
 
                     expectToContain(facetDivEl.classList, 'col-auto');
-                    expect(facetDivEl.classList).not.toContain('col-12');
-                    expect(facetDivEl.classList).not.toContain('col-lg-4');
-                    expect(facetDivEl.classList).not.toContain('col-xl-3');
+                    expectToNotContain(facetDivEl.classList, 'col-12');
+                    expectToNotContain(facetDivEl.classList, 'col-lg-4');
+                    expectToNotContain(facetDivEl.classList, 'col-xl-3');
                 });
 
                 it('... should apply col-12 col-lg-4 col-xl-3 to sheet facet container div when not minimized', async () => {
@@ -473,7 +474,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectToContain(facetDivEl.classList, 'col-12');
                     expectToContain(facetDivEl.classList, 'col-lg-4');
                     expectToContain(facetDivEl.classList, 'col-xl-3');
-                    expect(facetDivEl.classList).not.toContain('col-auto');
+                    expectToNotContain(facetDivEl.classList, 'col-auto');
                 });
 
                 it('... should apply col to sheet viewer container div when minimized', async () => {
@@ -489,9 +490,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     const viewerDivEl: HTMLDivElement = viewerDivDes[0].nativeElement;
 
                     expectToContain(viewerDivEl.classList, 'col');
-                    expect(viewerDivEl.classList).not.toContain('col-12');
-                    expect(viewerDivEl.classList).not.toContain('col-lg-8');
-                    expect(viewerDivEl.classList).not.toContain('col-xl-9');
+                    expectToNotContain(viewerDivEl.classList, 'col-12');
+                    expectToNotContain(viewerDivEl.classList, 'col-lg-8');
+                    expectToNotContain(viewerDivEl.classList, 'col-xl-9');
                 });
 
                 it('... should apply col-12 col-lg-8 col-xl-9 to sheet viewer container div when not minimized', async () => {
@@ -509,7 +510,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectToContain(viewerDivEl.classList, 'col-12');
                     expectToContain(viewerDivEl.classList, 'col-lg-8');
                     expectToContain(viewerDivEl.classList, 'col-xl-9');
-                    expect(viewerDivEl.classList).not.toContain('col');
+                    expectToNotContain(viewerDivEl.classList, 'col');
                 });
             });
 

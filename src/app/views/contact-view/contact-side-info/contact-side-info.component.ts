@@ -63,7 +63,7 @@ export class ContactSideInfoComponent {
      * It holds the sanitized link to embed the map.
      */
     mapEmbedUrl = signal<SafeResourceUrl>(
-        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL)
+        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
     ).asReadonly();
 
     /**

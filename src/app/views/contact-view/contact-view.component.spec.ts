@@ -32,6 +32,7 @@ class HeadingStubComponent {
     title = input<string>('');
     id = input<string>('');
 }
+
 @Component({
     selector: 'awg-meta-identifier-badges',
     template: '',

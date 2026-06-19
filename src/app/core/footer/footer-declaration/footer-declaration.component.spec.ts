@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
@@ -138,27 +138,25 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToBe(routerLinks[1].fragment, 'awg-documentation');
             });
 
-            it('... can click imprint link in template', () => {
-                const imprintLinkDes = linkDes[0]; // Contact link DebugElement
+            it('... can click imprint link in template', async () => {
+                const imprintLinkDe = linkDes[0]; // Contact link DebugElement
                 const imprintLink = routerLinks[0]; // Contact link directive
 
                 expectToBe(imprintLink.navigatedTo, null);
 
-                click(imprintLinkDes);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(imprintLinkDe, fixture);
 
                 expectToEqual(imprintLink.navigatedTo, ['/contact']);
                 expectToBe(imprintLink.navigatedToFragment, 'awg-imprint');
             });
 
-            it('... can click documentation link in template', () => {
-                const documentationLinkDes = linkDes[1]; // Contact link DebugElement
+            it('... can click documentation link in template', async () => {
+                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
                 const documentationLink = routerLinks[1]; // Contact link directive
 
                 expectToBe(documentationLink.navigatedTo, null);
 
-                click(documentationLinkDes);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(documentationLinkDe, fixture);
 
                 expectToEqual(documentationLink.navigatedTo, ['/contact']);
                 expectToBe(documentationLink.navigatedToFragment, 'awg-documentation');

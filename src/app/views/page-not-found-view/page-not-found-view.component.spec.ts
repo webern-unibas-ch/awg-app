@@ -4,8 +4,7 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { click } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
@@ -288,8 +287,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
                 const homeLinkDe = linkDes[0];
 
-                click(homeLinkDe);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(homeLinkDe, fixture);
 
                 expect(navigateSpy).toHaveBeenCalled();
                 const firstCallArg = navigateSpy.mock.calls[0][0];

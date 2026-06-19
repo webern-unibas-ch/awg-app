@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
@@ -13,7 +13,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './statistics-summary-card.component.html',
     styleUrls: ['./statistics-summary-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FontAwesomeModule],
+    imports: [FaIconComponent],
 })
 export class StatisticsSummaryCardComponent {
     /**

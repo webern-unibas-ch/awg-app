@@ -108,13 +108,13 @@ describe('FullscreenService (DONE)', () => {
         it('... should return false if the document is not in fullscreen mode', () => {
             fullScreenElementSpy.mockReturnValue(null);
 
-            expect(fullscreenService.isFullscreen()).toBe(false);
+            expectToBe(fullscreenService.isFullscreen(), false);
         });
 
         it('... should return true if the document is in fullscreen mode', () => {
             fullScreenElementSpy.mockReturnValue({});
 
-            expect(fullscreenService.isFullscreen()).toBe(true);
+            expectToBe(fullscreenService.isFullscreen(), true);
         });
     });
 

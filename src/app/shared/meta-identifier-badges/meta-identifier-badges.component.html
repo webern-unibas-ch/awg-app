@@ -1,4 +1,4 @@
-@for (badge of activeIdentifierBadges(); track badge.key) {
+@for (badge of displayedBadges(); track badge.key) {
     <a class="awg-meta-identifier-badge awg-logo-link" [href]="badge.fullUrl"
         ><img class="awg-meta-identifier-badge-icon" [src]="badge.src" [alt]="badge.label" [title]="badge.titleText"
     /></a>

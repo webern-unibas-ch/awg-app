@@ -41,7 +41,7 @@ function _assertPseudoContentFromStyles(index: number, expectedContent: string):
 
     expect(styles).toMatch(/>\s*div[^\n]*:before/i);
     expect(styles).toMatch(/content:\s*"\\2669"/i);
-    expect(expectedContent).toBe('\u2669');
+    expectToBe(expectedContent, '\u2669');
 }
 
 describe('TwelveToneSpinnerComponent', () => {

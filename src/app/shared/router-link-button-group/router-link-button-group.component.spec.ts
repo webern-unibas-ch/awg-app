@@ -9,7 +9,9 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -151,9 +153,9 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     if (expectedRouterLinkButtons[index].disabled) {
-                        expect(btnEl.classList.contains('disabled')).toBe(true);
+                        expectToContain(btnEl.classList, 'disabled');
                     } else {
-                        expect(btnEl.classList.contains('disabled')).toBe(false);
+                        expectToNotContain(btnEl.classList, 'disabled');
                     }
                 });
             });
@@ -266,19 +268,19 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
-                expect(btnEl0.classList.contains('disabled')).toBe(false);
+                expectToNotContain(btnEl0.classList, 'disabled');
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
 
                 // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[1], fixture);
 
-                expect(btnEl1.classList.contains('disabled')).toBe(true);
+                expectToContain(btnEl1.classList, 'disabled');
                 expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
                 // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[2], fixture);
 
-                expect(btnEl2.classList.contains('disabled')).toBe(true);
+                expectToContain(btnEl2.classList, 'disabled');
                 expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
             });
 

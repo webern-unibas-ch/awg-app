@@ -695,7 +695,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     component.getEditionSheetsData();
 
-                    expect(component.errorObject).toEqual(expectedError);
+                    expectToEqual(component.errorObject, expectedError);
                 });
 
                 it('...  fetching edition sheets data fails', () => {
@@ -706,7 +706,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     component.getEditionSheetsData();
 
-                    expect(component.errorObject).toEqual(expectedError);
+                    expectToEqual(component.errorObject, expectedError);
                 });
             });
         });

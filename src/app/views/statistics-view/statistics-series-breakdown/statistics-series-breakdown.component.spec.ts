@@ -4,13 +4,13 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { click } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -178,7 +178,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     expectToBe(thEl.getAttribute('rowspan'), expectedHeader.rowspan);
                     expectToBe(thEl.getAttribute('colspan'), expectedHeader.colspan);
                     expectedHeader.classes.split(' ').forEach(headerClass => {
-                        expectToBe(thEl.classList.contains(headerClass), true);
+                        expectToContain(thEl.classList, headerClass);
                     });
                 });
             });
@@ -200,7 +200,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                     expectToBe(thEl.textContent?.trim(), expectedHeader.text);
                     expectedHeader.classes.split(' ').forEach(headerClass => {
-                        expectToBe(thEl.classList.contains(headerClass), true);
+                        expectToContain(thEl.classList, headerClass);
                     });
                 });
             });
@@ -296,9 +296,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
-                            const shouldBeMuted = mockData[index].activeSections === 0;
 
-                            expectToBe(strongEl.classList.contains('text-muted'), shouldBeMuted);
+                            if (mockData[index].activeSections === 0) {
+                                expectToContain(strongEl.classList, 'text-muted');
+                            } else {
+                                expectToNotContain(strongEl.classList, 'text-muted');
+                            }
                         });
                     });
 
@@ -317,7 +320,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             const expectedActiveSectionsText = `(${expectedSeriesBreakdownData[index].activeSections} active section)`;
 
-                            expectToBe(smallEl.classList.contains('text-muted'), true);
+                            expectToContain(smallEl.classList, 'text-muted');
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
                         });
                     });
@@ -363,7 +366,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[1], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             expectToBe(
                                 strongEl.textContent?.trim(),
                                 expectedSeriesBreakdownData[index].totalComplexes.toString()
@@ -387,9 +390,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         seriesTrDes.forEach((seriesTrDe, index) => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
-                            const shouldBeMuted = mockData[index].activeSections === 0;
 
-                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
+                            if (mockData[index].activeSections === 0) {
+                                expectToContain(tdEl.classList, 'text-muted');
+                            } else {
+                                expectToNotContain(tdEl.classList, 'text-muted');
+                            }
                         });
                     });
                 });
@@ -408,7 +414,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
                             const expectedBadgeCount = expectedSeriesBreakdownData[0].totalComplexes > 0 ? 1 : 0;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
                                 StatisticsBreakdownBadgeStubComponent,
@@ -486,7 +492,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[3], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             expectToBe(
                                 strongEl.textContent?.trim(),
                                 expectedSeriesBreakdownData[index].activeComplexes.toString()
@@ -510,9 +516,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         seriesTrDes.forEach((seriesTrDe, index) => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
-                            const shouldBeMuted = mockData[index].activeSections === 0;
 
-                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
+                            if (mockData[index].activeSections === 0) {
+                                expectToContain(tdEl.classList, 'text-muted');
+                            } else {
+                                expectToNotContain(tdEl.classList, 'text-muted');
+                            }
                         });
                     });
                 });
@@ -642,19 +651,19 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             // Prefix
                             const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
-                            expectToBe(spanDes[0].nativeElement.classList.contains('text-muted'), true);
+                            expectToContain(spanDes[0].nativeElement.classList, 'text-muted');
 
                             // Section Label
                             const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
                             const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                             if (sectionData.disabled) {
-                                expectToBe(aEl.classList.contains('text-muted'), true);
-                                expectToBe(aEl.classList.contains('pe-none'), true);
+                                expectToContain(aEl.classList, 'text-muted');
+                                expectToContain(aEl.classList, 'pe-none');
                                 expectToBe(aEl.style.textDecoration, 'none');
                             } else {
-                                expectToBe(aEl.classList.contains('text-muted'), false);
-                                expectToBe(aEl.classList.contains('pe-none'), false);
+                                expectToNotContain(aEl.classList, 'text-muted');
+                                expectToNotContain(aEl.classList, 'pe-none');
                                 expectToBe(aEl.style.textDecoration, '');
                             }
                         });
@@ -692,10 +701,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             navigateSpy.mockClear();
 
                             const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
-                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                            click(aEl as HTMLElement);
-                            await detectChangesOnPush(fixture);
+                            await clickAndAwaitChanges(aDes[0], fixture);
 
                             expectSpyCall(navigateSpy, 1);
                             const firstCallArg = navigateSpy.mock.calls[0][0];
@@ -718,7 +725,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             expectToBe(tdEl.textContent?.trim(), sectionData.totalComplexes.toString());
                         });
                     });
@@ -728,9 +735,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
-                            const shouldBeMuted = sectionData.disabled === true;
 
-                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
+                            if (sectionData.disabled === true) {
+                                expectToContain(tdEl.classList, 'text-muted');
+                            } else {
+                                expectToNotContain(tdEl.classList, 'text-muted');
+                            }
                         });
                     });
                 });
@@ -743,7 +753,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
                             const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
                                 StatisticsBreakdownBadgeStubComponent,
@@ -760,7 +770,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
                             const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             const badgeDes = getAndExpectDebugElementByDirective(
                                 tdDes[2],
                                 StatisticsBreakdownBadgeStubComponent,
@@ -782,7 +792,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
 
-                            expectToBe(tdEl.classList.contains('text-center'), true);
+                            expectToContain(tdEl.classList, 'text-center');
                             expectToBe(tdEl.textContent?.trim(), sectionData.activeComplexes.toString());
                         });
                     });
@@ -792,9 +802,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
-                            const shouldBeMuted = sectionData.disabled === true;
 
-                            expectToBe(tdEl.classList.contains('text-muted'), shouldBeMuted);
+                            if (sectionData.disabled === true) {
+                                expectToContain(tdEl.classList, 'text-muted');
+                            } else {
+                                expectToNotContain(tdEl.classList, 'text-muted');
+                            }
                         });
                     });
                 });

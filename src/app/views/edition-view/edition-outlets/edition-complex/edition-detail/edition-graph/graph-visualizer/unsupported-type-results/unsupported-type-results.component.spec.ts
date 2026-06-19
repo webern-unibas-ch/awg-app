@@ -7,9 +7,15 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToNotContain,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
 describe('UnsupportedTypeResultsComponent (DONE)', () => {
@@ -126,7 +132,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
-                    expect(itemHeaderEl.classList).not.toContain('collapsed');
+                    expectToNotContain(itemHeaderEl.classList, 'collapsed');
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
@@ -167,7 +173,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -180,8 +185,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -192,11 +196,10 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expect(itemBodyEl.classList).not.toContain('show');
+                    expectToNotContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -221,8 +224,8 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
-                        expect(pEl).toBeTruthy();
-                        expect(pEl.classList.contains('text-center')).toBe(true);
+
+                        expectToContain(pEl.classList, 'text-center');
                     });
                 });
 
@@ -298,7 +301,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
-                    expect(itemHeaderEl.classList).not.toContain('collapsed');
+                    expectToNotContain(itemHeaderEl.classList, 'collapsed');
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
@@ -339,7 +342,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body does not closed
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -354,8 +356,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -381,8 +382,8 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     pDes.forEach((pDe: DebugElement) => {
                         const pEl: HTMLParagraphElement = pDe.nativeElement;
-                        expect(pEl).toBeTruthy();
-                        expect(pEl.classList.contains('text-center')).toBe(true);
+
+                        expectToContain(pEl.classList, 'text-center');
                     });
                 });
 

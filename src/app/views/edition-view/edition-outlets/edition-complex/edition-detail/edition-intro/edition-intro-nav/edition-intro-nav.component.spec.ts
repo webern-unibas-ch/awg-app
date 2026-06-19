@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -202,7 +202,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                             ? expectedNotesLabel
                             : expectedIntroBlockContent[index].blockHeader;
 
-                    expect(aEl.textContent).toEqual(expectedText);
+                    expectToBe(aEl.textContent, expectedText);
                 });
             });
         });
@@ -288,21 +288,20 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 });
             });
 
-            it('... can click any router links in template', () => {
-                routerLinks.forEach((link: RouterLinkStubDirective, index: number) => {
+            it('... can click any router links in template', async () => {
+                for (const [index, link] of routerLinks.entries()) {
                     const linkDe = linkDes[index]; // Link DebugElement
 
                     expectToBe(link.navigatedTo, null);
 
-                    click(linkDe);
-                    fixture.detectChanges();
+                    await clickAndAwaitChanges(linkDe, fixture);
 
                     const blockFragment = expectedIntroBlockContent[index]?.blockId;
                     const expectedFragment = index === routerLinks.length - 1 ? expectedNotesFragment : blockFragment;
 
                     expectToBe(link.navigatedTo, expectedLinkParam);
                     expectToBe(link.navigatedToFragment, expectedFragment);
-                });
+                }
             });
         });
     });

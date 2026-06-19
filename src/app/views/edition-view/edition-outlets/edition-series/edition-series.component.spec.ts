@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -458,50 +458,46 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
             });
 
-            it('... can click section link in template', () => {
+            it('... can click section link in template', async () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, ['1', 'section', '5']);
             });
 
-            it('... should navigate to section page when section link is clicked', () => {
+            it('... should navigate to section page when section link is clicked', async () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, ['1', 'section', '5']);
             });
 
-            it('... can click series link in template', () => {
+            it('... can click series link in template', async () => {
                 const seriesLinkDe = linkDes[1];
                 const seriesLink = routerLinks[1];
 
                 expectToBe(seriesLink.navigatedTo, null);
 
-                click(seriesLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(seriesLinkDe, fixture);
 
                 expectToEqual(seriesLink.navigatedTo, ['1']);
             });
 
-            it('... should navigate to series page when series link is clicked', () => {
+            it('... should navigate to series page when series link is clicked', async () => {
                 const seriesLinkDe = linkDes[1];
                 const seriesLink = routerLinks[1];
 
                 expectToBe(seriesLink.navigatedTo, null);
 
-                click(seriesLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(seriesLinkDe, fixture);
 
                 expectToEqual(seriesLink.navigatedTo, ['1']);
             });

@@ -5,7 +5,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToNotContain,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { LanguageSwitcherComponent } from './language-switcher.component';
@@ -133,7 +139,7 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'active');
-                expect(aEl1.classList).not.toContain('active');
+                expectToNotContain(aEl1.classList, 'active');
             });
 
             it('... should have .active class on second anchor element when currentLanguage is 1', async () => {
@@ -146,7 +152,7 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                 const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                expect(aEl0.classList).not.toContain('active');
+                expectToNotContain(aEl0.classList, 'active');
                 expectToContain(aEl1.classList, 'active');
             });
         });

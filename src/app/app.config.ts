@@ -162,11 +162,11 @@ export class AppConfig {
      */
     public static get CONTACT_MAP_UNSAFE_EMBED_URL(): string {
         const mapApi = 'https://www.openstreetmap.org/export/embed.html';
-        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
-        const layer = 'layer=mapnik';
+        const bbox = '7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
+        const layer = 'mapnik';
         const marker = '47.55896585846639%2C7.584506571292877';
 
-        return mapApi + '?' + bbox + '&' + layer + '&' + marker;
+        return `${mapApi}?bbox=${bbox}&layer=${layer}&marker=${marker}`;
     }
 
     /**

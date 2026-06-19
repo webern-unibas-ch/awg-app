@@ -469,16 +469,14 @@ describe('HomeViewComponent (DONE)', () => {
 
                     const result = HomeViewComponent.createEditionSectionLinks(incompleteSections);
 
-                    expect(result.length).toBe(1);
-
-                    expect(result[0].routerLink).toEqual([
+                    expectToBe(result.length, 1);
+                    expectToEqual(result[0].routerLink, [
                         routes.EDITION.route,
                         routes.SERIES.route,
                         undefined,
                         routes.SECTION.route,
                         undefined,
                     ]);
-
                     expectToBe(result[0].label, `${routes.EDITION.short} undefined/undefined`);
                     expectToBe(result[0].separator, '');
                 });

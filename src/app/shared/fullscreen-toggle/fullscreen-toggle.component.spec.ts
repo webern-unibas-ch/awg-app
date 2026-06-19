@@ -7,7 +7,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -209,11 +209,9 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(closeFullScreenSpy, 1);
             });
@@ -250,11 +248,9 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
             it('... should trigger on click on "open fullscreen" button (not in fullscreen mode)', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(openFullScreenSpy, 1, expectedFsElement);
             });
