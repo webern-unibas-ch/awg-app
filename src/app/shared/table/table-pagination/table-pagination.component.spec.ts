@@ -10,7 +10,9 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -150,11 +152,8 @@ describe('TablePaginationComponent (DONE)', () => {
                 const liEl1: HTMLLIElement = liDes[0].nativeElement;
                 const liEl2: HTMLLIElement = liDes[1].nativeElement;
 
-                expect(liEl1.classList.contains('disabled')).toBeTruthy();
-                expect(liEl1.classList.contains('disabled')).toBe(true);
-
-                expect(liEl2.classList.contains('disabled')).toBeTruthy();
-                expect(liEl2.classList.contains('disabled')).toBe(true);
+                expectToContain(liEl1.classList, 'disabled');
+                expectToContain(liEl2.classList, 'disabled');
             });
 
             it('... should have last two li.page-item not with class .disabled', () => {
@@ -164,11 +163,8 @@ describe('TablePaginationComponent (DONE)', () => {
                 const liEl3: HTMLLIElement = liDes[2].nativeElement;
                 const liEl4: HTMLLIElement = liDes[3].nativeElement;
 
-                expect(liEl3.classList.contains('disabled')).toBeFalsy();
-                expect(liEl3.classList.contains('disabled')).toBe(false);
-
-                expect(liEl4.classList.contains('disabled')).toBeFalsy();
-                expect(liEl4.classList.contains('disabled')).toBe(false);
+                expectToNotContain(liEl3.classList, 'disabled');
+                expectToNotContain(liEl4.classList, 'disabled');
             });
 
             it('... should have a.page-link in all li.page-item', () => {

@@ -11,6 +11,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -32,33 +33,35 @@ function getNavLinks(fixture: ComponentFixture<any>): HTMLElement[] {
 function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], shouldHaveNavItemClass = false) {
     const links = getNavLinks(fixture);
 
-    expect(links.length, `expected to find ${expected.length} links, but found ${links.length}`).toBe(expected.length);
+    expectToBe(links.length, expected.length);
 
     links.forEach(({ classList }, i) => {
-        expect(classList.contains('nav-link'), `link should have 'nav-link' class`).toBe(true);
+        expectToContain(classList, 'nav-link');
 
-        expect(classList.contains('active'), `link should ${expected[i] ? '' : 'not'} have 'active' class`).toBe(
-            expected[i]
-        );
+        if (expected[i]) {
+            expectToContain(classList, 'active');
+        } else {
+            expectToNotContain(classList, 'active');
+        }
 
-        expect(
-            classList.contains('nav-item'),
-            `link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`
-        ).toBe(shouldHaveNavItemClass);
+        if (shouldHaveNavItemClass) {
+            expectToContain(classList, 'nav-item');
+        } else {
+            expectToNotContain(classList, 'nav-item');
+        }
     });
 }
 
 function expectNavContents(fixture: ComponentFixture<any>, expected: string[], activeIndex = 0) {
     const contents = getNavContents(fixture);
-    expect(contents.length, `expected to find ${expected.length} contents, but found ${contents.length}`).toBe(
-        expected.length
-    );
+    expectToBe(contents.length, expected.length);
 
     for (let i = 0; i < expected.length; ++i) {
-        expect(
-            contents[i].classList.contains('active'),
-            `content should ${i === activeIndex ? '' : 'not'} have 'active' class`
-        ).toBe(i === activeIndex);
+        if (i === activeIndex) {
+            expectToContain(contents[i].classList, 'active');
+        } else {
+            expectToNotContain(contents[i].classList, 'active');
+        }
     }
 }
 

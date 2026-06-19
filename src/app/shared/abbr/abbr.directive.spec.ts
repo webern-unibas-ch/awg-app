@@ -1,9 +1,9 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, it } from 'vitest';
 
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AbbrDirective } from './abbr.directive';
 
@@ -93,7 +93,7 @@ describe('AbbrDirective (DONE)', () => {
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-        expect(pEl.innerHTML).not.toContain('<abbr title="Klavier">Klaviert</abbr>');
+        expectToNotContain(pEl.innerHTML, '<abbr title="Klavier">Klaviert</abbr>');
         expectToContain(pEl.innerHTML, '<abbr title="Klavier oben">Klav. o.</abbr>');
         expectToContain(pEl.innerHTML, '<abbr title="Gesang">Ges.</abbr>');
     });

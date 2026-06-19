@@ -222,7 +222,7 @@ describe('EditionSvgOverlayService', () => {
 
             service.clearSvgOverlays();
 
-            expect((service as any)._tkkOverlaysState).toEqual({ available: [], selected: [] });
+            expectToEqual((service as any)._tkkOverlaysState, { available: [], selected: [] });
         });
     });
 
@@ -347,7 +347,7 @@ describe('EditionSvgOverlayService', () => {
                     const dataId = (service as any)._getSvgGroupDataId(groupWithDataTkkId);
 
                     expect(getSvgGroupDataIdSpy).toHaveBeenCalledWith(groupWithDataTkkId);
-                    expect(dataId).toBe('custom-data-id-1');
+                    expectToBe(dataId, 'custom-data-id-1');
                 });
                 it('... without data-tkk-id attribute', () => {
                     const groupWithoutDataTkkId = {
@@ -358,7 +358,7 @@ describe('EditionSvgOverlayService', () => {
                     const dataId = (service as any)._getSvgGroupDataId(groupWithoutDataTkkId);
 
                     expect(getSvgGroupDataIdSpy).toHaveBeenCalledWith(groupWithoutDataTkkId);
-                    expect(dataId).toBe('tkk-2');
+                    expectToBe(dataId, 'tkk-2');
                 });
             });
 
@@ -1080,13 +1080,13 @@ describe('EditionSvgOverlayService', () => {
                     expectedOverlayType
                 );
 
-                expect(expectedTkkOverlays[0].isSelected).toBe(true);
-                expect(expectedTkkOverlays[1].isSelected).toBe(true);
+                expectToBe(expectedTkkOverlays[0].isSelected, true);
+                expectToBe(expectedTkkOverlays[1].isSelected, true);
 
                 mockOverlayGroupRectSelection._handlers['click']();
 
-                expect(expectedTkkOverlays[0].isSelected).toBe(true);
-                expect(expectedTkkOverlays[1].isSelected).toBe(false);
+                expectToBe(expectedTkkOverlays[0].isSelected, true);
+                expectToBe(expectedTkkOverlays[1].isSelected, false);
             });
 
             it('... should trigger update color', () => {
@@ -1116,13 +1116,13 @@ describe('EditionSvgOverlayService', () => {
                     expectedOverlayType
                 );
 
-                expect(expectedTkkOverlays[0].isSelected).toBe(true);
-                expect(expectedTkkOverlays[1].isSelected).toBe(true);
+                expectToBe(expectedTkkOverlays[0].isSelected, true);
+                expectToBe(expectedTkkOverlays[1].isSelected, true);
 
                 mockOverlayGroupRectSelection._handlers['click']();
 
-                expect(expectedTkkOverlays[0].isSelected).toBe(true);
-                expect(expectedTkkOverlays[1].isSelected).toBe(false);
+                expectToBe(expectedTkkOverlays[0].isSelected, true);
+                expectToBe(expectedTkkOverlays[1].isSelected, false);
 
                 expectToEqual((service as any)._tkkOverlaysState.selected, expectedSelectedOverlays);
 
@@ -1180,8 +1180,8 @@ describe('EditionSvgOverlayService', () => {
                 mockOverlayGroupRectSelection._handlers['click']();
 
                 // Both overlays should have toggled selection
-                expect(overlays[0].isSelected).toBe(true);
-                expect(overlays[1].isSelected).toBe(true);
+                expectToBe(overlays[0].isSelected, true);
+                expectToBe(overlays[1].isSelected, true);
             });
 
             it('... should update color for all overlays with the same data-id', () => {
@@ -1214,8 +1214,8 @@ describe('EditionSvgOverlayService', () => {
                 // Simulate click event
                 mockOverlayGroupRectSelection._handlers['click']();
 
-                expect(overlays[0].isSelected).toBe(true);
-                expect(overlays[1].isSelected).toBe(true);
+                expectToBe(overlays[0].isSelected, true);
+                expectToBe(overlays[1].isSelected, true);
 
                 // Should emit both overlays as selected
                 expect(onOverlaySelectSpy).toHaveBeenCalledWith(overlays);
@@ -1331,7 +1331,7 @@ describe('EditionSvgOverlayService', () => {
 
                 expect(d3selections).toBeDefined();
                 expect(d3selections.nodes()).toBeInstanceOf(Array);
-                expect(d3selections.nodes().length).toBe(0);
+                expectToBe(d3selections.nodes().length, 0);
             });
         });
 
@@ -1376,7 +1376,7 @@ describe('EditionSvgOverlayService', () => {
 
                 expect(d3selections).toBeDefined();
                 expect(d3selections.nodes()).toBeInstanceOf(Array);
-                expect(d3selections.nodes().length).toBe(1);
+                expectToBe(d3selections.nodes().length, 1);
                 expectToContain(d3selections.nodes()[0].classList, 'tkk-overlay-group-box');
             });
 
@@ -1396,7 +1396,7 @@ describe('EditionSvgOverlayService', () => {
 
                 expect(d3Selections).toBeDefined();
                 expect(d3Selections.nodes()).toBeInstanceOf(Array);
-                expect(d3Selections.nodes().length).toBe(1);
+                expectToBe(d3Selections.nodes().length, 1);
                 expectToContain(d3Selections.nodes()[0].classList, `${expectedType}-overlay-group-box`);
             });
 
@@ -1423,7 +1423,7 @@ describe('EditionSvgOverlayService', () => {
 
                 expect(d3Selections).toBeDefined();
                 expect(d3Selections.nodes()).toBeInstanceOf(Array);
-                expect(d3Selections.nodes().length).toBe(2);
+                expectToBe(d3Selections.nodes().length, 2);
                 const nodeIds = d3Selections.nodes().map(node => node.parentNode.id);
                 expectToContain(nodeIds, 'group1');
                 expectToContain(nodeIds, 'group2');

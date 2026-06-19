@@ -15,6 +15,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -285,7 +286,7 @@ describe('EditionInfoComponent (DONE)', () => {
                         if (index === 0 || index === sectionIndex + 1) {
                             expectToContain(itemBodyEl.classList, 'show');
                         } else {
-                            expect(itemBodyEl.classList).not.toContain('show');
+                            expectToNotContain(itemBodyEl.classList, 'show');
                         }
                     });
                 }
@@ -363,7 +364,7 @@ describe('EditionInfoComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);

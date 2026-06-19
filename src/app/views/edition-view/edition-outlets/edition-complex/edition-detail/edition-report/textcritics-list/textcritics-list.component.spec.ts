@@ -297,7 +297,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const expectedButtonLabel = mockDocument.createElement('span');
                     expectedButtonLabel.innerHTML = expectedTextcriticsData.textcritics[index].label;
 
-                    expect(btnEl.classList.contains('text-start')).toBe(true);
+                    expectToContain(btnEl.classList, 'text-start');
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
                 });
             });
@@ -325,7 +325,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     const expectedButtonLabel = 'Zum edierten Notentext';
 
-                    expect(btnEl.classList.contains('btn-outline-info')).toBe(true);
+                    expectToContain(btnEl.classList, 'btn-outline-info');
                     expectToBe(btnEl.disabled, false);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel);
                 });
@@ -367,7 +367,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
+                        expectToContain(btnEl1.classList, 'btn-outline-info');
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
                 });
@@ -396,7 +396,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
 
-                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
+                        expectToContain(btnEl1.classList, 'btn-outline-info');
                         expectToBe(btnEl1.disabled, true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
@@ -595,7 +595,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl.classList.contains('text-muted')).toBe(true);
+                        expectToContain(smallEl.classList, 'text-muted');
                     });
                 });
 
@@ -718,7 +718,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl.classList.contains('text-muted')).toBe(true);
+                        expectToContain(smallEl.classList, 'text-muted');
                     });
                 });
 
@@ -843,32 +843,32 @@ describe('TextcriticsListComponent (DONE)', () => {
                 it('... id is undefined', () => {
                     const result = component.isWorkEditionId(undefined);
 
-                    expect(result).toBe(false);
+                    expectToBe(result, false);
                 });
 
                 it('... id is null', () => {
                     const result = component.isWorkEditionId(null);
 
-                    expect(result).toBe(false);
+                    expectToBe(result, false);
                 });
 
                 it('... id is empty string', () => {
                     const result = component.isWorkEditionId('');
 
-                    expect(result).toBe(false);
+                    expectToBe(result, false);
                 });
 
                 it('... id is not a work edition id', () => {
                     const result = component.isWorkEditionId('test_id');
 
-                    expect(result).toBe(false);
+                    expectToBe(result, false);
                 });
             });
 
             it('... should return true if id is a work edition id', () => {
                 const result = component.isWorkEditionId('op12_WE');
 
-                expect(result).toBe(true);
+                expectToBe(result, true);
             });
         });
 

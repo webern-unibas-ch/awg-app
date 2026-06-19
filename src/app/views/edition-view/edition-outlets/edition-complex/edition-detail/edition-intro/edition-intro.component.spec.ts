@@ -23,7 +23,9 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -953,7 +955,7 @@ describe('IntroComponent (DONE)', () => {
 
                 component.onLanguageSet(newLanguage);
 
-                expect(component.currentLanguage).toBe(newLanguage);
+                expectToBe(component.currentLanguage, newLanguage);
             });
 
             it('... should not change `currentLanguage` if the same language is passed', () => {
@@ -961,7 +963,7 @@ describe('IntroComponent (DONE)', () => {
 
                 component.onLanguageSet(initialLanguage);
 
-                expect(component.currentLanguage).toBe(initialLanguage);
+                expectToBe(component.currentLanguage, initialLanguage);
             });
 
             it('... should change `currentLanguage` if a different language is passed', () => {
@@ -972,7 +974,7 @@ describe('IntroComponent (DONE)', () => {
 
                 expect(component.currentLanguage).not.toBe(initialLanguage);
 
-                expect(component.currentLanguage).toBe(newLanguage);
+                expectToBe(component.currentLanguage, newLanguage);
             });
         });
 
@@ -1672,17 +1674,17 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should return true for NavigationEnd event with `intro` in URL', () => {
                 const event = new NavigationEnd(1, '/some/path', '/some/path/intro');
-                expect(component['_isNavigationEndToIntro'](event)).toBe(true);
+                expectToBe(component['_isNavigationEndToIntro'](event), true);
             });
 
             it('... should return false for NavigationEnd event without `intro` in URL', () => {
                 const event = new NavigationEnd(1, '/some/path', '/some/path/other');
-                expect(component['_isNavigationEndToIntro'](event)).toBe(false);
+                expectToBe(component['_isNavigationEndToIntro'](event), false);
             });
 
             it('... should return false for non-NavigationEnd event', () => {
                 const event = { urlAfterRedirects: '/some/path/intro' };
-                expect(component['_isNavigationEndToIntro'](event)).toBe(false);
+                expectToBe(component['_isNavigationEndToIntro'](event), false);
             });
         });
 
@@ -1892,22 +1894,22 @@ describe('IntroComponent (DONE)', () => {
                 it('... event is undefined', () => {
                     (component as any)._onIntroScroll(undefined);
 
-                    expectToBe(navLink1.classList.contains('active'), false);
-                    expectToBe(navLink2.classList.contains('active'), false);
+                    expectToNotContain(navLink1.classList, 'active');
+                    expectToNotContain(navLink2.classList, 'active');
                 });
 
                 it('... event is null', () => {
                     (component as any)._onIntroScroll(null);
 
-                    expectToBe(navLink1.classList.contains('active'), false);
-                    expectToBe(navLink2.classList.contains('active'), false);
+                    expectToNotContain(navLink1.classList, 'active');
+                    expectToNotContain(navLink2.classList, 'active');
                 });
 
                 it('... event is not of type `scroll`', () => {
                     (component as any)._onIntroScroll(new Event('click'));
 
-                    expectToBe(navLink1.classList.contains('active'), false);
-                    expectToBe(navLink2.classList.contains('active'), false);
+                    expectToNotContain(navLink1.classList, 'active');
+                    expectToNotContain(navLink2.classList, 'active');
                 });
             });
 
@@ -1926,8 +1928,8 @@ describe('IntroComponent (DONE)', () => {
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
-                expectToBe(navLink1.classList.contains('active'), true);
-                expectToBe(navLink2.classList.contains('active'), false);
+                expectToContain(navLink1.classList, 'active');
+                expectToNotContain(navLink2.classList, 'active');
             });
 
             it('... should update nav link classes based on scroll position (window.scrollY)', async () => {
@@ -1945,8 +1947,8 @@ describe('IntroComponent (DONE)', () => {
 
                 (component as any)._onIntroScroll(new Event('scroll'));
 
-                expectToBe(navLink1.classList.contains('active'), true);
-                expectToBe(navLink2.classList.contains('active'), false);
+                expectToContain(navLink1.classList, 'active');
+                expectToNotContain(navLink2.classList, 'active');
             });
 
             afterEach(() => {

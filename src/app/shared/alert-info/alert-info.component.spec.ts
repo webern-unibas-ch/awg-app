@@ -90,9 +90,9 @@ describe('AlertInfoComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(alertDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.classList.contains('small'), true);
-                expectToBe(pEl.classList.contains('text-muted'), true);
-                expectToBe(pEl.classList.contains('text-center'), true);
+                expectToContain(pEl.classList, 'small');
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'text-center');
             });
 
             it('... should display circle info icon in alert paragraph', () => {

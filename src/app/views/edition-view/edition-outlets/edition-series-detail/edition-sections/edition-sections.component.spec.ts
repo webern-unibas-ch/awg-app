@@ -13,6 +13,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -319,8 +320,8 @@ describe('EditionSectionsComponent (DONE)', () => {
                             expectToContain(contentEl.classList, 'col-8');
                             expectToContain(contentEl.classList, 'col-sm-10');
                         } else {
-                            expect(contentEl.classList).not.toContain('col-8');
-                            expect(contentEl.classList).not.toContain('col-sm-10');
+                            expectToNotContain(contentEl.classList, 'col-8');
+                            expectToNotContain(contentEl.classList, 'col-sm-10');
                         }
                     });
                 });
@@ -387,7 +388,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (!expectedSection.disabled) {
                                 expectToContain(bodyEl.classList, 'awg-card-border-top');
                             } else {
-                                expect(bodyEl.classList).not.toContain('awg-card-border-top');
+                                expectToNotContain(bodyEl.classList, 'awg-card-border-top');
                             }
                         });
                     });
@@ -448,7 +449,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (expectedSelectedSeries.sections[index].disabled) {
                                 expectToContain(hEl.classList, 'text-muted');
                             } else {
-                                expect(hEl.classList).not.toContain('text-muted');
+                                expectToNotContain(hEl.classList, 'text-muted');
                             }
                         });
                     });
@@ -550,7 +551,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             if (expectedSection.disabled) {
                                 expectToContain(footerLinkEl.classList, 'disabled');
                             } else {
-                                expect(footerLinkEl.classList).not.toContain('disabled');
+                                expectToNotContain(footerLinkEl.classList, 'disabled');
                             }
                         });
                     });

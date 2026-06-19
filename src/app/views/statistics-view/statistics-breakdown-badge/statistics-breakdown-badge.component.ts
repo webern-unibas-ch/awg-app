@@ -38,12 +38,12 @@ export class StatisticsBreakdownBadgeComponent {
     showEmptyBadges = input<boolean>(false);
 
     /**
-     * Computed signal: visibleBadges.
+     * Computed signal: displayedBadges.
      *
      * It computes the list of badges to be displayed
      * based on the breakdown data and the showEmptyBadges flag.
      */
-    visibleBadges = computed<StatisticsBreakDownBadge[]>(() => {
+    displayedBadges = computed<StatisticsBreakDownBadge[]>(() => {
         const data = this.breakdown();
         const showEmpty = this.showEmptyBadges();
 

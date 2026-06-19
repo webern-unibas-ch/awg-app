@@ -344,7 +344,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(d3selections).toBeDefined();
             expect(d3selections.nodes()).toBeInstanceOf(Array);
             expectToBe(d3selections.nodes().length, 1);
-            expect(d3selections.nodes()[0].getAttribute('data-tkk-id')).toBe('custom-data-id');
+            expectToBe(d3selections.nodes()[0].getAttribute('data-tkk-id'), 'custom-data-id');
             expectToBe(d3selections.nodes()[0].id, 'actual-id');
         });
 
@@ -356,7 +356,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(d3selections).toBeDefined();
             expect(d3selections.nodes()).toBeInstanceOf(Array);
             expectToBe(d3selections.nodes().length, 1);
-            expect(d3selections.nodes()[0].id).toBe('tkk-1');
+            expectToBe(d3selections.nodes()[0].id, 'tkk-1');
 
             const d3selections2 = service.getD3SelectionByDataId(expectedSvgRootGroup, 'tkk-2');
 

@@ -202,7 +202,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                             ? expectedNotesLabel
                             : expectedIntroBlockContent[index].blockHeader;
 
-                    expect(aEl.textContent).toEqual(expectedText);
+                    expectToBe(aEl.textContent, expectedText);
                 });
             });
         });

@@ -21,6 +21,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -272,7 +273,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
                     it('... should display item header button', () => {
@@ -319,7 +320,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -349,7 +350,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
                     describe('View handle button group', () => {
@@ -533,14 +534,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                             const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                            expect(aEl0.classList.contains('disabled')).toBe(true);
-                            expect(aEl1.classList.contains('disabled')).toBe(false);
+                            expectToContain(aEl0.classList, 'disabled');
+                            expectToNotContain(aEl1.classList, 'disabled');
 
                             component.query = expectedConstructQuery2;
                             await detectChangesOnPush(fixture);
 
-                            expect(aEl0.classList.contains('disabled')).toBe(false);
-                            expect(aEl1.classList.contains('disabled')).toBe(true);
+                            expectToNotContain(aEl0.classList, 'disabled');
+                            expectToContain(aEl1.classList, 'disabled');
                         });
 
                         it('... should trigger `onQueryListChange()` by click on dropdown item links', async () => {
@@ -556,7 +557,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                             const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                            expect(aEl1.classList.contains('disabled')).toBe(false);
+                            expectToNotContain(aEl1.classList, 'disabled');
 
                             // Click on second item (first disabled)
                             click(aEl1 as HTMLElement);
@@ -568,7 +569,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             component.query = expectedConstructQuery2;
                             await detectChangesOnPush(fixture);
 
-                            expect(aEl0.classList.contains('disabled')).toBe(false);
+                            expectToNotContain(aEl0.classList, 'disabled');
 
                             // Click on first item (second disabled)
                             click(aEl0 as HTMLElement);
@@ -652,7 +653,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -1024,14 +1025,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                         const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                        expect(aEl0.classList.contains('disabled')).toBe(true);
-                        expect(aEl1.classList.contains('disabled')).toBe(false);
+                        expectToContain(aEl0.classList, 'disabled');
+                        expectToNotContain(aEl1.classList, 'disabled');
 
                         component.query = expectedConstructQuery2;
                         await detectChangesOnPush(fixture);
 
-                        expect(aEl0.classList.contains('disabled')).toBe(false);
-                        expect(aEl1.classList.contains('disabled')).toBe(true);
+                        expectToNotContain(aEl0.classList, 'disabled');
+                        expectToContain(aEl1.classList, 'disabled');
                     });
 
                     it('... should trigger `onQueryListChange()` by click on dropdown item links', async () => {
@@ -1047,7 +1048,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
                         const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
-                        expect(aEl1.classList.contains('disabled')).toBe(false);
+                        expectToNotContain(aEl1.classList, 'disabled');
 
                         // Click on second item (first disabled)
                         click(aEl1 as HTMLElement);
@@ -1059,7 +1060,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         component.query = expectedConstructQuery2;
                         await detectChangesOnPush(fixture);
 
-                        expect(aEl0.classList.contains('disabled')).toBe(false);
+                        expectToNotContain(aEl0.classList, 'disabled');
 
                         // Click on first item (second disabled)
                         click(aEl0 as HTMLElement);
@@ -1316,7 +1317,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query = expectedConstructQuery2;
                 await detectChangesOnPush(fixture);
 
-                expect(aEl0.classList.contains('disabled')).toBe(false);
+                expectToNotContain(aEl0.classList, 'disabled');
 
                 // Click on first item (second disabled)
                 click(aEl0 as HTMLElement);

@@ -12,6 +12,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -205,7 +206,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     if (expectedRowTablesData.rowTables[index].disabled) {
                         expectToContain(hEl.classList, 'text-muted');
                     } else {
-                        expect(hEl.classList).not.toContain('text-muted');
+                        expectToNotContain(hEl.classList, 'text-muted');
                     }
                 });
             });
@@ -256,7 +257,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     if (expectedRowTablesData.rowTables[index].disabled) {
                         expectToContain(aEl.classList, 'disabled');
                     } else {
-                        expect(aEl.classList).not.toContain('disabled');
+                        expectToNotContain(aEl.classList, 'disabled');
                     }
                 });
             });

@@ -881,7 +881,7 @@ describe('GraphVisualizerService', () => {
 
                 const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
 
-                expect(result).toBe(expectedAbbreviation);
+                expectToBe(result, expectedAbbreviation);
             });
         });
 

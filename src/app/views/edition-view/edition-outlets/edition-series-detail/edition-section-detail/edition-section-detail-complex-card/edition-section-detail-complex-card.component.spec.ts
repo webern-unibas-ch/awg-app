@@ -8,7 +8,9 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -151,7 +153,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     const cardTitleDes = getAndExpectDebugElementByCss(colDe, 'h5.card-title', 1, 1);
                     const cardTitleEl: HTMLHeadingElement = cardTitleDes[0].nativeElement;
 
-                    expectToBe(cardTitleEl.classList.contains('text-muted'), expectedComplexes[index].disabled);
+                    if (expectedComplexes[index].disabled) {
+                        expectToContain(cardTitleEl.classList, 'text-muted');
+                    } else {
+                        expectToNotContain(cardTitleEl.classList, 'text-muted');
+                    }
                 });
             });
 
@@ -344,7 +350,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     const aDes = getAndExpectDebugElementByCss(pDe, 'a', 1, 1);
                     const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                    expectToBe(aEl.classList.contains('disabled'), expectedComplexes[index].disabled);
+                    if (expectedComplexes[index].disabled) {
+                        expectToContain(aEl.classList, 'disabled');
+                    } else {
+                        expectToNotContain(aEl.classList, 'disabled');
+                    }
                 });
             });
         });

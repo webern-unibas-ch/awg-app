@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vi
 
 import {
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -288,7 +289,7 @@ describe('StatisticsViewComponent', () => {
                 const pDes = getAndExpectDebugElementByCss(headerDes[0], 'p.lead', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.classList.contains('text-muted'), true);
+                expectToContain(pEl.classList, 'text-muted');
                 expectToBe(
                     pEl.textContent.trim(),
                     'Overview of key metrics in the online edition of the Anton Webern Gesamtausgabe'

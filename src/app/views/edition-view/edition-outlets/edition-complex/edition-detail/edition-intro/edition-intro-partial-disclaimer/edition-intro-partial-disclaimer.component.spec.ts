@@ -6,6 +6,7 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -96,8 +97,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('text-muted')).toBe(true);
-                expect(pEl.classList.contains('no-para-margin')).toBe(true);
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'no-para-margin');
             });
         });
     });
@@ -146,8 +147,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('text-muted')).toBe(true);
-                expect(pEl.classList.contains('no-para-margin')).toBe(true);
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'no-para-margin');
 
                 const awg = component.editionLabel;
                 const series = component.editionComplex?.pubStatement?.series?.short;

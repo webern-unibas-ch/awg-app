@@ -15,6 +15,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -188,7 +189,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
                     it('... should display item header button', () => {
@@ -230,7 +231,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -259,7 +260,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
                     });
                 });
 
@@ -334,7 +335,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(itemBodyEl.classList).not.toContain('show');
+                        expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);

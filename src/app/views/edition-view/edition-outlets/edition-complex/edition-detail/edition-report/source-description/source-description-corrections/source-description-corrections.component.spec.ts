@@ -136,7 +136,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl.classList.contains('no-para-margin')).toBe(true);
+                expectToContain(pEl.classList, 'no-para-margin');
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -154,8 +154,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 );
                 const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
 
-                expect(toggleSpanEl.classList.contains('small')).toBe(true);
-                expect(toggleSpanEl.classList.contains('text-muted')).toBe(true);
+                expectToContain(toggleSpanEl.classList, 'small');
+                expectToContain(toggleSpanEl.classList, 'text-muted');
             });
 
             it('... should not display a text in the toggle span yet', () => {

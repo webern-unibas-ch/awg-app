@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
@@ -87,7 +87,7 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent.trim(), 'Beschreibstoff:');
-                expect(spanEl.classList.contains('smallcaps')).toBe(true);
+                expectToContain(spanEl.classList, 'smallcaps');
             });
         });
     });

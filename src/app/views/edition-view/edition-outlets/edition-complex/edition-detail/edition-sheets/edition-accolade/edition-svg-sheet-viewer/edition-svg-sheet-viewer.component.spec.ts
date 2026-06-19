@@ -1196,8 +1196,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetElementRef.nativeElement,
                     component.svgSheetRootGroupRef.nativeElement
                 );
-                expect(component.svgSheetSelection).toBe(mockSvgSelection);
-                expect(component.svgSheetRootGroupSelection).toBe(mockRootGroupSelection);
+                expectToEqual(component.svgSheetSelection, mockSvgSelection);
+                expectToEqual(component.svgSheetRootGroupSelection, mockRootGroupSelection);
             });
 
             it('... should trigger `_getContainerDimensions` with svgSheetContainerRef', async () => {
@@ -1255,14 +1255,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 (component as any)._createSvgOverlays();
 
                 expectSpyCall(getterSpy, 1);
-                expect(component.hasAvailableTkkOverlays).toBe(true);
+                expectToBe(component.hasAvailableTkkOverlays, true);
 
                 getterSpy.mockReturnValue(false);
 
                 (component as any)._createSvgOverlays();
 
                 expectSpyCall(getterSpy, 2);
-                expect(component.hasAvailableTkkOverlays).toBe(false);
+                expectToBe(component.hasAvailableTkkOverlays, false);
             });
         });
 

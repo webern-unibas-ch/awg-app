@@ -7,7 +7,13 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -208,7 +214,7 @@ describe('SourceListComponent (DONE)', () => {
 
                         expectToBe(aEl.textContent.trim(), expectedSiglum.trim());
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
                     });
                 });
 
@@ -255,10 +261,10 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
 
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-siglum-addendum')).toBe(true);
+                        expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-siglum-addendum');
                     });
                 });
 
@@ -308,7 +314,7 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
                     });
                 });
 
@@ -365,10 +371,10 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
 
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-siglum-addendum')).toBe(true);
+                        expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-siglum-addendum');
                     });
                 });
 
@@ -486,7 +492,7 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumSpanEl.classList.contains('awg-source-list-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
                     });
                 });
 
@@ -661,12 +667,10 @@ describe('SourceListComponent (DONE)', () => {
 
                         expectToBe(containerSpanEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                        expect(siglumSpanEl.classList.contains('awg-source-list-text-siglum')).toBe(true);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-text-siglum');
                         expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                        expect(siglumAddendumSpanEl.classList.contains('awg-source-list-text-siglum-addendum')).toBe(
-                            true
-                        );
+                        expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-text-siglum-addendum');
                         expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
                     });
                 });

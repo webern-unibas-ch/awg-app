@@ -5,7 +5,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, expectToEqual, expectToNotContain } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -531,7 +531,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
                     expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
                     expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
-                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                    expectToNotContain(
+                        trademarkSymbolElement.attr('transform'),
                         `rotate(${expectedReversedRotationAngle}`
                     );
                     expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
@@ -636,7 +637,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
                     expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
                     expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
-                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                    expectToNotContain(
+                        trademarkSymbolElement.attr('transform'),
                         `rotate(${expectedReversedRotationAngle}`
                     );
                     expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
@@ -738,7 +740,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
                     expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
                     expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
-                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                    expectToNotContain(
+                        trademarkSymbolElement.attr('transform'),
                         `rotate(${expectedReversedRotationAngle}`
                     );
                     expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
@@ -842,7 +845,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
                     expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
                     expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
-                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                    expectToNotContain(
+                        trademarkSymbolElement.attr('transform'),
                         `rotate(${expectedReversedRotationAngle}`
                     );
                     expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);
@@ -941,7 +945,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(trademarkSymbolElement.attr('d'), expectedTradeMarkSymbolPath);
                     expectToContain(trademarkSymbolElement.attr('transform'), 'translate');
                     expectToContain(trademarkSymbolElement.attr('transform'), 'scale(0.5)');
-                    expect(trademarkSymbolElement.attr('transform')).not.toContain(
+                    expectToNotContain(
+                        trademarkSymbolElement.attr('transform'),
                         `rotate(${expectedReversedRotationAngle}`
                     );
                     expectToBe(trademarkSymbolElement.attr('fill'), expectedDisabledColor);

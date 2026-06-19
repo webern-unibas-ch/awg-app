@@ -6,7 +6,13 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
@@ -91,7 +97,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
+                expectToContain(tableEl.classList, 'half-para-margin');
             });
 
             it('... should contain no table rows (yet)', () => {
@@ -130,7 +136,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 );
                 const tableEl: HTMLTableElement = tableDes[0].nativeElement;
 
-                expect(tableEl.classList.contains('half-para-margin')).toBe(true);
+                expectToContain(tableEl.classList, 'half-para-margin');
             });
 
             it('... should contain as many table rows in the table as folio systemgroups in the given content item', () => {
