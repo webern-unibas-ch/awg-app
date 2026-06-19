@@ -80,7 +80,7 @@ export class HomeViewComponent {
     /**
      * Public readonly signal: pageMetaData.
      *
-     * It holds the page metadata for the contact view via the injected CoreService.
+     * It holds the page metadata for the home view via the injected CoreService.
      */
     pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 

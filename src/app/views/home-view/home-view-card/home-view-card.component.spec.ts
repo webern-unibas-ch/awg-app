@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { faArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
@@ -301,7 +301,6 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const expectedRouterLink = internalLink.route.join('/');
                 const linkDe = linkDes[0];
 
-                click(linkDe);
                 await clickAndAwaitChanges(linkDe, fixture);
 
                 expect(navigateSpy).toHaveBeenCalled();
