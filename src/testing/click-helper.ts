@@ -9,7 +9,7 @@ import { ComponentFixture } from '@angular/core/testing';
  *
  * Exposed to be called from tests.
  *
- * @param {DebugElement } clickDe The DebugElement to be clicked on.
+ * @param {DebugElement | HTMLElement } clickTarget The DebugElement or HTMLElement to click on.
  * @param {ComponentFixture<any>} fixture The component fixture on which the changes are applied.
  *
  * @returns {Promise<void>} Triggers the click event and applies the changes to the component fixture.

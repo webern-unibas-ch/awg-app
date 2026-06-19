@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from './expect-helper';
+import { expectToBe } from './expect-helper';
 
 import { getInterceptorInstance } from './interceptor-helper';
 
@@ -28,7 +28,7 @@ describe('interceptorHelper: getInterceptorInstance', () => {
         const found = getInterceptorInstance(interceptors, SecondInterceptor);
 
         expect(found).toBeDefined();
-        expectToEqual(found, secondInterceptor);
+        expectToBe(found, secondInterceptor);
     });
 
     it('... should return null if no interceptor matches the requested type (else path)', () => {

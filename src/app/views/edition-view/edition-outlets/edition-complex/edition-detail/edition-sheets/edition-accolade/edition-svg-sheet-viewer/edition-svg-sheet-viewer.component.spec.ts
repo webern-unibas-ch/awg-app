@@ -597,7 +597,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                             EditionSvgSheetViewerSwitchStubComponent
                         ) as EditionSvgSheetViewerSwitchStubComponent;
 
-                        expectToEqual(switchCmp.id, expectedSvgSheet.id);
+                        expectToBe(switchCmp.id, expectedSvgSheet.id);
                     });
 
                     it('... should pass the correct suppliedClasses to the switch component', async () => {
@@ -631,7 +631,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                             EditionSvgSheetViewerSwitchStubComponent
                         ) as EditionSvgSheetViewerSwitchStubComponent;
 
-                        expectToEqual(switchCmp.hasAvailableTkkOverlays, false);
+                        expectToBe(switchCmp.hasAvailableTkkOverlays, false);
                     });
 
                     it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', async () => {
@@ -648,7 +648,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                             EditionSvgSheetViewerSwitchStubComponent
                         ) as EditionSvgSheetViewerSwitchStubComponent;
 
-                        expectToEqual(switchCmp.hasAvailableTkkOverlays, true);
+                        expectToBe(switchCmp.hasAvailableTkkOverlays, true);
                     });
                 });
             });
@@ -1196,8 +1196,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetElementRef.nativeElement,
                     component.svgSheetRootGroupRef.nativeElement
                 );
-                expectToEqual(component.svgSheetSelection, mockSvgSelection);
-                expectToEqual(component.svgSheetRootGroupSelection, mockRootGroupSelection);
+                expectToBe(component.svgSheetSelection, mockSvgSelection);
+                expectToBe(component.svgSheetRootGroupSelection, mockRootGroupSelection);
             });
 
             it('... should trigger `_getContainerDimensions` with svgSheetContainerRef', async () => {
