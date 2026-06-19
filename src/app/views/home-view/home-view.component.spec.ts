@@ -1,26 +1,28 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, input, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { AlertInfoComponent } from '@awg-app/shared/alert-info/alert-info.component';
+import { HeadingComponent } from '@awg-app/shared/heading/heading.component';
 import { META_DATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
-import { HOME_VIEW_CARD_DATA } from '@awg-views/home-view/data';
-import { HomeViewCard } from '@awg-views/home-view/models';
+
+import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
+import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
+import { HomeViewCard } from './home-view-card/models/home-view-card.model';
 
 import { HomeViewComponent } from './home-view.component';
 
@@ -28,50 +30,44 @@ import { HomeViewComponent } from './home-view.component';
 @Component({
     selector: 'awg-alert-info',
     template: '',
-    standalone: false,
 })
 class AlertInfoStubComponent {
-    @Input()
-    infoMessage: string;
+    infoMessage = input<string>('');
+    isOpen = model<boolean>(true);
 }
 
 @Component({
     selector: 'awg-heading',
     template: '',
-    standalone: false,
 })
 class HeadingStubComponent {
-    @Input()
-    title: string;
-    @Input()
-    id: string;
+    title = input<string>('');
+    id = input<string>('');
 }
 
 @Component({
     selector: 'awg-home-view-card',
     template: '',
-    standalone: false,
 })
 class HomeViewCardStubComponent {
-    @Input()
-    cardData: HomeViewCard;
+    cardData = input.required<HomeViewCard>();
 }
 
 /** Helper function */
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
     const { EDITION, SERIES, SECTION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
 
-    const sectionLinks = sections.map(section => [
-        EDITION.route,
-        SERIES.route,
-        section?.seriesParent?.route,
-        SECTION.route,
-        section?.section?.route,
-    ]);
-    const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
-    const contactLink = [['/contact']];
-
-    return [...sectionLinks, ...rowTablesLink, ...contactLink];
+    return [
+        ...sections.map(sec => [
+            EDITION.route,
+            SERIES.route,
+            sec?.seriesParent?.route,
+            SECTION.route,
+            sec?.section?.route,
+        ]),
+        [EDITION.route, ROWTABLES.route],
+        ['/contact#awg-documentation'],
+    ];
 }
 
 describe('HomeViewComponent (DONE)', () => {
@@ -79,18 +75,14 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
+    let router: Router;
 
-    let provideMetaDataSpy: Spy;
-
-    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-    let expectedTitle: string;
-    let expectedId: string;
-    let expectedDisclaimerInfoMessage: string;
+    let expectedHomeViewId: string;
+    let expectedHomeViewTitle: string;
+    let expectedDisclaimerMessage: string;
     let expectedHomeViewCardData: HomeViewCard[];
     let expectedPageMetaData: MetaPage;
-    let expectedSections: EditionOutlineSection[];
+    let expectedSectionLinks: EditionSectionLink[];
 
     let expectedRouterlinks: string[][];
 
@@ -101,14 +93,14 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [
-                HomeViewComponent,
-                AlertInfoStubComponent,
-                HeadingStubComponent,
-                HomeViewCardStubComponent,
-                RouterLinkStubDirective,
-            ],
-        }).compileComponents();
+            imports: [HomeViewComponent],
+            providers: [provideRouter([])],
+        })
+            .overrideComponent(HomeViewComponent, {
+                remove: { imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent] },
+                add: { imports: [AlertInfoStubComponent, HeadingStubComponent, HomeViewCardStubComponent] },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -116,25 +108,37 @@ describe('HomeViewComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        router = TestBed.inject(Router);
+
         // Test data
-        expectedTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
-        expectedId = 'awg-home-view';
-        expectedDisclaimerInfoMessage =
+        expectedHomeViewId = 'awg-home-view-heading';
+        expectedHomeViewTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
+        expectedDisclaimerMessage =
             'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
+
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
-        expectedSections = [
+
+        const routes = EDITION_ROUTE_CONSTANTS;
+        const expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('2', '2a'),
+            EditionOutlineService.getEditionSectionById('1', '2'),
+        ];
+        expectedSectionLinks = [
+            {
+                section: expectedSections[0],
+                routerLink: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
+                label: `${routes.EDITION.short} I/5`,
+                separator: ' und ',
+            },
+            {
+                section: expectedSections[1],
+                routerLink: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '2'],
+                label: `${routes.EDITION.short} I/2`,
+                separator: '',
+            },
         ];
         expectedRouterlinks = getRouterlinks(expectedSections);
-
-        // Spies
-        provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
     });
 
     it('... should create', () => {
@@ -142,33 +146,29 @@ describe('HomeViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have title and id', () => {
-            expectToBe(component.homeViewTitle, expectedTitle);
-            expectToBe(component.homeViewId, expectedId);
+        it('... should have home view `id` and `title`', () => {
+            expectToBe(component.HOME_VIEW_ID, expectedHomeViewId);
+            expectToBe(component.HOME_VIEW_TITLE, expectedHomeViewTitle);
         });
 
-        it('... should have `DISPLAYED_SECTIONS`', () => {
-            expectToEqual(component.DISPLAYED_SECTIONS, expectedSections);
+        it('... should have `DISCLAIMER_MESSAGE`', () => {
+            expectToBe(component.DISCLAIMER_MESSAGE, expectedDisclaimerMessage);
         });
 
-        it('... should have as many `DISPLAYED_SECTIONS` as there are sections in the array', () => {
-            expectToEqual(component.DISPLAYED_SECTIONS.length, expectedSections.length);
-        });
-
-        it('... should have `editionRouteConstants`', () => {
-            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
-        });
-
-        it('... should have `disclaimerInfoMessage`', () => {
-            expectToBe(component.disclaimerInfoMessage, expectedDisclaimerInfoMessage);
+        it('... should have `displayedSectionLinks`', () => {
+            expectToEqual(component.displayedSectionLinks(), expectedSectionLinks);
         });
 
         it('... should have `homeViewCardData`', () => {
-            expectToEqual(component.homeViewCardData, expectedHomeViewCardData);
+            expectToEqual(component.homeViewCardData(), expectedHomeViewCardData);
         });
 
-        it('... should not have pageMetaData', () => {
-            expect(component.pageMetaData).toBeUndefined();
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        });
+
+        it('... should have `rowtablesRoute`', () => {
+            expectToEqual(component.rowtablesRoute(), expectedRouterlinks.at(-2));
         });
 
         describe('VIEW', () => {
@@ -181,13 +181,13 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should not pass down `title` and `id` to heading component', () => {
+            it('... should pass down empty default values to heading component (`id` and `title`)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
-                expect(headingCmp.title).toBeUndefined();
-                expect(headingCmp.id).toBeUndefined();
+                expectToBe(headingCmp.id(), '');
+                expectToBe(headingCmp.title(), '');
             });
 
             it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
@@ -200,12 +200,12 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+            it('... should pass down empty default values to AlertInfoComponent (`infoMessage`)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
                 const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expect(alertInfoCmp.infoMessage).toBeUndefined();
+                expectToBe(alertInfoCmp.infoMessage(), '');
             });
 
             it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
@@ -223,7 +223,7 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
             });
 
-            describe('... should not render links in `div.awg-home-view-text` yet to', () => {
+            describe('... should not render links in `div.awg-home-view-text` yet for ...', () => {
                 it('... DSP', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
@@ -270,16 +270,6 @@ describe('HomeViewComponent (DONE)', () => {
                 });
             });
         });
-
-        describe('#provideMetaData()', () => {
-            it('... should have a method `provideMetaData`', () => {
-                expect(component.provideMetaData).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(provideMetaDataSpy, 0);
-            });
-        });
     });
 
     describe('AFTER initial data binding', () => {
@@ -288,19 +278,34 @@ describe('HomeViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
+        it('... should have `displayedSectionLinks`', () => {
+            expectToEqual(component.displayedSectionLinks(), expectedSectionLinks);
+        });
+
+        it('... should have `homeViewCardData`', () => {
+            expectToEqual(component.homeViewCardData(), expectedHomeViewCardData);
+        });
+
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        });
+
+        it('... should have `rowtablesRoute`', () => {
+            expectToEqual(component.rowtablesRoute(), expectedRouterlinks.at(-2));
+        });
+
         describe('VIEW', () => {
             it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should pass down `title` and `id` to heading component', () => {
+            it('... should pass down correct values to heading component (`id` and `title`)', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
-                expectToBe(headingCmp.title, expectedTitle);
-
-                expectToBe(headingCmp.id, expectedId);
+                expectToBe(headingCmp.id(), expectedHomeViewId);
+                expectToBe(headingCmp.title(), expectedHomeViewTitle);
             });
 
             it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
@@ -313,12 +318,12 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should pass down infoMessage to AlertInfoComponent', () => {
+            it('... should pass down correct values to AlertInfoComponent (`infoMessage `)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
                 const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToBe(alertInfoCmp.infoMessage, expectedDisclaimerInfoMessage);
+                expectToBe(alertInfoCmp.infoMessage(), expectedDisclaimerMessage);
             });
 
             it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
@@ -362,7 +367,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
                     const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
 
-                    expectToEqual(cardCmp.cardData, expectedHomeViewCardData[index]);
+                    expectToEqual(cardCmp.cardData(), expectedHomeViewCardData[index]);
                 });
             });
 
@@ -377,7 +382,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
                     const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
 
-                    const dspRoute = 'dsp-app';
+                    const dspRoute = 'services/data-deposit/dsp';
 
                     expect(dspEl).toBeDefined();
                     expectToBe(dspEl.href, expectedPageMetaData.daschUrl + dspRoute);
@@ -399,7 +404,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
                     const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
 
-                    const missionRoute = 'mission';
+                    const missionRoute = 'about-us/mission';
 
                     expect(daschMissionEl).toBeDefined();
                     expectToBe(daschMissionEl.href, expectedPageMetaData.daschUrl + missionRoute);
@@ -428,28 +433,109 @@ describe('HomeViewComponent (DONE)', () => {
             });
         });
 
-        describe('#provideMetaData()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(provideMetaDataSpy, 1);
+        describe('METHODS', () => {
+            describe('#createEditionSectionLinks()', () => {
+                it('... should have a static method `createEditionSectionLinks`', () => {
+                    expect(HomeViewComponent.createEditionSectionLinks).toBeDefined();
+                });
+
+                it('... should return an empty array if no sections are provided', () => {
+                    const result = HomeViewComponent.createEditionSectionLinks([]);
+
+                    expectToBe(result.length, 0);
+                    expectToEqual(result, []);
+                });
+
+                it('... should correctly map an array of sections to EditionSectionLinks', () => {
+                    const sections = [
+                        EditionOutlineService.getEditionSectionById('1', '5'),
+                        EditionOutlineService.getEditionSectionById('1', '2'),
+                    ];
+
+                    const result = HomeViewComponent.createEditionSectionLinks(sections);
+
+                    expectToBe(result.length, 2);
+                    expectToEqual(result, expectedSectionLinks);
+                });
+
+                it('... should handle missing nested properties gracefully without throwing errors', () => {
+                    const routes = EDITION_ROUTE_CONSTANTS;
+                    const incompleteSections: any[] = [
+                        {
+                            seriesParent: undefined,
+                            section: null,
+                        },
+                    ];
+
+                    const result = HomeViewComponent.createEditionSectionLinks(incompleteSections);
+
+                    expect(result.length).toBe(1);
+
+                    expect(result[0].routerLink).toEqual([
+                        routes.EDITION.route,
+                        routes.SERIES.route,
+                        undefined,
+                        routes.SECTION.route,
+                        undefined,
+                    ]);
+
+                    expectToBe(result[0].label, `${routes.EDITION.short} undefined/undefined`);
+                    expectToBe(result[0].separator, '');
+                });
             });
 
-            it('... should return pageMetaData', () => {
-                expectToEqual(component.pageMetaData, expectedPageMetaData);
+            describe('#getSeparator()', () => {
+                it('... should have a static method `getSeparator`', () => {
+                    expect(HomeViewComponent.getSeparator).toBeDefined();
+                });
+
+                describe('with a total array length of 1', () => {
+                    it('... should return an empty string for the only entry (index = 0)', () => {
+                        expectToBe(HomeViewComponent.getSeparator(0, 1), '');
+                    });
+                });
+
+                const testLengths = [2, 3, 4, 5, 10];
+
+                for (const totalLength of testLengths) {
+                    describe(`with a total array length of ${totalLength}`, () => {
+                        it('... should return an empty string for the last entry (index = totalLength - 1)', () => {
+                            const lastIndex = totalLength - 1;
+                            expectToBe(HomeViewComponent.getSeparator(lastIndex, totalLength), '');
+                        });
+
+                        it('... should return " und " for the second-to-last entry (index = totalLength - 2)', () => {
+                            const secondToLastIndex = totalLength - 2;
+                            expectToBe(HomeViewComponent.getSeparator(secondToLastIndex, totalLength), ' und ');
+                        });
+
+                        if (totalLength > 2) {
+                            it('... should return a comma separator for all other earlier entries', () => {
+                                for (let i = 0; i < totalLength - 2; i++) {
+                                    expectToBe(HomeViewComponent.getSeparator(i, totalLength), ', ');
+                                }
+                            });
+                        }
+                    });
+                }
             });
         });
 
         describe('[routerLink]', () => {
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    RouterLinkStubDirective,
+                    RouterLink,
                     expectedRouterlinks.length,
                     expectedRouterlinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -458,21 +544,31 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
+                    const urlTree = routerLink.urlTree;
+
+                    expectToBe(urlTree.toString(), expectedRouterlinks[index].join('/'));
                 }
             });
 
             it('... can click all links in template', async () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+                for (const [index] of routerLinks.entries()) {
+                    navigateSpy.mockClear();
+
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterlinks[index];
 
-                    expectToBe(routerLink.navigatedTo, null);
-
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
+                    expect(navigateSpy).toHaveBeenCalled();
+                    const firstCallArg = navigateSpy.mock.calls[0][0];
+                    const actualUrl = firstCallArg.toString();
+
+                    expectToBe(actualUrl, expectedRouterLink.join('/'));
                 }
+
+                navigateSpy.mockRestore();
             });
         });
     });

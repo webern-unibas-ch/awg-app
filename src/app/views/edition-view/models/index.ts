@@ -23,6 +23,7 @@ export {
     EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
+    EditionSectionLink,
 } from './edition-outline.model';
 export { EditionRouteConstant } from './edition-route-constant.model';
 export { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';

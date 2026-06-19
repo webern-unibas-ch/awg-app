@@ -5,6 +5,35 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { EditionComplex } from './edition-complex.model';
 
 /**
+ * The EditionSectionLink interface.
+ *
+ * It is used in the context of the edition view
+ * to structure information for the edition section links,
+ * e.g., in the home view.
+ */
+export interface EditionSectionLink {
+    /**
+     * The edition section.
+     */
+    section: EditionOutlineSection;
+
+    /**
+     * The router link for the edition section.
+     */
+    routerLink: string[];
+
+    /**
+     * The label for the edition section.
+     */
+    label: string;
+
+    /**
+     * The separator for the edition section.
+     */
+    separator: string;
+}
+
+/**
  * The EditionOutlineSectionsContentJsonData interface.
  *
  * It is used in the context of the edition view

@@ -56,12 +56,12 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
+        AlertInfoComponent,
         HeadingComponent,
         MetaIdentifierBadgesComponent,
     ],
     declarations: [
         AlertErrorComponent,
-        AlertInfoComponent,
         DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
         JsonViewerComponent,

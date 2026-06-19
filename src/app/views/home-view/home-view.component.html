@@ -1,14 +1,16 @@
 <!-- content: home -->
 <div class="awg-home-view p-5 border rounded-3">
+    @let page = this.pageMetaData();
+
     <!-- heading -->
-    <awg-heading [title]="homeViewTitle" [id]="homeViewId" />
+    <awg-heading [title]="HOME_VIEW_TITLE" [id]="HOME_VIEW_ID" />
 
     <!-- content-->
     <div class="awg-home-view-content">
-        <awg-alert-info [infoMessage]="disclaimerInfoMessage" />
+        <awg-alert-info [infoMessage]="DISCLAIMER_MESSAGE" />
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">
-            @for (cardData of homeViewCardData; track $index) {
+            @for (cardData of homeViewCardData(); track $index) {
                 <div class="col">
                     <awg-home-view-card [cardData]="cardData" />
                 </div>
@@ -20,31 +22,14 @@
 
             <p>
                 Über den Menüpunkt <em>Edition</em> sind aktuell die Online-Editionen zu den Abteilungen
-                @for (section of DISPLAYED_SECTIONS; track $index; let i = $index; let n = $count) {
-                    <a
-                        [routerLink]="[
-                            editionRouteConstants.EDITION.route,
-                            editionRouteConstants.SERIES.route,
-                            section?.seriesParent?.route,
-                            editionRouteConstants.SECTION.route,
-                            section?.section?.route,
-                        ]"
-                        ><span>
-                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{
-                                section.section.short
-                            }}</span
-                        >
+                @for (sectionLink of displayedSectionLinks(); track sectionLink.routerLink.join('/')) {
+                    <a [routerLink]="sectionLink.routerLink"
+                        ><span> {{ sectionLink.label }}</span>
                     </a>
-                    @if (i < n - 2) {
-                        <span>, </span>
-                    } @else if (i === n - 2) {
-                        <span> und </span>
-                    }
+                    <span>{{ sectionLink.separator }}</span>
                 }
                 sowie die
-                <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
-                    >Reihentabellen</a
-                >
+                <a [routerLink]="rowtablesRoute()">Reihentabellen</a>
                 Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte
                 (Text- und Skizzeneditionen), Kritische Berichte sowie Graph-Visualisierungen (beta).
             </p>
@@ -59,20 +44,24 @@
             <p>
                 Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
                 diese Webapplikation präsentiert und über das Software-Framework
-                <a id="dsp-link" href="{{ pageMetaData?.daschUrl + 'dsp-app' }}">DaSCH Service Platform (DSP)</a> des
-                <a id="dasch-link" href="{{ pageMetaData?.daschUrl }}"
+                <a id="dsp-link" href="{{ page?.daschUrl + 'services/data-deposit/dsp' }}"
+                    >DaSCH Service Platform (DSP)</a
+                >
+                des
+                <a id="dasch-link" href="{{ page?.daschUrl }}"
                     >Swiss National Data & Service Center for the Humanities (DaSCH)</a
                 >
                 aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
                 der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
                 Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
-                <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + 'mission' }}">Mission Statement DaSCH</a>).
+                <a id="dasch-mission-link" href="{{ page?.daschUrl + 'about-us/mission' }}">Mission Statement DaSCH</a
+                >).
             </p>
 
             <p>
                 Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf
-                <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a> sowie
-                <a id="zenodo-link" href="{{ pageMetaData?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich
+                <a id="github-link" href="{{ page?.githubUrl }}">GitHub</a> sowie
+                <a id="zenodo-link" href="{{ page?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich
                 <a [routerLink]="['/contact']" fragment="awg-documentation">dokumentiert</a>.
             </p>
         </div>
