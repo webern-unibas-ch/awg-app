@@ -93,11 +93,11 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             expect(component.identifiers()).toBeUndefined();
         });
 
-        it('... should have computed `activeIdentifierBadges` (empty array due to identifiers=undefined)', () => {
-            const activeIdentifierBadges: MetaIdentifierBadge[] = component.activeIdentifierBadges();
+        it('... should have computed `displayedBadges` (empty array due to identifiers=undefined)', () => {
+            const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
 
-            expectToEqual(activeIdentifierBadges, []);
-            expectToBe(activeIdentifierBadges.length, 0);
+            expectToBe(displayedBadges.length, 0);
+            expectToEqual(displayedBadges, []);
         });
 
         describe('VIEW', () => {
@@ -119,37 +119,37 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             expectToEqual(component.identifiers(), expectedIdentifiers);
         });
 
-        it('... should have computed `activeIdentifierBadges`', () => {
-            const activeIdentifierBadges: MetaIdentifierBadge[] = component.activeIdentifierBadges();
+        it('... should have computed `displayedBadges`', () => {
+            const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
 
-            expectToEqual(activeIdentifierBadges, expectedActiveIdentifierBadges);
-            expectToBe(activeIdentifierBadges.length, 2);
+            expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
+            expectToBe(displayedBadges.length, 2);
 
-            expectToBe(activeIdentifierBadges[0].key, expectedActiveIdentifierBadges[0].key);
-            expectToBe(activeIdentifierBadges[1].key, expectedActiveIdentifierBadges[1].key);
+            expectToBe(displayedBadges[0].key, expectedActiveIdentifierBadges[0].key);
+            expectToBe(displayedBadges[1].key, expectedActiveIdentifierBadges[1].key);
 
-            expectToBe(activeIdentifierBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
-            expectToBe(activeIdentifierBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
+            expectToBe(displayedBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
+            expectToBe(displayedBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
 
-            expectToBe(activeIdentifierBadges[0].src, expectedActiveIdentifierBadges[0].src);
-            expectToBe(activeIdentifierBadges[1].src, expectedActiveIdentifierBadges[1].src);
+            expectToBe(displayedBadges[0].src, expectedActiveIdentifierBadges[0].src);
+            expectToBe(displayedBadges[1].src, expectedActiveIdentifierBadges[1].src);
 
-            expectToBe(activeIdentifierBadges[0].label, expectedActiveIdentifierBadges[0].label);
-            expectToBe(activeIdentifierBadges[1].label, expectedActiveIdentifierBadges[1].label);
+            expectToBe(displayedBadges[0].label, expectedActiveIdentifierBadges[0].label);
+            expectToBe(displayedBadges[1].label, expectedActiveIdentifierBadges[1].label);
 
-            expectToBe(activeIdentifierBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
-            expectToBe(activeIdentifierBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
+            expectToBe(displayedBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
+            expectToBe(displayedBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
         });
 
         describe('VIEW', () => {
             it('... should render one badge link per present identifier', () => {
-                const expectedCount = component.activeIdentifierBadges().length;
+                const expectedCount = component.displayedBadges().length;
 
                 getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', expectedCount, expectedCount);
             });
 
             it('... should have correct href on each badge link', () => {
-                const expectedBadges = component.activeIdentifierBadges();
+                const expectedBadges = component.displayedBadges();
 
                 const badgeAnchorDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -166,7 +166,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             });
 
             it('... should have one image on each badge link', () => {
-                const expectedBadges = component.activeIdentifierBadges();
+                const expectedBadges = component.displayedBadges();
 
                 const badgeAnchorDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -181,7 +181,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             });
 
             it('... should render image with correct src, alt and title', () => {
-                const expectedBadges = component.activeIdentifierBadges();
+                const expectedBadges = component.displayedBadges();
 
                 const badgeAnchorDes = getAndExpectDebugElementByCss(
                     compDe,
