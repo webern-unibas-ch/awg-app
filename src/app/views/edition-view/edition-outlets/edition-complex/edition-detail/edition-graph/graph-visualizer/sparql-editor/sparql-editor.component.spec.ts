@@ -14,7 +14,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -309,7 +309,6 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is closed
                         let itemBodyDes = getAndExpectDebugElementByCss(
@@ -323,8 +322,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item is open
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -338,8 +336,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is closed again
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -560,8 +557,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             expectToNotContain(aEl1.classList, 'disabled');
 
                             // Click on second item (first disabled)
-                            click(aEl1 as HTMLElement);
-                            await detectChangesOnPush(fixture);
+                            await clickAndAwaitChanges(aDes[1], fixture);
 
                             // Spy call with second query
                             expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
@@ -572,8 +568,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             expectToNotContain(aEl0.classList, 'disabled');
 
                             // Click on first item (second disabled)
-                            click(aEl0 as HTMLElement);
-                            await detectChangesOnPush(fixture);
+                            await clickAndAwaitChanges(aDes[0], fixture);
 
                             // Spy call with first query
                             expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
@@ -592,11 +587,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is open
                         const collapseDes = getAndExpectDebugElementByCss(
@@ -627,7 +620,6 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is open
                         let itemBodyDes = getAndExpectDebugElementByCss(
@@ -641,8 +633,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item is closed
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -656,8 +647,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToNotContain(itemBodyEl.classList, 'show');
 
                         // Click header button
-                        click(btnEl as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         // Item body is open again
                         itemBodyDes = getAndExpectDebugElementByCss(
@@ -705,8 +695,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl0.textContent, 'Query');
 
                         // Click query button
-                        click(btnEl0 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[0], fixture);
 
                         expectSpyCall(performQuerySpy, 1);
                         expectSpyCall(resetQuerySpy, 0);
@@ -724,8 +713,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl1.textContent, 'Reset');
 
                         // Click reset button
-                        click(btnEl1 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[1], fixture);
 
                         expectSpyCall(performQuerySpy, 0);
                         expectSpyCall(resetQuerySpy, 1);
@@ -743,8 +731,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl2.textContent, 'Clear');
 
                         // Click clear button
-                        click(btnEl2 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(btnDes[2], fixture);
 
                         expectSpyCall(onEditorInputChangeSpy, 1, '');
                     });
@@ -762,11 +749,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body
                     bodyDes = getAndExpectDebugElementByCss(
@@ -839,7 +824,6 @@ describe('SparqlEditorComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body does not close
                     getAndExpectDebugElementByCss(
@@ -851,8 +835,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item is open again
                     getAndExpectDebugElementByCss(
@@ -1051,8 +1034,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToNotContain(aEl1.classList, 'disabled');
 
                         // Click on second item (first disabled)
-                        click(aEl1 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(aDes[1], fixture);
 
                         // Spy call with second query
                         expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
@@ -1063,8 +1045,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToNotContain(aEl0.classList, 'disabled');
 
                         // Click on first item (second disabled)
-                        click(aEl0 as HTMLElement);
-                        await detectChangesOnPush(fixture);
+                        await clickAndAwaitChanges(aDes[0], fixture);
 
                         // Spy call with first query
                         expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
@@ -1095,8 +1076,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(resetQuerySpy, 0);
@@ -1109,8 +1089,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl1.textContent, 'Reset');
 
                     // Click reset button
-                    click(btnEl1 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[1], fixture);
 
                     expectSpyCall(performQuerySpy, 0);
                     expectSpyCall(resetQuerySpy, 1);
@@ -1123,8 +1102,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl2.textContent, 'Clear');
 
                     // Click clear button
-                    click(btnEl2 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[2], fixture);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                 });
@@ -1205,11 +1183,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `onEditorInputChange`', () => {
@@ -1238,8 +1214,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(btnEl2.textContent, 'Clear');
 
                 // Click clear button
-                click(btnEl2 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
             });
@@ -1256,8 +1231,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(btnEl2.textContent, 'Clear');
 
                 // Click clear button
-                click(btnEl2 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
                 expectSpyCall(emitUpdateQueryStringRequestSpy, 1);
@@ -1305,11 +1279,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectedQueryList.length
                 );
                 const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 // Click on second item (first disabled)
-                click(aEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 // Spy call with second query
                 expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
@@ -1320,8 +1292,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToNotContain(aEl0.classList, 'disabled');
 
                 // Click on first item (second disabled)
-                click(aEl0 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(aDes[0], fixture);
 
                 // Spy call with first query
                 expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
@@ -1334,12 +1305,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectedQueryList.length,
                     expectedQueryList.length
                 );
-                // Get second item (first disabled)
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 // Click on second item (first disabled)
-                click(aEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
                 expectSpyCall(resetQuerySpy, 1, expectedConstructQuery2);
@@ -1438,11 +1406,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `performQuery`', () => {
@@ -1461,8 +1427,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(btnEl0.textContent, 'Query');
 
                 // Click query button
-                click(btnEl0 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(performQuerySpy, 1);
             });
@@ -1480,8 +1445,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
@@ -1505,8 +1469,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl0.textContent, 'Query');
 
                     // Click query button
-                    click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
@@ -1524,11 +1487,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     1,
                     1
                 );
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
             });
 
             it('... should have a method `resetQuery`', () => {
@@ -1547,8 +1508,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(btnEl1.textContent, 'Reset');
 
                 // Click query button
-                click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(resetQuerySpy, 1);
             });
@@ -1574,8 +1534,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(btnEl1.textContent, 'Reset');
 
                 // Click reset button
-                click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(resetQuerySpy, 1);
                 expectSpyCall(emitResestQueryRequestSpy, 1);

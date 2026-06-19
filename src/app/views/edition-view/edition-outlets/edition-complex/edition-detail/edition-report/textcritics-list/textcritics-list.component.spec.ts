@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -415,7 +415,6 @@ describe('TextcriticsListComponent (DONE)', () => {
                 );
 
                 const btnDes = getAndExpectDebugElementByCss(headerDes0[0], 'div.accordion-button > button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
@@ -430,8 +429,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -446,8 +444,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -474,7 +471,6 @@ describe('TextcriticsListComponent (DONE)', () => {
                 );
 
                 const btnDes = getAndExpectDebugElementByCss(headerDes1[0], 'div.accordion-button > button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
@@ -489,8 +485,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -505,8 +500,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
@@ -549,13 +543,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl0: HTMLButtonElement = btnDes0[0].nativeElement;
-                    const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl0 as HTMLElement);
-                    click(btnEl1 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes0[0], fixture);
+                    await clickAndAwaitChanges(btnDes1[0], fixture);
                 });
 
                 describe('...  if evaluations array is empty', () => {
@@ -893,11 +884,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -931,11 +920,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
@@ -1026,11 +1013,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1062,11 +1047,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(
@@ -1126,11 +1109,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -1163,11 +1144,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                     const tableCmp = tableDes[0].injector.get(

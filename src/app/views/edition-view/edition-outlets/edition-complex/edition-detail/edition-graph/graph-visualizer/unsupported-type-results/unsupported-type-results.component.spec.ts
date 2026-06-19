@@ -15,7 +15,7 @@ import {
     getAndExpectDebugElementByCss,
 } from '@testing/expect-helper';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
 describe('UnsupportedTypeResultsComponent (DONE)', () => {
@@ -173,7 +173,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -186,8 +185,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -201,8 +199,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToNotContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -345,7 +342,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body does not closed
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -360,8 +356,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(

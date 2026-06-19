@@ -8,7 +8,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSquare, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -409,26 +409,24 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expectToEqual(routerLinks[0].fragment, expectedFragment);
             });
 
-            it('... can click report link in template', () => {
-                const reportLinkDe = linkDes[0]; // Contact link DebugElement
-                const reportLink = routerLinks[0]; // Contact link directive
+            it('... can click report link in template', async () => {
+                const reportLinkDe = linkDes[0];
+                const reportLink = routerLinks[0];
 
                 expectToBe(reportLink.navigatedTo, null);
 
-                click(reportLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(reportLinkDe, fixture);
 
                 expectToEqual(reportLink.navigatedTo, ['../report']);
             });
 
-            it('... should navigate to report page with fragment when report link is clicked', () => {
-                const reportLinkDe = linkDes[0]; // Contact link DebugElement
-                const reportLink = routerLinks[0]; // Contact link directive
+            it('... should navigate to report page with fragment when report link is clicked', async () => {
+                const reportLinkDe = linkDes[0];
+                const reportLink = routerLinks[0];
 
                 expectToBe(reportLink.navigatedTo, null);
 
-                click(reportLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(reportLinkDe, fixture);
 
                 expectToEqual(reportLink.navigatedTo, ['../report']);
                 expectToEqual(reportLink.navigatedToFragment, expectedFragment);

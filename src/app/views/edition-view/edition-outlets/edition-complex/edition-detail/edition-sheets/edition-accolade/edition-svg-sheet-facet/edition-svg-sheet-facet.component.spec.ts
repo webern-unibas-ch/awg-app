@@ -20,7 +20,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.component';
 
 // Mock components
@@ -428,11 +428,9 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
 
             it('... should trigger on click on button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(toggleSheetFacetSpy, 1);
             });

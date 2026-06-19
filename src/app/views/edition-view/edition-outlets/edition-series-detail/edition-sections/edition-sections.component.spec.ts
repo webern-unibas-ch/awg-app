@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf } from 'rxjs';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -626,26 +626,24 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... can click section link in template', () => {
+            it('... can click section link in template', async () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[0].section.route]);
             });
 
-            it('... should navigate to section page when section link is clicked', () => {
+            it('... should navigate to section page when section link is clicked', async () => {
                 const sectionLinkDe = linkDes[4];
                 const sectionLink = routerLinks[4];
 
                 expectToBe(sectionLink.navigatedTo, null);
 
-                click(sectionLinkDe);
-                fixture.detectChanges();
+                await clickAndAwaitChanges(sectionLinkDe, fixture);
 
                 expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[4].section.route]);
             });

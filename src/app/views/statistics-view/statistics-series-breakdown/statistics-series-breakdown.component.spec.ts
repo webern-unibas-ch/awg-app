@@ -4,8 +4,7 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { click } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -702,10 +701,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             navigateSpy.mockClear();
 
                             const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
-                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                            click(aEl as HTMLElement);
-                            await detectChangesOnPush(fixture);
+                            await clickAndAwaitChanges(aDes[0], fixture);
 
                             expectSpyCall(navigateSpy, 1);
                             const firstCallArg = navigateSpy.mock.calls[0][0];

@@ -8,7 +8,7 @@ import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -232,7 +232,6 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
 
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -247,8 +246,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body is collapsed
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -263,8 +261,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'collapse');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body is open again
                     itemBodyDes = getAndExpectDebugElementByCss(
@@ -494,8 +491,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(

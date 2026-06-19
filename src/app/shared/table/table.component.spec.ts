@@ -11,7 +11,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { BUTTON_CLICK_EVENTS, clickAndAwaitChanges } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -864,7 +864,7 @@ describe('TableComponent', () => {
                 for (const [index, rowDe] of rowDes.entries()) {
                     await clickAndAwaitChanges(rowDe, fixture);
 
-                    expectSpyCall(onTableRowClickSpy, index + 1, BUTTON_CLICK_EVENTS.left);
+                    expectSpyCall(onTableRowClickSpy, index + 1);
                 }
             });
 
