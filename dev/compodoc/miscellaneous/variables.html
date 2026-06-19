@@ -191,7 +191,10 @@
                             <a href="#gtag" title="src/app/core/services/analytics-sercvice/analytics.service.ts" ><b>gtag</b>&nbsp;&nbsp;&nbsp;(src/.../analytics.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#HOME_VIEW_CARD_DATA" title="src/app/views/home-view/data/home-view-card.data.ts" ><b>HOME_VIEW_CARD_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../home-view-card.data.ts)</a>
+                            <a href="#HOME_VIEW_CARD_DATA" title="src/app/views/home-view/home-view-card/data/home-view-card.data.ts" ><b>HOME_VIEW_CARD_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../home-view-card.data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HOME_VIEW_ROUTES" title="src/app/views/home-view/home-view.routes.ts" ><b>HOME_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../home-view.routes.ts)</a>
                         </li>
                         <li>
                             <a href="#httpInterceptorProviders" title="src/app/core/interceptors/interceptor-providers.ts" ><b>httpInterceptorProviders</b>&nbsp;&nbsp;&nbsp;(src/.../interceptor-providers.ts)</a>
@@ -249,9 +252,6 @@
                         </li>
                         <li>
                             <a href="#reverse" title="src/app/shared/compile-html/compile-html.component.ts" ><b>reverse</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#routedAppComponents" title="src/app/app-routing.module.ts" ><b>routedAppComponents</b>&nbsp;&nbsp;&nbsp;(src/.../app-routing.module.ts)</a>
                         </li>
                         <li>
                             <a href="#routedEditionGraphComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-routing.module.ts" ><b>routedEditionGraphComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-graph-routing.module.ts)</a>
@@ -419,39 +419,6 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routedAppComponents"></a>
-                    <span class="name">
-                        <span ><b>routedAppComponents</b></span>
-                        <a href="#routedAppComponents"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[HomeViewComponent]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Routed components of the <a href="../modules/AppModule.html">AppModule</a>:
-<a href="../components/HomeViewComponent.html">HomeViewComponent</a>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
     <h3>src/app/app.globals.ts</h3>
     <section data-compodoc="block-properties">
@@ -506,7 +473,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-21-g22437ebe6&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-22-gb2c77600b&#x27;</code>
                     </td>
                 </tr>
 
@@ -538,7 +505,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-06-18&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-06-19&#x27;</code>
                     </td>
                 </tr>
 
@@ -2056,7 +2023,7 @@ to store the trademarks data.</p>
         </tbody>
     </table>
 </section>
-    <h3>src/app/views/home-view/data/home-view-card.data.ts</h3>
+    <h3>src/app/views/home-view/home-view-card/data/home-view-card.data.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -2071,7 +2038,7 @@ to store the trademarks data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/HomeViewCard.html" target="_self" >HomeViewCard[]</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/HomeViewCard.html" target="_self" >HomeViewCard[]</a></code>
 
                     </td>
                 </tr>
@@ -2083,7 +2050,7 @@ to store the trademarks data.</p>
         text: &#x27;Entdecken Sie die Online-Edition und ihre Inhalte.&#x27;,
         imgSrc: &#x27;assets/img/home/edition_sample.jpg&#x27;,
         imgAlt: &#x27;Edition Overview&#x27;,
-        linkRouter: [&#x27;/edition&#x27;, &#x27;series&#x27;],
+        link: { type: &#x27;internal&#x27;, route: [&#x27;/edition&#x27;, &#x27;series&#x27;] },
         linkText: &#x27;Zur Editionsübersicht&#x27;,
     },
     {
@@ -2091,7 +2058,7 @@ to store the trademarks data.</p>
         text: &#x27;Erkunden Sie die graphische Repräsentation der Editionsdaten.&#x27;,
         imgSrc: &#x27;assets/img/home/graph_sample.png&#x27;,
         imgAlt: &#x27;Graph&#x27;,
-        linkRouter: [&#x27;/edition&#x27;, &#x27;complex&#x27;, &#x27;op25&#x27;, &#x27;graph&#x27;],
+        link: { type: &#x27;internal&#x27;, route: [&#x27;/edition&#x27;, &#x27;complex&#x27;, &#x27;op25&#x27;, &#x27;graph&#x27;] },
         linkText: &#x27;Zu den Graph-Visualisierungen&#x27;,
     },
     {
@@ -2099,7 +2066,7 @@ to store the trademarks data.</p>
         text: &#x27;Finden Sie biografische und werkgeschichtliche Kontextinformationen in der DSP-Datenbank.&#x27;,
         imgSrc: &#x27;assets/img/home/database_sample.png&#x27;,
         imgAlt: &#x27;Search&#x27;,
-        linkHref: &#x27;https://app.dasch.swiss/project/ot7I2nU-SdeXIf17LX_h3g&#x27;,
+        link: { type: &#x27;external&#x27;, href: &#x27;https://app.dasch.swiss/project/ot7I2nU-SdeXIf17LX_h3g&#x27; },
         linkText: &#x27;Zur Datenbank-Suche&#x27;,
     },
     {
@@ -2107,7 +2074,7 @@ to store the trademarks data.</p>
         text: &#x27;Informieren Sie sich über die Anton Webern Gesamtausgabe, die Webern-Forschung und Anton Webern.&#x27;,
         imgSrc: &#x27;assets/img/home/awg.jpg&#x27;,
         imgAlt: &#x27;Edition Project&#x27;,
-        linkHref: &#x27;https://anton-webern.ch/&#x27;,
+        link: { type: &#x27;external&#x27;, href: &#x27;https://anton-webern.ch/&#x27; },
         linkText: &#x27;Zur Projekt-Website&#x27;,
     },
 ]</code>
@@ -2118,6 +2085,47 @@ to store the trademarks data.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>The HOME_VIEW_CARD_DATA constant.</p>
 <p>It contains the data for the home view cards.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/home-view/home-view.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HOME_VIEW_ROUTES"></a>
+                    <span class="name">
+                        <span ><b>HOME_VIEW_ROUTES</b></span>
+                        <a href="#HOME_VIEW_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        path: &#x27;home&#x27;,
+        component: HomeViewComponent,
+        data: { title: &#x27;AWG Online Edition – Home&#x27; },
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes for the home view.</p>
 </div>
                 </td>
             </tr>

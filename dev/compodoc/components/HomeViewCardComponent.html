@@ -182,6 +182,14 @@ for the home view of the app.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>FaIconComponent</code>
+                                <code><a href="https://angular.io/api/common/NgTemplateOutlet" target="_blank" >NgTemplateOutlet</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -261,19 +269,24 @@ for the home view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/HomeViewCard.html" target="_self" >HomeViewCard</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/HomeViewCard.html" target="_self" >HomeViewCard</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:29</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: cardData.</p>
-<p>It keeps the data for the home view card.</p>
+                        <div class="io-description"><p>Input signal: cardData.</p>
+<p>It holds the data for the home view card.</p>
 </div>
                     </td>
                 </tr>
@@ -313,7 +326,7 @@ for the home view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -333,11 +346,14 @@ for the home view of the app.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgTemplateOutlet } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 
+import { FaIconComponent } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import { faArrowRight } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
-import { HomeViewCard } from &#x27;@awg-views/home-view/models&#x27;;
+import { HomeViewCard } from &#x27;./models/home-view-card.model&#x27;;
 
 /**
  * The HomeViewCard component.
@@ -350,15 +366,15 @@ import { HomeViewCard } from &#x27;@awg-views/home-view/models&#x27;;
     templateUrl: &#x27;./home-view-card.component.html&#x27;,
     styleUrls: [&#x27;./home-view-card.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [FaIconComponent, NgTemplateOutlet, RouterLink],
 })
 export class HomeViewCardComponent {
     /**
-     * Input variable: cardData.
+     * Input signal: cardData.
      *
-     * It keeps the data for the home view card.
+     * It holds the data for the home view card.
      */
-    @Input() cardData: HomeViewCard;
+    cardData &#x3D; input.required&lt;HomeViewCard&gt;();
 
     /**
      * Public variable: faArrowRight.
@@ -371,7 +387,9 @@ export class HomeViewCardComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card awg-home-view-card h-100 shadow text-center&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;awg-home-view-card card h-100 shadow text-center&quot;&gt;
+    @let cardData &#x3D; this.cardData();
+
     &lt;img [src]&#x3D;&quot;cardData.imgSrc&quot; class&#x3D;&quot;card-img-top&quot; [alt]&#x3D;&quot;cardData.imgAlt&quot; /&gt;
     &lt;div class&#x3D;&quot;card-body&quot;&gt;
         &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ cardData.title }}&lt;/h5&gt;
@@ -379,17 +397,20 @@ export class HomeViewCardComponent {
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;card-footer&quot;&gt;
         &lt;ng-template #linkTemplate&gt;
-            &lt;span&gt;&lt;fa-icon [icon]&#x3D;&quot;faArrowRight&quot; /&gt; {{ cardData.linkText }}&lt;/span&gt;
+            &lt;span&gt;&lt;fa-icon class&#x3D;&quot;me-2&quot; [icon]&#x3D;&quot;faArrowRight&quot; /&gt;{{ cardData.linkText }}&lt;/span&gt;
         &lt;/ng-template&gt;
 
-        @if (cardData.linkRouter) {
-            &lt;a [routerLink]&#x3D;&quot;cardData.linkRouter&quot; class&#x3D;&quot;btn btn-info text-light stretched-link&quot;
-                &gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;linkTemplate&quot;
-            /&gt;&lt;/a&gt;
-        } @else if (cardData.linkHref) {
-            &lt;a href&#x3D;&quot;{{ cardData.linkHref }}&quot; class&#x3D;&quot;btn btn-info text-light stretched-link&quot;
-                &gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;linkTemplate&quot;
-            /&gt;&lt;/a&gt;
+        @switch (cardData.link.type) {
+            @case (&#x27;internal&#x27;) {
+                &lt;a class&#x3D;&quot;btn btn-info text-light stretched-link&quot; [routerLink]&#x3D;&quot;cardData.link.route&quot;
+                    &gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;linkTemplate&quot;
+                /&gt;&lt;/a&gt;
+            }
+            @case (&#x27;external&#x27;) {
+                &lt;a class&#x3D;&quot;btn btn-info text-light stretched-link&quot; [href]&#x3D;&quot;cardData.link.href&quot;
+                    &gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;linkTemplate&quot;
+                /&gt;&lt;/a&gt;
+            }
         }
     &lt;/div&gt;
 &lt;/div&gt;
@@ -433,7 +454,7 @@ export class HomeViewCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="card awg-home-view-card h-100 shadow text-center">    <img [src]="cardData.imgSrc" class="card-img-top" [alt]="cardData.imgAlt" />    <div class="card-body">        <h5 class="card-title">{{ cardData.title }}</h5>        <p class="card-text">{{ cardData.text }}</p>    </div>    <div class="card-footer">        <ng-template #linkTemplate>            <span><fa-icon [icon]="faArrowRight" /> {{ cardData.linkText }}</span>        </ng-template>        @if (cardData.linkRouter) {            <a [routerLink]="cardData.linkRouter" class="btn btn-info text-light stretched-link"                ><ng-container *ngTemplateOutlet="linkTemplate"            /></a>        } @else if (cardData.linkHref) {            <a href="{{ cardData.linkHref }}" class="btn btn-info text-light stretched-link"                ><ng-container *ngTemplateOutlet="linkTemplate"            /></a>        }    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="awg-home-view-card card h-100 shadow text-center">    @let cardData = this.cardData();    <img [src]="cardData.imgSrc" class="card-img-top" [alt]="cardData.imgAlt" />    <div class="card-body">        <h5 class="card-title">{{ cardData.title }}</h5>        <p class="card-text">{{ cardData.text }}</p>    </div>    <div class="card-footer">        <ng-template #linkTemplate>            <span><fa-icon class="me-2" [icon]="faArrowRight" />{{ cardData.linkText }}</span>        </ng-template>        @switch (cardData.link.type) {            @case (\'internal\') {                <a class="btn btn-info text-light stretched-link" [routerLink]="cardData.link.route"                    ><ng-container *ngTemplateOutlet="linkTemplate"                /></a>            }            @case (\'external\') {                <a class="btn btn-info text-light stretched-link" [href]="cardData.link.href"                    ><ng-container *ngTemplateOutlet="linkTemplate"                /></a>            }        }    </div></div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'HomeViewCardComponent'};

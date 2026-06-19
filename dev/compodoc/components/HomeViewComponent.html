@@ -154,12 +154,6 @@ with the landing page.</p>
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -169,7 +163,7 @@ with the landing page.</p>
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Eager</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
 
@@ -188,6 +182,15 @@ with the landing page.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/AlertInfoComponent.html" target="_self" >AlertInfoComponent</a></code>
+                                <code><a href="../components/HeadingComponent.html" target="_self" >HeadingComponent</a></code>
+                                <code><a href="../components/HomeViewCardComponent.html" target="_self" >HomeViewCardComponent</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -230,23 +233,28 @@ with the landing page.</p>
                                 <a href="#_coreService" >_coreService</a>
                             </li>
                             <li>
-                                <a href="#disclaimerInfoMessage" >disclaimerInfoMessage</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#DISCLAIMER_MESSAGE" >DISCLAIMER_MESSAGE</a>
+                            </li>
+                            <li>
+                                <a href="#displayedSectionLinks" >displayedSectionLinks</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#DISPLAYED_SECTIONS" >DISPLAYED_SECTIONS</a>
+                                <a href="#HOME_VIEW_ID" >HOME_VIEW_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#HOME_VIEW_TITLE" >HOME_VIEW_TITLE</a>
                             </li>
                             <li>
                                 <a href="#homeViewCardData" >homeViewCardData</a>
                             </li>
                             <li>
-                                <a href="#homeViewId" >homeViewId</a>
-                            </li>
-                            <li>
-                                <a href="#homeViewTitle" >homeViewTitle</a>
-                            </li>
-                            <li>
                                 <a href="#pageMetaData" >pageMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#rowtablesRoute" >rowtablesRoute</a>
                             </li>
                         </ul>
                     </td>
@@ -261,10 +269,12 @@ with the landing page.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                    <span class="modifier">Static</span>
+                                <a href="#createEditionSectionLinks" >createEditionSectionLinks</a>
                             </li>
                             <li>
-                                <a href="#provideMetaData" >provideMetaData</a>
+                                    <span class="modifier">Static</span>
+                                <a href="#getSeparator" >getSeparator</a>
                             </li>
                         </ul>
                     </td>
@@ -274,20 +284,6 @@ with the landing page.</p>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#editionRouteConstants" >editionRouteConstants</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -306,39 +302,76 @@ with the landing page.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="createEditionSectionLinks"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Static</span>
+                        <span ><b>createEditionSectionLinks</b></span>
+                        <a href="#createEditionSectionLinks"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createEditionSectionLinks(sections: <a href="../interfaces/EditionOutlineSection.html" target="_self">EditionOutlineSection[]</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="94"
-                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:94</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:105</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
+                        <div class="io-description"><p>Public static method: createEditionSectionLinks.</p>
+<p>It creates the formatted edition section links for the home view section.</p>
 </div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sections</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The edition sections to be formatted.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSectionLink.html" target="_self" >EditionSectionLink[]</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>The formatted edition section links for the home view section.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -347,41 +380,90 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="provideMetaData"></a>
+                    <a name="getSeparator"></a>
                     <span class="name">
-                        <span ><b>provideMetaData</b></span>
-                        <a href="#provideMetaData"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Static</span>
+                        <span ><b>getSeparator</b></span>
+                        <a href="#getSeparator"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>provideMetaData()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSeparator(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, totalLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:132</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Public method: provideMetaData.</p>
-<p>It calls the CoreService to provide
-the metadata for the contact view.</p>
+                        <div class="io-description"><p>Public static method: getSeparator.</p>
+<p>It returns the appropriate separator for the displayed sections in the home view section.</p>
 </div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The index of the current section in the displayed sections array.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>totalLength</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The total length of the displayed sections array.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the pageMetaData variable.</p>
+                                <p>The appropriate separator for the displayed sections in the home view section.</p>
 
                             </div>
                 </td>
@@ -420,7 +502,7 @@ the metadata for the contact view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/home-view/home-view.component.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/home-view/home-view.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -438,10 +520,11 @@ the metadata for the contact view.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="disclaimerInfoMessage"></a>
+                    <a name="DISCLAIMER_MESSAGE"></a>
                     <span class="name">
-                        <span ><b>disclaimerInfoMessage</b></span>
-                        <a href="#disclaimerInfoMessage"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>DISCLAIMER_MESSAGE</b></span>
+                        <a href="#DISCLAIMER_MESSAGE"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -458,14 +541,14 @@ the metadata for the contact view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/home-view/home-view.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/home-view/home-view.component.ts:58</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: disclaimerInfoMessage.</p>
-<p>It keeps the disclaimer info message for the home view section.</p>
+                    <div class="io-description"><p>Public variable: DISCLAIMER_MESSAGE.</p>
+<p>It keeps the disclaimer message for the home view section.</p>
 </div>
                 </td>
             </tr>
@@ -476,38 +559,119 @@ the metadata for the contact view.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DISPLAYED_SECTIONS"></a>
+                    <a name="displayedSectionLinks"></a>
                     <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>DISPLAYED_SECTIONS</b></span>
-                        <a href="#DISPLAYED_SECTIONS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>displayedSectionLinks</b></span>
+                        <a href="#displayedSectionLinks"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-        EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;5&#x27;),
-        EditionOutlineService.getEditionSectionById(&#x27;2&#x27;, &#x27;2a&#x27;),
-    ]</code>
+                        <i>Default value : </i><code>signal&lt;EditionSectionLink[]&gt;(
+        HomeViewComponent.createEditionSectionLinks([
+            EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;5&#x27;),
+            EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;2&#x27;),
+        ])
+    ).asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/home-view/home-view.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/home-view/home-view.component.ts:66</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly variable: DISPLAYED_SECTIONS.</p>
-<p>It keeps the array of displayed sections.</p>
+                    <div class="io-description"><p>Public readonly signal: displayedSectionLinks.</p>
+<p>It holds the displayed section links for the home view section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HOME_VIEW_ID"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>HOME_VIEW_ID</b></span>
+                        <a href="#HOME_VIEW_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;awg-home-view-heading&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/home-view/home-view.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: HOME_VIEW_ID.</p>
+<p>It keeps the id for the heading component
+of the home view section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HOME_VIEW_TITLE"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>HOME_VIEW_TITLE</b></span>
+                        <a href="#HOME_VIEW_TITLE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Anton Webern Gesamtausgabe: Online-Edition&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/home-view/home-view.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: HOME_VIEW_TITLE.</p>
+<p>It keeps the title for the heading component
+of the home view section.</p>
 </div>
                 </td>
             </tr>
@@ -527,103 +691,25 @@ the metadata for the contact view.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/HomeViewCard.html" target="_self" >HomeViewCard[]</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>HOME_VIEW_CARD_DATA</code>
+                        <i>Default value : </i><code>signal&lt;HomeViewCard[]&gt;(HOME_VIEW_CARD_DATA).asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/home-view/home-view.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/home-view/home-view.component.ts:78</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: homeViewCardData.</p>
-<p>It keeps the data for the home view cards.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="homeViewId"></a>
-                    <span class="name">
-                        <span ><b>homeViewId</b></span>
-                        <a href="#homeViewId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;awg-home-view&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/home-view/home-view.component.ts:46</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: homeId.</p>
-<p>It keeps the id for the heading component
-of the home view section.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="homeViewTitle"></a>
-                    <span class="name">
-                        <span ><b>homeViewTitle</b></span>
-                        <a href="#homeViewTitle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;Anton Webern Gesamtausgabe: Online-Edition&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/home-view/home-view.component.ts:38</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: homeViewTitle.</p>
-<p>It keeps the title for the heading component
-of the home view section.</p>
+                    <div class="io-description"><p>Public readonly signal: homeViewCardData.</p>
+<p>It holds the data for the home view cards.</p>
 </div>
                 </td>
             </tr>
@@ -643,20 +729,66 @@ of the home view section.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/MetaPage.html" target="_self" >MetaPage</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/home-view/home-view.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/home-view/home-view.component.ts:85</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: pageMetaData.</p>
-<p>It keeps the page metadata for the home view.</p>
+                    <div class="io-description"><p>Public readonly signal: pageMetaData.</p>
+<p>It holds the page metadata for the home view via the injected CoreService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rowtablesRoute"></a>
+                    <span class="name">
+                        <span ><b>rowtablesRoute</b></span>
+                        <a href="#rowtablesRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal([
+        EDITION_ROUTE_CONSTANTS.EDITION.route,
+        EDITION_ROUTE_CONSTANTS.ROWTABLES.route,
+    ]).asReadonly()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/home-view/home-view.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public readonly signal: rowtablesRoute.</p>
+<p>It holds the router link array for the rowtables link.</p>
 </div>
                 </td>
             </tr>
@@ -665,58 +797,24 @@ of the home view section.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="editionRouteConstants"></a>
-                        <span class="name"><b>editionRouteConstants</b><a href="#editionRouteConstants"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>editionRouteConstants()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/home-view/home-view.component.ts:84</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Getter variable: editionRouteConstants.</p>
-<p> It returns the EDITION_ROUTE_CONSTANTS.</p>
-</div>
-
-                                <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
-</section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, signal } from &#x27;@angular/core&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 
 import { MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
+import { AlertInfoComponent } from &#x27;@awg-shared/alert-info/alert-info.component&#x27;;
+import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
+import { EditionOutlineSection, EditionSectionLink } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionOutlineService } from &#x27;@awg-views/edition-view/services&#x27;;
 
-import { HOME_VIEW_CARD_DATA } from &#x27;@awg-views/home-view/data&#x27;;
-import { HomeViewCard } from &#x27;@awg-views/home-view/models&#x27;;
+import { HOME_VIEW_CARD_DATA } from &#x27;./home-view-card/data/home-view-card.data&#x27;;
+import { HomeViewCardComponent } from &#x27;./home-view-card/home-view-card.component&#x27;;
+import { HomeViewCard } from &#x27;./home-view-card/models/home-view-card.model&#x27;;
 
 /**
  * The HomeView component.
@@ -728,57 +826,10 @@ import { HomeViewCard } from &#x27;@awg-views/home-view/models&#x27;;
     selector: &#x27;awg-home-view&#x27;,
     templateUrl: &#x27;./home-view.component.html&#x27;,
     styleUrls: [&#x27;./home-view.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, RouterLink],
 })
-export class HomeViewComponent implements OnInit {
-    /**
-     * Public variable: disclaimerInfoMessage.
-     *
-     * It keeps the disclaimer info message for the home view section.
-     */
-    disclaimerInfoMessage &#x3D; &#x27;Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.&#x27;;
-
-    /**
-     * Public variable: homeViewTitle.
-     *
-     * It keeps the title for the heading component
-     * of the home view section.
-     */
-    homeViewTitle &#x3D; &#x27;Anton Webern Gesamtausgabe: Online-Edition&#x27;;
-
-    /**
-     * Public variable: homeId.
-     *
-     * It keeps the id for the heading component
-     * of the home view section.
-     */
-    homeViewId &#x3D; &#x27;awg-home-view&#x27;;
-
-    /**
-     * Public variable: homeViewCardData.
-     *
-     * It keeps the data for the home view cards.
-     */
-    homeViewCardData: HomeViewCard[] &#x3D; HOME_VIEW_CARD_DATA;
-
-    /**
-     * Public variable: pageMetaData.
-     *
-     * It keeps the page metadata for the home view.
-     */
-    pageMetaData: MetaPage;
-
-    /**
-     * Readonly variable: DISPLAYED_SECTIONS.
-     *
-     * It keeps the array of displayed sections.
-     */
-    readonly DISPLAYED_SECTIONS &#x3D; [
-        EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;5&#x27;),
-        EditionOutlineService.getEditionSectionById(&#x27;2&#x27;, &#x27;2a&#x27;),
-    ];
-
+export class HomeViewComponent {
     /**
      * Private readonly injection variable: _coreService.
      *
@@ -787,34 +838,108 @@ export class HomeViewComponent implements OnInit {
     private readonly _coreService &#x3D; inject(CoreService);
 
     /**
-     * Getter variable: editionRouteConstants.
+     * Public variable: HOME_VIEW_ID.
      *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
+     * It keeps the id for the heading component
+     * of the home view section.
+     */
+    readonly HOME_VIEW_ID &#x3D; &#x27;awg-home-view-heading&#x27;;
+
+    /**
+     * Public variable: HOME_VIEW_TITLE.
+     *
+     * It keeps the title for the heading component
+     * of the home view section.
+     */
+    readonly HOME_VIEW_TITLE &#x3D; &#x27;Anton Webern Gesamtausgabe: Online-Edition&#x27;;
+
+    /**
+     * Public variable: DISCLAIMER_MESSAGE.
+     *
+     * It keeps the disclaimer message for the home view section.
+     */
+    readonly DISCLAIMER_MESSAGE &#x3D;
+        &#x27;Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.&#x27;;
+
+    /**
+     * Public readonly signal: displayedSectionLinks.
+     *
+     * It holds the displayed section links for the home view section.
+     */
+    displayedSectionLinks &#x3D; signal&lt;EditionSectionLink[]&gt;(
+        HomeViewComponent.createEditionSectionLinks([
+            EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;5&#x27;),
+            EditionOutlineService.getEditionSectionById(&#x27;1&#x27;, &#x27;2&#x27;),
+        ])
+    ).asReadonly();
+
+    /**
+     * Public readonly signal: homeViewCardData.
+     *
+     * It holds the data for the home view cards.
+     */
+    homeViewCardData &#x3D; signal&lt;HomeViewCard[]&gt;(HOME_VIEW_CARD_DATA).asReadonly();
+
+    /**
+     * Public readonly signal: pageMetaData.
+     *
+     * It holds the page metadata for the home view via the injected CoreService.
+     */
+    pageMetaData &#x3D; signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+
+    /**
+     * Public readonly signal: rowtablesRoute.
+     *
+     * It holds the router link array for the rowtables link.
+     */
+    rowtablesRoute &#x3D; signal([
+        EDITION_ROUTE_CONSTANTS.EDITION.route,
+        EDITION_ROUTE_CONSTANTS.ROWTABLES.route,
+    ]).asReadonly();
+
+    /**
+     * Public static method: createEditionSectionLinks.
+     *
+     * It creates the formatted edition section links for the home view section.
+     *
+     * @param {EditionOutlineSection[]} sections The edition sections to be formatted.
+     * @returns {EditionSectionLink[]} The formatted edition section links for the home view section.
+     */
+    static createEditionSectionLinks(sections: EditionOutlineSection[]): EditionSectionLink[] {
+        const routes &#x3D; EDITION_ROUTE_CONSTANTS;
+        return sections.map((section, index, array) &#x3D;&gt; {
+            const routerLink &#x3D; [
+                routes.EDITION.route,
+                routes.SERIES.route,
+                section?.seriesParent?.route,
+                routes.SECTION.route,
+                section?.section?.route,
+            ];
+
+            const label &#x3D; &#x60;${routes.EDITION.short} ${section?.seriesParent?.short}/${section?.section?.short}&#x60;;
+            const separator &#x3D; HomeViewComponent.getSeparator(index, array.length);
+
+            return { section, routerLink, label, separator };
+        });
     }
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Public static method: getSeparator.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It returns the appropriate separator for the displayed sections in the home view section.
+     *
+     * @param {number} index The index of the current section in the displayed sections array.
+     * @param {number} totalLength The total length of the displayed sections array.
+     * @returns {string} The appropriate separator for the displayed sections in the home view section.
      */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the metadata for the contact view.
-     *
-     * @returns {void} Sets the pageMetaData variable.
-     */
-    provideMetaData(): void {
-        this.pageMetaData &#x3D; this._coreService.getMetaDataSection(MetaSectionTypes.page);
+    static getSeparator(index: number, totalLength: number): string {
+        if (index &#x3D;&#x3D;&#x3D; totalLength - 1) {
+            return &#x27;&#x27;;
+        }
+        if (index &#x3D;&#x3D;&#x3D; totalLength - 2) {
+            return &#x27; und &#x27;;
+        }
+        return &#x27;, &#x27;;
     }
 }
 </code></pre>
@@ -823,15 +948,17 @@ export class HomeViewComponent implements OnInit {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: home --&gt;
 &lt;div class&#x3D;&quot;awg-home-view p-5 border rounded-3&quot;&gt;
+    @let page &#x3D; this.pageMetaData();
+
     &lt;!-- heading --&gt;
-    &lt;awg-heading [title]&#x3D;&quot;homeViewTitle&quot; [id]&#x3D;&quot;homeViewId&quot; /&gt;
+    &lt;awg-heading [title]&#x3D;&quot;HOME_VIEW_TITLE&quot; [id]&#x3D;&quot;HOME_VIEW_ID&quot; /&gt;
 
     &lt;!-- content--&gt;
     &lt;div class&#x3D;&quot;awg-home-view-content&quot;&gt;
-        &lt;awg-alert-info [infoMessage]&#x3D;&quot;disclaimerInfoMessage&quot; /&gt;
+        &lt;awg-alert-info [infoMessage]&#x3D;&quot;DISCLAIMER_MESSAGE&quot; /&gt;
 
         &lt;div class&#x3D;&quot;awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para&quot;&gt;
-            @for (cardData of homeViewCardData; track $index) {
+            @for (cardData of homeViewCardData(); track $index) {
                 &lt;div class&#x3D;&quot;col&quot;&gt;
                     &lt;awg-home-view-card [cardData]&#x3D;&quot;cardData&quot; /&gt;
                 &lt;/div&gt;
@@ -843,31 +970,14 @@ export class HomeViewComponent implements OnInit {
 
             &lt;p&gt;
                 Über den Menüpunkt &lt;em&gt;Edition&lt;/em&gt; sind aktuell die Online-Editionen zu den Abteilungen
-                @for (section of DISPLAYED_SECTIONS; track $index; let i &#x3D; $index; let n &#x3D; $count) {
-                    &lt;a
-                        [routerLink]&#x3D;&quot;[
-                            editionRouteConstants.EDITION.route,
-                            editionRouteConstants.SERIES.route,
-                            section?.seriesParent?.route,
-                            editionRouteConstants.SECTION.route,
-                            section?.section?.route,
-                        ]&quot;
-                        &gt;&lt;span&gt;
-                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{
-                                section.section.short
-                            }}&lt;/span
-                        &gt;
+                @for (sectionLink of displayedSectionLinks(); track sectionLink.routerLink.join(&#x27;/&#x27;)) {
+                    &lt;a [routerLink]&#x3D;&quot;sectionLink.routerLink&quot;
+                        &gt;&lt;span&gt; {{ sectionLink.label }}&lt;/span&gt;
                     &lt;/a&gt;
-                    @if (i &lt; n - 2) {
-                        &lt;span&gt;, &lt;/span&gt;
-                    } @else if (i &#x3D;&#x3D;&#x3D; n - 2) {
-                        &lt;span&gt; und &lt;/span&gt;
-                    }
+                    &lt;span&gt;{{ sectionLink.separator }}&lt;/span&gt;
                 }
                 sowie die
-                &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]&quot;
-                    &gt;Reihentabellen&lt;/a
-                &gt;
+                &lt;a [routerLink]&#x3D;&quot;rowtablesRoute()&quot;&gt;Reihentabellen&lt;/a&gt;
                 Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte
                 (Text- und Skizzeneditionen), Kritische Berichte sowie Graph-Visualisierungen (beta).
             &lt;/p&gt;
@@ -882,20 +992,24 @@ export class HomeViewComponent implements OnInit {
             &lt;p&gt;
                 Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
                 diese Webapplikation präsentiert und über das Software-Framework
-                &lt;a id&#x3D;&quot;dsp-link&quot; href&#x3D;&quot;{{ pageMetaData?.daschUrl + &#x27;dsp-app&#x27; }}&quot;&gt;DaSCH Service Platform (DSP)&lt;/a&gt; des
-                &lt;a id&#x3D;&quot;dasch-link&quot; href&#x3D;&quot;{{ pageMetaData?.daschUrl }}&quot;
+                &lt;a id&#x3D;&quot;dsp-link&quot; href&#x3D;&quot;{{ page?.daschUrl + &#x27;services/data-deposit/dsp&#x27; }}&quot;
+                    &gt;DaSCH Service Platform (DSP)&lt;/a
+                &gt;
+                des
+                &lt;a id&#x3D;&quot;dasch-link&quot; href&#x3D;&quot;{{ page?.daschUrl }}&quot;
                     &gt;Swiss National Data &amp; Service Center for the Humanities (DaSCH)&lt;/a
                 &gt;
                 aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
                 der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
                 Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
-                &lt;a id&#x3D;&quot;dasch-mission-link&quot; href&#x3D;&quot;{{ pageMetaData?.daschUrl + &#x27;mission&#x27; }}&quot;&gt;Mission Statement DaSCH&lt;/a&gt;).
+                &lt;a id&#x3D;&quot;dasch-mission-link&quot; href&#x3D;&quot;{{ page?.daschUrl + &#x27;about-us/mission&#x27; }}&quot;&gt;Mission Statement DaSCH&lt;/a
+                &gt;).
             &lt;/p&gt;
 
             &lt;p&gt;
                 Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf
-                &lt;a id&#x3D;&quot;github-link&quot; href&#x3D;&quot;{{ pageMetaData?.githubUrl }}&quot;&gt;GitHub&lt;/a&gt; sowie
-                &lt;a id&#x3D;&quot;zenodo-link&quot; href&#x3D;&quot;{{ pageMetaData?.zenodoUrl }}&quot;&gt;Zenodo&lt;/a&gt; abgelegt und vollumfänglich
+                &lt;a id&#x3D;&quot;github-link&quot; href&#x3D;&quot;{{ page?.githubUrl }}&quot;&gt;GitHub&lt;/a&gt; sowie
+                &lt;a id&#x3D;&quot;zenodo-link&quot; href&#x3D;&quot;{{ page?.zenodoUrl }}&quot;&gt;Zenodo&lt;/a&gt; abgelegt und vollumfänglich
                 &lt;a [routerLink]&#x3D;&quot;[&#x27;/contact&#x27;]&quot; fragment&#x3D;&quot;awg-documentation&quot;&gt;dokumentiert&lt;/a&gt;.
             &lt;/p&gt;
         &lt;/div&gt;
@@ -940,7 +1054,7 @@ export class HomeViewComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: home --><div class="awg-home-view p-5 border rounded-3">    <!-- heading -->    <awg-heading [title]="homeViewTitle" [id]="homeViewId" />    <!-- content-->    <div class="awg-home-view-content">        <awg-alert-info [infoMessage]="disclaimerInfoMessage" />        <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">            @for (cardData of homeViewCardData; track $index) {                <div class="col">                    <awg-home-view-card [cardData]="cardData" />                </div>            }        </div>        <div class="awg-home-view-text">            <p>Willkommen bei der AWG-APP, der Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>            <p>                Über den Menüpunkt <em>Edition</em> sind aktuell die Online-Editionen zu den Abteilungen                @for (section of DISPLAYED_SECTIONS; track $index; let i = $index; let n = $count) {                    <a                        [routerLink]="[                            editionRouteConstants.EDITION.route,                            editionRouteConstants.SERIES.route,                            section?.seriesParent?.route,                            editionRouteConstants.SECTION.route,                            section?.section?.route,                        ]"                        ><span>                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{                                section.section.short                            }}</span                        >                    </a>                    @if (i < n - 2) {                        <span>, </span>                    } @else if (i === n - 2) {                        <span> und </span>                    }                }                sowie die                <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"                    >Reihentabellen</a                >                Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte                (Text- und Skizzeneditionen), Kritische Berichte sowie Graph-Visualisierungen (beta).            </p>            <p>                Über die (externe) <em>Datenbank-Suche</em> können Kontextmaterialien (Werklisten [nach Opuszahl bzw.                Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden.                <br />                Über <em>Anton Webern Gesamtausgabe</em> gelangen Sie zur Projekt-Website.            </p>            <p>                Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über                diese Webapplikation präsentiert und über das Software-Framework                <a id="dsp-link" href="{{ pageMetaData?.daschUrl + \'dsp-app\' }}">DaSCH Service Platform (DSP)</a> des                <a id="dasch-link" href="{{ pageMetaData?.daschUrl }}"                    >Swiss National Data & Service Center for the Humanities (DaSCH)</a                >                aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit                der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren                Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.                <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + \'mission\' }}">Mission Statement DaSCH</a>).            </p>            <p>                Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf                <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a> sowie                <a id="zenodo-link" href="{{ pageMetaData?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich                <a [routerLink]="[\'/contact\']" fragment="awg-documentation">dokumentiert</a>.            </p>        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: home --><div class="awg-home-view p-5 border rounded-3">    @let page = this.pageMetaData();    <!-- heading -->    <awg-heading [title]="HOME_VIEW_TITLE" [id]="HOME_VIEW_ID" />    <!-- content-->    <div class="awg-home-view-content">        <awg-alert-info [infoMessage]="DISCLAIMER_MESSAGE" />        <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">            @for (cardData of homeViewCardData(); track $index) {                <div class="col">                    <awg-home-view-card [cardData]="cardData" />                </div>            }        </div>        <div class="awg-home-view-text">            <p>Willkommen bei der AWG-APP, der Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>            <p>                Über den Menüpunkt <em>Edition</em> sind aktuell die Online-Editionen zu den Abteilungen                @for (sectionLink of displayedSectionLinks(); track sectionLink.routerLink.join(\'/\')) {                    <a [routerLink]="sectionLink.routerLink"                        ><span> {{ sectionLink.label }}</span>                    </a>                    <span>{{ sectionLink.separator }}</span>                }                sowie die                <a [routerLink]="rowtablesRoute()">Reihentabellen</a>                Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte                (Text- und Skizzeneditionen), Kritische Berichte sowie Graph-Visualisierungen (beta).            </p>            <p>                Über die (externe) <em>Datenbank-Suche</em> können Kontextmaterialien (Werklisten [nach Opuszahl bzw.                Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden.                <br />                Über <em>Anton Webern Gesamtausgabe</em> gelangen Sie zur Projekt-Website.            </p>            <p>                Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über                diese Webapplikation präsentiert und über das Software-Framework                <a id="dsp-link" href="{{ page?.daschUrl + \'services/data-deposit/dsp\' }}"                    >DaSCH Service Platform (DSP)</a                >                des                <a id="dasch-link" href="{{ page?.daschUrl }}"                    >Swiss National Data & Service Center for the Humanities (DaSCH)</a                >                aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit                der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren                Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.                <a id="dasch-mission-link" href="{{ page?.daschUrl + \'about-us/mission\' }}">Mission Statement DaSCH</a                >).            </p>            <p>                Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf                <a id="github-link" href="{{ page?.githubUrl }}">GitHub</a> sowie                <a id="zenodo-link" href="{{ page?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich                <a [routerLink]="[\'/contact\']" fragment="awg-documentation">dokumentiert</a>.            </p>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'HomeViewComponent'};

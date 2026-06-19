@@ -214,7 +214,7 @@ to structure outline information of the edition.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:247</a></div>
                             </td>
                         </tr>
 
@@ -291,7 +291,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:311</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:340</a></div>
                         </td>
                     </tr>
 
@@ -355,7 +355,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:266</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:295</a></div>
                         </td>
                     </tr>
 
@@ -440,7 +440,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:292</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:321</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +504,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:246</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:275</a></div>
                         </td>
                     </tr>
 
@@ -575,7 +575,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:247</a></div>
                         </td>
                     </tr>
 
@@ -605,6 +605,35 @@ import { EditionRouteConstant } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionComplexesService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
+
+/**
+ * The EditionSectionLink interface.
+ *
+ * It is used in the context of the edition view
+ * to structure information for the edition section links,
+ * e.g., in the home view.
+ */
+export interface EditionSectionLink {
+    /**
+     * The edition section.
+     */
+    section: EditionOutlineSection;
+
+    /**
+     * The router link for the edition section.
+     */
+    routerLink: string[];
+
+    /**
+     * The label for the edition section.
+     */
+    label: string;
+
+    /**
+     * The separator for the edition section.
+     */
+    separator: string;
+}
 
 /**
  * The EditionOutlineSectionsContentJsonData interface.

@@ -151,7 +151,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { HomeViewComponent } from &#x27;@awg-views/home-view/home-view.component&#x27;;
+import { HOME_VIEW_ROUTES } from &#x27;@awg-views/home-view/home-view.routes&#x27;;
 
 /* Routes of the AppModule */
 const APP_ROUTES: Routes &#x3D; [
@@ -162,9 +162,8 @@ const APP_ROUTES: Routes &#x3D; [
         pathMatch: &#x27;full&#x27;,
     },
     {
-        path: &#x27;home&#x27;,
-        component: HomeViewComponent,
-        data: { title: &#x27;AWG Online Edition – Home&#x27; },
+        path: &#x27;&#x27;,
+        children: HOME_VIEW_ROUTES,
     },
 
     // Lazy loaded routes
@@ -214,12 +213,6 @@ const APP_ROUTER_OPTIONS: ExtraOptions &#x3D; {
     scrollPositionRestoration: &#x27;enabled&#x27;,
     preloadingStrategy: PreloadAllModules,
 };
-
-/**
- * Routed components of the {@link AppModule}:
- * {@link HomeViewComponent}.
- */
-export const routedAppComponents &#x3D; [HomeViewComponent];
 
 /**
  * Main app module routing.
