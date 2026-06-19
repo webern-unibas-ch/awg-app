@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { HOME_VIEW_ROUTES } from './views/home-view/home-view.routes';
+import { HOME_VIEW_ROUTES } from '@awg-views/home-view/home-view.routes';
 
 /* Routes of the AppModule */
 const APP_ROUTES: Routes = [
