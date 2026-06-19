@@ -1,9 +1,9 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, input, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionSectionDetailDisclaimerComponent } from './edition-section-detail-disclaimer.component';
 
@@ -11,11 +11,10 @@ import { EditionSectionDetailDisclaimerComponent } from './edition-section-detai
 @Component({
     selector: 'awg-alert-info',
     template: '',
-    standalone: false,
 })
 class AlertInfoStubComponent {
-    @Input()
-    infoMessage: string;
+    infoMessage = input<string>('');
+    isOpen = model<boolean>(true);
 }
 
 describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
@@ -27,7 +26,8 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionSectionDetailDisclaimerComponent, AlertInfoStubComponent],
+            imports: [AlertInfoStubComponent],
+            declarations: [EditionSectionDetailDisclaimerComponent],
         }).compileComponents();
     });
 
@@ -50,11 +50,11 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+            it('... should pass down empty default values to AlertInfoComponent (`infoMessage`)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expect(alertInfoCmp.infoMessage).toBeUndefined();
+                expectToBe(alertInfoCmp.infoMessage(), '');
             });
         });
     });
@@ -66,11 +66,11 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down infoMessage to AlertInfoComponent', () => {
+            it('... should pass down correct values to AlertInfoComponent (`infoMessage`)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToEqual(alertInfoCmp.infoMessage, expectedInfoMessage);
+                expectToEqual(alertInfoCmp.infoMessage(), expectedInfoMessage);
             });
         });
     });

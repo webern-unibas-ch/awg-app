@@ -1,13 +1,12 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
@@ -15,27 +14,25 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-
-import { HomeViewCard } from '@awg-views/home-view/models';
 
 import { HomeViewCardComponent } from './home-view-card.component';
+import { HomeViewCard, HomeViewCardExternalLink, HomeViewCardInternalLink } from './models/home-view-card.model';
 
 describe('HomeViewCardComponent (DONE)', () => {
     let component: HomeViewCardComponent;
     let fixture: ComponentFixture<HomeViewCardComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
+    let router: Router;
 
-    let expectedCardData: HomeViewCard;
+    let expectedInternalCardData: HomeViewCard;
+    let expectedExternalCardData: HomeViewCard;
     let expectedFaArrowRight: IconDefinition;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule],
-            declarations: [HomeViewCardComponent, RouterLinkStubDirective],
+            imports: [HomeViewCardComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
     });
 
@@ -44,16 +41,30 @@ describe('HomeViewCardComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        router = TestBed.inject(Router);
+
         // Test data
-        expectedCardData = {
-            title: 'Test Title',
+        expectedInternalCardData = {
+            title: 'Internal Test Title',
             text: 'Test Text',
             imgSrc: 'assets/img/home/edition_sample.jpg',
             imgAlt: 'Test Alt',
-            linkRouter: ['/test', 'route'],
+            link: { type: 'internal', route: ['/test', 'route'] },
             linkText: 'Test Link',
         };
+        expectedExternalCardData = {
+            title: 'External Test Title',
+            text: 'Test Text',
+            imgSrc: 'assets/img/home/external_sample.jpg',
+            imgAlt: 'Test Alt',
+            link: { type: 'external', href: 'https://openstreetmap.org' },
+            linkText: 'Open Map',
+        };
+
         expectedFaArrowRight = faArrowRight;
+
+        // Set required input signal with default value for initial tests
+        fixture.componentRef.setInput('cardData', expectedInternalCardData);
     });
 
     it('should create', () => {
@@ -61,8 +72,8 @@ describe('HomeViewCardComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have cardData', () => {
-            expect(component.cardData).toBeUndefined();
+        it('... should have required `cardData`', () => {
+            expectToEqual(component.cardData(), expectedInternalCardData);
         });
 
         it('... should have faArrowRight', () => {
@@ -127,15 +138,15 @@ describe('HomeViewCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.cardData = expectedCardData;
+            // Simulate the parent updating the input
+            fixture.componentRef.setInput('cardData', expectedInternalCardData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('should have `cardData` input', () => {
-            expectToEqual(component.cardData, expectedCardData);
+        it('should have updated `cardData` input', () => {
+            expectToEqual(component.cardData(), expectedInternalCardData);
         });
 
         describe('VIEW', () => {
@@ -145,8 +156,8 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const imgDes = getAndExpectDebugElementByCss(divDes[0], 'img', 1, 1);
                 const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
-                expectToContain(imgEl.src, expectedCardData.imgSrc);
-                expectToBe(imgEl.alt, expectedCardData.imgAlt);
+                expectToContain(imgEl.src, expectedInternalCardData.imgSrc);
+                expectToBe(imgEl.alt, expectedInternalCardData.imgAlt);
             });
 
             it('... should display h5 title in `div.card-body`', () => {
@@ -156,7 +167,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(hEl.textContent, expectedCardData.title);
+                expectToBe(hEl.textContent, expectedInternalCardData.title);
             });
 
             it('... should display paragraph text in `div.card-body`', () => {
@@ -166,96 +177,108 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent, expectedCardData.text);
+                expectToBe(pEl.textContent, expectedInternalCardData.text);
             });
 
-            describe('... with routerLink', () => {
-                it('... should have one info link button without href in `div.card-footer`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
+            it('... should have one info link button in `div.card-footer with correct classes`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
+                const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
 
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                    expectToBe(aEl.href, '');
-
-                    expectToContain(aEl.classList, 'btn');
-                    expectToContain(aEl.classList, 'btn-info');
-                    expectToContain(aEl.classList, 'text-light');
-                });
-
-                it('... should display arrow icon on the info link button', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-
-                    const faIconDes = getAndExpectDebugElementByCss(aDes[0], 'fa-icon', 1, 1);
-                    const faIconIns = faIconDes[0].componentInstance.icon;
-
-                    expectToEqual(faIconIns(), faArrowRight);
-                });
-
-                it('... should display link text on the info link button', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                    expectToBe(aEl.textContent.trim(), expectedCardData.linkText);
-                });
+                expectToBe(aEl.classList.length, 4);
+                expectToContain(aEl.classList, 'btn');
+                expectToContain(aEl.classList, 'btn-info');
+                expectToContain(aEl.classList, 'text-light');
+                expectToContain(aEl.classList, 'stretched-link');
             });
 
-            describe('... with href', () => {
-                beforeEach(async () => {
-                    component.cardData.linkRouter = undefined;
-                    component.cardData.linkHref = 'https://anton-webern.ch/';
+            it('... should render an INTERNAL link button with correct href path from route array', () => {
+                fixture.componentRef.setInput('cardData', expectedInternalCardData);
+                fixture.detectChanges();
 
-                    await detectChangesOnPush(fixture);
-                });
+                const aDes = getAndExpectDebugElementByCss(compDe, 'a.btn', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                it('... should have one info link button with href in `div.card-footer`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
+                const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
+                const expectedPath = internalLink?.route.join('/');
 
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                expectToBe(aEl.getAttribute('href'), expectedPath);
 
-                    expectToBe(aEl.href, expectedCardData.linkHref);
+                expectToBe(aEl.classList.length, 4);
+                expectToContain(aEl.classList, 'btn');
+                expectToContain(aEl.classList, 'btn-info');
+                expectToContain(aEl.classList, 'text-light');
+                expectToContain(aEl.classList, 'stretched-link');
+            });
 
-                    expectToContain(aEl.classList, 'btn');
-                    expectToContain(aEl.classList, 'btn-info');
-                    expectToContain(aEl.classList, 'text-light');
-                });
+            it('... should render an EXTERNAL link button with correct raw href string', () => {
+                fixture.componentRef.setInput('cardData', expectedExternalCardData);
+                fixture.detectChanges();
 
-                it('... should display arrow icon on the info link button', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(compDe, 'a.btn', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                    const faIconDes = getAndExpectDebugElementByCss(aDes[0], 'fa-icon', 1, 1);
-                    const faIconIns = faIconDes[0].componentInstance.icon;
+                const externalLink = expectedExternalCardData.link as HomeViewCardExternalLink;
 
-                    expectToEqual(faIconIns(), faArrowRight);
-                });
+                expectToBe(aEl.getAttribute('href'), externalLink?.href);
 
-                it('... should display link text on the info link button', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                    const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
-                    const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                expectToBe(aEl.classList.length, 4);
+                expectToContain(aEl.classList, 'btn');
+                expectToContain(aEl.classList, 'btn-info');
+                expectToContain(aEl.classList, 'text-light');
+                expectToContain(aEl.classList, 'stretched-link');
+            });
 
-                    expectToBe(aEl.textContent.trim(), expectedCardData.linkText);
-                });
+            it('... should render the correct link type and path for internal and external links`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
+                const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
+
+                const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                const linkData = expectedInternalCardData.link;
+                if (linkData?.type === 'internal') {
+                    const expectedPath = linkData.route.join('/');
+                    expectToBe(aEl.getAttribute('href'), expectedPath);
+                } else if (linkData?.type === 'external') {
+                    expectToBe(aEl.getAttribute('href'), linkData.href);
+                }
+            });
+
+            it('... should display arrow icon on the info link button', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
+                const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
+
+                const faIconDes = getAndExpectDebugElementByCss(aDes[0], 'fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
+
+                expectToEqual(faIconIns(), faArrowRight);
+            });
+
+            it('... should display link text on the info link button', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
+                const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                expectToBe(aEl.textContent.trim(), expectedInternalCardData.linkText);
             });
         });
 
         describe('[routerLink]', () => {
+            let routerLinks: RouterLink[];
+
+            let linkDes: DebugElement[];
+
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+                // Find DebugElements with an attached RouterLink
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
 
                 // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -263,19 +286,31 @@ describe('HomeViewCardComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const expectedRouterLink = expectedCardData.linkRouter;
-                expectToEqual(routerLinks[0].linkParams, expectedRouterLink);
+                const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
+                const expectedRouterLink = internalLink.route.join('/');
+                const urlTree = routerLinks[0].urlTree;
+
+                expectToEqual(urlTree.toString(), expectedRouterLink);
             });
 
             it('... can click all links in template', async () => {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+                navigateSpy.mockClear();
+
+                const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
+                const expectedRouterLink = internalLink.route.join('/');
                 const linkDe = linkDes[0];
-                const expectedRouterLink = expectedCardData.linkRouter;
 
-                expectToBe(routerLinks[0].navigatedTo, null);
-
+                click(linkDe);
                 await clickAndAwaitChanges(linkDe, fixture);
 
-                expectToEqual(routerLinks[0].navigatedTo, expectedRouterLink);
+                expect(navigateSpy).toHaveBeenCalled();
+                const firstCallArgs = navigateSpy.mock.calls[0][0];
+                const actualUrl = firstCallArgs.toString();
+
+                expectToBe(actualUrl, expectedRouterLink);
+
+                navigateSpy.mockRestore();
             });
         });
     });

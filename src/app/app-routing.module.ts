@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
+import { HOME_VIEW_ROUTES } from './views/home-view/home-view.routes';
 
 /* Routes of the AppModule */
 const APP_ROUTES: Routes = [
@@ -11,11 +11,8 @@ const APP_ROUTES: Routes = [
         redirectTo: 'home',
         pathMatch: 'full',
     },
-    {
-        path: 'home',
-        component: HomeViewComponent,
-        data: { title: 'AWG Online Edition – Home' },
-    },
+
+    ...HOME_VIEW_ROUTES,
 
     // Lazy loaded routes
     {
@@ -64,12 +61,6 @@ const APP_ROUTER_OPTIONS: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy: PreloadAllModules,
 };
-
-/**
- * Routed components of the {@link AppModule}:
- * {@link HomeViewComponent}.
- */
-export const routedAppComponents = [HomeViewComponent];
 
 /**
  * Main app module routing.

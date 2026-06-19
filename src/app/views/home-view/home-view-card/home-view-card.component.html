@@ -1,4 +1,6 @@
-<div class="card awg-home-view-card h-100 shadow text-center">
+<div class="awg-home-view-card card h-100 shadow text-center">
+    @let cardData = this.cardData();
+
     <img [src]="cardData.imgSrc" class="card-img-top" [alt]="cardData.imgAlt" />
     <div class="card-body">
         <h5 class="card-title">{{ cardData.title }}</h5>
@@ -6,17 +8,20 @@
     </div>
     <div class="card-footer">
         <ng-template #linkTemplate>
-            <span><fa-icon [icon]="faArrowRight" /> {{ cardData.linkText }}</span>
+            <span><fa-icon class="me-2" [icon]="faArrowRight" />{{ cardData.linkText }}</span>
         </ng-template>
 
-        @if (cardData.linkRouter) {
-            <a [routerLink]="cardData.linkRouter" class="btn btn-info text-light stretched-link"
-                ><ng-container *ngTemplateOutlet="linkTemplate"
-            /></a>
-        } @else if (cardData.linkHref) {
-            <a href="{{ cardData.linkHref }}" class="btn btn-info text-light stretched-link"
-                ><ng-container *ngTemplateOutlet="linkTemplate"
-            /></a>
+        @switch (cardData.link.type) {
+            @case ('internal') {
+                <a class="btn btn-info text-light stretched-link" [routerLink]="cardData.link.route"
+                    ><ng-container *ngTemplateOutlet="linkTemplate"
+                /></a>
+            }
+            @case ('external') {
+                <a class="btn btn-info text-light stretched-link" [href]="cardData.link.href"
+                    ><ng-container *ngTemplateOutlet="linkTemplate"
+                /></a>
+            }
         }
     </div>
 </div>

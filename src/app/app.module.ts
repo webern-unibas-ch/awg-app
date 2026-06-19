@@ -10,11 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
-import { HomeViewModule } from '@awg-views/home-view/home-view.module';
 import { AppComponent } from './app.component';
 
 /* Routing Module */
-import { AppRoutingModule, routedAppComponents } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 /* Load and register the used locale file */
 registerLocaleData(localeDeDE);
@@ -26,16 +25,8 @@ registerLocaleData(localeDeDE);
  * as well as the {@link CoreModule}, {@link SharedModule} and {@link SideInfoModule}.
  */
 @NgModule({
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        CoreModule,
-        HomeViewModule,
-        SharedModule,
-        SideInfoModule,
-        AppRoutingModule,
-    ],
-    declarations: [AppComponent, routedAppComponents],
+    imports: [BrowserModule, BrowserAnimationsModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
+    declarations: [AppComponent],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
         provideHttpClient(withInterceptorsFromDi()),
