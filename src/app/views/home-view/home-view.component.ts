@@ -130,8 +130,12 @@ export class HomeViewComponent {
      * @returns {string} The appropriate separator for the displayed sections in the home view section.
      */
     static getSeparator(index: number, totalLength: number): string {
-        if (index === totalLength - 1) {return '';}
-        if (index === totalLength - 2) {return ' und ';}
+        if (index === totalLength - 1) {
+            return '';
+        }
+        if (index === totalLength - 2) {
+            return ' und ';
+        }
         return ', ';
     }
 }
