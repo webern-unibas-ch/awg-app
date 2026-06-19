@@ -77,13 +77,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-AppModule-c5a68efd03162fc57c4b4380e84e330112936e348b037c92aa8223d33ae24f0e620acbc1a38aca3397a4e17c81096a9116405e965b76300a6ba5b524c6afb86c"' : 'data-bs-target="#xs-components-links-module-AppModule-c5a68efd03162fc57c4b4380e84e330112936e348b037c92aa8223d33ae24f0e620acbc1a38aca3397a4e17c81096a9116405e965b76300a6ba5b524c6afb86c"' }>
+                                            'data-bs-target="#components-links-module-AppModule-a3f044713254c7861b1f4536f0ba7a79914fad448955d1fbdf3664766dc12e30d21cb05f0741a58c69fbeea96c65a2fe511b75c812a3ed97cf0b6e162511e04e"' : 'data-bs-target="#xs-components-links-module-AppModule-a3f044713254c7861b1f4536f0ba7a79914fad448955d1fbdf3664766dc12e30d21cb05f0741a58c69fbeea96c65a2fe511b75c812a3ed97cf0b6e162511e04e"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-c5a68efd03162fc57c4b4380e84e330112936e348b037c92aa8223d33ae24f0e620acbc1a38aca3397a4e17c81096a9116405e965b76300a6ba5b524c6afb86c"' :
-                                            'id="xs-components-links-module-AppModule-c5a68efd03162fc57c4b4380e84e330112936e348b037c92aa8223d33ae24f0e620acbc1a38aca3397a4e17c81096a9116405e965b76300a6ba5b524c6afb86c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-a3f044713254c7861b1f4536f0ba7a79914fad448955d1fbdf3664766dc12e30d21cb05f0741a58c69fbeea96c65a2fe511b75c812a3ed97cf0b6e162511e04e"' :
+                                            'id="xs-components-links-module-AppModule-a3f044713254c7861b1f4536f0ba7a79914fad448955d1fbdf3664766dc12e30d21cb05f0741a58c69fbeea96c65a2fe511b75c812a3ed97cf0b6e162511e04e"' }>
                                             <li class="link">
                                                 <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
                                             </li>

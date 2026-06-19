@@ -330,7 +330,7 @@ import { provideHttpClient, withInterceptorsFromDi } from &#x27;@angular/common/
 import localeDeDE from &#x27;@angular/common/locales/de&#x27;;
 import { LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
-import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
+import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 
 //
 // Main app modules
@@ -352,11 +352,12 @@ registerLocaleData(localeDeDE);
  * as well as the {@link CoreModule}, {@link SharedModule} and {@link SideInfoModule}.
  */
 @NgModule({
-    imports: [BrowserModule, BrowserAnimationsModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
+    imports: [BrowserModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
     declarations: [AppComponent],
     providers: [
         { provide: LOCALE_ID, useValue: &#x27;de-DE&#x27; }, // Change global LOCALE-ID
         provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations(),
     ],
     bootstrap: [AppComponent],
 })

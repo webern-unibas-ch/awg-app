@@ -452,7 +452,7 @@ showing contact information and a map.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;SafeResourceUrl&gt;(
-        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL)
+        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
     ).asReadonly()</code>
                     </td>
                 </tr>
@@ -619,7 +619,7 @@ export class ContactSideInfoComponent {
      * It holds the sanitized link to embed the map.
      */
     mapEmbedUrl &#x3D; signal&lt;SafeResourceUrl&gt;(
-        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL)
+        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
     ).asReadonly();
 
     /**

@@ -1018,11 +1018,11 @@ export class AppConfig {
      */
     public static get CONTACT_MAP_UNSAFE_EMBED_URL(): string {
         const mapApi &#x3D; &#x27;https://www.openstreetmap.org/export/embed.html&#x27;;
-        const bbox &#x3D; &#x27;bbox&#x3D;7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&#x27;;
-        const layer &#x3D; &#x27;layer&#x3D;mapnik&#x27;;
+        const bbox &#x3D; &#x27;7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&#x27;;
+        const layer &#x3D; &#x27;mapnik&#x27;;
         const marker &#x3D; &#x27;47.55896585846639%2C7.584506571292877&#x27;;
 
-        return mapApi + &#x27;?&#x27; + bbox + &#x27;&amp;&#x27; + layer + &#x27;&amp;&#x27; + marker;
+        return &#x60;${mapApi}?bbox&#x3D;${bbox}&amp;layer&#x3D;${layer}&amp;marker&#x3D;${marker}&#x60;;
     }
 
     /**
