@@ -5,7 +5,14 @@
  * to define the type for an internal link of a home view card.
  */
 export interface HomeViewCardInternalLink {
+    /**
+     * The type of the link, which is 'internal' for internal links.
+     */
     type: 'internal';
+
+    /**
+     * The route array for the internal link.
+     */
     route: string[];
 }
 
@@ -16,7 +23,14 @@ export interface HomeViewCardInternalLink {
  * to define the type for an external link of a home view card.
  */
 export interface HomeViewCardExternalLink {
+    /**
+     * The type of the link, which is 'external' for external links.
+     */
     type: 'external';
+
+    /**
+     * The href string for the external link.
+     */
     href: string;
 }
 

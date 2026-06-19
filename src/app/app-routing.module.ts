@@ -11,8 +11,10 @@ const APP_ROUTES: Routes = [
         redirectTo: 'home',
         pathMatch: 'full',
     },
-
-    ...HOME_VIEW_ROUTES,
+    {
+        path: '',
+        children: HOME_VIEW_ROUTES,
+    },
 
     // Lazy loaded routes
     {
