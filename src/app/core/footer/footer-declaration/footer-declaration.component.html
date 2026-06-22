@@ -1,16 +1,20 @@
-<p class="awg-version-title">AWG-Online-Edition</p>
-<p class="awg-version-desc">
-    @if (changelogUrl) {
-        <a [href]="changelogUrl"
-            >Version <span id="awg-version">{{ pageMetaData?.awgAppVersion }}</span> &#9671;
-            <span id="awg-version-date">{{ pageMetaData?.awgAppVersionReleaseDate | date: 'longDate' }}</span></a
-        >
-    }
-</p>
-<p id="awg-contact-link">
-    <small>
-        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-imprint"> Impressum </a>
-        |
-        <a id="awg-doc" [routerLink]="['/contact']" fragment="awg-documentation"> Dokumentation </a>
-    </small>
-</p>
+<div class="awg-footer-declaration">
+    <p class="awg-version-title">AWG-Online-Edition</p>
+    <p class="awg-version-desc">
+        @if (changelogUrl(); as changelogUrl) {
+            @let page = pageMetaData();
+
+            <a [href]="changelogUrl"
+                >Version <span id="awg-version">{{ page.awgAppVersion }}</span> &#9671;
+                <span id="awg-version-date">{{ page.awgAppVersionReleaseDate | date: 'longDate' }}</span></a
+            >
+        }
+    </p>
+    <p id="awg-contact-link">
+        <small>
+            <a id="awg-imp" class="me-1" [routerLink]="['/contact']" fragment="awg-imprint">Impressum</a>
+            |
+            <a id="awg-doc" class="ms-1" [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>
+        </small>
+    </p>
+</div>

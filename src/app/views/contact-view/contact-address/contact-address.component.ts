@@ -20,12 +20,12 @@ export class ContactAddressComponent {
      *
      * It holds the page metadata for the contact address.
      */
-    pageMetaData = input<MetaPage>({} as MetaPage);
+    pageMetaData = input.required<MetaPage>();
 
     /**
      * Input signal: contactMetaData.
      *
      * It holds the contact metadata for the contact address.
      */
-    contactMetaData = input<MetaContact>({} as MetaContact);
+    contactMetaData = input.required<MetaContact>();
 }

@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { MetaPage } from '@awg-core/core-models';
 
@@ -6,34 +8,34 @@ import { MetaPage } from '@awg-core/core-models';
  * The FooterDeclaration component.
  *
  * It contains the declaration section of the footer
- * with version number, release date and impressum.
+ * with version number, release date and imprint.
  */
 @Component({
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
     styleUrls: ['./footer-declaration.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [DatePipe, RouterLink],
 })
 export class FooterDeclarationComponent {
     /**
-     * Input variable: pageMetaData.
+     * Input signal: pageMetaData.
      *
-     * It keeps the page metadata for the component.
+     * It holds the page metadata for the footer declaration.
      */
-    @Input()
-    pageMetaData: MetaPage;
+    pageMetaData = input.required<MetaPage>();
 
     /**
-     * Public getter: changelogUrl.
+     * Computed signal: changelogUrl.
      *
-     * It returns the URL to the changelog file in the GitHub repository
-     * based on the app version and GitHub URL from the page metadata.
+     * It computes the URL to the changelog file in the GitHub repository.
      */
-    get changelogUrl(): string | null {
-        if (!this.pageMetaData?.awgAppGithubUrl || !this.pageMetaData?.awgAppVersion) {
+    changelogUrl = computed(() => {
+        const meta = this.pageMetaData();
+
+        if (!meta?.awgAppGithubUrl || !meta?.awgAppVersion) {
             return null;
         }
-        return `${this.pageMetaData.awgAppGithubUrl}/blob/v${this.pageMetaData.awgAppVersion}/CHANGELOG.md`;
-    }
+        return `${meta.awgAppGithubUrl}/blob/v${meta.awgAppVersion}/CHANGELOG.md`;
+    });
 }
