@@ -52,6 +52,16 @@ a.awg-svg-sheet-facet-link.active,
 .navbar-nav > li > a:active:not(#dropdownNavEdition) {
     color: $link-color !important;
 }
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: $link-color !important;
+    color: #ffffff !important;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f1f3f3 !important;
+    color: $link-color !important;
+}
 /* no border color for svg-sheet-facet-link */
 a.awg-svg-sheet-facet-link.active,
 a.awg-svg-sheet-facet-link:active,
