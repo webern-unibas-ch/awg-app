@@ -1,8 +1,8 @@
 <p class="awg-version-title">AWG-Online-Edition</p>
 <p class="awg-version-desc">
-    <a href="https://github.com/webern-unibas-ch/awg-app/blob/v{{ pageMetaData?.version }}/CHANGELOG.md">
-        Version <span id="awg-version">{{ pageMetaData?.version }}</span> &#9671;
-        <span id="awg-version-date">{{ pageMetaData?.versionReleaseDate | date: 'longDate' }}</span>
+    <a href="{{ pageMetaData?.awgAppGithubUrl }}/blob/v{{ pageMetaData?.awgAppVersion }}/CHANGELOG.md">
+        Version <span id="awg-version">{{ pageMetaData?.awgAppVersion }}</span> &#9671;
+        <span id="awg-version-date">{{ pageMetaData?.awgAppVersionReleaseDate | date: 'longDate' }}</span>
     </a>
 </p>
 <p id="awg-contact-link">
