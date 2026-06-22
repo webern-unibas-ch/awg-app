@@ -113,6 +113,26 @@ export class MetaPage {
     awgAppDevUrl: string;
 
     /**
+     * The url to the GitHub repository of the AWG edition website (awg-app).
+     */
+    awgAppGithubUrl: string;
+
+    /**
+     * The latest version of the AWG edition website (awg-app).
+     */
+    awgAppVersion: string;
+
+    /**
+     * The release date of the latest version of the AWG edition website (awg-app).
+     */
+    awgAppVersionReleaseDate: string;
+
+    /**
+     * The url to the Zenodo repository of the AWG edition website (awg-app).
+     */
+    awgAppZenodoUrl: string;
+
+    /**
      * The name of the AWG.
      */
     awgProjectName: string;
@@ -141,31 +161,6 @@ export class MetaPage {
      * The url to the DHLab Basel.
      */
     dhlabUrl: string;
-
-    /**
-     * The url to the GitHub repository of the AWG edition website (awg-app).
-     */
-    githubUrl: string;
-
-    /**
-     * The url to salsah.
-     */
-    salsahUrl: string;
-
-    /**
-     * The latest version of the AWG edition website (awg-app).
-     */
-    version: string;
-
-    /**
-     * The release date of the latest version of the AWG edition website (awg-app).
-     */
-    versionReleaseDate: string;
-
-    /**
-     * The url to the Zenodo repository of the AWG edition website (awg-app).
-     */
-    zenodoUrl: string;
 }
 
 /**

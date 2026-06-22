@@ -76,15 +76,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToContain(titleEl.textContent, expectedTitle);
             });
 
-            it('... should not render pageMetaData yet', () => {
-                const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
-                const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
+            it('... should not render version desc info yet', () => {
+                const changeLogDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-desc', 1, 1);
 
-                const versionEl: HTMLElement = versionDes[0].nativeElement;
-                const versionDateEl: HTMLElement = versionDateDes[0].nativeElement;
-
-                expectToBe(versionEl.textContent, '');
-                expectToBe(versionDateEl.textContent, '');
+                getAndExpectDebugElementByCss(changeLogDes[0], 'a', 0, 0);
+                getAndExpectDebugElementByCss(changeLogDes[0], '#awg-version', 0, 0);
+                getAndExpectDebugElementByCss(changeLogDes[0], '#awg-version-date', 0, 0);
             });
         });
     });
@@ -100,9 +97,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render version values', () => {
-                const expectedVersion = expectedPageMetaData.version;
+                const expectedVersion = expectedPageMetaData.awgAppVersion;
                 const datePipe = new DatePipe('de-DE');
-                const expectedVersionDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
+                const expectedVersionDate = datePipe.transform(
+                    expectedPageMetaData.awgAppVersionReleaseDate,
+                    'longDate'
+                );
 
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);

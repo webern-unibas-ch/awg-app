@@ -417,7 +417,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
 
                     expect(githubEl).toBeDefined();
-                    expectToBe(githubEl.href, expectedPageMetaData.githubUrl);
+                    expectToBe(githubEl.href, expectedPageMetaData.awgAppGithubUrl);
                     expectToBe(githubEl.textContent, 'GitHub');
                 });
 
@@ -427,7 +427,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
 
                     expect(zenodoEl).toBeDefined();
-                    expectToBe(zenodoEl.href, expectedPageMetaData.zenodoUrl);
+                    expectToBe(zenodoEl.href, expectedPageMetaData.awgAppZenodoUrl);
                     expectToBe(zenodoEl.textContent, 'Zenodo');
                 });
             });
