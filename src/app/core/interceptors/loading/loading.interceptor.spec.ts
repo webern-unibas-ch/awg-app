@@ -35,7 +35,7 @@ describe('LoadingInterceptor (DONE)', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const apiUrl = AppConfig.AWG_APP_URL;
+    const apiUrl = AppConfig.AWG_APP_URL.endsWith('/') ? AppConfig.AWG_APP_URL : AppConfig.AWG_APP_URL + '/';
     const searchRoute = 'search/';
 
     beforeEach(() => {
