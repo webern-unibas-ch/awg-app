@@ -68,13 +68,13 @@ describe('FooterComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
 
     let expectedPageMetaData: MetaPage;
-    let expectedLogos: Logos;
+    let expectedLogosData: Logos;
 
     beforeEach(async () => {
         // Stub service for test purposes
         mockCoreService = {
             getMetaDataSection: sectionType => META_DATA[sectionType],
-            getLogos: () => expectedLogos,
+            getLogos: () => expectedLogosData,
         };
 
         await TestBed.configureTestingModule({
@@ -95,11 +95,8 @@ describe('FooterComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOS_DATA;
+        expectedLogosData = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
-
-        // Spies
-        vi.spyOn(component, 'provideMetaData');
     });
 
     afterEach(() => {
@@ -116,22 +113,12 @@ describe('FooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        describe('#provideMetaData()', () => {
-            it('... should have a method `provideMetaData`', () => {
-                expect(component.provideMetaData).toBeDefined();
-            });
+        it('... should not have pageMetaData', () => {
+            expect(component.pageMetaData()).toBeUndefined();
+        });
 
-            it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-
-            it('... should not have pageMetaData', () => {
-                expect(component.pageMetaData).toBeUndefined();
-            });
-
-            it('... should not have logos', () => {
-                expect(component.logos).toBeUndefined();
-            });
+        it('... should not have logos', () => {
+            expect(component.logosData()).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -202,24 +189,10 @@ describe('FooterComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Mock the call to the meta service in #provideMetaData
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
+            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
 
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        describe('#provideMetaData()', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return metadata', () => {
-                expectToEqual(component.pageMetaData, expectedPageMetaData);
-            });
-
-            it('... should return logos', () => {
-                expectToEqual(component.logos, expectedLogos);
-            });
         });
 
         describe('VIEW', () => {
@@ -245,9 +218,9 @@ describe('FooterComponent (DONE)', () => {
                     );
 
                     expectToBe(footerLogoCmps.length, 3);
-                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['unibas']);
-                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['sagw']);
-                    expectToEqual(footerLogoCmps[2].logo, expectedLogos['snf']);
+                    expectToEqual(footerLogoCmps[0].logo, expectedLogosData['unibas']);
+                    expectToEqual(footerLogoCmps[1].logo, expectedLogosData['sagw']);
+                    expectToEqual(footerLogoCmps[2].logo, expectedLogosData['snf']);
                 });
             });
 
@@ -291,7 +264,7 @@ describe('FooterComponent (DONE)', () => {
                         FooterPoweredbyStubComponent
                     ) as FooterPoweredbyStubComponent;
 
-                    expectToEqual(footerPoweredbyCmp.logos, expectedLogos);
+                    expectToEqual(footerPoweredbyCmp.logos, expectedLogosData);
                 });
             });
         });
