@@ -22,8 +22,8 @@
         <p class="italic">Online-Edition:</p>
         <p class="awg-citation-text">
             {{ page.awgProjectName }}. Online-Edition (Version
-            <span class="awg-citation-version">{{ page?.version }}</span> vom
-            <span class="awg-citation-version-release">{{ page?.versionReleaseDate | date: 'longDate' }}</span
+            <span class="awg-citation-version">{{ page?.awgAppVersion }}</span> vom
+            <span class="awg-citation-version-release">{{ page?.awgAppVersionReleaseDate | date: 'longDate' }}</span
             >): <a href="{{ page?.awgAppUrl }}"> {{ page?.awgAppUrl }} </a>, abgerufen am
             <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
             >.
@@ -39,8 +39,8 @@
         <p class="awg-documentation-text">
             <span class="smallcaps">GitHub:</span><br />
             Repository unter:
-            <a href="{{ page?.githubUrl }}">
-                {{ page?.githubUrl }}
+            <a href="{{ page?.awgAppGithubUrl }}">
+                {{ page?.awgAppGithubUrl }}
             </a>
         </p>
 
@@ -116,7 +116,7 @@
 
         <p>
             Der Software-Code der Online-Edition wird auf
-            <a href="{{ page?.githubUrl }}">GitHub</a> unter einer
+            <a href="{{ page?.awgAppGithubUrl }}">GitHub</a> unter einer
             <a href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur Verfügung gestellt.
         </p>
 

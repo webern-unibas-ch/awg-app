@@ -13,17 +13,16 @@ const META_PAGE: MetaPage = {
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
     awgAppDevUrl: AppConfig.AWG_APP_URL + '/dev/',
+    awgAppGithubUrl: AppConfig.AWG_APP_GITHUB_URL,
+    awgAppVersion: AppConfig.AWG_APP_VERSION,
+    awgAppVersionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
+    awgAppZenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
     compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
     daschUrl: AppConfig.DASCH_URL,
     deepWikiUrl: AppConfig.DEEP_WIKI_URL,
     dhlabUrl: AppConfig.DHLAB_URL,
-    githubUrl: AppConfig.AWG_APP_GITHUB_URL,
-    salsahUrl: AppConfig.SALSAH_URL,
-    version: AppConfig.AWG_APP_VERSION,
-    versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
-    zenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
 };
 
 /**

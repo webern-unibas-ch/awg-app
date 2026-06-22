@@ -5,18 +5,6 @@ import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
  */
 export class AppConfig {
     /**
-     * Getter for the URL of the Salsah API endpoint
-     * ({@link https://www.salsah.org/api}).
-     *
-     * @returns {string}
-     */
-    public static get API_ENDPOINT(): string {
-        const root = AppConfig.SALSAH_URL;
-        const api = 'api/';
-        return root + api;
-    }
-
-    /**
      * Getter for the URL of the Analytics endpoint
      * ({@link https://www.google-analytics.com/}).
      *
@@ -143,16 +131,6 @@ export class AppConfig {
         const mapLinkRoot = 'https://www.openstreetmap.org/';
         const mapLinkId = '?mlat=47.55897&mlon=7.58451#map=19/47.55897/7.58451';
         return mapLinkRoot + mapLinkId;
-    }
-
-    /**
-     * Getter for the URL of SALSAH
-     * ({@link https://www.salsah.org}).
-     *
-     * @returns {string}
-     */
-    public static get SALSAH_URL(): string {
-        return 'https://www.salsah.org/';
     }
 
     /**

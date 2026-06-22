@@ -100,9 +100,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render version values', () => {
-                const expectedVersion = expectedPageMetaData.version;
+                const expectedVersion = expectedPageMetaData.awgAppVersion;
                 const datePipe = new DatePipe('de-DE');
-                const expectedVersionDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
+                const expectedVersionDate = datePipe.transform(
+                    expectedPageMetaData.awgAppVersionReleaseDate,
+                    'longDate'
+                );
 
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);

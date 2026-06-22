@@ -247,10 +247,10 @@ describe('ContactViewComponent (DONE)', () => {
                 // Pipe
                 const datePipe = new DatePipe('de-DE');
                 const pipedToday = datePipe.transform(expectedToday, 'longDate');
-                const pipedReleaseDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
+                const pipedReleaseDate = datePipe.transform(expectedPageMetaData.awgAppVersionReleaseDate, 'longDate');
 
                 // Check output
-                expectToContain(versionEl.textContent, expectedPageMetaData.version);
+                expectToContain(versionEl.textContent, expectedPageMetaData.awgAppVersion);
                 expectToContain(releaseEl.textContent, pipedReleaseDate);
                 expectToContain(dateEl0.textContent, pipedToday);
                 expectToContain(dateEl1.textContent, pipedToday);
