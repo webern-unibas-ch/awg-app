@@ -214,7 +214,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/core/core-models/meta.model.ts:291</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/app/core/core-models/meta.model.ts:286</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/app/core/core-models/meta.model.ts:281</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/app/core/core-models/meta.model.ts:276</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@ to store the metadata for different parts of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/app/core/core-models/meta.model.ts:286</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/app/core/core-models/meta.model.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -413,6 +413,26 @@ export class MetaPage {
     awgAppDevUrl: string;
 
     /**
+     * The url to the GitHub repository of the AWG edition website (awg-app).
+     */
+    awgAppGithubUrl: string;
+
+    /**
+     * The latest version of the AWG edition website (awg-app).
+     */
+    awgAppVersion: string;
+
+    /**
+     * The release date of the latest version of the AWG edition website (awg-app).
+     */
+    awgAppVersionReleaseDate: string;
+
+    /**
+     * The url to the Zenodo repository of the AWG edition website (awg-app).
+     */
+    awgAppZenodoUrl: string;
+
+    /**
      * The name of the AWG.
      */
     awgProjectName: string;
@@ -441,31 +461,6 @@ export class MetaPage {
      * The url to the DHLab Basel.
      */
     dhlabUrl: string;
-
-    /**
-     * The url to the GitHub repository of the AWG edition website (awg-app).
-     */
-    githubUrl: string;
-
-    /**
-     * The url to salsah.
-     */
-    salsahUrl: string;
-
-    /**
-     * The latest version of the AWG edition website (awg-app).
-     */
-    version: string;
-
-    /**
-     * The release date of the latest version of the AWG edition website (awg-app).
-     */
-    versionReleaseDate: string;
-
-    /**
-     * The url to the Zenodo repository of the AWG edition website (awg-app).
-     */
-    zenodoUrl: string;
 }
 
 /**

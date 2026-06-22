@@ -1060,9 +1060,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GraphSparqlQuery.html" data-type="entity-link" >GraphSparqlQuery</a>
                             </li>
                             <li class="link">
-                                <a href="classes/HttpCache.html" data-type="entity-link" >HttpCache</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/Intro.html" data-type="entity-link" >Intro</a>
                             </li>
                             <li class="link">
@@ -1283,9 +1280,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/GraphVisualizerService.html" data-type="entity-link" >GraphVisualizerService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/HttpCacheService.html" data-type="entity-link" >HttpCacheService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/LoadingService.html" data-type="entity-link" >LoadingService</a>
                                 </li>
                                 <li class="link">
@@ -1307,9 +1301,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="interceptors-links"' : 'id="xs-interceptors-links"' }>
-                            <li class="link">
-                                <a href="interceptors/CachingInterceptor.html" data-type="entity-link" >CachingInterceptor</a>
-                            </li>
                             <li class="link">
                                 <a href="interceptors/LoadingInterceptor.html" data-type="entity-link" >LoadingInterceptor</a>
                             </li>

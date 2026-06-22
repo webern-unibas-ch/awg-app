@@ -473,7 +473,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-30-g713fee4d7&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-31-g7c157a6d8&#x27;</code>
                     </td>
                 </tr>
 
@@ -2157,11 +2157,6 @@ to store the trademarks data.</p>
                         <i>Default value : </i><code>[
     {
         provide: HTTP_INTERCEPTORS,
-        useClass: CachingInterceptor,
-        multi: true,
-    },
-    {
-        provide: HTTP_INTERCEPTORS,
         useClass: LoadingInterceptor,
         multi: true,
     },
@@ -2172,9 +2167,7 @@ to store the trademarks data.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>HttpInterceptorProviders for the data (search) view.</p>
-<p>They allow to intercept and cache the search requests
-using the <a href="../interceptors/CachingInterceptor.html">CachingInterceptor</a> and to
-update the loading status using the <a href="../interceptors/LoadingInterceptor.html">LoadingInterceptor</a>.</p>
+<p>They allow to update the loading status using the <a href="../interceptors/LoadingInterceptor.html">LoadingInterceptor</a>.</p>
 </div>
                 </td>
             </tr>
@@ -2400,17 +2393,16 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
     awgAppDevUrl: AppConfig.AWG_APP_URL + &#x27;/dev/&#x27;,
+    awgAppGithubUrl: AppConfig.AWG_APP_GITHUB_URL,
+    awgAppVersion: AppConfig.AWG_APP_VERSION,
+    awgAppVersionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
+    awgAppZenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
     compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
     daschUrl: AppConfig.DASCH_URL,
     deepWikiUrl: AppConfig.DEEP_WIKI_URL,
     dhlabUrl: AppConfig.DHLAB_URL,
-    githubUrl: AppConfig.AWG_APP_GITHUB_URL,
-    salsahUrl: AppConfig.SALSAH_URL,
-    version: AppConfig.AWG_APP_VERSION,
-    versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
-    zenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
 }</code>
                     </td>
                 </tr>
