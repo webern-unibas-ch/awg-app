@@ -1,9 +1,11 @@
 <p class="awg-version-title">AWG-Online-Edition</p>
 <p class="awg-version-desc">
-    <a [attr.href]="{{ pageMetaData?.awgAppGithubUrl }}/blob/v{{ pageMetaData?.awgAppVersion }}/CHANGELOG.md">
-        Version <span id="awg-version">{{ pageMetaData?.awgAppVersion }}</span> &#9671;
-        <span id="awg-version-date">{{ pageMetaData?.awgAppVersionReleaseDate | date: 'longDate' }}</span>
-    </a>
+    @if (changelogUrl) {
+        <a [href]="changelogUrl"
+            >Version <span id="awg-version">{{ pageMetaData?.awgAppVersion }}</span> &#9671;
+            <span id="awg-version-date">{{ pageMetaData?.awgAppVersionReleaseDate | date: 'longDate' }}</span></a
+        >
+    }
 </p>
 <p id="awg-contact-link">
     <small>
