@@ -1,5 +1,10 @@
-@let currentLogo = logo();
-
-<a class="awg-logo-link" [href]="currentLogo.href">
-    <img [class]="logoClassList()" [id]="currentLogo.id" [src]="currentLogo.src" [alt]="currentLogo.alt" width="200" />
-</a>
+@if (logo(); as currentLogo) {
+    <a class="awg-logo-link" [href]="currentLogo.href">
+        <img
+            [class]="logoClassList()"
+            [id]="currentLogo.id"
+            [src]="currentLogo.src"
+            [alt]="currentLogo.alt"
+            width="200" />
+    </a>
+}

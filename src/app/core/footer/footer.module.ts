@@ -9,8 +9,14 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
 import { FooterComponent } from './footer.component';
 
 @NgModule({
-    imports: [SharedModule, FooterDeclarationComponent, FooterLogoComponent],
-    declarations: [FooterComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
+    imports: [
+        SharedModule,
+        FooterCopyrightComponent,
+        FooterDeclarationComponent,
+        FooterLogoComponent,
+        FooterPoweredbyComponent,
+    ],
+    declarations: [FooterComponent],
     exports: [FooterComponent],
 })
 export class FooterModule {}
