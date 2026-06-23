@@ -43,7 +43,9 @@ export class FooterPoweredbyComponent {
         const logos = this.logos();
         const page = this.pageMetaData();
 
-        if (!logos || !page) {return null;}
+        if (!logos || !page) {
+            return null;
+        }
         return { logos, page };
     });
 

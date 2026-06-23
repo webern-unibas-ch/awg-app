@@ -2,6 +2,7 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -17,7 +18,6 @@ import {
 import { META_DATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
-import { provideRouter, Router, RouterLink } from '@angular/router';
 import { FooterDeclarationComponent } from './footer-declaration.component';
 
 registerLocaleData(localeDeDE);
