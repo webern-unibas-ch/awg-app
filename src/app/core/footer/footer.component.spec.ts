@@ -146,7 +146,7 @@ describe('FooterComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
 
-                it('... should not pass down pageMetaData to footer declaration component yet', () => {
+                it('... should throw due to missing required values for footer declaration component', () => {
                     const footerDeclarationDes = getAndExpectDebugElementByDirective(
                         compDe,
                         FooterDeclarationStubComponent,
@@ -157,7 +157,8 @@ describe('FooterComponent (DONE)', () => {
                         FooterDeclarationStubComponent
                     ) as FooterDeclarationStubComponent;
 
-                    expectToBe(footerDeclarationCmp.pageMetaData(), undefined);
+                    // Expect the required inputs to throw if not provided
+                    expect(() => footerDeclarationCmp.pageMetaData()).toThrow();
                 });
 
                 it('... should contain no footer logo components (stubbed) in second inner div yet', () => {
