@@ -25,7 +25,7 @@ describe('FooterLogoComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FooterLogoComponent],
+            imports: [FooterLogoComponent],
         }).compileComponents();
     });
 
@@ -57,21 +57,9 @@ describe('FooterLogoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one image inside an anchor a', () => {
-                getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-            });
-
-            it('... should not render logo yet', () => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
-
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
-                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
-
-                expectToBe(anchorEl.href, '');
-                expectToBe(imageEl.id, '');
-                expectToBe(imageEl.src, '');
-                expectToBe(imageEl.alt, '');
+            it('... should contain no anchor or image yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'a > img', 0, 0);
             });
         });
     });
@@ -126,6 +114,10 @@ describe('FooterLogoComponent (DONE)', () => {
                     imageEl: imageDes[0].nativeElement as HTMLImageElement,
                 };
             };
+
+            it('... should contain one image inside an anchor a', () => {
+                getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
+            });
 
             it('... should display the correct attributes (href, id, src, alt) for each logo', async () => {
                 const logosToTest = [

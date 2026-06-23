@@ -2,17 +2,17 @@ import { NgModule, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { SharedModule } from '@awg-shared/shared.module';
-import { FooterModule } from './footer/footer.module';
 
+import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ViewContainerComponent } from './view-container/view-container.component';
 
 import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
-    imports: [SharedModule, FooterModule],
+    imports: [SharedModule, FooterComponent],
     declarations: [NavbarComponent, ViewContainerComponent],
-    exports: [NavbarComponent, ViewContainerComponent, FooterModule],
+    exports: [NavbarComponent, ViewContainerComponent, FooterComponent],
     providers: [httpInterceptorProviders, Title],
 })
 export class CoreModule {
