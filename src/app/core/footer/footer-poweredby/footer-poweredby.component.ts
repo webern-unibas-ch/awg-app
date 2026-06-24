@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
 import { Logos, MetaPage } from '@awg-core/core-models';
+
+import { FooterLogoComponent } from '../footer-logo/footer-logo.component';
 
 /**
  * The FooterPoweredBy component.
@@ -14,24 +17,42 @@ import { Logos, MetaPage } from '@awg-core/core-models';
     templateUrl: './footer-poweredby.component.html',
     styleUrls: ['./footer-poweredby.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [FaIconComponent, FooterLogoComponent],
 })
 export class FooterPoweredbyComponent {
     /**
-     * Input variable: logos.
+     * Input signal: logosData.
      *
-     * It keeps the logos data for the component.
+     * It holds the logos data for the component.
      */
-    @Input()
-    logos: Logos;
+    logosData = input.required<Logos>();
 
     /**
-     * Input variable: pageMetaData.
+     * Input signal: pageMetaData.
      *
-     * It keeps the page metadata for the component.
+     * It holds the page metadata for the footer poweredby section.
      */
-    @Input()
-    pageMetaData: MetaPage;
+    pageMetaData = input.required<MetaPage>();
+
+    /**
+     * Computed signal: poweredByData.
+     *
+     * It computes the relevant logos and pageMetaData for the poweredby section.
+     */
+    poweredByData = computed(() => {
+        const logos = this.logosData();
+        const page = this.pageMetaData();
+
+        const githubLogo = logos?.['github'];
+        const angularLogo = logos?.['angular'];
+        const bootstrapLogo = logos?.['bootstrap'];
+        const devUrl = page?.awgAppDevUrl;
+
+        if (!githubLogo || !angularLogo || !bootstrapLogo || !devUrl) {
+            return null;
+        }
+        return { githubLogo, angularLogo, bootstrapLogo, devUrl };
+    });
 
     /**
      * Public variable: faScrewdriverWrench.

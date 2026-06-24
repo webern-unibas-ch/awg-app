@@ -1,11 +1,13 @@
-<div class="awg-powered-by text-lowercase">
-    Built on <awg-footer-logo [logo]="logos?.['github']" class="icon" />
-    <br class="d-md-none" />
-    with <awg-footer-logo [logo]="logos?.['angular']" class="icon" /> and
-    <awg-footer-logo [logo]="logos?.['bootstrap']" class="icon" />
-    <span>
-        |
-        <a id="dev-preview-link" href="{{ pageMetaData?.awgAppDevUrl }}"
-            ><fa-icon [title]="'Preview for develop'" [icon]="faScrewdriverWrench" /></a
-    ></span>
-</div>
+@if (poweredByData(); as data) {
+    <div class="awg-powered-by text-lowercase">
+        Built on <awg-footer-logo [logoData]="data.githubLogo" class="icon" />
+        <br class="d-md-none" />
+        with <awg-footer-logo [logoData]="data.angularLogo" class="icon" /> and
+        <awg-footer-logo [logoData]="data.bootstrapLogo" class="icon" />
+        <span>
+            |
+            <a id="dev-preview-link" [href]="data.devUrl"
+                ><fa-icon [title]="'Preview for the develop branch'" [icon]="faScrewdriverWrench" /></a
+        ></span>
+    </div>
+}

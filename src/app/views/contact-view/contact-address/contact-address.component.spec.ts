@@ -32,6 +32,10 @@ describe('ContactAddressComponent (DONE)', () => {
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
+
+        // Set required input signal with default value for initial tests
+        fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+        fixture.componentRef.setInput('contactMetaData', {} as MetaContact);
     });
 
     it('... should create', () => {
@@ -39,11 +43,11 @@ describe('ContactAddressComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `pageMetaData`', () => {
+        it('... should have required `pageMetaData`', () => {
             expectToEqual(component.pageMetaData(), {} as MetaPage);
         });
 
-        it('... should have default `contactMetaData`', () => {
+        it('... should have required `contactMetaData`', () => {
             expectToEqual(component.contactMetaData(), {} as MetaContact);
         });
 
@@ -109,22 +113,7 @@ describe('ContactAddressComponent (DONE)', () => {
         });
     });
 
-    describe('AFTER initial data binding (default values)', () => {
-        beforeEach(() => {
-            // Trigger initial data binding
-            fixture.detectChanges();
-        });
-
-        it('... should have default `pageMetaData`', () => {
-            expectToEqual(component.pageMetaData(), {} as MetaPage);
-        });
-
-        it('... should have default `contactMetaData`', () => {
-            expectToEqual(component.contactMetaData(), {} as MetaContact);
-        });
-    });
-
-    describe('AFTER initial data binding (update)', () => {
+    describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent updating the inputs
             fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);

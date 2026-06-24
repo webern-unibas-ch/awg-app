@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -19,7 +19,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FooterCopyrightComponent],
+            imports: [FooterCopyrightComponent],
         }).compileComponents();
     });
 
@@ -30,6 +30,9 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+
+        // Set required input signal with default value for initial tests
+        fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
     });
 
     it('... should create', () => {
@@ -37,27 +40,13 @@ describe('FooterCopyrightComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have pageMetaData', () => {
-            expect(component.pageMetaData).toBeUndefined();
+        it('... should have required `pageMetaData` input', () => {
+            expectToEqual(component.pageMetaData(), {} as MetaPage);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.awg-copyright-desc', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
-            });
-
-            it('... should not render copyright period yet', () => {
-                const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
-                const copyEl: HTMLElement = copyDes[0].nativeElement;
-
-                expectToBe(copyEl.textContent, '');
-            });
-
-            it('... should not render project name yet', () => {
-                const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
-                const nameEl: HTMLElement = nameDes[0].nativeElement;
-
-                expectToBe(nameEl.textContent, '');
+            it('... should contain no div.awg-copyright-desc yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 0, 0);
             });
         });
     });
@@ -65,25 +54,28 @@ describe('FooterCopyrightComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.pageMetaData = expectedPageMetaData;
+            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have pageMetaData', () => {
-            expectToEqual(component.pageMetaData, expectedPageMetaData);
+        it('... should have updated `pageMetaData` input', () => {
+            expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
         describe('VIEW', () => {
+            it('... should contain 1 div.awg-copyright-desc', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
+            });
+
             it('... should render copyright period', () => {
-                const expectedYearStart = expectedPageMetaData.yearStart;
-                const expectedYearCurrent = expectedPageMetaData.yearCurrent;
+                const expectedPeriod = `${expectedPageMetaData.yearStart}–${expectedPageMetaData.yearCurrent}`;
 
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl: HTMLElement = copyDes[0].nativeElement;
 
-                expectToContain(copyEl.textContent, expectedYearStart + '–' + expectedYearCurrent);
+                expectToContain(copyEl.textContent, expectedPeriod);
             });
 
             it('... should render project name', () => {

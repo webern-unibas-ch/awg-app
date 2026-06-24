@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
@@ -13,27 +13,23 @@ import { Logo } from '@awg-core/core-models';
     templateUrl: './footer-logo.component.html',
     styleUrls: ['./footer-logo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class FooterLogoComponent {
     /**
-     * Input variable: logo.
+     * Input signal: logoData.
      *
-     * It keeps the logo data for the component.
+     * It holds the logo data for the component.
      */
-    @Input()
-    logo: Logo;
+    logoData = input.required<Logo>();
 
     /**
-     * Public variable: getLogoClass.
+     * Computed signal: logoClassList.
      *
-     * It checks a given logo id and returns the corresponding class list.
-     *
-     * @param {string} id The given logo id.
-     *
-     * @returns {string} The class list for the logo.
+     * It derives the CSS class list automatically whenever the logo input changes.
      */
-    getLogoClass(id: string | undefined): string {
+    logoClassList = computed(() => {
+        const id = this.logoData().id;
+
         const isSnfLogo = id === LOGOS_DATA['snf'].id;
         const isUnibasLogo = id === LOGOS_DATA['unibas'].id;
         const isSagwLogo = id === LOGOS_DATA['sagw'].id;
@@ -46,5 +42,5 @@ export class FooterLogoComponent {
             classList += ' float-end';
         }
         return classList;
-    }
+    });
 }

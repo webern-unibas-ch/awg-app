@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { MetaPage } from '@awg-core/core-models';
 
@@ -6,34 +8,41 @@ import { MetaPage } from '@awg-core/core-models';
  * The FooterDeclaration component.
  *
  * It contains the declaration section of the footer
- * with version number, release date and impressum.
+ * with version number, release date and imprint.
  */
 @Component({
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
     styleUrls: ['./footer-declaration.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [DatePipe, RouterLink],
 })
 export class FooterDeclarationComponent {
     /**
-     * Input variable: pageMetaData.
+     * Input signal: pageMetaData.
      *
-     * It keeps the page metadata for the component.
+     * It holds the page metadata for the footer declaration.
      */
-    @Input()
-    pageMetaData: MetaPage;
+    pageMetaData = input.required<MetaPage>();
 
     /**
-     * Public getter: changelogUrl.
+     * Computed signal: versionData.
      *
-     * It returns the URL to the changelog file in the GitHub repository
-     * based on the app version and GitHub URL from the page metadata.
+     * It computes the relevant pageMetaData for the footer declaration.
      */
-    get changelogUrl(): string | null {
-        if (!this.pageMetaData?.awgAppGithubUrl || !this.pageMetaData?.awgAppVersion) {
+    versionData = computed(() => {
+        const page = this.pageMetaData();
+
+        if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {
             return null;
         }
-        return `${this.pageMetaData.awgAppGithubUrl}/blob/v${this.pageMetaData.awgAppVersion}/CHANGELOG.md`;
-    }
+
+        const url = `${page.awgAppGithubUrl}/blob/v${page.awgAppVersion}/CHANGELOG.md`;
+
+        return {
+            url,
+            version: page.awgAppVersion,
+            versionDate: page.awgAppVersionReleaseDate,
+        };
+    });
 }
