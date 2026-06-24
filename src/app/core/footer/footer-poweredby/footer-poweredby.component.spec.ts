@@ -207,6 +207,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                     incompleteLogos['github'] = undefined;
 
                     fixture.componentRef.setInput('logosData', incompleteLogos);
+                    fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+
                     expectToBe(component.poweredByData(), null);
                 });
 
@@ -215,6 +217,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                     incompleteLogos['angular'] = undefined;
 
                     fixture.componentRef.setInput('logosData', incompleteLogos);
+                    fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+
                     expectToBe(component.poweredByData(), null);
                 });
 
@@ -223,18 +227,18 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                     incompleteLogos['bootstrap'] = undefined;
 
                     fixture.componentRef.setInput('logosData', incompleteLogos);
+                    fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+
                     expectToBe(component.poweredByData(), null);
                 });
 
                 it('... devUrl is missing', () => {
-                    // Da die vorherigen Tests logosData manipuliert haben, setzen wir hier
-                    // Zur Sicherheit wieder die gültigen Standard-Logos ein
-                    fixture.componentRef.setInput('logosData', expectedLogosData);
-
                     const incompletePageMetaData = structuredClone(expectedPageMetaData);
                     incompletePageMetaData.awgAppDevUrl = undefined;
 
+                    fixture.componentRef.setInput('logosData', expectedLogosData);
                     fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
                     expectToBe(component.poweredByData(), null);
                 });
             });
