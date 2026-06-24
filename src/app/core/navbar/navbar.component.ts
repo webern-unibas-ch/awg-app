@@ -79,7 +79,8 @@ export class NavbarComponent {
      *
      * It computes the array of edition sections to be displayed in the navbar.
      */
-    displayedSections = computed(() => this.sectionsData().map(editionSection => {
+    displayedSections = computed(() =>
+        this.sectionsData().map(editionSection => {
             const baseRoute = [
                 EDITION_ROUTE_CONSTANTS.EDITION.route,
                 EDITION_ROUTE_CONSTANTS.SERIES.route,
@@ -95,7 +96,8 @@ export class NavbarComponent {
                 shortTitle,
                 fullTitle: editionSection.section.full,
             };
-        }));
+        })
+    );
 
     /**
      * Public signal: isEditionRouteActive.
