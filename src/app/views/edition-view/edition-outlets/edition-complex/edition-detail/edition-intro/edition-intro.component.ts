@@ -127,6 +127,8 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit() {
+        this.updateEditionState();
+
         this.getEditionIntroData();
     }
 
@@ -139,22 +141,22 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this._editionStateService.clearIsIntroView();
-        this.editionIntroData$ = undefined;
-
         this._destroyed$.next(true);
         this._destroyed$.complete();
+
+        this._editionStateService.clearIsIntroView();
+        this.editionIntroData$ = undefined;
     }
 
     /**
-     * Public method: getEditionIntroData.
+     * Public method: updateEditionState.
      *
-     * It updates the current edition state and loads the intro data.
+     * It updates the current edition state.
      *
-     * @returns {void} Updates the current edition state and loads the intro data.
+     * @returns {void} Updates the current edition state.
      */
-    getEditionIntroData(): void {
-        this._router.events.subscribe(events => {
+    updateEditionState(): void {
+        this._router.events.pipe(takeUntil(this._destroyed$)).subscribe(events => {
             if (this._isNavigationEndToIntro(events)) {
                 const { seriesNumber, sectionNumber } = this._extractUrlSegments(events.urlAfterRedirects);
 
@@ -165,7 +167,41 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
                 }
             }
         });
-        this._loadEditionIntroData();
+    }
+
+    /**
+     * Public method: getEditionIntroData.
+     *
+     * It gets the current edition intro data from the EditionDataService.
+     *
+     * @returns {void} Gets the current edition intro data.
+     */
+    getEditionIntroData(): void {
+        this.editionIntroData$ = combineLatest([
+            this._editionStateService.getSelectedEditionSeries(),
+            this._editionStateService.getSelectedEditionSection(),
+            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
+        ]).pipe(
+            switchMap(([series, section, complex]) => {
+                if (!series || !section) {
+                    return EMPTY;
+                }
+                const isComplexValidForSection =
+                    complex &&
+                    complex.pubStatement?.series?.route === series.series.route &&
+                    complex.pubStatement?.section?.route === section.section.route;
+
+                const activeComplex = isComplexValidForSection ? complex : null;
+
+                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex).pipe(
+                    startWith(null) // Emit null to show the loading spinner while fetching data
+                );
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
@@ -355,35 +391,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     private _isNavigationEndToIntro(events: any): events is NavigationEnd {
         return events instanceof NavigationEnd && events.urlAfterRedirects?.includes('intro');
-    }
-
-    /**
-     * Private method: _loadEditionIntroData.
-     *
-     * It gets the current edition complex from the EditionStateService
-     * and the observable of the corresponding intro data
-     * from the EditionDataService.
-     *
-     * @returns {void} Loads the intro data.
-     */
-    private _loadEditionIntroData(): void {
-        this.editionIntroData$ = combineLatest([
-            this._editionStateService.getSelectedEditionSeries(),
-            this._editionStateService.getSelectedEditionSection(),
-            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
-        ]).pipe(
-            switchMap(([series, section, complex]) => {
-                if (series && section) {
-                    return this._fetchAndFilterIntroData(series.series.route, section.section.route, complex);
-                } else {
-                    return EMPTY;
-                }
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
     }
 
     /**
