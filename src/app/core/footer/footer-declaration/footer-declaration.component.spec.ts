@@ -106,7 +106,9 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const contactLinkDes = getAndExpectDebugElementByCss(compDe, 'p#awg-contact-link', 1, 1);
                 const contactLinkEl: HTMLParagraphElement = contactLinkDes[0].nativeElement;
 
-                expectToContain(contactLinkEl.textContent.trim(), 'Impressum | Dokumentation');
+                const normalizedLinkText = contactLinkEl.textContent.replace(/\s+/g, ' ').trim();
+
+                expectToContain(normalizedLinkText, 'Impressum | Dokumentation');
             });
         });
     });

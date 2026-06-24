@@ -17,7 +17,7 @@ export class FooterCopyrightComponent {
     /**
      * Input signal: pageMetaData.
      *
-     * It holds the page metadata for the footer declaration.
+     * It holds the page metadata for the footer copyright.
      */
     pageMetaData = input.required<MetaPage>();
 }

@@ -70,7 +70,7 @@ describe('FooterComponent (DONE)', () => {
         // Mock service for test purposes
         mockCoreService = {
             getMetaDataSection: sectionType => META_DATA[sectionType],
-            getLogos: () => expectedLogosData,
+            getLogos: () => LOGOS_DATA,
         };
 
         await TestBed.configureTestingModule({

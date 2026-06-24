@@ -30,14 +30,14 @@ export class FooterPoweredbyComponent {
     /**
      * Input signal: pageMetaData.
      *
-     * It holds the page metadata for the footer powerdby section.
+     * It holds the page metadata for the footer poweredby section.
      */
     pageMetaData = input.required<MetaPage>();
 
     /**
      * Computed signal: poweredByData.
      *
-     * It computes the relevant logos and pageMetaData for the powerdby section.
+     * It computes the relevant logos and pageMetaData for the poweredby section.
      */
     poweredByData = computed(() => {
         const logos = this.logosData();
