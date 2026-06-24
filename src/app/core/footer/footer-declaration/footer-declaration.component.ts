@@ -26,16 +26,23 @@ export class FooterDeclarationComponent {
     pageMetaData = input.required<MetaPage>();
 
     /**
-     * Computed signal: changelogUrl.
+     * Computed signal: versionData.
      *
-     * It computes the URL to the changelog file in the GitHub repository.
+     * It computes the relevant pageMetaData for the footer declaration.
      */
-    changelogUrl = computed(() => {
-        const meta = this.pageMetaData();
+    versionData = computed(() => {
+        const page = this.pageMetaData();
 
-        if (!meta?.awgAppGithubUrl || !meta?.awgAppVersion) {
+        if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {
             return null;
         }
-        return `${meta.awgAppGithubUrl}/blob/v${meta.awgAppVersion}/CHANGELOG.md`;
+
+        const url = `${page.awgAppGithubUrl}/blob/v${page.awgAppVersion}/CHANGELOG.md`;
+
+        return {
+            url,
+            version: page.awgAppVersion,
+            versionDate: page.awgAppVersionReleaseDate,
+        };
     });
 }

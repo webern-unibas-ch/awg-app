@@ -1,13 +1,13 @@
-@if (poweredBydata(); as data) {
+@if (poweredByData(); as data) {
     <div class="awg-powered-by text-lowercase">
-        Built on <awg-footer-logo [logo]="data.logos['github']" class="icon" />
+        Built on <awg-footer-logo [logoData]="data.githubLogo" class="icon" />
         <br class="d-md-none" />
-        with <awg-footer-logo [logo]="data.logos['angular']" class="icon" /> and
-        <awg-footer-logo [logo]="data.logos['bootstrap']" class="icon" />
+        with <awg-footer-logo [logoData]="data.angularLogo" class="icon" /> and
+        <awg-footer-logo [logoData]="data.bootstrapLogo" class="icon" />
         <span>
             |
-            <a id="dev-preview-link" [href]="data.page.awgAppDevUrl"
-                ><fa-icon [title]="'Preview for develop'" [icon]="faScrewdriverWrench" /></a
+            <a id="dev-preview-link" [href]="data.devUrl"
+                ><fa-icon [title]="'Preview for the develop branch'" [icon]="faScrewdriverWrench" /></a
         ></span>
     </div>
 }

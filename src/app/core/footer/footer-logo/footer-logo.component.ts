@@ -16,11 +16,11 @@ import { Logo } from '@awg-core/core-models';
 })
 export class FooterLogoComponent {
     /**
-     * Input signal: logo.
+     * Input signal: logoData.
      *
      * It holds the logo data for the component.
      */
-    logo = input.required<Logo>();
+    logoData = input.required<Logo>();
 
     /**
      * Computed signal: logoClassList.
@@ -28,7 +28,7 @@ export class FooterLogoComponent {
      * It derives the CSS class list automatically whenever the logo input changes.
      */
     logoClassList = computed(() => {
-        const id = this.logo().id;
+        const id = this.logoData().id;
 
         const isSnfLogo = id === LOGOS_DATA['snf'].id;
         const isUnibasLogo = id === LOGOS_DATA['unibas'].id;

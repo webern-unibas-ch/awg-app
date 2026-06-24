@@ -44,7 +44,7 @@ class FooterDeclarationStubComponent {
     template: '',
 })
 class FooterLogoStubComponent {
-    logo = input.required<Logo>();
+    logoData = input.required<Logo>();
 }
 
 @Component({
@@ -52,7 +52,7 @@ class FooterLogoStubComponent {
     template: '',
 })
 class FooterPoweredbyStubComponent {
-    logos = input.required<Logos>();
+    logosData = input.required<Logos>();
     pageMetaData = input.required<MetaPage>();
 }
 
@@ -75,26 +75,27 @@ describe('FooterComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [FooterComponent],
-            declarations: [],
             providers: [{ provide: CoreService, useValue: mockCoreService }],
-        }).overrideComponent(FooterComponent, {
-            remove: {
-                imports: [
-                    FooterLogoComponent,
-                    FooterDeclarationComponent,
-                    FooterCopyrightComponent,
-                    FooterPoweredbyComponent,
-                ],
-            },
-            add: {
-                imports: [
-                    FooterLogoStubComponent,
-                    FooterDeclarationStubComponent,
-                    FooterCopyrightStubComponent,
-                    FooterPoweredbyStubComponent,
-                ],
-            },
-        });
+        })
+            .overrideComponent(FooterComponent, {
+                remove: {
+                    imports: [
+                        FooterLogoComponent,
+                        FooterDeclarationComponent,
+                        FooterCopyrightComponent,
+                        FooterPoweredbyComponent,
+                    ],
+                },
+                add: {
+                    imports: [
+                        FooterLogoStubComponent,
+                        FooterDeclarationStubComponent,
+                        FooterCopyrightStubComponent,
+                        FooterPoweredbyStubComponent,
+                    ],
+                },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -250,9 +251,9 @@ describe('FooterComponent (DONE)', () => {
                     );
 
                     expectToBe(footerLogoCmps.length, 3);
-                    expectToEqual(footerLogoCmps[0].logo(), expectedLogosData['unibas']);
-                    expectToEqual(footerLogoCmps[1].logo(), expectedLogosData['sagw']);
-                    expectToEqual(footerLogoCmps[2].logo(), expectedLogosData['snf']);
+                    expectToEqual(footerLogoCmps[0].logoData(), expectedLogosData['unibas']);
+                    expectToEqual(footerLogoCmps[1].logoData(), expectedLogosData['sagw']);
+                    expectToEqual(footerLogoCmps[2].logoData(), expectedLogosData['snf']);
                 });
             });
 
@@ -296,7 +297,7 @@ describe('FooterComponent (DONE)', () => {
                         FooterPoweredbyStubComponent
                     ) as FooterPoweredbyStubComponent;
 
-                    expectToEqual(footerPoweredbyCmp.logos(), expectedLogosData);
+                    expectToEqual(footerPoweredbyCmp.logosData(), expectedLogosData);
                 });
             });
         });

@@ -21,32 +21,37 @@ import { FooterLogoComponent } from '../footer-logo/footer-logo.component';
 })
 export class FooterPoweredbyComponent {
     /**
-     * Input signal: logos.
+     * Input signal: logosData.
      *
      * It holds the logos data for the component.
      */
-    logos = input.required<Logos>();
+    logosData = input.required<Logos>();
 
     /**
      * Input signal: pageMetaData.
      *
-     * It holds the page metadata for the footer declaration.
+     * It holds the page metadata for the footer powerdby section.
      */
     pageMetaData = input.required<MetaPage>();
 
     /**
-     * Computed signal: poweredBydata.
+     * Computed signal: poweredByData.
      *
-     * It combines the logos and pageMetaData signals into one object.
+     * It computes the relevant logos and pageMetaData for the powerdby section.
      */
-    poweredBydata = computed(() => {
-        const logos = this.logos();
+    poweredByData = computed(() => {
+        const logos = this.logosData();
         const page = this.pageMetaData();
 
-        if (!logos || !page) {
+        const githubLogo = logos?.['github'];
+        const angularLogo = logos?.['angular'];
+        const bootstrapLogo = logos?.['bootstrap'];
+        const devUrl = page?.awgAppDevUrl;
+
+        if (!githubLogo || !angularLogo || !bootstrapLogo || !devUrl) {
             return null;
         }
-        return { logos, page };
+        return { githubLogo, angularLogo, bootstrapLogo, devUrl };
     });
 
     /**

@@ -1,10 +1,10 @@
 <div class="awg-footer-declaration">
     <p class="awg-version-title">AWG-Online-Edition</p>
     <p class="awg-version-desc">
-        @if (pageMetaData(); as page) {
-            <a [href]="changelogUrl()"
-                >Version <span id="awg-version">{{ page.awgAppVersion }}</span> &#9671;
-                <span id="awg-version-date">{{ page.awgAppVersionReleaseDate | date: 'longDate' }}</span></a
+        @if (versionData(); as data) {
+            <a [href]="data.url"
+                >Version <span id="awg-version">{{ data.version }}</span> &#9671;
+                <span id="awg-version-date">{{ data.versionDate | date: 'longDate' }}</span></a
             >
         }
     </p>

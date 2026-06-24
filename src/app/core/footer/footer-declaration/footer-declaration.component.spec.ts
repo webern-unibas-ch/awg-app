@@ -30,7 +30,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let router: Router;
 
     let expectedPageMetaData: MetaPage;
-    let expectedChangelogUrl: string;
+    let expectedVersionData: NonNullable<ReturnType<typeof component.versionData>>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -48,7 +48,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
-        expectedChangelogUrl = `${expectedPageMetaData.awgAppGithubUrl}/blob/v${expectedPageMetaData.awgAppVersion}/CHANGELOG.md`;
+
+        expectedVersionData = {
+            url: `${expectedPageMetaData.awgAppGithubUrl}/blob/v${expectedPageMetaData.awgAppVersion}/CHANGELOG.md`,
+            version: expectedPageMetaData.awgAppVersion,
+            versionDate: expectedPageMetaData.awgAppVersionReleaseDate,
+        };
 
         // Set required input signal with default value for initial tests
         fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
@@ -63,8 +68,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), {} as MetaPage);
         });
 
-        it('... should have computed `changelogUrl` to be null (due to empty pageMetaData)', () => {
-            expectToBe(component.changelogUrl(), null);
+        it('... should have computed `versionData` to be null (due to empty pageMetaData)', () => {
+            expectToBe(component.versionData(), null);
         });
 
         describe('VIEW', () => {
@@ -119,8 +124,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have computed `changelogUrl`', () => {
-            expectToEqual(component.changelogUrl(), expectedChangelogUrl);
+        it('... should have computed `versionData`', () => {
+            expectToEqual(component.versionData(), expectedVersionData);
         });
 
         describe('VIEW', () => {
@@ -140,6 +145,67 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
                 expectToContain(versionEl.textContent, expectedVersion);
                 expectToContain(versionDateEl.textContent, expectedVersionDate);
+            });
+        });
+
+        describe('#versionData', () => {
+            it('... should have a computed signal `versionData`', () => {
+                expect(component.versionData).toBeDefined();
+            });
+
+            it('... should return correct versionData if pageMetaData is present', () => {
+                fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+
+                expectToEqual(component.versionData(), expectedVersionData);
+            });
+
+            it('... should return null if pageMetaData is an empty object {}', () => {
+                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+
+                expectToBe(component.versionData(), null);
+            });
+
+            describe('... should return null if ...', () => {
+                it('... pageMetaData is an empty object {}, null or undefined', () => {
+                    fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+                    expectToBe(component.versionData(), null);
+
+                    fixture.componentRef.setInput('pageMetaData', undefined as unknown as MetaPage);
+                    expectToBe(component.versionData(), null);
+
+                    fixture.componentRef.setInput('pageMetaData', null as unknown as MetaPage);
+                    expectToBe(component.versionData(), null);
+                });
+
+                it('... awgAppGithubUrl is missing', () => {
+                    const incompletePageMetaData = {
+                        ...expectedPageMetaData,
+                        awgAppGithubUrl: undefined,
+                    } as MetaPage;
+                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                    expectToBe(component.versionData(), null);
+                });
+
+                it('... awgAppVersion is missing', () => {
+                    const incompletePageMetaData = {
+                        ...expectedPageMetaData,
+                        awgAppVersion: undefined,
+                    } as MetaPage;
+                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                    expectToBe(component.versionData(), null);
+                });
+
+                it('... awgAppVersionReleaseDate is missing', () => {
+                    const incompletePageMetaData = {
+                        ...expectedPageMetaData,
+                        awgAppVersionReleaseDate: undefined,
+                    } as MetaPage;
+                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                    expectToBe(component.versionData(), null);
+                });
             });
         });
 

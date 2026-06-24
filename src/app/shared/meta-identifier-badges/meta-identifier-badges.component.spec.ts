@@ -122,23 +122,8 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
         it('... should have computed `displayedBadges`', () => {
             const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
 
-            expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
             expectToBe(displayedBadges.length, 2);
-
-            expectToBe(displayedBadges[0].key, expectedActiveIdentifierBadges[0].key);
-            expectToBe(displayedBadges[1].key, expectedActiveIdentifierBadges[1].key);
-
-            expectToBe(displayedBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
-            expectToBe(displayedBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
-
-            expectToBe(displayedBadges[0].src, expectedActiveIdentifierBadges[0].src);
-            expectToBe(displayedBadges[1].src, expectedActiveIdentifierBadges[1].src);
-
-            expectToBe(displayedBadges[0].label, expectedActiveIdentifierBadges[0].label);
-            expectToBe(displayedBadges[1].label, expectedActiveIdentifierBadges[1].label);
-
-            expectToBe(displayedBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
-            expectToBe(displayedBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
+            expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
         });
 
         describe('VIEW', () => {
@@ -203,6 +188,57 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
                     expectToContain(imgEl.src, expectedBadges[index].src);
                     expectToBe(imgEl.alt, expectedBadges[index].label);
                     expectToBe(imgEl.title, expectedBadges[index].titleText);
+                });
+            });
+        });
+
+        describe('#displayedBadges', () => {
+            it('... should have a computed signal `displayedBadges`', () => {
+                expect(component.displayedBadges).toBeDefined();
+            });
+
+            it('... should return correct badges for given identifiers', () => {
+                const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
+
+                expectToBe(displayedBadges.length, 2);
+                expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
+
+                expectToBe(displayedBadges[0].key, expectedActiveIdentifierBadges[0].key);
+                expectToBe(displayedBadges[1].key, expectedActiveIdentifierBadges[1].key);
+
+                expectToBe(displayedBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
+                expectToBe(displayedBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
+
+                expectToBe(displayedBadges[0].src, expectedActiveIdentifierBadges[0].src);
+                expectToBe(displayedBadges[1].src, expectedActiveIdentifierBadges[1].src);
+
+                expectToBe(displayedBadges[0].label, expectedActiveIdentifierBadges[0].label);
+                expectToBe(displayedBadges[1].label, expectedActiveIdentifierBadges[1].label);
+
+                expectToBe(displayedBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
+                expectToBe(displayedBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
+            });
+
+            describe('... should return empty array if ...', () => {
+                it('... identifiers is an empty object {}, null or undefined', () => {
+                    fixture.componentRef.setInput('identifiers', {} as MetaIdentifiers);
+
+                    expectToEqual(component.displayedBadges(), []);
+
+                    fixture.componentRef.setInput('identifiers', null as unknown as MetaIdentifiers);
+                    expectToEqual(component.displayedBadges(), []);
+
+                    fixture.componentRef.setInput('identifiers', undefined as unknown as MetaIdentifiers);
+                    expectToEqual(component.displayedBadges(), []);
+                });
+
+                it('... identifiers has no valid keys', () => {
+                    fixture.componentRef.setInput('identifiers', { invalidKey: '123' } as unknown as MetaIdentifiers);
+
+                    const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
+
+                    expectToBe(displayedBadges.length, 0);
+                    expectToEqual(displayedBadges, []);
                 });
             });
         });

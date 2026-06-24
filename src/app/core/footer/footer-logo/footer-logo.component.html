@@ -1,10 +1,5 @@
-@if (logo(); as currentLogo) {
-    <a class="awg-logo-link" [href]="currentLogo.href">
-        <img
-            [class]="logoClassList()"
-            [id]="currentLogo.id"
-            [src]="currentLogo.src"
-            [alt]="currentLogo.alt"
-            width="200" />
+@if (logoData(); as logo) {
+    <a class="awg-logo-link" [href]="logo.href">
+        <img [class]="logoClassList()" [id]="logo.id" [src]="logo.src" [alt]="logo.alt" width="200" />
     </a>
 }
