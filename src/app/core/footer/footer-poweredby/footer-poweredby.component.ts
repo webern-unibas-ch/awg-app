@@ -3,9 +3,8 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
+import { LogoLinkComponent } from '@awg-app/core/logo-link/logo-link.component';
 import { Logos, MetaPage } from '@awg-core/core-models';
-
-import { FooterLogoComponent } from '../footer-logo/footer-logo.component';
 
 /**
  * The FooterPoweredBy component.
@@ -17,7 +16,7 @@ import { FooterLogoComponent } from '../footer-logo/footer-logo.component';
     templateUrl: './footer-poweredby.component.html',
     styleUrls: ['./footer-poweredby.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FaIconComponent, FooterLogoComponent],
+    imports: [FaIconComponent, LogoLinkComponent],
 })
 export class FooterPoweredbyComponent {
     /**

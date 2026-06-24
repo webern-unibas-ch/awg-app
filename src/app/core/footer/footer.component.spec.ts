@@ -13,11 +13,11 @@ import {
 
 import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
 import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { LogoLinkComponent } from '@awg-core/logo-link/logo-link.component';
 import { CoreService } from '@awg-core/services';
 
 import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
 import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';
-import { FooterLogoComponent } from './footer-logo/footer-logo.component';
 import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.component';
 
 import { FooterComponent } from './footer.component';
@@ -40,10 +40,10 @@ class FooterDeclarationStubComponent {
 }
 
 @Component({
-    selector: 'awg-footer-logo',
+    selector: 'awg-logo-link',
     template: '',
 })
-class FooterLogoStubComponent {
+class LogoLinkStubComponent {
     logoData = input.required<Logo>();
 }
 
@@ -80,7 +80,7 @@ describe('FooterComponent (DONE)', () => {
             .overrideComponent(FooterComponent, {
                 remove: {
                     imports: [
-                        FooterLogoComponent,
+                        LogoLinkComponent,
                         FooterDeclarationComponent,
                         FooterCopyrightComponent,
                         FooterPoweredbyComponent,
@@ -88,7 +88,7 @@ describe('FooterComponent (DONE)', () => {
                 },
                 add: {
                     imports: [
-                        FooterLogoStubComponent,
+                        LogoLinkStubComponent,
                         FooterDeclarationStubComponent,
                         FooterCopyrightStubComponent,
                         FooterPoweredbyStubComponent,
@@ -132,17 +132,17 @@ describe('FooterComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one main top footer div and 1 secondary bottom footer div', () => {
-                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-top', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-bottom', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-main', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-secondary', 1, 1);
             });
 
             describe('main top footer', () => {
                 it('... should contain 3 inner divs', () => {
-                    getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
                 });
 
                 it('... should contain one footer declaration component (stubbed) in first inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
@@ -163,37 +163,37 @@ describe('FooterComponent (DONE)', () => {
                 });
 
                 it('... should contain no footer logo components (stubbed) in second inner div yet', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[1], FooterLogoStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 0, 0);
                 });
 
                 it('... should contain no footer logo components in third inner div yet', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[2], FooterLogoStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 0, 0);
                 });
             });
 
             describe('secondary bottom footer', () => {
                 it('... should contain 3 inner divs', () => {
-                    getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+                    getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                 });
 
                 it('... should contain 1 footer copyright component (stubbed) in first inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[0], FooterCopyrightStubComponent, 1, 1);
                 });
 
                 it('... should contain 1 footer poweredby component (stubbed) in second inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[1], FooterPoweredbyStubComponent, 1, 1);
                 });
 
                 it('... should contain 1 google translate div in third inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                     const gtransDiv = divDes[2];
                     const gtransEl: HTMLDivElement = gtransDiv.nativeElement;
 
@@ -227,27 +227,27 @@ describe('FooterComponent (DONE)', () => {
                 });
 
                 it('... should contain 3 footer logo components (stubbed)', () => {
-                    const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
+                    const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main', 1, 1);
 
-                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterLogoStubComponent, 3, 3);
+                    getAndExpectDebugElementByDirective(footerTopDes[0], LogoLinkStubComponent, 3, 3);
                 });
 
                 it('... should contain one footer logo component in second inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[1], FooterLogoStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 1, 1);
                 });
 
                 it('... should contain two footer logo components in third inner div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[2], FooterLogoStubComponent, 2, 2);
+                    getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 2, 2);
                 });
 
                 it('... should pass down logos to footer logo components', () => {
-                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 3, 3);
+                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
                     const footerLogoCmps = footerLogoDes.map(
-                        de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
+                        de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
                     );
 
                     expectToBe(footerLogoCmps.length, 3);

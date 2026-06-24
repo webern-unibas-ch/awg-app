@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,7 +21,21 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
     styleUrls: ['./navbar.component.scss'],
     standalone: false,
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+    /**
+     * Private readonly injection variable: _coreService.
+     *
+     * It keeps the instance of the injected CoreService.
+     */
+    private readonly _coreService = inject(CoreService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
+
     /**
      * Public variable: isCollapsed.
      *
@@ -30,11 +44,11 @@ export class NavbarComponent implements OnInit {
     isCollapsed = true;
 
     /**
-     * Public variable: logos.
+     * Public readonly signal: logosData.
      *
-     * It keeps the logos for the footer.
+     * It holds the logos data for the footer.
      */
-    logos: Logos;
+    logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
      * Public variable: navbarIcons.
@@ -84,20 +98,6 @@ export class NavbarComponent implements OnInit {
     ];
 
     /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router = inject(Router);
-
-    /**
      * Getter variable: editionRouteConstants.
      *
      *  It returns the EDITION_ROUTE_CONSTANTS.
@@ -107,15 +107,8 @@ export class NavbarComponent implements OnInit {
     }
 
     /**
-     * Angular life cycle hook: ngOnInit.
      *
-     * It calls the containing methods
-     * when initializing the component.
      */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
     /**
      * Public method: isActiveRoute.
      *
@@ -132,18 +125,6 @@ export class NavbarComponent implements OnInit {
             fragment: 'ignored',
             matrixParams: 'ignored',
         });
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the metadata for the header.
-     *
-     * @returns {void} Sets the logos variable.
-     */
-    provideMetaData(): void {
-        this.logos = this._coreService.getLogos();
     }
 
     /**

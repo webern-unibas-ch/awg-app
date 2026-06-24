@@ -3,28 +3,28 @@
     @let page = pageMetaData();
 
     <!-- main top footer -->
-    <div class="row awg-footer-top mb-3">
+    <div class="row awg-footer-main mb-3">
         <div class="col-md-6">
             <awg-footer-declaration [pageMetaData]="page" />
         </div>
 
         <div class="col-6 col-md-2 order-md-first m-auto">
             @if (logos?.['unibas']; as unibasLogo) {
-                <awg-footer-logo [logoData]="unibasLogo" />
+                <awg-logo-link [logoData]="unibasLogo" />
             }
         </div>
         <div class="col-6 col-md-3 m-auto">
             @if (logos?.['sagw']; as sagwLogo) {
-                <awg-footer-logo [logoData]="sagwLogo" />
+                <awg-logo-link [logoData]="sagwLogo" />
             }
             @if (logos?.['snf']; as snfLogo) {
-                <awg-footer-logo [logoData]="snfLogo" />
+                <awg-logo-link [logoData]="snfLogo" />
             }
         </div>
     </div>
 
     <!-- secondary bottom footer -->
-    <div class="row awg-footer-bottom text-muted">
+    <div class="row awg-footer-secondary text-muted">
         <div class="col-6 col-sm-8 text-start">
             <awg-footer-copyright [pageMetaData]="page" />
         </div>

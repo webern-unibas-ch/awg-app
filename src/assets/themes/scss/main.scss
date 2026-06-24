@@ -117,7 +117,7 @@ awg-navbar > .awg-main-navbar {
     background-color: transparent;
 }
 @media screen and (min-width: 768px) {
-    .navbar-brand-container > .navbar-brand > img {
+    .navbar-brand-container .navbar-brand img {
         max-width: 90%;
     }
     /* helper class to set order to minus 1 */
@@ -126,7 +126,7 @@ awg-navbar > .awg-main-navbar {
     }
 }
 @media screen and (max-width: 767px) {
-    .navbar-brand-container > .navbar-brand > img {
+    .navbar-brand-container .navbar-brand img {
         max-width: 200%;
     }
     .navbar > .container-fluid > .row {
@@ -134,7 +134,7 @@ awg-navbar > .awg-main-navbar {
     }
 }
 @media screen and (max-width: 575px) {
-    .navbar-brand-container > .navbar-brand > img {
+    .navbar-brand-container .navbar-brand img {
         max-width: 250%;
     }
 }
@@ -183,18 +183,20 @@ footer {
     padding: 15px;
     border-top: 1px solid $border-grey;
 }
-
-.awg-footer-bottom {
+.awg-footer-main img {
+    width: 200px;
+}
+.awg-footer-secondary {
     border-top: 1px solid $border-grey;
 }
-.awg-footer-bottom .icon img {
+.awg-footer-secondary .icon img {
     position: relative;
     display: inline;
     height: 24px;
     width: 24px;
     margin: 0;
 }
-.awg-footer-bottom .gtrans {
+.awg-footer-secondary .gtrans {
     bottom: 0;
     right: 0;
     background-color: #dbdad9;

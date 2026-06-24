@@ -1,26 +1,32 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
-import { LOGOS_DATA } from '@awg-core/core-data';
-import { Logo } from '@awg-core/core-models';
+import { LOGOS_DATA } from '../core-data/logos.data';
+import { Logo } from '../core-models/logos.model';
 
 /**
- * The FooterLogo component.
+ * The LogoLink component.
  *
- * It contains a footer logo.
+ * It contains a logo link used in the navbar and footer.
  */
 @Component({
-    selector: 'awg-footer-logo',
-    templateUrl: './footer-logo.component.html',
-    styleUrls: ['./footer-logo.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'awg-logo-link',
+    templateUrl: './logo-link.component.html',
+    styleUrl: './logo-link.component.scss',
 })
-export class FooterLogoComponent {
+export class LogoLinkComponent {
     /**
      * Input signal: logoData.
      *
      * It holds the logo data for the component.
      */
     logoData = input.required<Logo>();
+
+    /**
+     * Input signal: linkClass.
+     *
+     * It holds the CSS class for the anchor element.
+     */
+    linkClass = input<string>('awg-logo-link');
 
     /**
      * Computed signal: logoClassList.
