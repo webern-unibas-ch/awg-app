@@ -1,11 +1,10 @@
-import { DebugElement, inject, NgModule } from '@angular/core';
+import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IsActiveMatchOptions, Router } from '@angular/router';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import {
     faEnvelope,
     faFileAlt,
@@ -14,7 +13,7 @@ import {
     faSearch,
     IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseConfig } from '@ng-bootstrap/ng-bootstrap/collapse';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -25,39 +24,43 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-
-import { LOGOS_DATA } from '@awg-core/core-data';
-import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 
+import { LOGOS_DATA } from '../core-data/logos.data';
+import { Logo, Logos } from '../core-models/logos.model';
+import { LogoLinkComponent } from '../logo-link/logo-link.component';
+import { CoreService } from '../services/core-service/core.service';
+
 import { NavbarComponent } from './navbar.component';
+
+// Mock components
+@Component({
+    selector: 'awg-logo-link',
+    template: '',
+})
+class LogoLinkStubComponent {
+    logoData = input.required<Logo>();
+}
 
 /** Helper function */
 function getRouterlinks(editionComplexes: EditionComplex[]): string[][] {
     const { EDITION, SERIES, ROWTABLES, PREFACE, EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT } =
         EDITION_ROUTE_CONSTANTS;
 
-    const baseLinks = [
+    return [
         ['/home'],
         [EDITION.route, SERIES.route],
         [EDITION.route, ROWTABLES.route],
         [EDITION.route, PREFACE.route],
+        ...editionComplexes.flatMap(complex =>
+            [EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT].map(sub => [complex.baseRoute, sub.route])
+        ),
+        ['/structure'],
+        ['/contact'],
     ];
-
-    const editionLinks = editionComplexes.flatMap(complex => [
-        [complex.baseRoute, EDITION_INTRO.route],
-        [complex.baseRoute, EDITION_SHEETS.route],
-        [complex.baseRoute, EDITION_REPORT.route],
-    ]);
-
-    const otherLinks = [['/structure'], ['/contact']];
-
-    return [...baseLinks, ...editionLinks, ...otherLinks];
 }
 
 describe('NavbarComponent (DONE)', () => {
@@ -65,19 +68,12 @@ describe('NavbarComponent (DONE)', () => {
     let fixture: ComponentFixture<NavbarComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
+    let router: Router;
+    let mockCoreService: Partial<CoreService>;
 
-    let coreServiceSpy: Spy;
-    let isActiveRouteSpy: Spy;
-    let routerSpy: Spy;
-    let provideMetaDataSpy: Spy;
     let toggleNavSpy: Spy;
 
-    let mockCoreService: Partial<CoreService>;
-    let mockRouter: Partial<Router>;
-
-    let expectedLogos: Logos;
+    let expectedLogosData: Logos;
     let expectedNavbarIcons: {
         [key: string]: IconDefinition;
     };
@@ -89,42 +85,35 @@ describe('NavbarComponent (DONE)', () => {
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
-    // global NgbConfigModule
-    @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(async () => {
         // Stub service for test purposes
         mockCoreService = {
-            getLogos: () => expectedLogos,
-        };
-
-        // Spy for router.isActive
-        mockRouter = {
-            isActive: () =>
-                // Mock implementation of isActive
-                true,
+            getLogos: () => LOGOS_DATA,
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbConfigModule],
-            declarations: [NavbarComponent, RouterLinkStubDirective],
+            imports: [NavbarComponent],
             providers: [
+                provideRouter([
+                    { path: 'home', component: NavbarComponent },
+                    { path: 'edition', component: NavbarComponent },
+                ]),
                 { provide: CoreService, useValue: mockCoreService },
-                { provide: Router, useValue: mockRouter },
             ],
-        }).compileComponents();
-    });
+        })
+            .overrideComponent(NavbarComponent, {
+                remove: { imports: [LogoLinkComponent] },
+                add: { imports: [LogoLinkStubComponent] },
+            })
+            .compileComponents();
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
+        // Disable animation for NgbCollapse to avoid timing issues in tests
+        const collapseConfig = TestBed.inject(NgbCollapseConfig);
+        collapseConfig.animation = false;
     });
 
     beforeEach(() => {
@@ -132,8 +121,10 @@ describe('NavbarComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        router = TestBed.inject(Router);
+
         // Test data
-        expectedLogos = LOGOS_DATA;
+        expectedLogosData = LOGOS_DATA;
 
         expectedEditionComplexes = [
             EditionComplexesService.getEditionComplexById('op3'),
@@ -168,10 +159,6 @@ describe('NavbarComponent (DONE)', () => {
         };
 
         // Spies
-        coreServiceSpy = vi.spyOn(mockCoreService, 'getLogos');
-        routerSpy = vi.spyOn(mockRouter, 'isActive');
-        isActiveRouteSpy = vi.spyOn(component, 'isActiveRoute');
-        provideMetaDataSpy = vi.spyOn(component, 'provideMetaData');
         toggleNavSpy = vi.spyOn(component, 'toggleNav');
     });
 
@@ -213,44 +200,51 @@ describe('NavbarComponent (DONE)', () => {
             expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should not have `logos`', () => {
-            expect(component.logos).toBeUndefined();
+        it('... should have `logosData`', () => {
+            expectToEqual(component.logosData(), expectedLogosData);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 navbar', () => {
+            it('... should contain one navbar', () => {
                 getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
             });
 
-            it('... should contain 2 navbar-brand-container with links in navbar', () => {
-                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container > a.navbar-brand', 2, 2);
+            it('... should contain two navbar-brand-container in navbar', () => {
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
             });
 
             it('... should display first navbar-brand link not on sm devices, and second navbar-brand link only on sm devices', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                const navbarBrandDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
+                const brandContainerDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
-                const navbarBrandEl1: HTMLElement = navbarBrandDes[0].nativeElement;
-                const navbarBrandEl2: HTMLElement = navbarBrandDes[1].nativeElement;
+                const brandContainerEl1: HTMLElement = brandContainerDes[0].nativeElement;
+                const brandContainerEl2: HTMLElement = brandContainerDes[1].nativeElement;
 
-                expectToContain(navbarBrandEl1.classList, 'd-sm-none');
-                expectToContain(navbarBrandEl1.classList, 'd-md-inline');
+                expectToContain(brandContainerEl1.classList, 'd-sm-none');
+                expectToContain(brandContainerEl1.classList, 'd-md-inline');
 
-                expectToContain(navbarBrandEl2.classList, 'd-sm-inline');
-                expectToContain(navbarBrandEl2.classList, 'd-md-none');
+                expectToContain(brandContainerEl2.classList, 'd-sm-inline');
+                expectToContain(brandContainerEl2.classList, 'd-md-none');
             });
 
-            it('... should not render awg project url in navbar-brand link yet', () => {
-                const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
-                const urlEl1: HTMLAnchorElement = urlDes[0].nativeElement;
-                const urlEl2: HTMLAnchorElement = urlDes[1].nativeElement;
+            it('... should contain one logo link components in each of the two navbar-brand-containers', () => {
+                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                const brandContainerDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
-                expectToBe(urlEl1.href, '');
-                expectToBe(urlEl2.href, '');
+                brandContainerDes.forEach(brandContainerDe => {
+                    getAndExpectDebugElementByDirective(brandContainerDe, LogoLinkStubComponent, 1, 1);
+                });
             });
 
-            it('... should contain 1 toggle button in navbar', () => {
+            it('... should throw due to missing required values for logo link component', () => {
+                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 2, 2);
+                const logoLinkCmp = logoLinkDes[0].injector.get(LogoLinkStubComponent) as LogoLinkStubComponent;
+
+                // Expect the required inputs to throw if not provided
+                expect(() => logoLinkCmp.logoData()).toThrow();
+            });
+
+            it('... should contain one toggle button in navbar', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 getAndExpectDebugElementByCss(navbarDes[0], 'button.navbar-toggler', 1, 1);
             });
@@ -298,27 +292,21 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#isActiveRoute()', () => {
-            it('... should have a method `isActiveRoute`', () => {
-                expect(component.isActiveRoute).toBeDefined();
+        describe('#isEditionRouteActive()', () => {
+            it('... should have a signal `isEditionRouteActive`', () => {
+                expect(component.isEditionRouteActive).toBeDefined();
             });
 
-            it('... should not have been called', () => {
-                expectSpyCall(isActiveRouteSpy, 0);
-            });
-        });
+            it('should react when the route changes to `/edition`', async () => {
+                await router.navigateByUrl('/home');
+                fixture.detectChanges();
 
-        describe('#provideMetaData()', () => {
-            it('... should have a method `provideMetaData`', () => {
-                expect(component.provideMetaData).toBeDefined();
-            });
+                expectToBe(component.isEditionRouteActive(), false);
 
-            it('... should not have been called', () => {
-                expectSpyCall(provideMetaDataSpy, 0);
-            });
+                await router.navigateByUrl('/edition');
+                fixture.detectChanges();
 
-            it('... should not have `logos`', () => {
-                expect(component.logos).toBeUndefined();
+                expectToBe(component.isEditionRouteActive(), true);
             });
         });
 
@@ -372,13 +360,15 @@ describe('NavbarComponent (DONE)', () => {
                 navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
             });
 
-            it('... should render awg project url in navbar-brand link', () => {
-                const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
-                const urlEl1: HTMLAnchorElement = urlDes[0].nativeElement;
-                const urlEl2: HTMLAnchorElement = urlDes[1].nativeElement;
+            it('... should pass down logoData to logo link components', () => {
+                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 2, 2);
+                const logoLinkCmps = logoLinkDes.map(
+                    de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
+                );
 
-                expectToBe(urlEl1.href, expectedLogos['awg'].href);
-                expectToBe(urlEl2.href, expectedLogos['awg'].href);
+                expectToBe(logoLinkCmps.length, 2);
+                expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['awg']);
+                expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['awg']);
             });
 
             describe('... first nav-item link (home)', () => {
@@ -605,70 +595,39 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#isActiveRoute()', () => {
-            it('... should have been called 2 times', () => {
-                expectSpyCall(isActiveRouteSpy, 2);
+        describe('#isEditionRouteActive()', () => {
+            it('... should have a signal `isEditionRouteActive`', async () => {
+                expect(component.isEditionRouteActive).toBeDefined();
             });
 
-            it('... should call isActive with correct matchOptions', () => {
-                expectSpyCall(routerSpy, 2);
+            it('should react when the route changes to `/edition`', async () => {
+                await router.navigateByUrl('/home');
+                fixture.detectChanges();
 
-                const expectedActiveRoute = '/active-route';
-                const expectedMatchOptions: IsActiveMatchOptions = {
-                    paths: 'subset',
-                    queryParams: 'subset',
-                    fragment: 'ignored',
-                    matrixParams: 'ignored',
-                };
+                expectToBe(component.isEditionRouteActive(), false);
 
-                component.isActiveRoute(expectedActiveRoute);
+                await router.navigateByUrl('/edition');
+                fixture.detectChanges();
 
-                expectSpyCall(routerSpy, 3, [expectedActiveRoute, expectedMatchOptions]);
-            });
-
-            it('... should return true if a given route is active', () => {
-                const expectedActiveRoute = '/active-route';
-
-                routerSpy.mockReturnValue(true);
-
-                expectToBe(component.isActiveRoute(expectedActiveRoute), true);
-            });
-
-            it('... should return false if a given route is not active', () => {
-                const expectedActiveRoute = '/non-active-route';
-
-                routerSpy.mockReturnValue(false);
-
-                expectToBe(component.isActiveRoute(expectedActiveRoute), false);
-            });
-        });
-
-        describe('#provideMetaData()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(provideMetaDataSpy, 1);
-            });
-
-            it('... should get `logos`', () => {
-                expectToEqual(component.logos, expectedLogos);
-            });
-
-            it('... should have called coreService', () => {
-                expectSpyCall(coreServiceSpy, 1);
+                expectToBe(component.isEditionRouteActive(), true);
             });
         });
 
         describe('[routerLink]', () => {
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    RouterLinkStubDirective,
+                    RouterLink,
                     expectedRouterlinks.length,
                     expectedRouterlinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct numer of routerLinks from template', () => {
@@ -677,21 +636,31 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
+                    const urlTree = routerLink.urlTree;
+
+                    expectToBe(urlTree.toString(), expectedRouterlinks[index].join('/'));
                 }
             });
 
             it('... can click all links in template', async () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+                for (const [index] of routerLinks.entries()) {
+                    navigateSpy.mockClear();
+
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterlinks[index];
 
-                    expectToBe(routerLink.navigatedTo, null);
-
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
+                    expect(navigateSpy).toHaveBeenCalled();
+                    const firstCallArg = navigateSpy.mock.calls[0][0];
+                    const actualUrl = firstCallArg.toString();
+
+                    expectToBe(actualUrl, expectedRouterLink.join('/'));
                 }
+
+                navigateSpy.mockRestore();
             });
         });
     });

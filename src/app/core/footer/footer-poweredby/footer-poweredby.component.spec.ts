@@ -18,6 +18,7 @@ import { LogoLinkComponent } from '@awg-core/logo-link/logo-link.component';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
+// Mock components
 @Component({
     selector: 'awg-logo-link',
     template: '',

@@ -29,7 +29,7 @@
                     <fa-icon [icon]="navbarIcons.home" />
                 </a>
             </li>
-            <li class="nav-item" ngbDropdown [class.active]="isActiveRoute('/edition')">
+            <li class="nav-item" ngbDropdown [class.active]="isEditionRouteActive()">
                 <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
                     <!-- do not show text on sm devices, change order from md devices up -->
                     <span class="d-sm-none d-md-inline">{{ navbarLabels.edition }}</span>

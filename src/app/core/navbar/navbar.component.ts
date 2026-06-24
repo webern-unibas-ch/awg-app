@@ -1,13 +1,18 @@
-import { Router } from '@angular/router';
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { isActive, Router, RouterLink } from '@angular/router';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { LogoLinkComponent } from '../logo-link/logo-link.component';
 
 /**
  * The Header component.
@@ -19,7 +24,8 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FaIconComponent, LogoLinkComponent, NgbCollapse, NgbDropdownModule, RouterLink],
 })
 export class NavbarComponent {
     /**
@@ -107,25 +113,11 @@ export class NavbarComponent {
     }
 
     /**
+     * Public signal: isEditionRouteActive.
      *
+     * It checks if the edition route is active.
      */
-    /**
-     * Public method: isActiveRoute.
-     *
-     * It checks if a given route is active.
-
-     * @param {string} route The route to check.
-     *
-     * @returns {boolean} The boolean value of the check.
-     */
-    isActiveRoute(route: string): boolean {
-        return this._router.isActive(route, {
-            paths: 'subset',
-            queryParams: 'subset',
-            fragment: 'ignored',
-            matrixParams: 'ignored',
-        });
-    }
+    isEditionRouteActive = isActive('/edition', this._router);
 
     /**
      * Public method: toggleNav.

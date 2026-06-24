@@ -11,8 +11,8 @@ import { ViewContainerComponent } from './view-container/view-container.componen
 import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
-    imports: [SharedModule, FooterComponent, LogoLinkComponent],
-    declarations: [NavbarComponent, ViewContainerComponent],
+    imports: [SharedModule, FooterComponent, LogoLinkComponent, NavbarComponent],
+    declarations: [ViewContainerComponent],
     exports: [NavbarComponent, ViewContainerComponent, FooterComponent],
     providers: [httpInterceptorProviders, Title],
 })

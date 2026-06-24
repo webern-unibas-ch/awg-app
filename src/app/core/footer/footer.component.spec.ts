@@ -126,7 +126,7 @@ describe('FooterComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `logos`', () => {
+        it('... should have `logosData`', () => {
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
@@ -162,13 +162,13 @@ describe('FooterComponent (DONE)', () => {
                     expect(() => footerDeclarationCmp.pageMetaData()).toThrow();
                 });
 
-                it('... should contain no footer logo components (stubbed) in second inner div yet', () => {
+                it('... should contain no logo link components (stubbed) in second inner div yet', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 0, 0);
                 });
 
-                it('... should contain no footer logo components in third inner div yet', () => {
+                it('... should contain no logo link components in third inner div yet', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 0, 0);
@@ -226,34 +226,34 @@ describe('FooterComponent (DONE)', () => {
                     expectToEqual(footerDeclarationCmp.pageMetaData(), expectedPageMetaData);
                 });
 
-                it('... should contain 3 footer logo components (stubbed)', () => {
+                it('... should contain 3 logo link components (stubbed)', () => {
                     const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main', 1, 1);
 
                     getAndExpectDebugElementByDirective(footerTopDes[0], LogoLinkStubComponent, 3, 3);
                 });
 
-                it('... should contain one footer logo component in second inner div', () => {
+                it('... should contain one logo link component in second inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 1, 1);
                 });
 
-                it('... should contain two footer logo components in third inner div', () => {
+                it('... should contain two logo link components in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 2, 2);
                 });
 
-                it('... should pass down logos to footer logo components', () => {
-                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
-                    const footerLogoCmps = footerLogoDes.map(
+                it('... should pass down logoData to logo link components', () => {
+                    const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
+                    const logoLinkCmps = logoLinkDes.map(
                         de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
                     );
 
-                    expectToBe(footerLogoCmps.length, 3);
-                    expectToEqual(footerLogoCmps[0].logoData(), expectedLogosData['unibas']);
-                    expectToEqual(footerLogoCmps[1].logoData(), expectedLogosData['sagw']);
-                    expectToEqual(footerLogoCmps[2].logoData(), expectedLogosData['snf']);
+                    expectToBe(logoLinkCmps.length, 3);
+                    expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['unibas']);
+                    expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['sagw']);
+                    expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['snf']);
                 });
             });
 
@@ -286,7 +286,7 @@ describe('FooterComponent (DONE)', () => {
                     expectToEqual(footerPoweredbyCmp.pageMetaData(), expectedPageMetaData);
                 });
 
-                it('... should pass down logos to footer poweredby component', () => {
+                it('... should pass down logosData to footer poweredby component', () => {
                     const footerPoweredbyDes = getAndExpectDebugElementByDirective(
                         compDe,
                         FooterPoweredbyStubComponent,
