@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">
     @let logos = logosData();
 
-    <!-- Brand -->
-    <!-- length of 3 cols (4 on md), do not display on xs and sm devices, no right margin, auto vertical align -->
+    <!-- Brand (Desktop) -->
     <div class="navbar-brand-container col-3 col-md-4 col-xl-3 d-inline d-sm-none d-md-inline me-0 my-auto">
         <awg-logo-link [logoData]="logos?.['awg']" linkClass="navbar-brand" />
     </div>
@@ -12,108 +11,92 @@
         type="button"
         class="navbar-toggler"
         (click)="toggleNav()"
-        [attr.aria-expanded]="!isCollapsed"
+        [attr.aria-expanded]="!isCollapsed()"
         aria-controls="collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- collapsible navigation menu -->
-    <!-- justify content between (left, center, right) from sm devices up -->
-    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">
-        <!-- left nav links, no left margin from sm devices up, auto vertical align -->
+    <!-- Collapsible navigation menu -->
+    <div
+        id="collapsibleNavbar"
+        class="collapse navbar-collapse justify-content-sm-between"
+        [ngbCollapse]="isCollapsed()">
         <ul class="navbar-nav ms-sm-0 my-auto">
+            <!-- Home -->
             <li class="nav-item">
-                <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
-                    <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.home }}</span>
-                    <fa-icon [icon]="navbarIcons.home" />
+                <a class="nav-link d-flex" [routerLink]="navItems.home.path" routerLinkActive="active">
+                    <span [class]="navItems.home.spanClass">{{ navItems.home.label }}</span>
+                    <fa-icon [icon]="navItems.home.icon" [class]="navItems.home.iconClass" />
                 </a>
             </li>
+
+            <!-- Edition -->
             <li class="nav-item" ngbDropdown [class.active]="isEditionRouteActive()">
                 <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
-                    <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline">{{ navbarLabels.edition }}</span>
-                    <fa-icon [icon]="navbarIcons.edition" class="order-md-minus-1" />
+                    <span [class]="navItems.edition.spanClass">{{ navItems.edition.label }}</span>
+                    <fa-icon [icon]="navItems.edition.icon" [class]="navItems.edition.iconClass" />
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
-                    <h6 class="dropdown-header">{{ navbarLabels.general }}</h6>
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.SERIES.route]"
-                        routerLinkActive="active"
-                        >{{ editionRouteConstants.SERIES.full }}</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
-                        routerLinkActive="active"
-                        >{{ editionRouteConstants.ROWTABLES.full }}</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.PREFACE.route]"
-                        routerLinkActive="active"
-                        >{{ editionRouteConstants.PREFACE.full }}</a
-                    >
+                    <h6 class="dropdown-header">Allgemein</h6>
+                    @for (link of GENERAL_EDITION_LINKS; track link.path.join('/')) {
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="link.path"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">
+                            {{ link.label }}
+                        </a>
+                    }
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">{{ navbarLabels.complexes }}</h6>
+
+                    <h6 class="dropdown-header">Auswahl Abteilungen</h6>
+
                     <div class="dropdown-divider"></div>
-                    @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex.complexId.short) {
-                        <div class="awg-dropdown-complexes">
+
+                    @for (section of displayedSections(); track section.shortTitle) {
+                        <div class="awg-dropdown-sections">
                             <h6 class="dropdown-header">
-                                [{{ editionRouteConstants.EDITION.short }}
-                                {{ editionComplex.pubStatement.series.short }}/{{
-                                    editionComplex.pubStatement.section.short
-                                }}]
-                                <span [innerHTML]="editionComplex.complexId.full"></span>
+                                {{ section.shortTitle }}
+                                <span [innerHTML]="section.fullTitle"></span>
                             </h6>
-                            <a
-                                class="dropdown-item"
-                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]"
-                                routerLinkActive="active"
-                                >{{ editionRouteConstants.EDITION_INTRO.full }}</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                                routerLinkActive="active"
-                                >{{ editionRouteConstants.EDITION_SHEETS.full }}</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]"
-                                routerLinkActive="active"
-                                >{{ editionRouteConstants.EDITION_REPORT.full }}</a
-                            >
+
+                            @for (link of SECTION_EDITION_LINKS; track link.label) {
+                                <a
+                                    class="dropdown-item"
+                                    [routerLink]="[...section.baseRoute, ...link.suffix]"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }">
+                                    {{ link.label }}
+                                </a>
+                            }
                             <div class="dropdown-divider"></div>
                         </div>
                     }
                 </div>
             </li>
+
+            <!-- Structure -->
             <li class="nav-item">
-                <a class="nav-link d-flex" [routerLink]="['/structure']" routerLinkActive="active">
-                    <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.structure }}</span>
-                    <fa-icon [icon]="navbarIcons.structure" />
+                <a class="nav-link d-flex" [routerLink]="navItems.structure.path" routerLinkActive="active">
+                    <span [class]="navItems.structure.spanClass">{{ navItems.structure.label }}</span>
+                    <fa-icon [icon]="navItems.structure.icon" [class]="navItems.structure.iconClass" />
                 </a>
             </li>
         </ul>
-        <!-- END left navbar -->
-        <!-- brand to display on center on sm devices, auto align -->
+
+        <!-- Brand (Mobile) -->
         <div class="navbar-brand-container col-3 d-none d-sm-inline d-md-none ms-5 me-auto my-auto">
             <awg-logo-link [logoData]="logos?.['awg']" linkClass="navbar-brand" />
         </div>
 
-        <!-- right nav links, auto vertical align -->
+        <!-- Contact -->
         <ul class="navbar-nav my-auto">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
-                    <span class="d-sm-none d-lg-inline">{{ navbarLabels.contact }}</span>
-                    <fa-icon [icon]="navbarIcons.contact" />
+                <a class="nav-link d-flex" [routerLink]="navItems.contact.path" routerLinkActive="active">
+                    <span [class]="navItems.contact.spanClass">{{ navItems.contact.label }}</span>
+                    <fa-icon [icon]="navItems.contact.icon" [class]="navItems.contact.iconClass" />
                 </a>
             </li>
         </ul>
-        <!-- END right navbar -->
     </div>
-    <!-- END collapse -->
 </nav>
