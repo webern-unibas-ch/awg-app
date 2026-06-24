@@ -149,7 +149,7 @@
     <p class="comment">
         <p>The FooterDeclaration component.</p>
 <p>It contains the declaration section of the footer
-with version number, release date and impressum.</p>
+with version number, release date and imprint.</p>
 
     </p>
 
@@ -182,6 +182,13 @@ with version number, release date and impressum.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -210,6 +217,20 @@ with version number, release date and impressum.</p>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#versionData" >versionData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
                 <tr>
@@ -230,20 +251,6 @@ with version number, release date and impressum.</p>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#changelogUrl" >changelogUrl</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -265,15 +272,20 @@ with version number, release date and impressum.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: pageMetaData.</p>
-<p>It keeps the page metadata for the component.</p>
+                        <div class="io-description"><p>Input signal: pageMetaData.</p>
+<p>It holds the page metadata for the footer declaration.</p>
 </div>
                     </td>
                 </tr>
@@ -284,52 +296,72 @@ with version number, release date and impressum.</p>
 
 
 
-
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
     </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="versionData"></a>
+                    <span class="name">
+                        <span ><b>versionData</b></span>
+                        <a href="#versionData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="changelogUrl"></a>
-                        <span class="name"><b>changelogUrl</b><a href="#changelogUrl"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>changelogUrl()</code></span>
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:33</a></div>
-                                </td>
-                            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+        const page &#x3D; this.pageMetaData();
+
+        if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {
+            return null;
+        }
+
+        const url &#x3D; &#x60;${page.awgAppGithubUrl}/blob/v${page.awgAppVersion}/CHANGELOG.md&#x60;;
+
+        return {
+            url,
+            version: page.awgAppVersion,
+            versionDate: page.awgAppVersionReleaseDate,
+        };
+    })</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Public getter: changelogUrl.</p>
-<p>It returns the URL to the changelog file in the GitHub repository
-based on the app version and GitHub URL from the page metadata.</p>
-</div>
-
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>string | null</code>
-
-                                </div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:33</a></div>
                         </td>
                     </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed signal: versionData.</p>
+<p>It computes the relevant pageMetaData for the footer declaration.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
+
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 
 import { MetaPage } from &#x27;@awg-core/core-models&#x27;;
 
@@ -337,57 +369,66 @@ import { MetaPage } from &#x27;@awg-core/core-models&#x27;;
  * The FooterDeclaration component.
  *
  * It contains the declaration section of the footer
- * with version number, release date and impressum.
+ * with version number, release date and imprint.
  */
 @Component({
     selector: &#x27;awg-footer-declaration&#x27;,
     templateUrl: &#x27;./footer-declaration.component.html&#x27;,
     styleUrls: [&#x27;./footer-declaration.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [DatePipe, RouterLink],
 })
 export class FooterDeclarationComponent {
     /**
-     * Input variable: pageMetaData.
+     * Input signal: pageMetaData.
      *
-     * It keeps the page metadata for the component.
+     * It holds the page metadata for the footer declaration.
      */
-    @Input()
-    pageMetaData: MetaPage;
+    pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
 
     /**
-     * Public getter: changelogUrl.
+     * Computed signal: versionData.
      *
-     * It returns the URL to the changelog file in the GitHub repository
-     * based on the app version and GitHub URL from the page metadata.
+     * It computes the relevant pageMetaData for the footer declaration.
      */
-    get changelogUrl(): string | null {
-        if (!this.pageMetaData?.awgAppGithubUrl || !this.pageMetaData?.awgAppVersion) {
+    versionData &#x3D; computed(() &#x3D;&gt; {
+        const page &#x3D; this.pageMetaData();
+
+        if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {
             return null;
         }
-        return &#x60;${this.pageMetaData.awgAppGithubUrl}/blob/v${this.pageMetaData.awgAppVersion}/CHANGELOG.md&#x60;;
-    }
+
+        const url &#x3D; &#x60;${page.awgAppGithubUrl}/blob/v${page.awgAppVersion}/CHANGELOG.md&#x60;;
+
+        return {
+            url,
+            version: page.awgAppVersion,
+            versionDate: page.awgAppVersionReleaseDate,
+        };
+    });
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p class&#x3D;&quot;awg-version-title&quot;&gt;AWG-Online-Edition&lt;/p&gt;
-&lt;p class&#x3D;&quot;awg-version-desc&quot;&gt;
-    @if (changelogUrl) {
-        &lt;a [href]&#x3D;&quot;changelogUrl&quot;
-            &gt;Version &lt;span id&#x3D;&quot;awg-version&quot;&gt;{{ pageMetaData?.awgAppVersion }}&lt;/span&gt; &amp;#9671;
-            &lt;span id&#x3D;&quot;awg-version-date&quot;&gt;{{ pageMetaData?.awgAppVersionReleaseDate | date: &#x27;longDate&#x27; }}&lt;/span&gt;&lt;/a
-        &gt;
-    }
-&lt;/p&gt;
-&lt;p id&#x3D;&quot;awg-contact-link&quot;&gt;
-    &lt;small&gt;
-        &lt;a id&#x3D;&quot;awg-imp&quot; [routerLink]&#x3D;&quot;[&#x27;/contact&#x27;]&quot; fragment&#x3D;&quot;awg-imprint&quot;&gt; Impressum &lt;/a&gt;
-        |
-        &lt;a id&#x3D;&quot;awg-doc&quot; [routerLink]&#x3D;&quot;[&#x27;/contact&#x27;]&quot; fragment&#x3D;&quot;awg-documentation&quot;&gt; Dokumentation &lt;/a&gt;
-    &lt;/small&gt;
-&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;awg-footer-declaration&quot;&gt;
+    &lt;p class&#x3D;&quot;awg-version-title&quot;&gt;AWG-Online-Edition&lt;/p&gt;
+    &lt;p class&#x3D;&quot;awg-version-desc&quot;&gt;
+        @if (versionData(); as data) {
+            &lt;a [href]&#x3D;&quot;data.url&quot;
+                &gt;Version &lt;span id&#x3D;&quot;awg-version&quot;&gt;{{ data.version }}&lt;/span&gt; &amp;#9671;
+                &lt;span id&#x3D;&quot;awg-version-date&quot;&gt;{{ data.versionDate | date: &#x27;longDate&#x27; }}&lt;/span&gt;&lt;/a
+            &gt;
+        }
+    &lt;/p&gt;
+    &lt;p id&#x3D;&quot;awg-contact-link&quot;&gt;
+        &lt;small&gt;
+            &lt;a id&#x3D;&quot;awg-imp&quot; class&#x3D;&quot;me-1&quot; [routerLink]&#x3D;&quot;[&#x27;/contact&#x27;]&quot; fragment&#x3D;&quot;awg-imprint&quot;&gt;Impressum&lt;/a&gt;
+            |
+            &lt;a id&#x3D;&quot;awg-doc&quot; class&#x3D;&quot;ms-1&quot; [routerLink]&#x3D;&quot;[&#x27;/contact&#x27;]&quot; fragment&#x3D;&quot;awg-documentation&quot;&gt;Dokumentation&lt;/a&gt;
+        &lt;/small&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -423,7 +464,7 @@ export class FooterDeclarationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p class="awg-version-title">AWG-Online-Edition</p><p class="awg-version-desc">    @if (changelogUrl) {        <a [href]="changelogUrl"            >Version <span id="awg-version">{{ pageMetaData?.awgAppVersion }}</span> &#9671;            <span id="awg-version-date">{{ pageMetaData?.awgAppVersionReleaseDate | date: \'longDate\' }}</span></a        >    }</p><p id="awg-contact-link">    <small>        <a id="awg-imp" [routerLink]="[\'/contact\']" fragment="awg-imprint"> Impressum </a>        |        <a id="awg-doc" [routerLink]="[\'/contact\']" fragment="awg-documentation"> Dokumentation </a>    </small></p></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="awg-footer-declaration">    <p class="awg-version-title">AWG-Online-Edition</p>    <p class="awg-version-desc">        @if (versionData(); as data) {            <a [href]="data.url"                >Version <span id="awg-version">{{ data.version }}</span> &#9671;                <span id="awg-version-date">{{ data.versionDate | date: \'longDate\' }}</span></a            >        }    </p>    <p id="awg-contact-link">        <small>            <a id="awg-imp" class="me-1" [routerLink]="[\'/contact\']" fragment="awg-imprint">Impressum</a>            |            <a id="awg-doc" class="ms-1" [routerLink]="[\'/contact\']" fragment="awg-documentation">Dokumentation</a>        </small>    </p></div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'FooterDeclarationComponent'};

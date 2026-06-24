@@ -256,7 +256,7 @@ filled from metadata information.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{} as MetaContact</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
@@ -289,7 +289,7 @@ filled from metadata information.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{} as MetaPage</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
@@ -338,14 +338,14 @@ export class ContactAddressComponent {
      *
      * It holds the page metadata for the contact address.
      */
-    pageMetaData &#x3D; input&lt;MetaPage&gt;({} as MetaPage);
+    pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
 
     /**
      * Input signal: contactMetaData.
      *
      * It holds the contact metadata for the contact address.
      */
-    contactMetaData &#x3D; input&lt;MetaContact&gt;({} as MetaContact);
+    contactMetaData &#x3D; input.required&lt;MetaContact&gt;();
 }
 </code></pre>
     </div>

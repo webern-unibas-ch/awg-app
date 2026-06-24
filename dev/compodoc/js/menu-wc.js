@@ -131,13 +131,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CoreModule.html" data-type="entity-link" >CoreModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' : 'data-bs-target="#xs-components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' }>
+                                            'data-bs-target="#components-links-module-CoreModule-96a3f1d327d1095b7945ea9d6df31407baaaa3fbdbe27d97b408214313d4b7a60343a210fdd0f8004f963fda357c833f30be32885fe138f894fe90fe3cdc5468"' : 'data-bs-target="#xs-components-links-module-CoreModule-96a3f1d327d1095b7945ea9d6df31407baaaa3fbdbe27d97b408214313d4b7a60343a210fdd0f8004f963fda357c833f30be32885fe138f894fe90fe3cdc5468"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' :
-                                            'id="xs-components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CoreModule-96a3f1d327d1095b7945ea9d6df31407baaaa3fbdbe27d97b408214313d4b7a60343a210fdd0f8004f963fda357c833f30be32885fe138f894fe90fe3cdc5468"' :
+                                            'id="xs-components-links-module-CoreModule-96a3f1d327d1095b7945ea9d6df31407baaaa3fbdbe27d97b408214313d4b7a60343a210fdd0f8004f963fda357c833f30be32885fe138f894fe90fe3cdc5468"' }>
+                                            <li class="link">
+                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="components/NavbarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavbarComponent</a>
                                             </li>
@@ -499,35 +502,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionViewRoutingModule.html" data-type="entity-link" >EditionViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/FooterModule.html" data-type="entity-link" >FooterModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' : 'data-bs-target="#xs-components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' :
-                                            'id="xs-components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' }>
-                                            <li class="link">
-                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterCopyrightComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterCopyrightComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterDeclarationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterDeclarationComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterLogoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterLogoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterPoweredbyComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
                                 <a href="modules/GraphVisualizerModule.html" data-type="entity-link" >GraphVisualizerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -802,6 +776,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionTkaTableComponent.html" data-type="entity-link" >EditionTkaTableComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterCopyrightComponent.html" data-type="entity-link" >FooterCopyrightComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterDeclarationComponent.html" data-type="entity-link" >FooterDeclarationComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterLogoComponent.html" data-type="entity-link" >FooterLogoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" >FooterPoweredbyComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ForceGraphComponent.html" data-type="entity-link" >ForceGraphComponent</a>
