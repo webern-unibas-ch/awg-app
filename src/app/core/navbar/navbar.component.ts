@@ -7,15 +7,15 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired } from '@fortawesome/free
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
-import { SharedModule } from '@awg-app/shared/shared.module';
-import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
+
+import { Logos } from '../core-models/logos.model';
 import { LogoLinkComponent } from '../logo-link/logo-link.component';
+import { CoreService } from '../services/core-service/core.service';
 
 /**
- * The Header component.
+ * The Navbar component.
  *
  * It contains the header section of the app
  * with the navigation bar, menu and brand.
@@ -25,15 +25,7 @@ import { LogoLinkComponent } from '../logo-link/logo-link.component';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        FaIconComponent,
-        LogoLinkComponent,
-        NgbCollapse,
-        NgbDropdownModule,
-        RouterLink,
-        RouterLinkActive,
-        SharedModule,
-    ],
+    imports: [FaIconComponent, LogoLinkComponent, NgbCollapse, NgbDropdownModule, RouterLink, RouterLinkActive],
 })
 export class NavbarComponent {
     /**
@@ -80,21 +72,21 @@ export class NavbarComponent {
      * It computes the array of edition sections to be displayed in the navbar.
      */
     displayedSections = computed(() =>
-        this.sectionsData().map(editionSection => {
+        this.sectionsData().map(section => {
             const baseRoute = [
                 EDITION_ROUTE_CONSTANTS.EDITION.route,
                 EDITION_ROUTE_CONSTANTS.SERIES.route,
-                editionSection.seriesParent.route,
+                section.seriesParent.route,
                 EDITION_ROUTE_CONSTANTS.SECTION.route,
-                editionSection.section.route,
+                section.section.route,
             ];
 
-            const shortTitle = `[${EDITION_ROUTE_CONSTANTS.EDITION.short} ${editionSection.seriesParent.short}/${editionSection.section.short}]`;
+            const shortTitle = `[${EDITION_ROUTE_CONSTANTS.EDITION.short} ${section.seriesParent.short}/${section.section.short}]`;
 
             return {
                 baseRoute,
                 shortTitle,
-                fullTitle: editionSection.section.full,
+                fullTitle: section.section.full,
             };
         })
     );
@@ -177,7 +169,7 @@ export class NavbarComponent {
             label: 'Einleitung / Intro',
         },
         {
-            suffix: [], // Leeres Array für die nackte Basis-Route (Übersicht)
+            suffix: [],
             label: 'Übersicht',
         },
     ];

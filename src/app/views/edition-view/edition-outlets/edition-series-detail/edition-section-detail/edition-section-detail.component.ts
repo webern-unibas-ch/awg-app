@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -59,18 +59,26 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Updates the edition section.
      */
     updateSectionFromRoute(): void {
-        const sectionId = this._route.snapshot.paramMap.get('id');
-
-        this._editionStateService
-            .getSelectedEditionSeries()
+        this._route.paramMap
             .pipe(
                 takeUntil(this._destroyed$),
-                filter(series => !!series)
+                switchMap(paramMap => {
+                    const sectionId = paramMap.get('id');
+
+                    return this._editionStateService.getSelectedEditionSeries().pipe(
+                        filter(series => !!series),
+                        map(series => ({
+                            seriesId: series?.series?.route,
+                            sectionId: sectionId,
+                        }))
+                    );
+                })
             )
-            .subscribe(series => {
-                const seriesId = series?.series?.route;
-                const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                this._editionStateService.updateSelectedEditionSection(selectedSection);
+            .subscribe({
+                next: ({ seriesId, sectionId }) => {
+                    const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
+                    this._editionStateService.updateSelectedEditionSection(selectedSection);
+                },
             });
     }
 
