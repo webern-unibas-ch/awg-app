@@ -125,12 +125,6 @@ export default defineConfig(
                     leadingUnderscore: 'require',
                 },
                 {
-                    selector: ['classProperty'],
-                    modifiers: ['readonly'],
-                    format: ['UPPER_CASE'],
-                    trailingUnderscore: 'allow',
-                },
-                {
                     selector: 'objectLiteralProperty',
                     format: ['camelCase', 'UPPER_CASE', 'snake_case'],
                     leadingUnderscore: 'allow',

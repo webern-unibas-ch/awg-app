@@ -1,0 +1,22 @@
+@import '/src/assets/themes/scss/shared';
+
+.awg-main-navbar {
+    border-bottom: 1px solid $border-grey;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.navbar-brand:hover {
+    border-bottom: none !important;
+    text-decoration: none;
+}
+
+:host ::ng-deep {
+    .navbar-nav .nav-item.dropdown.active .nav-link {
+        color: $link-color !important;
+    }
+}

@@ -3,7 +3,7 @@
 
     <!-- Brand (Desktop) -->
     <div class="navbar-brand-container col-3 col-md-4 col-xl-3 d-inline d-sm-none d-md-inline me-0 my-auto">
-        <awg-logo-link [logoData]="logos?.['awg']" linkClass="navbar-brand" />
+        <awg-logo-link [logoData]="logos['awg']" linkClass="navbar-brand" />
     </div>
 
     <!-- Toggle button -->
@@ -23,29 +23,15 @@
         [ngbCollapse]="isCollapsed()">
         <ul class="navbar-nav ms-sm-0 my-auto">
             <!-- Home -->
-            <li class="nav-item">
-                <a class="nav-link d-flex" [routerLink]="navItems.home.path" routerLinkActive="active">
-                    <span [class]="navItems.home.spanClass">{{ navItems.home.label }}</span>
-                    <fa-icon [icon]="navItems.home.icon" [class]="navItems.home.iconClass" />
-                </a>
-            </li>
+            <li class="nav-item"><awg-navbar-item [item]="navbarItems.home" /></li>
 
             <!-- Edition -->
             <li class="nav-item" ngbDropdown [class.active]="isEditionRouteActive()">
-                <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
-                    <span [class]="navItems.edition.spanClass">{{ navItems.edition.label }}</span>
-                    <fa-icon [icon]="navItems.edition.icon" [class]="navItems.edition.iconClass" />
-                </a>
+                <awg-navbar-item [item]="navbarItems.edition" [isDropdown]="true" id="dropdownNavEdition" />
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <h6 class="dropdown-header">Allgemein</h6>
-                    @for (link of GENERAL_EDITION_LINKS; track link.path.join('/')) {
-                        <a
-                            class="dropdown-item"
-                            [routerLink]="link.path"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }">
-                            {{ link.label }}
-                        </a>
+                    @for (link of generalEditionLinks; track link.route.join('/')) {
+                        <awg-navbar-dropdown-link [label]="link.label" [route]="link.route" />
                     }
                     <div class="dropdown-divider"></div>
 
@@ -60,14 +46,10 @@
                                 <span [innerHTML]="section.fullTitle"></span>
                             </h6>
 
-                            @for (link of SECTION_EDITION_LINKS; track link.label) {
-                                <a
-                                    class="dropdown-item"
-                                    [routerLink]="[...section.baseRoute, ...link.suffix]"
-                                    routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{ exact: true }">
-                                    {{ link.label }}
-                                </a>
+                            @for (link of sectionEditionLinks; track link.label) {
+                                <awg-navbar-dropdown-link
+                                    [label]="link.label"
+                                    [route]="[...section.baseRoute, ...link.route]" />
                             }
                             <div class="dropdown-divider"></div>
                         </div>
@@ -76,27 +58,17 @@
             </li>
 
             <!-- Structure -->
-            <li class="nav-item">
-                <a class="nav-link d-flex" [routerLink]="navItems.structure.path" routerLinkActive="active">
-                    <span [class]="navItems.structure.spanClass">{{ navItems.structure.label }}</span>
-                    <fa-icon [icon]="navItems.structure.icon" [class]="navItems.structure.iconClass" />
-                </a>
-            </li>
+            <li class="nav-item"><awg-navbar-item [item]="navbarItems.structure" /></li>
         </ul>
 
         <!-- Brand (Mobile) -->
         <div class="navbar-brand-container col-3 d-none d-sm-inline d-md-none ms-5 me-auto my-auto">
-            <awg-logo-link [logoData]="logos?.['awg']" linkClass="navbar-brand" />
+            <awg-logo-link [logoData]="logos['awg']" linkClass="navbar-brand" />
         </div>
 
         <!-- Contact -->
         <ul class="navbar-nav my-auto">
-            <li class="nav-item">
-                <a class="nav-link d-flex" [routerLink]="navItems.contact.path" routerLinkActive="active">
-                    <span [class]="navItems.contact.spanClass">{{ navItems.contact.label }}</span>
-                    <fa-icon [icon]="navItems.contact.icon" [class]="navItems.contact.iconClass" />
-                </a>
-            </li>
+            <li class="nav-item"><awg-navbar-item [item]="navbarItems.contact" /></li>
         </ul>
     </div>
 </nav>
