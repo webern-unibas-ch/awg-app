@@ -28,13 +28,13 @@
 <title>cluster_CoreModule_declarations</title>
 <polygon fill="none" stroke="black" points="274,-78 274,-130 597,-130 597,-78 274,-78"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_CoreModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 266,-130 266,-78 16,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_CoreModule_exports</title>
 <polygon fill="none" stroke="black" points="61,-208 61,-260 531,-260 531,-208 61,-208"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_CoreModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 266,-130 266,-78 16,-78"/>
 </g>
 <!-- NavbarComponent -->
 <g id="node1" class="node">
