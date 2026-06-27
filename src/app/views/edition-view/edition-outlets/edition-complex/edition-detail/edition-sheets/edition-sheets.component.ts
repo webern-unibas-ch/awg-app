@@ -490,7 +490,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

@@ -72,25 +72,25 @@ export class NavbarComponent {
     readonly sectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
 
     /**
-     * Public signal: isCollapsed.
+     * Public readonly signal: isCollapsed.
      *
      * It holds the boolean value if the header menu is collapsed or not.
      */
-    isCollapsed = signal(true);
+    readonly isCollapsed = signal(true);
 
     /**
      * Public readonly signal: logosData.
      *
      * It holds the logos data for the footer.
      */
-    logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
+    readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Readonly signal: sectionsData.
+     * Public readonly signal: sectionsData.
      *
      * It keeps the array of displayed edition sections as a read-only signal.
      */
-    sectionsData = signal(
+    readonly sectionsData = signal(
         NAVBAR_DISPLAYED_SECTION_IDS.map(section =>
             EditionOutlineService.getEditionSectionById(section.seriesId, section.sectionId)
         )
@@ -101,14 +101,16 @@ export class NavbarComponent {
      *
      * It computes the array of edition sections to be displayed in the navbar.
      */
-    displayedSections = computed(() => this.sectionsData().map(section => this._mapSectionToNavbarLink(section)));
+    readonly displayedSections = computed(() =>
+        this.sectionsData().map(section => this._mapSectionToNavbarLink(section))
+    );
 
     /**
-     * Public signal: isEditionRouteActive.
+     * Public readonly signal: isEditionRouteActive.
      *
      * It checks if the edition route is active.
      */
-    isEditionRouteActive = isActive('/edition', this._router);
+    readonly isEditionRouteActive = isActive('/edition', this._router);
 
     /**
      * Public method: toggleNav.

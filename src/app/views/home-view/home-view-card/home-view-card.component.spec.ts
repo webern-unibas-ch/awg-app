@@ -270,7 +270,6 @@ describe('HomeViewCardComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             let routerLinks: RouterLink[];
-
             let linkDes: DebugElement[];
 
             beforeEach(() => {

@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    inject,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
-import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
+import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
 import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
@@ -32,6 +40,33 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
+     * Private readonly injection variable: _cdr.
+     *
+     * It keeps the instance of the injected ChangeDetectorRef.
+     */
+    private readonly _cdr = inject(ChangeDetectorRef);
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
+
+    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition intro: 0 for German, 1 for English.
@@ -60,7 +95,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It keeps the observable of the edition intro data.
      */
-    editionIntroData$: Observable<IntroList>;
+    editionIntroData$: Observable<IntroList | null | undefined>;
 
     /**
      * Public variable: errorObject.
@@ -82,27 +117,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
     private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router = inject(Router);
 
     /**
      * Constructor of the EditionIntroComponent.
@@ -127,7 +141,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.updateEditionState();
+        this.listenToRouteChanges();
 
         this.getEditionIntroData();
     }
@@ -149,13 +163,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Public method: updateEditionState.
+     * Public method: listenToRouteChanges.
      *
-     * It updates the current edition state.
+     * It listens to route changes and updates the edition state accordingly.
      *
-     * @returns {void} Updates the current edition state.
+     * @returns {void} Updates the edition state on route changes.
      */
-    updateEditionState(): void {
+    listenToRouteChanges(): void {
         this._router.events.pipe(takeUntil(this._destroyed$)).subscribe(events => {
             if (this._isNavigationEndToIntro(events)) {
                 const { seriesNumber, sectionNumber } = this._extractUrlSegments(events.urlAfterRedirects);
@@ -184,7 +198,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         ]).pipe(
             switchMap(([series, section, complex]) => {
                 if (!series || !section) {
-                    return EMPTY;
+                    return observableOf(null);
                 }
                 const isComplexValidForSection =
                     complex &&
@@ -199,7 +213,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
             }),
             catchError(err => {
                 this.errorObject = err;
-                return EMPTY;
+                return observableOf(undefined);
             })
         );
     }
@@ -404,7 +418,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

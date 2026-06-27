@@ -103,7 +103,7 @@ describe('StatisticsViewComponent', () => {
     });
 
     beforeEach(() => {
-        // Mock return value for getStatisticsFromOutline (needs to be set before component creation)
+        // Spies for service methods (need to be created before component creation
         mockStatisticsService.getStatisticsFromOutline.mockReturnValue({} as Statistics);
 
         // Create component fixture

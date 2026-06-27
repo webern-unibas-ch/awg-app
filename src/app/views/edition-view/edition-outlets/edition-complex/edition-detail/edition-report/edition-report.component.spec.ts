@@ -249,9 +249,9 @@ describe('EditionReportComponent', () => {
 
         // Test data
         expectedReportFragment = 'source_A';
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-        expectedEditionComplexBaseRoute = '/edition/complex/op12/';
-        expectedComplexId = 'testComplex1';
+        expectedComplexId = 'op12';
+        expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
         expectedNextComplexId = 'testComplex2';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
@@ -821,9 +821,7 @@ describe('EditionReportComponent', () => {
             });
 
             it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
-                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
                 const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                 const expectedNavigationExtras = {
                     fragment: expectedReportIds.fragmentId,
@@ -841,9 +839,7 @@ describe('EditionReportComponent', () => {
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
                 it('... fragment id is undefined', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -860,9 +856,7 @@ describe('EditionReportComponent', () => {
                 });
 
                 it('... fragment id is null', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -879,9 +873,7 @@ describe('EditionReportComponent', () => {
                 });
 
                 it('... fragment id is empty string', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -1115,9 +1107,7 @@ describe('EditionReportComponent', () => {
             });
 
             it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
-                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
-
                 const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                 const expectedNavigationExtras = {
                     queryParams: { id: expectedSheetIds.sheetId },
@@ -1135,9 +1125,7 @@ describe('EditionReportComponent', () => {
 
             describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
                 it('... fragment id is undefined', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
@@ -1154,9 +1142,7 @@ describe('EditionReportComponent', () => {
                 });
 
                 it('... fragment id is null', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
-
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
@@ -1173,9 +1159,7 @@ describe('EditionReportComponent', () => {
                 });
 
                 it('... fragment id is empty string', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
@@ -1230,9 +1214,7 @@ describe('EditionReportComponent', () => {
                 });
 
                 it('... fragment id is empty string', async () => {
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
@@ -1331,7 +1313,7 @@ describe('EditionReportComponent', () => {
 
             describe('... should navigate to another complex if', () => {
                 it('... complex id is given and not equal to the current complex id', async () => {
-                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
@@ -1455,7 +1437,6 @@ describe('EditionReportComponent', () => {
             describe('... with the current edition complex id given', () => {
                 describe('... should navigate within same complex to a given report route', () => {
                     it('... with a given report fragment', async () => {
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -1479,7 +1460,6 @@ describe('EditionReportComponent', () => {
                     });
 
                     it('... without a given report fragment', async () => {
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -1505,7 +1485,6 @@ describe('EditionReportComponent', () => {
 
                 describe('... should navigate within same complex to a given sheet route', () => {
                     it('... with a given sheet id', async () => {
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -1529,7 +1508,6 @@ describe('EditionReportComponent', () => {
                     });
 
                     it('... without a given sheet id', async () => {
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -1557,7 +1535,7 @@ describe('EditionReportComponent', () => {
             describe('... with another edition complex id given', () => {
                 describe('... should navigate to a given report route of another complex', () => {
                     it('... with a given report fragment', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -1580,7 +1558,7 @@ describe('EditionReportComponent', () => {
                     });
 
                     it('... without a given report fragment', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1605,7 +1583,7 @@ describe('EditionReportComponent', () => {
 
                 describe('... should navigate to a given sheet route of another complex', () => {
                     it('... with a given sheet id', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -1628,7 +1606,7 @@ describe('EditionReportComponent', () => {
                     });
 
                     it('... without a given sheet id', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
 

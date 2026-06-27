@@ -196,11 +196,11 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockIntroComplexData.
+     * Test helper data constant: mockIntroEmptyData.
      *
-     * It provides a mocked intro data object of an edition complex.
+     * It provides a mocked empty intro data object as used in an edition complex.
      */
-    mockIntroComplexData: {
+    mockIntroEmptyData: {
         intro: [
             {
                 id: 'test_block_id_2',
