@@ -18,8 +18,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { CompileHtmlComponent } from '@awg-shared/compile-html/compile-html.component';
 import { TextcriticalCommentary, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { TextcriticsListComponent } from './textcritics-list.component';

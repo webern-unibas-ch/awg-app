@@ -7,7 +7,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 
 import { EditionTkaLabelComponent } from './edition-tka-label.component';
 

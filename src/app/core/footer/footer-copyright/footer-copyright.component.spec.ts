@@ -5,8 +5,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { META_DATA } from '@awg-core/core-data';
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { META_DATA } from '../../data/meta.data';
+import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
 

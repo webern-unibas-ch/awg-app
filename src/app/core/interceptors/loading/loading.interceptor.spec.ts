@@ -20,7 +20,7 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { getInterceptorInstance } from '@testing/interceptor-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { LoadingService } from '@awg-core/services';
+import { LoadingService } from '../../services/loading-service/loading.service';
 
 import { LoadingInterceptor } from './loading.interceptor';
 

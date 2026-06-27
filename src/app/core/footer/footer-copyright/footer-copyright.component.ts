@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { MetaPage } from '@awg-core/core-models';
+import { MetaPage } from '../../models/meta.model';
 
 /**
  * The FooterCopyright component.

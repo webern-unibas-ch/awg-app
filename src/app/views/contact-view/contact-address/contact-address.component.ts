@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { MetaContact, MetaPage } from '@awg-core/core-models';
+import { MetaContact, MetaPage } from '@awg-core/models/meta.model';
 
 /**
  * The ContactAddress component.

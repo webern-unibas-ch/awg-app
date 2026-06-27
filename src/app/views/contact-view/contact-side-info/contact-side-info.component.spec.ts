@@ -12,11 +12,12 @@ import {
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { ContactAddressComponent } from '@awg-app/views/contact-view/contact-address/contact-address.component';
-import { ContactMapComponent } from '@awg-app/views/contact-view/contact-map/contact-map.component';
-import { META_DATA } from '@awg-core/core-data';
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { META_DATA } from '@awg-core/data/meta.data';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
+
+import { ContactAddressComponent } from '../contact-address/contact-address.component';
+import { ContactMapComponent } from '../contact-map/contact-map.component';
 
 import { ContactSideInfoComponent } from './contact-side-info.component';
 

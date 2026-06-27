@@ -5,7 +5,8 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { FullscreenService, UtilityService } from '@awg-core/services';
+import { FullscreenService } from '@awg-core/services/fullscreen-service/fullscreen.service';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';

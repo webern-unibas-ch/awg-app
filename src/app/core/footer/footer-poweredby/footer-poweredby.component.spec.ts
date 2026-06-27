@@ -12,9 +12,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
-import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { LogoLinkComponent } from '@awg-core/logo-link/logo-link.component';
+import { LOGOS_DATA } from '../../data/logos.data';
+import { META_DATA } from '../../data/meta.data';
+import { LogoLinkComponent } from '../../logo-link/logo-link.component';
+import { Logo, Logos, MetaPage, MetaSectionTypes } from '../../models';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 

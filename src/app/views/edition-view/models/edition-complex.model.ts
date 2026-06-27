@@ -1,9 +1,7 @@
-import { PERSONS_DATA } from '@awg-core/core-data';
-import { MetaPerson } from '@awg-core/core-models/meta.model';
-import {
-    EDITION_CATALOGUE_TYPE_CONSTANTS,
-    EDITION_ROUTE_CONSTANTS,
-} from '@awg-views/edition-view/edition-route-constants';
+import { PERSONS_DATA } from '@awg-core/data/persons.data';
+import { MetaPerson } from '@awg-core/models/meta.model';
+
+import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-route-constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**

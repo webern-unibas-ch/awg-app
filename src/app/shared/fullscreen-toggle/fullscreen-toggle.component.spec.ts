@@ -11,7 +11,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { FullscreenService } from '@awg-core/services';
+import { FullscreenService } from '@awg-core/services/fullscreen-service/fullscreen.service';
 
 import { FullscreenToggleComponent } from './fullscreen-toggle.component';
 

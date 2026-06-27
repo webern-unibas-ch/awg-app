@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
-import { LogoLinkComponent } from '@awg-app/core/logo-link/logo-link.component';
-import { Logos, MetaPage } from '@awg-core/core-models';
+import { LogoLinkComponent } from '../../logo-link/logo-link.component';
+import { Logos } from '../../models/logos.model';
+import { MetaPage } from '../../models/meta.model';
 
 /**
  * The FooterPoweredBy component.

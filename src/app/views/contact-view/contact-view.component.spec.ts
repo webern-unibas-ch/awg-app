@@ -13,9 +13,9 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { META_DATA } from '@awg-core/core-data';
-import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { META_DATA } from '@awg-core/data/meta.data';
+import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 

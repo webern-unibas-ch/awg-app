@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
 
-import { NavbarItem } from '@awg-app/core/navbar/models/navbar.model';
+import { NavbarItem } from '../models/navbar.model';
 
 /**
  * The NavbarItem component.

@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { LoadingService } from '@awg-core/services';
+import { LoadingService } from '../../services/loading-service/loading.service';
 
 /**
  * The Loading interceptor.

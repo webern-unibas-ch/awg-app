@@ -5,9 +5,9 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '@awg-core/core-data';
-import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { LOGOS_DATA } from '@awg-core/data/logos.data';
+import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges.component';
 

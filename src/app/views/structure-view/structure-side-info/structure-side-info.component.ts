@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
-import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { MetaSectionTypes, MetaStructure } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 
 /**

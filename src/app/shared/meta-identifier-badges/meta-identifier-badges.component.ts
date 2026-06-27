@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 
 /**
  * The MetaIdentifierBadges component.

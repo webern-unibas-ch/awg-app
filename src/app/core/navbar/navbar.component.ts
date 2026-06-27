@@ -8,8 +8,8 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { Logos } from '../core-models/logos.model';
 import { LogoLinkComponent } from '../logo-link/logo-link.component';
+import { Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
 import {
