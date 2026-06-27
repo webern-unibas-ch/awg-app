@@ -1,0 +1,5 @@
+@if (route(); as route) {
+    <a class="dropdown-item" [routerLink]="route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        {{ label() }}
+    </a>
+}

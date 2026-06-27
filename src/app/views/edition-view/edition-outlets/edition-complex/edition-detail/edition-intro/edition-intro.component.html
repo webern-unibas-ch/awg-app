@@ -7,7 +7,7 @@
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-edition-intro-view p-5 border rounded-3">
             <div class="row justify-content-center">
-                @if (UTILS.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                @if (UTILS.isNotEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
                     @if (editionComplex) {
                         <awg-edition-intro-partial-disclaimer
                             class="col-12 col-xl-6"
@@ -20,7 +20,7 @@
                     }
                     <awg-edition-intro-content
                         class="col-12 col-xl-10"
-                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
+                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
                         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
@@ -29,7 +29,7 @@
 
                     <awg-edition-intro-nav
                         class="col-12 col-xl-2 d-none d-xl-block"
-                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
+                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         [currentLanguage]="currentLanguage"
                         (languageChangeRequest)="onLanguageSet($event)" />
@@ -46,7 +46,7 @@
         @if (errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
         } @else {
-            <!-- loading spinner -->
+            <!-- loading spinner fallback -->
             <awg-twelve-tone-spinner />
         }
     }

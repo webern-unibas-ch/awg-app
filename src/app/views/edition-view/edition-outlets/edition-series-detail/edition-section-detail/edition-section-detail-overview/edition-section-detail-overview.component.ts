@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { UtilityService } from '@awg-core/services';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
-import { Observable } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 
 /**
  * The EditionSectionDetailOverview component.
@@ -20,18 +20,11 @@ import { Observable } from 'rxjs';
 })
 export class EditionSectionDetailOverviewComponent implements OnInit {
     /**
-     * Public variable: selectedSeries.
+     * Public variable: editionData$.
      *
-     * It keeps the observable of the selected series of the edition.
+     * It keeps the observable of the selected series and section of the edition.
      */
-    selectedSeries$: Observable<EditionOutlineSeries>;
-
-    /**
-     * Public variable: selectedSection$.
-     *
-     * It keeps the observable of the selected section of the edition.
-     */
-    selectedSection$: Observable<EditionOutlineSection>;
+    editionData$: Observable<{ series: EditionOutlineSeries; section: EditionOutlineSection }>;
 
     /**
      * Public readonly injection variable: UTILS.
@@ -65,7 +58,9 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
      * @returns {void} Sets up the section detail overview.
      */
     setupSectionDetailOverview(): void {
-        this.selectedSeries$ = this._editionStateService.getSelectedEditionSeries();
-        this.selectedSection$ = this._editionStateService.getSelectedEditionSection();
+        this.editionData$ = combineLatest([
+            this._editionStateService.getSelectedEditionSeries(),
+            this._editionStateService.getSelectedEditionSection(),
+        ]).pipe(map(([series, section]) => ({ series, section })));
     }
 }

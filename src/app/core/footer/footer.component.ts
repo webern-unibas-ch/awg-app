@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 
 import { Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { LogoLinkComponent } from '@awg-core/logo-link/logo-link.component';
 import { CoreService } from '@awg-core/services';
 
 import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
 import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';
-import { FooterLogoComponent } from './footer-logo/footer-logo.component';
 import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.component';
 
 /**
@@ -15,13 +15,13 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
  * with the {@link FooterDeclarationComponent},
  * {@link FooterCopyrightComponent},
  * {@link FooterPoweredbyComponent}
- * and {@link FooterLogoComponent}.
+ * and {@link LogoLinkComponent}.
  */
 @Component({
     selector: 'awg-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
-    imports: [FooterLogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
+    imports: [LogoLinkComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })
 export class FooterComponent {
     /**

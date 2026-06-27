@@ -74,6 +74,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
     let editionStateServiceGetSelectedEditionSectionSpy: Spy;
     let setupSectionDetailOverviewSpy: Spy;
 
+    let expectedEditionData: { series: EditionOutlineSeries; section: EditionOutlineSection };
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
 
@@ -110,6 +111,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
         // Test data
         expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
         expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
+        expectedEditionData = { series: expectedSelectedSeries, section: expectedSelectedSection };
 
         // Spies
         editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
@@ -129,12 +131,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedSeries$`', () => {
-            expect(component.selectedSeries$).toBeUndefined();
-        });
-
-        it('... should not have `selectedSection$`', () => {
-            expect(component.selectedSection$).toBeUndefined();
+        it('... should not have `editionData$`', () => {
+            expect(component.editionData$).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -163,21 +161,15 @@ describe('EditionSectionDetailOverviewComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Mock the parent component input
-            component.selectedSeries$ = observableOf(expectedSelectedSeries);
-            component.selectedSection$ = observableOf(expectedSelectedSection);
+            component.editionData$ = observableOf(expectedEditionData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('should have `selectedSeries$`', async () => {
-            expect(component.selectedSeries$).toBeDefined();
-            await expect(lastValueFrom(component.selectedSeries$)).resolves.toEqual(expectedSelectedSeries);
-        });
-
-        it('should have `selectedSection$`', async () => {
-            expect(component.selectedSection$).toBeDefined();
-            await expect(lastValueFrom(component.selectedSection$)).resolves.toEqual(expectedSelectedSection);
+        it('should have `editionData$`', async () => {
+            expect(component.editionData$).toBeDefined();
+            await expect(lastValueFrom(component.editionData$)).resolves.toEqual(expectedEditionData);
         });
 
         describe('VIEW', () => {
@@ -222,10 +214,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
             describe('... with intro disabled', () => {
                 it('... should contain no div.awg-edition-section-detail-intro', async () => {
-                    const expectedSelectedSectionWithDisabledIntro = structuredClone(expectedSelectedSection);
-                    expectedSelectedSectionWithDisabledIntro.content.intro.disabled = true;
+                    const expectedSectionWithDisabledIntro = structuredClone(expectedSelectedSection);
+                    expectedSectionWithDisabledIntro.content.intro.disabled = true;
 
-                    component.selectedSection$ = observableOf(expectedSelectedSectionWithDisabledIntro);
+                    component.editionData$ = observableOf({
+                        series: expectedSelectedSeries,
+                        section: expectedSectionWithDisabledIntro,
+                    });
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 0, 0);
@@ -241,10 +236,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... if selected section has empty opus complexes, but given mnr complexes', async () => {
-                        const expectedSelectedSectionWithEmptyOpusComplexes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithEmptyOpusComplexes.content.complexTypes.opus = undefined;
+                        const expectedSectionWithEmptyOpusComplexes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithEmptyOpusComplexes.content.complexTypes.opus = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithEmptyOpusComplexes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithEmptyOpusComplexes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -252,10 +250,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... if selected section has empty mnr complexes, but given opus complexes', async () => {
-                        const expectedSelectedSectionWithEmptyMnrComplexes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithEmptyMnrComplexes.content.complexTypes.mnr = undefined;
+                        const expectedSectionWithEmptyMnrComplexes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithEmptyMnrComplexes.content.complexTypes.mnr = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithEmptyMnrComplexes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithEmptyMnrComplexes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -270,10 +271,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', async () => {
-                        const expectedSelectedSectionWithEmptyOpusComplexes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithEmptyOpusComplexes.content.complexTypes.opus = undefined;
+                        const expectedSectionWithEmptyOpusComplexes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithEmptyOpusComplexes.content.complexTypes.opus = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithEmptyOpusComplexes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithEmptyOpusComplexes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -339,10 +343,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', async () => {
-                        const expectedSelectedSectionWithEmptyMnrComplexes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithEmptyMnrComplexes.content.complexTypes.mnr = undefined;
+                        const expectedSectionWithEmptyMnrComplexes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithEmptyMnrComplexes.content.complexTypes.mnr = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithEmptyMnrComplexes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithEmptyMnrComplexes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -405,10 +412,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but one EditionSectionDetailPlaceholder ...', () => {
                     it('... if selectedSection has no complexTypes...', async () => {
-                        const expectedSelectedSectionWithNoComplexTypes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithNoComplexTypes.content.complexTypes = undefined;
+                        const expectedSectionWithNoComplexTypes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithNoComplexTypes.content.complexTypes = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithNoComplexTypes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithNoComplexTypes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -416,11 +426,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... if selectedSection has empty opus and mnr complexTypes', async () => {
-                        const expectedSelectedSectionWithEmptyComplexTypes = structuredClone(expectedSelectedSection);
-                        expectedSelectedSectionWithEmptyComplexTypes.content.complexTypes.opus = undefined;
-                        expectedSelectedSectionWithEmptyComplexTypes.content.complexTypes.mnr = undefined;
+                        const expectedSectionWithEmptyComplexTypes = structuredClone(expectedSelectedSection);
+                        expectedSectionWithEmptyComplexTypes.content.complexTypes.opus = undefined;
+                        expectedSectionWithEmptyComplexTypes.content.complexTypes.mnr = undefined;
 
-                        component.selectedSection$ = observableOf(expectedSelectedSectionWithEmptyComplexTypes);
+                        component.editionData$ = observableOf({
+                            series: expectedSelectedSeries,
+                            section: expectedSectionWithEmptyComplexTypes,
+                        });
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -429,14 +442,16 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 });
 
                 it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', async () => {
-                    const expectedSelectedSeriesWithSectionWithNoComplexTypes = structuredClone(expectedSelectedSeries);
-                    expectedSelectedSeriesWithSectionWithNoComplexTypes.sections[4].content.complexTypes = undefined;
-                    const expectedSelectedSectionWithNoComplexTypes = structuredClone(
-                        expectedSelectedSeriesWithSectionWithNoComplexTypes.sections[4]
+                    const expectedSeriesWithSectionWithNoComplexTypes = structuredClone(expectedSelectedSeries);
+                    expectedSeriesWithSectionWithNoComplexTypes.sections[4].content.complexTypes = undefined;
+                    const expectedSectionWithNoComplexTypes = structuredClone(
+                        expectedSeriesWithSectionWithNoComplexTypes.sections[4]
                     );
 
-                    component.selectedSeries$ = observableOf(expectedSelectedSeriesWithSectionWithNoComplexTypes);
-                    component.selectedSection$ = observableOf(expectedSelectedSectionWithNoComplexTypes);
+                    component.editionData$ = observableOf({
+                        series: expectedSeriesWithSectionWithNoComplexTypes,
+                        section: expectedSectionWithNoComplexTypes,
+                    });
                     await detectChangesOnPush(fixture);
 
                     const placeholderDes = getAndExpectDebugElementByDirective(
@@ -449,8 +464,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         EditionSectionDetailPlaceholderStubComponent
                     ) as EditionSectionDetailPlaceholderStubComponent;
 
-                    expectToEqual(placeholderCmp.selectedSeries, expectedSelectedSeriesWithSectionWithNoComplexTypes);
-                    expectToEqual(placeholderCmp.selectedSection, expectedSelectedSectionWithNoComplexTypes);
+                    expectToEqual(placeholderCmp.selectedSeries, expectedSeriesWithSectionWithNoComplexTypes);
+                    expectToEqual(placeholderCmp.selectedSection, expectedSectionWithNoComplexTypes);
                 });
             });
         });
@@ -464,22 +479,17 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 expectSpyCall(setupSectionDetailOverviewSpy, 1);
             });
 
-            it('... should have triggered `editionStateService.getSelectedEditionSeries`', () => {
+            it('... should have triggered EditionStateService methods', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
-            });
-
-            it('... should have set selectedSeries (via EditionStateService)', async () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
-                await expect(lastValueFrom(component.selectedSeries$)).resolves.toEqual(expectedSelectedSeries);
-            });
-
-            it('... should have triggered `editionStateService.getSelectedEditionSection`', () => {
                 expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
             });
 
-            it('... should have set selectedSection (via EditionStateService)', async () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
-                await expect(lastValueFrom(component.selectedSection$)).resolves.toEqual(expectedSelectedSection);
+            it('... should have set editionData (via EditionStateService)', async () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
+                await expect(lastValueFrom(component.editionData$)).resolves.toEqual({
+                    series: expectedSelectedSeries,
+                    section: expectedSelectedSection,
+                });
             });
         });
     });

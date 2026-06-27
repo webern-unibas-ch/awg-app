@@ -180,13 +180,13 @@ export class EditionComplex {
         this.complexId = new EditionRouteConstant();
         this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
-        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll('/', '_');
+        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll(delimiter, '_');
         this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
         // Set base route
         const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
-        this.baseRoute = `${rootPath}${this.complexId.route}${delimiter}`;
+        this.baseRoute = `${rootPath}${this.complexId.route}`;
     }
 
     /**

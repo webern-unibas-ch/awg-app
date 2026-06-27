@@ -3,53 +3,54 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '@awg-core/core-data';
-import { Logo } from '@awg-core/core-models';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { LOGOS_DATA } from '../core-data/logos.data';
+import { Logo } from '../core-models/logos.model';
+import { LogoLinkComponent } from './logo-link.component';
 
-import { FooterLogoComponent } from './footer-logo.component';
-
-describe('FooterLogoComponent (DONE)', () => {
-    let component: FooterLogoComponent;
-    let fixture: ComponentFixture<FooterLogoComponent>;
+describe('LogoLinkComponent', () => {
+    let component: LogoLinkComponent;
+    let fixture: ComponentFixture<LogoLinkComponent>;
     let compDe: DebugElement;
 
-    let expectedLeftMainFooterLogoData: Logo;
-    let expectedRightMainFooterLogoData: Logo;
-    let expectedNonMainFooterLogoData: Logo;
+    let expectedUnibasLogoData: Logo;
+    let expectedSagwLogoData: Logo;
+    let expectedAngularLogoData: Logo;
 
     const cssClassFloatEnd = 'float-end';
     const cssClassMarginY2 = 'my-2';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FooterLogoComponent],
+            imports: [LogoLinkComponent],
         }).compileComponents();
-    });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(FooterLogoComponent);
+        fixture = TestBed.createComponent(LogoLinkComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLeftMainFooterLogoData = LOGOS_DATA['unibas'];
-        expectedRightMainFooterLogoData = LOGOS_DATA['sagw'];
-        expectedNonMainFooterLogoData = LOGOS_DATA['angular'];
+        expectedUnibasLogoData = LOGOS_DATA['unibas'];
+        expectedSagwLogoData = LOGOS_DATA['sagw'];
+        expectedAngularLogoData = LOGOS_DATA['angular'];
 
         // Set required input signal with default value for initial tests
         fixture.componentRef.setInput('logoData', {} as Logo);
     });
 
-    it('... should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
         it('... should have required `logoData` input', () => {
             expectToEqual(component.logoData(), {} as Logo);
+        });
+
+        it('... should have default `linkClass` input', () => {
+            expectToBe(component.linkClass(), 'awg-logo-link');
         });
 
         it('... should have computed `logoClassList` to be empty string (due to empty logoData)', () => {
@@ -67,26 +68,31 @@ describe('FooterLogoComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent updating the input properties
-            fixture.componentRef.setInput('logoData', expectedRightMainFooterLogoData);
+            fixture.componentRef.setInput('logoData', expectedSagwLogoData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have `logoData`', () => {
-            expectToEqual(component.logoData(), expectedRightMainFooterLogoData);
+            expectToEqual(component.logoData(), expectedSagwLogoData);
         });
 
         it('... should change `logoData` if input changes', () => {
-            expectToEqual(component.logoData(), expectedRightMainFooterLogoData);
+            expectToEqual(component.logoData(), expectedSagwLogoData);
 
-            fixture.componentRef.setInput('logoData', expectedLeftMainFooterLogoData);
+            fixture.componentRef.setInput('logoData', expectedUnibasLogoData);
+            expectToEqual(component.logoData(), expectedUnibasLogoData);
 
-            expectToEqual(component.logoData(), expectedLeftMainFooterLogoData);
+            fixture.componentRef.setInput('logoData', expectedAngularLogoData);
+            expectToEqual(component.logoData(), expectedAngularLogoData);
+        });
 
-            fixture.componentRef.setInput('logoData', expectedNonMainFooterLogoData);
+        it('... should change `linkClass` if input changes', () => {
+            expectToBe(component.linkClass(), 'awg-logo-link');
 
-            expectToEqual(component.logoData(), expectedNonMainFooterLogoData);
+            fixture.componentRef.setInput('linkClass', 'navbar-brand');
+            expectToBe(component.linkClass(), 'navbar-brand');
         });
 
         it('... should have computed `logoClassList` to return the correct CSS classes (for right main footer)', () => {
@@ -108,11 +114,7 @@ describe('FooterLogoComponent (DONE)', () => {
             });
 
             it('... should display the correct attributes (href, id, src, alt) for each logo type', async () => {
-                const logosToTest = [
-                    expectedRightMainFooterLogoData,
-                    expectedLeftMainFooterLogoData,
-                    expectedNonMainFooterLogoData,
-                ];
+                const logosToTest = [expectedSagwLogoData, expectedUnibasLogoData, expectedAngularLogoData];
 
                 for (const logo of logosToTest) {
                     fixture.componentRef.setInput('logoData', logo);
@@ -130,20 +132,20 @@ describe('FooterLogoComponent (DONE)', () => {
             it('... should apply the correct CSS classes to the image for each logo type', async () => {
                 const { imageEl } = getElements();
 
-                fixture.componentRef.setInput('logoData', expectedRightMainFooterLogoData);
+                fixture.componentRef.setInput('logoData', expectedSagwLogoData);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(imageEl.classList.length, 2);
                 expectToContain(imageEl.classList, cssClassMarginY2);
                 expectToContain(imageEl.classList, cssClassFloatEnd);
 
-                fixture.componentRef.setInput('logoData', expectedLeftMainFooterLogoData);
+                fixture.componentRef.setInput('logoData', expectedUnibasLogoData);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(imageEl.classList.length, 1);
                 expectToBe(imageEl.className, cssClassMarginY2);
 
-                fixture.componentRef.setInput('logoData', expectedNonMainFooterLogoData);
+                fixture.componentRef.setInput('logoData', expectedAngularLogoData);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(imageEl.classList.length, 0);
@@ -158,9 +160,9 @@ describe('FooterLogoComponent (DONE)', () => {
 
             it('... should return correct CSS classes depending on the logo type', () => {
                 const testCases = [
-                    { logoData: expectedRightMainFooterLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
-                    { logoData: expectedLeftMainFooterLogoData, expected: cssClassMarginY2 },
-                    { logoData: expectedNonMainFooterLogoData, expected: '' },
+                    { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
+                    { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
+                    { logoData: expectedAngularLogoData, expected: '' },
                 ];
 
                 testCases.forEach(({ logoData, expected }) => {

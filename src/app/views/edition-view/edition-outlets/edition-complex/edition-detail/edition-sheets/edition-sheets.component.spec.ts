@@ -262,11 +262,10 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedIsFullscreen = false;
         expectedIsSheetFacetMinimized = false;
 
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-
         expectedComplexId = 'op12';
+        expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
         expectedNextComplexId = 'testComplex2';
-        expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}/`;
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
 
@@ -994,7 +993,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
                 expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
                 const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
@@ -1016,9 +1014,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is undefined', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -1037,9 +1033,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is null', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -1058,9 +1052,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is empty string', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
-
                     const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
                         fragment: '',
@@ -1123,9 +1115,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
                 expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
-
                 const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                 const expectedNavigationExtras = {
                     queryParams: { id: expectedSheetIds.sheetId },
@@ -1146,9 +1136,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is undefined', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
@@ -1168,7 +1156,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is null', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1190,7 +1177,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... fragment id is empty string', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
 
                     const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
@@ -1742,14 +1728,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(
-                        expectedEditionComplex.complexId.route.replace('/', ''),
+                        expectedComplexId,
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
                     fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedEditionComplex.complexId.route.replace('/', ''),
+                        expectedComplexId,
                         expectedTargetRoute,
                         expectedNavigationExtras,
                     ]);
@@ -1764,7 +1750,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... complex id is given and not equal to the current complex id', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
@@ -1898,7 +1884,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... with a given report fragment', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
@@ -1924,7 +1909,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... without a given report fragment', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
@@ -1952,7 +1936,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... with a given sheet id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
@@ -1978,7 +1961,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... without a given sheet id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
@@ -2008,7 +1990,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... with a given report fragment', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -2033,7 +2015,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... without a given report fragment', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -2060,7 +2042,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... with a given sheet id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -2085,7 +2067,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... without a given sheet id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}/`;
+                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
                         const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                         const expectedNavigationExtras = { queryParams: { id: '' } };
 
