@@ -37,19 +37,13 @@ a.dropdown-item:hover,
 a.list-group-item:hover,
 a.awg-edition-intro-nav-link:hover,
 a.awg-svg-sheet-facet-link,
-a.awg-svg-sheet-facet-link:hover,
-.navbar-brand:hover,
-.navbar-nav > li > a:hover {
+a.awg-svg-sheet-facet-link:hover {
     border-bottom: none !important;
     text-decoration: none;
 }
 a.dropdown-item:hover,
 button.dropdown-item:hover,
-a.awg-svg-sheet-facet-link.active,
-.navbar-light .navbar-nav .nav-link.active,
-.navbar-nav > li.nav-item.dropdown.active > a,
-.navbar-nav > li > a:focus:not(#dropdownNavEdition),
-.navbar-nav > li > a:active:not(#dropdownNavEdition) {
+a.awg-svg-sheet-facet-link.active {
     color: $link-color !important;
 }
 .dropdown-item.active,
@@ -106,43 +100,6 @@ button {
 
 /****** PAGE LAYOUT ******/
 
-/* navbar */
-/* (override some default values) */
-awg-navbar > .awg-main-navbar {
-    border-bottom: 1px solid $border-grey;
-}
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-    background-color: transparent;
-}
-@media screen and (min-width: 768px) {
-    .navbar-brand-container > .navbar-brand > img {
-        max-width: 90%;
-    }
-    /* helper class to set order to minus 1 */
-    .order-md-minus-1 {
-        order: -1;
-    }
-}
-@media screen and (max-width: 767px) {
-    .navbar-brand-container > .navbar-brand > img {
-        max-width: 200%;
-    }
-    .navbar > .container-fluid > .row {
-        flex-wrap: nowrap;
-    }
-}
-@media screen and (max-width: 575px) {
-    .navbar-brand-container > .navbar-brand > img {
-        max-width: 250%;
-    }
-}
-.nav-link > fa-icon {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 /* view container */
 awg-view-container > div {
     background-color: $bg-grey;
@@ -183,18 +140,20 @@ footer {
     padding: 15px;
     border-top: 1px solid $border-grey;
 }
-
-.awg-footer-bottom {
+.awg-footer-main img {
+    width: 200px;
+}
+.awg-footer-secondary {
     border-top: 1px solid $border-grey;
 }
-.awg-footer-bottom .icon img {
+.awg-footer-secondary .icon img {
     position: relative;
     display: inline;
     height: 24px;
     width: 24px;
     margin: 0;
 }
-.awg-footer-bottom .gtrans {
+.awg-footer-secondary .gtrans {
     bottom: 0;
     right: 0;
     background-color: #dbdad9;

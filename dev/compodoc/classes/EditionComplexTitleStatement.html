@@ -485,13 +485,13 @@ export class EditionComplex {
         this.complexId &#x3D; new EditionRouteConstant();
         this.complexId.route &#x3D; this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
-        this.complexId.route +&#x3D; this.titleStatement.catalogueNumber.replaceAll(&#x27;/&#x27;, &#x27;_&#x27;);
+        this.complexId.route +&#x3D; this.titleStatement.catalogueNumber.replaceAll(delimiter, &#x27;_&#x27;);
         this.complexId.short &#x3D; &#x60;${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}&#x60;;
         this.complexId.full &#x3D; &#x60;${this.titleStatement.title} ${this.complexId.short}&#x60;;
 
         // Set base route
         const rootPath &#x3D; &#x60;${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}&#x60;;
-        this.baseRoute &#x3D; &#x60;${rootPath}${this.complexId.route}${delimiter}&#x60;;
+        this.baseRoute &#x3D; &#x60;${rootPath}${this.complexId.route}&#x60;;
     }
 
     /**
