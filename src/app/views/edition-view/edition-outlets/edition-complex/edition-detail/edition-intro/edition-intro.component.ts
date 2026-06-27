@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    inject,
-    OnDestroy,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
@@ -39,12 +31,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
-    /**
-     * Private readonly injection variable: _cdr.
-     *
-     * It keeps the instance of the injected ChangeDetectorRef.
-     */
-    private readonly _cdr = inject(ChangeDetectorRef);
     /**
      * Private readonly injection variable: _editionDataService.
      *

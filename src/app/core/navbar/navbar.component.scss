@@ -10,11 +10,6 @@
     background-color: transparent;
 }
 
-.navbar-brand:hover {
-    border-bottom: none !important;
-    text-decoration: none;
-}
-
 :host ::ng-deep {
     .navbar-nav .nav-item.dropdown.active .nav-link {
         color: $link-color !important;

@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { LOGOS_DATA } from '../core-data/logos.data';
 import { Logo } from '../core-models/logos.model';
@@ -12,6 +12,7 @@ import { Logo } from '../core-models/logos.model';
     selector: 'awg-logo-link',
     templateUrl: './logo-link.component.html',
     styleUrl: './logo-link.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogoLinkComponent {
     /**

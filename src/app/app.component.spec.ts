@@ -145,7 +145,7 @@ describe('AppComponent (DONE)', () => {
         // Window spy object (Analytics)
         (window as any).gtag = vi.fn();
 
-        // Spies for service methods (need to be created before component creation
+        // Spies for service methods (need to be created before component creation)
         getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
         setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
         initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
