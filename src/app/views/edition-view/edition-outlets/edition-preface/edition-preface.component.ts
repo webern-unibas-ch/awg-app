@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-import { PrefaceList } from '@awg-views/edition-view/models';
+import { LoadingService } from '@awg-shared/loading/loading.service';
+
 import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -18,25 +19,6 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
     standalone: false,
 })
 export class EditionPrefaceComponent implements OnInit, OnDestroy {
-    /**
-     * Public variable: prefaceData$.
-     *
-     * It keeps an observable of the data of the edition preface.
-     */
-    prefaceData$: Observable<PrefaceList>;
-
-    /**
-     * Public variable: currentLanguage.
-     *
-     * It keeps the current language of the edition preface: 0 for German, 1 for English.
-     */
-    currentLanguage = 0;
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionPrefaceComponent;
-
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -59,6 +41,39 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Public variable: currentLanguage.
+     *
+     * It keeps the current language of the edition preface: 0 for German, 1 for English.
+     */
+    currentLanguage = 0;
+
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: EditionPrefaceComponent;
+
+    /**
+     * Readonly signal: isLoading.
+     *
+     * It holds the current loading status.
+     */
+    readonly isLoading = this._loadingService.isLoading;
+
+    /**
+     * Readonly signal: prefaceData.
+     *
+     * It holds the loaded preface data or null initially.
+     */
+    readonly prefaceData = toSignal(this._editionDataService.getEditionPrefaceData(), { initialValue: null });
+
+    /**
      * Constructor of the EditionPrefaceComponent.
      *
      * It declares the self-referring ref variable needed for CompileHtml library.
@@ -76,7 +91,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this._editionStateService.updateIsPrefaceView(true);
-        this.prefaceData$ = this._editionDataService.getEditionPrefaceData();
     }
 
     /**

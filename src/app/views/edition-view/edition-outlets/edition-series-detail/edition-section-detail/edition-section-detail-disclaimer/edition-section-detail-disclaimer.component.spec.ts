@@ -32,12 +32,13 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Test data
+        expectedInfoMessage = `Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.`;
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedInfoMessage = `Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.`;
     });
 
     it('should create', () => {

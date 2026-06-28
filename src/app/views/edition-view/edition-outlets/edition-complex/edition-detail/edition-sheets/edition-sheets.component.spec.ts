@@ -6,7 +6,7 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -19,8 +19,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
-import { LoadingService } from '@awg-core/services/loading-service/loading.service';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -43,6 +43,7 @@ import {
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 
+// Mock components
 @Component({
     selector: 'awg-edition-accolade',
     template: '',
@@ -144,10 +145,10 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
+    let loadingService: LoadingService;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
     let mockEditionStateService: Partial<EditionStateService>;
-    let mockLoadingService: Partial<LoadingService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
     let editionSheetsServiceFindTextcriticsSpy: Spy;
@@ -225,7 +226,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             selectSvgSheetById: (): EditionSvgSheet => new EditionSvgSheet(),
             selectConvolute: (): FolioConvolute | undefined => new FolioConvolute(),
         };
-        mockLoadingService = { getLoadingStatus: () => observableOf(false) };
 
         await TestBed.configureTestingModule({
             declarations: [
@@ -238,10 +238,10 @@ describe('EditionSheetsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
+                LoadingService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
-                { provide: LoadingService, useValue: mockLoadingService },
                 { provide: Router, useValue: mockRouter },
                 {
                     provide: ActivatedRoute,
@@ -252,13 +252,13 @@ describe('EditionSheetsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSheetsComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
-        mockActivatedRoute.testQueryParamMap = { id: '' };
+        // Set loading status before each test
+        loadingService = TestBed.inject(LoadingService);
+        loadingService.updateLoadingStatus(false);
 
         // Test data
+        mockActivatedRoute.testQueryParamMap = { id: '' };
+
         expectedIsFullscreen = false;
         expectedIsSheetFacetMinimized = false;
 
@@ -280,8 +280,9 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSelectedTextcritics = expectedTextcriticsData.textcritics[1];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
-        // Spies on service functions
-        // Spies on service functions
+        // Service spies
+        navigationSpy = mockRouter.navigate as Mock;
+
         editionDataServiceGetEditionSheetsDataSpy = vi
             .spyOn(mockEditionDataService, 'getEditionSheetsData')
             .mockReturnValue(
@@ -304,8 +305,12 @@ describe('EditionSheetsComponent (DONE)', () => {
             .spyOn(mockEditionSheetsService, 'selectSvgSheetById')
             .mockReturnValue(expectedSvgSheet);
 
-        navigationSpy = mockRouter.navigate as Mock;
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSheetsComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
 
+        // Component spies
         getEditionSheetsDataSpy = vi.spyOn(component, 'getEditionSheetsData');
         onBrowseSvgSheetSpy = vi.spyOn(component, 'onBrowseSvgSheet');
         onFullscreenToggleSpy = vi.spyOn(component, 'onFullscreenToggle');
@@ -388,9 +393,8 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should have `isLoading$` getter (with value false)', async () => {
-            expect(component.isLoading$).toBeDefined();
-            await expect(lastValueFrom(component.isLoading$)).resolves.toEqual(false);
+        it('... should have `isLoading` (with value false)', () => {
+            expectToBe(component.isLoading(), false);
         });
 
         describe('VIEW', () => {
@@ -463,7 +467,8 @@ describe('EditionSheetsComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('on loading', () => {
                 it('... should contain 1 TwelveToneSpinnerComponent (stubbed) if isLoading is true', async () => {
-                    vi.spyOn(mockLoadingService, 'getLoadingStatus').mockReturnValue(observableOf(true));
+                    loadingService.updateLoadingStatus(true);
+
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
