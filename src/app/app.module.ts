@@ -11,10 +11,12 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
 import { AppComponent } from './app.component';
 
-// Core components and services
+// Core components
 import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { ViewContainerComponent } from './core/view-container/view-container.component';
+
+// Loading interceptor
 import { loadingInterceptor } from './shared/loading/loading.interceptor';
 
 /* Routing Module */
