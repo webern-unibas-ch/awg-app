@@ -15,7 +15,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceDescriptionContent } from '@awg-views/edition-view/models';

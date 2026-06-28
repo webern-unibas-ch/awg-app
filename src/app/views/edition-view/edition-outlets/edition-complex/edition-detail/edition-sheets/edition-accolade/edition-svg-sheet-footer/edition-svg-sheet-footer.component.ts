@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 /**

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { LOGOS_DATA } from '../core-data/logos.data';
-import { Logo } from '../core-models/logos.model';
+import { LOGOS_DATA } from '../data/logos.data';
+import { Logo } from '../models/logos.model';
 
 /**
  * The LogoLink component.

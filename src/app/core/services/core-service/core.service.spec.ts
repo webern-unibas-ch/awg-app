@@ -4,8 +4,10 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToEqual } from '@testing/expect-helper';
 
-import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
-import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
+import { LOGOS_DATA } from '../../data/logos.data';
+import { META_DATA } from '../../data/meta.data';
+import { Logos } from '../../models/logos.model';
+import { Meta, MetaSectionTypes } from '../../models/meta.model';
 
 import { CoreService } from './core.service';
 

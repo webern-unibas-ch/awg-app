@@ -1,4 +1,4 @@
-import { Logos } from '@awg-core/core-models';
+import { Logos } from '../models/logos.model';
 
 /**
  * Object constant with a set of logos.

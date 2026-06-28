@@ -12,10 +12,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { AlertInfoComponent } from '@awg-app/shared/alert-info/alert-info.component';
-import { HeadingComponent } from '@awg-app/shared/heading/heading.component';
-import { META_DATA } from '@awg-core/core-data';
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { META_DATA } from '@awg-core/data/meta.data';
+import { MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
+import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';

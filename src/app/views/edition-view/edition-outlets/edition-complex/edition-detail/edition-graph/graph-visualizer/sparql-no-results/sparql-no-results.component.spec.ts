@@ -5,9 +5,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '@awg-core/core-data';
-import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { LOGOS_DATA } from '@awg-core/data/logos.data';
+import { Logos } from '@awg-core/models/logos.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 
 import { SparqlNoResultsComponent } from './sparql-no-results.component';
 

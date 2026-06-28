@@ -4,7 +4,7 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
 import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from '@awg-views/edition-view/models';

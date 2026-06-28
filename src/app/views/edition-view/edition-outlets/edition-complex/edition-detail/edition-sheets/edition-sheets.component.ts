@@ -4,7 +4,8 @@ import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/rou
 import { combineLatest, EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 
-import { LoadingService, UtilityService } from '@awg-core/services';
+import { LoadingService } from '@awg-core/services/loading-service/loading.service';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
-import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { Logos } from '@awg-core/models/logos.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 
 /**
  * The ForceGraphNoResult component.

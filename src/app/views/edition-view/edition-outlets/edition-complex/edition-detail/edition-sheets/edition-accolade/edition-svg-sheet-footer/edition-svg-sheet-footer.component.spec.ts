@@ -17,8 +17,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { CompileHtmlComponent } from '@awg-shared/compile-html/compile-html.component';
 import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';

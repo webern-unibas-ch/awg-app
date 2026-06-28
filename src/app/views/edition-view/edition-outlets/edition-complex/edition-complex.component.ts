@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { delay, EMPTY, Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
+import { CoreService } from '@awg-core/services/core-service/core.service';
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';

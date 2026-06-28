@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 
 import { Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { QuerySelectResult } from '../models';
 
 /**

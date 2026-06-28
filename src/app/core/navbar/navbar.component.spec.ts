@@ -20,9 +20,9 @@ import {
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { LOGOS_DATA } from '../core-data/logos.data';
-import { Logo, Logos } from '../core-models/logos.model';
+import { LOGOS_DATA } from '../data/logos.data';
 import { LogoLinkComponent } from '../logo-link/logo-link.component';
+import { Logo, Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
 import {

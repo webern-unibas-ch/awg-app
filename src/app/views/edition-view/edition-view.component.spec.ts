@@ -17,10 +17,11 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { MetaIdentifiers } from '@awg-core/core-models';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { MetaIdentifiers } from '@awg-core/models/meta.model';
+
+import { EDITION_ROUTE_CONSTANTS } from './edition-route-constants';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from './models';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from './services';
 
 import { EditionViewComponent } from './edition-view.component';
 

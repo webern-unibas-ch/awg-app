@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { LogoLinkComponent } from '@awg-core/logo-link/logo-link.component';
-import { CoreService } from '@awg-core/services';
+import { LogoLinkComponent } from '../logo-link/logo-link.component';
+import { Logos } from '../models/logos.model';
+import { MetaPage, MetaSectionTypes } from '../models/meta.model';
+import { CoreService } from '../services/core-service/core.service';
 
 import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
 import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';

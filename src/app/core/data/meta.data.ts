@@ -1,5 +1,5 @@
 import { AppConfig } from '@awg-app/app.config';
-import { Meta, MetaContact, MetaPage, MetaStructure } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaPage, MetaStructure } from '../models/meta.model';
 
 import { PERSONS_DATA } from './persons.data';
 

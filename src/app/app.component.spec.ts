@@ -10,7 +10,8 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService, EditionInitService } from '@awg-core/services';
+import { AnalyticsService } from '@awg-core/services/analytics-sercvice/analytics.service';
+import { EditionInitService } from '@awg-core/services/edition-init-service/edition-init.service';
 
 import { AppComponent } from './app.component';
 

@@ -6,8 +6,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { LOGOS_DATA } from '../core-data/logos.data';
-import { Logo } from '../core-models/logos.model';
+import { LOGOS_DATA } from '../data/logos.data';
+import { Logo } from '../models/logos.model';
 import { LogoLinkComponent } from './logo-link.component';
 
 describe('LogoLinkComponent', () => {
