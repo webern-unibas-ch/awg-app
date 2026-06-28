@@ -15,7 +15,8 @@ import {
 import { LOGOS_DATA } from '../../data/logos.data';
 import { META_DATA } from '../../data/meta.data';
 import { LogoLinkComponent } from '../../logo-link/logo-link.component';
-import { Logo, Logos, MetaPage, MetaSectionTypes } from '../../models';
+import { Logo, Logos } from '../../models/logos.model';
+import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
