@@ -14,7 +14,7 @@ import {
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link.component';
 
-describe('NavbarDropdownItemComponent', () => {
+describe('NavbarDropdownLinkComponent (DONE)', () => {
     let component: NavbarDropdownLinkComponent;
     let fixture: ComponentFixture<NavbarDropdownLinkComponent>;
     let compDe: DebugElement;
@@ -88,27 +88,22 @@ describe('NavbarDropdownItemComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
             });
 
-            it('... should display corrct label in dropdown item link', () => {
-                const aDe = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1)[0];
-                const aEl = aDe.nativeElement as HTMLAnchorElement;
+            it('... should display correct label in dropdown item link', () => {
+                const aDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
+                const aEl = aDes[0].nativeElement as HTMLAnchorElement;
 
                 expectToBe(aEl.textContent?.trim(), expectedLabel);
             });
 
             it('... should have `routerLink` in dropdown item link', () => {
-                const aDe = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
-                const routerLinkDirective = aDe[0].injector.get(RouterLink, null);
-
-                expect(routerLinkDirective).not.toBe(null);
+                getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
             });
 
             it('... should have correct `routerLinkActive` options in dropdown item link', () => {
-                const aDe = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
+                const routerLinkActiveDes = getAndExpectDebugElementByDirective(compDe, RouterLinkActive, 1, 1);
+                const routerLinkActive = routerLinkActiveDes[0].injector.get(RouterLinkActive) as RouterLinkActive;
 
-                const routerLinkActiveDirective = aDe[0].injector.get(RouterLinkActive, null);
-                expect(routerLinkActiveDirective).not.toBeNull();
-
-                expectToEqual(routerLinkActiveDirective?.routerLinkActiveOptions, { exact: true });
+                expectToEqual(routerLinkActive.routerLinkActiveOptions, { exact: true });
             });
         });
 
