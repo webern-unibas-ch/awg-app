@@ -14,7 +14,7 @@ import {
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link.component';
 
-describe('NavbarDropdownItemComponent', () => {
+describe('NavbarDropdownLinkComponent', () => {
     let component: NavbarDropdownLinkComponent;
     let fixture: ComponentFixture<NavbarDropdownLinkComponent>;
     let compDe: DebugElement;
@@ -103,7 +103,7 @@ describe('NavbarDropdownItemComponent', () => {
                 const routerLinkActiveDes = getAndExpectDebugElementByDirective(compDe, RouterLinkActive, 1, 1);
                 const routerLinkActive = routerLinkActiveDes[0].injector.get(RouterLinkActive) as RouterLinkActive;
 
-                expectToEqual(routerLinkActive?.routerLinkActiveOptions, { exact: true });
+                expectToEqual(routerLinkActive.routerLinkActiveOptions, { exact: true });
             });
         });
 
