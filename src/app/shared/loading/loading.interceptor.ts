@@ -6,13 +6,6 @@ import { finalize, Observable } from 'rxjs';
 import { LoadingService } from './loading.service';
 
 /**
- * Object variable: pendingRequests.
- *
- * Shared array to track all currently active HTTP requests.
- */
-let pendingRequests: HttpRequest<unknown>[] = [];
-
-/**
  * The Loading interceptor.
  *
  * It intercepts outgoing HTTP requests, registers them, and delegates
@@ -30,18 +23,14 @@ export const loadingInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
     const loadingService = inject(LoadingService);
 
-    // Register the request in the pendingRequests array and set loading status to true
-    pendingRequests.push(req);
-    loadingService.updateLoadingStatus(true);
+    // Register the request start
+    loadingService.registerRequest(req);
 
     // Handle the request and finalize the loading status when the request completes
     return next(req).pipe(
         finalize(() => {
-            // Remove the request from the pendingRequests array
-            pendingRequests = pendingRequests.filter(activeReq => activeReq !== req);
-
-            // Update the loading status based on the number of pending requests
-            loadingService.updateLoadingStatus(pendingRequests.length > 0);
+            // Register request completion, error, or cancellation
+            loadingService.deregisterRequest(req);
         })
     );
 };

@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { HttpRequest } from '@angular/common/http';
+import { computed, Injectable, signal } from '@angular/core';
 
 /**
  * The Loading service.
@@ -15,29 +16,43 @@ import { Injectable, signal } from '@angular/core';
 })
 export class LoadingService {
     /**
-     * Private readonly signal: _isLoading.
+     * Private readonly signal: _pendingRequests.
      *
-     * It keeps the current loading status.
+     * It tracks the active HTTP requests directly within a reactive state.
      */
-    private readonly _isLoading = signal<boolean>(false);
+    private readonly _pendingRequests = signal<HttpRequest<unknown>[]>([]);
 
     /**
-     * Public readonly signal: isLoading.
+     * Public readonly computed signal: isLoading.
      *
-     * It provides the current loading status.
+     * It automatically derives the loading status from the active requests array.
+     * If the array contains entries, it returns true, otherwise false.
      */
-    readonly isLoading = this._isLoading.asReadonly();
+    readonly isLoading = computed(() => this._pendingRequests().length > 0);
 
     /**
-     * Public method: updateLoadingStatus.
+     * Public method: registerRequest.
      *
-     * It updates the loading state.
-     *
-     * @param {boolean} isLoading The new loading state.
-     *
-     * @returns {void} Sets the next boolean value to the loading state signal.
+     * It registers an outgoing HTTP request and updates the loading status.
      */
-    updateLoadingStatus(isLoading: boolean): void {
-        this._isLoading.set(isLoading);
+    registerRequest(req: HttpRequest<unknown>): void {
+        this._pendingRequests.update(requests => [...requests, req]);
+    }
+
+    /**
+     * Public method: deregisterRequest.
+     *
+     * It deregisters a completed, errored, or canceled HTTP request and updates the loading status.
+     */
+    deregisterRequest(req: HttpRequest<unknown>): void {
+        this._pendingRequests.update(requests => {
+            const index = requests.indexOf(req);
+
+            if (index !== -1) {
+                requests.splice(index, 1);
+            }
+
+            return [...requests];
+        });
     }
 }

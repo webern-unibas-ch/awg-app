@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -145,7 +145,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
-    let loadingService: LoadingService;
+    let mockIsLoadingSignal: ReturnType<typeof signal<boolean>>;
+    let mockLoadingService: Partial<LoadingService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
     let mockEditionStateService: Partial<EditionStateService>;
@@ -227,6 +228,11 @@ describe('EditionSheetsComponent (DONE)', () => {
             selectConvolute: (): FolioConvolute | undefined => new FolioConvolute(),
         };
 
+        mockIsLoadingSignal = signal<boolean>(false);
+        mockLoadingService = {
+            isLoading: mockIsLoadingSignal.asReadonly(),
+        };
+
         await TestBed.configureTestingModule({
             declarations: [
                 CompileHtmlComponent,
@@ -238,7 +244,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                LoadingService,
+                { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
@@ -253,8 +259,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     beforeEach(() => {
         // Set loading status before each test
-        loadingService = TestBed.inject(LoadingService);
-        loadingService.updateLoadingStatus(false);
+        mockIsLoadingSignal.set(false);
 
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
@@ -467,7 +472,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('on loading', () => {
                 it('... should contain 1 TwelveToneSpinnerComponent (stubbed) if isLoading is true', async () => {
-                    loadingService.updateLoadingStatus(true);
+                    mockIsLoadingSignal.set(true);
 
                     await detectChangesOnPush(fixture);
 

@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -17,10 +17,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { LoadingService } from '@awg-shared/loading/loading.service';
 import { PrefaceList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { LoadingService } from '@awg-app/shared/loading/loading.service';
 import { EditionPrefaceComponent } from './edition-preface.component';
 
 // Mock components
@@ -55,7 +55,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
     let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
-    let loadingService: LoadingService;
+    let mockIsLoadingSignal: ReturnType<typeof signal<boolean>>;
+    let mockLoadingService: Partial<LoadingService>;
     let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;
     let mockEditionDataService: Partial<EditionDataService>;
@@ -82,6 +83,11 @@ describe('EditionPrefaceComponent (DONE)', () => {
             clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
         };
 
+        mockIsLoadingSignal = signal<boolean>(false);
+        mockLoadingService = {
+            isLoading: mockIsLoadingSignal.asReadonly(),
+        };
+
         await TestBed.configureTestingModule({
             declarations: [
                 CompileHtmlComponent,
@@ -90,7 +96,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                LoadingService,
+                { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
@@ -100,8 +106,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
     beforeEach(() => {
         // Set loading status before each test
-        loadingService = TestBed.inject(LoadingService);
-        loadingService.updateLoadingStatus(false);
+        mockIsLoadingSignal.set(false);
 
         // Test data
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
@@ -198,8 +203,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('on loading', () => {
                 it('... should contain one TwelveToneSpinnerComponent (stubbed) if isLoading is true', async () => {
-                    loadingService.updateLoadingStatus(true);
-
+                    mockIsLoadingSignal.set(true);
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);

@@ -1,7 +1,6 @@
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Data } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -29,9 +28,6 @@ describe('LoadingInterceptor (DONE)', () => {
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
         loadingService = TestBed.inject(LoadingService);
-
-        // Reset loading status before each test
-        loadingService.updateLoadingStatus(false);
     });
 
     afterEach(() => {
@@ -45,9 +41,9 @@ describe('LoadingInterceptor (DONE)', () => {
 
     describe('httpTestingController', () => {
         it('... should issue a mocked http get request', () => {
-            const testData: Data = { name: 'TestData' };
+            const testData: Record<string, unknown> = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe({
+            httpClient.get<Record<string, unknown>>('/foo/bar').subscribe({
                 next: data => {
                     expectToEqual(data, testData);
                 },
@@ -82,6 +78,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
         it('... should set loading status to false when the request completes successfully', () => {
             httpClient.get(expectedUrl).subscribe();
+
             expectToBe(loadingService.isLoading(), true);
 
             const req = httpTestingController.expectOne(expectedUrl);
@@ -96,6 +93,7 @@ describe('LoadingInterceptor (DONE)', () => {
                     // Intentionally left empty to catch the error case
                 },
             });
+
             expectToBe(loadingService.isLoading(), true);
 
             const req = httpTestingController.expectOne(expectedUrl);
