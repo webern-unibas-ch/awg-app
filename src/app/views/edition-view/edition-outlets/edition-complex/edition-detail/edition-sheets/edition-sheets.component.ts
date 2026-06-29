@@ -1,12 +1,14 @@
-import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { combineLatest, EMPTY, Observable, Subject } from 'rxjs';
-import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { combineLatest, EMPTY, Observable } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
-import { LoadingService } from '@awg-core/services/loading-service/loading.service';
 import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -36,13 +38,69 @@ import { EditionDataService, EditionSheetsService, EditionStateService } from '@
     styleUrls: ['./edition-sheets.component.scss'],
     standalone: false,
 })
-export class EditionSheetsComponent implements OnInit, OnDestroy {
+export class EditionSheetsComponent implements OnInit {
     /**
      * ViewChild variable: modal.
      *
      * It keeps the reference to the awg-modal.
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
+
+    /**
+     * Private readonly injection variable: _destroyRef.
+     *
+     * It keeps the instance of the injected DestroyRef for managing component destruction.
+     */
+    private readonly _destroyRef = inject(DestroyRef);
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionSheetsService.
+     *
+     * It keeps the instance of the injected EditionSheetsService.
+     */
+    private readonly _editionSheetsService = inject(EditionSheetsService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any = inject(Router);
+
+    /**
+     * Private readonly injection variable: utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
 
     /**
      * Public variable: editionComplex.
@@ -136,67 +194,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     textcriticsData: TextcriticsList;
 
     /**
+     * Readonly signal: isLoading.
+     *
+     * It holds the current loading status.
+     */
+    readonly isLoading = this._loadingService.isLoading;
+
+    /**
      * Private variable: _isFirstPageLoad.
      *
      * It keeps the information if the page is loaded for the first time.
      */
     private _isFirstPageLoad = true;
-
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
-     * Private readonly injection variable: _editionSheetsService.
-     *
-     * It keeps the instance of the injected EditionSheetsService.
-     */
-    private readonly _editionSheetsService = inject(EditionSheetsService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
-     * Private readonly injection variable: _route.
-     *
-     * It keeps the instance of the injected Angular ActivatedRoute.
-     */
-    private readonly _route = inject(ActivatedRoute);
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router: any = inject(Router);
-
-    /**
-     * Private readonly injection variable: utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    private readonly _utils = inject(UtilityService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -208,15 +217,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Gets the loading status observable from the {@link LoadingService}.
-     *
-     * @returns {Observable<boolean>}
-     */
-    get isLoading$(): Observable<boolean> {
-        return this._loadingService.getLoadingStatus();
-    }
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -224,20 +224,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this.getEditionSheetsData();
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
-
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
     }
 
     /**
@@ -260,7 +246,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                     this.errorObject = err;
                     return EMPTY;
                 }),
-                takeUntil(this._destroyed$)
+                takeUntilDestroyed(this._destroyRef)
             )
             .subscribe();
     }

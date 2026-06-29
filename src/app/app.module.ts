@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localeDeDE from '@angular/common/locales/de';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
@@ -11,11 +11,13 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
 import { AppComponent } from './app.component';
 
-// Core components and services
+// Core components
 import { FooterComponent } from './core/footer/footer.component';
-import { httpInterceptorProviders } from './core/interceptors/interceptor-providers';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { ViewContainerComponent } from './core/view-container/view-container.component';
+
+// Loading interceptor
+import { loadingInterceptor } from './shared/loading/loading.interceptor';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
@@ -43,9 +45,8 @@ registerLocaleData(localeDeDE);
     declarations: [AppComponent],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withInterceptors([loadingInterceptor])),
         provideAnimations(),
-        httpInterceptorProviders,
         Title,
     ],
     bootstrap: [AppComponent],

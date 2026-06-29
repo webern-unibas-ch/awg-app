@@ -1,10 +1,10 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { lastValueFrom, Observable, of as observableOf, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -17,6 +17,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { LoadingService } from '@awg-shared/loading/loading.service';
 import { PrefaceList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -35,6 +36,13 @@ class LanguageSwitcherStubComponent {
     languageChangeRequest = new EventEmitter<number>();
 }
 
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
+class TwelveToneSpinnerStubComponent {}
+
 describe('EditionPrefaceComponent (DONE)', () => {
     let component: EditionPrefaceComponent;
     let fixture: ComponentFixture<EditionPrefaceComponent>;
@@ -47,19 +55,23 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
     let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
+    let mockIsLoadingSignal: WritableSignal<boolean>;
+    let mockLoadingService: Partial<LoadingService>;
     let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockIsPrefaceViewSubject: ReplaySubject<boolean>;
+    let mockPrefaceDataSubject: ReplaySubject<PrefaceList>;
 
     let expectedPrefaceData: PrefaceList;
     let expectedCurrentLanguage: number;
 
     beforeEach(async () => {
         mockIsPrefaceViewSubject = new ReplaySubject<boolean>(1);
+        mockPrefaceDataSubject = new ReplaySubject<PrefaceList>(1);
 
         mockEditionDataService = {
-            getEditionPrefaceData: (): Observable<PrefaceList> => observableOf(expectedPrefaceData),
+            getEditionPrefaceData: (): Observable<PrefaceList> => mockPrefaceDataSubject.asObservable(),
         };
 
         mockEditionGlyphService = {
@@ -71,9 +83,20 @@ describe('EditionPrefaceComponent (DONE)', () => {
             clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
         };
 
+        mockIsLoadingSignal = signal<boolean>(false);
+        mockLoadingService = {
+            isLoading: mockIsLoadingSignal.asReadonly(),
+        };
+
         await TestBed.configureTestingModule({
-            declarations: [CompileHtmlComponent, EditionPrefaceComponent, LanguageSwitcherStubComponent],
+            declarations: [
+                CompileHtmlComponent,
+                EditionPrefaceComponent,
+                LanguageSwitcherStubComponent,
+                TwelveToneSpinnerStubComponent,
+            ],
             providers: [
+                { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
@@ -82,26 +105,27 @@ describe('EditionPrefaceComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionPrefaceComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
-        mockEditionDataService = TestBed.inject(EditionDataService);
-        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
-        mockEditionStateService = TestBed.inject(EditionStateService);
+        // Set loading status before each test
+        mockIsLoadingSignal.set(false);
 
         // Test data
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedCurrentLanguage = 0;
 
-        // Spies
-        getGlyphSpy = vi.spyOn(component, 'getGlyph');
-        setLanguageSpy = vi.spyOn(component, 'setLanguage');
-
-        editionDataServiceGetPrefaceDataSpy = vi.spyOn(mockEditionDataService, 'getEditionPrefaceData');
+        // Service spies
         editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
         editionStateServiceUpdateIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'updateIsPrefaceView');
         editionStateServiceClearIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'clearIsPrefaceView');
+        editionDataServiceGetPrefaceDataSpy = vi.spyOn(mockEditionDataService, 'getEditionPrefaceData');
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionPrefaceComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
+        getGlyphSpy = vi.spyOn(component, 'getGlyph');
+        setLanguageSpy = vi.spyOn(component, 'setLanguage');
     });
 
     afterEach(() => {
@@ -113,8 +137,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `prefaceData$`', () => {
-            expect(component.prefaceData$).toBeUndefined();
+        it('... should have `prefaceData` (with initialValue = null)', () => {
+            expectToBe(component.prefaceData(), null);
         });
 
         it('... should have `currentLanguage` = 0', () => {
@@ -125,8 +149,12 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectToEqual(component.ref, component);
         });
 
-        it('... should not have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 0);
+        it('... should have `isLoading` (with value false)', () => {
+            expectToBe(component.isLoading(), false);
+        });
+
+        it('... should have called EditionDataService (during signal initialization)', () => {
+            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
         });
         it('... should not have called EditionGlyphService', () => {
             expectSpyCall(editionGlyphServiceGetGlyphSpy, 0);
@@ -137,11 +165,15 @@ describe('EditionPrefaceComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            });
+
             it('... should contain no outer div.row (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
             });
 
-            it('... should not contain language switcher component (stubbed)', () => {
+            it('... should contain no language switcher component (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 0, 0);
             });
         });
@@ -149,6 +181,9 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Simulate the emission of preface data from the mock service
+            mockPrefaceDataSubject.next(expectedPrefaceData);
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
@@ -161,13 +196,22 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
         });
 
-        it('... should have prefaceData$', async () => {
-            await expect(lastValueFrom(component.prefaceData$)).resolves.not.toThrow();
-            await expect(lastValueFrom(component.prefaceData$)).resolves.toEqual(expectedPrefaceData);
+        it('... should have updated `prefaceData`', () => {
+            expectToEqual(component.prefaceData(), expectedPrefaceData);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 outer div.awg-preface-view', () => {
+            describe('on loading', () => {
+                it('... should contain one TwelveToneSpinnerComponent (stubbed) if isLoading is true', async () => {
+                    mockIsLoadingSignal.set(true);
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                });
+            });
+
+            it('... should contain one outer div.awg-preface-view', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
             });
 

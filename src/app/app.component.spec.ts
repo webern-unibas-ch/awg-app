@@ -146,23 +146,24 @@ describe('AppComponent (DONE)', () => {
         // Window spy object (Analytics)
         (window as any).gtag = vi.fn();
 
-        // Spies for service methods (need to be created before component creation)
+        // Inject services
+        location = TestBed.inject(Location);
+        router = TestBed.inject(Router);
+
+        // Test data
+        expectedActivateSideOutlet = true;
+
+        // Service spies
         getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
         setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
         initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
         initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
         trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
 
-        // Create component and test fixture
+        // Create component fixture
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        location = TestBed.inject(Location);
-        router = TestBed.inject(Router);
-
-        // Test data
-        expectedActivateSideOutlet = true;
     });
 
     afterEach(() => {
