@@ -1,0 +1,1 @@
+import{Aa as i,l as t,o as e}from"./chunk-6FY5Z7XT.js";var o=class{constructor(){this._isLoadingSubject=new t(!1),this._isLoadingStream$=this._isLoadingSubject.asObservable()}getLoadingStatus(){return this._isLoadingStream$}updateLoadingStatus(a){this._isLoadingSubject.next(a)}};o=e([i({providedIn:"root"})],o);export{o as a};
