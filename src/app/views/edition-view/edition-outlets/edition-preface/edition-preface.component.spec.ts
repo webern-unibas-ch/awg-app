@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -55,7 +55,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
     let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
-    let mockIsLoadingSignal: ReturnType<typeof signal<boolean>>;
+    let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;

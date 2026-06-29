@@ -45,14 +45,6 @@ export class LoadingService {
      * It deregisters a completed, errored, or canceled HTTP request and updates the loading status.
      */
     deregisterRequest(req: HttpRequest<unknown>): void {
-        this._pendingRequests.update(requests => {
-            const index = requests.indexOf(req);
-
-            if (index !== -1) {
-                requests.splice(index, 1);
-            }
-
-            return [...requests];
-        });
+        this._pendingRequests.update(requests => requests.filter(r => r !== req));
     }
 }

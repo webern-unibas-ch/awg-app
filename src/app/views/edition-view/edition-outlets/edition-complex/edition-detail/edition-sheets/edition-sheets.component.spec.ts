@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -145,7 +145,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
-    let mockIsLoadingSignal: ReturnType<typeof signal<boolean>>;
+    let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
