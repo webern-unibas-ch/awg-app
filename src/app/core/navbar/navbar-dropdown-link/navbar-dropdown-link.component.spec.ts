@@ -14,7 +14,7 @@ import {
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link.component';
 
-describe('NavbarDropdownLinkComponent', () => {
+describe('NavbarDropdownLinkComponent (DONE)', () => {
     let component: NavbarDropdownLinkComponent;
     let fixture: ComponentFixture<NavbarDropdownLinkComponent>;
     let compDe: DebugElement;

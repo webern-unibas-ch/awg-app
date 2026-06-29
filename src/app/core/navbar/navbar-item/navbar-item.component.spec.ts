@@ -38,7 +38,7 @@ class TestHostComponent {
     isTestDropdown = false;
 }
 
-describe('NavbarItemComponent', () => {
+describe('NavbarItemComponent (DONE)', () => {
     describe('BEFORE initial data binding (no Host)', () => {
         let fixture: ComponentFixture<NavbarItemComponent>;
         let component: NavbarItemComponent;
