@@ -1,1 +1,0 @@
-import{Aa as e,o as t}from"./chunk-6FY5Z7XT.js";var i=class{isNotEmptyArray(r){return r&&Array.isArray(r)?r.length!==0:!1}isNotEmptyObject(r){return r&&!Array.isArray(r)?Object.keys(r).length!==0:!1}isSketchId(r){return r?.includes("_Sk")||r?.includes("SkRT")||!1}};i=t([e({providedIn:"root"})],i);export{i as a};
