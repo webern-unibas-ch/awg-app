@@ -36,6 +36,7 @@ describe('LoadingService (DONE)', () => {
     describe('#isLoading()', () => {
         it('... should have a computed signal `isLoading()`', () => {
             expect(loadingService.isLoading).toBeDefined();
+            expectToBe(isSignal(loadingService.isLoading), true);
         });
 
         it('... should return default false value (no requests registered)', () => {
