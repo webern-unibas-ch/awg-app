@@ -173,13 +173,8 @@ describe('NavbarItemComponent', () => {
                             });
 
                             it('... should have no RouterLink, but NgbDropdownToggle', () => {
-                                const navItemLinkDes = getAndExpectDebugElementByCss(compDe, 'a.nav-link', 1, 1);
-
-                                const routerLinkDirective = navItemLinkDes[0].injector.get(RouterLink, null);
-                                expectToBe(routerLinkDirective, null);
-
-                                const dropdownToggleDirective = navItemLinkDes[0].injector.get(NgbDropdownToggle, null);
-                                expect(dropdownToggleDirective).not.toBe(null);
+                                getAndExpectDebugElementByDirective(compDe, RouterLink, 0, 0);
+                                getAndExpectDebugElementByDirective(compDe, NgbDropdownToggle, 1, 1);
                             });
                         } else {
                             it('... should have no id on nav link', () => {
@@ -190,13 +185,8 @@ describe('NavbarItemComponent', () => {
                             });
 
                             it('... should have RouterLink, but no NgbDropdownToggle', () => {
-                                const navItemLinkDes = getAndExpectDebugElementByCss(compDe, 'a.nav-link', 1, 1);
-
-                                const routerLinkDirective = navItemLinkDes[0].injector.get(RouterLink, null);
-                                expect(routerLinkDirective).not.toBe(null);
-
-                                const dropdownToggleDirective = navItemLinkDes[0].injector.get(NgbDropdownToggle, null);
-                                expectToBe(dropdownToggleDirective, null);
+                                getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
+                                getAndExpectDebugElementByDirective(compDe, NgbDropdownToggle, 0, 0);
                             });
                         }
 
