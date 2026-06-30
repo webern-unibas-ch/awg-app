@@ -5,7 +5,7 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { EditionComplex } from './edition-complex.model';
 
 /**
- * The EditionSectionLink interface.
+ * The EditionSectionLink class.
  *
  * It is used in the context of the edition view
  * to structure information for the edition section links,
