@@ -4,6 +4,7 @@ import { provideRouter, Router, RouterLink, RouterLinkActive } from '@angular/ro
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -11,7 +12,6 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link.component';
 
 describe('NavbarDropdownLinkComponent (DONE)', () => {

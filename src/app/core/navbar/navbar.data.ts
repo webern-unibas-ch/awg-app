@@ -2,7 +2,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired } from '@fortawesome/free
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
-import { NavbarDropdownLink, NavbarItems } from '../models/navbar.model';
+import { NavbarDropdownLink, NavbarItems } from './navbar.model';
 
 /**
  * Object constant with a set of navigation items for the navbar.

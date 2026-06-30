@@ -26,15 +26,15 @@ import { LogoLinkComponent } from '../logo-link/logo-link.component';
 import { Logo, Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
+import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
+import { NavbarItemComponent } from './navbar-item/navbar-item.component';
+import { NavbarComponent } from './navbar.component';
 import {
     NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
     NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
     NAVBAR_ITEMS,
-} from './data/navbar.data';
-import { NavbarDropdownLink, NavbarItem, NavbarItems } from './models/navbar.model';
-import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
-import { NavbarItemComponent } from './navbar-item/navbar-item.component';
-import { NavbarComponent } from './navbar.component';
+} from './navbar.data';
+import { NavbarDropdownLink, NavbarItem, NavbarItems } from './navbar.model';
 
 // Mock components
 @Component({

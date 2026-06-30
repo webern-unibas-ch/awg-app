@@ -16,8 +16,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { NAVBAR_ITEMS } from '../data/navbar.data';
-import { NavbarItem } from '../models/navbar.model';
+import { NAVBAR_ITEMS } from '../navbar.data';
+import { NavbarItem } from '../navbar.model';
 import { NavbarItemComponent } from './navbar-item.component';
 
 // Test Host Component to test NavbarItemComponent with correct dropdown context

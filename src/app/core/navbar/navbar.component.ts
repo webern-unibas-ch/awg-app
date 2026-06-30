@@ -12,13 +12,13 @@ import { LogoLinkComponent } from '../logo-link/logo-link.component';
 import { Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
+import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
+import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import {
     NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
     NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
     NAVBAR_ITEMS,
-} from './data/navbar.data';
-import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
-import { NavbarItemComponent } from './navbar-item/navbar-item.component';
+} from './navbar.data';
 
 /**
  * The Navbar component.

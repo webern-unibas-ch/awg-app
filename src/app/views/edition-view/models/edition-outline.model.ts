@@ -63,8 +63,12 @@ export class EditionSectionLink {
      * @returns {string} The appropriate separator for the displayed sections.
      */
     private static _getSeparator(index: number, length: number): string {
-        if (length <= 1 || index === length - 1) {return '';}
-        if (index === length - 2) {return ' und ';}
+        if (length <= 1 || index === length - 1) {
+            return '';
+        }
+        if (index === length - 2) {
+            return ' und ';
+        }
         return ', ';
     }
 }
