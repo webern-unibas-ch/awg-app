@@ -1,6 +1,6 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { DebugElement, LOCALE_ID } from '@angular/core';
+import { DebugElement, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -154,67 +154,6 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
         });
 
-        describe('#versionData', () => {
-            it('... should have a computed signal `versionData`', () => {
-                expect(component.versionData).toBeDefined();
-            });
-
-            it('... should return correct versionData if pageMetaData is present', () => {
-                fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
-
-                expectToEqual(component.versionData(), expectedVersionData);
-            });
-
-            it('... should return null if pageMetaData is an empty object {}', () => {
-                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
-
-                expectToBe(component.versionData(), null);
-            });
-
-            describe('... should return null if ...', () => {
-                it('... pageMetaData is an empty object {}, null or undefined', () => {
-                    fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
-                    expectToBe(component.versionData(), null);
-
-                    fixture.componentRef.setInput('pageMetaData', undefined as unknown as MetaPage);
-                    expectToBe(component.versionData(), null);
-
-                    fixture.componentRef.setInput('pageMetaData', null as unknown as MetaPage);
-                    expectToBe(component.versionData(), null);
-                });
-
-                it('... awgAppGithubUrl is missing', () => {
-                    const incompletePageMetaData = {
-                        ...expectedPageMetaData,
-                        awgAppGithubUrl: undefined,
-                    } as MetaPage;
-                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                    expectToBe(component.versionData(), null);
-                });
-
-                it('... awgAppVersion is missing', () => {
-                    const incompletePageMetaData = {
-                        ...expectedPageMetaData,
-                        awgAppVersion: undefined,
-                    } as MetaPage;
-                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                    expectToBe(component.versionData(), null);
-                });
-
-                it('... awgAppVersionReleaseDate is missing', () => {
-                    const incompletePageMetaData = {
-                        ...expectedPageMetaData,
-                        awgAppVersionReleaseDate: undefined,
-                    } as MetaPage;
-                    fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                    expectToBe(component.versionData(), null);
-                });
-            });
-        });
-
         describe('[routerLink]', () => {
             let linkDes: DebugElement[];
             let routerLinks: RouterLink[];
@@ -270,6 +209,68 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToBe(actualUrl, '/contact#awg-documentation');
 
                 navigateSpy.mockRestore();
+            });
+        });
+    });
+
+    describe('#versionData()', () => {
+        it('... should have a computed signal `versionData`', () => {
+            expect(component.versionData).toBeDefined();
+            expectToBe(isSignal(component.versionData), true);
+        });
+
+        it('... should return correct versionData if pageMetaData is present', () => {
+            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
+
+            expectToEqual(component.versionData(), expectedVersionData);
+        });
+
+        it('... should return null if pageMetaData is an empty object {}', () => {
+            fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+
+            expectToBe(component.versionData(), null);
+        });
+
+        describe('... should return null if ...', () => {
+            it('... pageMetaData is an empty object {}, null or undefined', () => {
+                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+                expectToBe(component.versionData(), null);
+
+                fixture.componentRef.setInput('pageMetaData', undefined as unknown as MetaPage);
+                expectToBe(component.versionData(), null);
+
+                fixture.componentRef.setInput('pageMetaData', null as unknown as MetaPage);
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... awgAppGithubUrl is missing', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppGithubUrl: undefined,
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... awgAppVersion is missing', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppVersion: undefined,
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... awgAppVersionReleaseDate is missing', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppVersionReleaseDate: undefined,
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
             });
         });
     });
