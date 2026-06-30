@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { isActive, Router } from '@angular/router';
 
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { LogoLinkComponent } from '../logo-link/logo-link.component';
@@ -13,12 +13,10 @@ import { Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
 import {
-    NAVBAR_DISPLAYED_SECTION_IDS,
     NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
     NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
     NAVBAR_ITEMS,
 } from './data/navbar.data';
-import { NavbarSection } from './models/navbar.model';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 
@@ -86,24 +84,16 @@ export class NavbarComponent {
     readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Public readonly signal: sectionsData.
+     * Public readonly signal: sectionLinksData.
      *
      * It keeps the array of displayed edition sections as a read-only signal.
      */
-    readonly sectionsData = signal(
-        NAVBAR_DISPLAYED_SECTION_IDS.map(section =>
-            EditionOutlineService.getEditionSectionById(section.seriesId, section.sectionId)
-        )
+    readonly sectionLinksData = signal(
+        ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
+            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            return new EditionSectionLink(section, index, array.length);
+        })
     ).asReadonly();
-
-    /**
-     * Computed signal: displayedSections.
-     *
-     * It computes the array of edition sections to be displayed in the navbar.
-     */
-    readonly displayedSections = computed(() =>
-        this.sectionsData().map(section => this._mapSectionToNavbarLink(section))
-    );
 
     /**
      * Public readonly signal: isEditionRouteActive.
@@ -121,31 +111,5 @@ export class NavbarComponent {
      */
     toggleNav(): void {
         this.isCollapsed.update(collapsed => !collapsed);
-    }
-
-    /**
-     * Private method: _mapSectionToNavbarLink.
-     *
-     * It maps a section to a navbar link object.
-     *
-     * @param {EditionOutlineSection} section The section to be mapped.
-     *
-     * @returns {object} The mapped navbar link object.
-     */
-    private _mapSectionToNavbarLink(section: EditionOutlineSection): NavbarSection {
-        const baseRoute = [
-            EDITION_ROUTE_CONSTANTS.EDITION.route,
-            EDITION_ROUTE_CONSTANTS.SERIES.route,
-            section.seriesParent.route,
-            EDITION_ROUTE_CONSTANTS.SECTION.route,
-            section.section.route,
-        ];
-        const shortTitle = `[${EDITION_ROUTE_CONSTANTS.EDITION.short} ${section.seriesParent.short}/${section.section.short}]`;
-
-        return {
-            baseRoute,
-            shortTitle,
-            fullTitle: section.section.full,
-        };
     }
 }

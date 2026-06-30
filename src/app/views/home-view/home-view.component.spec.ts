@@ -122,19 +122,19 @@ describe('HomeViewComponent (DONE)', () => {
         const routes = EDITION_ROUTE_CONSTANTS;
         const expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('1', '2'),
+            EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedSectionLinks = [
             {
-                section: expectedSections[0],
-                routerLink: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
-                label: `${routes.EDITION.short} I/5`,
+                route: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
+                shortTitle: `${routes.EDITION.short} I/5`,
+                fullTitle: expectedSections[0].section.full,
                 separator: ' und ',
             },
             {
-                section: expectedSections[1],
-                routerLink: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '2'],
-                label: `${routes.EDITION.short} I/2`,
+                route: [routes.EDITION.route, routes.SERIES.route, '2', routes.SECTION.route, '2a'],
+                shortTitle: `${routes.EDITION.short} II/2a`,
+                fullTitle: expectedSections[1].section.full,
                 separator: '',
             },
         ];
@@ -155,8 +155,8 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(component.DISCLAIMER_MESSAGE, expectedDisclaimerMessage);
         });
 
-        it('... should have `displayedSectionLinks`', () => {
-            expectToEqual(component.displayedSectionLinks(), expectedSectionLinks);
+        it('... should have `sectionLinksData`', () => {
+            expectToEqual(component.sectionLinksData(), expectedSectionLinks);
         });
 
         it('... should have `homeViewCardData`', () => {
@@ -278,8 +278,8 @@ describe('HomeViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `displayedSectionLinks`', () => {
-            expectToEqual(component.displayedSectionLinks(), expectedSectionLinks);
+        it('... should have `sectionLinksData`', () => {
+            expectToEqual(component.sectionLinksData(), expectedSectionLinks);
         });
 
         it('... should have `homeViewCardData`', () => {
@@ -430,92 +430,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expectToBe(zenodoEl.href, expectedPageMetaData.awgAppZenodoUrl);
                     expectToBe(zenodoEl.textContent, 'Zenodo');
                 });
-            });
-        });
-
-        describe('METHODS', () => {
-            describe('#createEditionSectionLinks()', () => {
-                it('... should have a static method `createEditionSectionLinks`', () => {
-                    expect(HomeViewComponent.createEditionSectionLinks).toBeDefined();
-                });
-
-                it('... should return an empty array if no sections are provided', () => {
-                    const result = HomeViewComponent.createEditionSectionLinks([]);
-
-                    expectToBe(result.length, 0);
-                    expectToEqual(result, []);
-                });
-
-                it('... should correctly map an array of sections to EditionSectionLinks', () => {
-                    const sections = [
-                        EditionOutlineService.getEditionSectionById('1', '5'),
-                        EditionOutlineService.getEditionSectionById('1', '2'),
-                    ];
-
-                    const result = HomeViewComponent.createEditionSectionLinks(sections);
-
-                    expectToBe(result.length, 2);
-                    expectToEqual(result, expectedSectionLinks);
-                });
-
-                it('... should handle missing nested properties gracefully without throwing errors', () => {
-                    const routes = EDITION_ROUTE_CONSTANTS;
-                    const incompleteSections: any[] = [
-                        {
-                            seriesParent: undefined,
-                            section: null,
-                        },
-                    ];
-
-                    const result = HomeViewComponent.createEditionSectionLinks(incompleteSections);
-
-                    expectToBe(result.length, 1);
-                    expectToEqual(result[0].routerLink, [
-                        routes.EDITION.route,
-                        routes.SERIES.route,
-                        undefined,
-                        routes.SECTION.route,
-                        undefined,
-                    ]);
-                    expectToBe(result[0].label, `${routes.EDITION.short} undefined/undefined`);
-                    expectToBe(result[0].separator, '');
-                });
-            });
-
-            describe('#getSeparator()', () => {
-                it('... should have a static method `getSeparator`', () => {
-                    expect(HomeViewComponent.getSeparator).toBeDefined();
-                });
-
-                describe('with a total array length of 1', () => {
-                    it('... should return an empty string for the only entry (index = 0)', () => {
-                        expectToBe(HomeViewComponent.getSeparator(0, 1), '');
-                    });
-                });
-
-                const testLengths = [2, 3, 4, 5, 10];
-
-                for (const totalLength of testLengths) {
-                    describe(`with a total array length of ${totalLength}`, () => {
-                        it('... should return an empty string for the last entry (index = totalLength - 1)', () => {
-                            const lastIndex = totalLength - 1;
-                            expectToBe(HomeViewComponent.getSeparator(lastIndex, totalLength), '');
-                        });
-
-                        it('... should return " und " for the second-to-last entry (index = totalLength - 2)', () => {
-                            const secondToLastIndex = totalLength - 2;
-                            expectToBe(HomeViewComponent.getSeparator(secondToLastIndex, totalLength), ' und ');
-                        });
-
-                        if (totalLength > 2) {
-                            it('... should return a comma separator for all other earlier entries', () => {
-                                for (let i = 0; i < totalLength - 2; i++) {
-                                    expectToBe(HomeViewComponent.getSeparator(i, totalLength), ', ');
-                                }
-                            });
-                        }
-                    });
-                }
             });
         });
 

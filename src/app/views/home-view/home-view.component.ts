@@ -5,8 +5,9 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
 import { CoreService } from '@awg-core/services/core-service/core.service';
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
+import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
@@ -59,15 +60,15 @@ export class HomeViewComponent {
         'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
 
     /**
-     * Public readonly signal: displayedSectionLinks.
+     * Public readonly signal: sectionLinksData.
      *
-     * It holds the displayed section links for the home view section.
+     * It keeps the array of displayed edition sections as a read-only signal.
      */
-    displayedSectionLinks = signal<EditionSectionLink[]>(
-        HomeViewComponent.createEditionSectionLinks([
-            EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('1', '2'),
-        ])
+    readonly sectionLinksData = signal<EditionSectionLink[]>(
+        ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
+            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            return new EditionSectionLink(section, index, array.length);
+        })
     ).asReadonly();
 
     /**
@@ -75,67 +76,22 @@ export class HomeViewComponent {
      *
      * It holds the data for the home view cards.
      */
-    homeViewCardData = signal<HomeViewCard[]>(HOME_VIEW_CARD_DATA).asReadonly();
+    readonly homeViewCardData = signal<HomeViewCard[]>(HOME_VIEW_CARD_DATA).asReadonly();
 
     /**
      * Public readonly signal: pageMetaData.
      *
      * It holds the page metadata for the home view via the injected CoreService.
      */
-    pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
      * Public readonly signal: rowtablesRoute.
      *
      * It holds the router link array for the rowtables link.
      */
-    rowtablesRoute = signal([
+    readonly rowtablesRoute = signal([
         EDITION_ROUTE_CONSTANTS.EDITION.route,
         EDITION_ROUTE_CONSTANTS.ROWTABLES.route,
     ]).asReadonly();
-
-    /**
-     * Public static method: createEditionSectionLinks.
-     *
-     * It creates the formatted edition section links for the home view section.
-     *
-     * @param {EditionOutlineSection[]} sections The edition sections to be formatted.
-     * @returns {EditionSectionLink[]} The formatted edition section links for the home view section.
-     */
-    static createEditionSectionLinks(sections: EditionOutlineSection[]): EditionSectionLink[] {
-        const routes = EDITION_ROUTE_CONSTANTS;
-        return sections.map((section, index, array) => {
-            const routerLink = [
-                routes.EDITION.route,
-                routes.SERIES.route,
-                section?.seriesParent?.route,
-                routes.SECTION.route,
-                section?.section?.route,
-            ];
-
-            const label = `${routes.EDITION.short} ${section?.seriesParent?.short}/${section?.section?.short}`;
-            const separator = HomeViewComponent.getSeparator(index, array.length);
-
-            return { section, routerLink, label, separator };
-        });
-    }
-
-    /**
-     * Public static method: getSeparator.
-     *
-     * It returns the appropriate separator for the displayed sections in the home view section.
-     *
-     * @param {number} index The index of the current section in the displayed sections array.
-     * @param {number} totalLength The total length of the displayed sections array.
-     * @returns {string} The appropriate separator for the displayed sections in the home view section.
-     */
-    static getSeparator(index: number, totalLength: number): string {
-        if (index === totalLength - 1) {
-            return '';
-        }
-        if (index === totalLength - 2) {
-            return ' und ';
-        }
-        return ', ';
-    }
 }
