@@ -40,6 +40,9 @@ export class EditionSectionLink {
      * @param {EditionOutlineSection} section The edition outline section to be mapped to a navbar section.
      */
     constructor(section: EditionOutlineSection, index: number = 0, totalLength: number = 1) {
+        if (!section?.seriesParent || !section?.section) {
+            throw new Error('[EditionSectionLink]: invalid edition outline section');
+        }
         const routes = EDITION_ROUTE_CONSTANTS;
         this.route = [
             routes.EDITION.route,
@@ -49,7 +52,7 @@ export class EditionSectionLink {
             section.section.route,
         ];
         this.shortTitle = `${routes.EDITION.short} ${section.seriesParent.short}/${section.section.short}`;
-        this.fullTitle = section?.section?.full || '';
+        this.fullTitle = section.section.full;
         this.separator = EditionSectionLink._getSeparator(index, totalLength);
     }
 
