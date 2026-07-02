@@ -214,7 +214,7 @@ to structure outline information of the edition.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:247</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:290</a></div>
                             </td>
                         </tr>
 
@@ -291,7 +291,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:340</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="383" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:383</a></div>
                         </td>
                     </tr>
 
@@ -355,7 +355,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:295</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:338</a></div>
                         </td>
                     </tr>
 
@@ -440,7 +440,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:321</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="364" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:364</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +504,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:275</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:318</a></div>
                         </td>
                     </tr>
 
@@ -575,7 +575,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:247</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:290</a></div>
                         </td>
                     </tr>
 
@@ -607,32 +607,75 @@ import { EditionComplexesService } from &#x27;@awg-views/edition-view/services&#
 import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
 
 /**
- * The EditionSectionLink interface.
+ * The EditionSectionLink class.
  *
  * It is used in the context of the edition view
  * to structure information for the edition section links,
  * e.g., in the home view.
  */
-export interface EditionSectionLink {
+export class EditionSectionLink {
     /**
-     * The edition section.
+     * The route for the edition section.
      */
-    section: EditionOutlineSection;
+    readonly route: string[];
 
     /**
-     * The router link for the edition section.
+     * The shortTitle for the edition section.
      */
-    routerLink: string[];
+    readonly shortTitle: string;
 
     /**
-     * The label for the edition section.
+     * The full title of the navbar section.
      */
-    label: string;
+    readonly fullTitle: string;
 
     /**
      * The separator for the edition section.
      */
-    separator: string;
+    readonly separator: string;
+
+    /**
+     * Constructor of the EditionSectionLink class.
+     *
+     * It initializes the class with an EditionOutlineSection object.
+     *
+     * @param {EditionOutlineSection} section The edition outline section to be mapped to a navbar section.
+     */
+    constructor(section: EditionOutlineSection, index: number &#x3D; 0, totalLength: number &#x3D; 1) {
+        if (!section?.seriesParent || !section?.section) {
+            throw new Error(&#x27;[EditionSectionLink]: invalid edition outline section&#x27;);
+        }
+        const routes &#x3D; EDITION_ROUTE_CONSTANTS;
+        this.route &#x3D; [
+            routes.EDITION.route,
+            routes.SERIES.route,
+            section.seriesParent.route,
+            routes.SECTION.route,
+            section.section.route,
+        ];
+        this.shortTitle &#x3D; &#x60;${routes.EDITION.short} ${section.seriesParent.short}/${section.section.short}&#x60;;
+        this.fullTitle &#x3D; section.section.full;
+        this.separator &#x3D; EditionSectionLink._getSeparator(index, totalLength);
+    }
+
+    /**
+     * Private static method: _getSeparator.
+     *
+     * It returns the appropriate separator for the displayed sections.
+     *
+     * @param {number} index The index of the current section in the displayed sections array.
+     * @param {number} length The total length of the displayed sections array.
+     * @returns {string} The appropriate separator for the displayed sections.
+     */
+    private static _getSeparator(index: number, length: number): string {
+        if (length &lt;&#x3D; 1 || index &#x3D;&#x3D;&#x3D; length - 1) {
+            return &#x27;&#x27;;
+        }
+        if (index &#x3D;&#x3D;&#x3D; length - 2) {
+            return &#x27; und &#x27;;
+        }
+        return &#x27;, &#x27;;
+    }
 }
 
 /**

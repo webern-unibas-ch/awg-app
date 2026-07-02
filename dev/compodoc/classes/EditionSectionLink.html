@@ -1,0 +1,1022 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >EditionSectionLink</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/models/edition-outline.model.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The EditionSectionLink class.</p>
+<p>It is used in the context of the edition view
+to structure information for the edition section links,
+e.g., in the home view.</p>
+
+            </p>
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fullTitle" >fullTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#separator" >separator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#shortTitle" >shortTitle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#_getSeparator" >_getSeparator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(section: <a href="../interfaces/EditionOutlineSection.html" target="_self">EditionOutlineSection</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, totalLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSectionLink class.</p>
+<p>It initializes the class with an EditionOutlineSection object.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>section</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The edition outline section to be mapped to a navbar section.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>index</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>totalLength</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullTitle"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>fullTitle</b></span>
+                        <a href="#fullTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The full title of the navbar section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The route for the edition section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="separator"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>separator</b></span>
+                        <a href="#separator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The separator for the edition section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shortTitle"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>shortTitle</b></span>
+                        <a href="#shortTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:23</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The shortTitle for the edition section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getSeparator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                        <span ><b>_getSeparator</b></span>
+                        <a href="#_getSeparator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getSeparator(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, length: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private static method: _getSeparator.</p>
+<p>It returns the appropriate separator for the displayed sections.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The index of the current section in the displayed sections array.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>length</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The total length of the displayed sections array.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The appropriate separator for the displayed sections.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
+import { EditionRouteConstant } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionComplexesService } from &#x27;@awg-views/edition-view/services&#x27;;
+
+import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
+
+/**
+ * The EditionSectionLink class.
+ *
+ * It is used in the context of the edition view
+ * to structure information for the edition section links,
+ * e.g., in the home view.
+ */
+export class EditionSectionLink {
+    /**
+     * The route for the edition section.
+     */
+    readonly route: string[];
+
+    /**
+     * The shortTitle for the edition section.
+     */
+    readonly shortTitle: string;
+
+    /**
+     * The full title of the navbar section.
+     */
+    readonly fullTitle: string;
+
+    /**
+     * The separator for the edition section.
+     */
+    readonly separator: string;
+
+    /**
+     * Constructor of the EditionSectionLink class.
+     *
+     * It initializes the class with an EditionOutlineSection object.
+     *
+     * @param {EditionOutlineSection} section The edition outline section to be mapped to a navbar section.
+     */
+    constructor(section: EditionOutlineSection, index: number &#x3D; 0, totalLength: number &#x3D; 1) {
+        if (!section?.seriesParent || !section?.section) {
+            throw new Error(&#x27;[EditionSectionLink]: invalid edition outline section&#x27;);
+        }
+        const routes &#x3D; EDITION_ROUTE_CONSTANTS;
+        this.route &#x3D; [
+            routes.EDITION.route,
+            routes.SERIES.route,
+            section.seriesParent.route,
+            routes.SECTION.route,
+            section.section.route,
+        ];
+        this.shortTitle &#x3D; &#x60;${routes.EDITION.short} ${section.seriesParent.short}/${section.section.short}&#x60;;
+        this.fullTitle &#x3D; section.section.full;
+        this.separator &#x3D; EditionSectionLink._getSeparator(index, totalLength);
+    }
+
+    /**
+     * Private static method: _getSeparator.
+     *
+     * It returns the appropriate separator for the displayed sections.
+     *
+     * @param {number} index The index of the current section in the displayed sections array.
+     * @param {number} length The total length of the displayed sections array.
+     * @returns {string} The appropriate separator for the displayed sections.
+     */
+    private static _getSeparator(index: number, length: number): string {
+        if (length &lt;&#x3D; 1 || index &#x3D;&#x3D;&#x3D; length - 1) {
+            return &#x27;&#x27;;
+        }
+        if (index &#x3D;&#x3D;&#x3D; length - 2) {
+            return &#x27; und &#x27;;
+        }
+        return &#x27;, &#x27;;
+    }
+}
+
+/**
+ * The EditionOutlineSectionsContentJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline sections content.
+ */
+export interface EditionOutlineSectionsContentJsonData {
+    /**
+     * The intro data.
+     */
+    intro: {
+        disabled: boolean;
+        preview?: string;
+    };
+
+    /**
+     * The complex types data.
+     */
+    complexTypes: {
+        opus: [{ complex: string; disabled: boolean }];
+        mnr: [{ complex: string; disabled: boolean }];
+    };
+}
+
+/**
+ * The EditionOutlineSectionsJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline sections.
+ */
+export interface EditionOutlineSectionsJsonData {
+    /**
+     * The section data.
+     */
+    section: string;
+
+    /**
+     * The section content data.
+     */
+    content: EditionOutlineSectionsContentJsonData;
+
+    /**
+     * Boolean flag if a section is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionOutlineSeriesJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline series.
+ */
+export interface EditionOutlineSeriesJsonData {
+    /**
+     * The series data.
+     */
+    series: string;
+
+    /**
+     * The sections data.
+     */
+    sections: EditionOutlineSectionsJsonData[];
+}
+
+/**
+ * The EditionOutlineJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline.
+ */
+export interface EditionOutlineJsonData {
+    /**
+     * The edition outline data.
+     */
+    editionOutline: EditionOutlineSeriesJsonData[];
+}
+
+/**
+ * The EditionOutlineComplex interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of an edition complex.
+ */
+export interface EditionOutlineComplexItem {
+    /**
+     * The edition complex.
+     */
+    complex: EditionComplex;
+
+    /**
+     * Boolean flag if an edition complex is disabled.
+     */
+    disabled: boolean;
+
+    /**
+     * The sub-complexes of an edition complex.
+     */
+    subComplexes?: EditionOutlineComplexItem[];
+}
+
+/**
+ * The EditionOutlineComplexTypes interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition complex types.
+ */
+export interface EditionOutlineComplexTypes {
+    /**
+     * The opus parts of an edition complex.
+     */
+    opus: EditionOutlineComplexItem[];
+
+    /**
+     * The mnr parts of an edition complex.
+     */
+    mnr: EditionOutlineComplexItem[];
+}
+
+/**
+ * The EditionOutlineIntroItem interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition intro.
+ */
+export interface EditionOutlineIntroItem {
+    /**
+     * Boolean flag if an intro is disabled.
+     */
+    disabled: boolean;
+
+    /**
+     * The preview of an intro.
+     */
+    preview?: string;
+}
+
+/**
+ * The EditionOutlineSectionContent interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition section content.
+ */
+export interface EditionOutlineSectionContent {
+    /**
+     * The intro of an edition section.
+     */
+    intro: EditionOutlineIntroItem;
+
+    /**
+     * The edition complex types of an edition section.
+     */
+    complexTypes: EditionOutlineComplexTypes;
+}
+
+/**
+ * The EditionOutlineSection interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition sections.
+ */
+export interface EditionOutlineSection {
+    /**
+     * The series parent route of an edition section.
+     */
+    seriesParent: EditionRouteConstant;
+
+    /**
+     * The section route of an edition section.
+     */
+    section: EditionRouteConstant;
+
+    /**
+     * The section content of an edition section.
+     */
+    content: EditionOutlineSectionContent;
+
+    /**
+     * Boolean flag if an edition section is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionOutlineSeries interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition series.
+ */
+export interface EditionOutlineSeries {
+    /**
+     * The series route of an edition series.
+     */
+    series: EditionRouteConstant;
+
+    /**
+     * The section route of an edition series.
+     */
+    sections: EditionOutlineSection[];
+}
+
+/**
+ * The EditionOutline interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition.
+ */
+export class EditionOutline {
+    /**
+     * The outline of the edition.
+     */
+    outline: EditionOutlineSeries[];
+
+    /**
+     * Constructor of the EditionOutline class.
+     *
+     * It initializes the class with an edition outline Object.
+     *
+     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
+     */
+    constructor(outlineData: EditionOutlineSeriesJsonData[]) {
+        if (!outlineData) {
+            return;
+        }
+
+        this.outline &#x3D; outlineData.map(this._mapSeries);
+    }
+
+    /**
+     * Private readonly method: _mapSeries.
+     *
+     * It maps the series data.
+     *
+     * @param {EditionOutlineSeriesJsonData} data The series data to map.
+     * @param {string} data.series The given series string.
+     * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
+     *
+     * @returns {EditionOutlineSeries} The mapped series.
+     */
+    private readonly _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
+        const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
+        return {
+            series: seriesConstant,
+            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant)),
+        };
+    };
+
+    /**
+     * Private readonly method: _mapSection.
+     *
+     * It maps the section data.
+     *
+     * @param {EditionOutlineSectionsJsonData} data The section data to map.
+     * @param {string} data.section The given section string.
+     * @param {Object} data.complexTypes The given complex types data.
+     * @param {boolean} data.disabled The given disabled flag.
+     *
+     * @returns {EditionOutlineSection} The mapped section.
+     */
+    private readonly _mapSection &#x3D; (
+        { section, disabled, content }: EditionOutlineSectionsJsonData,
+        seriesConstant: EditionRouteConstant
+    ): EditionOutlineSection &#x3D;&gt; {
+        const sectionConstant: EditionRouteConstant &#x3D;
+            seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
+                ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
+                : EDITION_ROUTE_CONSTANTS[&#x27;SECTION_&#x27; + section];
+
+        return {
+            seriesParent: seriesConstant,
+            section: sectionConstant,
+            content: this._mapSectionContent(content),
+            disabled,
+        };
+    };
+
+    /**
+     * Private readonly method: _mapContent.
+     *
+     * It maps the content data.
+     *
+     * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
+     *
+     * @returns {EditionOutlineSectionContent} The mapped content.
+     */
+    private readonly _mapSectionContent &#x3D; (
+        content: EditionOutlineSectionsContentJsonData
+    ): EditionOutlineSectionContent &#x3D;&gt; ({
+        intro: { disabled: content.intro.disabled, preview: content.intro.preview || &#x27;&#x27; },
+        complexTypes: {
+            opus: this._mapComplexItems(content.complexTypes.opus),
+            mnr: this._mapComplexItems(content.complexTypes.mnr),
+        },
+    });
+
+    /**
+     * Private readonly method: _mapComplexItems.
+     *
+     * It maps the complex items.
+     *
+     * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
+     *
+     * @returns {EditionOutlineComplexItem[]} The mapped complex items.
+     */
+    private readonly _mapComplexItems &#x3D; (
+        complexItems: { complex: string; disabled: boolean }[]
+    ): EditionOutlineComplexItem[] &#x3D;&gt;
+        complexItems.map(({ complex, disabled }) &#x3D;&gt; ({
+            complex: EditionComplexesService.getEditionComplexById(complex),
+            disabled,
+        }));
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionSectionLink.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

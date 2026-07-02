@@ -945,6 +945,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionRowTablesList.html" data-type="entity-link" >EditionRowTablesList</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EditionSectionLink.html" data-type="entity-link" >EditionSectionLink</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EditionSvgLinkBox.html" data-type="entity-link" >EditionSvgLinkBox</a>
                             </li>
                             <li class="link">
@@ -1346,9 +1349,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionOutlineSeriesJsonData.html" data-type="entity-link" >EditionOutlineSeriesJsonData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionSectionLink.html" data-type="entity-link" >EditionSectionLink</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/EditionSvgOverlayState.html" data-type="entity-link" >EditionSvgOverlayState</a>
                             </li>
                             <li class="link">
@@ -1386,9 +1386,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/NavbarItems.html" data-type="entity-link" >NavbarItems</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/NavbarSection.html" data-type="entity-link" >NavbarSection</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/QuerySelectResult.html" data-type="entity-link" >QuerySelectResult</a>
