@@ -5,32 +5,75 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { EditionComplex } from './edition-complex.model';
 
 /**
- * The EditionSectionLink interface.
+ * The EditionSectionLink class.
  *
  * It is used in the context of the edition view
  * to structure information for the edition section links,
  * e.g., in the home view.
  */
-export interface EditionSectionLink {
+export class EditionSectionLink {
     /**
-     * The edition section.
+     * The route for the edition section.
      */
-    section: EditionOutlineSection;
+    readonly route: string[];
 
     /**
-     * The router link for the edition section.
+     * The shortTitle for the edition section.
      */
-    routerLink: string[];
+    readonly shortTitle: string;
 
     /**
-     * The label for the edition section.
+     * The full title of the navbar section.
      */
-    label: string;
+    readonly fullTitle: string;
 
     /**
      * The separator for the edition section.
      */
-    separator: string;
+    readonly separator: string;
+
+    /**
+     * Constructor of the EditionSectionLink class.
+     *
+     * It initializes the class with an EditionOutlineSection object.
+     *
+     * @param {EditionOutlineSection} section The edition outline section to be mapped to a navbar section.
+     */
+    constructor(section: EditionOutlineSection, index: number = 0, totalLength: number = 1) {
+        if (!section?.seriesParent || !section?.section) {
+            throw new Error('[EditionSectionLink]: invalid edition outline section');
+        }
+        const routes = EDITION_ROUTE_CONSTANTS;
+        this.route = [
+            routes.EDITION.route,
+            routes.SERIES.route,
+            section.seriesParent.route,
+            routes.SECTION.route,
+            section.section.route,
+        ];
+        this.shortTitle = `${routes.EDITION.short} ${section.seriesParent.short}/${section.section.short}`;
+        this.fullTitle = section.section.full;
+        this.separator = EditionSectionLink._getSeparator(index, totalLength);
+    }
+
+    /**
+     * Private static method: _getSeparator.
+     *
+     * It returns the appropriate separator for the displayed sections.
+     *
+     * @param {number} index The index of the current section in the displayed sections array.
+     * @param {number} length The total length of the displayed sections array.
+     * @returns {string} The appropriate separator for the displayed sections.
+     */
+    private static _getSeparator(index: number, length: number): string {
+        if (length <= 1 || index === length - 1) {
+            return '';
+        }
+        if (index === length - 2) {
+            return ' und ';
+        }
+        return ', ';
+    }
 }
 
 /**

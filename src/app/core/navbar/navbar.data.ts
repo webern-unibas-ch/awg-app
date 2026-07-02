@@ -2,17 +2,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired } from '@fortawesome/free
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
-import { NavbarDropdownLink, NavbarItems } from '../models/navbar.model';
-
-/**
- * Object constant with a set of section ids for the navbar.
- *
- * It keeps the section ids for the navbar.
- */
-export const NAVBAR_DISPLAYED_SECTION_IDS = [
-    { seriesId: '1', sectionId: '5' },
-    { seriesId: '2', sectionId: '2a' },
-];
+import { NavbarDropdownLink, NavbarItems } from './navbar.model';
 
 /**
  * Object constant with a set of navigation items for the navbar.

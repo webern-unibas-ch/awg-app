@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
@@ -17,7 +17,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { LOGOS_DATA } from '../data/logos.data';
@@ -25,16 +26,15 @@ import { LogoLinkComponent } from '../logo-link/logo-link.component';
 import { Logo, Logos } from '../models/logos.model';
 import { CoreService } from '../services/core-service/core.service';
 
-import {
-    NAVBAR_DISPLAYED_SECTION_IDS,
-    NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
-    NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
-    NAVBAR_ITEMS,
-} from './data/navbar.data';
-import { NavbarDropdownLink, NavbarItem, NavbarItems, NavbarSection } from './models/navbar.model';
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import { NavbarComponent } from './navbar.component';
+import {
+    NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
+    NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
+    NAVBAR_ITEMS,
+} from './navbar.data';
+import { NavbarDropdownLink, NavbarItem, NavbarItems } from './navbar.model';
 
 // Mock components
 @Component({
@@ -73,11 +73,9 @@ describe('NavbarComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
 
     let toggleNavSpy: Spy;
-    let mapSectionToNavbarLinkSpy: Spy;
 
     let expectedLogosData: Logos;
-    let expectedSectionsData: EditionOutlineSection[];
-    let expectedDisplayedSections: NavbarSection[];
+    let expectedSectionLinksData: EditionSectionLink[];
     let expectedNavbarItems: NavbarItems;
     let expectedGeneralEditionLinks: NavbarDropdownLink[];
     let expectedSectionEditionLinks: NavbarDropdownLink[];
@@ -124,19 +122,14 @@ describe('NavbarComponent (DONE)', () => {
         expectedNavbarItems = NAVBAR_ITEMS;
         expectedGeneralEditionLinks = NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS;
         expectedSectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
+        expectedSectionLinksData = ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
+            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            return new EditionSectionLink(section, index, array.length);
+        });
         expectedLogosData = LOGOS_DATA;
-        expectedSectionsData = NAVBAR_DISPLAYED_SECTION_IDS.map(section =>
-            EditionOutlineService.getEditionSectionById(section.seriesId, section.sectionId)
-        );
-        expectedDisplayedSections = expectedSectionsData.map(section => ({
-            baseRoute: ['/edition', 'series', section.seriesParent.route, 'section', section.section.route],
-            fullTitle: section.section.full,
-            shortTitle: `[AWG ${section.seriesParent.short}/${section.section.short}]`,
-        }));
 
         // Spies
         toggleNavSpy = vi.spyOn(component, 'toggleNav');
-        mapSectionToNavbarLinkSpy = vi.spyOn(component as any, '_mapSectionToNavbarLink');
     });
 
     afterEach(() => {
@@ -173,12 +166,8 @@ describe('NavbarComponent (DONE)', () => {
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
-        it('... should have `sectionsData`', () => {
-            expectToEqual(component.sectionsData(), expectedSectionsData);
-        });
-
-        it('... should have computed `displayedSections`', () => {
-            expectToEqual(component.displayedSections(), expectedDisplayedSections);
+        it('... should have `sectionLinksData`', () => {
+            expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
         });
 
         describe('VIEW', () => {
@@ -395,14 +384,14 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(hEl.textContent, 'Auswahl Abteilungen');
                 });
 
-                it('... should be followed by as many `div.awg-dropdown-sections` as edition sections are available', () => {
+                it('... should be followed by as many `div.awg-dropdown-sections` as edition section links are available', () => {
                     const dropdownDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
 
                     getAndExpectDebugElementByCss(
                         dropdownDes[0],
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedDisplayedSections.length,
-                        expectedDisplayedSections.length
+                        expectedSectionLinksData.length,
+                        expectedSectionLinksData.length
                     );
                 });
 
@@ -410,8 +399,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedDisplayedSections.length,
-                        expectedDisplayedSections.length
+                        expectedSectionLinksData.length,
+                        expectedSectionLinksData.length
                     );
 
                     sectionsDes.forEach(sectionDe => {
@@ -423,8 +412,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedDisplayedSections.length,
-                        expectedDisplayedSections.length
+                        expectedSectionLinksData.length,
+                        expectedSectionLinksData.length
                     );
 
                     sectionsDes.forEach((sectionDe, index) => {
@@ -434,7 +423,7 @@ describe('NavbarComponent (DONE)', () => {
                         const headingSpanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
                         const headingSpanEl: HTMLSpanElement = headingSpanDes[0].nativeElement;
 
-                        const expectedSection = component.displayedSections()[index];
+                        const expectedSection = component.sectionLinksData()[index];
 
                         const headingSiglum = expectedSection.shortTitle;
                         const headingId = expectedSection.fullTitle;
@@ -448,8 +437,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedDisplayedSections.length,
-                        expectedDisplayedSections.length
+                        expectedSectionLinksData.length,
+                        expectedSectionLinksData.length
                     );
 
                     sectionsDes.forEach(sectionDe => {
@@ -466,12 +455,12 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedDisplayedSections.length,
-                        expectedDisplayedSections.length
+                        expectedSectionLinksData.length,
+                        expectedSectionLinksData.length
                     );
 
                     sectionsDes.forEach((sectionDe, sectionIndex) => {
-                        const section = expectedDisplayedSections[sectionIndex];
+                        const section = expectedSectionLinksData[sectionIndex];
                         const dropdownLinkDes = getAndExpectDebugElementByDirective(
                             sectionDe,
                             NavbarDropdownLinkStubComponent,
@@ -485,7 +474,7 @@ describe('NavbarComponent (DONE)', () => {
                                 NavbarDropdownLinkStubComponent
                             ) as NavbarDropdownLinkStubComponent;
 
-                            const expectedRoute = [...section.baseRoute, ...link.route];
+                            const expectedRoute = [...section.route, ...link.route];
 
                             expectToBe(dropdownLinkCmp.label(), link.label);
                             expectToEqual(dropdownLinkCmp.route(), expectedRoute);
@@ -514,24 +503,6 @@ describe('NavbarComponent (DONE)', () => {
 
                     expectToEqual(navbarItemCmp.item(), expectedNavbarItems.contact);
                 });
-            });
-        });
-
-        describe('#isEditionRouteActive()', () => {
-            it('... should have a signal `isEditionRouteActive`', async () => {
-                expect(component.isEditionRouteActive).toBeDefined();
-            });
-
-            it('should react when the route changes to `/edition`', async () => {
-                await router.navigateByUrl('/home');
-                fixture.detectChanges();
-
-                expectToBe(component.isEditionRouteActive(), false);
-
-                await router.navigateByUrl('/edition');
-                fixture.detectChanges();
-
-                expectToBe(component.isEditionRouteActive(), true);
             });
         });
 
@@ -571,23 +542,25 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(component.isCollapsed(), false);
                 });
             });
+        });
+    });
 
-            describe('#_mapSectionToNavbarLink()', () => {
-                it('... should have a method `_mapSectionToNavbarLink`', () => {
-                    expect((component as any)._mapSectionToNavbarLink).toBeDefined();
-                });
+    describe('#isEditionRouteActive()', () => {
+        it('... should have a signal `isEditionRouteActive`', async () => {
+            expect(component.isEditionRouteActive).toBeDefined();
+            expectToBe(isSignal(component.isEditionRouteActive), true);
+        });
 
-                it('... should be triggered by `displayedSections` computed signal for each edition section', () => {
-                    expectSpyCall(mapSectionToNavbarLinkSpy, expectedSectionsData.length);
-                });
+        it('should react when the route changes to `/edition`', async () => {
+            await router.navigateByUrl('/home');
+            fixture.detectChanges();
 
-                it('... should map a given outline section to a NavbarSection', () => {
-                    expectedSectionsData.forEach((section, index) => {
-                        const actualLink = (component as any)._mapSectionToNavbarLink(section);
-                        expectToEqual(actualLink, expectedDisplayedSections[index]);
-                    });
-                });
-            });
+            expectToBe(component.isEditionRouteActive(), false);
+
+            await router.navigateByUrl('/edition');
+            fixture.detectChanges();
+
+            expectToBe(component.isEditionRouteActive(), true);
         });
     });
 });

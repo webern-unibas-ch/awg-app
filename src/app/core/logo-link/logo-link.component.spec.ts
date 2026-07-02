@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -152,24 +152,25 @@ describe('LogoLinkComponent', () => {
                 expectToBe(imageEl.className, '');
             });
         });
+    });
 
-        describe('#logoClassList', () => {
-            it('... should have a computed signal `logoClassList`', () => {
-                expect(component.logoClassList).toBeDefined();
-            });
+    describe('#logoClassList', () => {
+        it('... should have a computed signal `logoClassList`', () => {
+            expect(component.logoClassList).toBeDefined();
+            expectToBe(isSignal(component.logoClassList), true);
+        });
 
-            it('... should return correct CSS classes depending on the logo type', () => {
-                const testCases = [
-                    { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
-                    { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
-                    { logoData: expectedAngularLogoData, expected: '' },
-                ];
+        it('... should return correct CSS classes depending on the logo type', () => {
+            const testCases = [
+                { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
+                { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
+                { logoData: expectedAngularLogoData, expected: '' },
+            ];
 
-                testCases.forEach(({ logoData, expected }) => {
-                    fixture.componentRef.setInput('logoData', logoData);
+            testCases.forEach(({ logoData, expected }) => {
+                fixture.componentRef.setInput('logoData', logoData);
 
-                    expectToBe(component.logoClassList(), expected);
-                });
+                expectToBe(component.logoClassList(), expected);
             });
         });
     });

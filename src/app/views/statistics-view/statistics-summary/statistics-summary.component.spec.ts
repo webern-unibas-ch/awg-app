@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -123,7 +123,7 @@ describe('StatisticsSummaryComponent', () => {
             expectToEqual(component.summaryData(), expectedSummaryData);
         });
 
-        it('... should have computed `summaryCards` based on `statisticsData`', () => {
+        it('... should have computed `summaryCards` based on `summaryData`', () => {
             const summaryCards = component.summaryCards();
 
             expectToBe(summaryCards.length, 4);
@@ -183,33 +183,34 @@ describe('StatisticsSummaryComponent', () => {
                 });
             });
         });
+    });
 
-        describe('#summaryCards', () => {
-            it('... should have a computed signal `summaryCards`', () => {
-                expect(component.summaryCards).toBeDefined();
-            });
+    describe('#summaryCards', () => {
+        it('... should have a computed signal `summaryCards`', () => {
+            expect(component.summaryCards).toBeDefined();
+            expectToBe(isSignal(component.summaryCards), true);
+        });
 
-            it('... should return empty array if `summaryData` is null', () => {
-                fixture.componentRef.setInput('summaryData', null);
+        it('... should return empty array if `summaryData` is null', () => {
+            fixture.componentRef.setInput('summaryData', null);
 
-                const summaryCards = component.summaryCards();
+            const summaryCards = component.summaryCards();
 
-                expectToBe(summaryCards.length, 0);
-                expectToEqual(summaryCards, []);
-            });
+            expectToBe(summaryCards.length, 0);
+            expectToEqual(summaryCards, []);
+        });
 
-            it('... should return correct summary card data based on summaryData input', () => {
-                fixture.componentRef.setInput('summaryData', expectedSummaryData);
+        it('... should return correct summary card data based on summaryData input', () => {
+            fixture.componentRef.setInput('summaryData', expectedSummaryData);
 
-                const summaryCards = component.summaryCards();
+            const summaryCards = component.summaryCards();
 
-                expectToBe(summaryCards.length, 4);
-                summaryCards.forEach((card, index) => {
-                    expectToBe(card.title, expectedSummaryCards[index].title);
-                    expectToBe(card.value, expectedSummaryCards[index].value);
-                    expectToEqual(card.icon, expectedSummaryCards[index].icon);
-                    expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
-                });
+            expectToBe(summaryCards.length, 4);
+            summaryCards.forEach((card, index) => {
+                expectToBe(card.title, expectedSummaryCards[index].title);
+                expectToBe(card.value, expectedSummaryCards[index].value);
+                expectToEqual(card.icon, expectedSummaryCards[index].icon);
+                expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
             });
         });
     });

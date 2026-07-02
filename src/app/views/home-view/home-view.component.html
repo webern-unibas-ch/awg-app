@@ -22,9 +22,9 @@
 
             <p>
                 Über den Menüpunkt <em>Edition</em> sind aktuell die Online-Editionen zu den Abteilungen
-                @for (sectionLink of displayedSectionLinks(); track sectionLink.routerLink.join('/')) {
-                    <a [routerLink]="sectionLink.routerLink"
-                        ><span> {{ sectionLink.label }}</span>
+                @for (sectionLink of sectionLinksData(); track sectionLink.route.join('/')) {
+                    <a [routerLink]="sectionLink.route"
+                        ><span> {{ sectionLink.shortTitle }}</span>
                     </a>
                     <span>{{ sectionLink.separator }}</span>
                 }

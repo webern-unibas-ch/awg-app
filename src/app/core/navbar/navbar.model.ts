@@ -35,14 +35,3 @@ export interface NavbarItems {
     readonly structure: NavbarItem;
     readonly contact: NavbarItem;
 }
-
-/**
- * The NavbarSection interface.
- *
- * It defines the structure of a section in the navbar.
- */
-export interface NavbarSection {
-    readonly baseRoute: string[];
-    readonly shortTitle: string;
-    readonly fullTitle: string;
-}
