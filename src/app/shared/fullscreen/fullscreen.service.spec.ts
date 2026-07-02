@@ -1,7 +1,7 @@
-import { DOCUMENT } from '@angular/core';
+import { DOCUMENT, isSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
@@ -11,17 +11,27 @@ import { FullscreenService } from './fullscreen.service';
 
 describe('FullscreenService (DONE)', () => {
     let fullscreenService: FullscreenService;
-
     let mockDocument: Document;
 
     let consoleSpy: Spy;
     let exitFullscreenSpy: Spy;
-    let fullScreenElementSpy: Spy;
+
+    let expectedFsElement: HTMLElement;
+
+    /**
+     * Helper function to simulate a browser fullscreen change event.
+     */
+    const simulateFullscreenChangeEvent = (element: HTMLElement | null): void => {
+        (mockDocument as any).fullscreenElement = element;
+        fullscreenService.updateState();
+    };
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            providers: [FullscreenService],
+        });
 
-        // Inject service
+        // Inject services
         fullscreenService = TestBed.inject(FullscreenService);
         mockDocument = TestBed.inject(DOCUMENT);
 
@@ -31,18 +41,22 @@ describe('FullscreenService (DONE)', () => {
             writable: true,
         });
         Object.defineProperty(mockDocument, 'fullscreenElement', {
-            get: () => null,
+            value: null,
             configurable: true,
+            writable: true,
         });
 
-        // Spies on service functions
+        expectedFsElement = mockDocument.createElement('div');
+        mockDocument.body.appendChild(expectedFsElement);
+
+        // Service spies
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
         exitFullscreenSpy = vi.spyOn(mockDocument, 'exitFullscreen').mockReturnValue(Promise.resolve());
-        fullScreenElementSpy = vi.spyOn(mockDocument, 'fullscreenElement', 'get').mockReturnValue(null);
     });
 
     afterEach(() => {
         // Clear mock objects after each test
+        expectedFsElement.remove();
         mockConsole.clear();
         vi.restoreAllMocks();
     });
@@ -63,18 +77,36 @@ describe('FullscreenService (DONE)', () => {
         });
     });
 
+    it('... should have a readonly signal `isFullscreen`', () => {
+        expect(fullscreenService.isFullscreen).toBeDefined();
+        expectToBe(isSignal(fullscreenService.isFullscreen), true);
+    });
+
+    describe('#updateState()', () => {
+        it('... should have a method `updateState`', () => {
+            expect(fullscreenService.updateState).toBeDefined();
+        });
+
+        it('... should update the `isFullscreen` signal based on the document state', () => {
+            expectToBe(fullscreenService.isFullscreen(), false);
+
+            simulateFullscreenChangeEvent(expectedFsElement);
+
+            expectToBe(fullscreenService.isFullscreen(), true);
+
+            simulateFullscreenChangeEvent(null);
+
+            expectToBe(fullscreenService.isFullscreen(), false);
+        });
+    });
+
     describe('#closeFullscreen()', () => {
         it('... should have a method `closeFullscreen`', () => {
             expect(fullscreenService.closeFullscreen).toBeDefined();
         });
 
         it('... should do nothing if `exitFullscreen` is not available', () => {
-            exitFullscreenSpy.mockRestore();
-            Object.defineProperty(mockDocument, 'exitFullscreen', {
-                value: undefined,
-                configurable: true,
-                writable: true,
-            });
+            (mockDocument as any).exitFullscreen = undefined;
 
             expect(() => fullscreenService.closeFullscreen()).not.toThrow();
             expectSpyCall(consoleSpy, 0);
@@ -88,92 +120,65 @@ describe('FullscreenService (DONE)', () => {
 
         it('... should catch an error if `exitFullscreen` fails', async () => {
             const err = new Error('Test error');
-            exitFullscreenSpy.mockReturnValue(Promise.reject(err));
+            exitFullscreenSpy.mockRejectedValue(err);
 
             fullscreenService.closeFullscreen();
-            await Promise.resolve();
+            await new Promise(resolve => setTimeout(resolve, 0));
 
-            const loggedError = mockConsole.get(0) as unknown as Error;
             expectSpyCall(exitFullscreenSpy, 1);
             expectSpyCall(consoleSpy, 1, err);
+
+            const loggedError = mockConsole.get(0) as unknown as Error;
             expectToBe(loggedError, err);
         });
     });
 
-    describe('#isFullscreen()', () => {
-        it('... should have a method `isFullscreen`', () => {
-            expect(fullscreenService.isFullscreen).toBeDefined();
-        });
-
-        it('... should return false if the document is not in fullscreen mode', () => {
-            fullScreenElementSpy.mockReturnValue(null);
-
-            expectToBe(fullscreenService.isFullscreen(), false);
-        });
-
-        it('... should return true if the document is in fullscreen mode', () => {
-            fullScreenElementSpy.mockReturnValue({});
-
-            expectToBe(fullscreenService.isFullscreen(), true);
-        });
-    });
-
     describe('#openFullscreen()', () => {
+        let requestFullscreenSpy: Mock;
+
+        beforeEach(() => {
+            requestFullscreenSpy = vi.fn().mockResolvedValue(undefined);
+            expectedFsElement.requestFullscreen = requestFullscreenSpy;
+        });
+
+        afterEach(() => {
+            vi.restoreAllMocks;
+        });
+
         it('... should have a method `openFullscreen`', () => {
             expect(fullscreenService.openFullscreen).toBeDefined();
         });
 
         it('... should request fullscreen mode for a given element (if not in fullscreen mode)', () => {
-            fullScreenElementSpy.mockReturnValue(null);
+            simulateFullscreenChangeEvent(null);
 
-            const element = mockDocument.createElement('div');
-            // Redefine as configurable/writable for spy
-            Object.defineProperty(element, 'requestFullscreen', {
-                value: () => Promise.resolve(),
-                configurable: true,
-                writable: true,
-            });
-            const requestFullscreenSpy = vi.spyOn(element, 'requestFullscreen').mockReturnValue(Promise.resolve());
-
-            fullscreenService.openFullscreen(element);
+            fullscreenService.openFullscreen(expectedFsElement);
 
             expectSpyCall(requestFullscreenSpy, 1);
         });
 
         it('... should not request fullscreen mode for a given element (if already in fullscreen mode)', () => {
-            fullScreenElementSpy.mockReturnValue({});
+            const otherElement = mockDocument.createElement('div');
+            simulateFullscreenChangeEvent(otherElement);
 
-            const element = mockDocument.createElement('div');
-            // Redefine as configurable/writable for spy
-            Object.defineProperty(element, 'requestFullscreen', {
-                value: () => Promise.resolve(),
-                configurable: true,
-                writable: true,
-            });
-            const requestFullscreenSpy = vi.spyOn(element, 'requestFullscreen').mockReturnValue(Promise.resolve());
-
-            fullscreenService.openFullscreen(element);
+            fullscreenService.openFullscreen(expectedFsElement);
 
             expectSpyCall(requestFullscreenSpy, 0);
         });
 
         it('... should catch an error if `requestFullscreen` fails', async () => {
             const err = new Error('Test error');
-            const element = mockDocument.createElement('div');
-            // Redefine as configurable/writable for spy
-            Object.defineProperty(element, 'requestFullscreen', {
-                value: () => Promise.resolve(),
-                configurable: true,
-                writable: true,
-            });
-            const requestFullscreenSpy = vi.spyOn(element, 'requestFullscreen').mockReturnValue(Promise.reject(err));
+            requestFullscreenSpy.mockRejectedValue(err);
 
-            fullscreenService.openFullscreen(element);
-            await Promise.resolve();
+            simulateFullscreenChangeEvent(null);
 
-            const loggedError = mockConsole.get(0) as unknown as Error;
+            fullscreenService.openFullscreen(expectedFsElement);
+            await new Promise(resolve => setTimeout(resolve, 0));
+
             expectSpyCall(requestFullscreenSpy, 1);
             expectSpyCall(consoleSpy, 1, err);
+
+            const loggedError = mockConsole.get(0) as unknown as Error;
             expectToEqual(loggedError, err);
         });
     });

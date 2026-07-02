@@ -21,7 +21,7 @@
                                 kontinuierlich ergänzt.</span
                             >
                         </p>
-                        @if (UTILS.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
+                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
                             @for (description of graph.description; track $index) {
                                 <p [compile-html]="description" [compile-html-ref]="ref"></p>
                             }
@@ -53,7 +53,7 @@
                                 </button>
 
                                 <awg-fullscreen-toggle
-                                    [fsElement]="graphVisualizer.fs?.nativeElement"
+                                    [fsElement]="fullscreenWrapper"
                                     (toggleFullscreenRequest)="onFullscreenToggle($event)" />
                             </h4>
                             <p>
@@ -67,10 +67,12 @@
                                 unter dem Punkt <em>SPARQL Abfrage</em> vorgenommen werden; in der Voreinstellung werden
                                 hierbei alle vorhandenen Triples abgefragt.
                             </p>
-                            <awg-graph-visualizer
-                                #graphVisualizer
-                                [graphRDFInputData]="graph.rdfData"
-                                [isFullscreen]="isFullscreen" />
+                            <div #fullscreenWrapper class="awg-graph-fullscreen-wrapper">
+                                <awg-graph-visualizer
+                                    #graphVisualizer
+                                    [graphRDFInputData]="graph.rdfData"
+                                    [isFullscreenMode]="isFullscreen" />
+                            </div>
                         </div>
                     }
                     <!-- static image -->

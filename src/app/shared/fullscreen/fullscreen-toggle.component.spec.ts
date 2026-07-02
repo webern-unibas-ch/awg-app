@@ -4,77 +4,90 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { FullscreenService } from '@awg-core/services/fullscreen-service/fullscreen.service';
-
 import { FullscreenToggleComponent } from './fullscreen-toggle.component';
+import { FullscreenService } from './fullscreen.service';
 
 describe('FullscreenToggleComponent (DONE)', () => {
     let component: FullscreenToggleComponent;
     let fixture: ComponentFixture<FullscreenToggleComponent>;
     let compDe: DebugElement;
 
+    let fullscreenService: FullscreenService;
     let mockDocument: Document;
-
-    let mockFullscreenService: Partial<FullscreenService>;
 
     let closeFullScreenSpy: Spy;
     let openFullScreenSpy: Spy;
-    let toggleFullscreenSpy: Spy;
     let toggleFullscreenRequestEmitSpy: Spy;
     let serviceCloseFullscreenSpy: Spy;
     let serviceOpenFullscreenSpy: Spy;
+    let serviceUpdateStateSpy: Spy;
 
     let expectedFaCompress: IconDefinition;
     let expectedFaExpand: IconDefinition;
     let expectedFsElement: HTMLElement;
-    let expectedIsFullscreen: boolean;
+
+    /**
+     * Helper function to simulate a browser fullscreen change event.
+     */
+    const simulateFullscreenChangeEvent = (element: HTMLElement | null): void => {
+        (mockDocument as any).fullscreenElement = element;
+        component.onFullscreenChange();
+    };
 
     beforeEach(async () => {
-        // Mocked fullscreenService
-        mockFullscreenService = {
-            isFullscreen: (): boolean => false,
-            openFullscreen: (): void => {},
-            closeFullscreen: (): void => {},
-        };
-
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule],
-            declarations: [FullscreenToggleComponent],
-            providers: [{ provide: FullscreenService, useValue: mockFullscreenService }],
+            imports: [FullscreenToggleComponent],
+            providers: [FullscreenService],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FullscreenToggleComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
-        // Mock the document
+        // Inject services
+        fullscreenService = TestBed.inject(FullscreenService);
         mockDocument = TestBed.inject(DOCUMENT);
+
+        Object.defineProperty(mockDocument, 'exitFullscreen', {
+            value: () => Promise.resolve(),
+            configurable: true,
+            writable: true,
+        });
+        Object.defineProperty(mockDocument, 'fullscreenElement', {
+            value: null,
+            configurable: true,
+            writable: true,
+        });
+
+        // Service spies
+        vi.spyOn(mockDocument, 'exitFullscreen').mockImplementation(() => Promise.resolve());
+        serviceCloseFullscreenSpy = vi.spyOn(fullscreenService, 'closeFullscreen').mockImplementation(() => {});
+        serviceOpenFullscreenSpy = vi.spyOn(fullscreenService, 'openFullscreen').mockImplementation(() => {});
+        serviceUpdateStateSpy = vi.spyOn(fullscreenService, 'updateState');
 
         // Test data
         expectedFaCompress = faCompress;
         expectedFaExpand = faExpand;
         expectedFsElement = mockDocument.createElement('div');
-        expectedIsFullscreen = false;
+        mockDocument.body.appendChild(expectedFsElement);
 
-        // Spies
+        // Create component and test fixture
+        fixture = TestBed.createComponent(FullscreenToggleComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         closeFullScreenSpy = vi.spyOn(component, 'closeFullscreen');
         openFullScreenSpy = vi.spyOn(component, 'openFullscreen');
-        toggleFullscreenSpy = vi.spyOn(component, 'toggleFullscreen');
         toggleFullscreenRequestEmitSpy = vi.spyOn(component.toggleFullscreenRequest, 'emit');
-        serviceCloseFullscreenSpy = vi.spyOn(mockFullscreenService, 'closeFullscreen');
-        serviceOpenFullscreenSpy = vi.spyOn(mockFullscreenService, 'openFullscreen');
     });
 
     afterEach(() => {
+        expectedFsElement.remove();
         vi.clearAllMocks();
     });
 
@@ -83,8 +96,8 @@ describe('FullscreenToggleComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `fsElement` input', () => {
-            expect(component.fsElement).toBeUndefined();
+        it('... should throw due to missing `fsElement` input', () => {
+            expect(() => component.fsElement()).toThrow();
         });
 
         it('... should have `faCompress`', () => {
@@ -96,7 +109,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
         });
 
         it('... should have `isFullscreen` === false', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+            expectToBe(component.isFullscreen(), false);
         });
 
         describe('VIEW', () => {
@@ -109,21 +122,22 @@ describe('FullscreenToggleComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Mock the fsElement
-            component.fsElement = expectedFsElement;
+            fixture.componentRef.setInput('fsElement', expectedFsElement);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have `fsElement` input', () => {
-            expectToEqual(component.fsElement, expectedFsElement);
+            expectToEqual(component.fsElement(), expectedFsElement);
         });
 
         describe('VIEW', () => {
             describe('... not in fullscreen mode', () => {
                 beforeEach(async () => {
                     // Unset fullscreen
-                    component.isFullscreen = false;
+                    simulateFullscreenChangeEvent(null);
+
                     await detectChangesOnPush(fixture);
                 });
 
@@ -147,7 +161,8 @@ describe('FullscreenToggleComponent (DONE)', () => {
             describe('... in fullscreen mode', () => {
                 beforeEach(async () => {
                     // Set fullscreen
-                    component.isFullscreen = true;
+                    simulateFullscreenChangeEvent(expectedFsElement);
+
                     await detectChangesOnPush(fixture);
                 });
 
@@ -174,27 +189,12 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 expect(component.onFullscreenChange).toBeDefined();
             });
 
-            it('... should get fullscreen mode from `fullscreenService.isFullscreen`', () => {
-                const isFullscreenSpy = vi.spyOn(mockFullscreenService, 'isFullscreen');
+            it('... should update `isFullscreen` state based on document fullscreen changes', () => {
+                expectSpyCall(serviceUpdateStateSpy, 0);
 
-                // Simulate fullscreenchange event
-                const event = new Event('fullscreenchange');
-                mockDocument.dispatchEvent(event);
+                simulateFullscreenChangeEvent(expectedFsElement);
 
-                expectSpyCall(isFullscreenSpy, 1);
-            });
-
-            it('... should trigger `toggleFullscreen` method with correct fullscreen mode', () => {
-                expectedIsFullscreen = true;
-                vi.spyOn(mockFullscreenService, 'isFullscreen').mockReturnValue(expectedIsFullscreen);
-
-                expectSpyCall(toggleFullscreenSpy, 0);
-
-                // Simulate fullscreenchange event
-                const event = new Event('fullscreenchange');
-                mockDocument.dispatchEvent(event);
-
-                expectSpyCall(toggleFullscreenSpy, 1, expectedIsFullscreen);
+                expectSpyCall(serviceUpdateStateSpy, 1);
             });
         });
 
@@ -205,7 +205,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
             it('... should trigger on click on "close fullscreen" button (in fullscreen mode)', async () => {
                 // Set fullscreen
-                component.isFullscreen = true;
+                simulateFullscreenChangeEvent(expectedFsElement);
                 await detectChangesOnPush(fixture);
 
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
@@ -223,22 +223,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
                 expectSpyCall(serviceCloseFullscreenSpy, 1);
             });
-
-            it('... should trigger `toggleFullscreen` method', () => {
-                expectSpyCall(toggleFullscreenSpy, 0);
-
-                component.closeFullscreen();
-
-                expectSpyCall(toggleFullscreenSpy, 1);
-            });
-
-            it('... should set `isFullscreen` to false (via `toggleFullscreen`)', () => {
-                component.isFullscreen = true;
-
-                component.closeFullscreen();
-
-                expectToBe(component.isFullscreen, false);
-            });
         });
 
         describe('#openFullscreen()', () => {
@@ -247,68 +231,24 @@ describe('FullscreenToggleComponent (DONE)', () => {
             });
 
             it('... should trigger on click on "open fullscreen" button (not in fullscreen mode)', async () => {
+                // Unset fullscreen
+                simulateFullscreenChangeEvent(null);
+                await detectChangesOnPush(fixture);
+
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
 
                 // Click button
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
-                expectSpyCall(openFullScreenSpy, 1, expectedFsElement);
+                expectSpyCall(openFullScreenSpy, 1);
             });
 
-            it('... should trigger `fullscreenService.openFullscreen`', () => {
+            it('... should trigger `fullscreenService.openFullscreen` with correct element', () => {
                 expectSpyCall(serviceOpenFullscreenSpy, 0);
 
-                component.openFullscreen(expectedFsElement);
+                component.openFullscreen();
 
-                expectSpyCall(serviceOpenFullscreenSpy, 1);
-            });
-
-            it('... should trigger `toggleFullscreen` method', () => {
-                expectSpyCall(toggleFullscreenSpy, 0);
-
-                component.openFullscreen(expectedFsElement);
-
-                expectSpyCall(toggleFullscreenSpy, 1);
-            });
-
-            it('... should set `isFullscreen` to true (via `toggleFullscreen`)', () => {
-                component.isFullscreen = false;
-
-                component.openFullscreen(expectedFsElement);
-
-                expectToBe(component.isFullscreen, true);
-            });
-        });
-
-        describe('#toggleFullscreen()', () => {
-            it('... should have a method `toggleFullscreen`', () => {
-                expect(component.toggleFullscreen).toBeDefined();
-            });
-
-            it('... should toggle `isFullscreen` variable', async () => {
-                component.isFullscreen = false;
-                await detectChangesOnPush(fixture);
-
-                component.toggleFullscreen(true);
-
-                expectToBe(component.isFullscreen, true);
-
-                component.toggleFullscreen(false);
-
-                expectToBe(component.isFullscreen, false);
-            });
-
-            it('... should emit the correct fullscreen mode', async () => {
-                component.isFullscreen = false;
-                await detectChangesOnPush(fixture);
-
-                component.toggleFullscreen(true);
-
-                expectSpyCall(toggleFullscreenRequestEmitSpy, 1, true);
-
-                component.toggleFullscreen(false);
-
-                expectSpyCall(toggleFullscreenRequestEmitSpy, 2, false);
+                expectSpyCall(serviceOpenFullscreenSpy, 1, expectedFsElement);
             });
         });
     });

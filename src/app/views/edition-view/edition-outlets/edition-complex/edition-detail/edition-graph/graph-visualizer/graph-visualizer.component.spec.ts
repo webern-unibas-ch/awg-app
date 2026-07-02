@@ -130,7 +130,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let expectedGraphRDFData: GraphRDFData;
     let expectedConstructResult: Triple[];
     let expectedSelectResult: QuerySelectResult | string | undefined;
-    let expectedIsFullscreen: boolean;
+    let expectedIsFullscreenMode: boolean;
 
     let consoleSpy: Spy;
     let serviceCheckNamespacesInQuerySpy: Spy;
@@ -225,7 +225,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             },
         };
 
-        expectedIsFullscreen = false;
+        expectedIsFullscreenMode = false;
 
         // Spies
         serviceGetQueryTypeSpy = vi.spyOn(mockGraphVisualizerService, 'getQuerytype');
@@ -254,8 +254,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expect(component.graphRDFInputData).toBeUndefined();
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have isFullscreenMode = false', () => {
+            expectToBe(component.isFullscreenMode(), false);
         });
 
         it('... should not have query', () => {
@@ -301,7 +301,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.graphRDFInputData = expectedGraphRDFData;
-            component.isFullscreen = expectedIsFullscreen;
+            fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreenMode);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -319,8 +319,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expectToEqual(component.graphRDFInputData, expectedGraphRDFData);
         });
 
-        it('... should have `isFullScreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have `isFullScreenMode` input', () => {
+            expectToBe(component.isFullscreenMode(), expectedIsFullscreenMode);
         });
 
         it('... should have triples', () => {
@@ -1302,7 +1302,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
                     // Set fullscreen mode
-                    component.isFullscreen = true;
+                    fixture.componentRef.setInput('isFullscreenMode', true);
 
                     await detectChangesOnPush(fixture);
                 });

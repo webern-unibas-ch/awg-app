@@ -1,9 +1,11 @@
 <!-- Data: Triples, SPARQL query, result -->
 @if (graphRDFInputData) {
-    <div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
-        <div [ngClass]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
-            <div [ngClass]="{ row: !isFullscreen }">
-                <div [ngClass]="{ 'col-12 col-lg-6 py-0 pe-lg-0': !isFullscreen }">
+    @let isFullscreen = isFullscreenMode();
+
+    <div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
+        <div [class]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
+            <div [class.row]="!isFullscreen">
+                <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 pe-lg-0'">
                     <!-- awg-graph-triples-editor -->
                     <awg-triples-editor
                         [triples]="triples"
@@ -13,7 +15,7 @@
                         (resetTriplesRequest)="resetTriples()"
                         (updateTriplesRequest)="triples = $event" />
                 </div>
-                <div [ngClass]="{ 'col-12 col-lg-6 py-0 ps-lg-0': !isFullscreen }">
+                <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 ps-lg-0'">
                     <!-- awg-graph-sparql-editor -->
                     <awg-sparql-editor
                         [queryList]="queryList"
@@ -27,7 +29,7 @@
             </div>
         </div>
         <!-- Results -->
-        <div [ngClass]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
+        <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
             @if (query.queryType === 'construct') {
                 <awg-construct-results
                     #queryConstructResultAcc

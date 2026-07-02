@@ -1,13 +1,9 @@
-@if (!isFullscreen) {
-    <button
-        type="button"
-        title="Open fullscreen"
-        class="btn btn-sm btn-outline-info ms-2"
-        (click)="openFullscreen(fsElement)">
+@if (!isFullscreen()) {
+    <button type="button" title="Open fullscreen" class="btn btn-sm btn-outline-info ms-2" (click)="openFullscreen()">
         <fa-icon [icon]="faExpand" />
     </button>
 }
-@if (isFullscreen) {
+@if (isFullscreen()) {
     <button type="button" title="Close fullscreen" class="btn btn-sm btn-info ms-2" (click)="closeFullscreen()">
         <fa-icon [icon]="faCompress" />
     </button>
