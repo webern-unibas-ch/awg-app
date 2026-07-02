@@ -2782,22 +2782,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/angular-fontawesome@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@fortawesome/angular-fontawesome@npm:4.0.0"
+"@fortawesome/angular-fontawesome@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@fortawesome/angular-fontawesome@npm:5.0.0"
   dependencies:
-    "@fortawesome/fontawesome-svg-core": "npm:^7.1.0"
+    "@fortawesome/fontawesome-svg-core": "npm:^7.2.0"
     tslib: "npm:^2.8.1"
   peerDependencies:
-    "@angular/core": ^21.0.0
-  checksum: 10c0/e603ec0b1160215be1293d7cf4cb5fdbeb4feba4c886cb048a3bb1a305341062d39805fe4379c535d036fa0ad2684560557d8ed6f59a589e3e015bdc3dda1a99
-  languageName: node
-  linkType: hard
-
-"@fortawesome/fontawesome-common-types@npm:7.2.0":
-  version: 7.2.0
-  resolution: "@fortawesome/fontawesome-common-types@npm:7.2.0"
-  checksum: 10c0/991ca1390c078d973e92034cf7dbae2fc3aa50cd7ff322b7b23e4c54ec84dae12979bada9a782bdaea11a1577ae74d802aa651c590f41d2e1b1126c17e6cd413
+    "@angular/core": ^22.0.0
+  checksum: 10c0/f969a479addad5664d72c13051c4f23c82cb1271002c586b22fce6bf665b311cf90167cb1a0daa9332595c771a10908f22a9dd0a48005dab7a6c6df67765a3b0
   languageName: node
   linkType: hard
 
@@ -2808,12 +2801,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^7.1.0":
-  version: 7.2.0
-  resolution: "@fortawesome/fontawesome-svg-core@npm:7.2.0"
+"@fortawesome/fontawesome-svg-core@npm:^7.2.0":
+  version: 7.3.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:7.3.0"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:7.2.0"
-  checksum: 10c0/5c6655b030254804999eb87b96111cdcc42c0789e6e9ea13bc1e37d5ebf9fb982c79a618b68272cc59c23c4e1abf73d487e747a17a61499eac5f9f528fc54ad4
+    "@fortawesome/fontawesome-common-types": "npm:7.3.0"
+  checksum: 10c0/8d0d8a297a26fa05d407cb4c3c280b84af4b5991eb31d868a02392d9d1b9ad32f73be7e0703e2a1e98b2cdc356edca75f0f8e70ba140e0edb1cfe8739b2b86a4
   languageName: node
   linkType: hard
 
@@ -5769,7 +5762,7 @@ __metadata:
     "@compodoc/compodoc": "npm:^1.2.1"
     "@eslint/eslintrc": "npm:^3.3.4"
     "@eslint/js": "npm:^10.0.1"
-    "@fortawesome/angular-fontawesome": "npm:^4.0.0"
+    "@fortawesome/angular-fontawesome": "npm:^5.0.0"
     "@fortawesome/free-solid-svg-icons": "npm:^7.3.0"
     "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
     "@popperjs/core": "npm:^2.11.8"
