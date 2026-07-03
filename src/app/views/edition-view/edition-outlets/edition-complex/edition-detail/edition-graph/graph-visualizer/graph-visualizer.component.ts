@@ -2,7 +2,7 @@
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import { ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, Input, OnInit } from '@angular/core';
 
 import { EMPTY, from, Observable } from 'rxjs';
 
@@ -27,13 +27,6 @@ import { GraphVisualizerService } from './services';
 })
 export class GraphVisualizerComponent implements OnInit {
     /**
-     * ViewChild variable: fs.
-     *
-     * It keeps the reference to the full screen HTMLElement.
-     */
-    @ViewChild('fs') fs: ElementRef<HTMLElement>;
-
-    /**
      * Input variable: graphRDFInputData.
      *
      * It keeps the input data for the RDF graph.
@@ -42,12 +35,11 @@ export class GraphVisualizerComponent implements OnInit {
     graphRDFInputData: GraphRDFData;
 
     /**
-     * Input variable: isFullscreen.
+     * Input signal: isFullscreenMode.
      *
-     * It keeps a boolean flag if fullscreenMode is active.
+     * It holds a boolean flag if fullscreenMode is active.
      */
-    @Input()
-    isFullscreen: boolean;
+    readonly isFullscreenMode = input<boolean>(false);
 
     /**
      * Public variable: defaultForceGraphHeight.

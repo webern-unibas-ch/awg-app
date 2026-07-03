@@ -1,4 +1,4 @@
-import { DOCUMENT, inject, Injectable } from '@angular/core';
+import { DOCUMENT, inject, Injectable, signal } from '@angular/core';
 
 /**
  * The Fullscreen service.
@@ -19,6 +19,31 @@ export class FullscreenService {
     private readonly _document = inject(DOCUMENT);
 
     /**
+     * Private readonly signal: _isFullscreen.
+     *
+     * It holds the fullscreen state for internal use.
+     */
+    private readonly _isFullscreen = signal<boolean>(!!this._document.fullscreenElement);
+
+    /**
+     * Public readonly signal: isFullscreen.
+     *
+     * It holds the fullscreen state for components and templates.
+     */
+    readonly isFullscreen = this._isFullscreen.asReadonly();
+
+    /**
+     * Public method: updateState.
+     *
+     * It updates the fullscreen state based on the document's fullscreen element.
+     *
+     * @returns {void} Updates the fullscreen state.
+     */
+    updateState(): void {
+        this._isFullscreen.set(!!this._document.fullscreenElement);
+    }
+
+    /**
      * Public method: closeFullscreen.
      *
      * It exits fullscreen mode.
@@ -29,17 +54,6 @@ export class FullscreenService {
         if (this._document.exitFullscreen) {
             this._document.exitFullscreen().catch((err: Error) => console.error(err));
         }
-    }
-
-    /**
-     * Public method: isFullscreen.
-     *
-     * It checks if the document is in fullscreen mode.
-     *
-     * @returns {boolean} Returns true if the document is in fullscreen mode, false otherwise.
-     */
-    isFullscreen(): boolean {
-        return !!this._document.fullscreenElement;
     }
 
     /**

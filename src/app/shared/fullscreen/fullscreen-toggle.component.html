@@ -1,0 +1,8 @@
+<button
+    type="button"
+    [title]="fullscreenToggleBtn().title"
+    class="btn btn-sm ms-2"
+    [class]="fullscreenToggleBtn().customClass"
+    (click)="fullscreenToggleBtn().action()">
+    <fa-icon [icon]="fullscreenToggleBtn().icon" />
+</button>

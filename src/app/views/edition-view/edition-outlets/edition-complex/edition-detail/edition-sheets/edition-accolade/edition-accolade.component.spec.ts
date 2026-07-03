@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, inject, Input, isSignal, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -120,8 +120,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
-    let fullscreenToggleSpy: Spy;
-    let fullscreenToggleRequestEmitSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
@@ -136,7 +134,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let toggleSheetFacetRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
-    let expectedIsFullscreen: boolean;
     let expectedNextComplexId: string;
     let expectedReportFragment: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
@@ -180,7 +177,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedIsFullscreen = false;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -193,9 +189,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
-        const type = EditionSvgOverlayTypes.tkk;
+        const overlayType = EditionSvgOverlayTypes.tkk;
         const id = 'tkk-1';
-        const overlay = new EditionSvgOverlay(type, id, id, true);
+        const overlay = new EditionSvgOverlay(overlayType, id, id, true);
         expectedOverlays = [overlay];
         expectedLinkBoxId = 'link-box-1';
         expectedShowTkA = true;
@@ -204,8 +200,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // Spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
-        fullscreenToggleSpy = vi.spyOn(component, 'fullscreenToggle');
-        fullscreenToggleRequestEmitSpy = vi.spyOn(component.fullscreenToggleRequest, 'emit');
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
         navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
         openModalSpy = vi.spyOn(component, 'openModal');
@@ -229,10 +223,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `isFullscreen`', () => {
-            expect(component.isFullscreen).toBeUndefined();
-        });
-
         it('... should not have `isSheetFacetMinimized`', () => {
             expect(component.isSheetFacetMinimized).toBeUndefined();
         });
@@ -257,6 +247,12 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expect(component.showTkA).toBeUndefined();
         });
 
+        it('... should have signal `isFullscreen` to hold false', () => {
+            expectToBe(isSignal(component.isFullscreen), true);
+
+            expectToBe(component.isFullscreen(), false);
+        });
+
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -279,7 +275,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.isFullscreen = expectedIsFullscreen;
             component.isSheetFacetMinimized = expectedIsSheetFacetMinimized;
             component.svgSheetsData = structuredClone(expectedSvgSheetsData);
             component.selectedSvgSheet = structuredClone(expectedSvgSheet);
@@ -289,10 +284,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `isFullscreen` input', () => {
-            expectToEqual(component.isFullscreen, expectedIsFullscreen);
         });
 
         it('... should have `isSheetFacetMinimized` input', () => {
@@ -321,13 +312,15 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have class `fullscreen` on div.accordion only in fullscreen mode', async () => {
+                const isFullscreenSpy = vi.spyOn(component, 'isFullscreen').mockReturnValue(false);
+
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                 const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
                 expectToNotContain(accordionEl.classList, 'fullscreen');
 
                 // Set fullscreen
-                component.isFullscreen = true;
+                isFullscreenSpy.mockReturnValue(true);
                 await detectChangesOnPush(fixture);
 
                 expectToContain(accordionEl.classList, 'fullscreen');
@@ -400,7 +393,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                 it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', async () => {
                     // Set fullscreen
-                    component.isFullscreen = true;
+                    vi.spyOn(component, 'isFullscreen').mockReturnValue(true);
                     await detectChangesOnPush(fixture);
 
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
@@ -680,425 +673,402 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#browseSvgSheet()', () => {
-            it('... should have a method `browseSvgSheet`  ', () => {
-                expect(component.browseSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on browseSvgSheetRequest event from EditionSvgSheetViewerComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(
-                    EditionSvgSheetViewerStubComponent
-                ) as EditionSvgSheetViewerStubComponent;
-                const expectedDirection = 1;
-
-                sheetCmp.browseSvgSheetRequest.emit(expectedDirection);
-
-                expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-            });
-
-            it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection = undefined;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
-            });
-
-            it('... should emit a given direction', () => {
-                const expectedDirection = 1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            });
-
-            it('... should emit the correct direction', () => {
-                let expectedDirection = 1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-
-                expectedDirection = -1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 2, expectedDirection);
-            });
-        });
-
-        describe('#fullscreenToggle()', () => {
-            it('... should have a method `fullscreenToggle`', () => {
-                expect(component.fullscreenToggle).toBeDefined();
-            });
-
-            it('... should trigger on toggleFullscreenRequest event from FullscreenToggleComponent', () => {
-                const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
-                const fsToggleCmp = fsToggleDes[0].injector.get(
-                    FullscreenToggleStubComponent
-                ) as FullscreenToggleStubComponent;
-                expectedIsFullscreen = true;
-
-                fsToggleCmp.toggleFullscreenRequest.emit(expectedIsFullscreen);
-
-                expectSpyCall(fullscreenToggleSpy, 1, expectedIsFullscreen);
-            });
-
-            it('... should not emit anything if input is undefined', () => {
-                expectedIsFullscreen = undefined;
-
-                component.fullscreenToggle(expectedIsFullscreen);
-
-                expectSpyCall(fullscreenToggleRequestEmitSpy, 0);
-            });
-
-            it('... should emit the correct fullscreen mode', () => {
-                expectedIsFullscreen = true;
-
-                component.fullscreenToggle(expectedIsFullscreen);
-
-                expectSpyCall(fullscreenToggleRequestEmitSpy, 1, expectedIsFullscreen);
-
-                expectedIsFullscreen = false;
-
-                component.fullscreenToggle(expectedIsFullscreen);
-
-                expectSpyCall(fullscreenToggleRequestEmitSpy, 2, expectedIsFullscreen);
-            });
-        });
-
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
-                const sheetFooterDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionSvgSheetFooterStubComponent,
-                    1,
-                    1
-                );
-                const sheetFooterCmp = sheetFooterDes[0].injector.get(
-                    EditionSvgSheetFooterStubComponent
-                ) as EditionSvgSheetFooterStubComponent;
-
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-            });
-
-            describe('... should not emit anything if', () => {
-                it('... parameter is undefined', () => {
-                    component.navigateToReportFragment(undefined);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+        describe('METHODS', () => {
+            describe('#browseSvgSheet()', () => {
+                it('... should have a method `browseSvgSheet`  ', () => {
+                    expect(component.browseSvgSheet).toBeDefined();
                 });
-                it('... parameter is null', () => {
-                    component.navigateToReportFragment(null);
 
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is undefined', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is null', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is empty string', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-            });
-
-            it('... should emit id of selected report fragment within same complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-
-            it('... should emit id of selected report fragment for another complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-        });
-
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
-            });
-
-            it('... should trigger on click on header button', async () => {
-                const itemHeaderDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-accolade-view > div.accordion-header',
-                    1,
-                    1
-                );
-
-                // Header Help Button
-                const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
-                const expectedSnippet = 'HINT_EDITION_SHEETS';
-
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(btnDes[0], fixture);
-
-                expectSpyCall(openModalSpy, 1, expectedSnippet);
-            });
-
-            it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
-                const sheetFooterDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionSvgSheetFooterStubComponent,
-                    1,
-                    1
-                );
-                const sheetFooterCmp = sheetFooterDes[0].injector.get(
-                    EditionSvgSheetFooterStubComponent
-                ) as EditionSvgSheetFooterStubComponent;
-
-                sheetFooterCmp.openModalRequest.emit(expectedModalSnippet);
-
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            });
-
-            it('... should not emit anything if no id is provided', () => {
-                component.openModal(undefined);
-
-                expectSpyCall(openModalRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedModalSnippet);
-
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
-            });
-        });
-
-        describe('#selectLinkBox()', () => {
-            it('... should have a method `selectLinkBox`', () => {
-                expect(component.selectLinkBox).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionSvgSheetViewerComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(
-                    EditionSvgSheetViewerStubComponent
-                ) as EditionSvgSheetViewerStubComponent;
-
-                sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
-
-                expectSpyCall(selectLinkBoxSpy, 1, expectedLinkBoxId);
-            });
-
-            it('... should emit link box id', () => {
-                component.selectLinkBox(expectedLinkBoxId);
-
-                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
-            });
-
-            it('... should emit correct link box id', () => {
-                component.selectLinkBox(expectedLinkBoxId);
-
-                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
-
-                // Trigger other link box id
-                const otherLinkBoxId = 'link-box-2';
-                component.selectLinkBox(otherLinkBoxId);
-
-                expectSpyCall(selectLinkBoxRequestEmitSpy, 2, otherLinkBoxId);
-            });
-        });
-
-        describe('#selectOverlays()', () => {
-            it('... should have a method `selectOverlays`', () => {
-                expect(component.selectOverlays).toBeDefined();
-            });
-
-            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetViewerComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(
-                    EditionSvgSheetViewerStubComponent
-                ) as EditionSvgSheetViewerStubComponent;
-
-                sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
-
-                expectSpyCall(selectOverlaysSpy, 1, [expectedOverlays]);
-            });
-
-            it('... should emit overlay of provided type and id', () => {
-                component.selectOverlays(expectedOverlays);
-
-                expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
-            });
-
-            it('... should emit correct overlay of provided type and id', () => {
-                component.selectOverlays(expectedOverlays);
-
-                expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
-
-                // Trigger other overlays
-                const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2', true)];
-                component.selectOverlays(otherOverlays);
-
-                expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            describe('... should trigger on selectSvgSheetRequest event from ...', () => {
-                it('... EditionSvgSheetFacetComponent', () => {
-                    const sheetFacetDes = getAndExpectDebugElementByDirective(
+                it('... should trigger on browseSvgSheetRequest event from EditionSvgSheetViewerComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSvgSheetFacetStubComponent,
+                        EditionSvgSheetViewerStubComponent,
                         1,
                         1
                     );
-                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
-                        EditionSvgSheetFacetStubComponent
-                    ) as EditionSvgSheetFacetStubComponent;
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSvgSheetViewerStubComponent
+                    ) as EditionSvgSheetViewerStubComponent;
+                    const expectedDirection = 1;
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                    sheetFacetCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    sheetCmp.browseSvgSheetRequest.emit(expectedDirection);
 
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
                 });
 
-                it('... EditionSvgSheetFooterStubComponent', () => {
-                    const tableDes = getAndExpectDebugElementByDirective(
+                it('... should not emit anything if no direction is provided', () => {
+                    const expectedDirection = undefined;
+                    component.browseSvgSheet(expectedDirection);
+
+                    expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
+                });
+
+                it('... should emit a given direction', () => {
+                    const expectedDirection = 1;
+                    component.browseSvgSheet(expectedDirection);
+
+                    expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
+                });
+
+                it('... should emit the correct direction', () => {
+                    let expectedDirection = 1;
+                    component.browseSvgSheet(expectedDirection);
+
+                    expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
+
+                    expectedDirection = -1;
+                    component.browseSvgSheet(expectedDirection);
+
+                    expectSpyCall(browseSvgSheetRequestEmitSpy, 2, expectedDirection);
+                });
+            });
+
+            describe('#navigateToReportFragment()', () => {
+                it('... should have a method `navigateToReportFragment`', () => {
+                    expect(component.navigateToReportFragment).toBeDefined();
+                });
+
+                it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
+                    const sheetFooterDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionSvgSheetFooterStubComponent,
                         1,
                         1
                     );
-                    const tableCmp = tableDes[0].injector.get(
+                    const sheetFooterCmp = sheetFooterDes[0].injector.get(
                         EditionSvgSheetFooterStubComponent
                     ) as EditionSvgSheetFooterStubComponent;
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                    tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                });
+
+                describe('... should not emit anything if', () => {
+                    it('... parameter is undefined', () => {
+                        component.navigateToReportFragment(undefined);
+
+                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                    });
+                    it('... parameter is null', () => {
+                        component.navigateToReportFragment(null);
+
+                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                    });
+                    it('... fragment id is undefined', () => {
+                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                    });
+                    it('... fragment id is null', () => {
+                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                    });
+                    it('... fragment id is empty string', () => {
+                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
+
+                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                    });
+                });
+
+                it('... should emit id of selected report fragment within same complex', () => {
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                    component.navigateToReportFragment(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                    const otherFragment = 'source_B';
+                    const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                    component.navigateToReportFragment(expectedNextReportIds);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+                });
+
+                it('... should emit id of selected report fragment for another complex', () => {
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                    component.navigateToReportFragment(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                    const otherFragment = 'source_B';
+                    const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                    component.navigateToReportFragment(expectedNextReportIds);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
                 });
             });
 
-            it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
+            describe('#openModal()', () => {
+                it('... should have a method `openModal`', () => {
+                    expect(component.openModal).toBeDefined();
+                });
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                component.selectSvgSheet({ complexId: undefined, sheetId: undefined });
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, {});
-            });
-
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-        });
-
-        describe('#toggleSheetFacet()', () => {
-            it('... should have a method `toggleSheetFacet`', () => {
-                expect(component.toggleSheetFacet).toBeDefined();
-            });
-
-            describe('... should trigger on toggleSheetFacetRequest event from EditionSvgSheetFacetComponent', () => {
-                it('... when sheet facet is not minimized', async () => {
-                    component.isSheetFacetMinimized = false;
-                    await detectChangesOnPush(fixture);
-
-                    const sheetFacetDes = getAndExpectDebugElementByDirective(
+                it('... should trigger on click on header button', async () => {
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        EditionSvgSheetFacetStubComponent,
+                        'div#awg-accolade-view > div.accordion-header',
                         1,
                         1
                     );
-                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
-                        EditionSvgSheetFacetStubComponent
-                    ) as EditionSvgSheetFacetStubComponent;
 
-                    sheetFacetCmp.toggleSheetFacetRequest.emit(true);
+                    // Header Help Button
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
+                    const expectedSnippet = 'HINT_EDITION_SHEETS';
 
-                    expectSpyCall(toggleSheetFacetSpy, 1, true);
+                    // Trigger click with click helper & wait for changes
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+
+                    expectSpyCall(openModalSpy, 1, expectedSnippet);
                 });
 
-                it('... when sheet facet is minimized', async () => {
-                    component.isSheetFacetMinimized = true;
-                    await detectChangesOnPush(fixture);
-
-                    const sheetFacetDes = getAndExpectDebugElementByDirective(
+                it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
+                    const sheetFooterDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSvgSheetFacetStubComponent,
+                        EditionSvgSheetFooterStubComponent,
                         1,
                         1
                     );
-                    const sheetFacetCmp = sheetFacetDes[0].injector.get(
-                        EditionSvgSheetFacetStubComponent
-                    ) as EditionSvgSheetFacetStubComponent;
+                    const sheetFooterCmp = sheetFooterDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
 
-                    sheetFacetCmp.toggleSheetFacetRequest.emit(false);
+                    sheetFooterCmp.openModalRequest.emit(expectedModalSnippet);
 
-                    expectSpyCall(toggleSheetFacetSpy, 1, false);
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                });
+
+                it('... should not emit anything if no id is provided', () => {
+                    component.openModal(undefined);
+
+                    expectSpyCall(openModalRequestEmitSpy, 0, undefined);
+                });
+
+                it('... should emit id of given modal snippet', () => {
+                    component.openModal(expectedModalSnippet);
+
+                    expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
                 });
             });
 
-            it('... should not emit anything if no value is provided', () => {
-                component.toggleSheetFacet(undefined);
+            describe('#selectLinkBox()', () => {
+                it('... should have a method `selectLinkBox`', () => {
+                    expect(component.selectLinkBox).toBeDefined();
+                });
 
-                expectSpyCall(toggleSheetFacetRequestEmitSpy, 0, undefined);
+                it('... should trigger on event from EditionSvgSheetViewerComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetViewerStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSvgSheetViewerStubComponent
+                    ) as EditionSvgSheetViewerStubComponent;
+
+                    sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+
+                    expectSpyCall(selectLinkBoxSpy, 1, expectedLinkBoxId);
+                });
+
+                it('... should emit link box id', () => {
+                    component.selectLinkBox(expectedLinkBoxId);
+
+                    expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+                });
+
+                it('... should emit correct link box id', () => {
+                    component.selectLinkBox(expectedLinkBoxId);
+
+                    expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+
+                    // Trigger other link box id
+                    const otherLinkBoxId = 'link-box-2';
+                    component.selectLinkBox(otherLinkBoxId);
+
+                    expectSpyCall(selectLinkBoxRequestEmitSpy, 2, otherLinkBoxId);
+                });
             });
 
-            it('... should emit toggleSheetFacetRequest with correct value', () => {
-                component.toggleSheetFacet(false);
+            describe('#selectOverlays()', () => {
+                it('... should have a method `selectOverlays`', () => {
+                    expect(component.selectOverlays).toBeDefined();
+                });
 
-                expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, false);
+                it('... should trigger on selectOverlaysRequest event from EditionSvgSheetViewerComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetViewerStubComponent,
+                        1,
+                        1
+                    );
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSvgSheetViewerStubComponent
+                    ) as EditionSvgSheetViewerStubComponent;
 
-                component.toggleSheetFacet(true);
+                    sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
-                expectSpyCall(toggleSheetFacetRequestEmitSpy, 2, true);
+                    expectSpyCall(selectOverlaysSpy, 1, [expectedOverlays]);
+                });
+
+                it('... should emit overlay of provided type and id', () => {
+                    component.selectOverlays(expectedOverlays);
+
+                    expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
+                });
+
+                it('... should emit correct overlay of provided type and id', () => {
+                    component.selectOverlays(expectedOverlays);
+
+                    expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
+
+                    // Trigger other overlays
+                    const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2', true)];
+                    component.selectOverlays(otherOverlays);
+
+                    expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
+                });
+            });
+
+            describe('#selectSvgSheet()', () => {
+                it('... should have a method `selectSvgSheet`', () => {
+                    expect(component.selectSvgSheet).toBeDefined();
+                });
+
+                describe('... should trigger on selectSvgSheetRequest event from ...', () => {
+                    it('... EditionSvgSheetFacetComponent', () => {
+                        const sheetFacetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetFacetStubComponent,
+                            1,
+                            1
+                        );
+                        const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                            EditionSvgSheetFacetStubComponent
+                        ) as EditionSvgSheetFacetStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                        sheetFacetCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+
+                    it('... EditionSvgSheetFooterStubComponent', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetFooterStubComponent,
+                            1,
+                            1
+                        );
+                        const tableCmp = tableDes[0].injector.get(
+                            EditionSvgSheetFooterStubComponent
+                        ) as EditionSvgSheetFooterStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                        tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+                });
+
+                it('... should not emit anything if no id is provided', () => {
+                    component.selectSvgSheet(undefined);
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+
+                    component.selectSvgSheet({ complexId: undefined, sheetId: undefined });
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0, {});
+                });
+
+                it('... should emit id of selected svg sheet within same complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    component.selectSvgSheet(expectedSheetIds);
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                    component.selectSvgSheet(expectedNextSheetIds);
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                });
+
+                it('... should emit id of selected svg sheet for another complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    component.selectSvgSheet(expectedSheetIds);
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                    component.selectSvgSheet(expectedNextSheetIds);
+
+                    expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                });
+            });
+
+            describe('#toggleSheetFacet()', () => {
+                it('... should have a method `toggleSheetFacet`', () => {
+                    expect(component.toggleSheetFacet).toBeDefined();
+                });
+
+                describe('... should trigger on toggleSheetFacetRequest event from EditionSvgSheetFacetComponent', () => {
+                    it('... when sheet facet is not minimized', async () => {
+                        component.isSheetFacetMinimized = false;
+                        await detectChangesOnPush(fixture);
+
+                        const sheetFacetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetFacetStubComponent,
+                            1,
+                            1
+                        );
+                        const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                            EditionSvgSheetFacetStubComponent
+                        ) as EditionSvgSheetFacetStubComponent;
+
+                        sheetFacetCmp.toggleSheetFacetRequest.emit(true);
+
+                        expectSpyCall(toggleSheetFacetSpy, 1, true);
+                    });
+
+                    it('... when sheet facet is minimized', async () => {
+                        component.isSheetFacetMinimized = true;
+                        await detectChangesOnPush(fixture);
+
+                        const sheetFacetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetFacetStubComponent,
+                            1,
+                            1
+                        );
+                        const sheetFacetCmp = sheetFacetDes[0].injector.get(
+                            EditionSvgSheetFacetStubComponent
+                        ) as EditionSvgSheetFacetStubComponent;
+
+                        sheetFacetCmp.toggleSheetFacetRequest.emit(false);
+
+                        expectSpyCall(toggleSheetFacetSpy, 1, false);
+                    });
+                });
+
+                it('... should not emit anything if no value is provided', () => {
+                    component.toggleSheetFacet(undefined);
+
+                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 0, undefined);
+                });
+
+                it('... should emit toggleSheetFacetRequest with correct value', () => {
+                    component.toggleSheetFacet(false);
+
+                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, false);
+
+                    component.toggleSheetFacet(true);
+
+                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 2, true);
+                });
             });
         });
     });

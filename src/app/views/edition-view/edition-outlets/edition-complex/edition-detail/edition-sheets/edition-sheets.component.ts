@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
@@ -124,13 +124,6 @@ export class EditionSheetsComponent implements OnInit {
     folioConvoluteData: FolioConvoluteList;
 
     /**
-     * Public variable: isFullscreen.
-     *
-     * It keeps the fullscreen mode status.
-     */
-    isFullscreen = false;
-
-    /**
      * Public variable: isSheetFacetMinimized.
      *
      * It keeps the toggle state of the sheet facet.
@@ -194,18 +187,18 @@ export class EditionSheetsComponent implements OnInit {
     textcriticsData: TextcriticsList;
 
     /**
+     * Readonly signal: isFirstPageLoad.
+     *
+     * It holds the information if the page is loaded for the first time.
+     */
+    readonly isFirstPageLoad = signal<boolean>(true);
+
+    /**
      * Readonly signal: isLoading.
      *
      * It holds the current loading status.
      */
     readonly isLoading = this._loadingService.isLoading;
-
-    /**
-     * Private variable: _isFirstPageLoad.
-     *
-     * It keeps the information if the page is loaded for the first time.
-     */
-    private _isFirstPageLoad = true;
 
     /**
      * Getter variable: editionRouteConstants.
@@ -278,18 +271,6 @@ export class EditionSheetsComponent implements OnInit {
         );
 
         this.onSvgSheetSelect({ complexId: '', sheetId: nextSheetId });
-    }
-
-    /**
-     * Public method: onFullscreenToggle.
-     *
-     * It toggles the fullscreen mode and sets the isFullscreen flag.
-     *
-     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
-     * @returns {void} Toggles the fullscreen mode and sets the isFullscreen flag.
-     */
-    onFullscreenToggle(isFullscreen: boolean): void {
-        this.isFullscreen = isFullscreen;
     }
 
     /**
@@ -447,7 +428,7 @@ export class EditionSheetsComponent implements OnInit {
             this._selectSvgSheet(sheetIdFromQueryParams);
         } else {
             sheetIdFromQueryParams =
-                this._isFirstPageLoad && this.snapshotQueryParamsId
+                this.isFirstPageLoad() && this.snapshotQueryParamsId
                     ? this.snapshotQueryParamsId
                     : this._getDefaultSheetId();
 
@@ -463,7 +444,7 @@ export class EditionSheetsComponent implements OnInit {
             });
         }
 
-        this._isFirstPageLoad = false;
+        this.isFirstPageLoad.set(false);
     }
 
     /**
