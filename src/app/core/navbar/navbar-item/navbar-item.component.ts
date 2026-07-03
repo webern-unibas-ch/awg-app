@@ -20,25 +20,25 @@ import { NavbarItem } from '../navbar.model';
 })
 export class NavbarItemComponent {
     /**
-     * Input signal: item.
+     * Readonly input signal: item.
      *
      * It holds the data for a single navigation item in the navbar.
      */
-    item = input.required<NavbarItem>();
+    readonly item = input.required<NavbarItem>();
 
     /**
-     * Input signal (): id.
+     * Readonly input signal: id.
      *
      * It holds the id of the navigation item in the navbar.
      * @default ''
      */
-    id = input<string>('');
+    readonly id = input<string>('');
 
     /**
-     * Input signal: isDropdown.
+     * Readonly input signal: isDropdown.
      *
-     * It holds the boolean value if the navigation item is a dropdown or not.
+     * It holds a boolean value indicating whether the navigation item is a dropdown or not.
      * @default false
      */
-    isDropdown = input<boolean>(false);
+    readonly isDropdown = input<boolean>(false);
 }

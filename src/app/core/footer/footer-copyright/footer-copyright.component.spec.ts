@@ -1,9 +1,9 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { META_DATA } from '../../data/meta.data';
 import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
@@ -24,15 +24,13 @@ describe('FooterCopyrightComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterCopyrightComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+        // Create component fixture
+        fixture = TestBed.createComponent(FooterCopyrightComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -40,8 +38,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `pageMetaData` input', () => {
-            expectToEqual(component.pageMetaData(), {} as MetaPage);
+        it('... should throw due to missing required input signal `pageMetaData`', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
+            expect(() => component.pageMetaData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -53,14 +53,14 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `pageMetaData` input', () => {
+        it('... should have input signal `pageMetaData` to hold provided data', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 

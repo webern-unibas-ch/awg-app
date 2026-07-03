@@ -1,4 +1,4 @@
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { Component, DebugElement, isSignal, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router, RouterLink } from '@angular/router';
@@ -53,20 +53,23 @@ describe('NavbarItemComponent (DONE)', () => {
             fixture = TestBed.createComponent(NavbarItemComponent);
             component = fixture.componentInstance;
             compDe = fixture.debugElement;
-
-            // Set required input signal with default value for initial tests
-            fixture.componentRef.setInput('item', undefined);
         });
 
-        it('... should have required `item` input as undefined', () => {
-            expect(component.item()).toBeUndefined();
+        it('... should throw due to missing required input signal `item`', () => {
+            expectToBe(isSignal(component.item), true);
+
+            expect(() => component.item()).toThrow();
         });
 
-        it('... should have default `id`', () => {
+        it('... should have input signal `id` with default value', () => {
+            expectToBe(isSignal(component.id), true);
+
             expectToBe(component.id(), '');
         });
 
-        it('... should have default `isDropdown`', () => {
+        it('... should have input signal `isDropdown` with default value', () => {
+            expectToBe(isSignal(component.isDropdown), true);
+
             expectToBe(component.isDropdown(), false);
         });
 
@@ -112,12 +115,15 @@ describe('NavbarItemComponent (DONE)', () => {
             dropdownStates.forEach(isDropdownState => {
                 describe(`... with item "${navbarItem.id}" and isDropdown = ${isDropdownState}`, () => {
                     beforeEach(() => {
+                        // Set the initial values for the signal inputs
                         hostComponent.testItem = navbarItem;
                         hostComponent.testId = isDropdownState ? 'dropdown-' + navbarItem.id : '';
                         hostComponent.isTestDropdown = isDropdownState;
 
+                        // Trigger initial data binding
                         hostFixture.detectChanges();
 
+                        // Create the component instance and debug element for the NavbarItemComponent
                         compDe = hostFixture.debugElement.query(By.directive(NavbarItemComponent));
                         component = compDe.componentInstance;
                     });
@@ -126,15 +132,15 @@ describe('NavbarItemComponent (DONE)', () => {
                         expect(component).toBeTruthy();
                     });
 
-                    it('... should have updated `item` input', () => {
+                    it('... should have input signal `item` to hold the provided item', () => {
                         expectToEqual(component.item(), hostComponent.testItem);
                     });
 
-                    it('... should have updated `id`', () => {
+                    it('... should have input signal `id` to hold the provided id', () => {
                         expectToBe(component.id(), hostComponent.testId);
                     });
 
-                    it('... should have updated `isDropdown`', () => {
+                    it('... should have input signal `isDropdown` to hold the provided value', () => {
                         expectToBe(component.isDropdown(), hostComponent.isTestDropdown);
                     });
 

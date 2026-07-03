@@ -15,9 +15,9 @@ import { MetaPage } from '../../models/meta.model';
 })
 export class FooterCopyrightComponent {
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer copyright.
      */
-    pageMetaData = input.required<MetaPage>();
+    readonly pageMetaData = input.required<MetaPage>();
 }

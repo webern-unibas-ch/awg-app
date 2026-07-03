@@ -150,15 +150,15 @@ describe('AppComponent (DONE)', () => {
         location = TestBed.inject(Location);
         router = TestBed.inject(Router);
 
-        // Test data
-        expectedActivateSideOutlet = true;
-
         // Service spies
         getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
         setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
         initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
         initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
         trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
+
+        // Test data
+        expectedActivateSideOutlet = true;
 
         // Create component fixture
         fixture = TestBed.createComponent(AppComponent);

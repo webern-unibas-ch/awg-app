@@ -21,25 +21,25 @@ import { MetaPage } from '../../models/meta.model';
 })
 export class FooterPoweredbyComponent {
     /**
-     * Input signal: logosData.
+     * Readonly input signal: logosData.
      *
      * It holds the logos data for the component.
      */
-    logosData = input.required<Logos>();
+    readonly logosData = input.required<Logos>();
 
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer poweredby section.
      */
-    pageMetaData = input.required<MetaPage>();
+    readonly pageMetaData = input.required<MetaPage>();
 
     /**
-     * Computed signal: poweredByData.
+     * Readonly computed signal: poweredByData.
      *
      * It computes the relevant logos and pageMetaData for the poweredby section.
      */
-    poweredByData = computed(() => {
+    readonly poweredByData = computed(() => {
         const logos = this.logosData();
         const page = this.pageMetaData();
 
@@ -55,9 +55,9 @@ export class FooterPoweredbyComponent {
     });
 
     /**
-     * Public variable: faScrewdriverWrench.
+     * Readonly variable: faScrewdriverWrench.
      *
      *  It instantiates fontawesome's faScrewdriverWrench icon.
      */
-    faScrewdriverWrench = faScrewdriverWrench;
+    readonly faScrewdriverWrench = faScrewdriverWrench;
 }

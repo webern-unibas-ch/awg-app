@@ -112,10 +112,7 @@ describe('NavbarComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(NavbarComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         router = TestBed.inject(Router);
 
         // Test data
@@ -128,7 +125,12 @@ describe('NavbarComponent (DONE)', () => {
         });
         expectedLogosData = LOGOS_DATA;
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(NavbarComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         toggleNavSpy = vi.spyOn(component, 'toggleNav');
     });
 
@@ -158,16 +160,26 @@ describe('NavbarComponent (DONE)', () => {
             expectToEqual(component.sectionEditionLinks, expectedSectionEditionLinks);
         });
 
-        it('... should have `isCollapsed = true`', () => {
+        it('... should have signal `isCollapsed` to hold true', () => {
+            expectToBe(isSignal(component.isCollapsed), true);
+
             expectToBe(component.isCollapsed(), true);
         });
 
-        it('... should have `logosData`', () => {
+        it('... should have signal `logosData` to hold provided data (via service)', () => {
+            expectToBe(isSignal(component.logosData), true);
+
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
-        it('... should have `sectionLinksData`', () => {
+        it('... should have signal `sectionLinksData` to hold provided data', () => {
             expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
+        });
+
+        it('... should have signal `isEditionRouteActive` to hold false', () => {
+            expectToBe(isSignal(component.isEditionRouteActive), true);
+
+            expectToBe(component.isEditionRouteActive(), false);
         });
 
         describe('VIEW', () => {
@@ -261,6 +273,20 @@ describe('NavbarComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have signal `isEditionRouteActive` to hold false when route `/edition` is not active', async () => {
+            await router.navigateByUrl('/home');
+            fixture.detectChanges();
+
+            expectToBe(component.isEditionRouteActive(), false);
+        });
+
+        it('... should have signal `isEditionRouteActive` to hold true when route `/edition` is active', async () => {
+            await router.navigateByUrl('/edition');
+            fixture.detectChanges();
+
+            expectToBe(component.isEditionRouteActive(), true);
         });
 
         describe('VIEW', () => {
@@ -542,25 +568,6 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(component.isCollapsed(), false);
                 });
             });
-        });
-    });
-
-    describe('#isEditionRouteActive()', () => {
-        it('... should have a signal `isEditionRouteActive`', async () => {
-            expect(component.isEditionRouteActive).toBeDefined();
-            expectToBe(isSignal(component.isEditionRouteActive), true);
-        });
-
-        it('should react when the route changes to `/edition`', async () => {
-            await router.navigateByUrl('/home');
-            fixture.detectChanges();
-
-            expectToBe(component.isEditionRouteActive(), false);
-
-            await router.navigateByUrl('/edition');
-            fixture.detectChanges();
-
-            expectToBe(component.isEditionRouteActive(), true);
         });
     });
 });

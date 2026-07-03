@@ -51,10 +51,6 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterPoweredbyComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedLogosData = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
@@ -66,9 +62,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         };
         expectedScrewdriverWrenchIcon = faScrewdriverWrench;
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
-        fixture.componentRef.setInput('logosData', {} as Logos);
+        // Create component fixture
+        fixture = TestBed.createComponent(FooterPoweredbyComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -76,15 +73,21 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `logosData` input', () => {
-            expectToEqual(component.logosData(), {} as Logos);
+        it('... should throw due to missing required input signal `logosData`', () => {
+            expectToBe(isSignal(component.logosData), true);
+
+            expect(() => component.logosData()).toThrow();
         });
 
-        it('... should have required `pageMetaData` input', () => {
-            expectToEqual(component.pageMetaData(), {} as MetaPage);
+        it('... should throw due to missing required input signal `pageMetaData`', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
+            expect(() => component.pageMetaData()).toThrow();
         });
 
-        it('... should have `poweredByData` computed to null', () => {
+        it('... should have computed signal `poweredByData` to hold null (due to missing input data)', () => {
+            expectToBe(isSignal(component.poweredByData), true);
+
             expectToBe(component.poweredByData(), null);
         });
 
@@ -101,7 +104,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('logosData', expectedLogosData);
             fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
 
@@ -109,78 +112,19 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `logosData`', () => {
+        it('... should have input signal `logosData` to hold the provided data', () => {
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
-        it('... should have `pageMetaData`', () => {
+        it('... should have input signal `pageMetaData` to hold the provided data', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have computed `poweredByData`', () => {
+        it('... should have computed signal `poweredByData` to hold the correct data', () => {
             expectToEqual(component.poweredByData(), expectedPoweredByData);
         });
 
-        describe('VIEW', () => {
-            it('... should contain 1 div.awg-powered-by', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
-            });
-
-            it('... should contain 3 logo link components (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
-            });
-
-            it('... should pass down logos to logo link components', () => {
-                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
-                const logoLinkCmps = logoLinkDes.map(
-                    de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
-                );
-
-                expectToBe(logoLinkCmps.length, 3);
-                expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['github']);
-                expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['angular']);
-                expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['bootstrap']);
-            });
-
-            it('... should contain 1 anchor #dev-preview-link with faIcon', () => {
-                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-
-                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
-            });
-
-            it('... should display screwdriverWrench icon in devPreview link ', () => {
-                const faIconDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
-                const faIconIns = faIconDes[0].componentInstance.icon;
-                const faIconEl = faIconDes[0].nativeElement;
-
-                expectToEqual(faIconIns(), expectedScrewdriverWrenchIcon);
-                expectToBe(faIconEl.getAttribute('title'), 'Preview for the develop branch');
-            });
-
-            it('... should render link to devPreview', () => {
-                const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
-
-                expect(devEl).toBeDefined();
-                expectToBe(devEl.href, expectedPageMetaData.awgAppDevUrl);
-            });
-        });
-    });
-
-    describe('#poweredByData', () => {
-        it('... should have a computed signal `poweredByData`', () => {
-            expect(component.poweredByData).toBeDefined();
-            expectToBe(isSignal(component.poweredByData), true);
-        });
-
-        it('... should return correct poweredByData if logosData and pageMetaData are present', () => {
-            fixture.componentRef.setInput('logosData', expectedLogosData);
-            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
-
-            expectToEqual(component.poweredByData(), expectedPoweredByData);
-        });
-
-        describe('... should return null if ...', () => {
+        describe('... should have computed signal `poweredByData` to hold null if ...', () => {
             it('... pageMetaData is an empty object {}, null or undefined', () => {
                 fixture.componentRef.setInput('logosData', expectedLogosData);
                 fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
@@ -245,6 +189,51 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
                 expectToBe(component.poweredByData(), null);
+            });
+        });
+
+        describe('VIEW', () => {
+            it('... should contain 1 div.awg-powered-by', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
+            });
+
+            it('... should contain 3 logo link components (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
+            });
+
+            it('... should pass down logos to logo link components', () => {
+                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
+                const logoLinkCmps = logoLinkDes.map(
+                    de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
+                );
+
+                expectToBe(logoLinkCmps.length, 3);
+                expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['github']);
+                expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['angular']);
+                expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['bootstrap']);
+            });
+
+            it('... should contain 1 anchor #dev-preview-link with faIcon', () => {
+                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
+
+                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+            });
+
+            it('... should display screwdriverWrench icon in devPreview link ', () => {
+                const faIconDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
+                const faIconEl = faIconDes[0].nativeElement;
+
+                expectToEqual(faIconIns(), expectedScrewdriverWrenchIcon);
+                expectToBe(faIconEl.getAttribute('title'), 'Preview for the develop branch');
+            });
+
+            it('... should render link to devPreview', () => {
+                const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
+                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
+
+                expect(devEl).toBeDefined();
+                expectToBe(devEl.href, expectedPageMetaData.awgAppDevUrl);
             });
         });
     });

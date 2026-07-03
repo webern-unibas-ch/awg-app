@@ -19,18 +19,18 @@ import { MetaPage } from '../../models/meta.model';
 })
 export class FooterDeclarationComponent {
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer declaration.
      */
-    pageMetaData = input.required<MetaPage>();
+    readonly pageMetaData = input.required<MetaPage>();
 
     /**
-     * Computed signal: versionData.
+     * Readonly computed signal: versionData.
      *
      * It computes the relevant pageMetaData for the footer declaration.
      */
-    versionData = computed(() => {
+    readonly versionData = computed(() => {
         const page = this.pageMetaData();
 
         if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {

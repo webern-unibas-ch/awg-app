@@ -33,16 +33,16 @@ export class FooterComponent {
     private readonly _coreService = inject(CoreService);
 
     /**
-     * Public readonly signal: logosData.
+     * Readonly signal: logosData.
      *
      * It holds the logos data for the footer.
      */
-    logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
+    readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the footer via the injected CoreService.
      */
-    pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 }

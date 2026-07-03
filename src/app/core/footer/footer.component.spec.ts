@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -101,13 +101,14 @@ describe('FooterComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedLogosData = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+
+        // Create component fixture
+        fixture = TestBed.createComponent(FooterComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -124,11 +125,15 @@ describe('FooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `logosData`', () => {
+        it('... should have signal `logosData` to hold provided data (via service)', () => {
+            expectToBe(isSignal(component.logosData), true);
+
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
