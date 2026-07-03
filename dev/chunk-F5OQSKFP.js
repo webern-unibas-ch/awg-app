@@ -1,1 +1,0 @@
-import{Aa as r,Cb as n,o as i,ra as s}from"./chunk-L5YQ46VW.js";var o=class{constructor(){this._pendingRequests=s([]),this.isLoading=n(()=>this._pendingRequests().length>0)}registerRequest(e){this._pendingRequests.update(t=>[...t,e])}deregisterRequest(e){this._pendingRequests.update(t=>t.filter(d=>d!==e))}};o=i([r({providedIn:"root"})],o);export{o as a};
