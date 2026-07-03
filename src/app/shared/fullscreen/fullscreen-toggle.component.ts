@@ -1,8 +1,18 @@
-import { ChangeDetectionStrategy, Component, effect, HostListener, inject, input, output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    HostListener,
+    inject,
+    input,
+    output,
+} from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
+import { FullscreenToggleConfig } from './fullscreen.model';
 import { FullscreenService } from './fullscreen.service';
 
 /**
@@ -26,39 +36,41 @@ export class FullscreenToggleComponent {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Input signal: fsElement.
+     * Readonly input signal: fsElement.
      *
      * It holds the HTMLElement to be displayed in fullscreen mode.
      */
     readonly fsElement = input.required<HTMLElement>();
 
     /**
-     * Output signal: toggleFullscreenRequest.
+     * Readonly output signal: toggleFullscreenRequest.
      *
      * It emits the fullscreen mode status.
      */
     readonly toggleFullscreenRequest = output<boolean>();
 
     /**
-     * Public readonly variable: isFullscreen.
+     * Readonly signal: isFullscreen.
      *
-     * It holds the fullscreen mode status.
+     * It holds the fullscreen mode status from the FullscreenService.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
 
     /**
-     * Public variable: faExpand.
+     * Readonly computed signal: fullscreenToggleBtn.
      *
-     * It instantiates fontawesome's faExpand icon.
+     * It holds the configuration for the fullscreen toggle button.
      */
-    faExpand = faExpand;
+    readonly fullscreenToggleBtn = computed<FullscreenToggleConfig>(() => {
+        const isFs = this.isFullscreen();
 
-    /**
-     * Public variable: faCompress.
-     *
-     * It instantiates fontawesome's faCompress icon.
-     */
-    faCompress = faCompress;
+        return {
+            icon: isFs ? faCompress : faExpand,
+            title: isFs ? 'Close fullscreen' : 'Open fullscreen',
+            customClass: isFs ? 'btn-info' : 'btn-outline-info',
+            action: () => (isFs ? this.closeFullscreen() : this.openFullscreen()),
+        };
+    });
 
     /**
      * The constructor of the FullscreenToggleComponent.
@@ -74,7 +86,7 @@ export class FullscreenToggleComponent {
     /**
      * HostListener: document:fullscreenchange.
      *
-     * It listens changes in the document's fullscreen state.
+     * It listens to changes in the document's fullscreen state.
      */
     @HostListener('document:fullscreenchange') onFullscreenChange(): void {
         this._fullscreenService.updateState();
