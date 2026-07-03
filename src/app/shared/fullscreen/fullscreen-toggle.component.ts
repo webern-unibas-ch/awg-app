@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    effect,
-    HostListener,
-    inject,
-    input,
-    output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostListener, inject, input } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
@@ -43,13 +34,6 @@ export class FullscreenToggleComponent {
     readonly fsElement = input.required<HTMLElement>();
 
     /**
-     * Readonly output signal: toggleFullscreenRequest.
-     *
-     * It emits the fullscreen mode status.
-     */
-    readonly toggleFullscreenRequest = output<boolean>();
-
-    /**
      * Readonly signal: isFullscreen.
      *
      * It holds the fullscreen mode status from the FullscreenService.
@@ -71,17 +55,6 @@ export class FullscreenToggleComponent {
             action: () => (isFs ? this.closeFullscreen() : this.openFullscreen()),
         };
     });
-
-    /**
-     * The constructor of the FullscreenToggleComponent.
-     *
-     * It sets up an effect to emit the fullscreen mode status whenever it changes.
-     */
-    constructor() {
-        effect(() => {
-            this.toggleFullscreenRequest.emit(this.isFullscreen());
-        });
-    }
 
     /**
      * HostListener: document:fullscreenchange.

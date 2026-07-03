@@ -31,7 +31,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
     let closeFullScreenSpy: Spy;
     let openFullScreenSpy: Spy;
-    let toggleFullscreenRequestEmitSpy: Spy;
     let serviceCloseFullscreenSpy: Spy;
     let serviceOpenFullscreenSpy: Spy;
     let serviceUpdateStateSpy: Spy;
@@ -102,7 +101,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
         // Component spies
         closeFullScreenSpy = vi.spyOn(component, 'closeFullscreen');
         openFullScreenSpy = vi.spyOn(component, 'openFullscreen');
-        toggleFullscreenRequestEmitSpy = vi.spyOn(component.toggleFullscreenRequest, 'emit');
     });
 
     afterEach(() => {
@@ -117,16 +115,19 @@ describe('FullscreenToggleComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should throw due to missing `fsElement` input signal', () => {
             expectToBe(isSignal(component.fsElement), true);
+
             expect(() => component.fsElement()).toThrow();
         });
 
         it('... should have signal `isFullscreen` to hold false', () => {
             expectToBe(isSignal(component.isFullscreen), true);
+
             expectToBe(component.isFullscreen(), false);
         });
 
         it('... should have computed signal `fullscreenToggleBtn` to hold non-fs config', () => {
             expectToBe(isSignal(component.fullscreenToggleBtn), true);
+
             expectToEqual(component.fullscreenToggleBtn(), expectedNonFsConfig);
         });
 
@@ -280,22 +281,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
                     expectSpyCall(closeFullScreenSpy, 1);
                 });
-            });
-        });
-
-        describe('effect()', () => {
-            it('... should emit true via `toggleFullscreenRequest` when `isFullscreen` changes to true', async () => {
-                expectSpyCall(toggleFullscreenRequestEmitSpy, 1, true);
-            });
-
-            it('... should emit false via `toggleFullscreenRequest` when `isFullscreen` changes to false', async () => {
-                toggleFullscreenRequestEmitSpy.mockClear();
-
-                // Unset fullscreen
-                simulateFullscreenChangeEvent(null);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(toggleFullscreenRequestEmitSpy, 1, false);
             });
         });
 
