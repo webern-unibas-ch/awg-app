@@ -10,6 +10,10 @@ updates:
       target-branch: 'develop'
       labels:
           - 'gh actions dependencies'
+      groups:
+          github/codeql-action:
+              patterns:
+                  - 'github/codeql-action/*'
 
     # Maintain dependencies for yarn
     - package-ecosystem: 'npm'
