@@ -362,7 +362,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('... should have `showTkA===false`', () => {
+        it('... should have `showTkA` = false', () => {
             expectToBe(component.showTkA, false);
         });
 
@@ -378,7 +378,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.textcriticsData).toBeUndefined();
         });
 
-        it('... should have signal `isFirstPageLoad` to hold true`', () => {
+        it('... should have signal `isFirstPageLoad` to hold true', () => {
             expectToBe(component.isFirstPageLoad(), true);
         });
 

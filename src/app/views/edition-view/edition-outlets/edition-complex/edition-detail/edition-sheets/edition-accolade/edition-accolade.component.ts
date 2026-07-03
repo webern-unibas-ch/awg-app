@@ -90,14 +90,6 @@ export class EditionAccoladeComponent {
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
 
     /**
-     * Output variable: fullscreenToggleRequest.
-     *
-     * It keeps an event emitter for the fullscreen toggle.
-     */
-    @Output()
-    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
-
-    /**
      * Output variable: navigateToReportFragment.
      *
      * It keeps an event emitter for the selected ids of an edition complex and report fragment.
