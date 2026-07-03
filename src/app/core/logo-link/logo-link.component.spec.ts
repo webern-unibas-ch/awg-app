@@ -49,7 +49,7 @@ describe('LogoLinkComponent', () => {
             expect(() => component.logoData()).toThrow();
         });
 
-        it('... should have input signal `linkClass` with default value', () => {
+        it('... should have input signal `linkClass` to hold the default value', () => {
             expectToBe(isSignal(component.linkClass), true);
 
             expectToBe(component.linkClass(), 'awg-logo-link');

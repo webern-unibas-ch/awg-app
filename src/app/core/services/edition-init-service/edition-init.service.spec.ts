@@ -21,7 +21,7 @@ describe('EditionInitService (DONE)', () => {
             providers: [EditionInitService],
         });
 
-        // Inject service
+        // Inject services
         editionInitService = TestBed.inject(EditionInitService);
 
         // Spies for service methods

@@ -25,6 +25,7 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
         mockCoreService = {
             getLogos: () => LOGOS_DATA,
         };
+
         await TestBed.configureTestingModule({
             imports: [MetaIdentifierBadgesComponent],
             providers: [
@@ -37,14 +38,11 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MetaIdentifierBadgesComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        const logosData = TestBed.inject(CoreService).getLogos();
 
         // Test data
         expectedIdentifiers = { gnd: '129772429', viaf: '74941235' };
-
-        const logosData = TestBed.inject(CoreService).getLogos();
         expectedActiveIdentifierBadges = [
             {
                 key: 'gnd',
@@ -61,6 +59,11 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
                 titleText: 'VIAF: 74941235',
             },
         ];
+
+        // Create component fixture
+        fixture = TestBed.createComponent(MetaIdentifierBadgesComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -73,31 +76,16 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `identifiers` (undefined)', () => {
-            expect(component.identifiers()).toBeUndefined();
+        it('... should throw due to missing required input signal `identifiers`', () => {
+            expectToBe(isSignal(component.identifiers), true);
+
+            expect(() => component.identifiers()).toThrow();
         });
 
-        describe('VIEW', () => {
-            it('... should contain no badge links yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'a.awg-meta-identifier-badge', 0, 0);
-            });
-        });
-    });
+        it('... should throw when accessing computed signal `displayedBadges` due to missing input', () => {
+            expectToBe(isSignal(component.displayedBadges), true);
 
-    describe('AFTER initial data binding (default values)', () => {
-        beforeEach(() => {
-            fixture.detectChanges();
-        });
-
-        it('... should have default `identifiers` (undefined)', () => {
-            expect(component.identifiers()).toBeUndefined();
-        });
-
-        it('... should have computed `displayedBadges` (empty array due to identifiers=undefined)', () => {
-            const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
-
-            expectToBe(displayedBadges.length, 0);
-            expectToEqual(displayedBadges, []);
+            expect(() => component.displayedBadges()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -109,21 +97,32 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('identifiers', expectedIdentifiers);
 
             fixture.detectChanges();
         });
 
-        it('... should have correct `identifiers`', () => {
+        it('... should have input signal `identifiers` to hold the provided identifiers', () => {
             expectToEqual(component.identifiers(), expectedIdentifiers);
         });
 
-        it('... should have computed `displayedBadges`', () => {
-            const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
+        it('... should have computed signal `displayedBadges` to hold the correct badges', () => {
+            expectToEqual(component.displayedBadges(), expectedActiveIdentifierBadges);
+        });
 
-            expectToBe(displayedBadges.length, 2);
-            expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
+        describe('... should have computed signal `displayedBadges` to hold empty array if ...', () => {
+            it('... `identifiers` is an empty object', () => {
+                fixture.componentRef.setInput('identifiers', {} as MetaIdentifiers);
+
+                expectToEqual(component.displayedBadges(), []);
+            });
+
+            it('... `identifiers` has no valid keys', () => {
+                fixture.componentRef.setInput('identifiers', { invalidKey: '123' } as unknown as MetaIdentifiers);
+
+                expectToEqual(component.displayedBadges(), []);
+            });
         });
 
         describe('VIEW', () => {
@@ -189,60 +188,6 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
                     expectToBe(imgEl.alt, expectedBadges[index].label);
                     expectToBe(imgEl.title, expectedBadges[index].titleText);
                 });
-            });
-        });
-    });
-
-    describe('#displayedBadges', () => {
-        it('... should have a computed signal `displayedBadges`', () => {
-            expect(component.displayedBadges).toBeDefined();
-            expectToBe(isSignal(component.displayedBadges), true);
-        });
-
-        it('... should return correct badges for given identifiers', () => {
-            fixture.componentRef.setInput('identifiers', expectedIdentifiers);
-
-            const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
-
-            expectToBe(displayedBadges.length, 2);
-            expectToEqual(displayedBadges, expectedActiveIdentifierBadges);
-
-            expectToBe(displayedBadges[0].key, expectedActiveIdentifierBadges[0].key);
-            expectToBe(displayedBadges[1].key, expectedActiveIdentifierBadges[1].key);
-
-            expectToBe(displayedBadges[0].fullUrl, expectedActiveIdentifierBadges[0].fullUrl);
-            expectToBe(displayedBadges[1].fullUrl, expectedActiveIdentifierBadges[1].fullUrl);
-
-            expectToBe(displayedBadges[0].src, expectedActiveIdentifierBadges[0].src);
-            expectToBe(displayedBadges[1].src, expectedActiveIdentifierBadges[1].src);
-
-            expectToBe(displayedBadges[0].label, expectedActiveIdentifierBadges[0].label);
-            expectToBe(displayedBadges[1].label, expectedActiveIdentifierBadges[1].label);
-
-            expectToBe(displayedBadges[0].titleText, expectedActiveIdentifierBadges[0].titleText);
-            expectToBe(displayedBadges[1].titleText, expectedActiveIdentifierBadges[1].titleText);
-        });
-
-        describe('... should return empty array if ...', () => {
-            it('... identifiers is an empty object {}, null or undefined', () => {
-                fixture.componentRef.setInput('identifiers', {} as MetaIdentifiers);
-
-                expectToEqual(component.displayedBadges(), []);
-
-                fixture.componentRef.setInput('identifiers', null as unknown as MetaIdentifiers);
-                expectToEqual(component.displayedBadges(), []);
-
-                fixture.componentRef.setInput('identifiers', undefined as unknown as MetaIdentifiers);
-                expectToEqual(component.displayedBadges(), []);
-            });
-
-            it('... identifiers has no valid keys', () => {
-                fixture.componentRef.setInput('identifiers', { invalidKey: '123' } as unknown as MetaIdentifiers);
-
-                const displayedBadges: MetaIdentifierBadge[] = component.displayedBadges();
-
-                expectToBe(displayedBadges.length, 0);
-                expectToEqual(displayedBadges, []);
             });
         });
     });

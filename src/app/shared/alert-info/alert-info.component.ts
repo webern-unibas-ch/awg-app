@@ -18,24 +18,24 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert';
 })
 export class AlertInfoComponent {
     /**
-     * Input signal: infoMessage.
+     * Readonly input signal: infoMessage.
      *
-     * It holds the info message for the component.
+     * It holds the info message for the alert.
      */
-    infoMessage = input<string>('');
+    readonly infoMessage = input.required<string>();
 
     /**
      * Model signal: isOpen.
      *
-     * It keeps the open state and allows two-way binding.
+     * It holds the state of the alert (open or closed).
      * @default true
      */
     isOpen = model<boolean>(true);
 
     /**
-     * Public variable: faCircleInfo.
+     * Readonly variable: faCircleInfo.
      *
      * It instantiates fontawesome's faCircleInfo icon.
      */
-    faCircleInfo = faCircleInfo;
+    readonly faCircleInfo = faCircleInfo;
 }

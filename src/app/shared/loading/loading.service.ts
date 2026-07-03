@@ -23,7 +23,7 @@ export class LoadingService {
     private readonly _pendingRequests = signal<HttpRequest<unknown>[]>([]);
 
     /**
-     * Public readonly computed signal: isLoading.
+     * Readonly computed signal: isLoading.
      *
      * It automatically derives the loading status from the active requests array.
      * If the array contains entries, it returns true, otherwise false.

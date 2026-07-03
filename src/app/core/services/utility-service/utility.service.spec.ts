@@ -13,7 +13,8 @@ describe('UtilityService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [UtilityService],
         });
-        // Inject service
+
+        // Inject services
         utils = TestBed.inject(UtilityService);
     });
 

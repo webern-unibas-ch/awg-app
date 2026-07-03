@@ -24,7 +24,7 @@ describe('LoadingInterceptor (DONE)', () => {
             ],
         });
 
-        // Inject services and http client handler
+        // Inject services
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
         loadingService = TestBed.inject(LoadingService);

@@ -13,18 +13,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class HeadingComponent {
     /**
-     * Input signal: id.
+     * Readonly input signal: id.
      *
      * It holds the id of the heading.
-     * @default ''
      */
-    id = input<string>('');
+    readonly id = input.required<string>();
 
     /**
-     * Input signal: title.
+     * Readonly input signal: title.
      *
      * It holds the title of the heading.
-     * @default ''
      */
-    title = input<string>('');
+    readonly title = input.required<string>();
 }

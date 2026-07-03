@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -35,13 +35,14 @@ describe('AlertInfoComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AlertInfoComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedFaCircleInfo = faCircleInfo;
         expectedInfoMessage = 'This is an info message.';
+
+        // Create component fixture
+        fixture = TestBed.createComponent(AlertInfoComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -49,20 +50,24 @@ describe('AlertInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `infoMessage`', () => {
-            expectToBe(component.infoMessage(), '');
+        it('... should throw due to missing required input signal `infoMessage`', () => {
+            expectToBe(isSignal(component.infoMessage), true);
+
+            expect(() => component.infoMessage()).toThrow();
+        });
+
+        it('... should have model signal `isOpen` to hold the default value', () => {
+            expectToBe(isSignal(component.isOpen), true);
+
+            expectToBe(component.isOpen(), true);
         });
 
         it('... should have `faCircleInfo`', () => {
             expectToEqual(component.faCircleInfo, expectedFaCircleInfo);
         });
 
-        it('... should have default `isOpen`', () => {
-            expectToBe(component.isOpen(), true);
-        });
-
         describe('VIEW', () => {
-            it('... should not have a ngbAlert component yet', () => {
+            it('... should not have a NgbAlert component yet', () => {
                 getAndExpectDebugElementByDirective(compDe, NgbAlert, 0, 0);
             });
         });
@@ -70,13 +75,14 @@ describe('AlertInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('infoMessage', expectedInfoMessage);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `infoMessage`', () => {
+        it('... should have input signal `infoMessage` to hold the provided message', () => {
             expectToBe(component.infoMessage(), expectedInfoMessage);
         });
 

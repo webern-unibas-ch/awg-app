@@ -24,23 +24,19 @@ export class MetaIdentifierBadgesComponent {
     private readonly _coreService = inject(CoreService);
 
     /**
-     * Input signal: identifiers.
+     * Readonly input signal: identifiers.
      *
      * It holds the authority identifiers of a person.
-     * @default undefined
      */
-    identifiers = input<MetaIdentifiers | undefined>(undefined);
+    readonly identifiers = input.required<MetaIdentifiers>();
 
     /**
-     * Computed signal: displayedBadges.
+     * Readonly computed signal: displayedBadges.
      *
      * It computes the badges to be displayed based on the given identifiers input and the LOGOS_DATA
      */
-    displayedBadges = computed<MetaIdentifierBadge[]>(() => {
+    readonly displayedBadges = computed<MetaIdentifierBadge[]>(() => {
         const currentIds = this.identifiers();
-        if (!currentIds) {
-            return [];
-        }
         const logosData = this._coreService.getLogos();
 
         return (['gnd', 'viaf', 'orcid'] as (keyof MetaIdentifiers)[])

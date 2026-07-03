@@ -43,7 +43,7 @@ describe('AnalyticsService (DONE)', () => {
             providers: [AnalyticsService],
         });
 
-        // Inject service
+        // Inject services
         analyticsService = TestBed.inject(AnalyticsService);
         mockDocument = TestBed.inject(DOCUMENT);
 

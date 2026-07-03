@@ -61,13 +61,13 @@ describe('NavbarItemComponent (DONE)', () => {
             expect(() => component.item()).toThrow();
         });
 
-        it('... should have input signal `id` with default value', () => {
+        it('... should have input signal `id` to hold the default value', () => {
             expectToBe(isSignal(component.id), true);
 
             expectToBe(component.id(), '');
         });
 
-        it('... should have input signal `isDropdown` with default value', () => {
+        it('... should have input signal `isDropdown` to hold the default value', () => {
             expectToBe(isSignal(component.isDropdown), true);
 
             expectToBe(component.isDropdown(), false);

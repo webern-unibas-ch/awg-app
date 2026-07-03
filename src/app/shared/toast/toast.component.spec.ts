@@ -59,7 +59,7 @@ describe('ToastComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // Inject service from root
+        // Inject services
         toastService = TestBed.inject(ToastService);
 
         // Test data
