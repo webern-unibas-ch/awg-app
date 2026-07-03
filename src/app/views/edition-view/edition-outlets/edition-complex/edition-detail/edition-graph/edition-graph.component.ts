@@ -76,7 +76,7 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Readonly signal: isFullscreen.
      *
-     * It holds the fullscreen mode status.
+     * It holds the fullscreen status.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
 

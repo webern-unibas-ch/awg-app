@@ -672,108 +672,112 @@ describe('EditionGraphComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionGraphData()', () => {
-            it('... should have a method `getEditionGraphData`', () => {
-                expect(component.getEditionGraphData).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#getEditionGraphData()', () => {
+                it('... should have a method `getEditionGraphData`', () => {
+                    expect(component.getEditionGraphData).toBeDefined();
+                });
 
-            it('... should trigger editionStateService.getSelectedEditionComplex', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
-            });
+                it('... should trigger editionStateService.getSelectedEditionComplex', () => {
+                    expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
+                });
 
-            it('... should get current editionComplex from editionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
+                it('... should get current editionComplex from editionStateService', () => {
+                    expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
-                expectToEqual(component.editionComplex, expectedEditionComplex);
-            });
+                    expectToEqual(component.editionComplex, expectedEditionComplex);
+                });
 
-            it('... should update editionComplex when editionStateService emits changed value', async () => {
-                // ----------------
-                // Change to op. 25
-                editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
-                    observableOf(EditionComplexesService.getEditionComplexById('op25'))
-                );
+                it('... should update editionComplex when editionStateService emits changed value', async () => {
+                    // ----------------
+                    // Change to op. 25
+                    editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
+                        observableOf(EditionComplexesService.getEditionComplexById('op25'))
+                    );
 
-                component.getEditionGraphData();
-                await detectChangesOnPush(fixture);
+                    component.getEditionGraphData();
+                    await detectChangesOnPush(fixture);
 
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
+                    expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
 
-                expectToEqual(component.editionComplex, EditionComplexesService.getEditionComplexById('op25'));
-            });
+                    expectToEqual(component.editionComplex, EditionComplexesService.getEditionComplexById('op25'));
+                });
 
-            it('... should trigger editionDataService.getEditionGraph', () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
-            });
+                it('... should trigger editionDataService.getEditionGraph', () => {
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
+                });
 
-            it('... should trigger editionDataService.getEditionGraph with current editionComplex', () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
-            });
+                it('... should trigger editionDataService.getEditionGraph with current editionComplex', () => {
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+                });
 
-            it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', async () => {
-                // ----------------
-                // Change to op. 25
-                editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
-                    observableOf(EditionComplexesService.getEditionComplexById('op25'))
-                );
+                it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', async () => {
+                    // ----------------
+                    // Change to op. 25
+                    editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
+                        observableOf(EditionComplexesService.getEditionComplexById('op25'))
+                    );
 
-                component.getEditionGraphData();
-                await detectChangesOnPush(fixture);
+                    component.getEditionGraphData();
+                    await detectChangesOnPush(fixture);
 
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
-                expectSpyCall(
-                    editionDataServiceGetEditionGraphDataSpy,
-                    2,
-                    EditionComplexesService.getEditionComplexById('op25')
-                );
-            });
+                    expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
+                    expectSpyCall(
+                        editionDataServiceGetEditionGraphDataSpy,
+                        2,
+                        EditionComplexesService.getEditionComplexById('op25')
+                    );
+                });
 
-            it('... should get editionGraphData from editionDataService and set editionGraphData$', async () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+                it('... should get editionGraphData from editionDataService and set editionGraphData$', async () => {
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
 
-                // Wait for fixture to be stable
-                await detectChangesOnPush(fixture);
+                    // Wait for fixture to be stable
+                    await detectChangesOnPush(fixture);
 
-                await expect(lastValueFrom(component.editionGraphData$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.editionGraphData$)).resolves.toEqual(
-                    expectedEditionGraphDataEmpty
-                );
-            });
+                    await expect(lastValueFrom(component.editionGraphData$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.editionGraphData$)).resolves.toEqual(
+                        expectedEditionGraphDataEmpty
+                    );
+                });
 
-            it('... should update editionGraphData$ when editionStateService emits changed value', async () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+                it('... should update editionGraphData$ when editionStateService emits changed value', async () => {
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
 
-                // ----------------
-                // Change to op. 25
-                editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
-                    observableOf(EditionComplexesService.getEditionComplexById('op25'))
-                );
+                    // ----------------
+                    // Change to op. 25
+                    editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
+                        observableOf(EditionComplexesService.getEditionComplexById('op25'))
+                    );
 
-                component.getEditionGraphData();
-                await detectChangesOnPush(fixture);
+                    component.getEditionGraphData();
+                    await detectChangesOnPush(fixture);
 
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
-                expectSpyCall(
-                    editionDataServiceGetEditionGraphDataSpy,
-                    2,
-                    EditionComplexesService.getEditionComplexById('op25')
-                );
+                    expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
+                    expectSpyCall(
+                        editionDataServiceGetEditionGraphDataSpy,
+                        2,
+                        EditionComplexesService.getEditionComplexById('op25')
+                    );
 
-                await expect(lastValueFrom(component.editionGraphData$)).resolves.not.toThrow();
-                await expect(lastValueFrom(component.editionGraphData$)).resolves.toEqual(expectedEditionGraphDataOp25);
-            });
+                    await expect(lastValueFrom(component.editionGraphData$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.editionGraphData$)).resolves.toEqual(
+                        expectedEditionGraphDataOp25
+                    );
+                });
 
-            it('... should return empty observable and set errorObject if switchMap fails', async () => {
-                const expectedError = { status: 404, statusText: 'fail' };
-                // Spy on editionDataService to return an error
-                editionDataServiceGetEditionGraphDataSpy.mockReturnValue(observableThrowError(() => expectedError));
+                it('... should return empty observable and set errorObject if switchMap fails', async () => {
+                    const expectedError = { status: 404, statusText: 'fail' };
+                    // Spy on editionDataService to return an error
+                    editionDataServiceGetEditionGraphDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
-                component.getEditionGraphData();
-                await detectChangesOnPush(fixture);
+                    component.getEditionGraphData();
+                    await detectChangesOnPush(fixture);
 
-                await expect(lastValueFrom(component.editionGraphData$)).rejects.toThrow(EmptyError);
+                    await expect(lastValueFrom(component.editionGraphData$)).rejects.toThrow(EmptyError);
 
-                expectToEqual(component.errorObject, expectedError);
+                    expectToEqual(component.errorObject, expectedError);
+                });
             });
         });
     });

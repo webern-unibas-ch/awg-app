@@ -36,7 +36,7 @@ export class FullscreenToggleComponent {
     /**
      * Readonly signal: isFullscreen.
      *
-     * It holds the fullscreen mode status from the FullscreenService.
+     * It holds the fullscreen status from the FullscreenService.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
 
@@ -68,9 +68,9 @@ export class FullscreenToggleComponent {
     /**
      * Public method: closeFullscreen.
      *
-     * It closes fullscreen mode and sets isFullscreen flag to false.
+     * It requests to exit fullscreen mode via the FullscreenService.
      *
-     * @returns {void} Sets isFullscreen flag to false.
+     * @returns {void} Requests to exit fullscreen mode.
      */
     closeFullscreen(): void {
         this._fullscreenService.closeFullscreen();
@@ -79,9 +79,9 @@ export class FullscreenToggleComponent {
     /**
      * Public method: openFullscreen.
      *
-     * It activates fullscreen mode and sets isFullscreen flag to true.
+     * It requests to enter fullscreen mode for the component's fsElement via the FullscreenService.
      *
-     * @returns {void} Sets isFullscreen flag to true.
+     * @returns {void} Requests to enter fullscreen mode.
      */
     openFullscreen(): void {
         this._fullscreenService.openFullscreen(this.fsElement());

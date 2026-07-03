@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -379,10 +379,14 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         it('... should have signal `isFirstPageLoad` to hold true', () => {
+            expectToBe(isSignal(component.isFirstPageLoad), true);
+
             expectToBe(component.isFirstPageLoad(), true);
         });
 
         it('... should have signal `isLoading` to hold false', () => {
+            expectToBe(isSignal(component.isLoading), true);
+
             expectToBe(component.isLoading(), false);
         });
 

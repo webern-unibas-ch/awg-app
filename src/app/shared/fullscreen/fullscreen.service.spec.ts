@@ -77,109 +77,112 @@ describe('FullscreenService (DONE)', () => {
         });
     });
 
-    it('... should have a readonly signal `isFullscreen`', () => {
-        expect(fullscreenService.isFullscreen).toBeDefined();
+    it('... should have a signal `isFullscreen` to hold false', () => {
         expectToBe(isSignal(fullscreenService.isFullscreen), true);
+
+        expectToBe(fullscreenService.isFullscreen(), false);
     });
 
-    describe('#updateState()', () => {
-        it('... should have a method `updateState`', () => {
-            expect(fullscreenService.updateState).toBeDefined();
+    describe('METHODS', () => {
+        describe('#updateState()', () => {
+            it('... should have a method `updateState`', () => {
+                expect(fullscreenService.updateState).toBeDefined();
+            });
+
+            it('... should update the `isFullscreen` signal based on the document state', () => {
+                expectToBe(fullscreenService.isFullscreen(), false);
+
+                simulateFullscreenChangeEvent(expectedFsElement);
+
+                expectToBe(fullscreenService.isFullscreen(), true);
+
+                simulateFullscreenChangeEvent(null);
+
+                expectToBe(fullscreenService.isFullscreen(), false);
+            });
         });
 
-        it('... should update the `isFullscreen` signal based on the document state', () => {
-            expectToBe(fullscreenService.isFullscreen(), false);
+        describe('#closeFullscreen()', () => {
+            it('... should have a method `closeFullscreen`', () => {
+                expect(fullscreenService.closeFullscreen).toBeDefined();
+            });
 
-            simulateFullscreenChangeEvent(expectedFsElement);
+            it('... should do nothing if `exitFullscreen` is not available', () => {
+                (mockDocument as any).exitFullscreen = undefined;
 
-            expectToBe(fullscreenService.isFullscreen(), true);
+                expect(() => fullscreenService.closeFullscreen()).not.toThrow();
+                expectSpyCall(consoleSpy, 0);
+            });
 
-            simulateFullscreenChangeEvent(null);
+            it('... should call `exitFullscreen` on the document', () => {
+                fullscreenService.closeFullscreen();
 
-            expectToBe(fullscreenService.isFullscreen(), false);
-        });
-    });
+                expectSpyCall(exitFullscreenSpy, 1);
+            });
 
-    describe('#closeFullscreen()', () => {
-        it('... should have a method `closeFullscreen`', () => {
-            expect(fullscreenService.closeFullscreen).toBeDefined();
-        });
+            it('... should catch an error if `exitFullscreen` fails', async () => {
+                const err = new Error('Test error');
+                exitFullscreenSpy.mockRejectedValue(err);
 
-        it('... should do nothing if `exitFullscreen` is not available', () => {
-            (mockDocument as any).exitFullscreen = undefined;
+                fullscreenService.closeFullscreen();
+                await new Promise(resolve => setTimeout(resolve, 0));
 
-            expect(() => fullscreenService.closeFullscreen()).not.toThrow();
-            expectSpyCall(consoleSpy, 0);
-        });
+                expectSpyCall(exitFullscreenSpy, 1);
+                expectSpyCall(consoleSpy, 1, err);
 
-        it('... should call `exitFullscreen` on the document', () => {
-            fullscreenService.closeFullscreen();
-
-            expectSpyCall(exitFullscreenSpy, 1);
-        });
-
-        it('... should catch an error if `exitFullscreen` fails', async () => {
-            const err = new Error('Test error');
-            exitFullscreenSpy.mockRejectedValue(err);
-
-            fullscreenService.closeFullscreen();
-            await new Promise(resolve => setTimeout(resolve, 0));
-
-            expectSpyCall(exitFullscreenSpy, 1);
-            expectSpyCall(consoleSpy, 1, err);
-
-            const loggedError = mockConsole.get(0) as unknown as Error;
-            expectToBe(loggedError, err);
-        });
-    });
-
-    describe('#openFullscreen()', () => {
-        let requestFullscreenSpy: Mock;
-
-        beforeEach(() => {
-            requestFullscreenSpy = vi.fn().mockResolvedValue(undefined);
-            expectedFsElement.requestFullscreen = requestFullscreenSpy;
+                const loggedError = mockConsole.get(0) as unknown as Error;
+                expectToBe(loggedError, err);
+            });
         });
 
-        afterEach(() => {
-            vi.restoreAllMocks();
-        });
+        describe('#openFullscreen()', () => {
+            let requestFullscreenSpy: Mock;
 
-        it('... should have a method `openFullscreen`', () => {
-            expect(fullscreenService.openFullscreen).toBeDefined();
-        });
+            beforeEach(() => {
+                requestFullscreenSpy = vi.fn().mockResolvedValue(undefined);
+                expectedFsElement.requestFullscreen = requestFullscreenSpy;
+            });
 
-        it('... should request fullscreen mode for a given element (if not in fullscreen mode)', () => {
-            simulateFullscreenChangeEvent(null);
+            afterEach(() => {
+                vi.restoreAllMocks();
+            });
 
-            fullscreenService.openFullscreen(expectedFsElement);
+            it('... should have a method `openFullscreen`', () => {
+                expect(fullscreenService.openFullscreen).toBeDefined();
+            });
 
-            expectSpyCall(requestFullscreenSpy, 1);
-        });
+            it('... should request fullscreen mode for a given element (if not in fullscreen mode)', () => {
+                simulateFullscreenChangeEvent(null);
 
-        it('... should not request fullscreen mode for a given element (if already in fullscreen mode)', () => {
-            const otherElement = mockDocument.createElement('div');
-            simulateFullscreenChangeEvent(otherElement);
+                fullscreenService.openFullscreen(expectedFsElement);
 
-            fullscreenService.openFullscreen(expectedFsElement);
+                expectSpyCall(requestFullscreenSpy, 1);
+            });
 
-            expectSpyCall(requestFullscreenSpy, 0);
-        });
+            it('... should not request fullscreen mode for a given element (if already in fullscreen mode)', () => {
+                const otherElement = mockDocument.createElement('div');
+                simulateFullscreenChangeEvent(otherElement);
 
-        it('... should catch an error if `requestFullscreen` fails', async () => {
-            const err = new Error('Test error');
-            requestFullscreenSpy.mockRejectedValue(err);
+                fullscreenService.openFullscreen(expectedFsElement);
 
-            simulateFullscreenChangeEvent(null);
+                expectSpyCall(requestFullscreenSpy, 0);
+            });
 
-            fullscreenService.openFullscreen(expectedFsElement);
-            await new Promise(resolve => setTimeout(resolve, 0));
+            it('... should catch an error if `requestFullscreen` fails', async () => {
+                const err = new Error('Test error');
+                requestFullscreenSpy.mockRejectedValue(err);
 
-            expectSpyCall(requestFullscreenSpy, 1);
-            expectSpyCall(consoleSpy, 1, err);
+                simulateFullscreenChangeEvent(null);
 
-            const loggedError = mockConsole.get(0) as unknown as Error;
-            expectToEqual(loggedError, err);
+                fullscreenService.openFullscreen(expectedFsElement);
+                await new Promise(resolve => setTimeout(resolve, 0));
+
+                expectSpyCall(requestFullscreenSpy, 1);
+                expectSpyCall(consoleSpy, 1, err);
+
+                const loggedError = mockConsole.get(0) as unknown as Error;
+                expectToEqual(loggedError, err);
+            });
         });
     });
 });

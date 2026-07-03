@@ -76,11 +76,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
         serviceOpenFullscreenSpy = vi.spyOn(fullscreenService, 'openFullscreen').mockImplementation(() => {});
         serviceUpdateStateSpy = vi.spyOn(fullscreenService, 'updateState');
 
-        // Create component and test fixture
-        fixture = TestBed.createComponent(FullscreenToggleComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedFsElement = mockDocument.createElement('div');
         mockDocument.body.appendChild(expectedFsElement);
@@ -97,6 +92,11 @@ describe('FullscreenToggleComponent (DONE)', () => {
             customClass: 'btn-info',
             action: expect.any(Function),
         };
+
+        // Create component and test fixture
+        fixture = TestBed.createComponent(FullscreenToggleComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
 
         // Component spies
         closeFullScreenSpy = vi.spyOn(component, 'closeFullscreen');
