@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-
-import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
@@ -34,13 +32,6 @@ export class EditionGraphComponent implements OnInit {
     readonly utils = inject(UtilityService);
 
     /**
-     * Public readonly injection variable: fullscreenService.
-     *
-     * It keeps the instance of the injected FullscreenService.
-     */
-    readonly fullscreenService = inject(FullscreenService);
-
-    /**
      * Private readonly injection variable: _editionDataService.
      *
      * It keeps the instance of the injected EditionDataService.
@@ -54,7 +45,12 @@ export class EditionGraphComponent implements OnInit {
      */
     private readonly _editionStateService = inject(EditionStateService);
 
-    private readonly _cdr = inject(ChangeDetectorRef);
+    /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
 
     /**
      * Public variable: editionComplex.
@@ -78,25 +74,11 @@ export class EditionGraphComponent implements OnInit {
     errorObject = null;
 
     /**
-     * Public variable: faExpand.
+     * Readonly signal: isFullscreen.
      *
-     * It instantiates fontawesome's faExpand icon.
+     * It holds the fullscreen mode status.
      */
-    faExpand = faExpand;
-
-    /**
-     * Public variable: faCompress.
-     *
-     * It instantiates fontawesome's faCompress icon.
-     */
-    faCompress = faCompress;
-
-    /**
-     * Public variable: isFullscreen.
-     *
-     * It keeps the fullscreen mode status.
-     */
-    isFullscreen = false;
+    readonly isFullscreen = this._fullscreenService.isFullscreen;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -162,19 +144,5 @@ export class EditionGraphComponent implements OnInit {
                 return EMPTY;
             })
         );
-    }
-
-    /**
-     * Public method: onFullscreenToggle.
-     *
-     * It toggles the fullscreen mode and sets the isFullscreen flag.
-     *
-     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
-     * @returns {void} Toggles the fullscreen mode and sets the isFullscreen flag.
-     */
-    onFullscreenToggle(isFullscreen: boolean): void {
-        this.isFullscreen = isFullscreen;
-
-        this._cdr.markForCheck();
     }
 }

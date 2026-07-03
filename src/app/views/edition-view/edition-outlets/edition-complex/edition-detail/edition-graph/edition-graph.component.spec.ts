@@ -14,7 +14,6 @@ import {
 } from 'rxjs';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -108,9 +107,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp25: GraphList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
-    let expectedFaCompress: IconDefinition;
-    let expectedFaExpand: IconDefinition;
-
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
     });
@@ -158,9 +154,6 @@ describe('EditionGraphComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data (default)
-        expectedFaCompress = faCompress;
-        expectedFaExpand = faExpand;
-
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
 
         expectedEditionGraphDataEmpty = structuredClone(mockEditionData.mockGraphEmptyData);
@@ -217,14 +210,6 @@ describe('EditionGraphComponent (DONE)', () => {
 
         it('... should have `errorObject` = null', () => {
             expectToBe(component.errorObject, null);
-        });
-
-        it('... should have `faCompress`', () => {
-            expectToBe(component.faCompress, expectedFaCompress);
-        });
-
-        it('... should have `faExpand`', () => {
-            expectToBe(component.faExpand, expectedFaExpand);
         });
 
         it('... should not have `editionComplex`', () => {
@@ -510,12 +495,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     });
 
                     it('... should contain one graph visualizer component (stubbed) in a fullscreen wrapper', () => {
-                        const wrapperDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-graph-fullscreen-wrapper',
-                            1,
-                            1
-                        );
+                        const wrapperDes = getAndExpectDebugElementByCss(compDe, 'div.awg-fullscreen-wrapper', 1, 1);
                         getAndExpectDebugElementByDirective(wrapperDes[0], GraphVisualizerStubComponent, 1, 1);
                     });
 
@@ -549,12 +529,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         ) as FullscreenToggleStubComponent;
 
                         // Get GraphVisualizerComponent wrapper
-                        const wrapperDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-graph-fullscreen-wrapper',
-                            1,
-                            1
-                        );
+                        const wrapperDes = getAndExpectDebugElementByCss(compDe, 'div.awg-fullscreen-wrapper', 1, 1);
                         const wrapperEl = wrapperDes[0].nativeElement;
 
                         expect(wrapperEl).toBeTruthy();

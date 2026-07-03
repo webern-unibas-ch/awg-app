@@ -1,9 +1,9 @@
-<div ngbAccordion #accoladeAcc [class.fullscreen]="isFullscreen">
+<div ngbAccordion #accoladeAcc [class.fullscreen]="isFullscreen()">
     <div ngbAccordionItem="awg-accolade-view" [collapsed]="false">
         <div ngbAccordionHeader class="accordion-button awg-accordion-button-custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
             <div class="ms-auto">
-                @if (!isFullscreen) {
+                @if (!isFullscreen()) {
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info"
@@ -11,7 +11,7 @@
                         Hinweise zur Nutzung
                     </button>
                 }
-                <awg-fullscreen-toggle [fsElement]="accoladeAcc" (toggleFullscreenRequest)="fullscreenToggle($event)" />
+                <awg-fullscreen-toggle [fsElement]="accoladeAcc" />
             </div>
         </div>
         <div ngbAccordionCollapse>

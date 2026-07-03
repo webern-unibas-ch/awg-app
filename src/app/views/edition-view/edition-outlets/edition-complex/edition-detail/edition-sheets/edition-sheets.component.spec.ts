@@ -51,8 +51,6 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 })
 class EditionAccoladeStubComponent {
     @Input()
-    isFullscreen: boolean;
-    @Input()
     isSheetFacetMinimized: boolean;
     @Input()
     svgSheetsData: EditionSvgSheetList;
@@ -66,8 +64,6 @@ class EditionAccoladeStubComponent {
     showTkA: boolean;
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
-    @Output()
-    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{
         complexId: string;
@@ -163,7 +159,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
     let onBrowseSvgSheetSpy: Spy;
-    let onFullscreenToggleSpy: Spy;
     let onLinkBoxSelectSpy: Spy;
     let onReportFragmentNavigateSpy: Spy;
     let onOverlaySelectSpy: Spy;
@@ -172,7 +167,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let onToggleSheetFacetSpy: Spy;
 
     let expectedConvolute: FolioConvolute;
-    let expectedIsFullscreen: boolean;
     let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
@@ -264,7 +258,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
 
-        expectedIsFullscreen = false;
         expectedIsSheetFacetMinimized = false;
 
         expectedComplexId = 'op12';
@@ -318,7 +311,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Component spies
         getEditionSheetsDataSpy = vi.spyOn(component, 'getEditionSheetsData');
         onBrowseSvgSheetSpy = vi.spyOn(component, 'onBrowseSvgSheet');
-        onFullscreenToggleSpy = vi.spyOn(component, 'onFullscreenToggle');
         onLinkBoxSelectSpy = vi.spyOn(component, 'onLinkBoxSelect');
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
         onReportFragmentNavigateSpy = vi.spyOn(component, 'onReportFragmentNavigate');
@@ -344,10 +336,6 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         it('... should have `errorObject` = null', () => {
             expectToBe(component.errorObject, null);
-        });
-
-        it('... should have `isFullscreen` = false', () => {
-            expectToBe(component.isFullscreen, false);
         });
 
         it('... should have `isSheetFacetMinimized` = false', () => {
@@ -390,16 +378,16 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.textcriticsData).toBeUndefined();
         });
 
-        it('... should have `_isFirstPageLoad===true`', () => {
-            expectToBe((component as any)._isFirstPageLoad, true);
+        it('... should have signal `isFirstPageLoad` to hold true`', () => {
+            expectToBe(component.isFirstPageLoad(), true);
+        });
+
+        it('... should have signal `isLoading` to hold false', () => {
+            expectToBe(component.isLoading(), false);
         });
 
         it('... should have `editionRouteConstants` getter', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
-        });
-
-        it('... should have `isLoading` (with value false)', () => {
-            expectToBe(component.isLoading(), false);
         });
 
         describe('VIEW', () => {
@@ -471,8 +459,9 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('on loading', () => {
-                it('... should contain 1 TwelveToneSpinnerComponent (stubbed) if isLoading is true', async () => {
+                it('... should contain one TwelveToneSpinnerComponent (stubbed) if isLoading() and isFirstPageLoad() is true', async () => {
                     mockIsLoadingSignal.set(true);
+                    component.isFirstPageLoad.set(true);
 
                     await detectChangesOnPush(fixture);
 
@@ -520,15 +509,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             describe('... AccoladeComponent (stubbed)', () => {
                 it('... should contain one AccoladeComponent (stubbed)', () => {
                     getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                });
-
-                it('... should pass down `isFullscreen` to the EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
-
-                    expectToEqual(accoladeCmp.isFullscreen, expectedIsFullscreen);
                 });
 
                 it('... should pass down `isSheetFacetMinimized` to the EditionAccoladeComponent', () => {
@@ -787,36 +767,6 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     expectSpyCall(onSvgSheetSelectSpy, 2, { complexId: '', sheetId: expectedSvgSheet.id });
                 });
-            });
-        });
-
-        describe('#onFullscreenToggle()', () => {
-            it('... should have a method `onFullscreenToggle`', () => {
-                expect(component.onFullscreenToggle).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', () => {
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                expectedIsFullscreen = true;
-                accoladeCmp.fullscreenToggleRequest.emit(expectedIsFullscreen);
-
-                expectSpyCall(onFullscreenToggleSpy, 1, [expectedIsFullscreen]);
-            });
-
-            it('... should toggle `isFullscreen` variable', () => {
-                expectToBe(component.isFullscreen, false);
-
-                component.onFullscreenToggle(true);
-
-                expectToBe(component.isFullscreen, true);
-
-                component.onFullscreenToggle(false);
-
-                expectToBe(component.isFullscreen, false);
             });
         });
 
@@ -1596,7 +1546,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             describe('... with svgSheetsData available and id not given from query params', () => {
                 it('... should trigger `onSvgSheetSelect` with snapshotQueryParamsId on first page load', async () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
-                    (component as any)._isFirstPageLoad = true;
+                    component.isFirstPageLoad.set(true);
 
                     const snapShotSheetId = 'test-TF1a';
                     component.snapshotQueryParamsId = snapShotSheetId;
@@ -1612,7 +1562,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 it('... should trigger `onSvgSheetSelect` with default id on subsequent page loads', async () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
-                    (component as any)._isFirstPageLoad = false;
+                    component.isFirstPageLoad.set(false);
 
                     const defaultSheetId = 'test-TF1a';
                     const snapShotSheetId = 'another-test-id';
@@ -1631,7 +1581,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             describe('... with svgSheetsData not available and id not given from query params', () => {
                 it('... should trigger `onSvgSheetSelect` with no id', async () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
-                    (component as any)._isFirstPageLoad = true;
+                    component.isFirstPageLoad.set(true);
 
                     component.svgSheetsData = undefined;
                     component.snapshotQueryParamsId = '';
@@ -1646,7 +1596,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
                 it('... should reset selectedSvgSheet to undefined', async () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
-                    (component as any)._isFirstPageLoad = true;
+                    component.isFirstPageLoad.set(false);
 
                     component.svgSheetsData = undefined;
                     component.snapshotQueryParamsId = '';
@@ -1658,14 +1608,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
             });
 
-            it('... should set _isFirstPageLoad to false after handling query params', async () => {
-                (component as any)._isFirstPageLoad = true;
+            it('... should set isFirstPageLoad() to false after handling query params', async () => {
+                component.isFirstPageLoad.set(true);
                 mockActivatedRoute.testQueryParamMap = { id: 'sheetId' };
                 await detectChangesOnPush(fixture);
 
                 (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
 
-                expectToBe((component as any)._isFirstPageLoad, false);
+                expectToBe(component.isFirstPageLoad(), false);
             });
         });
 

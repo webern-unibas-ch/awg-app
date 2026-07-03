@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
+import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
@@ -26,12 +27,11 @@ import {
 })
 export class EditionAccoladeComponent {
     /**
-     * Input variable: isFullscreen.
+     * Private readonly injection variable: _fullscreenService.
      *
-     * It keeps the fullscreen mode status.
+     * It keeps the instance of the injected FullscreenService.
      */
-    @Input()
-    isFullscreen: boolean;
+    private readonly _fullscreenService = inject(FullscreenService);
 
     /**
      * Input variable: isSheetFacetMinimized.
@@ -147,6 +147,13 @@ export class EditionAccoladeComponent {
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 
     /**
+     * Readonly signal: isFullscreen.
+     *
+     * It holds the fullscreen mode status.
+     */
+    readonly isFullscreen = this._fullscreenService.isFullscreen;
+
+    /**
      * Public method: browseSvgSheet.
      *
      * It emits a given direction to the {@link browseSvgSheetRequest}
@@ -161,23 +168,6 @@ export class EditionAccoladeComponent {
             return;
         }
         this.browseSvgSheetRequest.emit(direction);
-    }
-
-    /**
-     * Public method: fullscreenToggle.
-     *
-     * It emits a given boolean to the {@link fullscreenToggleRequest}
-     * to toggle the fullscreen mode.
-     *
-     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
-     *
-     * @returns {void} Emits the boolean.
-     */
-    fullscreenToggle(isFullscreen: boolean): void {
-        if (isFullscreen === undefined) {
-            return;
-        }
-        this.fullscreenToggleRequest.emit(isFullscreen);
     }
 
     /**
