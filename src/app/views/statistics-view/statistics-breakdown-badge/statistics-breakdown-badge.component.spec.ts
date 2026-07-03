@@ -29,15 +29,18 @@ describe('StatisticsBreakdownBadgeComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsBreakdownBadgeComponent],
         }).compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsBreakdownBadgeComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedBreakdown = new StatisticsComplexBreakdown({ opus: 5, mnr: 10, mnrX: 3 });
         expectedContainerClasses = 'custom-container-classes';
         expectedShowEmptyBadges = false;
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsBreakdownBadgeComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -45,20 +48,28 @@ describe('StatisticsBreakdownBadgeComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `breakdown`', () => {
-            const currentBreakdown = component.breakdown();
+        it('... should throw due to missing required input signal `breakdown`', () => {
+            expectToBe(isSignal(component.breakdown), true);
 
-            expectToBe(currentBreakdown.opus, 0);
-            expectToBe(currentBreakdown.mnr, 0);
-            expectToBe(currentBreakdown.mnrX, 0);
+            expect(() => component.breakdown()).toThrow();
         });
 
-        it('... should have default `containerClasses`', () => {
+        it('... should have input signal `containerClasses` to hold the default value', () => {
+            expectToBe(isSignal(component.containerClasses), true);
+
             expectToEqual(component.containerClasses(), 'small text-muted');
         });
 
-        it('... should have default `showEmptyBadges`', () => {
+        it('... should have input signal `showEmptyBadges` to hold the default value', () => {
+            expectToBe(isSignal(component.showEmptyBadges), true);
+
             expectToBe(component.showEmptyBadges(), false);
+        });
+
+        it('... should throw when accessing computed signal `displayedBadges` due to missing input', () => {
+            expectToBe(isSignal(component.displayedBadges), true);
+
+            expect(() => component.displayedBadges()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -86,82 +97,30 @@ describe('StatisticsBreakdownBadgeComponent', () => {
         });
     });
 
-    describe('AFTER initial data binding (default values)', () => {
+    describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            fixture.detectChanges();
-        });
-
-        it('... should have default `breakdown`', () => {
-            const currentBreakdown = component.breakdown();
-
-            expectToBe(currentBreakdown.opus, 0);
-            expectToBe(currentBreakdown.mnr, 0);
-            expectToBe(currentBreakdown.mnrX, 0);
-        });
-
-        it('... should have default `containerClasses`', () => {
-            expectToEqual(component.containerClasses(), 'small text-muted');
-        });
-
-        it('... should have default `showEmptyBadges`', () => {
-            expectToBe(component.showEmptyBadges(), false);
-        });
-
-        it('... should have computed `displayedBadges` (empty array due to showEmptyBadges=false)', () => {
-            const currentDisplayedBadges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-            expectToEqual(currentDisplayedBadges, []);
-            expectToBe(currentDisplayedBadges.length, 0);
-        });
-
-        describe('VIEW', () => {
-            it('... should contain one outer div container', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-breakdown-badge-container', 1, 1);
-            });
-
-            it('... should apply default container classes to outer div container', () => {
-                const containerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-breakdown-badge-container',
-                    1,
-                    1
-                );
-                const containerEl = containerDes[0].nativeElement;
-
-                expectToContain(containerEl.className, 'awg-statistics-breakdown-badge-container');
-                expectToContain(containerEl.className, 'small');
-                expectToContain(containerEl.className, 'text-muted');
-            });
-
-            it('... should contain no badge elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'span.awg-statistics-breakdown-badge', 0, 0);
-            });
-        });
-    });
-
-    describe('AFTER initial data binding (update)', () => {
-        beforeEach(() => {
-            // Simulate the parent updating the input signals
+            // Set the initial values for the signal inputs signals
             fixture.componentRef.setInput('breakdown', expectedBreakdown);
             fixture.componentRef.setInput('containerClasses', expectedContainerClasses);
             fixture.componentRef.setInput('showEmptyBadges', expectedShowEmptyBadges);
 
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `breakdown` input signal', () => {
+        it('... should have input signal `breakdown` to hold the provided data', () => {
             expectToEqual(component.breakdown(), expectedBreakdown);
         });
 
-        it('... should have updated `containerClasses` input signal', () => {
+        it('... should have input signal `containerClasses` to hold the provided classes', () => {
             expectToBe(component.containerClasses(), expectedContainerClasses);
         });
 
-        it('... should have updated `showEmptyBadges` input signal', () => {
+        it('... should have input signal `showEmptyBadges` to hold the provided value', () => {
             expectToBe(component.showEmptyBadges(), expectedShowEmptyBadges);
         });
 
-        it('... should have computed `displayedBadges` based on breakdown and showEmptyBadges', () => {
+        it('... should have computed `displayedBadges` based on `breakdown` and `showEmptyBadges`', () => {
             const expectedDisplayedBadges: StatisticsBreakDownBadge[] = [
                 { label: 'Op', val: expectedBreakdown.opus, type: 'primary' },
                 { label: 'M', val: expectedBreakdown.mnr, type: 'secondary' },
@@ -172,6 +131,72 @@ describe('StatisticsBreakdownBadgeComponent', () => {
 
             expectToEqual(currentDisplayedBadges, expectedDisplayedBadges);
             expectToBe(currentDisplayedBadges.length, 3);
+        });
+
+        describe('... should update `displayedBadges` when input changes', () => {
+            it('... should return an empty array if breakdown is empty and showEmptyBadges is false', () => {
+                fixture.componentRef.setInput(
+                    'breakdown',
+                    new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
+                );
+                fixture.componentRef.setInput('showEmptyBadges', false);
+
+                const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+
+                expectToEqual(badges, []);
+            });
+
+            describe('... should return all badges if', () => {
+                it('... showEmptyBadges is false, but all values are > 0', () => {
+                    fixture.componentRef.setInput(
+                        'breakdown',
+                        new StatisticsComplexBreakdown({ opus: 1, mnr: 1, mnrX: 1 })
+                    );
+                    fixture.componentRef.setInput('showEmptyBadges', false);
+
+                    const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+
+                    expectToBe(badges.length, 3);
+                });
+
+                it('... showEmptyBadges is true, even if values are 0', () => {
+                    fixture.componentRef.setInput(
+                        'breakdown',
+                        new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
+                    );
+                    fixture.componentRef.setInput('showEmptyBadges', true);
+
+                    const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+
+                    expectToBe(badges.length, 3);
+                });
+            });
+
+            it('... should map correct label to the badges', () => {
+                fixture.componentRef.setInput(
+                    'breakdown',
+                    new StatisticsComplexBreakdown({ opus: 5, mnr: 3, mnrX: 1 })
+                );
+
+                const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+
+                expectToBe(badges[0].label, 'Op');
+                expectToBe(badges[1].label, 'M');
+                expectToBe(badges[2].label, 'M*');
+            });
+
+            it('... should map correct colors to the badges', () => {
+                fixture.componentRef.setInput(
+                    'breakdown',
+                    new StatisticsComplexBreakdown({ opus: 5, mnr: 3, mnrX: 1 })
+                );
+
+                const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+
+                expectToBe(badges[0].type, 'primary');
+                expectToBe(badges[1].type, 'secondary');
+                expectToBe(badges[2].type, 'info');
+            });
         });
 
         describe('VIEW', () => {
@@ -327,68 +352,6 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 expectToContain(badgeEls[1].className, 'bg-secondary');
                 expectToContain(badgeEls[2].className, 'bg-info');
             });
-        });
-    });
-
-    describe('#displayedBadges()', () => {
-        it('... should have a computed signal `displayedBadges()`', () => {
-            expect(component.displayedBadges).toBeDefined();
-            expectToBe(isSignal(component.displayedBadges), true);
-        });
-
-        it('... should return an empty array if breakdown is empty and showEmptyBadges is false', () => {
-            fixture.componentRef.setInput('breakdown', new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 }));
-            fixture.componentRef.setInput('showEmptyBadges', false);
-
-            const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-            expectToEqual(badges, []);
-        });
-
-        describe('... should return all badges if', () => {
-            it('... showEmptyBadges is false, but all values are > 0', () => {
-                fixture.componentRef.setInput(
-                    'breakdown',
-                    new StatisticsComplexBreakdown({ opus: 1, mnr: 1, mnrX: 1 })
-                );
-                fixture.componentRef.setInput('showEmptyBadges', false);
-
-                const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-                expectToBe(badges.length, 3);
-            });
-
-            it('... showEmptyBadges is true, even if values are 0', () => {
-                fixture.componentRef.setInput(
-                    'breakdown',
-                    new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
-                );
-                fixture.componentRef.setInput('showEmptyBadges', true);
-
-                const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-                expectToBe(badges.length, 3);
-            });
-        });
-
-        it('... should map correct label to the badges', () => {
-            fixture.componentRef.setInput('breakdown', new StatisticsComplexBreakdown({ opus: 5, mnr: 3, mnrX: 1 }));
-
-            const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-            expectToBe(badges[0].label, 'Op');
-            expectToBe(badges[1].label, 'M');
-            expectToBe(badges[2].label, 'M*');
-        });
-
-        it('... should map correct colors to the badges', () => {
-            fixture.componentRef.setInput('breakdown', new StatisticsComplexBreakdown({ opus: 5, mnr: 3, mnrX: 1 }));
-
-            const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
-
-            expectToBe(badges[0].type, 'primary');
-            expectToBe(badges[1].type, 'secondary');
-            expectToBe(badges[2].type, 'info');
         });
     });
 });

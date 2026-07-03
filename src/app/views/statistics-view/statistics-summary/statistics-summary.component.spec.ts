@@ -24,10 +24,10 @@ import { StatisticsSummaryComponent } from './statistics-summary.component';
     template: '',
 })
 class StatisticsSummaryCardStubComponent {
-    title = input<string>();
-    value = input<number | string>();
-    icon = input<IconDefinition>();
-    bgClass = input<string>();
+    title = input.required<string>();
+    value = input.required<number | string>();
+    icon = input.required<IconDefinition>();
+    bgClass = input.required<string>();
 }
 
 describe('StatisticsSummaryComponent', () => {
@@ -47,11 +47,9 @@ describe('StatisticsSummaryComponent', () => {
                 add: { imports: [StatisticsSummaryCardStubComponent] },
             })
             .compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsSummaryComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedSummaryData = {
             activeSeries: 5,
@@ -82,13 +80,10 @@ describe('StatisticsSummaryComponent', () => {
             },
         ];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('summaryData', {
-            activeSeries: 0,
-            activeSections: 0,
-            activeComplexes: 0,
-            totalComplexes: 0,
-        });
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsSummaryComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -96,13 +91,16 @@ describe('StatisticsSummaryComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `summaryData`', () => {
-            expectToEqual(component.summaryData(), {
-                activeSeries: 0,
-                activeSections: 0,
-                activeComplexes: 0,
-                totalComplexes: 0,
-            });
+        it('... should throw due to missing required input signal `summaryData`', () => {
+            expectToBe(isSignal(component.summaryData), true);
+
+            expect(() => component.summaryData()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `summaryCards` due to missing input', () => {
+            expectToBe(isSignal(component.summaryCards), true);
+
+            expect(() => component.summaryCards()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -114,16 +112,18 @@ describe('StatisticsSummaryComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input signal
+            // Set the initial values for the signal inputs signal
             fixture.componentRef.setInput('summaryData', expectedSummaryData);
+
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `summaryData`', () => {
+        it('... should have input signal `summaryData` to hold the provided identifiers', () => {
             expectToEqual(component.summaryData(), expectedSummaryData);
         });
 
-        it('... should have computed `summaryCards` based on `summaryData`', () => {
+        it('... should have computed signal `summaryCards` to hold the correct cards', () => {
             const summaryCards = component.summaryCards();
 
             expectToBe(summaryCards.length, 4);
@@ -181,36 +181,6 @@ describe('StatisticsSummaryComponent', () => {
                     expectToEqual(cardCmp.icon(), card.icon);
                     expectToBe(cardCmp.bgClass(), card.bgClass);
                 });
-            });
-        });
-    });
-
-    describe('#summaryCards', () => {
-        it('... should have a computed signal `summaryCards`', () => {
-            expect(component.summaryCards).toBeDefined();
-            expectToBe(isSignal(component.summaryCards), true);
-        });
-
-        it('... should return empty array if `summaryData` is null', () => {
-            fixture.componentRef.setInput('summaryData', null);
-
-            const summaryCards = component.summaryCards();
-
-            expectToBe(summaryCards.length, 0);
-            expectToEqual(summaryCards, []);
-        });
-
-        it('... should return correct summary card data based on summaryData input', () => {
-            fixture.componentRef.setInput('summaryData', expectedSummaryData);
-
-            const summaryCards = component.summaryCards();
-
-            expectToBe(summaryCards.length, 4);
-            summaryCards.forEach((card, index) => {
-                expectToBe(card.title, expectedSummaryCards[index].title);
-                expectToBe(card.value, expectedSummaryCards[index].value);
-                expectToEqual(card.icon, expectedSummaryCards[index].icon);
-                expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
             });
         });
     });

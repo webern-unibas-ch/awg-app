@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -47,23 +47,20 @@ describe('StatisticsOverallProgressComponent', () => {
                 add: { imports: [StatisticsProgressBarStubComponent] },
             })
             .compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsOverallProgressComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedOverallProgressData = {
             progressRate: 50,
             activeComplexes: 8,
             totalComplexes: 16,
         };
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('overallProgressData', {
-            progressRate: 0,
-            activeComplexes: 0,
-            totalComplexes: 0,
-        });
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsOverallProgressComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -71,8 +68,10 @@ describe('StatisticsOverallProgressComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `overallProgressData`', () => {
-            expectToEqual(component.overallProgressData(), { progressRate: 0, activeComplexes: 0, totalComplexes: 0 });
+        it('... should throw due to missing required input signal `overallProgressData`', () => {
+            expectToBe(isSignal(component.overallProgressData), true);
+
+            expect(() => component.overallProgressData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -87,10 +86,11 @@ describe('StatisticsOverallProgressComponent', () => {
             // Set input signals with test data
             fixture.componentRef.setInput('overallProgressData', expectedOverallProgressData);
 
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `overallProgressData`', () => {
+        it('... should have input signal `overallProgressData` to hold the provided data', () => {
             expectToEqual(component.overallProgressData(), expectedOverallProgressData);
         });
 

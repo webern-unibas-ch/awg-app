@@ -15,8 +15,8 @@ import { StructureViewComponent } from './structure-view.component';
     template: '',
 })
 class HeadingStubComponent {
-    title = input<string>('');
-    id = input<string>('');
+    title = input.required<string>();
+    id = input.required<string>();
 }
 
 describe('StructureViewComponent (DONE)', () => {
@@ -42,6 +42,7 @@ describe('StructureViewComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Create component fixture
         fixture = TestBed.createComponent(StructureViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

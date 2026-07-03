@@ -34,21 +34,21 @@ import { StatisticsSummaryComponent } from './statistics-summary/statistics-summ
 })
 export class StatisticsViewComponent {
     /**
-     * Public signal: statisticsData.
+     * Readonly signal: statisticsData.
      *
      * It holds the statistics data for the edition complexes,
      * which is retrieved from the StatisticsService based on data from the EditionOutlineService.
      */
-    statisticsData = signal<Statistics | null>(
+    readonly statisticsData = signal<Statistics | null>(
         inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
     );
 
     /**
-     * Computed signal: complexBreakdownData.
+     * Readonly computed signal: complexBreakdownData.
      *
      * It computes the complex breakdown data for the statistics breakdown badges based on the main statistics data.
      */
-    complexBreakdownData = computed<StatisticsComplexBreakdownData | null>(() => {
+    readonly complexBreakdownData = computed<StatisticsComplexBreakdownData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;
@@ -62,11 +62,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: overallProgressData.
+     * Readonly computed signal: overallProgressData.
      *
      * It computes the overall progress data for the statistics progress bar based on the main statistics data.
      */
-    overallProgressData = computed<StatisticsOverallProgressData | null>(() => {
+    readonly overallProgressData = computed<StatisticsOverallProgressData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;
@@ -80,11 +80,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: summaryData.
+     * Readonly omputed signal: summaryData.
      *
      * It computes the summary data for the statistics summary cards based on the main statistics data.
      */
-    summaryData = computed<StatisticsSummaryData | null>(() => {
+    readonly summaryData = computed<StatisticsSummaryData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;

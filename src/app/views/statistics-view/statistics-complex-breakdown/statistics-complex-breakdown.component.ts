@@ -24,11 +24,11 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
 })
 export class StatisticsComplexBreakdownComponent {
     /**
-     * Input signal: complexBreakdownData.
+     * Readonly input signal: complexBreakdownData.
      *
      * It holds the complex breakdown data.
      */
-    complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
+    readonly complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
 
     /**
      * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.

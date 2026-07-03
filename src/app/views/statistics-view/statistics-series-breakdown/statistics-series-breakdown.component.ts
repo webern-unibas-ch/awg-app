@@ -22,11 +22,11 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
 })
 export class StatisticsSeriesBreakdownComponent {
     /**
-     * Input signal: seriesBreakdown.
+     * Readonly input signal: seriesBreakdown.
      *
      * It holds the series breakdown data.
      */
-    seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
+    readonly seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
 
     /**
      * Readonly variable: ROUTES.

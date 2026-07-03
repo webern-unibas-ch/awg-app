@@ -19,22 +19,19 @@ import { StatisticsSummaryCardComponent } from '../statistics-summary-card/stati
 })
 export class StatisticsSummaryComponent {
     /**
-     * Input signal: summaryData.
+     * Readonly input signal: summaryData.
      *
      * It holds the summary data.
      */
-    summaryData = input.required<StatisticsSummaryData>();
+    readonly summaryData = input.required<StatisticsSummaryData>();
 
     /**
-     * Computed signal: summaryCards.
+     * Readonly computed signal: summaryCards.
      *
      * It computes the data for the statistics summary cards based on the input data.
      */
-    summaryCards = computed<StatisticsSummaryCardData[]>(() => {
+    readonly summaryCards = computed<StatisticsSummaryCardData[]>(() => {
         const data = this.summaryData();
-        if (!data) {
-            return [];
-        }
 
         return [
             {

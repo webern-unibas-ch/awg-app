@@ -103,13 +103,8 @@ describe('StatisticsViewComponent', () => {
     });
 
     beforeEach(() => {
-        // Spies for service methods (need to be created before component creation)
+        // Service spies
         mockStatisticsService.getStatisticsFromOutline.mockReturnValue({} as Statistics);
-
-        // Create component fixture
-        fixture = TestBed.createComponent(StatisticsViewComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
 
         // Test data
         expectedStatisticsData = {
@@ -174,6 +169,11 @@ describe('StatisticsViewComponent', () => {
             activeComplexes: expectedStatisticsData.activeComplexes,
             totalComplexes: expectedStatisticsData.totalComplexes,
         };
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsViewComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -185,10 +185,28 @@ describe('StatisticsViewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have a signal `statisticsData` (initialized with data from StatisticsService)', () => {
+        it('... should have a signal `statisticsData` to hold empty object', () => {
+            expectToBe(isSignal(component.statisticsData), true);
+
             expectToEqual(component.statisticsData(), {} as Statistics);
 
             expect(mockStatisticsService.getStatisticsFromOutline).toHaveBeenCalled();
+        });
+
+        it('... should have computed signal `complexBreakdownData` to hold null', () => {
+            expectToBe(isSignal(component.complexBreakdownData), true);
+
+            expectToBe(component.complexBreakdownData(), null);
+        });
+        it('... should have computed signal `overallProgressData` to hold null', () => {
+            expectToBe(isSignal(component.overallProgressData), true);
+
+            expectToBe(component.overallProgressData(), null);
+        });
+        it('... should have computed signal `summaryData` to hold null', () => {
+            expectToBe(isSignal(component.summaryData), true);
+
+            expectToBe(component.summaryData(), null);
         });
 
         describe('VIEW', () => {
@@ -201,14 +219,45 @@ describe('StatisticsViewComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set input signals with test data
-            component.statisticsData.set(expectedStatisticsData);
             mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
+            component.statisticsData.set(expectedStatisticsData);
 
             fixture.detectChanges();
         });
 
-        it('... should have updated `statisticsData` signal', () => {
+        it('... should have signal `statisticsData` to hold the provided data', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
+        });
+
+        it('... should have computed signal `complexBreakdownData` to hold correct data', () => {
+            const complexBreakdownData = component.complexBreakdownData();
+
+            expectToEqual(complexBreakdownData, {
+                activeComplexBreakdown: expectedStatisticsData.activeComplexBreakdown,
+                complexBreakdown: expectedStatisticsData.complexBreakdown,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
+        });
+
+        it('... should have computed signal `overallProgressData` to hold correct data', () => {
+            const overallProgressData = component.overallProgressData();
+
+            expectToEqual(overallProgressData, {
+                progressRate: expectedStatisticsData.progressRate,
+                activeComplexes: expectedStatisticsData.activeComplexes,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
+        });
+
+        it('... should have computed signal `summaryData` to hold correct data', () => {
+            const summaryData = component.summaryData();
+
+            expectToEqual(summaryData, {
+                activeSeries: expectedStatisticsData.activeSeries,
+                activeSections: expectedStatisticsData.activeSections,
+                activeComplexes: expectedStatisticsData.activeComplexes,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
         });
 
         describe('VIEW', () => {
@@ -372,88 +421,6 @@ describe('StatisticsViewComponent', () => {
                 const seriesBreakdownCmp = seriesBreakdownDes[0].injector.get(StatisticsSeriesBreakdownStubComponent);
 
                 expectToEqual(seriesBreakdownCmp.seriesBreakdownData(), expectedStatisticsData.seriesBreakdown);
-            });
-        });
-    });
-
-    describe('#complexBreakdownData', () => {
-        it('... should have a computed signal `complexBreakdownData`', () => {
-            expect(component.complexBreakdownData).toBeDefined();
-            expectToBe(isSignal(component.complexBreakdownData), true);
-        });
-
-        it('... should return null if statisticsData is null', () => {
-            component.statisticsData.set(null);
-
-            const complexBreakdownData = component.complexBreakdownData();
-
-            expectToBe(complexBreakdownData, null);
-        });
-
-        it('... should compute complex breakdown data based on statisticsData', () => {
-            component.statisticsData.set(expectedStatisticsData);
-
-            const complexBreakdownData = component.complexBreakdownData();
-
-            expectToEqual(complexBreakdownData, {
-                activeComplexBreakdown: expectedStatisticsData.activeComplexBreakdown,
-                complexBreakdown: expectedStatisticsData.complexBreakdown,
-                totalComplexes: expectedStatisticsData.totalComplexes,
-            });
-        });
-    });
-
-    describe('#overallProgressData', () => {
-        it('... should have a computed signal `overallProgressData`', () => {
-            expect(component.overallProgressData).toBeDefined();
-            expectToBe(isSignal(component.overallProgressData), true);
-        });
-
-        it('... should return null if statisticsData is null', () => {
-            component.statisticsData.set(null);
-
-            const overallProgressData = component.overallProgressData();
-
-            expectToBe(overallProgressData, null);
-        });
-
-        it('... should compute overall progress data based on statisticsData', () => {
-            component.statisticsData.set(expectedStatisticsData);
-
-            const overallProgressData = component.overallProgressData();
-
-            expectToEqual(overallProgressData, {
-                progressRate: expectedStatisticsData.progressRate,
-                activeComplexes: expectedStatisticsData.activeComplexes,
-                totalComplexes: expectedStatisticsData.totalComplexes,
-            });
-        });
-    });
-
-    describe('#summaryData', () => {
-        it('... should have a computed signal `summaryData`', () => {
-            expect(component.summaryData).toBeDefined();
-            expectToBe(isSignal(component.summaryData), true);
-        });
-
-        it('... should return null if statisticsData is null', () => {
-            component.statisticsData.set(null);
-
-            const summaryData = component.summaryData();
-
-            expectToBe(summaryData, null);
-        });
-
-        it('... should compute summary data based on statisticsData', () => {
-            component.statisticsData.set(expectedStatisticsData);
-
-            const summaryData = component.summaryData();
-
-            expectToEqual(summaryData, {
-                activeSeries: expectedStatisticsData.activeSeries,
-                activeSections: expectedStatisticsData.activeSections,
-                activeComplexes: expectedStatisticsData.activeComplexes,
-                totalComplexes: expectedStatisticsData.totalComplexes,
             });
         });
     });

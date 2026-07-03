@@ -28,7 +28,7 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input<MetaIdentifiers>({});
+    identifiers = input.required<MetaIdentifiers>();
 }
 
 describe('StructureSideInfoComponent (DONE)', () => {
@@ -60,12 +60,13 @@ describe('StructureSideInfoComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Test data
+        expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
+
+        // Create component fixture
         fixture = TestBed.createComponent(StructureSideInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
     });
 
     afterEach(() => {
@@ -86,7 +87,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
             expectToBe(component.STRUCTURE_SIDE_INFO_HEADER, expectedStructureSideInfoHeader);
         });
 
-        it('... should have `structureMetaData` with expected data', () => {
+        it('... should have signal `structureMetaData` to hold the provided data (via service)', () => {
             expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
@@ -148,10 +149,6 @@ describe('StructureSideInfoComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `structureMetaData` with expected data', () => {
-            expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
         describe('VIEW', () => {
