@@ -134,7 +134,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/services/fullscreen-service/fullscreen.service.ts</code>
+            <code>src/app/shared/fullscreen/fullscreen.service.ts</code>
         </p>
 
 
@@ -167,6 +167,15 @@
                                     <span class="modifier">Readonly</span>
                                 <a href="#_document" >_document</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_isFullscreen" >_isFullscreen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -183,10 +192,10 @@
                                 <a href="#closeFullscreen" >closeFullscreen</a>
                             </li>
                             <li>
-                                <a href="#isFullscreen" >isFullscreen</a>
+                                <a href="#openFullscreen" >openFullscreen</a>
                             </li>
                             <li>
-                                <a href="#openFullscreen" >openFullscreen</a>
+                                <a href="#updateState" >updateState</a>
                             </li>
                         </ul>
                     </td>
@@ -226,8 +235,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -254,50 +263,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isFullscreen"></a>
-                    <span class="name">
-                        <span ><b>isFullscreen</b></span>
-                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>isFullscreen()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: isFullscreen.</p>
-<p>It checks if the document is in fullscreen mode.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Returns true if the document is in fullscreen mode, false otherwise.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="openFullscreen"></a>
                     <span class="name">
                         <span ><b>openFullscreen</b></span>
@@ -314,8 +279,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -370,6 +335,50 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateState"></a>
+                    <span class="name">
+                        <span ><b>updateState</b></span>
+                        <a href="#updateState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateState.</p>
+<p>It updates the fullscreen state based on the document&#39;s fullscreen element.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the fullscreen state.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section data-compodoc="block-properties">
     
@@ -402,7 +411,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -416,13 +425,92 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isFullscreen"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_isFullscreen</b></span>
+                        <a href="#_isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(!!this._document.fullscreenElement)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly signal: _isFullscreen.</p>
+<p>It holds the fullscreen state for internal use.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullscreen"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isFullscreen</b></span>
+                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._isFullscreen.asReadonly()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public readonly signal: isFullscreen.</p>
+<p>It holds the fullscreen state for components and templates.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Injectable, signal } from &#x27;@angular/core&#x27;;
 
 /**
  * The Fullscreen service.
@@ -443,6 +531,31 @@ export class FullscreenService {
     private readonly _document &#x3D; inject(DOCUMENT);
 
     /**
+     * Private readonly signal: _isFullscreen.
+     *
+     * It holds the fullscreen state for internal use.
+     */
+    private readonly _isFullscreen &#x3D; signal&lt;boolean&gt;(!!this._document.fullscreenElement);
+
+    /**
+     * Public readonly signal: isFullscreen.
+     *
+     * It holds the fullscreen state for components and templates.
+     */
+    readonly isFullscreen &#x3D; this._isFullscreen.asReadonly();
+
+    /**
+     * Public method: updateState.
+     *
+     * It updates the fullscreen state based on the document&#x27;s fullscreen element.
+     *
+     * @returns {void} Updates the fullscreen state.
+     */
+    updateState(): void {
+        this._isFullscreen.set(!!this._document.fullscreenElement);
+    }
+
+    /**
      * Public method: closeFullscreen.
      *
      * It exits fullscreen mode.
@@ -453,17 +566,6 @@ export class FullscreenService {
         if (this._document.exitFullscreen) {
             this._document.exitFullscreen().catch((err: Error) &#x3D;&gt; console.error(err));
         }
-    }
-
-    /**
-     * Public method: isFullscreen.
-     *
-     * It checks if the document is in fullscreen mode.
-     *
-     * @returns {boolean} Returns true if the document is in fullscreen mode, false otherwise.
-     */
-    isFullscreen(): boolean {
-        return !!this._document.fullscreenElement;
     }
 
     /**
