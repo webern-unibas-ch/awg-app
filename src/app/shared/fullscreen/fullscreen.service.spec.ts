@@ -142,7 +142,7 @@ describe('FullscreenService (DONE)', () => {
         });
 
         afterEach(() => {
-            vi.restoreAllMocks;
+            vi.restoreAllMocks();
         });
 
         it('... should have a method `openFullscreen`', () => {
