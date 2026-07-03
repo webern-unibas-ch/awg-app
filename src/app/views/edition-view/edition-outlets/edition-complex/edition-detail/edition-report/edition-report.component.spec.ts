@@ -243,7 +243,7 @@ describe('EditionReportComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // Inject services from root
+        // Inject services
         editionDataService = TestBed.inject(EditionDataService);
         editionStateService = TestBed.inject(EditionStateService);
 

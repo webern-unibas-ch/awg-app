@@ -125,13 +125,13 @@ describe('FooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have signal `pageMetaData` to hold provided data (via service)', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
             expectToBe(isSignal(component.pageMetaData), true);
 
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have signal `logosData` to hold provided data (via service)', () => {
+        it('... should have signal `logosData` to hold the provided data (via service)', () => {
             expectToBe(isSignal(component.logosData), true);
 
             expectToEqual(component.logosData(), expectedLogosData);

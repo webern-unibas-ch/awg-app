@@ -166,13 +166,13 @@ describe('NavbarComponent (DONE)', () => {
             expectToBe(component.isCollapsed(), true);
         });
 
-        it('... should have signal `logosData` to hold provided data (via service)', () => {
+        it('... should have signal `logosData` to hold the provided data (via service)', () => {
             expectToBe(isSignal(component.logosData), true);
 
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
-        it('... should have signal `sectionLinksData` to hold provided data', () => {
+        it('... should have signal `sectionLinksData` to hold the provided data', () => {
             expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
         });
 

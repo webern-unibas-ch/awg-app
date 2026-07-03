@@ -179,7 +179,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // Inject service from root
+        // Inject services
         graphVisualizerService = TestBed.inject(GraphVisualizerService);
         toastService = TestBed.inject(ToastService);
 
@@ -251,7 +251,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expect(component.graphRDFInputData).toBeUndefined();
         });
 
-        it('... should have input signal `isFullscreenMode` to hold default value', () => {
+        it('... should have input signal `isFullscreenMode` to hold the default value', () => {
             expectToBe(isSignal(component.isFullscreenMode), true);
 
             expectToBe(component.isFullscreenMode(), false);

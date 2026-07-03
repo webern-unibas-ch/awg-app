@@ -45,9 +45,9 @@ describe('EditionSvgDrawingService (DONE)', () => {
             providers: [EditionSvgDrawingService],
         });
 
-        // Inject service and Document
-        service = TestBed.inject(EditionSvgDrawingService);
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+        service = TestBed.inject(EditionSvgDrawingService);
 
         // Test data
         expectedOverlays = [

@@ -1,6 +1,6 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, LOCALE_ID } from '@angular/core';
+import { Component, DebugElement, input, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -29,8 +29,8 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class HeadingStubComponent {
-    title = input<string>('');
-    id = input<string>('');
+    title = input.required<string>();
+    id = input.required<string>();
 }
 
 @Component({
@@ -38,7 +38,7 @@ class HeadingStubComponent {
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input<MetaIdentifiers>({});
+    identifiers = input.required<MetaIdentifiers>();
 }
 
 describe('ContactViewComponent (DONE)', () => {
@@ -82,14 +82,15 @@ describe('ContactViewComponent (DONE)', () => {
         vi.useFakeTimers();
         vi.setSystemTime(new Date('2026-06-01T12:00:00Z'));
 
-        fixture = TestBed.createComponent(ContactViewComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
         expectedToday = Date.now();
+
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactViewComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -122,15 +123,21 @@ describe('ContactViewComponent (DONE)', () => {
             expectToBe(component.IMPRINT_TITLE, expectedImprintTitle);
         });
 
-        it('... should have `contactMetaData`', () => {
+        it('... should have signal `contactMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.contactMetaData), true);
+
             expectToEqual(component.contactMetaData(), expectedContactMetaData);
         });
 
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `today`', () => {
+        it('... should have signal `today` to hold correct date', () => {
+            expectToBe(isSignal(component.today), true);
+
             expectToBe(component.today(), expectedToday);
         });
 
@@ -209,10 +216,6 @@ describe('ContactViewComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `today`', () => {
-            expectToBe(component.today(), expectedToday);
         });
 
         describe('VIEW', () => {

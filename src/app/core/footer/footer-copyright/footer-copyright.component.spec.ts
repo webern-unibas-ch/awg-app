@@ -60,7 +60,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have input signal `pageMetaData` to hold provided data', () => {
+        it('... should have input signal `pageMetaData` to hold the provided data', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 

@@ -81,7 +81,7 @@ describe('FolioService (DONE)', () => {
             providers: [FolioService],
         });
 
-        // Inject services and http client handler
+        // Inject services
         folioService = TestBed.inject(FolioService);
         refMock = {
             selectSvgSheet: vi.fn(),

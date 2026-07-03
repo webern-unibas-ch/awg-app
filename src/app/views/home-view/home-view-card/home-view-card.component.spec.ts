@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -16,7 +16,7 @@ import {
 } from '@testing/expect-helper';
 
 import { HomeViewCardComponent } from './home-view-card.component';
-import { HomeViewCard, HomeViewCardExternalLink, HomeViewCardInternalLink } from './models/home-view-card.model';
+import { HomeViewCard, HomeViewCardExternalLink, HomeViewCardInternalLink } from './home-view-card.model';
 
 describe('HomeViewCardComponent (DONE)', () => {
     let component: HomeViewCardComponent;
@@ -37,10 +37,7 @@ describe('HomeViewCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(HomeViewCardComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject service
         router = TestBed.inject(Router);
 
         // Test data
@@ -63,8 +60,10 @@ describe('HomeViewCardComponent (DONE)', () => {
 
         expectedFaArrowRight = faArrowRight;
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('cardData', expectedInternalCardData);
+        // Create component fixture
+        fixture = TestBed.createComponent(HomeViewCardComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -72,11 +71,13 @@ describe('HomeViewCardComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `cardData`', () => {
-            expectToEqual(component.cardData(), expectedInternalCardData);
+        it('... should throw due to missing required input signal `cardData`', () => {
+            expectToBe(isSignal(component.cardData), true);
+
+            expect(() => component.cardData()).toThrow();
         });
 
-        it('... should have faArrowRight', () => {
+        it('... should have `faArrowRight`', () => {
             expectToEqual(component.faArrowRight, expectedFaArrowRight);
         });
 
@@ -138,14 +139,14 @@ describe('HomeViewCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('cardData', expectedInternalCardData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('should have updated `cardData` input', () => {
+        it('... should have input signal `cardData` to hold the provided data', () => {
             expectToEqual(component.cardData(), expectedInternalCardData);
         });
 
@@ -273,10 +274,8 @@ describe('HomeViewCardComponent (DONE)', () => {
             let linkDes: DebugElement[];
 
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLink
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
 
-                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 

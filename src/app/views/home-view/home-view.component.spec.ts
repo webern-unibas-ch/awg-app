@@ -1,4 +1,4 @@
-import { Component, DebugElement, input, model } from '@angular/core';
+import { Component, DebugElement, input, isSignal, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -22,7 +22,7 @@ import { EditionComplexesService, EditionOutlineService } from '@awg-views/editi
 
 import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
-import { HomeViewCard } from './home-view-card/models/home-view-card.model';
+import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 import { HomeViewComponent } from './home-view.component';
 
@@ -32,7 +32,7 @@ import { HomeViewComponent } from './home-view.component';
     template: '',
 })
 class AlertInfoStubComponent {
-    infoMessage = input<string>('');
+    infoMessage = input.required<string>();
     isOpen = model<boolean>(true);
 }
 
@@ -41,8 +41,8 @@ class AlertInfoStubComponent {
     template: '',
 })
 class HeadingStubComponent {
-    title = input<string>('');
-    id = input<string>('');
+    title = input.required<string>();
+    id = input.required<string>();
 }
 
 @Component({
@@ -82,7 +82,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedDisclaimerMessage: string;
     let expectedHomeViewCardData: HomeViewCard[];
     let expectedPageMetaData: MetaPage;
-    let expectedSectionLinks: EditionSectionLink[];
+    let expectedSectionLinksData: EditionSectionLink[];
 
     let expectedRouterlinks: string[][];
 
@@ -104,10 +104,7 @@ describe('HomeViewComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(HomeViewComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         router = TestBed.inject(Router);
 
         // Test data
@@ -124,7 +121,7 @@ describe('HomeViewComponent (DONE)', () => {
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
-        expectedSectionLinks = [
+        expectedSectionLinksData = [
             {
                 route: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
                 shortTitle: `${routes.EDITION.short} I/5`,
@@ -139,6 +136,11 @@ describe('HomeViewComponent (DONE)', () => {
             },
         ];
         expectedRouterlinks = getRouterlinks(expectedSections);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(HomeViewComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -155,19 +157,27 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(component.DISCLAIMER_MESSAGE, expectedDisclaimerMessage);
         });
 
-        it('... should have `sectionLinksData`', () => {
-            expectToEqual(component.sectionLinksData(), expectedSectionLinks);
+        it('... should have signal `sectionLinksData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.sectionLinksData), true);
+
+            expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
         });
 
-        it('... should have `homeViewCardData`', () => {
+        it('... should have signal `homeViewCardData` to hold the provided data', () => {
+            expectToBe(isSignal(component.homeViewCardData), true);
+
             expectToEqual(component.homeViewCardData(), expectedHomeViewCardData);
         });
 
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `rowtablesRoute`', () => {
+        it('... should have signal `rowtablesRoute` to hold the provided route', () => {
+            expectToBe(isSignal(component.rowtablesRoute), true);
+
             expectToEqual(component.rowtablesRoute(), expectedRouterlinks.at(-2));
         });
 
@@ -276,22 +286,6 @@ describe('HomeViewComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `sectionLinksData`', () => {
-            expectToEqual(component.sectionLinksData(), expectedSectionLinks);
-        });
-
-        it('... should have `homeViewCardData`', () => {
-            expectToEqual(component.homeViewCardData(), expectedHomeViewCardData);
-        });
-
-        it('... should have `pageMetaData`', () => {
-            expectToEqual(component.pageMetaData(), expectedPageMetaData);
-        });
-
-        it('... should have `rowtablesRoute`', () => {
-            expectToEqual(component.rowtablesRoute(), expectedRouterlinks.at(-2));
         });
 
         describe('VIEW', () => {
@@ -438,7 +432,6 @@ describe('HomeViewComponent (DONE)', () => {
             let routerLinks: RouterLink[];
 
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLink,
@@ -446,7 +439,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expectedRouterlinks.length
                 );
 
-                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
             });
 

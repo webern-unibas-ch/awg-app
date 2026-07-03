@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-import { HomeViewCard } from './models/home-view-card.model';
+import { HomeViewCard } from './home-view-card.model';
 
 /**
  * The HomeViewCard component.
@@ -22,16 +22,16 @@ import { HomeViewCard } from './models/home-view-card.model';
 })
 export class HomeViewCardComponent {
     /**
-     * Input signal: cardData.
+     * Readonly input signal: cardData.
      *
      * It holds the data for the home view card.
      */
-    cardData = input.required<HomeViewCard>();
+    readonly cardData = input.required<HomeViewCard>();
 
     /**
-     * Public variable: faArrowRight.
+     * Readonly variable: faArrowRight.
      *
      * It instantiates fontawesome's faArrowRight icon.
      */
-    faArrowRight = faArrowRight;
+    readonly faArrowRight = faArrowRight;
 }

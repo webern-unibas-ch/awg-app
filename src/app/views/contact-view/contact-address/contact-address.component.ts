@@ -16,16 +16,16 @@ import { MetaContact, MetaPage } from '@awg-core/models/meta.model';
 })
 export class ContactAddressComponent {
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the contact address.
      */
-    pageMetaData = input.required<MetaPage>();
+    readonly pageMetaData = input.required<MetaPage>();
 
     /**
-     * Input signal: contactMetaData.
+     * Readonly nput signal: contactMetaData.
      *
      * It holds the contact metadata for the contact address.
      */
-    contactMetaData = input.required<MetaContact>();
+    readonly contactMetaData = input.required<MetaContact>();
 }

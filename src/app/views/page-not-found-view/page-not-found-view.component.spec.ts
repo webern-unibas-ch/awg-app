@@ -23,8 +23,8 @@ import { PageNotFoundViewComponent } from './page-not-found-view.component';
     template: '',
 })
 class HeadingStubComponent {
-    title = input<string>('');
-    id = input<string>('');
+    title = input.required<string>();
+    id = input.required<string>();
 }
 
 describe('PageNotFoundViewComponent (DONE)', () => {
@@ -53,11 +53,13 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Inject services
+        router = TestBed.inject(Router);
+
+        // Create component fixture
         fixture = TestBed.createComponent(PageNotFoundViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        router = TestBed.inject(Router);
     });
 
     it('... should create', () => {
@@ -65,20 +67,20 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have PAGE_NOT_FOUND_ID', () => {
+        it('... should have `PAGE_NOT_FOUND_ID`', () => {
             expectToBe(component.PAGE_NOT_FOUND_VIEW_ID, expectedPageNotFoundViewId);
         });
 
-        it('... should have PAGE_NOT_FOUND_TITLE and PAGE_NOT_FOUND_SUBTITLE', () => {
+        it('... should have `PAGE_NOT_FOUND_TITLE` and `PAGE_NOT_FOUND_SUBTITLE`', () => {
             expectToBe(component.PAGE_NOT_FOUND_VIEW_TITLE, expectedPageNotFoundViewTitle);
             expectToBe(component.PAGE_NOT_FOUND_VIEW_SUBTITLE, expectedPageNotFoundViewSubTitle);
         });
 
-        it('... should have PAGE_NOT_FOUND_IMG_PATH', () => {
+        it('... should have `PAGE_NOT_FOUND_IMG_PATH`', () => {
             expectToBe(component.PAGE_NOT_FOUND_VIEW_IMG_PATH, expectedPageNotFoundViewImgPath);
         });
 
-        it('... should have AWG_CONTACT_URL', () => {
+        it('... should have `AWG_CONTACT_URL`', () => {
             expectToBe(component.AWG_CONTACT_URL, expectedAwgContactUrl);
         });
 
@@ -265,10 +267,8 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             let routerLinks: RouterLink[];
 
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLink
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
 
-                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 

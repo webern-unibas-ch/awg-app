@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -25,17 +25,14 @@ describe('ContactAddressComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ContactAddressComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
-        fixture.componentRef.setInput('contactMetaData', {} as MetaContact);
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactAddressComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -43,12 +40,16 @@ describe('ContactAddressComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `pageMetaData`', () => {
-            expectToEqual(component.pageMetaData(), {} as MetaPage);
+        it('... should throw due to missing required input signal `pageMetaData`', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
+            expect(() => component.pageMetaData()).toThrow();
         });
 
-        it('... should have required `contactMetaData`', () => {
-            expectToEqual(component.contactMetaData(), {} as MetaContact);
+        it('... should throw due to missing required input signal `contactMetaData`', () => {
+            expectToBe(isSignal(component.contactMetaData), true);
+
+            expect(() => component.contactMetaData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -115,7 +116,7 @@ describe('ContactAddressComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the inputs
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
             fixture.componentRef.setInput('contactMetaData', expectedContactMetaData);
 
@@ -123,11 +124,11 @@ describe('ContactAddressComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated `pageMetaData`', () => {
+        it('... should have input signal `pageMetaData` to hold the provided data', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have updated `contactMetaData`', () => {
+        it('... should have input signal `contactMetaData` to hold the provided data', () => {
             expectToEqual(component.contactMetaData(), expectedContactMetaData);
         });
 

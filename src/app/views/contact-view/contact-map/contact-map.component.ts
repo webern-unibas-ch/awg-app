@@ -14,18 +14,18 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 })
 export class ContactMapComponent {
     /**
-     * Input signal: embedUrl.
+     * Readonly input signal: embedUrl.
      *
      * It holds the sanitized link to embed the map.
      */
-    embedUrl = input.required<SafeResourceUrl>();
+    readonly embedUrl = input.required<SafeResourceUrl>();
 
     /**
-     * Input signal: linkUrl.
+     * Readonly input signal: linkUrl.
      *
      * It holds the direct link to the external map page.
      */
-    linkUrl = input.required<string>();
+    readonly linkUrl = input.required<string>();
 
     /**
      * Public readonly variable: LINK_LABEL.

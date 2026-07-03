@@ -35,7 +35,7 @@ describe('EditionSheetsService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [EditionSheetsService],
         });
-        // Inject service
+        // Inject services
         editionSheetsService = TestBed.inject(EditionSheetsService);
 
         // Test data

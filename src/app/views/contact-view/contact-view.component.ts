@@ -29,65 +29,67 @@ export class ContactViewComponent {
     private readonly _coreService = inject(CoreService);
 
     /**
-     * Public readonly variable: CITATION_ID.
+     * Readonly variable: CITATION_ID.
      *
      * It keeps the id of the citation section.
      */
     readonly CITATION_ID = 'awg-citation';
 
     /**
-     * Public readonly variable: CITATION_TITLE.
+     * Readonly variable: CITATION_TITLE.
      *
      * It keeps the title of the citation section.
      */
     readonly CITATION_TITLE = 'Zitation';
 
     /**
-     * Public readonly variable: IMPRINT_ID.
+     * Readonly variable: IMPRINT_ID.
      *
      * It keeps the id of the imprint section.
      */
     readonly IMPRINT_ID = 'awg-imprint';
 
     /**
-     * Public readonly variable: IMPRINT_TITLE.
+     * Readonly variable: IMPRINT_TITLE.
      *
      * It keeps the title of the imprint section.
      */
     readonly IMPRINT_TITLE = 'Impressum';
 
     /**
-     * Public readonly variable: DOCUMENTATION_ID.
+     * Readonly variable: DOCUMENTATION_ID.
      *
      * It keeps the id of the documentation section.
      */
     readonly DOCUMENTATION_ID = 'awg-documentation';
 
     /**
-     * Public readonly variable: DOCUMENTATION_TITLE.
+     * Readonly variable: DOCUMENTATION_TITLE.
      *
      * It keeps the title of the documentation section.
      */
     readonly DOCUMENTATION_TITLE = 'Dokumentation';
 
     /**
-     * Public readonly signal: contactMetaData.
+     * Readonly signal: contactMetaData.
      *
      * It holds the contact metadata for the contact view via the injected CoreService.
      */
-    contactMetaData = signal<MetaContact>(this._coreService.getMetaDataSection(MetaSectionTypes.contact)).asReadonly();
+    readonly contactMetaData = signal<MetaContact>(
+        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
+    ).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the contact view via the injected CoreService.
      */
-    pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
-     * Public readonly signal: today.
+     * Readonly signal: today.
      *
      * It holds the current date for the contact view.
      */
-    today = signal<number>(Date.now()).asReadonly();
+    readonly today = signal<number>(Date.now()).asReadonly();
 }

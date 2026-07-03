@@ -1,4 +1,4 @@
-import { DebugElement, SecurityContext } from '@angular/core';
+import { DebugElement, isSignal, SecurityContext } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -33,10 +33,7 @@ describe('ContactMapComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ContactMapComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         domSanitizer = TestBed.inject(DomSanitizer);
 
         // Test data
@@ -53,9 +50,10 @@ describe('ContactMapComponent (DONE)', () => {
         // Trust the unsafe values
         expectedEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeEmbedUrl);
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('embedUrl', expectedEmbedUrl);
-        fixture.componentRef.setInput('linkUrl', expectedLinkUrl);
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactMapComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -63,11 +61,15 @@ describe('ContactMapComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `embedUrl` input', () => {
+        it('... should throw due to missing required input signal `embedUrl`', () => {
+            expectToBe(isSignal(component.embedUrl), true);
+
             expectToBe(component.embedUrl(), expectedEmbedUrl);
         });
 
-        it('... should have required `linkUrl` input', () => {
+        it('... should throw due to missing required input signal `linkUrl`', () => {
+            expectToBe(isSignal(component.linkUrl), true);
+
             expectToBe(component.linkUrl(), expectedLinkUrl);
         });
 
@@ -121,12 +123,20 @@ describe('ContactMapComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('embedUrl', expectedEmbedUrl);
             fixture.componentRef.setInput('linkUrl', expectedLinkUrl);
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have input signal `embedUrl` to hold the provided URL', () => {
+            expectToEqual(component.embedUrl(), expectedEmbedUrl);
+        });
+
+        it('... should have input signal `linkUrl` to hold the provided URL', () => {
+            expectToEqual(component.linkUrl(), expectedLinkUrl);
         });
 
         describe('VIEW', () => {
