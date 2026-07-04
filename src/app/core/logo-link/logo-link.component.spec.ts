@@ -86,7 +86,7 @@ describe('LogoLinkComponent', () => {
             expectToBe(component.logoClassList(), `${cssClassMarginY2} ${cssClassFloatEnd}`);
         });
 
-        describe('... should update `logoClassList` when input changes', () => {
+        it('... should update `logoClassList` when input changes', () => {
             const testCases = [
                 { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
                 { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },

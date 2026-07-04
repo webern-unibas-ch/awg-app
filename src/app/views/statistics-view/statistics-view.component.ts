@@ -80,7 +80,7 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Readonly omputed signal: summaryData.
+     * Readonly computed signal: summaryData.
      *
      * It computes the summary data for the statistics summary cards based on the main statistics data.
      */

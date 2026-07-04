@@ -65,7 +65,7 @@ export class StatisticsProgressBarComponent {
     readonly customType = input<string>('');
 
     /**
-     * Input signal: useCustomTypeOnly.
+     * Readonly input signal: useCustomTypeOnly.
      *
      * It holds a flag whether to use only custom type and skip automatic color type logic.
      * @default false
@@ -121,8 +121,8 @@ export class StatisticsProgressBarComponent {
                 break;
         }
 
-        // Ensure width is between 0 and 100
-        return Math.max(0, Math.min(100, width));
+        // Ensure width is between 0 and 100 and not NaN
+        return isNaN(width) ? 0 : Math.max(0, Math.min(100, width));
     });
 
     /**
@@ -134,7 +134,7 @@ export class StatisticsProgressBarComponent {
     readonly progressHeaderValue = computed(() => {
         const cfg = this.config();
 
-        if (cfg.mode === 'percentage' || cfg.active === undefined) {
+        if (cfg.mode === 'percentage') {
             return '';
         }
 

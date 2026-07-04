@@ -23,7 +23,7 @@ export class ContactAddressComponent {
     readonly pageMetaData = input.required<MetaPage>();
 
     /**
-     * Readonly nput signal: contactMetaData.
+     * Readonly input signal: contactMetaData.
      *
      * It holds the contact metadata for the contact address.
      */

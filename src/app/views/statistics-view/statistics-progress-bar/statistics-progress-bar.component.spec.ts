@@ -56,7 +56,7 @@ describe('StatisticsProgressBarComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `fsElement`', () => {
+        it('... should throw due to missing required input signal `config`', () => {
             expectToBe(isSignal(component.config), true);
 
             expect(() => component.config()).toThrow();
@@ -478,11 +478,20 @@ describe('StatisticsProgressBarComponent', () => {
 
         describe('... should update `progressBarWidth` when input changes', () => {
             describe('... in percentage mode', () => {
-                it('... should return 0 if percentage is undefined', () => {
-                    fixture.componentRef.setInput('config', { mode: 'percentage' });
-                    fixture.detectChanges();
+                describe('... should return 0 if ...', () => {
+                    it('... percentage is undefined', () => {
+                        fixture.componentRef.setInput('config', { mode: 'percentage' });
+                        fixture.detectChanges();
 
-                    expectToBe(component.progressBarWidth(), 0);
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
+
+                    it('... percentage is NaN', () => {
+                        fixture.componentRef.setInput('config', { mode: 'percentage', percentage: NaN });
+                        fixture.detectChanges();
+
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
                 });
 
                 it('... should return the given percentage value directly', () => {
@@ -534,17 +543,34 @@ describe('StatisticsProgressBarComponent', () => {
             });
 
             describe('... in ratio mode', () => {
-                it('... should return 0 if total is 0', () => {
-                    const config: StatisticsProgressBarConfig = {
-                        mode: 'ratio',
-                        active: 30,
-                        total: 0,
-                    };
-                    fixture.componentRef.setInput('config', config);
-                    fixture.detectChanges();
+                describe('... should return 0 if ...', () => {
+                    it('... total is 0', () => {
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'ratio',
+                            active: 30,
+                            total: 0,
+                        };
+                        fixture.componentRef.setInput('config', config);
+                        fixture.detectChanges();
 
-                    expectToBe(component.progressBarWidth(), 0);
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
+
+                    it('... active is NaN', () => {
+                        fixture.componentRef.setInput('config', { mode: 'ratio', active: NaN, total: 100 });
+                        fixture.detectChanges();
+
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
+
+                    it('... total is NaN', () => {
+                        fixture.componentRef.setInput('config', { mode: 'ratio', active: 50, total: NaN });
+                        fixture.detectChanges();
+
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
                 });
+
                 it('... should calculate width as percentage of active vs total in ratio mode', () => {
                     const testCases = [
                         { active: 0, expectedWidth: 0 },
@@ -565,6 +591,19 @@ describe('StatisticsProgressBarComponent', () => {
 
                         expectToBe(component.progressBarWidth(), testCase.expectedWidth);
                     });
+                });
+
+                it('... should correctly round to the nearest whole integer', () => {
+                    // 33.333% -> 33
+                    fixture.componentRef.setInput('config', { mode: 'ratio', active: 1, total: 3 });
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 33);
+
+                    // 66.666% -> 67
+                    fixture.componentRef.setInput('config', { mode: 'ratio', active: 2, total: 3 });
+                    fixture.detectChanges();
+                    expectToBe(component.progressBarWidth(), 67);
                 });
 
                 it('... should clamp percentage to 100 if the configured active/total ratio is greater than 100%', () => {
@@ -593,16 +632,32 @@ describe('StatisticsProgressBarComponent', () => {
             });
 
             describe('... in absolute mode', () => {
-                it('... should return 0 if total is 0', () => {
-                    const config: StatisticsProgressBarConfig = {
-                        mode: 'absolute',
-                        active: 30,
-                        total: 0,
-                    };
-                    fixture.componentRef.setInput('config', config);
-                    fixture.detectChanges();
+                describe('... should return 0 if ...', () => {
+                    it('... total is 0', () => {
+                        const config: StatisticsProgressBarConfig = {
+                            mode: 'absolute',
+                            active: 30,
+                            total: 0,
+                        };
+                        fixture.componentRef.setInput('config', config);
+                        fixture.detectChanges();
 
-                    expectToBe(component.progressBarWidth(), 0);
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
+
+                    it('... active is NaN', () => {
+                        fixture.componentRef.setInput('config', { mode: 'absolute', active: NaN, total: 100 });
+                        fixture.detectChanges();
+
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
+
+                    it('... total is NaN', () => {
+                        fixture.componentRef.setInput('config', { mode: 'absolute', active: 50, total: NaN });
+                        fixture.detectChanges();
+
+                        expectToBe(component.progressBarWidth(), 0);
+                    });
                 });
 
                 it('... should calculate width as percentage of active vs total', () => {
@@ -625,6 +680,19 @@ describe('StatisticsProgressBarComponent', () => {
 
                         expectToBe(component.progressBarWidth(), testCase.expectedWidth);
                     });
+                });
+
+                it('... should correctly round to the nearest whole integer', () => {
+                    // 33.333% -> 33
+                    fixture.componentRef.setInput('config', { mode: 'absolute', active: 40, total: 120 });
+                    fixture.detectChanges();
+
+                    expectToBe(component.progressBarWidth(), 33);
+
+                    // 66.666% -> 67
+                    fixture.componentRef.setInput('config', { mode: 'absolute', active: 80, total: 120 });
+                    fixture.detectChanges();
+                    expectToBe(component.progressBarWidth(), 67);
                 });
 
                 it('... should clamp percentage to 100 if the configured active vs. total value is greater than 100%', () => {
@@ -670,37 +738,11 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('... should update `progressHeaderValue` when input changes', () => {
-            describe('... should return empty string', () => {
-                it('... when mode is percentage', () => {
-                    fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
-                    fixture.detectChanges();
+            it('... should return empty string when mode is percentage', () => {
+                fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
+                fixture.detectChanges();
 
-                    expectToBe(component.progressHeaderValue(), '');
-                });
-
-                it('... when mode is ratio but active is undefined', () => {
-                    const config: StatisticsProgressBarConfig = {
-                        mode: 'ratio',
-                        active: undefined,
-                        total: 120,
-                    };
-                    fixture.componentRef.setInput('config', config);
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressHeaderValue(), '');
-                });
-
-                it('... when mode is absolute but active is undefined', () => {
-                    const config: StatisticsProgressBarConfig = {
-                        mode: 'absolute',
-                        active: undefined,
-                        total: 120,
-                    };
-                    fixture.componentRef.setInput('config', config);
-                    fixture.detectChanges();
-
-                    expectToBe(component.progressHeaderValue(), '');
-                });
+                expectToBe(component.progressHeaderValue(), '');
             });
 
             it('... should return active/total ratio as string in ratio mode', () => {
@@ -715,6 +757,18 @@ describe('StatisticsProgressBarComponent', () => {
                 expectToBe(component.progressHeaderValue(), '75 / 120');
             });
 
+            it('... should return "0 / 0" in ratio mode when active and total are 0', () => {
+                const config: StatisticsProgressBarConfig = {
+                    mode: 'ratio',
+                    active: 0,
+                    total: 0,
+                };
+                fixture.componentRef.setInput('config', config);
+                fixture.detectChanges();
+
+                expectToBe(component.progressHeaderValue(), '0 / 0');
+            });
+
             it('... should return active value as string in absolute mode', () => {
                 const config: StatisticsProgressBarConfig = {
                     mode: 'absolute',
@@ -725,6 +779,18 @@ describe('StatisticsProgressBarComponent', () => {
                 fixture.detectChanges();
 
                 expectToBe(component.progressHeaderValue(), '75');
+            });
+
+            it('... should return "0" in absolute mode when active is 0', () => {
+                const config: StatisticsProgressBarConfig = {
+                    mode: 'absolute',
+                    active: 0,
+                    total: 0,
+                };
+                fixture.componentRef.setInput('config', config);
+                fixture.detectChanges();
+
+                expectToBe(component.progressHeaderValue(), '0');
             });
         });
 
