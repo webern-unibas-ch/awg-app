@@ -104,7 +104,7 @@ describe('StatisticsViewComponent', () => {
 
     beforeEach(() => {
         // Service spies
-        mockStatisticsService.getStatisticsFromOutline.mockReturnValue({} as Statistics);
+        mockStatisticsService.getStatisticsFromOutline.mockReturnValue(null);
 
         // Test data
         expectedStatisticsData = {
@@ -185,10 +185,10 @@ describe('StatisticsViewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have a signal `statisticsData` to hold empty object', () => {
+        it('... should have a signal `statisticsData` to hold null', () => {
             expectToBe(isSignal(component.statisticsData), true);
 
-            expectToEqual(component.statisticsData(), {} as Statistics);
+            expectToEqual(component.statisticsData(), null);
 
             expect(mockStatisticsService.getStatisticsFromOutline).toHaveBeenCalled();
         });

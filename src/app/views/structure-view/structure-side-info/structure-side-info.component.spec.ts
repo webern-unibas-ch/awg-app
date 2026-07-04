@@ -123,7 +123,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
+            it('... should throw when accessing MetaIdentifierBadgesComponent inputs (`identifiers`) due to missing initial data binding', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(
                     authorDes[0],
@@ -133,7 +133,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 );
                 const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
 
-                expectToEqual(badgeCmp.identifiers(), {});
+                expect(() => badgeCmp.identifiers()).toThrow();
             });
 
             it('... should not render last modification date yet', () => {

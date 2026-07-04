@@ -55,10 +55,10 @@ describe('LogoLinkComponent', () => {
             expectToBe(component.linkClass(), 'awg-logo-link');
         });
 
-        it('... should have computed signal `logoClassList` to hold empty string (due to missing logoData)', () => {
+        it('... should throw when accessing computed signal `logoClassList` due to missing input', () => {
             expectToBe(isSignal(component.logoClassList), true);
 
-            expectToBe(component.logoClassList(), '');
+            expect(() => component.logoClassList()).toThrow();
         });
 
         describe('VIEW', () => {

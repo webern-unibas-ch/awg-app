@@ -153,14 +153,14 @@ describe('ContactSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to address component (`pageMetaData` and `contactMetaData`)', () => {
+            it('... should throw when accessing address component inputs (`pageMetaData` and `contactMetaData`) due to missing initial data binding', () => {
                 const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
                 const addressCmp = addressDes[0].injector.get(
                     ContactAddressStubComponent
                 ) as ContactAddressStubComponent;
 
-                expectToEqual(addressCmp.pageMetaData(), {} as MetaPage);
-                expectToEqual(addressCmp.contactMetaData(), {} as MetaContact);
+                expect(() => addressCmp.pageMetaData()).toThrow();
+                expect(() => addressCmp.contactMetaData()).toThrow();
             });
 
             it('... should contain one map component (stubbed)', () => {

@@ -151,20 +151,15 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
             });
 
-            it('... should pass down empty default values to heading components (`id` and `title`)', () => {
+            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
-                expectToBe(headingCmps[0].id(), '');
-                expectToBe(headingCmps[0].title(), '');
-
-                expectToBe(headingCmps[1].id(), '');
-                expectToBe(headingCmps[1].title(), '');
-
-                expectToBe(headingCmps[2].id(), '');
-                expectToBe(headingCmps[2].title(), '');
+                headingCmps.forEach(headingCmp => {
+                    expect(() => headingCmp.title()).toThrow();
+                    expect(() => headingCmp.id()).toThrow();
+                });
             });
 
             it('... should contain 1 `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {

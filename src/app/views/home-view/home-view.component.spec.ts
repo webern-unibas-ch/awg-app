@@ -20,8 +20,8 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
+import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
 import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 import { HomeViewComponent } from './home-view.component';
@@ -191,13 +191,13 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to heading component (`id` and `title`)', () => {
+            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
-                expectToBe(headingCmp.id(), '');
-                expectToBe(headingCmp.title(), '');
+                expect(() => headingCmp.title()).toThrow();
+                expect(() => headingCmp.id()).toThrow();
             });
 
             it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
@@ -210,12 +210,12 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to AlertInfoComponent (`infoMessage`)', () => {
+            it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
                 const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToBe(alertInfoCmp.infoMessage(), '');
+                expect(() => alertInfoCmp.infoMessage()).toThrow();
             });
 
             it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {

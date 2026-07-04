@@ -226,7 +226,7 @@ describe('StatisticsProgressBarComponent', () => {
                     fixture.componentRef.setInput('useCustomTypeOnly', true);
                 });
 
-                describe('... should return light regardless of values if custom type is not provided', () => {
+                describe('... should return custom type (if provided) regardless of values', () => {
                     it('... in percentage mode', () => {
                         const config: StatisticsProgressBarConfig = {
                             mode: 'percentage',
@@ -234,7 +234,7 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), 'light');
+                        expectToBe(component.progressBarColorType(), expectedCustomType);
                     });
 
                     it('... in ratio mode', () => {
@@ -245,7 +245,7 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), 'light');
+                        expectToBe(component.progressBarColorType(), expectedCustomType);
                     });
 
                     it('... in absolute mode', () => {
@@ -256,13 +256,13 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), 'light');
+                        expectToBe(component.progressBarColorType(), expectedCustomType);
                     });
                 });
 
-                describe('... should return custom type (if provided) regardless of values', () => {
+                describe('... should return light regardless of values if custom type is not provided', () => {
                     beforeEach(() => {
-                        fixture.componentRef.setInput('customType', expectedCustomType);
+                        fixture.componentRef.setInput('customType', '');
                     });
 
                     it('... in percentage mode', () => {
@@ -272,7 +272,7 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), expectedCustomType);
+                        expectToBe(component.progressBarColorType(), 'light');
                     });
 
                     it('... in ratio mode', () => {
@@ -283,7 +283,7 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), expectedCustomType);
+                        expectToBe(component.progressBarColorType(), 'light');
                     });
 
                     it('... in absolute mode', () => {
@@ -294,7 +294,7 @@ describe('StatisticsProgressBarComponent', () => {
                         };
                         fixture.componentRef.setInput('config', config);
 
-                        expectToBe(component.progressBarColorType(), expectedCustomType);
+                        expectToBe(component.progressBarColorType(), 'light');
                     });
                 });
             });

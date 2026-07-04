@@ -73,10 +73,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
             expect(() => component.pageMetaData()).toThrow();
         });
 
-        it('... should have computed signal `versionData` to hold null (due to missing pageMetaData)', () => {
+        it('... should throw when accessing computed signal `versionData` due to missing input', () => {
             expectToBe(isSignal(component.versionData), true);
 
-            expectToBe(component.versionData(), null);
+            expect(() => component.versionData()).toThrow();
         });
 
         describe('VIEW', () => {

@@ -64,13 +64,13 @@ describe('ContactMapComponent (DONE)', () => {
         it('... should throw due to missing required input signal `embedUrl`', () => {
             expectToBe(isSignal(component.embedUrl), true);
 
-            expectToBe(component.embedUrl(), expectedEmbedUrl);
+            expect(() => component.embedUrl()).toThrow();
         });
 
         it('... should throw due to missing required input signal `linkUrl`', () => {
             expectToBe(isSignal(component.linkUrl), true);
 
-            expectToBe(component.linkUrl(), expectedLinkUrl);
+            expect(() => component.linkUrl()).toThrow();
         });
 
         it('... should have `LINK_LABEL`', () => {

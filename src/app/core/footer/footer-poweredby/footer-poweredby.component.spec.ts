@@ -85,10 +85,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             expect(() => component.pageMetaData()).toThrow();
         });
 
-        it('... should have computed signal `poweredByData` to hold null (due to missing input data)', () => {
+        it('... should throw when accessing computed signal `poweredByData` due to missing input', () => {
             expectToBe(isSignal(component.poweredByData), true);
 
-            expectToBe(component.poweredByData(), null);
+            expect(() => component.poweredByData()).toThrow();
         });
 
         it('... should have fontawesome icon', () => {

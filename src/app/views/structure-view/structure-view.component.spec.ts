@@ -79,13 +79,13 @@ describe('StructureViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to heading component (`id` and `title`)', () => {
+            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
-                expectToBe(headingCmp.id(), '');
-                expectToBe(headingCmp.title(), '');
+                expect(() => headingCmp.title()).toThrow();
+                expect(() => headingCmp.id()).toThrow();
             });
 
             it('... should contain one `div.awg-structure-view-content` in `div.awg-structure-view`', () => {

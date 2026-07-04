@@ -10,8 +10,8 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
+import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
 import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 /**
