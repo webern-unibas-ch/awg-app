@@ -28,7 +28,7 @@ export class MetaIdentifierBadgesComponent {
      *
      * It holds the authority identifiers of a person.
      */
-    readonly identifiers = input.required<MetaIdentifiers>();
+    readonly identifiers = input.required<MetaIdentifiers | null | undefined>();
 
     /**
      * Readonly computed signal: displayedBadges.
@@ -37,10 +37,15 @@ export class MetaIdentifierBadgesComponent {
      */
     readonly displayedBadges = computed<MetaIdentifierBadge[]>(() => {
         const currentIds = this.identifiers();
+        if (!currentIds) {
+            return [];
+        }
         const logosData = this._coreService.getLogos();
 
+        // Filter out keys that are not present or have empty values in the current identifiers
+        // Map the remaining keys to MetaIdentifierBadge objects
         return (['gnd', 'viaf', 'orcid'] as (keyof MetaIdentifiers)[])
-            .filter(key => currentIds[key])
+            .filter(key => !!currentIds[key]?.trim())
             .map(key => {
                 const idValue = currentIds[key];
                 return {

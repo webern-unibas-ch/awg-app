@@ -113,13 +113,38 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
         describe('... should have computed signal `displayedBadges` to hold an empty array if ...', () => {
             it('... `identifiers` is an empty object', () => {
-                fixture.componentRef.setInput('identifiers', {} as MetaIdentifiers);
+                fixture.componentRef.setInput('identifiers', {});
+
+                expectToEqual(component.displayedBadges(), []);
+            });
+
+            it('... `identifiers` is undefined', () => {
+                fixture.componentRef.setInput('identifiers', undefined);
+
+                expectToEqual(component.displayedBadges(), []);
+            });
+
+            it('... `identifiers` is null', () => {
+                fixture.componentRef.setInput('identifiers', null);
 
                 expectToEqual(component.displayedBadges(), []);
             });
 
             it('... `identifiers` has no valid keys', () => {
-                fixture.componentRef.setInput('identifiers', { invalidKey: '123' } as unknown as MetaIdentifiers);
+                const identifiersWithInvalidKey: any = { invalidKey: '123' };
+
+                fixture.componentRef.setInput('identifiers', identifiersWithInvalidKey);
+
+                expectToEqual(component.displayedBadges(), []);
+            });
+
+            it('... `identifiers` has a key with only whitespaces', () => {
+                const identifiersWithSpaces: MetaIdentifiers = {
+                    gnd: '   ',
+                    viaf: '',
+                    orcid: '',
+                };
+                fixture.componentRef.setInput('identifiers', identifiersWithSpaces);
 
                 expectToEqual(component.displayedBadges(), []);
             });

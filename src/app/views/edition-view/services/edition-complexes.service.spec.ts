@@ -281,6 +281,7 @@ describe('EditionComplexesService (DONE)', () => {
             expectToEqual(editionComplexesList[testComplexId].respStatement.editors[0], {
                 name: unknownRef.$ref,
                 homepage: '',
+                identifiers: {},
             });
         });
 
