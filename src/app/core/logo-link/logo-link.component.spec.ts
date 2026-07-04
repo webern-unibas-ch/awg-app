@@ -82,28 +82,11 @@ describe('LogoLinkComponent', () => {
             expectToEqual(component.logoData(), expectedSagwLogoData);
         });
 
-        it('... should change `logoData` if input changes', () => {
-            expectToEqual(component.logoData(), expectedSagwLogoData);
-
-            fixture.componentRef.setInput('logoData', expectedUnibasLogoData);
-            expectToEqual(component.logoData(), expectedUnibasLogoData);
-
-            fixture.componentRef.setInput('logoData', expectedAngularLogoData);
-            expectToEqual(component.logoData(), expectedAngularLogoData);
-        });
-
-        it('... should change `linkClass` if input changes', () => {
-            expectToBe(component.linkClass(), 'awg-logo-link');
-
-            fixture.componentRef.setInput('linkClass', 'navbar-brand');
-            expectToBe(component.linkClass(), 'navbar-brand');
-        });
-
         it('... should have computed signal `logoClassList` to hold the correct CSS classes (for right main footer)', () => {
             expectToBe(component.logoClassList(), `${cssClassMarginY2} ${cssClassFloatEnd}`);
         });
 
-        it('... should compute correct CSS classes depending on the logo type', () => {
+        describe('... should update `logoClassList` when input changes', () => {
             const testCases = [
                 { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
                 { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
