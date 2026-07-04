@@ -107,11 +107,11 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
             expectToEqual(component.identifiers(), expectedIdentifiers);
         });
 
-        it('... should have computed signal `displayedBadges` to hold the correct badges', () => {
+        it('... should have computed signal `displayedBadges` to hold the expected badges', () => {
             expectToEqual(component.displayedBadges(), expectedActiveIdentifierBadges);
         });
 
-        describe('... should have computed signal `displayedBadges` to hold empty array if ...', () => {
+        describe('... should have computed signal `displayedBadges` to hold an empty array if ...', () => {
             it('... `identifiers` is an empty object', () => {
                 fixture.componentRef.setInput('identifiers', {} as MetaIdentifiers);
 

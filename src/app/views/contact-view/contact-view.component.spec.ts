@@ -135,7 +135,7 @@ describe('ContactViewComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have signal `today` to hold correct date', () => {
+        it('... should have signal `today` to hold the expected date', () => {
             expectToBe(isSignal(component.today), true);
 
             expectToBe(component.today(), expectedToday);

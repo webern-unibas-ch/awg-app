@@ -125,7 +125,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
             expectToBe(component.isFullscreen(), false);
         });
 
-        it('... should have computed signal `fullscreenToggleBtn` to hold non-fs config', () => {
+        it('... should have computed signal `fullscreenToggleBtn` to hold the non-fs config', () => {
             expectToBe(isSignal(component.fullscreenToggleBtn), true);
 
             expectToEqual(component.fullscreenToggleBtn(), expectedNonFsConfig);
@@ -187,7 +187,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
             expectToBe(component.isFullscreen(), true);
         });
 
-        it('... should have computed signal `fullscreenToggleBtn` to hold fs config', () => {
+        it('... should have computed signal `fullscreenToggleBtn` to hold the fs config', () => {
             expectToEqual(component.fullscreenToggleBtn(), expectedFsConfig);
         });
 

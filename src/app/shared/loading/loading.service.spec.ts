@@ -66,7 +66,7 @@ describe('LoadingService (DONE)', () => {
                 expect(loadingService.registerRequest).toBeDefined();
             });
 
-            it('... should update loading status to true when a request is registered', () => {
+            it('... should update pending requests and recompute `isLoading` to true when a request is registered', () => {
                 const req = createMockRequest('/api/test');
 
                 loadingService.registerRequest(req);
@@ -75,7 +75,7 @@ describe('LoadingService (DONE)', () => {
                 expectToBe(loadingService.isLoading(), true);
             });
 
-            it('... should update loading status based on exact requests (in-place tracking)', () => {
+            it('... should update pending requests and recompute `isLoading` based on exact requests (in-place tracking)', () => {
                 const req1 = createMockRequest('/api/1');
                 const req2 = createMockRequest('/api/2');
 
@@ -106,7 +106,7 @@ describe('LoadingService (DONE)', () => {
                 expect(loadingService.deregisterRequest).toBeDefined();
             });
 
-            it('... should update loading status to false when a request is deregistered', () => {
+            it('... should update pending requests and recompute `isLoading` to false when a request is deregistered', () => {
                 const req = createMockRequest('/api/test');
 
                 loadingService.registerRequest(req);
@@ -117,7 +117,7 @@ describe('LoadingService (DONE)', () => {
                 expectToEqual((loadingService as any)._pendingRequests(), []);
             });
 
-            it('... should only update loading status to false when all requests are deregistered', () => {
+            it('... should only update pending requests and recompute `isLoading` to false when all requests are deregistered', () => {
                 const req1 = createMockRequest('/api/1');
                 const req2 = createMockRequest('/api/2');
 

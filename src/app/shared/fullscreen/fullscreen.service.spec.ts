@@ -89,7 +89,7 @@ describe('FullscreenService (DONE)', () => {
                 expect(fullscreenService.updateState).toBeDefined();
             });
 
-            it('... should update the `isFullscreen` signal based on the document state', () => {
+            it('... should update signal `isFullscreen` based on the document state', () => {
                 expectToBe(fullscreenService.isFullscreen(), false);
 
                 simulateFullscreenChangeEvent(expectedFsElement);

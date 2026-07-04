@@ -120,7 +120,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have computed signal `poweredByData` to hold the correct data', () => {
+        it('... should have computed signal `poweredByData` to hold the expected data', () => {
             expectToEqual(component.poweredByData(), expectedPoweredByData);
         });
 

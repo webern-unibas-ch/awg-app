@@ -123,7 +123,7 @@ describe('StatisticsSummaryComponent', () => {
             expectToEqual(component.summaryData(), expectedSummaryData);
         });
 
-        it('... should have computed signal `summaryCards` to hold the correct cards', () => {
+        it('... should have computed signal `summaryCards` to hold the expected cards', () => {
             const summaryCards = component.summaryCards();
 
             expectToBe(summaryCards.length, 4);

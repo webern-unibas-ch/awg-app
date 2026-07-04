@@ -229,7 +229,7 @@ describe('StatisticsViewComponent', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
         });
 
-        it('... should have computed signal `complexBreakdownData` to hold correct data', () => {
+        it('... should have computed signal `complexBreakdownData` to hold the expected data', () => {
             const complexBreakdownData = component.complexBreakdownData();
 
             expectToEqual(complexBreakdownData, {
@@ -239,7 +239,7 @@ describe('StatisticsViewComponent', () => {
             });
         });
 
-        it('... should have computed signal `overallProgressData` to hold correct data', () => {
+        it('... should have computed signal `overallProgressData` to hold the expected data', () => {
             const overallProgressData = component.overallProgressData();
 
             expectToEqual(overallProgressData, {
@@ -249,7 +249,7 @@ describe('StatisticsViewComponent', () => {
             });
         });
 
-        it('... should have computed signal `summaryData` to hold correct data', () => {
+        it('... should have computed signal `summaryData` to hold the expected data', () => {
             const summaryData = component.summaryData();
 
             expectToEqual(summaryData, {

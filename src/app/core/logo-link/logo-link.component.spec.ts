@@ -82,11 +82,11 @@ describe('LogoLinkComponent', () => {
             expectToEqual(component.logoData(), expectedSagwLogoData);
         });
 
-        it('... should have computed signal `logoClassList` to hold the correct CSS classes (for right main footer)', () => {
+        it('... should have computed signal `logoClassList` to hold the expected CSS classes (for right main footer)', () => {
             expectToBe(component.logoClassList(), `${cssClassMarginY2} ${cssClassFloatEnd}`);
         });
 
-        it('... should update `logoClassList` when input changes', () => {
+        it('... should have recomputed signal `logoClassList` when input changes', () => {
             const testCases = [
                 { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
                 { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },

@@ -133,7 +133,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have computed signal `versionData` to hold the correct data', () => {
+        it('... should have computed signal `versionData` to hold the expected data', () => {
             expectToEqual(component.versionData(), expectedVersionData);
         });
 

@@ -120,7 +120,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
             expectToBe(component.showEmptyBadges(), expectedShowEmptyBadges);
         });
 
-        it('... should have computed `displayedBadges` based on `breakdown` and `showEmptyBadges`', () => {
+        it('... should have computed signal `displayedBadges` to hold the expected badges', () => {
             const expectedDisplayedBadges: StatisticsBreakDownBadge[] = [
                 { label: 'Op', val: expectedBreakdown.opus, type: 'primary' },
                 { label: 'M', val: expectedBreakdown.mnr, type: 'secondary' },
@@ -133,7 +133,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
             expectToBe(currentDisplayedBadges.length, 3);
         });
 
-        describe('... should update `displayedBadges` when input changes', () => {
+        describe('... should have recomputed signal `displayedBadges` when input changes', () => {
             it('... should return an empty array if breakdown is empty and showEmptyBadges is false', () => {
                 fixture.componentRef.setInput(
                     'breakdown',

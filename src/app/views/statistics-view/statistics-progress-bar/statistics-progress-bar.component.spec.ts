@@ -216,11 +216,11 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.useCustomTypeOnly(), expectedUseCustomTypeOnly);
         });
 
-        it('... should have computed `progressBarColorType` to hold `warning` (due to percentage=75)', () => {
+        it('... should have computed signal `progressBarColorType` to hold the expected type (`warning` due to percentage=75)', () => {
             expectToBe(component.progressBarColorType(), 'warning');
         });
 
-        describe('... should update `progressBarColorType` when input changes', () => {
+        describe('... should have recomputed signal `progressBarColorType` when input changes', () => {
             describe('... with `useCustomTypeOnly` true', () => {
                 beforeEach(() => {
                     fixture.componentRef.setInput('useCustomTypeOnly', true);
@@ -472,11 +472,11 @@ describe('StatisticsProgressBarComponent', () => {
             });
         });
 
-        it('... should have computed `progressBarWidth` to hold the correct value (75%)', () => {
+        it('... should have computed signal `progressBarWidth` to hold the expected value (75%)', () => {
             expectToBe(component.progressBarWidth(), 75);
         });
 
-        describe('... should update `progressBarWidth` when input changes', () => {
+        describe('... should have recomputed signal `progressBarWidth` when input changes', () => {
             describe('... in percentage mode', () => {
                 describe('... should return 0 if ...', () => {
                     it('... percentage is undefined', () => {
@@ -733,11 +733,11 @@ describe('StatisticsProgressBarComponent', () => {
             });
         });
 
-        it('... should have computed `progressHeaderValue` to hold the correct value (empty string)', () => {
+        it('... should have computed signal `progressHeaderValue` to hold the expected value (empty string)', () => {
             expectToBe(component.progressHeaderValue(), '');
         });
 
-        describe('... should update `progressHeaderValue` when input changes', () => {
+        describe('... should have recomputed signal `progressHeaderValue` when input changes', () => {
             it('... should return empty string when mode is percentage', () => {
                 fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
                 fixture.detectChanges();
@@ -794,11 +794,11 @@ describe('StatisticsProgressBarComponent', () => {
             });
         });
 
-        it('... should have computed `hasHeaderValue` to hold the correct value (false)', () => {
+        it('... should have computed signal `hasHeaderValue` to hold the expected value (false)', () => {
             expectToBe(component.hasHeaderValue(), false);
         });
 
-        describe('... should update `hasHeaderValue` when input changes', () => {
+        describe('... should have recomputed signal `hasHeaderValue` when input changes', () => {
             it('... should return false when mode is percentage', () => {
                 fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
                 fixture.detectChanges();
@@ -1014,7 +1014,7 @@ describe('StatisticsProgressBarComponent', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should have computed signal `progressBarColorType` to hold custom type', () => {
+                it('... should have computed signal `progressBarColorType` to hold the custom type', () => {
                     expectToBe(component.progressBarColorType(), expectedCustomType);
                 });
 
