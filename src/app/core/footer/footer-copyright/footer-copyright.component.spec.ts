@@ -65,7 +65,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.awg-copyright-desc', () => {
+            it('... should contain one div.awg-copyright-desc', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
             });
 

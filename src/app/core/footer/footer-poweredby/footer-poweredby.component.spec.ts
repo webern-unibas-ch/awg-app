@@ -193,7 +193,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.awg-powered-by', () => {
+            it('... should contain one div.awg-powered-by', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
             });
 
@@ -213,7 +213,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['bootstrap']);
             });
 
-            it('... should contain 1 anchor #dev-preview-link with faIcon', () => {
+            it('... should contain one anchor #dev-preview-link with faIcon', () => {
                 getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
 
                 getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);

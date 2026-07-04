@@ -230,7 +230,7 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(navbarDes[0], 'button.navbar-toggler', 1, 1);
             });
 
-            it('... should contain 1 navbar collapse in navbar', () => {
+            it('... should contain one navbar collapse in navbar', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 getAndExpectDebugElementByCss(navbarDes[0], 'div.navbar-collapse', 1, 1);
             });

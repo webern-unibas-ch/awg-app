@@ -92,7 +92,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.card with div.card-body', () => {
+            it('... should contain one div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });

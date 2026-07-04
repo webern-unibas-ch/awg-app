@@ -187,19 +187,19 @@ describe('FooterComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                 });
 
-                it('... should contain 1 footer copyright component (stubbed) in first inner div', () => {
+                it('... should contain one footer copyright component (stubbed) in first inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[0], FooterCopyrightStubComponent, 1, 1);
                 });
 
-                it('... should contain 1 footer poweredby component (stubbed) in second inner div', () => {
+                it('... should contain one footer poweredby component (stubbed) in second inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[1], FooterPoweredbyStubComponent, 1, 1);
                 });
 
-                it('... should contain 1 google translate div in third inner div', () => {
+                it('... should contain one google translate div in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                     const gtransDiv = divDes[2];
                     const gtransEl: HTMLDivElement = gtransDiv.nativeElement;

@@ -150,7 +150,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.table-responsive > table.table', 1, 1);
             });
 
-            it('... should contain 1 table head with 2 rows in table', () => {
+            it('... should contain one table head with two rows in table', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'div.table-responsive > table.table', 1, 1);
                 const theadDes = getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
 

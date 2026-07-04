@@ -162,25 +162,25 @@ describe('ContactViewComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description > p', 2, 2);
             });
 
-            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer > p', 17, 17);
