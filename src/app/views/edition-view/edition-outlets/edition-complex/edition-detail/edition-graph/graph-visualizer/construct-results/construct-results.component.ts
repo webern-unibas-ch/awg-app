@@ -64,20 +64,22 @@ export class ConstructResultsComponent {
     }
 
     /**
-     * Public method: isEmptyConstructQueryResult.
+     * Public method: isValidConstructQueryResult.
      *
-     * It checks if a given constrcut result triple is empty.
+     * It checks if a given constrcut result triple is valid.
      *
      * @param {Triple[] | null | undefined} constructQueryResult The given construct query result.
-     * @returns {boolean} True if empty or incomplete. If false, construct result is guaranteed to be a valid Triple[].
+     * @returns {boolean} True if it is a valid, filled, and complete array.
      */
-    isEmptyConstructQueryResult(
-        constructQueryResult: Triple[] | null | undefined
-    ): constructQueryResult is null | undefined | [] {
+    isValidConstructQueryResult(constructQueryResult: Triple[] | null | undefined): constructQueryResult is Triple[] {
         if (UTILS.isEmptyArray(constructQueryResult)) {
-            return true;
+            return false;
         }
-        return constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object);
+        if (constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

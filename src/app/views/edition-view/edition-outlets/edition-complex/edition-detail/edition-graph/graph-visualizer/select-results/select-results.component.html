@@ -10,7 +10,7 @@
             <div ngbAccordionBody>
                 <ng-template>
                     @if (queryResult$ | async; as queryResult) {
-                        @if (isEmptySelectQueryResult(queryResult)) {
+                        @if (!isValidSelectQueryResult(queryResult)) {
                             <awg-sparql-no-results />
                         } @else {
                             <!-- SPARQL table visualization -->

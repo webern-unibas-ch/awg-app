@@ -72,15 +72,15 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                 {
                     labelType: 'evaluation' as const,
                     cases: [
-                        { id: expectedId, expectedText: 'Quellenbewertung', desc: 'no sketch id is given' },
-                        { id: expectedSketchId, expectedText: 'Skizzenkommentar', desc: 'sketch id is given' },
+                        { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
+                        { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
                     ],
                 },
                 {
                     labelType: 'commentary' as const,
                     cases: [
-                        { id: expectedId, expectedText: 'Textkritische Anmerkungen', desc: 'no sketch id is given' },
-                        { id: expectedSketchId, expectedText: 'Textkritische Kommentare', desc: 'sketch id is given' },
+                        { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
+                        { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
                     ],
                 },
             ])('WHEN `labelType` is $labelType', ({ labelType, cases }) => {

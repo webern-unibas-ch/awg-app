@@ -64,21 +64,24 @@ export class SelectResultsComponent {
     }
 
     /**
-     * Public method: isEmptySelectQueryResult.
+     * Public method: isValidSelectQueryResult.
      *
-     * It checks if a given select query result is empty.
+     * It checks if a given select query result is valid.
      *
      * @param {QuerySelectResult} selectQueryResult The given select query result.
-     *
-     * @returns {boolean} The boolean value of the comparison result.
+     * @returns {boolean} True if it is a valid, filled object.
      */
-    isEmptySelectQueryResult(
+    isValidSelectQueryResult(
         selectQueryResult: QuerySelectResult | string | null | undefined
-    ): selectQueryResult is string | null | undefined {
+    ): selectQueryResult is QuerySelectResult {
         if (!selectQueryResult || typeof selectQueryResult === 'string') {
-            return true;
+            return false;
         }
-        return UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings);
+        if (UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

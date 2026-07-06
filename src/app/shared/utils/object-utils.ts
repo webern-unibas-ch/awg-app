@@ -1,7 +1,7 @@
 /**
  * Utils method: isEmptyArray.
  *
- * It checks if aan array is null, undefined, or empty.
+ * It checks if an array is null, undefined, or empty.
  *
  * @param value The array to check.
  * @returns True if the array is null, undefined, or empty; false otherwise.

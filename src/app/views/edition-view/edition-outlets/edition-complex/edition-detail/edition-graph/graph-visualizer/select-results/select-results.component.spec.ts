@@ -63,7 +63,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     let emitClickedTableRequestSpy: Spy;
     let isAccordionItemDisabledSpy: Spy;
-    let isEmptySelectQueryResultSpy: Spy;
+    let isValidSelectQueryResultSpy: Spy;
     let tableClickSpy: Spy;
 
     // Global NgbConfigModule
@@ -110,7 +110,7 @@ describe('SelectResultsComponent (DONE)', () => {
         // Spies
         emitClickedTableRequestSpy = vi.spyOn(component.clickedTableRequest, 'emit');
         isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
-        isEmptySelectQueryResultSpy = vi.spyOn(component, 'isEmptySelectQueryResult');
+        isValidSelectQueryResultSpy = vi.spyOn(component, 'isValidSelectQueryResult');
         tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
     });
 
@@ -667,17 +667,17 @@ describe('SelectResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#isEmptySelectQueryResult()', () => {
-            it('... should have a method `isEmptySelectQueryResult`', () => {
-                expect(component.isEmptySelectQueryResult).toBeDefined();
+        describe('#isValidSelectQueryResult()', () => {
+            it('... should have a method `isValidSelectQueryResult`', () => {
+                expect(component.isValidSelectQueryResult).toBeDefined();
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult[0]);
+                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult[0]);
             });
 
             it('... should be triggered by change of queryResult', async () => {
-                expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
+                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
 
                 // Mock another queryResult
                 const queryResult = {
@@ -688,111 +688,72 @@ describe('SelectResultsComponent (DONE)', () => {
 
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(isEmptySelectQueryResultSpy, 4, queryResult);
+                expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);
             });
 
-            describe('... should return true if ...', () => {
-                it('... queryResult is a string message', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
+            describe.each([
+                {
+                    expectedResult: false,
+                    cases: [
+                        {
+                            desc: 'queryResult is a string message',
+                            query: 'Query returned no results',
+                        },
+                        {
+                            desc: 'queryResult.head is undefined',
+                            query: { head: undefined, body: { bindings: [{ test: 'Test' }] } },
+                        },
+                        {
+                            desc: 'queryResult.body is undefined',
+                            query: { head: { vars: ['Test'] }, body: undefined },
+                        },
+                        {
+                            desc: 'queryResult.head and queryResult.body are undefined',
+                            query: { head: undefined, body: undefined },
+                        },
+                        {
+                            desc: 'queryResult.head.vars is empty array',
+                            query: { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } },
+                        },
+                        {
+                            desc: 'queryResult.body.bindings is empty array',
+                            query: { head: { vars: ['TestHeader'] }, body: { bindings: [] } },
+                        },
+                        {
+                            desc: 'queryResult.head.vars & queryResult.body.bindings are empty arrays',
+                            query: { head: { vars: [] }, body: { bindings: [] } },
+                        },
+                    ],
+                },
+                {
+                    expectedResult: true,
+                    cases: [
+                        {
+                            desc: 'queryResult is valid',
+                            query: {
+                                head: { vars: ['TestHeader'] },
+                                body: { bindings: [{ testKey: 'TestValue' }] },
+                            },
+                        },
+                        {
+                            desc: 'queryResult changes to another valid result',
+                            query: {
+                                head: { vars: ['AnotherTestHeader'] },
+                                body: { bindings: [{ testKey: 'AnotherTestValue' }] },
+                            },
+                        },
+                    ],
+                },
+            ])('... should return $expectedResult if', ({ expectedResult, cases }) => {
+                it.each(cases)('... $desc', async ({ query }) => {
+                    isValidSelectQueryResultSpy.mockClear();
 
-                    const noResultsMessage = 'Query returned no results';
-                    component.queryResult$ = observableOf(noResultsMessage);
-
+                    component.queryResult$ = observableOf(query);
                     await detectChangesOnPush(fixture);
 
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, noResultsMessage);
-                    expectToBe(component.isEmptySelectQueryResult(noResultsMessage), true);
+                    expectSpyCall(isValidSelectQueryResultSpy, 1, query);
+                    expectToBe(component.isValidSelectQueryResult(query), expectedResult);
                 });
-
-                it('... queryResult.head is undefined', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock undefined response
-                    const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
-                    component.queryResult$ = observableOf(undefinedQueryResult);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, undefinedQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(undefinedQueryResult), true);
-                });
-
-                it('... queryResult.body is undefined', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock undefined response
-                    const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
-                    component.queryResult$ = observableOf(undefinedQueryResult);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, undefinedQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(undefinedQueryResult), true);
-                });
-
-                it('... queryResult.head and queryResult.body are undefined', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock undefined response
-                    const undefinedQueryResult = { head: undefined, body: undefined };
-                    component.queryResult$ = observableOf(undefinedQueryResult);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, undefinedQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(undefinedQueryResult), true);
-                });
-
-                it('... queryResult.head.vars is empty array', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, emptyQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(emptyQueryResult), true);
-                });
-
-                it('... queryResult.body.bindings is empty array', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, emptyQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(emptyQueryResult), true);
-                });
-
-                it('... queryResult.head.vars & queryResult.body.bindings are empty arrays', async () => {
-                    expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isEmptySelectQueryResultSpy, 4, emptyQueryResult);
-                    expectToBe(component.isEmptySelectQueryResult(emptyQueryResult), true);
-                });
-            });
-
-            it('... should return false if queryResult.head.vars && queryResult.body.bindings is not empty (length > 0)', async () => {
-                expectSpyCall(isEmptySelectQueryResultSpy, 3, expectedQueryResult);
-
-                // Mock non-empty response
-                const nonEmptyQueryResult = {
-                    head: { vars: ['AnotherTestHeader'] },
-                    body: { bindings: [{ testKey: 'AnotherTestValue' }] },
-                };
-                component.queryResult$ = observableOf(nonEmptyQueryResult);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(isEmptySelectQueryResultSpy, 4, nonEmptyQueryResult);
-                expectToBe(component.isEmptySelectQueryResult(nonEmptyQueryResult), false);
             });
         });
 

@@ -10,7 +10,7 @@
             <div ngbAccordionBody>
                 <ng-template>
                     @if (queryResult$ | async; as queryResult) {
-                        @if (isEmptyConstructQueryResult(queryResult)) {
+                        @if (!isValidConstructQueryResult(queryResult)) {
                             <awg-sparql-no-results />
                         } @else {
                             <!-- Force graph visualization -->

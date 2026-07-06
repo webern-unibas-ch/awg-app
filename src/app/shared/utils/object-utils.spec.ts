@@ -12,22 +12,22 @@ describe('ObjectUtils', () => {
 
         describe('... should return true if the array', () => {
             it.each([
-                { value: undefined, label: 'undefined' },
-                { value: null, label: 'null' },
-                { value: [], label: 'empty' },
-                { value: 'string', label: 'not an array (string)' },
-            ])('... is $label', ({ value }) => {
+                { desc: 'is undefined', value: undefined },
+                { desc: 'is null', value: null },
+                { desc: 'is empty', value: [] },
+                { desc: 'is not an array (string)', value: 'string' },
+            ])('... $desc', ({ value }) => {
                 expectToBe(isEmptyArray(value as any), true);
             });
         });
 
         describe('... should return false if the array', () => {
             it.each([
-                { value: ['test'], label: 'strings' },
-                { value: [1, 2, 3], label: 'numbers' },
-                { value: [{}], label: 'an empty object as an element' },
-                { value: [null], label: 'null as an element' },
-            ])('... contains $label', ({ value }) => {
+                { desc: 'contains strings', value: ['test'] },
+                { desc: 'contains numbers', value: [1, 2, 3] },
+                { desc: 'contains an empty object as an element', value: [{}] },
+                { desc: 'contains null as an element', value: [null] },
+            ])('... $desc', ({ value }) => {
                 expectToBe(isEmptyArray(value), false);
             });
         });
@@ -40,25 +40,25 @@ describe('ObjectUtils', () => {
 
         describe('... should return true if the object', () => {
             it.each([
-                { value: undefined, label: 'undefined' },
-                { value: null, label: 'null' },
-                { value: {}, label: 'empty' },
-                { value: 'string', label: 'a string' },
-                { value: 42, label: 'a number' },
-                { value: true, label: 'a boolean' },
-                { value: [], label: 'an empty array (treated as empty/invalid)' },
-                { value: ['test'], label: 'a filled array (treated as empty/invalid)' },
-            ])('... is $label', ({ value }) => {
+                { desc: 'is undefined', value: undefined },
+                { desc: 'is null', value: null },
+                { desc: 'is empty', value: {} },
+                { desc: 'is a string', value: 'string' },
+                { desc: 'is a number', value: 42 },
+                { desc: 'is a boolean', value: true },
+                { desc: 'is an empty array (treated as empty/invalid)', value: [] },
+                { desc: 'is a filled array (treated as empty/invalid)', value: ['test'] },
+            ])('... $desc', ({ value }) => {
                 expectToBe(isEmptyObject(value), true);
             });
         });
 
         describe('... should return false if the object', () => {
             it.each([
-                { value: { id: 1 }, label: 'properties' },
-                { value: { name: '' }, label: 'properties with empty string values' },
-                { value: { nested: {} }, label: 'a nested empty object' },
-            ])('... contains $label', ({ value }) => {
+                { desc: 'contains properties', value: { id: 1 } },
+                { desc: 'contains properties with empty string values', value: { name: '' } },
+                { desc: 'contains a nested empty object', value: { nested: {} } },
+            ])('... $desc', ({ value }) => {
                 expectToBe(isEmptyObject(value), false);
             });
         });
