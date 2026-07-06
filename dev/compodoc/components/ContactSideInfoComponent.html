@@ -240,15 +240,19 @@ showing contact information and a map.</p>
                                 <a href="#CONTACT_SIDE_INFO_HEADER" >CONTACT_SIDE_INFO_HEADER</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#contactMetaData" >contactMetaData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#mapEmbedUrl" >mapEmbedUrl</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#mapLinkUrl" >mapLinkUrl</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#pageMetaData" >pageMetaData</a>
                             </li>
                         </ul>
@@ -386,7 +390,7 @@ showing contact information and a map.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly variable: CONTACT_SIDE_INFO_HEADER.</p>
+                    <div class="io-description"><p>Readonly variable: CONTACT_SIDE_INFO_HEADER.</p>
 <p>It keeps the header for the contact side info.</p>
 </div>
                 </td>
@@ -400,6 +404,7 @@ showing contact information and a map.</p>
                 <td class="col-md-4">
                     <a name="contactMetaData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>contactMetaData</b></span>
                         <a href="#contactMetaData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -413,7 +418,9 @@ showing contact information and a map.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;MetaContact&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.contact)).asReadonly()</code>
+                        <i>Default value : </i><code>signal&lt;MetaContact&gt;(
+        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
+    ).asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
@@ -424,7 +431,7 @@ showing contact information and a map.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: contactMetaData.</p>
+                    <div class="io-description"><p>Readonly signal: contactMetaData.</p>
 <p>It holds the contact metadata for the contact view via the injected CoreService.</p>
 </div>
                 </td>
@@ -438,6 +445,7 @@ showing contact information and a map.</p>
                 <td class="col-md-4">
                     <a name="mapEmbedUrl"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>mapEmbedUrl</b></span>
                         <a href="#mapEmbedUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -458,13 +466,13 @@ showing contact information and a map.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:67</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: mapEmbedUrl.</p>
+                    <div class="io-description"><p>Readonly signal: mapEmbedUrl.</p>
 <p>It holds the sanitized link to embed the map.</p>
 </div>
                 </td>
@@ -478,6 +486,7 @@ showing contact information and a map.</p>
                 <td class="col-md-4">
                     <a name="mapLinkUrl"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>mapLinkUrl</b></span>
                         <a href="#mapLinkUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -496,13 +505,13 @@ showing contact information and a map.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:76</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: mapLinkUrl.</p>
+                    <div class="io-description"><p>Readonly signal: mapLinkUrl.</p>
 <p>It holds the link to the external map page.</p>
 </div>
                 </td>
@@ -516,6 +525,7 @@ showing contact information and a map.</p>
                 <td class="col-md-4">
                     <a name="pageMetaData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>pageMetaData</b></span>
                         <a href="#pageMetaData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -534,13 +544,13 @@ showing contact information and a map.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/contact-view/contact-side-info/contact-side-info.component.ts:60</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: pageMetaData.</p>
+                    <div class="io-description"><p>Readonly signal: pageMetaData.</p>
 <p>It holds the page metadata for the contact view via the injected CoreService.</p>
 </div>
                 </td>
@@ -593,41 +603,43 @@ export class ContactSideInfoComponent {
     private readonly _sanitizer &#x3D; inject(DomSanitizer);
 
     /**
-     * Public readonly variable: CONTACT_SIDE_INFO_HEADER.
+     * Readonly variable: CONTACT_SIDE_INFO_HEADER.
      *
      * It keeps the header for the contact side info.
      */
     readonly CONTACT_SIDE_INFO_HEADER &#x3D; &#x27;Kontakt&#x27;;
 
     /**
-     * Public readonly signal: contactMetaData.
+     * Readonly signal: contactMetaData.
      *
      * It holds the contact metadata for the contact view via the injected CoreService.
      */
-    contactMetaData &#x3D; signal&lt;MetaContact&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.contact)).asReadonly();
+    readonly contactMetaData &#x3D; signal&lt;MetaContact&gt;(
+        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
+    ).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the contact view via the injected CoreService.
      */
-    pageMetaData &#x3D; signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData &#x3D; signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
-     * Public readonly signal: mapEmbedUrl.
+     * Readonly signal: mapEmbedUrl.
      *
      * It holds the sanitized link to embed the map.
      */
-    mapEmbedUrl &#x3D; signal&lt;SafeResourceUrl&gt;(
+    readonly mapEmbedUrl &#x3D; signal&lt;SafeResourceUrl&gt;(
         this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
     ).asReadonly();
 
     /**
-     * Public readonly signal: mapLinkUrl.
+     * Readonly signal: mapLinkUrl.
      *
      * It holds the link to the external map page.
      */
-    mapLinkUrl &#x3D; signal&lt;string&gt;(AppConfig.CONTACT_MAP_LINK_URL).asReadonly();
+    readonly mapLinkUrl &#x3D; signal&lt;string&gt;(AppConfig.CONTACT_MAP_LINK_URL).asReadonly();
 }
 </code></pre>
     </div>

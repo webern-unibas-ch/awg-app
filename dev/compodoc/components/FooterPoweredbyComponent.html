@@ -225,9 +225,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#faScrewdriverWrench" >faScrewdriverWrench</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#poweredByData" >poweredByData</a>
                             </li>
                         </ul>
@@ -289,7 +291,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: logosData.</p>
+                        <div class="io-description"><p>Readonly input signal: logosData.</p>
 <p>It holds the logos data for the component.</p>
 </div>
                     </td>
@@ -322,7 +324,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: pageMetaData.</p>
+                        <div class="io-description"><p>Readonly input signal: pageMetaData.</p>
 <p>It holds the page metadata for the footer poweredby section.</p>
 </div>
                     </td>
@@ -345,6 +347,7 @@
                 <td class="col-md-4">
                     <a name="faScrewdriverWrench"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>faScrewdriverWrench</b></span>
                         <a href="#faScrewdriverWrench"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -369,7 +372,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faScrewdriverWrench.</p>
+                    <div class="io-description"><p>Readonly variable: faScrewdriverWrench.</p>
 <p> It instantiates fontawesome&#39;s faScrewdriverWrench icon.</p>
 </div>
                 </td>
@@ -383,6 +386,7 @@
                 <td class="col-md-4">
                     <a name="poweredByData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>poweredByData</b></span>
                         <a href="#poweredByData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -420,7 +424,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: poweredByData.</p>
+                    <div class="io-description"><p>Readonly computed signal: poweredByData.</p>
 <p>It computes the relevant logos and pageMetaData for the poweredby section.</p>
 </div>
                 </td>
@@ -457,25 +461,25 @@ import { MetaPage } from &#x27;../../models/meta.model&#x27;;
 })
 export class FooterPoweredbyComponent {
     /**
-     * Input signal: logosData.
+     * Readonly input signal: logosData.
      *
      * It holds the logos data for the component.
      */
-    logosData &#x3D; input.required&lt;Logos&gt;();
+    readonly logosData &#x3D; input.required&lt;Logos&gt;();
 
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer poweredby section.
      */
-    pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
+    readonly pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
 
     /**
-     * Computed signal: poweredByData.
+     * Readonly computed signal: poweredByData.
      *
      * It computes the relevant logos and pageMetaData for the poweredby section.
      */
-    poweredByData &#x3D; computed(() &#x3D;&gt; {
+    readonly poweredByData &#x3D; computed(() &#x3D;&gt; {
         const logos &#x3D; this.logosData();
         const page &#x3D; this.pageMetaData();
 
@@ -491,11 +495,11 @@ export class FooterPoweredbyComponent {
     });
 
     /**
-     * Public variable: faScrewdriverWrench.
+     * Readonly variable: faScrewdriverWrench.
      *
      *  It instantiates fontawesome&#x27;s faScrewdriverWrench icon.
      */
-    faScrewdriverWrench &#x3D; faScrewdriverWrench;
+    readonly faScrewdriverWrench &#x3D; faScrewdriverWrench;
 }
 </code></pre>
     </div>

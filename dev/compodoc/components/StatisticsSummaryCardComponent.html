@@ -265,6 +265,11 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/statistics-view/statistics-summary-card/statistics-summary-card.component.ts:45</a></div>
@@ -272,7 +277,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: bgClass.</p>
+                        <div class="io-description"><p>Readonly input signal: bgClass.</p>
 <p>It keeps the background color class for the statistics summary card.</p>
 </div>
                     </td>
@@ -293,6 +298,11 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/statistics-view/statistics-summary-card/statistics-summary-card.component.ts:38</a></div>
@@ -300,7 +310,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: icon.</p>
+                        <div class="io-description"><p>Readonly input signal: icon.</p>
 <p>It keeps the FontAwesome icon class for the statistics summary card.</p>
 </div>
                     </td>
@@ -321,6 +331,11 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/statistics-view/statistics-summary-card/statistics-summary-card.component.ts:24</a></div>
@@ -328,7 +343,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: title.</p>
+                        <div class="io-description"><p>Readonly input signal: title.</p>
 <p>It keeps the title for a statistics summary card.</p>
 </div>
                     </td>
@@ -349,6 +364,11 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/statistics-view/statistics-summary-card/statistics-summary-card.component.ts:31</a></div>
@@ -356,7 +376,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: value.</p>
+                        <div class="io-description"><p>Readonly input signal: value.</p>
 <p>It keeps the value to display in the statistics summary card.</p>
 </div>
                     </td>
@@ -392,32 +412,32 @@ import { IconDefinition } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 })
 export class StatisticsSummaryCardComponent {
     /**
-     * Input signal: title.
+     * Readonly input signal: title.
      *
      * It keeps the title for a statistics summary card.
      */
-    title &#x3D; input&lt;string&gt;();
+    readonly title &#x3D; input.required&lt;string&gt;();
 
     /**
-     * Input signal: value.
+     * Readonly input signal: value.
      *
      * It keeps the value to display in the statistics summary card.
      */
-    value &#x3D; input&lt;number | string&gt;();
+    readonly value &#x3D; input.required&lt;number | string&gt;();
 
     /**
-     * Input signal: icon.
+     * Readonly input signal: icon.
      *
      * It keeps the FontAwesome icon class for the statistics summary card.
      */
-    icon &#x3D; input&lt;IconDefinition&gt;();
+    readonly icon &#x3D; input.required&lt;IconDefinition&gt;();
 
     /**
-     * Input signal: bgClass.
+     * Readonly input signal: bgClass.
      *
      * It keeps the background color class for the statistics summary card.
      */
-    bgClass &#x3D; input&lt;string&gt;();
+    readonly bgClass &#x3D; input.required&lt;string&gt;();
 }
 </code></pre>
     </div>

@@ -295,7 +295,7 @@ ratio of active complexes for each complex category.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: complexBreakdownData.</p>
+                        <div class="io-description"><p>Readonly input signal: complexBreakdownData.</p>
 <p>It holds the complex breakdown data.</p>
 </div>
                     </td>
@@ -484,11 +484,11 @@ import { StatisticsProgressBarComponent } from &#x27;../statistics-progress-bar/
 })
 export class StatisticsComplexBreakdownComponent {
     /**
-     * Input signal: complexBreakdownData.
+     * Readonly input signal: complexBreakdownData.
      *
      * It holds the complex breakdown data.
      */
-    complexBreakdownData &#x3D; input.required&lt;StatisticsComplexBreakdownData&gt;();
+    readonly complexBreakdownData &#x3D; input.required&lt;StatisticsComplexBreakdownData&gt;();
 
     /**
      * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.

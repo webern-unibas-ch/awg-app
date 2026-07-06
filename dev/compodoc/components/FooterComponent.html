@@ -232,9 +232,11 @@ and <a href="../components/LogoLinkComponent.html">LogoLinkComponent</a>.</p>
                                 <a href="#_coreService" >_coreService</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#logosData" >logosData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#pageMetaData" >pageMetaData</a>
                             </li>
                         </ul>
@@ -307,6 +309,7 @@ and <a href="../components/LogoLinkComponent.html">LogoLinkComponent</a>.</p>
                 <td class="col-md-4">
                     <a name="logosData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>logosData</b></span>
                         <a href="#logosData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -331,7 +334,7 @@ and <a href="../components/LogoLinkComponent.html">LogoLinkComponent</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: logosData.</p>
+                    <div class="io-description"><p>Readonly signal: logosData.</p>
 <p>It holds the logos data for the footer.</p>
 </div>
                 </td>
@@ -345,6 +348,7 @@ and <a href="../components/LogoLinkComponent.html">LogoLinkComponent</a>.</p>
                 <td class="col-md-4">
                     <a name="pageMetaData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>pageMetaData</b></span>
                         <a href="#pageMetaData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -369,7 +373,7 @@ and <a href="../components/LogoLinkComponent.html">LogoLinkComponent</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: pageMetaData.</p>
+                    <div class="io-description"><p>Readonly signal: pageMetaData.</p>
 <p>It holds the page metadata for the footer via the injected CoreService.</p>
 </div>
                 </td>
@@ -418,18 +422,18 @@ export class FooterComponent {
     private readonly _coreService &#x3D; inject(CoreService);
 
     /**
-     * Public readonly signal: logosData.
+     * Readonly signal: logosData.
      *
      * It holds the logos data for the footer.
      */
-    logosData &#x3D; signal&lt;Logos&gt;(this._coreService.getLogos()).asReadonly();
+    readonly logosData &#x3D; signal&lt;Logos&gt;(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the footer via the injected CoreService.
      */
-    pageMetaData &#x3D; signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData &#x3D; signal&lt;MetaPage&gt;(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 }
 </code></pre>
     </div>

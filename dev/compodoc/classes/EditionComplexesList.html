@@ -171,7 +171,7 @@ to describe a list of edition complexes.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:244</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:245</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -423,8 +423,9 @@ export class EditionComplex {
         lastModified: string;
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] &#x3D;
-            respStatement?.editors?.map(editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27; }) ??
-            [];
+            respStatement?.editors?.map(
+                editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
+            ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }
 }

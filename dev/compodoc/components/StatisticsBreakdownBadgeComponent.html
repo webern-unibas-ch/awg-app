@@ -218,6 +218,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#displayedBadges" >displayedBadges</a>
                             </li>
                         </ul>
@@ -272,7 +273,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new StatisticsComplexBreakdown()</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
@@ -282,7 +283,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: breakdown.</p>
+                        <div class="io-description"><p>Readonly input signal: breakdown.</p>
 <p>It holds the breakdown data for the complex types to be displayed in the badges.</p>
 </div>
                     </td>
@@ -315,7 +316,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: containerClasses.</p>
+                        <div class="io-description"><p>Readonly input signal: containerClasses.</p>
 <p>It holds additional CSS classes to apply to the container.</p>
 </div>
                     </td>
@@ -348,7 +349,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: showEmptyBadges.</p>
+                        <div class="io-description"><p>Readonly input signal: showEmptyBadges.</p>
 <p>It holds a flag whether to show badges when their value is zero.</p>
 </div>
                     </td>
@@ -371,6 +372,7 @@
                 <td class="col-md-4">
                     <a name="displayedBadges"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>displayedBadges</b></span>
                         <a href="#displayedBadges"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -407,7 +409,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: displayedBadges.</p>
+                    <div class="io-description"><p>Readonly computed signal: displayedBadges.</p>
 <p>It computes the list of badges to be displayed
 based on the breakdown data and the showEmptyBadges flag.</p>
 </div>
@@ -439,35 +441,35 @@ import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from &#x27;../mo
 })
 export class StatisticsBreakdownBadgeComponent {
     /**
-     * Input signal: breakdown.
+     * Readonly input signal: breakdown.
      *
      * It holds the breakdown data for the complex types to be displayed in the badges.
      */
-    breakdown &#x3D; input&lt;StatisticsComplexBreakdown&gt;(new StatisticsComplexBreakdown());
+    readonly breakdown &#x3D; input.required&lt;StatisticsComplexBreakdown&gt;();
 
     /**
-     * Input signal: containerClasses.
+     * Readonly input signal: containerClasses.
      *
      * It holds additional CSS classes to apply to the container.
      * @default &#x27;small text-muted&#x27;
      */
-    containerClasses &#x3D; input&lt;string&gt;(&#x27;small text-muted&#x27;);
+    readonly containerClasses &#x3D; input&lt;string&gt;(&#x27;small text-muted&#x27;);
 
     /**
-     * Input signal: showEmptyBadges.
+     * Readonly input signal: showEmptyBadges.
      *
      * It holds a flag whether to show badges when their value is zero.
      * @default false
      */
-    showEmptyBadges &#x3D; input&lt;boolean&gt;(false);
+    readonly showEmptyBadges &#x3D; input&lt;boolean&gt;(false);
 
     /**
-     * Computed signal: displayedBadges.
+     * Readonly computed signal: displayedBadges.
      *
      * It computes the list of badges to be displayed
      * based on the breakdown data and the showEmptyBadges flag.
      */
-    displayedBadges &#x3D; computed&lt;StatisticsBreakDownBadge[]&gt;(() &#x3D;&gt; {
+    readonly displayedBadges &#x3D; computed&lt;StatisticsBreakDownBadge[]&gt;(() &#x3D;&gt; {
         const data &#x3D; this.breakdown();
         const showEmpty &#x3D; this.showEmptyBadges();
 

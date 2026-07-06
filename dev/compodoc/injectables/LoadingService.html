@@ -427,7 +427,7 @@ that can be read by components and templates.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly computed signal: isLoading.</p>
+                    <div class="io-description"><p>Readonly computed signal: isLoading.</p>
 <p>It automatically derives the loading status from the active requests array.
 If the array contains entries, it returns true, otherwise false.</p>
 </div>
@@ -467,7 +467,7 @@ export class LoadingService {
     private readonly _pendingRequests &#x3D; signal&lt;HttpRequest&lt;unknown&gt;[]&gt;([]);
 
     /**
-     * Public readonly computed signal: isLoading.
+     * Readonly computed signal: isLoading.
      *
      * It automatically derives the loading status from the active requests array.
      * If the array contains entries, it returns true, otherwise false.

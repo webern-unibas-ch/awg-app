@@ -227,6 +227,7 @@ for the home view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#faArrowRight" >faArrowRight</a>
                             </li>
                         </ul>
@@ -285,7 +286,7 @@ for the home view of the app.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: cardData.</p>
+                        <div class="io-description"><p>Readonly input signal: cardData.</p>
 <p>It holds the data for the home view card.</p>
 </div>
                     </td>
@@ -308,6 +309,7 @@ for the home view of the app.</p>
                 <td class="col-md-4">
                     <a name="faArrowRight"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>faArrowRight</b></span>
                         <a href="#faArrowRight"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -332,7 +334,7 @@ for the home view of the app.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faArrowRight.</p>
+                    <div class="io-description"><p>Readonly variable: faArrowRight.</p>
 <p>It instantiates fontawesome&#39;s faArrowRight icon.</p>
 </div>
                 </td>
@@ -353,7 +355,7 @@ import { RouterLink } from &#x27;@angular/router&#x27;;
 import { FaIconComponent } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import { faArrowRight } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
-import { HomeViewCard } from &#x27;./models/home-view-card.model&#x27;;
+import { HomeViewCard } from &#x27;./home-view-card.model&#x27;;
 
 /**
  * The HomeViewCard component.
@@ -370,18 +372,18 @@ import { HomeViewCard } from &#x27;./models/home-view-card.model&#x27;;
 })
 export class HomeViewCardComponent {
     /**
-     * Input signal: cardData.
+     * Readonly input signal: cardData.
      *
      * It holds the data for the home view card.
      */
-    cardData &#x3D; input.required&lt;HomeViewCard&gt;();
+    readonly cardData &#x3D; input.required&lt;HomeViewCard&gt;();
 
     /**
-     * Public variable: faArrowRight.
+     * Readonly variable: faArrowRight.
      *
      * It instantiates fontawesome&#x27;s faArrowRight icon.
      */
-    faArrowRight &#x3D; faArrowRight;
+    readonly faArrowRight &#x3D; faArrowRight;
 }
 </code></pre>
     </div>

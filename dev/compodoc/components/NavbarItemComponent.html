@@ -273,7 +273,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal (): id.</p>
+                        <div class="io-description"><p>Readonly input signal: id.</p>
 <p>It holds the id of the navigation item in the navbar.</p>
 </div>
                     </td>
@@ -306,8 +306,8 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: isDropdown.</p>
-<p>It holds the boolean value if the navigation item is a dropdown or not.</p>
+                        <div class="io-description"><p>Readonly input signal: isDropdown.</p>
+<p>It holds a boolean value indicating whether the navigation item is a dropdown or not.</p>
 </div>
                     </td>
                 </tr>
@@ -339,7 +339,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: item.</p>
+                        <div class="io-description"><p>Readonly input signal: item.</p>
 <p>It holds the data for a single navigation item in the navbar.</p>
 </div>
                     </td>
@@ -378,27 +378,27 @@ import { NavbarItem } from &#x27;../navbar.model&#x27;;
 })
 export class NavbarItemComponent {
     /**
-     * Input signal: item.
+     * Readonly input signal: item.
      *
      * It holds the data for a single navigation item in the navbar.
      */
-    item &#x3D; input.required&lt;NavbarItem&gt;();
+    readonly item &#x3D; input.required&lt;NavbarItem&gt;();
 
     /**
-     * Input signal (): id.
+     * Readonly input signal: id.
      *
      * It holds the id of the navigation item in the navbar.
      * @default &#x27;&#x27;
      */
-    id &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+    readonly id &#x3D; input&lt;string&gt;(&#x27;&#x27;);
 
     /**
-     * Input signal: isDropdown.
+     * Readonly input signal: isDropdown.
      *
-     * It holds the boolean value if the navigation item is a dropdown or not.
+     * It holds a boolean value indicating whether the navigation item is a dropdown or not.
      * @default false
      */
-    isDropdown &#x3D; input&lt;boolean&gt;(false);
+    readonly isDropdown &#x3D; input&lt;boolean&gt;(false);
 }
 </code></pre>
     </div>

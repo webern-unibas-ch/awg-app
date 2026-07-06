@@ -271,7 +271,7 @@ that loads the side-info components.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: activateSideOutlet.</p>
+                        <div class="io-description"><p>Readonly input signal: activateSideOutlet.</p>
 <p>It holds a flag to indicate if the side outlet is active.</p>
 </div>
                     </td>
@@ -308,11 +308,11 @@ import { RouterOutlet } from &#x27;@angular/router&#x27;;
 })
 export class ViewContainerComponent {
     /**
-     * Input signal: activateSideOutlet.
+     * Readonly input signal: activateSideOutlet.
      *
      * It holds a flag to indicate if the side outlet is active.
      */
-    activateSideOutlet &#x3D; input.required&lt;boolean&gt;();
+    readonly activateSideOutlet &#x3D; input.required&lt;boolean&gt;();
 }
 </code></pre>
     </div>

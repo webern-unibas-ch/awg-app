@@ -265,7 +265,7 @@ showing the progress rate and the number of active complexes out of the total co
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: overallProgressData.</p>
+                        <div class="io-description"><p>Readonly input signal: overallProgressData.</p>
 <p>It holds the overall progress data.</p>
 </div>
                     </td>
@@ -302,11 +302,11 @@ import { StatisticsProgressBarComponent } from &#x27;../statistics-progress-bar/
 })
 export class StatisticsOverallProgressComponent {
     /**
-     * Input signal: overallProgressData.
+     * Readonly input signal: overallProgressData.
      *
      * It holds the overall progress data.
      */
-    overallProgressData &#x3D; input.required&lt;StatisticsOverallProgressData&gt;();
+    readonly overallProgressData &#x3D; input.required&lt;StatisticsOverallProgressData&gt;();
 }
 </code></pre>
     </div>

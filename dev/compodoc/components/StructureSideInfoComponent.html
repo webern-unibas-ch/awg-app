@@ -235,6 +235,7 @@ showing author and last modification date information.</p>
                                 <a href="#STRUCTURE_SIDE_INFO_HEADER" >STRUCTURE_SIDE_INFO_HEADER</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#structureMetaData" >structureMetaData</a>
                             </li>
                         </ul>
@@ -346,6 +347,7 @@ showing author and last modification date information.</p>
                 <td class="col-md-4">
                     <a name="structureMetaData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>structureMetaData</b></span>
                         <a href="#structureMetaData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -372,7 +374,7 @@ showing author and last modification date information.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: structureMetaData.</p>
+                    <div class="io-description"><p>Readonly signal: structureMetaData.</p>
 <p>It holds the metadata for the structure side info via the injected CoreService.</p>
 </div>
                 </td>
@@ -422,11 +424,11 @@ export class StructureSideInfoComponent {
     readonly STRUCTURE_SIDE_INFO_HEADER &#x3D; &#x27;Strukturmodell&#x27;;
 
     /**
-     * Public readonly signal: structureMetaData.
+     * Readonly signal: structureMetaData.
      *
      * It holds the metadata for the structure side info via the injected CoreService.
      */
-    structureMetaData &#x3D; signal&lt;MetaStructure&gt;(
+    readonly structureMetaData &#x3D; signal&lt;MetaStructure&gt;(
         this._coreService.getMetaDataSection(MetaSectionTypes.structure)
     ).asReadonly();
 }

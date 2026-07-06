@@ -283,7 +283,7 @@ showing the distribution of active and disabled sections for each series.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: seriesBreakdown.</p>
+                        <div class="io-description"><p>Readonly input signal: seriesBreakdown.</p>
 <p>It holds the series breakdown data.</p>
 </div>
                     </td>
@@ -373,11 +373,11 @@ import { StatisticsProgressBarComponent } from &#x27;../statistics-progress-bar/
 })
 export class StatisticsSeriesBreakdownComponent {
     /**
-     * Input signal: seriesBreakdown.
+     * Readonly input signal: seriesBreakdown.
      *
      * It holds the series breakdown data.
      */
-    seriesBreakdownData &#x3D; input.required&lt;StatisticsSeriesBreakdown[]&gt;();
+    readonly seriesBreakdownData &#x3D; input.required&lt;StatisticsSeriesBreakdown[]&gt;();
 
     /**
      * Readonly variable: ROUTES.

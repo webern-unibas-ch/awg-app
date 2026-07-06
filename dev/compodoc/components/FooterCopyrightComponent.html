@@ -262,7 +262,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: pageMetaData.</p>
+                        <div class="io-description"><p>Readonly input signal: pageMetaData.</p>
 <p>It holds the page metadata for the footer copyright.</p>
 </div>
                     </td>
@@ -296,11 +296,11 @@ import { MetaPage } from &#x27;../../models/meta.model&#x27;;
 })
 export class FooterCopyrightComponent {
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer copyright.
      */
-    pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
+    readonly pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
 }
 </code></pre>
     </div>

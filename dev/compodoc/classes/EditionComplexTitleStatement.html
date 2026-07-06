@@ -534,8 +534,9 @@ export class EditionComplex {
         lastModified: string;
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] &#x3D;
-            respStatement?.editors?.map(editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27; }) ??
-            [];
+            respStatement?.editors?.map(
+                editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
+            ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }
 }

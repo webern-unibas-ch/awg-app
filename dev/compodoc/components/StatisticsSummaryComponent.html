@@ -220,6 +220,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#summaryCards" >summaryCards</a>
                             </li>
                         </ul>
@@ -278,7 +279,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: summaryData.</p>
+                        <div class="io-description"><p>Readonly input signal: summaryData.</p>
 <p>It holds the summary data.</p>
 </div>
                     </td>
@@ -301,6 +302,7 @@
                 <td class="col-md-4">
                     <a name="summaryCards"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>summaryCards</b></span>
                         <a href="#summaryCards"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -316,9 +318,6 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed&lt;StatisticsSummaryCardData[]&gt;(() &#x3D;&gt; {
         const data &#x3D; this.summaryData();
-        if (!data) {
-            return [];
-        }
 
         return [
             {
@@ -357,7 +356,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: summaryCards.</p>
+                    <div class="io-description"><p>Readonly computed signal: summaryCards.</p>
 <p>It computes the data for the statistics summary cards based on the input data.</p>
 </div>
                 </td>
@@ -392,22 +391,19 @@ import { StatisticsSummaryCardComponent } from &#x27;../statistics-summary-card/
 })
 export class StatisticsSummaryComponent {
     /**
-     * Input signal: summaryData.
+     * Readonly input signal: summaryData.
      *
      * It holds the summary data.
      */
-    summaryData &#x3D; input.required&lt;StatisticsSummaryData&gt;();
+    readonly summaryData &#x3D; input.required&lt;StatisticsSummaryData&gt;();
 
     /**
-     * Computed signal: summaryCards.
+     * Readonly computed signal: summaryCards.
      *
      * It computes the data for the statistics summary cards based on the input data.
      */
-    summaryCards &#x3D; computed&lt;StatisticsSummaryCardData[]&gt;(() &#x3D;&gt; {
+    readonly summaryCards &#x3D; computed&lt;StatisticsSummaryCardData[]&gt;(() &#x3D;&gt; {
         const data &#x3D; this.summaryData();
-        if (!data) {
-            return [];
-        }
 
         return [
             {

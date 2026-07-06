@@ -464,7 +464,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly property: generalEditionLinks.</p>
+                    <div class="io-description"><p>Readonly property: generalEditionLinks.</p>
 <p>It keeps the general edition links for the navbar.</p>
 </div>
                 </td>
@@ -503,7 +503,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: isCollapsed.</p>
+                    <div class="io-description"><p>Readonly signal: isCollapsed.</p>
 <p>It holds the boolean value if the header menu is collapsed or not.</p>
 </div>
                 </td>
@@ -542,7 +542,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: isEditionRouteActive.</p>
+                    <div class="io-description"><p>Readonly signal: isEditionRouteActive.</p>
 <p>It checks if the edition route is active.</p>
 </div>
                 </td>
@@ -581,7 +581,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: logosData.</p>
+                    <div class="io-description"><p>Readonly signal: logosData.</p>
 <p>It holds the logos data for the footer.</p>
 </div>
                 </td>
@@ -620,7 +620,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly property: navbarItems.</p>
+                    <div class="io-description"><p>Readonly property: navbarItems.</p>
 <p>It keeps the navigation items for the navbar.</p>
 </div>
                 </td>
@@ -659,7 +659,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly property: sectionEditionLinks.</p>
+                    <div class="io-description"><p>Readonly property: sectionEditionLinks.</p>
 <p>It keeps the section edition links for the navbar.</p>
 </div>
                 </td>
@@ -703,7 +703,7 @@ with the navigation bar, menu and brand.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: sectionLinksData.</p>
+                    <div class="io-description"><p>Readonly signal: sectionLinksData.</p>
 <p>It keeps the array of displayed edition sections as a read-only signal.</p>
 </div>
                 </td>
@@ -768,42 +768,42 @@ export class NavbarComponent {
     private readonly _router &#x3D; inject(Router);
 
     /**
-     * Public readonly property: navbarItems.
+     * Readonly property: navbarItems.
      *
      * It keeps the navigation items for the navbar.
      */
     readonly navbarItems &#x3D; NAVBAR_ITEMS;
 
     /**
-     * Public readonly property: generalEditionLinks.
+     * Readonly property: generalEditionLinks.
      *
      * It keeps the general edition links for the navbar.
      */
     readonly generalEditionLinks &#x3D; NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS;
 
     /**
-     * Public readonly property: sectionEditionLinks.
+     * Readonly property: sectionEditionLinks.
      *
      * It keeps the section edition links for the navbar.
      */
     readonly sectionEditionLinks &#x3D; NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
 
     /**
-     * Public readonly signal: isCollapsed.
+     * Readonly signal: isCollapsed.
      *
      * It holds the boolean value if the header menu is collapsed or not.
      */
     readonly isCollapsed &#x3D; signal(true);
 
     /**
-     * Public readonly signal: logosData.
+     * Readonly signal: logosData.
      *
      * It holds the logos data for the footer.
      */
     readonly logosData &#x3D; signal&lt;Logos&gt;(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Public readonly signal: sectionLinksData.
+     * Readonly signal: sectionLinksData.
      *
      * It keeps the array of displayed edition sections as a read-only signal.
      */
@@ -815,7 +815,7 @@ export class NavbarComponent {
     ).asReadonly();
 
     /**
-     * Public readonly signal: isEditionRouteActive.
+     * Readonly signal: isEditionRouteActive.
      *
      * It checks if the edition route is active.
      */

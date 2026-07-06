@@ -255,17 +255,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/shared/heading/heading.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/heading/heading.component.ts:20</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: id.</p>
+                        <div class="io-description"><p>Readonly input signal: id.</p>
 <p>It holds the id of the heading.</p>
 </div>
                     </td>
@@ -288,17 +288,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/heading/heading.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/heading/heading.component.ts:27</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: title.</p>
+                        <div class="io-description"><p>Readonly input signal: title.</p>
 <p>It holds the title of the heading.</p>
 </div>
                     </td>
@@ -330,20 +330,18 @@
 })
 export class HeadingComponent {
     /**
-     * Input signal: id.
+     * Readonly input signal: id.
      *
      * It holds the id of the heading.
-     * @default &#x27;&#x27;
      */
-    id &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+    readonly id &#x3D; input.required&lt;string&gt;();
 
     /**
-     * Input signal: title.
+     * Readonly input signal: title.
      *
      * It holds the title of the heading.
-     * @default &#x27;&#x27;
      */
-    title &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+    readonly title &#x3D; input.required&lt;string&gt;();
 }
 </code></pre>
     </div>

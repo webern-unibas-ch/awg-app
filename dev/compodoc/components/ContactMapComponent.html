@@ -284,7 +284,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: embedUrl.</p>
+                        <div class="io-description"><p>Readonly input signal: embedUrl.</p>
 <p>It holds the sanitized link to embed the map.</p>
 </div>
                     </td>
@@ -317,7 +317,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: linkUrl.</p>
+                        <div class="io-description"><p>Readonly input signal: linkUrl.</p>
 <p>It holds the direct link to the external map page.</p>
 </div>
                     </td>
@@ -437,18 +437,18 @@ import { SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 })
 export class ContactMapComponent {
     /**
-     * Input signal: embedUrl.
+     * Readonly input signal: embedUrl.
      *
      * It holds the sanitized link to embed the map.
      */
-    embedUrl &#x3D; input.required&lt;SafeResourceUrl&gt;();
+    readonly embedUrl &#x3D; input.required&lt;SafeResourceUrl&gt;();
 
     /**
-     * Input signal: linkUrl.
+     * Readonly input signal: linkUrl.
      *
      * It holds the direct link to the external map page.
      */
-    linkUrl &#x3D; input.required&lt;string&gt;();
+    readonly linkUrl &#x3D; input.required&lt;string&gt;();
 
     /**
      * Public readonly variable: LINK_LABEL.

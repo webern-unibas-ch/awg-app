@@ -268,7 +268,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: label.</p>
+                        <div class="io-description"><p>Readonly input signal: label.</p>
 <p>It holds the label of the dropdown link.</p>
 </div>
                     </td>
@@ -301,7 +301,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: route.</p>
+                        <div class="io-description"><p>Readonly input signal: route.</p>
 <p>It holds the route of the dropdown link.</p>
 </div>
                     </td>
@@ -335,18 +335,18 @@ import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
 })
 export class NavbarDropdownLinkComponent {
     /**
-     * Input signal: label.
+     * Readonly input signal: label.
      *
      * It holds the label of the dropdown link.
      */
-    label &#x3D; input.required&lt;string&gt;();
+    readonly label &#x3D; input.required&lt;string&gt;();
 
     /**
-     * Input signal: route.
+     * Readonly input signal: route.
      *
      * It holds the route of the dropdown link.
      */
-    route &#x3D; input.required&lt;string[]&gt;();
+    readonly route &#x3D; input.required&lt;string[]&gt;();
 }
 </code></pre>
     </div>

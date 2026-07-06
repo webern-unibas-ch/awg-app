@@ -228,15 +228,19 @@ with a statistics page about the edition complexes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#complexBreakdownData" >complexBreakdownData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#overallProgressData" >overallProgressData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#statisticsData" >statisticsData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#summaryData" >summaryData</a>
                             </li>
                         </ul>
@@ -269,6 +273,7 @@ with a statistics page about the edition complexes.</p>
                 <td class="col-md-4">
                     <a name="complexBreakdownData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>complexBreakdownData</b></span>
                         <a href="#complexBreakdownData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -304,7 +309,7 @@ with a statistics page about the edition complexes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: complexBreakdownData.</p>
+                    <div class="io-description"><p>Readonly computed signal: complexBreakdownData.</p>
 <p>It computes the complex breakdown data for the statistics breakdown badges based on the main statistics data.</p>
 </div>
                 </td>
@@ -318,6 +323,7 @@ with a statistics page about the edition complexes.</p>
                 <td class="col-md-4">
                     <a name="overallProgressData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>overallProgressData</b></span>
                         <a href="#overallProgressData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -353,7 +359,7 @@ with a statistics page about the edition complexes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: overallProgressData.</p>
+                    <div class="io-description"><p>Readonly computed signal: overallProgressData.</p>
 <p>It computes the overall progress data for the statistics progress bar based on the main statistics data.</p>
 </div>
                 </td>
@@ -367,6 +373,7 @@ with a statistics page about the edition complexes.</p>
                 <td class="col-md-4">
                     <a name="statisticsData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>statisticsData</b></span>
                         <a href="#statisticsData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -393,7 +400,7 @@ with a statistics page about the edition complexes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public signal: statisticsData.</p>
+                    <div class="io-description"><p>Readonly signal: statisticsData.</p>
 <p>It holds the statistics data for the edition complexes,
 which is retrieved from the StatisticsService based on data from the EditionOutlineService.</p>
 </div>
@@ -408,6 +415,7 @@ which is retrieved from the StatisticsService based on data from the EditionOutl
                 <td class="col-md-4">
                     <a name="summaryData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>summaryData</b></span>
                         <a href="#summaryData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -444,7 +452,7 @@ which is retrieved from the StatisticsService based on data from the EditionOutl
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: summaryData.</p>
+                    <div class="io-description"><p>Readonly computed signal: summaryData.</p>
 <p>It computes the summary data for the statistics summary cards based on the main statistics data.</p>
 </div>
                 </td>
@@ -494,21 +502,21 @@ import { StatisticsSummaryComponent } from &#x27;./statistics-summary/statistics
 })
 export class StatisticsViewComponent {
     /**
-     * Public signal: statisticsData.
+     * Readonly signal: statisticsData.
      *
      * It holds the statistics data for the edition complexes,
      * which is retrieved from the StatisticsService based on data from the EditionOutlineService.
      */
-    statisticsData &#x3D; signal&lt;Statistics | null&gt;(
+    readonly statisticsData &#x3D; signal&lt;Statistics | null&gt;(
         inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
     );
 
     /**
-     * Computed signal: complexBreakdownData.
+     * Readonly computed signal: complexBreakdownData.
      *
      * It computes the complex breakdown data for the statistics breakdown badges based on the main statistics data.
      */
-    complexBreakdownData &#x3D; computed&lt;StatisticsComplexBreakdownData | null&gt;(() &#x3D;&gt; {
+    readonly complexBreakdownData &#x3D; computed&lt;StatisticsComplexBreakdownData | null&gt;(() &#x3D;&gt; {
         const data &#x3D; this.statisticsData();
         if (!data) {
             return null;
@@ -522,11 +530,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: overallProgressData.
+     * Readonly computed signal: overallProgressData.
      *
      * It computes the overall progress data for the statistics progress bar based on the main statistics data.
      */
-    overallProgressData &#x3D; computed&lt;StatisticsOverallProgressData | null&gt;(() &#x3D;&gt; {
+    readonly overallProgressData &#x3D; computed&lt;StatisticsOverallProgressData | null&gt;(() &#x3D;&gt; {
         const data &#x3D; this.statisticsData();
         if (!data) {
             return null;
@@ -540,11 +548,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: summaryData.
+     * Readonly computed signal: summaryData.
      *
      * It computes the summary data for the statistics summary cards based on the main statistics data.
      */
-    summaryData &#x3D; computed&lt;StatisticsSummaryData | null&gt;(() &#x3D;&gt; {
+    readonly summaryData &#x3D; computed&lt;StatisticsSummaryData | null&gt;(() &#x3D;&gt; {
         const data &#x3D; this.statisticsData();
         if (!data) {
             return null;

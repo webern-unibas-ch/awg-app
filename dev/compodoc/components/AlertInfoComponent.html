@@ -225,6 +225,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#faCircleInfo" >faCircleInfo</a>
                             </li>
                         </ul>
@@ -290,7 +291,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
@@ -300,8 +301,8 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: infoMessage.</p>
-<p>It holds the info message for the component.</p>
+                        <div class="io-description"><p>Readonly input signal: infoMessage.</p>
+<p>It holds the info message for the alert.</p>
 </div>
                     </td>
                 </tr>
@@ -334,7 +335,7 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Model signal: isOpen.</p>
-<p>It keeps the open state and allows two-way binding.</p>
+<p>It holds the state of the alert (open or closed).</p>
 </div>
                     </td>
                 </tr>
@@ -365,7 +366,7 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Model signal: isOpen.</p>
-<p>It keeps the open state and allows two-way binding.</p>
+<p>It holds the state of the alert (open or closed).</p>
 </div>
                     </td>
                 </tr>
@@ -386,6 +387,7 @@
                 <td class="col-md-4">
                     <a name="faCircleInfo"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>faCircleInfo</b></span>
                         <a href="#faCircleInfo"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -410,7 +412,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faCircleInfo.</p>
+                    <div class="io-description"><p>Readonly variable: faCircleInfo.</p>
 <p>It instantiates fontawesome&#39;s faCircleInfo icon.</p>
 </div>
                 </td>
@@ -444,26 +446,26 @@ import { NgbAlert } from &#x27;@ng-bootstrap/ng-bootstrap/alert&#x27;;
 })
 export class AlertInfoComponent {
     /**
-     * Input signal: infoMessage.
+     * Readonly input signal: infoMessage.
      *
-     * It holds the info message for the component.
+     * It holds the info message for the alert.
      */
-    infoMessage &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+    readonly infoMessage &#x3D; input.required&lt;string&gt;();
 
     /**
      * Model signal: isOpen.
      *
-     * It keeps the open state and allows two-way binding.
+     * It holds the state of the alert (open or closed).
      * @default true
      */
     isOpen &#x3D; model&lt;boolean&gt;(true);
 
     /**
-     * Public variable: faCircleInfo.
+     * Readonly variable: faCircleInfo.
      *
      * It instantiates fontawesome&#x27;s faCircleInfo icon.
      */
-    faCircleInfo &#x3D; faCircleInfo;
+    readonly faCircleInfo &#x3D; faCircleInfo;
 }
 </code></pre>
     </div>

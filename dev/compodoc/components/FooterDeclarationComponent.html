@@ -226,6 +226,7 @@ with version number, release date and imprint.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#versionData" >versionData</a>
                             </li>
                         </ul>
@@ -284,7 +285,7 @@ with version number, release date and imprint.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: pageMetaData.</p>
+                        <div class="io-description"><p>Readonly input signal: pageMetaData.</p>
 <p>It holds the page metadata for the footer declaration.</p>
 </div>
                     </td>
@@ -307,6 +308,7 @@ with version number, release date and imprint.</p>
                 <td class="col-md-4">
                     <a name="versionData"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>versionData</b></span>
                         <a href="#versionData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -345,7 +347,7 @@ with version number, release date and imprint.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Computed signal: versionData.</p>
+                    <div class="io-description"><p>Readonly computed signal: versionData.</p>
 <p>It computes the relevant pageMetaData for the footer declaration.</p>
 </div>
                 </td>
@@ -380,18 +382,18 @@ import { MetaPage } from &#x27;../../models/meta.model&#x27;;
 })
 export class FooterDeclarationComponent {
     /**
-     * Input signal: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
      * It holds the page metadata for the footer declaration.
      */
-    pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
+    readonly pageMetaData &#x3D; input.required&lt;MetaPage&gt;();
 
     /**
-     * Computed signal: versionData.
+     * Readonly computed signal: versionData.
      *
      * It computes the relevant pageMetaData for the footer declaration.
      */
-    versionData &#x3D; computed(() &#x3D;&gt; {
+    readonly versionData &#x3D; computed(() &#x3D;&gt; {
         const page &#x3D; this.pageMetaData();
 
         if (!page?.awgAppGithubUrl || !page?.awgAppVersion || !page?.awgAppVersionReleaseDate) {
