@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { isEmptyArray } from '@awg-shared/utils/object-utils';
+import { UTILS } from '@awg-shared/utils/object-utils';
 /**
  * The SourceDescriptionDetails component.
  *
@@ -70,11 +70,11 @@ export class SourceDescriptionDetailsComponent {
     ref: SourceDescriptionDetailsComponent;
 
     /**
-     * Protected readonly variable: isEmptyArray.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the reference to the {@link isEmptyArray} utils method.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    protected readonly isEmptyArray = isEmptyArray;
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the SourceDescriptionDetailsComponent.

@@ -74,7 +74,7 @@ class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;
     @Input()
-    id: string;
+    id?: string;
     @Input()
     isCorrections = false;
     @Input()
