@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { QuerySelectResult } from '../models';
 
 /**
@@ -52,13 +52,6 @@ export class SelectResultsComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Private readonly injection variable: _utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    private readonly _utils = inject(UtilityService);
-
-    /**
      * Public method: isAccordionItemDisabled.
      *
      * It returns a boolean flag if the accordion item should be disabled.
@@ -85,10 +78,7 @@ export class SelectResultsComponent {
         if (!selectQueryResult || typeof selectQueryResult === 'string') {
             return true;
         }
-        return (
-            this._utils.isEmptyArray(selectQueryResult.head?.vars) ||
-            this._utils.isEmptyArray(selectQueryResult.body?.bindings)
-        );
+        return UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings);
     }
 
     /**

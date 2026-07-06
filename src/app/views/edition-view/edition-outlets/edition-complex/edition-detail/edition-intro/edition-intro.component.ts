@@ -4,8 +4,8 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
 import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -91,11 +91,11 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     errorObject = null;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Private readonly variable: _destroyed$.

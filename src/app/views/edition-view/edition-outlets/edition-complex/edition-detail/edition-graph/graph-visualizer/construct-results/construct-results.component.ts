@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
-
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { D3SimulationNode, Triple } from '../models';
 
 /**
@@ -53,11 +52,16 @@ export class ConstructResultsComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 
     /**
-     * Private readonly injection variable: _utils.
+     * Public method: isAccordionItemDisabled.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
      */
-    private readonly _utils = inject(UtilityService);
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen;
+    }
 
     /**
      * Public method: isEmptyConstructQueryResult.
@@ -70,22 +74,10 @@ export class ConstructResultsComponent {
     isEmptyConstructQueryResult(
         constructQueryResult: Triple[] | null | undefined
     ): constructQueryResult is null | undefined | [] {
-        if (this._utils.isEmptyArray(constructQueryResult)) {
+        if (UTILS.isEmptyArray(constructQueryResult)) {
             return true;
         }
         return constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object);
-    }
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
     }
 
     /**

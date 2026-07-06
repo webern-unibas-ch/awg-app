@@ -17,7 +17,6 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { CompileHtmlComponent } from '@awg-shared/compile-html/compile-html.component';
 import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
@@ -67,11 +66,11 @@ class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;
     @Input()
+    id: string;
+    @Input()
     isCorrections = false;
     @Input()
     isRowTable = false;
-    @Input()
-    isSketchId = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{
         complexId: string;
@@ -121,7 +120,6 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
-            providers: [UtilityService],
         }).compileComponents();
     });
 
@@ -512,18 +510,18 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToEqual(tableCmp.commentary, expectedSelectedTextcriticalCommentary);
             });
 
+            it('... should pass down `id` to the EditionTkaTableComponent', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+
+                expectToBe(tableCmp.id, expectedSelectedTextcritics.id);
+            });
+
             it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
                 expectToBe(tableCmp.isRowTable, expectedSelectedTextcritics.rowtable);
-            });
-
-            it('... should pass down `isSketchId` to the EditionTkaTableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
-
-                expectToBe(tableCmp.isSketchId, false);
             });
         });
 

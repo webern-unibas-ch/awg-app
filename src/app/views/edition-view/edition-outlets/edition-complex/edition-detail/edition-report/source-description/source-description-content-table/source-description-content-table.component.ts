@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { UTILS } from '@awg-app/shared/utils/object-utils';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 
 /**
@@ -39,11 +39,11 @@ export class SourceDescriptionContentTableComponent {
     ref: SourceDescriptionContentTableComponent;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the SourceDescriptionContentTableComponent.

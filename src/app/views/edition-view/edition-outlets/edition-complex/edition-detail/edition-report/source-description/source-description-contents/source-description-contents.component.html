@@ -56,13 +56,13 @@
                 </summary>
 
                 <!-- content.folios -->
-                @if (content?.folios?.length) {
+                @if (!UTILS.isEmptyArray(content?.folios)) {
                     <awg-source-description-content-table
                         [content]="content"
                         (selectSvgSheetRequest)="selectSvgSheet($event)" />
                 }
             </details>
-        } @else if (content?.folios?.length) {
+        } @else if (!UTILS.isEmptyArray(content?.folios)) {
             <awg-source-description-content-table
                 [content]="content"
                 (selectSvgSheetRequest)="selectSvgSheet($event)" />

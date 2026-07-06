@@ -18,7 +18,6 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { CompileHtmlComponent } from '@awg-shared/compile-html/compile-html.component';
 import { TextcriticalCommentary, TextcriticsList } from '@awg-views/edition-view/models';
 
@@ -75,11 +74,11 @@ class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;
     @Input()
+    id: string;
+    @Input()
     isCorrections = false;
     @Input()
     isRowTable = false;
-    @Input()
-    isSketchId = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{
         complexId: string;
@@ -138,7 +137,6 @@ describe('TextcriticsListComponent (DONE)', () => {
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
-            providers: [UtilityService],
         }).compileComponents();
     });
 
@@ -794,6 +792,20 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToEqual(tableCmp.commentary, expectedTextcriticsData.textcritics[1].commentary);
                     });
 
+                    it('... should pass down `id` to EditionTkaTableComponent (stubbed)', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const tableCmp = tableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
+
+                        expectToEqual(tableCmp.id, expectedTextcriticsData.textcritics[1].id);
+                    });
+
                     it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
                         const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
@@ -807,59 +819,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         expectToEqual(tableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                     });
-
-                    it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionTkaTableStubComponent,
-                            1,
-                            1
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            EditionTkaTableStubComponent
-                        ) as EditionTkaTableStubComponent;
-
-                        expectToEqual(tableCmp.isSketchId, false);
-                    });
                 });
-            });
-        });
-
-        describe('#isWorkEditionId()', () => {
-            it('... should have a method `isWorkEditionId`', () => {
-                expect(component.isWorkEditionId).toBeDefined();
-            });
-
-            describe('... should return false if', () => {
-                it('... id is undefined', () => {
-                    const result = component.isWorkEditionId(undefined);
-
-                    expectToBe(result, false);
-                });
-
-                it('... id is null', () => {
-                    const result = component.isWorkEditionId(null);
-
-                    expectToBe(result, false);
-                });
-
-                it('... id is empty string', () => {
-                    const result = component.isWorkEditionId('');
-
-                    expectToBe(result, false);
-                });
-
-                it('... id is not a work edition id', () => {
-                    const result = component.isWorkEditionId('test_id');
-
-                    expectToBe(result, false);
-                });
-            });
-
-            it('... should return true if id is a work edition id', () => {
-                const result = component.isWorkEditionId('op12_WE');
-
-                expectToBe(result, true);
             });
         });
 

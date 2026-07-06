@@ -35,8 +35,8 @@
                     </p>
                     <awg-edition-tka-table
                         [commentary]="selectedTextcriticalCommentary"
+                        [id]="selectedTextcritics?.id"
                         [isRowTable]="selectedTextcritics?.rowtable"
-                        [isSketchId]="UTILS.isSketchId(selectedTextcritics?.id)"
                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                         (openModalRequest)="openModal($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)" />

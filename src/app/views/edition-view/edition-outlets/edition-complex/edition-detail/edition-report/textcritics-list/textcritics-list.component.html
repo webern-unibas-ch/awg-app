@@ -9,7 +9,7 @@
                         <span [compile-html]="textcritics.label" [compile-html-ref]="ref"></span>
                     </button>
                     <div class="btn-group" role="group" aria-label="Button to sheets">
-                        @if (isWorkEditionId(textcritics.id)) {
+                        @if (EDITION_UTILS.isWorkEditionId(textcritics.id)) {
                             <button type="button" class="btn btn-sm btn-outline-info">
                                 <awg-disclaimer-workeditions />
                             </button>
@@ -17,7 +17,7 @@
                         <button
                             type="button"
                             class="btn btn-sm btn-outline-info"
-                            [disabled]="isWorkEditionId(textcritics.id)"
+                            [disabled]="EDITION_UTILS.isWorkEditionId(textcritics.id)"
                             (click)="selectSvgSheet({ complexId: '', sheetId: textcritics.id })">
                             Zum edierten Notentext
                         </button>
@@ -49,8 +49,8 @@
                                 } @else {
                                     <awg-edition-tka-table
                                         [commentary]="textcritics.commentary"
+                                        [id]="textcritics.id"
                                         [isRowTable]="textcritics.rowtable"
-                                        [isSketchId]="UTILS.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)" />

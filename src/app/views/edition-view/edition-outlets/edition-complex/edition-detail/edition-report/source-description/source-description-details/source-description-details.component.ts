@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { isEmptyArray } from '@awg-shared/utils/object-utils';
 /**
  * The SourceDescriptionDetails component.
  *
@@ -67,6 +68,13 @@ export class SourceDescriptionDetailsComponent {
      * Self-referring variable needed for CompileHtml library.
      */
     ref: SourceDescriptionDetailsComponent;
+
+    /**
+     * Protected readonly variable: isEmptyArray.
+     *
+     * It keeps the reference to the {@link isEmptyArray} utils method.
+     */
+    protected readonly isEmptyArray = isEmptyArray;
 
     /**
      * Constructor of the SourceDescriptionDetailsComponent.

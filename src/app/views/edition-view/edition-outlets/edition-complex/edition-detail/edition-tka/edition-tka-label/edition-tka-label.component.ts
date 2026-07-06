@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 
 /**
  * The EditionTkaLabel component.
@@ -31,9 +31,9 @@ export class EditionTkaLabelComponent {
     @Input() labelType: 'evaluation' | 'commentary';
 
     /**
-     * Readonly injection variable: UTILS.
+     * Protected readonly variable: EDITION_UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly EDITION_UTILS = EDITION_UTILS;
 }

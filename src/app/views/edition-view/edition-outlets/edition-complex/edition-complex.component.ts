@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { delay, EMPTY, Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -44,13 +44,6 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     private readonly _route = inject(ActivatedRoute);
 
     /**
-     * Private readonly injection variable: _utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    private readonly _utils = inject(UtilityService);
-
-    /**
      * Getter variable: editionRouteConstants.
      *
      *  It returns the EDITION_ROUTE_CONSTANTS.
@@ -82,7 +75,7 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
             const id: string = params.get('complexId') || '';
             const complex = EditionComplexesService.getEditionComplexById(id);
 
-            if (this._utils.isEmptyObject(complex)) {
+            if (UTILS.isEmptyObject(complex)) {
                 this.selectedEditionComplex$ = EMPTY;
             } else {
                 const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);

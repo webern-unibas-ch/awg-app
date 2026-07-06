@@ -4,7 +4,7 @@
             <span [compile-html]="commentary.preamble" [compile-html-ref]="ref"> </span>
         </caption>
     }
-    @if (commentary.comments.length > 0) {
+    @if (!UTILS.isEmptyArray(commentary.comments)) {
         <thead>
             <tr>
                 @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
 import { combineLatest, map, Observable } from 'rxjs';
@@ -27,11 +27,11 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
     editionData$: Observable<{ series: EditionOutlineSeries; section: EditionOutlineSection }>;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Private readonly injection variable: _editionStateService.

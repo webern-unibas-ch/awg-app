@@ -5,9 +5,9 @@ import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/rou
 import { combineLatest, EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
@@ -94,13 +94,6 @@ export class EditionSheetsComponent implements OnInit {
      * It keeps the instance of the injected Angular Router.
      */
     private readonly _router: any = inject(Router);
-
-    /**
-     * Private readonly injection variable: utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    private readonly _utils = inject(UtilityService);
 
     /**
      * Public variable: editionComplex.
@@ -308,7 +301,7 @@ export class EditionSheetsComponent implements OnInit {
             overlays
         );
 
-        this.showTkA = !this._utils.isEmptyArray(this.selectedTextcriticalCommentary.comments);
+        this.showTkA = !UTILS.isEmptyArray(this.selectedTextcriticalCommentary.comments);
     }
 
     /**
@@ -490,7 +483,7 @@ export class EditionSheetsComponent implements OnInit {
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);
 
-        if (!this._utils.isEmptyObject(this.selectedTextcritics?.commentary)) {
+        if (!UTILS.isEmptyObject(this.selectedTextcritics?.commentary)) {
             this.selectedTextcriticalCommentary = this.selectedTextcritics.commentary;
         }
     }

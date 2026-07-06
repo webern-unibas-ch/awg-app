@@ -15,7 +15,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import {
@@ -119,7 +118,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 AbbrDirective,
                 RouterLinkStubDirective,
             ],
-            providers: [UtilityService],
         }).compileComponents();
     });
 
