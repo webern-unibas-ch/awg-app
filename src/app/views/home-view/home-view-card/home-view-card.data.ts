@@ -1,4 +1,4 @@
-import { HomeViewCard } from '../models/home-view-card.model';
+import { HomeViewCard } from './home-view-card.model';
 
 /**
  * The HOME_VIEW_CARD_DATA constant.

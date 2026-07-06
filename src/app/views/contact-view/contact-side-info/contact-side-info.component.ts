@@ -37,39 +37,41 @@ export class ContactSideInfoComponent {
     private readonly _sanitizer = inject(DomSanitizer);
 
     /**
-     * Public readonly variable: CONTACT_SIDE_INFO_HEADER.
+     * Readonly variable: CONTACT_SIDE_INFO_HEADER.
      *
      * It keeps the header for the contact side info.
      */
     readonly CONTACT_SIDE_INFO_HEADER = 'Kontakt';
 
     /**
-     * Public readonly signal: contactMetaData.
+     * Readonly signal: contactMetaData.
      *
      * It holds the contact metadata for the contact view via the injected CoreService.
      */
-    contactMetaData = signal<MetaContact>(this._coreService.getMetaDataSection(MetaSectionTypes.contact)).asReadonly();
+    readonly contactMetaData = signal<MetaContact>(
+        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
+    ).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the contact view via the injected CoreService.
      */
-    pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
-     * Public readonly signal: mapEmbedUrl.
+     * Readonly signal: mapEmbedUrl.
      *
      * It holds the sanitized link to embed the map.
      */
-    mapEmbedUrl = signal<SafeResourceUrl>(
+    readonly mapEmbedUrl = signal<SafeResourceUrl>(
         this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
     ).asReadonly();
 
     /**
-     * Public readonly signal: mapLinkUrl.
+     * Readonly signal: mapLinkUrl.
      *
      * It holds the link to the external map page.
      */
-    mapLinkUrl = signal<string>(AppConfig.CONTACT_MAP_LINK_URL).asReadonly();
+    readonly mapLinkUrl = signal<string>(AppConfig.CONTACT_MAP_LINK_URL).asReadonly();
 }

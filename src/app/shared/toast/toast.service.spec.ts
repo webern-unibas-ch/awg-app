@@ -34,7 +34,7 @@ describe('ToastService (DONE)', () => {
             declarations: [MockTemplateComponent],
         });
 
-        // Inject service
+        // Inject services
         toastService = TestBed.inject(ToastService);
 
         // Test data

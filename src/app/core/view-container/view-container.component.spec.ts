@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterOutlet } from '@angular/router';
 
@@ -26,12 +26,10 @@ describe('ViewContainerComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Create component fixture
         fixture = TestBed.createComponent(ViewContainerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('activateSideOutlet', undefined);
     });
 
     it('... should create', () => {
@@ -39,8 +37,10 @@ describe('ViewContainerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `activateSideOutlet` input', () => {
-            expect(component.activateSideOutlet()).toBeUndefined();
+        it('... should throw due to missing required input signal `activateSideOutlet`', () => {
+            expectToBe(isSignal(component.activateSideOutlet), true);
+
+            expect(() => component.activateSideOutlet()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -81,16 +81,16 @@ describe('ViewContainerComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        describe('... with `showSideOutlet=false`', () => {
+        describe('... with `activateSideOutlet=false`', () => {
             beforeEach(() => {
-                // Simulate the parent component setting the input
+                // Set the initial values for the signal inputs
                 fixture.componentRef.setInput('activateSideOutlet', false);
 
                 // Trigger initial data binding
                 fixture.detectChanges();
             });
 
-            it('... should have updated `activateSideOutlet` input', () => {
+            it('... should have input signal `activateSideOutlet` to hold false', () => {
                 expectToBe(component.activateSideOutlet(), false);
             });
 
@@ -132,15 +132,16 @@ describe('ViewContainerComponent (DONE)', () => {
             });
         });
 
-        describe('... with `showSideOutlet=true`', () => {
+        describe('... with `activateSideOutlet=true`', () => {
             beforeEach(() => {
-                // Simulate the parent component updating the input
+                // Set the initial values for the signal inputs
                 fixture.componentRef.setInput('activateSideOutlet', true);
+
                 // Trigger initial data binding
                 fixture.detectChanges();
             });
 
-            it('... should have updated `activateSideOutlet` input', () => {
+            it('... should have input signal `activateSideOutlet` to hold true', () => {
                 expectToBe(component.activateSideOutlet(), true);
             });
 

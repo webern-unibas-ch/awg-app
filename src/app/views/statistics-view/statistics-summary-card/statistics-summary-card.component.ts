@@ -17,30 +17,30 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 })
 export class StatisticsSummaryCardComponent {
     /**
-     * Input signal: title.
+     * Readonly input signal: title.
      *
      * It keeps the title for a statistics summary card.
      */
-    title = input<string>();
+    readonly title = input.required<string>();
 
     /**
-     * Input signal: value.
+     * Readonly input signal: value.
      *
      * It keeps the value to display in the statistics summary card.
      */
-    value = input<number | string>();
+    readonly value = input.required<number | string>();
 
     /**
-     * Input signal: icon.
+     * Readonly input signal: icon.
      *
      * It keeps the FontAwesome icon class for the statistics summary card.
      */
-    icon = input<IconDefinition>();
+    readonly icon = input.required<IconDefinition>();
 
     /**
-     * Input signal: bgClass.
+     * Readonly input signal: bgClass.
      *
      * It keeps the background color class for the statistics summary card.
      */
-    bgClass = input<string>();
+    readonly bgClass = input.required<string>();
 }

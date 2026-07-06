@@ -49,42 +49,42 @@ export class NavbarComponent {
     private readonly _router = inject(Router);
 
     /**
-     * Public readonly property: navbarItems.
+     * Readonly property: navbarItems.
      *
      * It keeps the navigation items for the navbar.
      */
     readonly navbarItems = NAVBAR_ITEMS;
 
     /**
-     * Public readonly property: generalEditionLinks.
+     * Readonly property: generalEditionLinks.
      *
      * It keeps the general edition links for the navbar.
      */
     readonly generalEditionLinks = NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS;
 
     /**
-     * Public readonly property: sectionEditionLinks.
+     * Readonly property: sectionEditionLinks.
      *
      * It keeps the section edition links for the navbar.
      */
     readonly sectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
 
     /**
-     * Public readonly signal: isCollapsed.
+     * Readonly signal: isCollapsed.
      *
      * It holds the boolean value if the header menu is collapsed or not.
      */
     readonly isCollapsed = signal(true);
 
     /**
-     * Public readonly signal: logosData.
+     * Readonly signal: logosData.
      *
      * It holds the logos data for the footer.
      */
     readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
-     * Public readonly signal: sectionLinksData.
+     * Readonly signal: sectionLinksData.
      *
      * It keeps the array of displayed edition sections as a read-only signal.
      */
@@ -96,7 +96,7 @@ export class NavbarComponent {
     ).asReadonly();
 
     /**
-     * Public readonly signal: isEditionRouteActive.
+     * Readonly signal: isEditionRouteActive.
      *
      * It checks if the edition route is active.
      */

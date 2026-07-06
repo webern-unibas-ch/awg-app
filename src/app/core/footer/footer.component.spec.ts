@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -101,13 +101,14 @@ describe('FooterComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedLogosData = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+
+        // Create component fixture
+        fixture = TestBed.createComponent(FooterComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -124,11 +125,15 @@ describe('FooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `logosData`', () => {
+        it('... should have signal `logosData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.logosData), true);
+
             expectToEqual(component.logosData(), expectedLogosData);
         });
 
@@ -182,19 +187,19 @@ describe('FooterComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                 });
 
-                it('... should contain 1 footer copyright component (stubbed) in first inner div', () => {
+                it('... should contain one footer copyright component (stubbed) in first inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[0], FooterCopyrightStubComponent, 1, 1);
                 });
 
-                it('... should contain 1 footer poweredby component (stubbed) in second inner div', () => {
+                it('... should contain one footer poweredby component (stubbed) in second inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[1], FooterPoweredbyStubComponent, 1, 1);
                 });
 
-                it('... should contain 1 google translate div in third inner div', () => {
+                it('... should contain one google translate div in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-secondary div', 3, 3);
                     const gtransDiv = divDes[2];
                     const gtransEl: HTMLDivElement = gtransDiv.nativeElement;

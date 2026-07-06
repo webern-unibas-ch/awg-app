@@ -27,17 +27,15 @@ describe('LogoLinkComponent', () => {
             imports: [LogoLinkComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(LogoLinkComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedUnibasLogoData = LOGOS_DATA['unibas'];
         expectedSagwLogoData = LOGOS_DATA['sagw'];
         expectedAngularLogoData = LOGOS_DATA['angular'];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('logoData', {} as Logo);
+        // Create component fixture
+        fixture = TestBed.createComponent(LogoLinkComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -45,16 +43,22 @@ describe('LogoLinkComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `logoData` input', () => {
-            expectToEqual(component.logoData(), {} as Logo);
+        it('... should throw due to missing required input signal `logoData`', () => {
+            expectToBe(isSignal(component.logoData), true);
+
+            expect(() => component.logoData()).toThrow();
         });
 
-        it('... should have default `linkClass` input', () => {
+        it('... should have input signal `linkClass` to hold the default value', () => {
+            expectToBe(isSignal(component.linkClass), true);
+
             expectToBe(component.linkClass(), 'awg-logo-link');
         });
 
-        it('... should have computed `logoClassList` to be empty string (due to empty logoData)', () => {
-            expectToBe(component.logoClassList(), '');
+        it('... should throw when accessing computed signal `logoClassList` due to missing input', () => {
+            expectToBe(isSignal(component.logoClassList), true);
+
+            expect(() => component.logoClassList()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -67,36 +71,33 @@ describe('LogoLinkComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('logoData', expectedSagwLogoData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `logoData`', () => {
+        it('... should have input signal `logoData` to hold the provided data', () => {
             expectToEqual(component.logoData(), expectedSagwLogoData);
         });
 
-        it('... should change `logoData` if input changes', () => {
-            expectToEqual(component.logoData(), expectedSagwLogoData);
-
-            fixture.componentRef.setInput('logoData', expectedUnibasLogoData);
-            expectToEqual(component.logoData(), expectedUnibasLogoData);
-
-            fixture.componentRef.setInput('logoData', expectedAngularLogoData);
-            expectToEqual(component.logoData(), expectedAngularLogoData);
-        });
-
-        it('... should change `linkClass` if input changes', () => {
-            expectToBe(component.linkClass(), 'awg-logo-link');
-
-            fixture.componentRef.setInput('linkClass', 'navbar-brand');
-            expectToBe(component.linkClass(), 'navbar-brand');
-        });
-
-        it('... should have computed `logoClassList` to return the correct CSS classes (for right main footer)', () => {
+        it('... should have computed signal `logoClassList` to hold the expected CSS classes (for right main footer)', () => {
             expectToBe(component.logoClassList(), `${cssClassMarginY2} ${cssClassFloatEnd}`);
+        });
+
+        it('... should have recomputed signal `logoClassList` when input changes', () => {
+            const testCases = [
+                { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
+                { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
+                { logoData: expectedAngularLogoData, expected: '' },
+            ];
+
+            testCases.forEach(({ logoData, expected }) => {
+                fixture.componentRef.setInput('logoData', logoData);
+
+                expectToBe(component.logoClassList(), expected);
+            });
         });
 
         describe('VIEW', () => {
@@ -150,27 +151,6 @@ describe('LogoLinkComponent', () => {
 
                 expectToBe(imageEl.classList.length, 0);
                 expectToBe(imageEl.className, '');
-            });
-        });
-    });
-
-    describe('#logoClassList', () => {
-        it('... should have a computed signal `logoClassList`', () => {
-            expect(component.logoClassList).toBeDefined();
-            expectToBe(isSignal(component.logoClassList), true);
-        });
-
-        it('... should return correct CSS classes depending on the logo type', () => {
-            const testCases = [
-                { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
-                { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
-                { logoData: expectedAngularLogoData, expected: '' },
-            ];
-
-            testCases.forEach(({ logoData, expected }) => {
-                fixture.componentRef.setInput('logoData', logoData);
-
-                expectToBe(component.logoClassList(), expected);
             });
         });
     });

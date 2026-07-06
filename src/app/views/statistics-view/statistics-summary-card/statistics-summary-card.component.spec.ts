@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -26,15 +26,16 @@ describe('StatisticsCardComponent', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(StatisticsSummaryCardComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedTitle = 'Test Title';
         expectedValue = 42;
         expectedIcon = faMusic;
         expectedBgClass = 'bg-primary';
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsSummaryCardComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -42,20 +43,28 @@ describe('StatisticsCardComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have unassigned `title`', () => {
-            expect(component.title()).toBeUndefined();
+        it('... should throw due to missing required input signal `title`', () => {
+            expectToBe(isSignal(component.title), true);
+
+            expect(() => component.title()).toThrow();
         });
 
-        it('... should have unassigned `value`', () => {
-            expect(component.value()).toBeUndefined();
+        it('... should throw due to missing required input signal `value`', () => {
+            expectToBe(isSignal(component.value), true);
+
+            expect(() => component.value()).toThrow();
         });
 
-        it('... should have unassigend `icon`', () => {
-            expect(component.icon()).toBeUndefined();
+        it('... should throw due to missing required input signal `icon`', () => {
+            expectToBe(isSignal(component.icon), true);
+
+            expect(() => component.icon()).toThrow();
         });
 
-        it('... should have unassigned `bgClass`', () => {
-            expect(component.bgClass()).toBeUndefined();
+        it('... should throw due to missing required input signal `bgClass`', () => {
+            expectToBe(isSignal(component.bgClass), true);
+
+            expect(() => component.bgClass()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -156,7 +165,7 @@ describe('StatisticsCardComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input signals
+            // Set the initial values for the signal inputs signals
             fixture.componentRef.setInput('title', expectedTitle);
             fixture.componentRef.setInput('value', expectedValue);
             fixture.componentRef.setInput('icon', expectedIcon);
@@ -165,19 +174,19 @@ describe('StatisticsCardComponent', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated `title`', () => {
+        it('... should have input signal `title` to hold the provided title', () => {
             expectToBe(component.title(), expectedTitle);
         });
 
-        it('... should have updated `value`', () => {
+        it('... should have input signal `value` to hold the provided value', () => {
             expectToBe(component.value(), expectedValue);
         });
 
-        it('... should have updated `icon`', () => {
+        it('... should have input signal `icon` to hold the provided icon', () => {
             expectToBe(component.icon(), expectedIcon);
         });
 
-        it('... should have updated `bgClass`', () => {
+        it('... should have input signal `bgClass` to hold the provided background class', () => {
             expectToBe(component.bgClass(), expectedBgClass);
         });
 

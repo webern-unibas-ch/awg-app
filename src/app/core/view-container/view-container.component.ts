@@ -18,9 +18,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class ViewContainerComponent {
     /**
-     * Input signal: activateSideOutlet.
+     * Readonly input signal: activateSideOutlet.
      *
      * It holds a flag to indicate if the side outlet is active.
      */
-    activateSideOutlet = input.required<boolean>();
+    readonly activateSideOutlet = input.required<boolean>();
 }

@@ -15,35 +15,35 @@ import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/
 })
 export class StatisticsBreakdownBadgeComponent {
     /**
-     * Input signal: breakdown.
+     * Readonly input signal: breakdown.
      *
      * It holds the breakdown data for the complex types to be displayed in the badges.
      */
-    breakdown = input<StatisticsComplexBreakdown>(new StatisticsComplexBreakdown());
+    readonly breakdown = input.required<StatisticsComplexBreakdown>();
 
     /**
-     * Input signal: containerClasses.
+     * Readonly input signal: containerClasses.
      *
      * It holds additional CSS classes to apply to the container.
      * @default 'small text-muted'
      */
-    containerClasses = input<string>('small text-muted');
+    readonly containerClasses = input<string>('small text-muted');
 
     /**
-     * Input signal: showEmptyBadges.
+     * Readonly input signal: showEmptyBadges.
      *
      * It holds a flag whether to show badges when their value is zero.
      * @default false
      */
-    showEmptyBadges = input<boolean>(false);
+    readonly showEmptyBadges = input<boolean>(false);
 
     /**
-     * Computed signal: displayedBadges.
+     * Readonly computed signal: displayedBadges.
      *
      * It computes the list of badges to be displayed
      * based on the breakdown data and the showEmptyBadges flag.
      */
-    displayedBadges = computed<StatisticsBreakDownBadge[]>(() => {
+    readonly displayedBadges = computed<StatisticsBreakDownBadge[]>(() => {
         const data = this.breakdown();
         const showEmpty = this.showEmptyBadges();
 

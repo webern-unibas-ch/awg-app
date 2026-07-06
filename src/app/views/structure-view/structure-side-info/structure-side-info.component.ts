@@ -34,11 +34,11 @@ export class StructureSideInfoComponent {
     readonly STRUCTURE_SIDE_INFO_HEADER = 'Strukturmodell';
 
     /**
-     * Public readonly signal: structureMetaData.
+     * Readonly signal: structureMetaData.
      *
      * It holds the metadata for the structure side info via the injected CoreService.
      */
-    structureMetaData = signal<MetaStructure>(
+    readonly structureMetaData = signal<MetaStructure>(
         this._coreService.getMetaDataSection(MetaSectionTypes.structure)
     ).asReadonly();
 }

@@ -18,9 +18,9 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
 })
 export class StatisticsOverallProgressComponent {
     /**
-     * Input signal: overallProgressData.
+     * Readonly input signal: overallProgressData.
      *
      * It holds the overall progress data.
      */
-    overallProgressData = input.required<StatisticsOverallProgressData>();
+    readonly overallProgressData = input.required<StatisticsOverallProgressData>();
 }

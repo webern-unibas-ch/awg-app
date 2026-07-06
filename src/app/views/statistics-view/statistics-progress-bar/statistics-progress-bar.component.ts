@@ -18,91 +18,93 @@ import { StatisticsProgressBarConfig } from '../models/statistics.model';
 })
 export class StatisticsProgressBarComponent {
     /**
-     * Input signal: config.
+     * Readonly input signal: config.
      *
      * It holds the configuration for the progress bar,
      * including mode and relevant values.
      */
-    config = input.required<StatisticsProgressBarConfig>();
+    readonly config = input.required<StatisticsProgressBarConfig>();
 
     /**
-     * Input signal: headerLabel.
+     * Readonly input signal: headerLabel.
      *
      * It holds an optional label to display above the progress bar.
      */
-    headerLabel = input<string>();
+    readonly headerLabel = input<string>();
 
     /**
-     * Input signal: height.
+     * Readonly input signal: height.
      *
      * It holds the height of the progress bar (e.g., '15px', '20px').
      * @default '15px'
      */
-    height = input<string>('15px');
+    readonly height = input<string>('15px');
 
     /**
-     * Input signal: showPercentageLabel.
+     * Readonly input signal: showPercentageLabel.
      *
      * It holds a flag whether to show the percentage label next to the bar.
      * @default true
      */
-    showPercentageLabel = input<boolean>(true);
+    readonly showPercentageLabel = input<boolean>(true);
 
     /**
-     * Input signal: boldPercentageLabel.
+     * Readonly input signal: boldPercentageLabel.
      *
      * It holds a flag whether to show the percentage label with bold styling (for series rows).
      * @default false
      */
-    boldPercentageLabel = input<boolean>(false);
+    readonly boldPercentageLabel = input<boolean>(false);
 
     /**
-     * Input signal: customType.
+     * Readonly input signal: customType.
      *
      * It holds a custom type to apply to the progress bar.
      * @default ''
      */
-    customType = input<string>('');
+    readonly customType = input<string>('');
 
     /**
-     * Input signal: useCustomTypeOnly.
+     * Readonly input signal: useCustomTypeOnly.
      *
      * It holds a flag whether to use only custom type and skip automatic color type logic.
      * @default false
      */
-    useCustomTypeOnly = input<boolean>(false);
+    readonly useCustomTypeOnly = input<boolean>(false);
 
     /**
-     * Computed signal: progressBarColorType.
+     * Readonly computed signal: progressBarColorType.
      *
-     * It returns the appropriate abstract color type for the progress bar based on percentage,
-     * or an empty string if custom type should be used exclusively.
+     * It returns the final color type for the progress bar,
+     * factoring in the percentage logic or the custom type override.
      */
-    progressBarColorType = computed<'success' | 'warning' | 'danger' | 'light' | ''>(() => {
+    readonly progressBarColorType = computed<string>(() => {
         if (this.useCustomTypeOnly()) {
-            return '';
+            return this.customType() || 'light';
         }
 
         const percentage = this.progressBarWidth();
 
         if (percentage >= 80) {
             return 'success';
-        } else if (percentage >= 50) {
-            return 'warning';
-        } else if (percentage > 0) {
-            return 'danger';
-        } else {
-            return 'light';
         }
+        if (percentage >= 50) {
+            return 'warning';
+        }
+        if (percentage > 0) {
+            return 'danger';
+        }
+
+        return 'light';
     });
 
     /**
-     * Computed signal: progressBarWidth.
+     * Readonly computed signal: progressBarWidth.
      *
      * Calculates the width for the progress bar based on the current mode and input values,
      * returning a percentage value for the width style.
      */
-    progressBarWidth = computed(() => {
+    readonly progressBarWidth = computed(() => {
         const cfg = this.config();
 
         let width = 0;
@@ -119,23 +121,30 @@ export class StatisticsProgressBarComponent {
                 break;
         }
 
-        // Ensure width is between 0 and 100
-        return Math.max(0, Math.min(100, width));
+        // Ensure width is between 0 and 100 and not NaN
+        return isNaN(width) ? 0 : Math.max(0, Math.min(100, width));
     });
 
     /**
-     * Computed signal: progressHeaderValue.
+     * Readonly computed signal: progressHeaderValue.
      *
      * Calculates the header label value based on the current mode and input values,
      * showing either an absolute value or ratio as appropriate.
      */
-    progressHeaderValue = computed(() => {
+    readonly progressHeaderValue = computed(() => {
         const cfg = this.config();
 
-        if (cfg.mode === 'percentage' || cfg.active === undefined) {
+        if (cfg.mode === 'percentage') {
             return '';
         }
 
         return cfg.mode === 'ratio' ? `${cfg.active} / ${cfg.total}` : `${cfg.active}`;
     });
+
+    /**
+     * Readonly computed signal: hasHeaderValue.
+     *
+     * It returns a boolean indicating whether the progress header value is non-empty.
+     */
+    readonly hasHeaderValue = computed(() => this.progressHeaderValue() !== '');
 }

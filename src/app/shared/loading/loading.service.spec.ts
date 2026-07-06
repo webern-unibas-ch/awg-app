@@ -20,7 +20,8 @@ describe('LoadingService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [LoadingService],
         });
-        // Inject service
+
+        // Inject services
         loadingService = TestBed.inject(LoadingService);
     });
 
@@ -28,31 +29,29 @@ describe('LoadingService (DONE)', () => {
         expect(loadingService).toBeTruthy();
     });
 
-    it('... should have `_pendingRequests` signal', () => {
-        expect((loadingService as any)._pendingRequests).toBeDefined();
+    it('... should have private signal `_pendingRequests` to hold the default value', () => {
         expectToBe(isSignal((loadingService as any)._pendingRequests), true);
+
+        expectToEqual((loadingService as any)._pendingRequests(), []);
     });
 
-    describe('#isLoading()', () => {
-        it('... should have a computed signal `isLoading()`', () => {
-            expect(loadingService.isLoading).toBeDefined();
-            expectToBe(isSignal(loadingService.isLoading), true);
-        });
+    it('... should have computed signal `isLoading` to hold true after registering a request', () => {
+        expectToBe(isSignal(loadingService.isLoading), true);
 
-        it('... should return default false value (no requests registered)', () => {
+        const req = createMockRequest('/api/test');
+
+        loadingService.registerRequest(req);
+
+        expectToBe(loadingService.isLoading(), true);
+    });
+
+    describe('... should have computed signal `isLoading` to hold false if ...', () => {
+        it('... no requests are registered', () => {
             expectToEqual((loadingService as any)._pendingRequests(), []);
             expectToBe(loadingService.isLoading(), false);
         });
 
-        it('... should return true value after registering a request', () => {
-            const req = createMockRequest('/api/test');
-
-            loadingService.registerRequest(req);
-
-            expectToBe(loadingService.isLoading(), true);
-        });
-
-        it('... should return false value after deregistering the last request', () => {
+        it('... after deregistering the last request', () => {
             const req = createMockRequest('/api/test');
 
             loadingService.registerRequest(req);
@@ -61,96 +60,98 @@ describe('LoadingService (DONE)', () => {
         });
     });
 
-    describe('#registerRequest()', () => {
-        it('... should have a method `registerRequest`', () => {
-            expect(loadingService.registerRequest).toBeDefined();
+    describe('METHODS', () => {
+        describe('#registerRequest()', () => {
+            it('... should have a method `registerRequest`', () => {
+                expect(loadingService.registerRequest).toBeDefined();
+            });
+
+            it('... should update pending requests and recompute `isLoading` to true when a request is registered', () => {
+                const req = createMockRequest('/api/test');
+
+                loadingService.registerRequest(req);
+
+                expectToEqual((loadingService as any)._pendingRequests(), [req]);
+                expectToBe(loadingService.isLoading(), true);
+            });
+
+            it('... should update pending requests and recompute `isLoading` based on exact requests (in-place tracking)', () => {
+                const req1 = createMockRequest('/api/1');
+                const req2 = createMockRequest('/api/2');
+
+                loadingService.registerRequest(req1);
+
+                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToBe(loadingService.isLoading(), true);
+
+                loadingService.registerRequest(req2);
+
+                expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
+                expectToBe(loadingService.isLoading(), true);
+
+                loadingService.deregisterRequest(req1);
+
+                expectToEqual((loadingService as any)._pendingRequests(), [req2]);
+                expectToBe(loadingService.isLoading(), true);
+
+                loadingService.deregisterRequest(req2);
+
+                expectToEqual((loadingService as any)._pendingRequests(), []);
+                expectToBe(loadingService.isLoading(), false);
+            });
         });
 
-        it('... should update loading status to true when a request is registered', () => {
-            const req = createMockRequest('/api/test');
+        describe('#deregisterRequest()', () => {
+            it('... should have a method `deregisterRequest`', () => {
+                expect(loadingService.deregisterRequest).toBeDefined();
+            });
 
-            loadingService.registerRequest(req);
+            it('... should update pending requests and recompute `isLoading` to false when a request is deregistered', () => {
+                const req = createMockRequest('/api/test');
 
-            expectToEqual((loadingService as any)._pendingRequests(), [req]);
-            expectToBe(loadingService.isLoading(), true);
-        });
+                loadingService.registerRequest(req);
+                expectToEqual((loadingService as any)._pendingRequests(), [req]);
+                expectToBe(loadingService.isLoading(), true);
 
-        it('... should update loading status based on exact requests (in-place tracking)', () => {
-            const req1 = createMockRequest('/api/1');
-            const req2 = createMockRequest('/api/2');
+                loadingService.deregisterRequest(req);
+                expectToEqual((loadingService as any)._pendingRequests(), []);
+            });
 
-            loadingService.registerRequest(req1);
+            it('... should only update pending requests and recompute `isLoading` to false when all requests are deregistered', () => {
+                const req1 = createMockRequest('/api/1');
+                const req2 = createMockRequest('/api/2');
 
-            expectToEqual((loadingService as any)._pendingRequests(), [req1]);
-            expectToBe(loadingService.isLoading(), true);
+                loadingService.registerRequest(req1);
+                loadingService.registerRequest(req2);
 
-            loadingService.registerRequest(req2);
+                expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
+                expectToBe(loadingService.isLoading(), true);
 
-            expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
-            expectToBe(loadingService.isLoading(), true);
+                loadingService.deregisterRequest(req1);
 
-            loadingService.deregisterRequest(req1);
+                expectToEqual((loadingService as any)._pendingRequests(), [req2]);
+                expectToBe(loadingService.isLoading(), true);
 
-            expectToEqual((loadingService as any)._pendingRequests(), [req2]);
-            expectToBe(loadingService.isLoading(), true);
+                loadingService.deregisterRequest(req2);
 
-            loadingService.deregisterRequest(req2);
+                expectToEqual((loadingService as any)._pendingRequests(), []);
+                expectToBe(loadingService.isLoading(), false);
+            });
 
-            expectToEqual((loadingService as any)._pendingRequests(), []);
-            expectToBe(loadingService.isLoading(), false);
-        });
-    });
+            it('... should do nothing if trying to deregister a non-existent request', () => {
+                const req1 = createMockRequest('/api/1');
+                const fakeReq = createMockRequest('/api/fake');
 
-    describe('#deregisterRequest()', () => {
-        it('... should have a method `deregisterRequest`', () => {
-            expect(loadingService.deregisterRequest).toBeDefined();
-        });
+                loadingService.registerRequest(req1);
 
-        it('... should update loading status to false when a request is deregistered', () => {
-            const req = createMockRequest('/api/test');
+                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToBe(loadingService.isLoading(), true);
 
-            loadingService.registerRequest(req);
-            expectToEqual((loadingService as any)._pendingRequests(), [req]);
-            expectToBe(loadingService.isLoading(), true);
+                loadingService.deregisterRequest(fakeReq);
 
-            loadingService.deregisterRequest(req);
-            expectToEqual((loadingService as any)._pendingRequests(), []);
-        });
-
-        it('... should only update loading status to false when all requests are deregistered', () => {
-            const req1 = createMockRequest('/api/1');
-            const req2 = createMockRequest('/api/2');
-
-            loadingService.registerRequest(req1);
-            loadingService.registerRequest(req2);
-
-            expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
-            expectToBe(loadingService.isLoading(), true);
-
-            loadingService.deregisterRequest(req1);
-
-            expectToEqual((loadingService as any)._pendingRequests(), [req2]);
-            expectToBe(loadingService.isLoading(), true);
-
-            loadingService.deregisterRequest(req2);
-
-            expectToEqual((loadingService as any)._pendingRequests(), []);
-            expectToBe(loadingService.isLoading(), false);
-        });
-
-        it('... should do nothing if trying to deregister a non-existent request', () => {
-            const req1 = createMockRequest('/api/1');
-            const fakeReq = createMockRequest('/api/fake');
-
-            loadingService.registerRequest(req1);
-
-            expectToEqual((loadingService as any)._pendingRequests(), [req1]);
-            expectToBe(loadingService.isLoading(), true);
-
-            loadingService.deregisterRequest(fakeReq);
-
-            expectToEqual((loadingService as any)._pendingRequests(), [req1]);
-            expectToBe(loadingService.isLoading(), true);
+                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToBe(loadingService.isLoading(), true);
+            });
         });
     });
 });

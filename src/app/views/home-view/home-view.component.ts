@@ -10,9 +10,9 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { HOME_VIEW_CARD_DATA } from './home-view-card/data/home-view-card.data';
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
-import { HomeViewCard } from './home-view-card/models/home-view-card.model';
+import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
+import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 /**
  * The HomeView component.
@@ -36,7 +36,7 @@ export class HomeViewComponent {
     private readonly _coreService = inject(CoreService);
 
     /**
-     * Public variable: HOME_VIEW_ID.
+     * Readonly variable: HOME_VIEW_ID.
      *
      * It keeps the id for the heading component
      * of the home view section.
@@ -44,7 +44,7 @@ export class HomeViewComponent {
     readonly HOME_VIEW_ID = 'awg-home-view-heading';
 
     /**
-     * Public variable: HOME_VIEW_TITLE.
+     * Readonly variable: HOME_VIEW_TITLE.
      *
      * It keeps the title for the heading component
      * of the home view section.
@@ -52,7 +52,7 @@ export class HomeViewComponent {
     readonly HOME_VIEW_TITLE = 'Anton Webern Gesamtausgabe: Online-Edition';
 
     /**
-     * Public variable: DISCLAIMER_MESSAGE.
+     * Readonly variable: DISCLAIMER_MESSAGE.
      *
      * It keeps the disclaimer message for the home view section.
      */
@@ -60,7 +60,7 @@ export class HomeViewComponent {
         'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
 
     /**
-     * Public readonly signal: sectionLinksData.
+     * Readonly signal: sectionLinksData.
      *
      * It keeps the array of displayed edition sections as a read-only signal.
      */
@@ -72,21 +72,21 @@ export class HomeViewComponent {
     ).asReadonly();
 
     /**
-     * Public readonly signal: homeViewCardData.
+     * Readonly signal: homeViewCardData.
      *
      * It holds the data for the home view cards.
      */
     readonly homeViewCardData = signal<HomeViewCard[]>(HOME_VIEW_CARD_DATA).asReadonly();
 
     /**
-     * Public readonly signal: pageMetaData.
+     * Readonly signal: pageMetaData.
      *
      * It holds the page metadata for the home view via the injected CoreService.
      */
     readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
-     * Public readonly signal: rowtablesRoute.
+     * Readonly signal: rowtablesRoute.
      *
      * It holds the router link array for the rowtables link.
      */

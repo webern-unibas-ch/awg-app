@@ -1,6 +1,6 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, LOCALE_ID } from '@angular/core';
+import { Component, DebugElement, input, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -29,8 +29,8 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class HeadingStubComponent {
-    title = input<string>('');
-    id = input<string>('');
+    title = input.required<string>();
+    id = input.required<string>();
 }
 
 @Component({
@@ -38,7 +38,7 @@ class HeadingStubComponent {
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input<MetaIdentifiers>({});
+    identifiers = input.required<MetaIdentifiers>();
 }
 
 describe('ContactViewComponent (DONE)', () => {
@@ -82,14 +82,15 @@ describe('ContactViewComponent (DONE)', () => {
         vi.useFakeTimers();
         vi.setSystemTime(new Date('2026-06-01T12:00:00Z'));
 
-        fixture = TestBed.createComponent(ContactViewComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
         expectedToday = Date.now();
+
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactViewComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -122,15 +123,21 @@ describe('ContactViewComponent (DONE)', () => {
             expectToBe(component.IMPRINT_TITLE, expectedImprintTitle);
         });
 
-        it('... should have `contactMetaData`', () => {
+        it('... should have signal `contactMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.contactMetaData), true);
+
             expectToEqual(component.contactMetaData(), expectedContactMetaData);
         });
 
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `today`', () => {
+        it('... should have signal `today` to hold the expected date', () => {
+            expectToBe(isSignal(component.today), true);
+
             expectToBe(component.today(), expectedToday);
         });
 
@@ -144,41 +151,36 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
             });
 
-            it('... should pass down empty default values to heading components (`id` and `title`)', () => {
+            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
-                expectToBe(headingCmps[0].id(), '');
-                expectToBe(headingCmps[0].title(), '');
-
-                expectToBe(headingCmps[1].id(), '');
-                expectToBe(headingCmps[1].title(), '');
-
-                expectToBe(headingCmps[2].id(), '');
-                expectToBe(headingCmps[2].title(), '');
+                headingCmps.forEach(headingCmp => {
+                    expect(() => headingCmp.title()).toThrow();
+                    expect(() => headingCmp.id()).toThrow();
+                });
             });
 
-            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description > p', 2, 2);
             });
 
-            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
+            it('... should contain one `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer > p', 17, 17);
@@ -209,10 +211,6 @@ describe('ContactViewComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `today`', () => {
-            expectToBe(component.today(), expectedToday);
         });
 
         describe('VIEW', () => {

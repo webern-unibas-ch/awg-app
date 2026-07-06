@@ -93,7 +93,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
             action: expect.any(Function),
         };
 
-        // Create component and test fixture
+        // Create component fixture
         fixture = TestBed.createComponent(FullscreenToggleComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -113,7 +113,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing `fsElement` input signal', () => {
+        it('... should throw due to missing required input signal `fsElement`', () => {
             expectToBe(isSignal(component.fsElement), true);
 
             expect(() => component.fsElement()).toThrow();
@@ -125,7 +125,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
             expectToBe(component.isFullscreen(), false);
         });
 
-        it('... should have computed signal `fullscreenToggleBtn` to hold non-fs config', () => {
+        it('... should have computed signal `fullscreenToggleBtn` to hold the non-fs config', () => {
             expectToBe(isSignal(component.fullscreenToggleBtn), true);
 
             expectToEqual(component.fullscreenToggleBtn(), expectedNonFsConfig);
@@ -171,7 +171,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Mock the fsElement
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('fsElement', expectedFsElement);
             simulateFullscreenChangeEvent(expectedFsElement);
 
@@ -179,15 +179,15 @@ describe('FullscreenToggleComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have `fsElement` input signal to hold fs element', () => {
+        it('... should have input signal `fsElement` to hold the provided element', () => {
             expectToEqual(component.fsElement(), expectedFsElement);
         });
 
-        it('... should have updated signal `isFullscreen` to hold true', () => {
+        it('... should have signal `isFullscreen` to hold true', () => {
             expectToBe(component.isFullscreen(), true);
         });
 
-        it('... should have computed signal `fullscreenToggleBtn` to hold fs config', () => {
+        it('... should have computed signal `fullscreenToggleBtn` to hold the fs config', () => {
             expectToEqual(component.fullscreenToggleBtn(), expectedFsConfig);
         });
 

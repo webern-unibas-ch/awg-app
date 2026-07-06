@@ -29,7 +29,7 @@ describe('EditionStateService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [EditionStateService],
         });
-        // Inject service
+        // Inject services
         editionStateService = TestBed.inject(EditionStateService);
 
         // Test data (default)

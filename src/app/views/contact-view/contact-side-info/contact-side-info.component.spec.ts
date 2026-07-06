@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -27,8 +27,8 @@ import { ContactSideInfoComponent } from './contact-side-info.component';
     template: '',
 })
 class ContactAddressStubComponent {
-    pageMetaData = input<MetaPage>({} as MetaPage);
-    contactMetaData = input<MetaContact>({} as MetaContact);
+    pageMetaData = input.required<MetaPage>();
+    contactMetaData = input.required<MetaContact>();
 }
 
 @Component({
@@ -74,10 +74,7 @@ describe('ContactSideInfoComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ContactSideInfoComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         domSanitizer = TestBed.inject(DomSanitizer);
 
         // Test data
@@ -90,6 +87,11 @@ describe('ContactSideInfoComponent (DONE)', () => {
 
         // Trust the unsafe values
         expectedEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeEmbedUrl);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactSideInfoComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -106,24 +108,32 @@ describe('ContactSideInfoComponent (DONE)', () => {
             expectToBe(component.CONTACT_SIDE_INFO_HEADER, expectedContactSideInfoHeader);
         });
 
-        it('... should have `contactMetaData`', () => {
+        it('... should have signal `contactMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.contactMetaData), true);
+
             expectToEqual(component.contactMetaData(), expectedContactMetaData);
         });
 
-        it('... should have `pageMetaData`', () => {
+        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
             expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
-        it('... should have `embedUrl`', () => {
+        it('... should have signal `mapEmbedUrl` to hold the provided URL', () => {
+            expectToBe(isSignal(component.mapEmbedUrl), true);
+
             expectToEqual(component.mapEmbedUrl(), expectedEmbedUrl);
         });
 
-        it('... should have `linkUrl`', () => {
+        it('... should have signal `mapLinkUrl` to hold the provided URL', () => {
+            expectToBe(isSignal(component.mapLinkUrl), true);
+
             expectToBe(component.mapLinkUrl(), expectedLinkUrl);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.card with div.card-body', () => {
+            it('... should contain one div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
@@ -143,14 +153,14 @@ describe('ContactSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to address component (`pageMetaData` and `contactMetaData`)', () => {
+            it('... should throw when accessing address component inputs (`pageMetaData` and `contactMetaData`) due to missing initial data binding', () => {
                 const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
                 const addressCmp = addressDes[0].injector.get(
                     ContactAddressStubComponent
                 ) as ContactAddressStubComponent;
 
-                expectToEqual(addressCmp.pageMetaData(), {} as MetaPage);
-                expectToEqual(addressCmp.contactMetaData(), {} as MetaContact);
+                expect(() => addressCmp.pageMetaData()).toThrow();
+                expect(() => addressCmp.contactMetaData()).toThrow();
             });
 
             it('... should contain one map component (stubbed)', () => {

@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -39,10 +39,6 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
         // Test data
         expectedLabel = 'Test Label';
         expectedRoute = ['/test', 'route'];
-
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('label', '');
-        fixture.componentRef.setInput('route', []);
     });
 
     it('... should create', () => {
@@ -50,12 +46,16 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `label` input', () => {
-            expectToBe(component.label(), '');
+        it('... should throw due to missing required input signal `label`', () => {
+            expectToBe(isSignal(component.label), true);
+
+            expect(() => component.label()).toThrow();
         });
 
-        it('... should have required `route` input', () => {
-            expectToEqual(component.route(), []);
+        it('... should throw due to missing required input signal `route`', () => {
+            expectToBe(isSignal(component.route), true);
+
+            expect(() => component.route()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -67,7 +67,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('label', expectedLabel);
             fixture.componentRef.setInput('route', expectedRoute);
 
@@ -75,12 +75,12 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated `label` input', () => {
+        it('... should have input signal `label` to hold the provided label', () => {
             expectToBe(component.label(), expectedLabel);
         });
 
-        it('... should have updated `route` input', () => {
-            expectToEqual(component.route(), expectedRoute);
+        it('... should have input signal `route` to hold the provided route', () => {
+            expectToBe(component.route(), expectedRoute);
         });
 
         describe('VIEW', () => {
@@ -112,10 +112,8 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
             let routerLinks: RouterLink[];
 
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLink
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
 
-                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 

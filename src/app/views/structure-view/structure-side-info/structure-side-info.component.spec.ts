@@ -28,7 +28,7 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input<MetaIdentifiers>({});
+    identifiers = input.required<MetaIdentifiers>();
 }
 
 describe('StructureSideInfoComponent (DONE)', () => {
@@ -60,12 +60,13 @@ describe('StructureSideInfoComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Test data
+        expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
+
+        // Create component fixture
         fixture = TestBed.createComponent(StructureSideInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
     });
 
     afterEach(() => {
@@ -86,12 +87,12 @@ describe('StructureSideInfoComponent (DONE)', () => {
             expectToBe(component.STRUCTURE_SIDE_INFO_HEADER, expectedStructureSideInfoHeader);
         });
 
-        it('... should have `structureMetaData` with expected data', () => {
+        it('... should have signal `structureMetaData` to hold the provided data (via service)', () => {
             expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.card with div.card-body', () => {
+            it('... should contain one div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
@@ -122,7 +123,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
+            it('... should throw when accessing MetaIdentifierBadgesComponent inputs (`identifiers`) due to missing initial data binding', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(
                     authorDes[0],
@@ -132,7 +133,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 );
                 const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
 
-                expectToEqual(badgeCmp.identifiers(), {});
+                expect(() => badgeCmp.identifiers()).toThrow();
             });
 
             it('... should not render last modification date yet', () => {
@@ -148,10 +149,6 @@ describe('StructureSideInfoComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `structureMetaData` with expected data', () => {
-            expectToEqual(component.structureMetaData(), expectedStructureMetaData);
         });
 
         describe('VIEW', () => {

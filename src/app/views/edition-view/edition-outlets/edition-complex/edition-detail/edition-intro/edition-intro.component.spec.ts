@@ -274,9 +274,8 @@ describe('IntroComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-
-        // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
         editionStateService = TestBed.inject(EditionStateService);
 

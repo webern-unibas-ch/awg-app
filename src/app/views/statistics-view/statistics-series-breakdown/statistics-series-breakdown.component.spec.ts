@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -36,7 +36,7 @@ import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdow
     template: '',
 })
 class StatisticsBreakdownBadgeStubComponent {
-    breakdown = input<StatisticsComplexBreakdown>(new StatisticsComplexBreakdown());
+    breakdown = input.required<StatisticsComplexBreakdown>();
     containerClasses = input<string>('small text-muted');
     showEmptyBadges = input<boolean>(false);
 }
@@ -74,20 +74,21 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 add: { imports: [StatisticsBreakdownBadgeStubComponent, StatisticsProgressBarStubComponent] },
             })
             .compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsSeriesBreakdownComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
+        // Inject services
         router = TestBed.inject(Router);
 
+        // Test data
         expectedSeriesBreakdownData = [
             structuredClone(mockStatisticsData.mockSeriesBreakdown) as StatisticsSeriesBreakdown,
         ];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('seriesBreakdownData', []);
-        fixture.detectChanges();
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsSeriesBreakdownComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -95,8 +96,10 @@ describe('StatisticsSeriesBreakdownComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `seriesBreakdownData` (empty)', () => {
-            expectToEqual(component.seriesBreakdownData(), []);
+        it('... should throw due to missing required input signal `seriesBreakdownData`', () => {
+            expectToBe(isSignal(component.seriesBreakdownData), true);
+
+            expect(() => component.seriesBreakdownData()).toThrow();
         });
 
         it('... should have `ROUTES` with edition route constants', () => {
@@ -147,7 +150,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.table-responsive > table.table', 1, 1);
             });
 
-            it('... should contain 1 table head with 2 rows in table', () => {
+            it('... should contain one table head with two rows in table', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'div.table-responsive > table.table', 1, 1);
                 const theadDes = getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
 
@@ -216,21 +219,15 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input signals
+            // Set the initial values for the signal inputs signals
             fixture.componentRef.setInput('seriesBreakdownData', expectedSeriesBreakdownData);
+
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `seriesBreakdownData`', () => {
+        it('... should have input signal `seriesBreakdownData` to hold the provided data', () => {
             expectToEqual(component.seriesBreakdownData(), expectedSeriesBreakdownData);
-        });
-
-        it('... should have `ROUTES` with edition route constants unchanged', () => {
-            expectToEqual(component.ROUTES, {
-                edition: EDITION_ROUTE_CONSTANTS.EDITION,
-                series: EDITION_ROUTE_CONSTANTS.SERIES,
-                section: EDITION_ROUTE_CONSTANTS.SECTION,
-            });
         });
 
         describe('VIEW', () => {

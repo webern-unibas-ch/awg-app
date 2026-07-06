@@ -123,7 +123,7 @@ describe('GraphVisualizerService', () => {
             providers: [GraphVisualizerService, PrefixPipe],
         });
 
-        // Inject service
+        // Inject services
         graphVisualizerService = TestBed.inject(GraphVisualizerService);
 
         // Test data

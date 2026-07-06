@@ -16,25 +16,25 @@ import { Logo } from '../models/logos.model';
 })
 export class LogoLinkComponent {
     /**
-     * Input signal: logoData.
+     * Readonly input signal: logoData.
      *
      * It holds the logo data for the component.
      */
-    logoData = input.required<Logo>();
+    readonly logoData = input.required<Logo>();
 
     /**
-     * Input signal: linkClass.
+     * Readonly input signal: linkClass.
      *
      * It holds the CSS class for the anchor element.
      */
-    linkClass = input<string>('awg-logo-link');
+    readonly linkClass = input<string>('awg-logo-link');
 
     /**
-     * Computed signal: logoClassList.
+     * Readonly computed signal: logoClassList.
      *
      * It derives the CSS class list automatically whenever the logo input changes.
      */
-    logoClassList = computed(() => {
+    readonly logoClassList = computed(() => {
         const id = this.logoData().id;
 
         const isSnfLogo = id === LOGOS_DATA['snf'].id;

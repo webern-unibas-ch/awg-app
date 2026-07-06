@@ -102,7 +102,7 @@ describe('EditionDataService (DONE)', () => {
             providers: [EditionDataService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
 
-        // Inject services and http client handler
+        // Inject services
         editionDataService = TestBed.inject(EditionDataService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
