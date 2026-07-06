@@ -64,7 +64,7 @@ export class EditionTkaTableComponent {
      *
      * It keeps the id of the sheet or textcritics.
      */
-    @Input() id: string;
+    @Input() id?: string;
 
     /**
      * Input variable: isCorrections.

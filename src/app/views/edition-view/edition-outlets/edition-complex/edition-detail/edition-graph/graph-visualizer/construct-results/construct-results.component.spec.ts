@@ -58,7 +58,7 @@ describe('ConstructResultsComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedHeight: number;
-    let expectedQueryResult: Triple;
+    let expectedQueryResult: Triple[];
     let expectedQueryResult$: Observable<Triple[]>;
     let expectedIsFullscreen: boolean;
 
@@ -98,12 +98,14 @@ describe('ConstructResultsComponent (DONE)', () => {
         // Test data
         expectedHeight = 500;
         expectedIsFullscreen = false;
-        expectedQueryResult = {
-            subject: 'example:Test',
-            predicate: 'example:has',
-            object: 'example:Success',
-        };
-        expectedQueryResult$ = observableOf([expectedQueryResult]);
+        expectedQueryResult = [
+            {
+                subject: 'example:Test',
+                predicate: 'example:has',
+                object: 'example:Success',
+            },
+        ];
+        expectedQueryResult$ = observableOf(expectedQueryResult);
 
         // Spies
         emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
@@ -530,7 +532,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.currentQueryResultTriples, [expectedQueryResult]);
+                    expectToEqual(forceGraphCmp.currentQueryResultTriples, expectedQueryResult);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });
@@ -877,7 +879,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.currentQueryResultTriples, [expectedQueryResult]);
+                    expectToEqual(forceGraphCmp.currentQueryResultTriples, expectedQueryResult);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });
@@ -910,22 +912,24 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isValidConstructQueryResultSpy, 3, expectedQueryResult[0]);
+                expectSpyCall(isValidConstructQueryResultSpy, 3, [expectedQueryResult]);
             });
 
             it('... should be triggered by change of queryResult', async () => {
-                expectSpyCall(isValidConstructQueryResultSpy, 3, expectedQueryResult[0]);
+                expectSpyCall(isValidConstructQueryResultSpy, 3, [expectedQueryResult]);
 
                 // Mock another queryResult
-                const anotherQueryResult = {
-                    subject: 'example:AnotherTest',
-                    predicate: 'example:has',
-                    object: 'example:AnotherSuccess',
-                };
-                component.queryResult$ = observableOf([anotherQueryResult]);
+                const anotherQueryResult = [
+                    {
+                        subject: 'example:AnotherTest',
+                        predicate: 'example:has',
+                        object: 'example:AnotherSuccess',
+                    },
+                ];
+                component.queryResult$ = observableOf(anotherQueryResult);
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(isValidConstructQueryResultSpy, 4, anotherQueryResult[0]);
+                expectSpyCall(isValidConstructQueryResultSpy, 4, [anotherQueryResult]);
             });
 
             describe('... should return false if', () => {

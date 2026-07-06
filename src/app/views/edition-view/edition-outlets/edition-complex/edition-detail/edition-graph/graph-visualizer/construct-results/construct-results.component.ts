@@ -66,7 +66,7 @@ export class ConstructResultsComponent {
     /**
      * Public method: isValidConstructQueryResult.
      *
-     * It checks if a given constrcut result triple is valid.
+     * It checks if a given construct result triple is valid.
      *
      * @param {Triple[] | null | undefined} constructQueryResult The given construct query result.
      * @returns {boolean} True if it is a valid, filled, and complete array.
