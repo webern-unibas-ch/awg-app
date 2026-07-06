@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
+
+import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 
 import { D3SimulationNode, Triple } from '../models';
 
@@ -51,22 +53,27 @@ export class ConstructResultsComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 
     /**
-     * Public method: isQueryResultNotEmpty.
+     * Private readonly injection variable: _utils.
      *
-     * It checks if a given queryResult triple is not empty.
-     *
-     * @param {Triple[]} queryResult The given queryResult triples.
-     *
-     * @returns {boolean} The boolean value of the comparison result.
+     * It keeps the instance of the injected UtilityService.
      */
-    isQueryResultNotEmpty(queryResult: Triple[]): boolean {
-        if (queryResult.length === 0) {
-            return false;
+    private readonly _utils = inject(UtilityService);
+
+    /**
+     * Public method: isEmptyConstructQueryResult.
+     *
+     * It checks if a given constrcut result triple is empty.
+     *
+     * @param {Triple[] | null | undefined} constructQueryResult The given construct query result.
+     * @returns {boolean} True if empty or incomplete. If false, construct result is guaranteed to be a valid Triple[].
+     */
+    isEmptyConstructQueryResult(
+        constructQueryResult: Triple[] | null | undefined
+    ): constructQueryResult is null | undefined | [] {
+        if (this._utils.isEmptyArray(constructQueryResult)) {
+            return true;
         }
-        return queryResult.every(triple => {
-            const { subject, predicate, object } = triple;
-            return Boolean(subject) && Boolean(predicate) && Boolean(object);
-        });
+        return constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object);
     }
 
     /**

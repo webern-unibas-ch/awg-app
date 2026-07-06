@@ -20,10 +20,7 @@
                     <div class="row">
                         <div
                             class="awg-svg-sheet-facet-container mb-4"
-                            [ngClass]="{
-                                'col-auto': isSheetFacetMinimized,
-                                'col-12 col-lg-4 col-xl-3': !isSheetFacetMinimized,
-                            }">
+                            [class]="isSheetFacetMinimized ? 'col-auto' : 'col-12 col-lg-4 col-xl-3'">
                             <!-- svg sheet facet -->
                             <awg-edition-svg-sheet-facet
                                 [svgSheetsData]="svgSheetsData"
@@ -35,10 +32,7 @@
 
                         <div
                             class="awg-svg-sheet-viewer-container"
-                            [ngClass]="{
-                                col: isSheetFacetMinimized,
-                                'col-12 col-lg-8 col-xl-9': !isSheetFacetMinimized,
-                            }">
+                            [class]="isSheetFacetMinimized ? 'col' : 'col-12 col-lg-8 col-xl-9'">
                             <!-- svg sheet -->
                             @if (selectedSvgSheet) {
                                 <awg-edition-svg-sheet-viewer

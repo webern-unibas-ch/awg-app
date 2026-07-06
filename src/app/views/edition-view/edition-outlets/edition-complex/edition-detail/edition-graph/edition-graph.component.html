@@ -21,7 +21,7 @@
                                 kontinuierlich ergänzt.</span
                             >
                         </p>
-                        @if (utils.isEmptyArray(graph.description) || !graph.rdfData?.triples) {
+                        @if (utils.isEmptyArray(graph.description) && !graph.rdfData?.triples) {
                             <p class="awg-graph-description-empty">
                                 <small class="text-muted"
                                     >[Die Graph-Visualisierungen zum Editionskomplex

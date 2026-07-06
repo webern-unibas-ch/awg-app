@@ -71,20 +71,24 @@ export class SelectResultsComponent {
     }
 
     /**
-     * Public method: isQueryResultNotEmpty.
+     * Public method: isEmptySelectQueryResult.
      *
-     * It checks if a given queryResult is not empty.
+     * It checks if a given select query result is empty.
      *
-     * @param {QuerySelectResult} queryResult The given queryResult.
+     * @param {QuerySelectResult} selectQueryResult The given select query result.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isQueryResultNotEmpty(queryResult: QuerySelectResult | string): queryResult is QuerySelectResult {
-        if (typeof queryResult === 'string') {
-            return false;
+    isEmptySelectQueryResult(
+        selectQueryResult: QuerySelectResult | string | null | undefined
+    ): selectQueryResult is string | null | undefined {
+        if (!selectQueryResult || typeof selectQueryResult === 'string') {
+            return true;
         }
-        const { head, body } = queryResult;
-        return !this._utils.isEmptyArray(head?.vars) && !this._utils.isEmptyArray(body?.bindings);
+        return (
+            this._utils.isEmptyArray(selectQueryResult.head?.vars) ||
+            this._utils.isEmptyArray(selectQueryResult.body?.bindings)
+        );
     }
 
     /**

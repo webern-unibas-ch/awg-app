@@ -10,15 +10,15 @@
             <div ngbAccordionBody>
                 <ng-template>
                     @if (queryResult$ | async; as queryResult) {
-                        @if (isQueryResultNotEmpty(queryResult)) {
+                        @if (isEmptyConstructQueryResult(queryResult)) {
+                            <awg-sparql-no-results />
+                        } @else {
                             <!-- Force graph visualization -->
                             <awg-force-graph
                                 class="full-width"
                                 [currentQueryResultTriples]="queryResult"
                                 [height]="defaultForceGraphHeight"
                                 (clickedNodeRequest)="onGraphNodeClick($event)" />
-                        } @else {
-                            <awg-sparql-no-results />
                         }
                     } @else {
                         <awg-twelve-tone-spinner />
