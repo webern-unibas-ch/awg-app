@@ -1,8 +1,10 @@
 @if (editionData$ | async; as data) {
     @if (
-        UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.opus) ||
-        UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.mnr)
+        UTILS.isEmptyArray(data.section?.content?.complexTypes?.opus) ||
+        UTILS.isEmptyArray(data.section?.content?.complexTypes?.mnr)
     ) {
+        <awg-edition-section-detail-placeholder [selectedSeries]="data.series" [selectedSection]="data.section" />
+    } @else {
         <div class="awg-edition-section-detail">
             <awg-edition-section-detail-disclaimer />
 
@@ -17,20 +19,18 @@
                     </div>
                 </div>
             }
-            @if (UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.opus)) {
+            @if (!UTILS.isEmptyArray(data.section?.content?.complexTypes?.opus)) {
                 <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
                     <h5>nach Opusnummer:</h5>
                     <awg-edition-section-detail-complex-card [complexes]="data.section.content.complexTypes.opus" />
                 </div>
             }
-            @if (UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.mnr)) {
+            @if (!UTILS.isEmptyArray(data.section?.content?.complexTypes?.mnr)) {
                 <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                     <h5>nach Moldenhauer-Nummer:</h5>
                     <awg-edition-section-detail-complex-card [complexes]="data.section.content.complexTypes.mnr" />
                 </div>
             }
         </div>
-    } @else {
-        <awg-edition-section-detail-placeholder [selectedSeries]="data.series" [selectedSection]="data.section" />
     }
 }

@@ -2,7 +2,7 @@
     @for (folio of content.folios; track $index; let lastFolio = $last) {
         <ng-template #folioCellTemplate let-folio>
             <td
-                [attr.colspan]="!UTILS.isNotEmptyArray(folio.systemGroups) ? 2 : 1"
+                [attr.colspan]="UTILS.isEmptyArray(folio.systemGroups) ? 2 : 1"
                 class="awg-source-description-content-table-datacell">
                 @if (folio.folioLinkTo) {
                     <a
@@ -59,7 +59,14 @@
             <td class="awg-source-description-content-table-datacell"></td>
         </ng-template>
 
-        @if (UTILS.isNotEmptyArray(folio.systemGroups)) {
+        @if (UTILS.isEmptyArray(folio.systemGroups)) {
+            <!-- no folio system groups, only folio description -->
+            <tr class="awg-source-description-content-table-row">
+                @if (folio.folio) {
+                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
+                }
+            </tr>
+        } @else {
             <!-- folio system groups are present -->
             @for (
                 systemGroup of folio.systemGroups;
@@ -194,13 +201,6 @@
                     }
                 </tr>
             }
-        } @else {
-            <!-- no folio system groups, only folio description -->
-            <tr class="awg-source-description-content-table-row">
-                @if (folio.folio) {
-                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
-                }
-            </tr>
         }
     }
 </table>

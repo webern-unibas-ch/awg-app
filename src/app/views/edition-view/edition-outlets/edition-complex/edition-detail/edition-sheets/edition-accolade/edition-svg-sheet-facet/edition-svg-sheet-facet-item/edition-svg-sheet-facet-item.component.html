@@ -2,7 +2,7 @@
     {{ facetItemLabel }}:
     @if (facetItemLabel === 'Werkeditionen') {
         <awg-disclaimer-workeditions />
-    } @else if (!UTILS.isNotEmptyArray(svgSheets)) {
+    } @else if (UTILS.isEmptyArray(svgSheets)) {
         <span>---</span>
     }
 </h6>

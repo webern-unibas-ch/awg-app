@@ -308,7 +308,7 @@ export class EditionSheetsComponent implements OnInit {
             overlays
         );
 
-        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentary.comments);
+        this.showTkA = !this._utils.isEmptyArray(this.selectedTextcriticalCommentary.comments);
     }
 
     /**

@@ -21,11 +21,7 @@
                                 kontinuierlich ergänzt.</span
                             >
                         </p>
-                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
-                            @for (description of graph.description; track $index) {
-                                <p [compile-html]="description" [compile-html-ref]="ref"></p>
-                            }
-                        } @else {
+                        @if (utils.isEmptyArray(graph.description) || !graph.rdfData?.triples) {
                             <p class="awg-graph-description-empty">
                                 <small class="text-muted"
                                     >[Die Graph-Visualisierungen zum Editionskomplex
@@ -38,6 +34,10 @@
                                     }}.]
                                 </small>
                             </p>
+                        } @else {
+                            @for (description of graph.description; track $index) {
+                                <p [compile-html]="description" [compile-html-ref]="ref"></p>
+                            }
                         }
                     </div>
                     <!-- dynamic graph -->

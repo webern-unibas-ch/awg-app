@@ -30,14 +30,14 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'evaluation'" />:
                                 </p>
-                                @if (UTILS.isNotEmptyArray(textcritics.evaluations)) {
+                                @if (UTILS.isEmptyArray(textcritics.evaluations)) {
+                                    <ng-container *ngTemplateOutlet="noContent" />
+                                } @else {
                                     <awg-edition-tka-evaluations
                                         [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)" />
-                                } @else {
-                                    <ng-container *ngTemplateOutlet="noContent" />
                                 }
                             </div>
                             <div>
@@ -45,9 +45,11 @@
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'commentary'" />:
                                 </p>
                                 @if (
-                                    UTILS.isNotEmptyObject(textcritics.commentary) &&
-                                    UTILS.isNotEmptyArray(textcritics.commentary.comments)
+                                    UTILS.isEmptyObject(textcritics.commentary) &&
+                                    UTILS.isEmptyArray(textcritics.commentary.comments)
                                 ) {
+                                    <ng-container *ngTemplateOutlet="noContent" />
+                                } @else {
                                     <awg-edition-tka-table
                                         [commentary]="textcritics.commentary"
                                         [isRowTable]="textcritics.rowtable"
@@ -55,8 +57,6 @@
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)" />
-                                } @else {
-                                    <ng-container *ngTemplateOutlet="noContent" />
                                 }
                             </div>
                             <ng-template #noContent>

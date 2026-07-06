@@ -84,7 +84,7 @@ export class SelectResultsComponent {
             return false;
         }
         const { head, body } = queryResult;
-        return this._utils.isNotEmptyArray(head?.vars) && this._utils.isNotEmptyArray(body?.bindings);
+        return !this._utils.isEmptyArray(head?.vars) && !this._utils.isEmptyArray(body?.bindings);
     }
 
     /**
