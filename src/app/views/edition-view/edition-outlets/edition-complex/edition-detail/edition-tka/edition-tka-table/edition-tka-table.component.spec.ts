@@ -61,6 +61,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedSnippetSrc: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
+    let expectedSketchId: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedCommentary: TextcriticalCommentary;
@@ -113,6 +114,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
+        expectedSketchId = 'test_Sk1';
         expectedSnippetSrc = 'assets/img/edition/snippets/testGroup.png';
         expectedSnippetId = 'testGroup';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
@@ -178,6 +180,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
             expect(component.commentary).toBeUndefined();
         });
 
+        it('... should not have id', () => {
+            expect(component.id).toBeUndefined();
+        });
+
         it('... should have isRowTable = false', () => {
             expectToBe(component.isRowTable, false);
         });
@@ -213,6 +219,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.commentary = structuredClone(expectedCommentary);
+            component.id = expectedComplexId;
             component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
@@ -221,6 +228,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         it('... should have commentary', () => {
             expectToEqual(component.commentary, expectedCommentary);
+        });
+
+        it('... should have id', () => {
+            expectToBe(component.id, expectedComplexId);
         });
 
         describe('VIEW', () => {
@@ -317,8 +328,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display default table header with adjusted comment colum if `isSketchId` flag is true', async () => {
-                    component.isSketchId = true;
+                it('... should display default table header with adjusted comment colum if `id` is a sketch id', async () => {
+                    component.id = expectedSketchId;
                     await detectChangesOnPush(fixture);
 
                     const expected = expectedTableHeaderStrings['default'];
@@ -593,7 +604,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 expectSpyCall(getTableHeaderStringsSpy, 2);
 
-                component.isSketchId = true;
+                component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 3);
@@ -601,7 +612,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
             it('... should return rowTable header if `isRowTable` flag is given', async () => {
                 component.isRowTable = true;
-                component.isSketchId = false;
+                component.id = expectedComplexId;
                 await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -609,9 +620,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['rowTable']);
             });
 
-            it('... should return rowTable header with adjusted comment colum if `isSketchId` flag is true', async () => {
+            it('... should return rowTable header with adjusted comment colum if `id` is a sketch id', async () => {
                 component.isRowTable = true;
-                component.isSketchId = true;
+                component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['rowTable'];
@@ -624,7 +635,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
             it('... should return corrections table header if `isCorrections` flag is given', async () => {
                 component.isCorrections = true;
-                component.isSketchId = false;
+                component.id = expectedComplexId;
                 await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -632,9 +643,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
             });
 
-            it('... should not change corrections table header if `isSketchId` flag is true', async () => {
+            it('... should not change corrections table header if `id` is a sketch id', async () => {
                 component.isCorrections = true;
-                component.isSketchId = true;
+                component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -645,7 +656,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', async () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
-                component.isSketchId = false;
+                component.id = expectedComplexId;
                 await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -653,10 +664,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['default']);
             });
 
-            it('... should return default table header with adjusted comment colum if `isSketchId` flag is true', async () => {
+            it('... should return default table header with adjusted comment colum if `id` is a sketch id', async () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
-                component.isSketchId = true;
+                component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['default'];

@@ -7,7 +7,12 @@
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-edition-intro-view p-5 border rounded-3">
             <div class="row justify-content-center">
-                @if (UTILS.isNotEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
+                @if (UTILS.isEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
+                    <awg-edition-intro-placeholder
+                        class="col-12"
+                        [editionComplex]="editionComplex"
+                        [editionLabel]="editionRouteConstants.EDITION.short" />
+                } @else {
                     @if (editionComplex) {
                         <awg-edition-intro-partial-disclaimer
                             class="col-12 col-xl-6"
@@ -33,11 +38,6 @@
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         [currentLanguage]="currentLanguage"
                         (languageChangeRequest)="onLanguageSet($event)" />
-                } @else {
-                    <awg-edition-intro-placeholder
-                        class="col-12"
-                        [editionComplex]="editionComplex"
-                        [editionLabel]="editionRouteConstants.EDITION.short" />
                 }
             </div>
         </div>

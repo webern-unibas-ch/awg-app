@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 /**
@@ -51,11 +51,11 @@ export class EditionSvgSheetFacetItemComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Public method: isSelectedSvgSheet.

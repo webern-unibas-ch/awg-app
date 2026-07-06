@@ -2,22 +2,13 @@
     @for (folio of content.folios; track $index; let lastFolio = $last) {
         <ng-template #folioCellTemplate let-folio>
             <td
-                [attr.colspan]="!UTILS.isNotEmptyArray(folio.systemGroups) ? 2 : 1"
+                [attr.colspan]="UTILS.isEmptyArray(folio.systemGroups) ? 2 : 1"
                 class="awg-source-description-content-table-datacell">
                 @if (folio.folioLinkTo) {
+                    @let folioSheetIds = { complexId: content.itemLinkTo.complexId, sheetId: folio.folioLinkTo };
                     <a
-                        (click)="
-                            selectSvgSheet({
-                                complexId: content.itemLinkTo.complexId,
-                                sheetId: folio.folioLinkTo,
-                            })
-                        "
-                        (keyup.enter)="
-                            selectSvgSheet({
-                                complexId: content.itemLinkTo.complexId,
-                                sheetId: folio.folioLinkTo,
-                            })
-                        "
+                        (click)="selectSvgSheet(folioSheetIds)"
+                        (keyup.enter)="selectSvgSheet(folioSheetIds)"
                         role="link"
                         tabindex="0"
                         ><ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"
@@ -59,7 +50,14 @@
             <td class="awg-source-description-content-table-datacell"></td>
         </ng-template>
 
-        @if (UTILS.isNotEmptyArray(folio.systemGroups)) {
+        @if (UTILS.isEmptyArray(folio.systemGroups)) {
+            <!-- no folio system groups, only folio description -->
+            <tr class="awg-source-description-content-table-row">
+                @if (folio.folio) {
+                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
+                }
+            </tr>
+        } @else {
             <!-- folio system groups are present -->
             @for (
                 systemGroup of folio.systemGroups;
@@ -112,19 +110,11 @@
                             @if (system.measure) {
                                 <span class="awg-source-description-content-item-measure">
                                     @if (system.linkTo) {
+                                        @let systemSheetIds =
+                                            { complexId: content.itemLinkTo.complexId, sheetId: system.linkTo };
                                         <a
-                                            (click)="
-                                                selectSvgSheet({
-                                                    complexId: content.itemLinkTo.complexId,
-                                                    sheetId: system.linkTo,
-                                                })
-                                            "
-                                            (keyup.enter)="
-                                                selectSvgSheet({
-                                                    complexId: content.itemLinkTo.complexId,
-                                                    sheetId: system.linkTo,
-                                                })
-                                            "
+                                            (click)="selectSvgSheet(systemSheetIds)"
+                                            (keyup.enter)="selectSvgSheet(systemSheetIds)"
                                             role="link"
                                             tabindex="0"
                                             ><ng-template
@@ -146,7 +136,7 @@
                                 >
                             }
 
-                            @if (UTILS.isNotEmptyObject(system.row)) {
+                            @if (!UTILS.isEmptyObject(system.row)) {
                                 <span class="awg-source-description-content-item-row">
                                     <ng-template #rowTemplate let-row>
                                         <span
@@ -160,19 +150,11 @@
                                     >
 
                                     @if (system.linkTo) {
+                                        @let systemRowSheetIds =
+                                            { complexId: content.itemLinkTo.complexId, sheetId: system.linkTo };
                                         <a
-                                            (click)="
-                                                selectSvgSheet({
-                                                    complexId: content.itemLinkTo.complexId,
-                                                    sheetId: system.linkTo,
-                                                })
-                                            "
-                                            (keyup.enter)="
-                                                selectSvgSheet({
-                                                    complexId: content.itemLinkTo.complexId,
-                                                    sheetId: system.linkTo,
-                                                })
-                                            "
+                                            (click)="selectSvgSheet(systemRowSheetIds)"
+                                            (keyup.enter)="selectSvgSheet(systemRowSheetIds)"
                                             role="link"
                                             tabindex="0"
                                             ><ng-template
@@ -194,13 +176,6 @@
                     }
                 </tr>
             }
-        } @else {
-            <!-- no folio system groups, only folio description -->
-            <tr class="awg-source-description-content-table-row">
-                @if (folio.folio) {
-                    <ng-template *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }" />
-                }
-            </tr>
         }
     }
 </table>

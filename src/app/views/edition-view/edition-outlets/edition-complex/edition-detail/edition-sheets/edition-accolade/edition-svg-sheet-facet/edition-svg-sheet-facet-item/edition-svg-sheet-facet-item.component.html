@@ -2,17 +2,19 @@
     {{ facetItemLabel }}:
     @if (facetItemLabel === 'Werkeditionen') {
         <awg-disclaimer-workeditions />
-    } @else if (!UTILS.isNotEmptyArray(svgSheets)) {
+    } @else if (UTILS.isEmptyArray(svgSheets)) {
         <span>---</span>
     }
 </h6>
 @for (svgSheet of svgSheets; track svgSheet.id) {
     @if (svgSheet.content.length === 1) {
+        @let sheetIds = { complexId: '', sheetId: svgSheet.id };
+
         <a
             class="btn btn-default w-100 awg-svg-sheet-facet-link card-text text-start"
             [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
-            (click)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id })"
-            (keyup.enter)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id })"
+            (click)="selectSvgSheet(sheetIds)"
+            (keyup.enter)="selectSvgSheet(sheetIds)"
             role="link"
             tabindex="0">
             {{ svgSheet.label }}
@@ -31,6 +33,8 @@
             </a>
             <div ngbDropdownMenu aria-labelledby="dropDownSheetFacet">
                 @for (svgSheetContent of svgSheet.content; track svgSheetContent.svg; let i = $index) {
+                    @let sheetWithPartialIds = { complexId: '', sheetId: svgSheet.id + svgSheetContent.partial };
+
                     <div>
                         <a
                             class="dropdown-item"
@@ -38,10 +42,8 @@
                                 active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
                                 'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
                             }"
-                            (click)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id + svgSheetContent.partial })"
-                            (keyup.enter)="
-                                selectSvgSheet({ complexId: '', sheetId: svgSheet.id + svgSheetContent.partial })
-                            "
+                            (click)="selectSvgSheet(sheetWithPartialIds)"
+                            (keyup.enter)="selectSvgSheet(sheetWithPartialIds)"
                             role="link"
                             tabindex="0"
                             >{{ svgSheet.label }}

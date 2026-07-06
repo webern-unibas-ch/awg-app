@@ -1,4 +1,4 @@
-@if (details?.length) {
+@if (!UTILS.isEmptyArray(details)) {
     <p class="awg-source-description-{{ detailsClass }}">
         @if (detailsLabel) {
             <span class="awg-source-description-details-label smallcaps">{{ detailsLabel }}:&nbsp;</span>

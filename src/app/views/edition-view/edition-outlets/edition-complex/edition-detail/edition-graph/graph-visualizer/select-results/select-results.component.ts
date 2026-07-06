@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { QuerySelectResult } from '../models';
 
 /**
@@ -52,13 +52,6 @@ export class SelectResultsComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Private readonly injection variable: _utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    private readonly _utils = inject(UtilityService);
-
-    /**
      * Public method: isAccordionItemDisabled.
      *
      * It returns a boolean flag if the accordion item should be disabled.
@@ -71,20 +64,24 @@ export class SelectResultsComponent {
     }
 
     /**
-     * Public method: isQueryResultNotEmpty.
+     * Public method: isValidSelectQueryResult.
      *
-     * It checks if a given queryResult is not empty.
+     * It checks if a given select query result is valid.
      *
-     * @param {QuerySelectResult} queryResult The given queryResult.
-     *
-     * @returns {boolean} The boolean value of the comparison result.
+     * @param {QuerySelectResult} selectQueryResult The given select query result.
+     * @returns {boolean} True if it is a valid, filled object.
      */
-    isQueryResultNotEmpty(queryResult: QuerySelectResult | string): queryResult is QuerySelectResult {
-        if (typeof queryResult === 'string') {
+    isValidSelectQueryResult(
+        selectQueryResult: QuerySelectResult | string | null | undefined
+    ): selectQueryResult is QuerySelectResult {
+        if (!selectQueryResult || typeof selectQueryResult === 'string') {
             return false;
         }
-        const { head, body } = queryResult;
-        return this._utils.isNotEmptyArray(head?.vars) && this._utils.isNotEmptyArray(body?.bindings);
+        if (UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

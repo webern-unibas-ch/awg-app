@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
 import {
     SourceDescriptionWritingMaterial,
@@ -38,11 +38,11 @@ export class SourceDescriptionWritingMaterialsComponent {
     ref: SourceDescriptionWritingMaterialsComponent;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Readonly variable: TRADEMARKS.
@@ -90,7 +90,7 @@ export class SourceDescriptionWritingMaterialsComponent {
      * @returns {string} The retrieved locus string.
      */
     getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
-        if (!this.UTILS.isNotEmptyObject(locus)) {
+        if (UTILS.isEmptyObject(locus)) {
             return '';
         }
 
@@ -129,7 +129,7 @@ export class SourceDescriptionWritingMaterialsComponent {
         const { orientation, height, width, unit } = dimensions;
 
         const getDimension = (dimension: SourceDescriptionWritingMaterialDimension) => {
-            if (!this.UTILS.isNotEmptyObject(dimension)) {
+            if (UTILS.isEmptyObject(dimension)) {
                 return '';
             }
             return dimension.uncertainty ? `${dimension.uncertainty} ${dimension.value}` : dimension.value;

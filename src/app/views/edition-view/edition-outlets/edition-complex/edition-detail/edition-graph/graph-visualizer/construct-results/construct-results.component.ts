@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { Observable } from 'rxjs';
 
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { D3SimulationNode, Triple } from '../models';
 
 /**
@@ -51,25 +52,6 @@ export class ConstructResultsComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 
     /**
-     * Public method: isQueryResultNotEmpty.
-     *
-     * It checks if a given queryResult triple is not empty.
-     *
-     * @param {Triple[]} queryResult The given queryResult triples.
-     *
-     * @returns {boolean} The boolean value of the comparison result.
-     */
-    isQueryResultNotEmpty(queryResult: Triple[]): boolean {
-        if (queryResult.length === 0) {
-            return false;
-        }
-        return queryResult.every(triple => {
-            const { subject, predicate, object } = triple;
-            return Boolean(subject) && Boolean(predicate) && Boolean(object);
-        });
-    }
-
-    /**
      * Public method: isAccordionItemDisabled.
      *
      * It returns a boolean flag if the accordion item should be disabled.
@@ -79,6 +61,25 @@ export class ConstructResultsComponent {
      */
     isAccordionItemDisabled(): boolean {
         return this.isFullscreen;
+    }
+
+    /**
+     * Public method: isValidConstructQueryResult.
+     *
+     * It checks if a given construct result triple is valid.
+     *
+     * @param {Triple[] | null | undefined} constructQueryResult The given construct query result.
+     * @returns {boolean} True if it is a valid, filled, and complete array.
+     */
+    isValidConstructQueryResult(constructQueryResult: Triple[] | null | undefined): constructQueryResult is Triple[] {
+        if (UTILS.isEmptyArray(constructQueryResult)) {
+            return false;
+        }
+        if (constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

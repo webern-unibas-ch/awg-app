@@ -11,6 +11,8 @@ import {
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-view/services';
 
@@ -29,12 +31,40 @@ import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-v
 })
 export class EditionTkaTableComponent {
     /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
+     * Private readonly injection variable: _editionSnippetService.
+     *
+     * It keeps the instance of the injected EditionSnippetService.
+     */
+    private readonly _editionSnippetService = inject(EditionSnippetService);
+
+    /**
+     * Private readonly injection variable: _ngbModal.
+     *
+     * It keeps the instance of the injected NgbModal.
+     */
+    private readonly _ngbModal = inject(NgbModal);
+
+    /**
      * Input variable: commentary.
      *
      * It keeps the commentary data.
      */
     @Input()
     commentary: TextcriticalCommentary;
+
+    /**
+     * Input variable: id.
+     *
+     * It keeps the id of the sheet or textcritics.
+     */
+    @Input() id?: string;
 
     /**
      * Input variable: isCorrections.
@@ -51,14 +81,6 @@ export class EditionTkaTableComponent {
      */
     @Input()
     isRowTable = false;
-
-    /**
-     * Input variable: isSketchId.
-     *
-     * It keeps a boolean flag to indicate if the textcritics are related to a sketch.
-     */
-    @Input()
-    isSketchId = false;
 
     /**
      * Output variable: navigateToReportFragment.
@@ -139,25 +161,18 @@ export class EditionTkaTableComponent {
     };
 
     /**
-     * Private readonly injection variable: _editionGlyphService.
+     * Protected readonly variable: EDITION_UTILS.
      *
-     * It keeps the instance of the injected EditionGlyphService.
+     * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
-    private readonly _editionGlyphService = inject(EditionGlyphService);
+    protected readonly EDITION_UTILS = EDITION_UTILS;
 
     /**
-     * Private readonly injection variable: _editionSnippetService.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected EditionSnippetService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    private readonly _editionSnippetService = inject(EditionSnippetService);
-
-    /**
-     * Private readonly injection variable: _ngbModal.
-     *
-     * It keeps the instance of the injected NgbModal.
-     */
-    private readonly _ngbModal = inject(NgbModal);
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the EditionTkaTableComponent.
@@ -235,7 +250,7 @@ export class EditionTkaTableComponent {
         }
 
         // Adjust comment label for sketches, but not corrections
-        if (this.isSketchId && !this.isCorrections) {
+        if (EDITION_UTILS.isSketchId(this.id) && !this.isCorrections) {
             selectedTableHeader = selectedTableHeader.map(item =>
                 item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
             );

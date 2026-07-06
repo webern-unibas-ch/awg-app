@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 /**
@@ -96,11 +96,11 @@ export class EditionSvgSheetFooterComponent {
     showEvaluation = false;
 
     /**
-     * Public injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps an instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the EditionSvgSheetFooterComponent.

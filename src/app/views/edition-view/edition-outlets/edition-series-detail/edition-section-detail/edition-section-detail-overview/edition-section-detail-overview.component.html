@@ -1,12 +1,15 @@
 @if (editionData$ | async; as data) {
-    @if (
-        UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.opus) ||
-        UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.mnr)
-    ) {
+    @let content = data.section?.content;
+    @let opusList = content?.complexTypes?.opus;
+    @let mnrList = content?.complexTypes?.mnr;
+
+    @if (UTILS.isEmptyArray(opusList) && UTILS.isEmptyArray(mnrList)) {
+        <awg-edition-section-detail-placeholder [selectedSeries]="data.series" [selectedSection]="data.section" />
+    } @else {
         <div class="awg-edition-section-detail">
             <awg-edition-section-detail-disclaimer />
 
-            @if (!data.section?.content?.intro.disabled) {
+            @if (!content?.intro.disabled) {
                 <div class="awg-edition-section-detail-intro para p-3 shadow border rounded-3">
                     <div class="row">
                         <div class="col-12 col-xl-8">
@@ -17,20 +20,18 @@
                     </div>
                 </div>
             }
-            @if (UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.opus)) {
+            @if (!UTILS.isEmptyArray(opusList)) {
                 <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
                     <h5>nach Opusnummer:</h5>
-                    <awg-edition-section-detail-complex-card [complexes]="data.section.content.complexTypes.opus" />
+                    <awg-edition-section-detail-complex-card [complexes]="opusList" />
                 </div>
             }
-            @if (UTILS.isNotEmptyArray(data.section?.content?.complexTypes?.mnr)) {
+            @if (!UTILS.isEmptyArray(mnrList)) {
                 <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                     <h5>nach Moldenhauer-Nummer:</h5>
-                    <awg-edition-section-detail-complex-card [complexes]="data.section.content.complexTypes.mnr" />
+                    <awg-edition-section-detail-complex-card [complexes]="mnrList" />
                 </div>
             }
         </div>
-    } @else {
-        <awg-edition-section-detail-placeholder [selectedSeries]="data.series" [selectedSection]="data.section" />
     }
 }

@@ -1,52 +1,38 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
-
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionTkaLabelComponent } from './edition-tka-label.component';
+
+// Global constants (used for parameterized tests)
+const expectedId = 'test-1';
+const expectedSketchId = 'test-1_Sk1';
 
 describe('EditionTkaLabelComponent (DONE)', () => {
     let component: EditionTkaLabelComponent;
     let fixture: ComponentFixture<EditionTkaLabelComponent>;
     let compDe: DebugElement;
 
-    let utils: UtilityService;
-
-    let isSketchIdSpy: Spy;
-
-    let expectedId: string;
     let expectedLabelType: 'evaluation' | 'commentary';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionTkaLabelComponent],
-            providers: [UtilityService],
         }).compileComponents();
     });
 
     beforeEach(() => {
+        // Test data
+        expectedLabelType = 'evaluation';
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionTkaLabelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        utils = TestBed.inject(UtilityService);
-
-        // Test data
-        expectedId = 'test-1';
-        expectedLabelType = 'evaluation';
-
-        // Spies
-        isSketchIdSpy = vi.spyOn(utils, 'isSketchId');
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     it('should create', () => {
@@ -81,68 +67,38 @@ describe('EditionTkaLabelComponent (DONE)', () => {
             expectToBe(component.labelType, expectedLabelType);
         });
 
-        it('... should have called `isSketchId` from UtilityService with given id', () => {
-            expectSpyCall(isSketchIdSpy, 1, expectedId);
-        });
-
         describe('VIEW', () => {
-            describe('WHEN `labelType` is `evaluation`', () => {
-                beforeEach(async () => {
+            describe('... should display the correct label text in span when labelType is `evaluation` if', () => {
+                it.each([
+                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
+                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
+                ])('... $desc', async ({ id, expectedText }) => {
                     component.labelType = 'evaluation';
-
-                    await detectChangesOnPush(fixture);
-                });
-
-                it('... should display `Quellenbewertung` in span if no sketch id is given', async () => {
-                    component.id = 'test-1';
+                    component.id = id;
 
                     await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    expectToBe(spanEl.textContent.trim(), 'Quellenbewertung');
-                });
-
-                it('... should display `Skizzenkommentar` in span if sketch id is given', async () => {
-                    component.id = 'test-1_Sk1';
-
-                    await detectChangesOnPush(fixture);
-
-                    const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                    expectToBe(spanEl.textContent.trim(), 'Skizzenkommentar');
+                    expectToBe(spanEl.textContent.trim(), expectedText);
                 });
             });
 
-            describe('WHEN `labelType` is `commentary`', () => {
-                beforeEach(async () => {
+            describe('... should display the correct label text in span when labelType is `commentary` if', () => {
+                it.each([
+                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
+                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
+                ])('... $desc', async ({ id, expectedText }) => {
                     component.labelType = 'commentary';
-
-                    await detectChangesOnPush(fixture);
-                });
-
-                it('... should display `Textkritische Anmerkungen` in span if no sketch id is given', async () => {
-                    component.id = 'test-1';
+                    component.id = id;
 
                     await detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    expectToBe(spanEl.textContent.trim(), 'Textkritische Anmerkungen');
-                });
-
-                it('... should display `Textkritische Kommentare` in span if sketch id is given', async () => {
-                    component.id = 'test-1_Sk1';
-
-                    await detectChangesOnPush(fixture);
-
-                    const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                    expectToBe(spanEl.textContent.trim(), 'Textkritische Kommentare');
+                    expectToBe(spanEl.textContent.trim(), expectedText);
                 });
             });
         });

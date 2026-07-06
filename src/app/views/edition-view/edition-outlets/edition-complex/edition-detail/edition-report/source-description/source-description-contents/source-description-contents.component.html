@@ -26,31 +26,26 @@
 
                 <summary class="awg-source-description-content-item-summary no-para-margin">
                     <span class="awg-source-description-content-item">
-                        @if (content.item && UTILS.isNotEmptyObject(content.itemLinkTo)) {
-                            <a
-                                (click)="
-                                    selectSvgSheet({
-                                        complexId: content.itemLinkTo.complexId,
-                                        sheetId: content.itemLinkTo.sheetId,
-                                    })
-                                "
-                                (keyup.enter)="
-                                    selectSvgSheet({
-                                        complexId: content.itemLinkTo.complexId,
-                                        sheetId: content.itemLinkTo.sheetId,
-                                    })
-                                "
-                                role="link"
-                                tabindex="0"
-                                ><strong>{{ content.item }}</strong></a
-                            >
+                        @if (content.item) {
+                            @if (UTILS.isEmptyObject(content.itemLinkTo)) {
+                                <strong>{{ content.item }}</strong>
+                            } @else {
+                                @let sheetIds =
+                                    { complexId: content.itemLinkTo.complexId, sheetId: content.itemLinkTo.sheetId };
+                                <a
+                                    (click)="selectSvgSheet(sheetIds)"
+                                    (keyup.enter)="selectSvgSheet(sheetIds)"
+                                    role="link"
+                                    tabindex="0"
+                                    ><strong>{{ content.item }}</strong></a
+                                >
+                            }
+
+                            @if (content.itemDescription) {
+                                <span>&nbsp;</span>
+                            }
                         }
-                        @if (content.item && !UTILS.isNotEmptyObject(content.itemLinkTo)) {
-                            <strong>{{ content.item }}</strong>
-                        }
-                        @if (content.item && content.itemDescription) {
-                            <span>&nbsp;</span>
-                        }
+
                         @if (content.itemDescription) {
                             <span class="awg-source-description-content-item-description"
                                 ><span [compile-html]="content.itemDescription" [compile-html-ref]="ref"></span
@@ -61,13 +56,13 @@
                 </summary>
 
                 <!-- content.folios -->
-                @if (content?.folios?.length) {
+                @if (!UTILS.isEmptyArray(content?.folios)) {
                     <awg-source-description-content-table
                         [content]="content"
                         (selectSvgSheetRequest)="selectSvgSheet($event)" />
                 }
             </details>
-        } @else if (content?.folios?.length) {
+        } @else if (!UTILS.isEmptyArray(content?.folios)) {
             <awg-source-description-content-table
                 [content]="content"
                 (selectSvgSheetRequest)="selectSvgSheet($event)" />

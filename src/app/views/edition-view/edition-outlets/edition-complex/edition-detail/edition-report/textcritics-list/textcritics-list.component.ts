@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
+import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
@@ -57,11 +58,18 @@ export class TextcriticsListComponent {
     ref: TextcriticsListComponent;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: EDITION_UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
-    readonly UTILS = inject(UtilityService);
+    protected readonly EDITION_UTILS = EDITION_UTILS;
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the TextcriticsComponent.
@@ -70,21 +78,6 @@ export class TextcriticsListComponent {
      */
     constructor() {
         this.ref = this;
-    }
-
-    /**
-     * Public method: isWorkEditionId.
-     *
-     * It checks if the given id is a work edition id.
-     *
-     * @param {string} id The given id.
-     * @returns {boolean} The result of the check.
-     */
-    isWorkEditionId(id: string): boolean {
-        if (!id) {
-            return false;
-        }
-        return id.includes('_WE');
     }
 
     /**

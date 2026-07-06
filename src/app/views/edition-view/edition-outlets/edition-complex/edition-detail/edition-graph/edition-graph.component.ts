@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services/utility-service/utility.service';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
@@ -24,13 +24,6 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     standalone: false,
 })
 export class EditionGraphComponent implements OnInit {
-    /**
-     * Public readonly injection variable: utils.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    readonly utils = inject(UtilityService);
-
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -74,16 +67,16 @@ export class EditionGraphComponent implements OnInit {
     errorObject = null;
 
     /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: EditionGraphComponent;
+
+    /**
      * Readonly signal: isFullscreen.
      *
      * It holds the fullscreen status.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionGraphComponent;
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -94,6 +87,13 @@ export class EditionGraphComponent implements OnInit {
         OP12: '',
         OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
     };
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
 
     /**
      * Constructor of the EditionGraphComponent.

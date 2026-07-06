@@ -1,4 +1,16 @@
-import { Component, DebugElement, EventEmitter, inject, Input, isSignal, NgModule, Output } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    EventEmitter,
+    inject,
+    input,
+    Input,
+    isSignal,
+    NgModule,
+    Output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -19,6 +31,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
@@ -104,19 +117,18 @@ class EditionSvgSheetFooterStubComponent {
 @Component({
     selector: 'awg-fullscreen-toggle',
     template: '',
-    standalone: false,
 })
 class FullscreenToggleStubComponent {
-    @Input()
-    fsElement: HTMLElement;
-    @Output()
-    toggleFullscreenRequest = new EventEmitter<boolean>();
+    readonly fsElement = input.required<HTMLElement>();
 }
 
 describe('EditionAccoladeComponent (DONE)', () => {
     let component: EditionAccoladeComponent;
     let fixture: ComponentFixture<EditionAccoladeComponent>;
     let compDe: DebugElement;
+
+    let isFullscreenMockSignal: WritableSignal<boolean>;
+    let mockFullscreenService: Partial<FullscreenService>;
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
@@ -159,15 +171,23 @@ describe('EditionAccoladeComponent (DONE)', () => {
     }
 
     beforeEach(async () => {
+        // Unset fullscreen by default
+        isFullscreenMockSignal = signal(false);
+
+        // Mock FullscreenService
+        mockFullscreenService = {
+            isFullscreen: isFullscreenMockSignal.asReadonly(),
+        };
+
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule],
+            imports: [NgbAccordionWithConfigModule, FullscreenToggleStubComponent],
             declarations: [
                 EditionAccoladeComponent,
                 EditionSvgSheetViewerStubComponent,
                 EditionSvgSheetFacetStubComponent,
                 EditionSvgSheetFooterStubComponent,
-                FullscreenToggleStubComponent,
             ],
+            providers: [{ provide: FullscreenService, useValue: mockFullscreenService }],
         }).compileComponents();
     });
 
@@ -312,15 +332,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have class `fullscreen` on div.accordion only in fullscreen mode', async () => {
-                const isFullscreenSpy = vi.spyOn(component, 'isFullscreen').mockReturnValue(false);
-
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                 const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
                 expectToNotContain(accordionEl.classList, 'fullscreen');
 
                 // Set fullscreen
-                isFullscreenSpy.mockReturnValue(true);
+                isFullscreenMockSignal.set(true);
                 await detectChangesOnPush(fixture);
 
                 expectToContain(accordionEl.classList, 'fullscreen');
@@ -393,7 +411,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                 it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', async () => {
                     // Set fullscreen
-                    vi.spyOn(component, 'isFullscreen').mockReturnValue(true);
+                    isFullscreenMockSignal.set(true);
                     await detectChangesOnPush(fixture);
 
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
@@ -424,7 +442,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     const accDes = getAndExpectDebugElementByCss(compDe, '[ngbAccordion]', 1, 1);
                     const accRef = accDes[0].references['accoladeAcc'];
 
-                    expectToEqual(fsToggleCmp.fsElement, accRef);
+                    expectToEqual(fsToggleCmp.fsElement(), accRef);
                 });
             });
 
