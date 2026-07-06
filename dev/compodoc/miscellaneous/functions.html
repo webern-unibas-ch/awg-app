@@ -131,6 +131,18 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#isEmptyArray" title="src/app/shared/utils/object-utils.ts" ><b>isEmptyArray</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isEmptyObject" title="src/app/shared/utils/object-utils.ts" ><b>isEmptyObject</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isSketchId" title="src/app/shared/utils/edition-utils.ts" ><b>isSketchId</b>&nbsp;&nbsp;&nbsp;(src/.../edition-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isWorkEditionId" title="src/app/shared/utils/edition-utils.ts" ><b>isWorkEditionId</b>&nbsp;&nbsp;&nbsp;(src/.../edition-utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#round" title="src/app/views/edition-view/models/folio-calculation.model.ts" ><b>round</b>&nbsp;&nbsp;&nbsp;(src/.../folio-calculation.model.ts)</a>
                         </li>
                     </ul>
@@ -140,7 +152,279 @@
     </table>
 </section>
 
-    <h3>src/app/views/edition-view/models/folio-calculation.model.ts</h3>
+    <h3>src/app/shared/utils/object-utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEmptyArray"></a>
+                    <span class="name">
+                        <span ><b>isEmptyArray</b></span>
+                        <a href="#isEmptyArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isEmptyArray(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: isEmptyArray.</p>
+<p>It checks if an array is null, undefined, or empty.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The array to check.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >null | undefined | unknown</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the array is null, undefined, or empty; false otherwise.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEmptyObject"></a>
+                    <span class="name">
+                        <span ><b>isEmptyObject</b></span>
+                        <a href="#isEmptyObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isEmptyObject(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: isEmptyObject.</p>
+<p>It checks if an object is null, undefined, or empty (no keys).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The object to check.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>null | undefined | Record&lt;string | never&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the object is null, undefined, or empty; false otherwise.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/shared/utils/edition-utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSketchId"></a>
+                    <span class="name">
+                        <span ><b>isSketchId</b></span>
+                        <a href="#isSketchId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSketchId(id)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: isSketchId.</p>
+<p>It checks whether the given string ID represents a sketch ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given string ID to check.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the ID is a valid sketch ID, false otherwise.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isWorkEditionId"></a>
+                    <span class="name">
+                        <span ><b>isWorkEditionId</b></span>
+                        <a href="#isWorkEditionId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isWorkEditionId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: isWorkEditionId.</p>
+<p>It checks if the given id is a work edition id.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/views/edition-view/models/folio-calculation.model.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>

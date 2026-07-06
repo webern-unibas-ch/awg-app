@@ -265,6 +265,7 @@ of the edition view of the app.</p>
                                 <a href="#notesLabels" >notesLabels</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#UTILS" >UTILS</a>
                             </li>
@@ -2043,6 +2044,7 @@ within the context of an edition complex identified by the provided complexId.</
                 <td class="col-md-4">
                     <a name="UTILS"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                             <span class="modifier">Readonly</span>
                         <span ><b>UTILS</b></span>
                         <a href="#UTILS"><span class="icon ion-ios-link"></span></a>
@@ -2057,7 +2059,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(UtilityService)</code>
+                        <i>Default value : </i><code>UTILS</code>
                     </td>
                 </tr>
                     <tr>
@@ -2068,8 +2070,8 @@ within the context of an edition complex identified by the provided complexId.</
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly injection variable: UTILS.</p>
-<p>It keeps the instance of the injected UtilityService.</p>
+                    <div class="io-description"><p>Protected readonly variable: UTILS.</p>
+<p>It keeps the reference to the <a href="../miscellaneous/variables.html#UTILS">UTILS</a> methods.</p>
 </div>
                 </td>
             </tr>
@@ -2127,8 +2129,8 @@ import { NavigationEnd, NavigationExtras, Router } from &#x27;@angular/router&#x
 import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from &#x27;rxjs&#x27;;
 import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from &#x27;rxjs/operators&#x27;;
 
-import { UtilityService } from &#x27;@awg-core/services/utility-service/utility.service&#x27;;
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
+import { UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionDataService, EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
@@ -2214,11 +2216,11 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     errorObject &#x3D; null;
 
     /**
-     * Public readonly injection variable: UTILS.
+     * Protected readonly variable: UTILS.
      *
-     * It keeps the instance of the injected UtilityService.
+     * It keeps the reference to the {@link UTILS} methods.
      */
-    readonly UTILS &#x3D; inject(UtilityService);
+    protected readonly UTILS &#x3D; UTILS;
 
     /**
      * Private readonly variable: _destroyed$.
@@ -2598,7 +2600,12 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @if (editionIntroData$ | async; as editionIntroData) {
         &lt;div class&#x3D;&quot;awg-edition-intro-view p-5 border rounded-3&quot;&gt;
             &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
-                @if (UTILS.isNotEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
+                @if (UTILS.isEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
+                    &lt;awg-edition-intro-placeholder
+                        class&#x3D;&quot;col-12&quot;
+                        [editionComplex]&#x3D;&quot;editionComplex&quot;
+                        [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot; /&gt;
+                } @else {
                     @if (editionComplex) {
                         &lt;awg-edition-intro-partial-disclaimer
                             class&#x3D;&quot;col-12 col-xl-6&quot;
@@ -2624,11 +2631,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
                         [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
                         [currentLanguage]&#x3D;&quot;currentLanguage&quot;
                         (languageChangeRequest)&#x3D;&quot;onLanguageSet($event)&quot; /&gt;
-                } @else {
-                    &lt;awg-edition-intro-placeholder
-                        class&#x3D;&quot;col-12&quot;
-                        [editionComplex]&#x3D;&quot;editionComplex&quot;
-                        [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot; /&gt;
                 }
             &lt;/div&gt;
         &lt;/div&gt;
@@ -2677,7 +2679,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal />    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-edition-intro-view p-5 border rounded-3">            <div class="row justify-content-center">                @if (UTILS.isNotEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {                    @if (editionComplex) {                        <awg-edition-intro-partial-disclaimer                            class="col-12 col-xl-6"                            [editionComplex]="editionComplex"                            [editionLabel]="editionRouteConstants.EDITION.short"                            [editionRoute]="editionRouteConstants.EDITION.route"                            [seriesRoute]="editionRouteConstants.SERIES.route"                            [sectionRoute]="editionRouteConstants.SECTION.route"                            [introRoute]="editionRouteConstants.EDITION_INTRO.route" />                    }                    <awg-edition-intro-content                        class="col-12 col-xl-10"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                        (openModalRequest)="onModalOpen($event)"                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />                    <awg-edition-intro-nav                        class="col-12 col-xl-2 d-none d-xl-block"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        [currentLanguage]="currentLanguage"                        (languageChangeRequest)="onLanguageSet($event)" />                } @else {                    <awg-edition-intro-placeholder                        class="col-12"                        [editionComplex]="editionComplex"                        [editionLabel]="editionRouteConstants.EDITION.short" />                }            </div>        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <awg-alert-error [errorObject]="errorObject" />        } @else {            <!-- loading spinner fallback -->            <awg-twelve-tone-spinner />        }    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal />    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-edition-intro-view p-5 border rounded-3">            <div class="row justify-content-center">                @if (UTILS.isEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {                    <awg-edition-intro-placeholder                        class="col-12"                        [editionComplex]="editionComplex"                        [editionLabel]="editionRouteConstants.EDITION.short" />                } @else {                    @if (editionComplex) {                        <awg-edition-intro-partial-disclaimer                            class="col-12 col-xl-6"                            [editionComplex]="editionComplex"                            [editionLabel]="editionRouteConstants.EDITION.short"                            [editionRoute]="editionRouteConstants.EDITION.route"                            [seriesRoute]="editionRouteConstants.SERIES.route"                            [sectionRoute]="editionRouteConstants.SECTION.route"                            [introRoute]="editionRouteConstants.EDITION_INTRO.route" />                    }                    <awg-edition-intro-content                        class="col-12 col-xl-10"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                        (openModalRequest)="onModalOpen($event)"                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />                    <awg-edition-intro-nav                        class="col-12 col-xl-2 d-none d-xl-block"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        [currentLanguage]="currentLanguage"                        (languageChangeRequest)="onLanguageSet($event)" />                }            </div>        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <awg-alert-error [errorObject]="errorObject" />        } @else {            <!-- loading spinner fallback -->            <awg-twelve-tone-spinner />        }    }</div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoLinkComponent', 'selector': 'awg-logo-link'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};

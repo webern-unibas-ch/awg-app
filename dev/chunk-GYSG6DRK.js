@@ -1,0 +1,1 @@
+function t(r){return!r||!Array.isArray(r)||r.length===0}function n(r){return!r||typeof r!="object"||Array.isArray(r)?!0:Object.keys(r).length===0}var e={isEmptyArray:t,isEmptyObject:n};export{e as a};
