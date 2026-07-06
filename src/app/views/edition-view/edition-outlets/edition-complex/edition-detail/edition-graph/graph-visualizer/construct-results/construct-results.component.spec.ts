@@ -928,76 +928,79 @@ describe('ConstructResultsComponent (DONE)', () => {
                 expectSpyCall(isValidConstructQueryResultSpy, 4, anotherQueryResult[0]);
             });
 
-            describe.each([
-                {
-                    expectedResult: false,
-                    cases: [
-                        {
-                            desc: 'queryResult is empty array',
-                            query: [],
-                        },
-                        {
-                            desc: 'subject is undefined',
-                            query: [{ subject: undefined, predicate: 'example:has', object: 'example:Success' }],
-                        },
-                        {
-                            desc: 'subject is an empty string',
-                            query: [{ subject: '', predicate: 'example:has', object: 'example:Success' }],
-                        },
-                        {
-                            desc: 'predicate is undefined',
-                            query: [{ subject: 'example:Test', predicate: undefined, object: 'example:Success' }],
-                        },
-                        {
-                            desc: 'predicate is an empty string',
-                            query: [{ subject: 'example:Test', predicate: '', object: 'example:Success' }],
-                        },
-                        {
-                            desc: 'object is undefined',
-                            query: [{ subject: 'example:Test', predicate: 'example:has', object: undefined }],
-                        },
-                        {
-                            desc: 'object is an empty string',
-                            query: [{ subject: 'example:Test', predicate: 'example:has', object: '' }],
-                        },
-                        {
-                            desc: 'all fields are undefined',
-                            query: [{ subject: undefined, predicate: undefined, object: undefined }],
-                        },
-                        {
-                            desc: 'all fields are empty strings',
-                            query: [{ subject: '', predicate: '', object: '' }],
-                        },
-                    ],
-                },
-                {
-                    expectedResult: true,
-                    cases: [
-                        {
-                            desc: 'queryResult is valid',
-                            query: [{ subject: 'example:Test', predicate: 'example:has', object: 'example:Success' }],
-                        },
-                        {
-                            desc: 'queryResult changes to another valid result',
-                            query: [
-                                {
-                                    subject: 'example:AnotherTest',
-                                    predicate: 'example:has',
-                                    object: 'example:AnotherSuccess',
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ])('... should return $expectedResult if', ({ expectedResult, cases }) => {
-                it.each(cases)('... $desc', async ({ query }) => {
+            describe('... should return false if', () => {
+                it.each([
+                    {
+                        desc: 'queryResult is empty array',
+                        query: [],
+                    },
+                    {
+                        desc: 'subject is undefined',
+                        query: [{ subject: undefined, predicate: 'example:has', object: 'example:Success' }],
+                    },
+                    {
+                        desc: 'subject is an empty string',
+                        query: [{ subject: '', predicate: 'example:has', object: 'example:Success' }],
+                    },
+                    {
+                        desc: 'predicate is undefined',
+                        query: [{ subject: 'example:Test', predicate: undefined, object: 'example:Success' }],
+                    },
+                    {
+                        desc: 'predicate is an empty string',
+                        query: [{ subject: 'example:Test', predicate: '', object: 'example:Success' }],
+                    },
+                    {
+                        desc: 'object is undefined',
+                        query: [{ subject: 'example:Test', predicate: 'example:has', object: undefined }],
+                    },
+                    {
+                        desc: 'object is an empty string',
+                        query: [{ subject: 'example:Test', predicate: 'example:has', object: '' }],
+                    },
+                    {
+                        desc: 'all fields are undefined',
+                        query: [{ subject: undefined, predicate: undefined, object: undefined }],
+                    },
+                    {
+                        desc: 'all fields are empty strings',
+                        query: [{ subject: '', predicate: '', object: '' }],
+                    },
+                ])('... $desc', async ({ query }) => {
                     isValidConstructQueryResultSpy.mockClear();
 
                     component.queryResult$ = observableOf(query);
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(isValidConstructQueryResultSpy, 1, [query]);
-                    expectToBe(component.isValidConstructQueryResult(query), expectedResult);
+                    expectToBe(component.isValidConstructQueryResult(query), false);
+                });
+            });
+
+            describe('... should return true if', () => {
+                it.each([
+                    {
+                        desc: 'queryResult is valid',
+                        query: [{ subject: 'example:Test', predicate: 'example:has', object: 'example:Success' }],
+                    },
+                    {
+                        desc: 'queryResult changes to another valid result',
+                        query: [
+                            {
+                                subject: 'example:AnotherTest',
+                                predicate: 'example:has',
+                                object: 'example:AnotherSuccess',
+                            },
+                        ],
+                    },
+                ])('... $desc', async ({ query }) => {
+                    isValidConstructQueryResultSpy.mockClear();
+
+                    component.queryResult$ = observableOf(query);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(isValidConstructQueryResultSpy, 1, [query]);
+                    expectToBe(component.isValidConstructQueryResult(query), true);
                 });
             });
         });

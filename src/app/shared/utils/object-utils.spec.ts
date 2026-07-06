@@ -4,7 +4,7 @@ import { expectToBe } from '@testing/expect-helper';
 
 import { isEmptyArray, isEmptyObject } from './object-utils';
 
-describe('ObjectUtils', () => {
+describe('ObjectUtils (DONE)', () => {
     describe('#isEmptyArray()', () => {
         it('... should have a method `isEmptyArray`', () => {
             expect(isEmptyArray).toBeDefined();

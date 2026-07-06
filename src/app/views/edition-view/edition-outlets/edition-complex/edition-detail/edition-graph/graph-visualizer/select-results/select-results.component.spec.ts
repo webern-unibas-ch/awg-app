@@ -691,68 +691,71 @@ describe('SelectResultsComponent (DONE)', () => {
                 expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);
             });
 
-            describe.each([
-                {
-                    expectedResult: false,
-                    cases: [
-                        {
-                            desc: 'queryResult is a string message',
-                            query: 'Query returned no results',
-                        },
-                        {
-                            desc: 'queryResult.head is undefined',
-                            query: { head: undefined, body: { bindings: [{ test: 'Test' }] } },
-                        },
-                        {
-                            desc: 'queryResult.body is undefined',
-                            query: { head: { vars: ['Test'] }, body: undefined },
-                        },
-                        {
-                            desc: 'queryResult.head and queryResult.body are undefined',
-                            query: { head: undefined, body: undefined },
-                        },
-                        {
-                            desc: 'queryResult.head.vars is empty array',
-                            query: { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } },
-                        },
-                        {
-                            desc: 'queryResult.body.bindings is empty array',
-                            query: { head: { vars: ['TestHeader'] }, body: { bindings: [] } },
-                        },
-                        {
-                            desc: 'queryResult.head.vars & queryResult.body.bindings are empty arrays',
-                            query: { head: { vars: [] }, body: { bindings: [] } },
-                        },
-                    ],
-                },
-                {
-                    expectedResult: true,
-                    cases: [
-                        {
-                            desc: 'queryResult is valid',
-                            query: {
-                                head: { vars: ['TestHeader'] },
-                                body: { bindings: [{ testKey: 'TestValue' }] },
-                            },
-                        },
-                        {
-                            desc: 'queryResult changes to another valid result',
-                            query: {
-                                head: { vars: ['AnotherTestHeader'] },
-                                body: { bindings: [{ testKey: 'AnotherTestValue' }] },
-                            },
-                        },
-                    ],
-                },
-            ])('... should return $expectedResult if', ({ expectedResult, cases }) => {
-                it.each(cases)('... $desc', async ({ query }) => {
+            describe('... should return false if', () => {
+                it.each([
+                    {
+                        desc: 'queryResult is a string message',
+                        query: 'Query returned no results',
+                    },
+                    {
+                        desc: 'queryResult.head is undefined',
+                        query: { head: undefined, body: { bindings: [{ test: 'Test' }] } },
+                    },
+                    {
+                        desc: 'queryResult.body is undefined',
+                        query: { head: { vars: ['Test'] }, body: undefined },
+                    },
+                    {
+                        desc: 'queryResult.head and queryResult.body are undefined',
+                        query: { head: undefined, body: undefined },
+                    },
+                    {
+                        desc: 'queryResult.head.vars is empty array',
+                        query: { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } },
+                    },
+                    {
+                        desc: 'queryResult.body.bindings is empty array',
+                        query: { head: { vars: ['TestHeader'] }, body: { bindings: [] } },
+                    },
+                    {
+                        desc: 'queryResult.head.vars & queryResult.body.bindings are empty arrays',
+                        query: { head: { vars: [] }, body: { bindings: [] } },
+                    },
+                ])('... $desc', async ({ query }) => {
                     isValidSelectQueryResultSpy.mockClear();
 
                     component.queryResult$ = observableOf(query);
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(isValidSelectQueryResultSpy, 1, query);
-                    expectToBe(component.isValidSelectQueryResult(query), expectedResult);
+                    expectToBe(component.isValidSelectQueryResult(query), false);
+                });
+            });
+
+            describe('... should return true if', () => {
+                it.each([
+                    {
+                        desc: 'queryResult is valid',
+                        query: {
+                            head: { vars: ['TestHeader'] },
+                            body: { bindings: [{ testKey: 'TestValue' }] },
+                        },
+                    },
+                    {
+                        desc: 'queryResult changes to another valid result',
+                        query: {
+                            head: { vars: ['AnotherTestHeader'] },
+                            body: { bindings: [{ testKey: 'AnotherTestValue' }] },
+                        },
+                    },
+                ])('... $desc', async ({ query }) => {
+                    isValidSelectQueryResultSpy.mockClear();
+
+                    component.queryResult$ = observableOf(query);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(isValidSelectQueryResultSpy, 1, query);
+                    expectToBe(component.isValidSelectQueryResult(query), true);
                 });
             });
         });

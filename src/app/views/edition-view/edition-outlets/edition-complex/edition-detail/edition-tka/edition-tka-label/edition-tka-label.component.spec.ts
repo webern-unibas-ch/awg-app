@@ -68,24 +68,29 @@ describe('EditionTkaLabelComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            describe.each([
-                {
-                    labelType: 'evaluation' as const,
-                    cases: [
-                        { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
-                        { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
-                    ],
-                },
-                {
-                    labelType: 'commentary' as const,
-                    cases: [
-                        { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
-                        { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
-                    ],
-                },
-            ])('WHEN `labelType` is $labelType', ({ labelType, cases }) => {
-                it.each(cases)('... should display $expectedText in span if $desc', async ({ id, expectedText }) => {
-                    component.labelType = labelType;
+            describe('... should display the correct label text in span when labelType is `evaluation` if', () => {
+                it.each([
+                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
+                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
+                ])('... $desc', async ({ id, expectedText }) => {
+                    component.labelType = 'evaluation';
+                    component.id = id;
+
+                    await detectChangesOnPush(fixture);
+
+                    const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
+                    expectToBe(spanEl.textContent.trim(), expectedText);
+                });
+            });
+
+            describe('... should display the correct label text in span when labelType is `commentary` if', () => {
+                it.each([
+                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
+                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
+                ])('... $desc', async ({ id, expectedText }) => {
+                    component.labelType = 'commentary';
                     component.id = id;
 
                     await detectChangesOnPush(fixture);
