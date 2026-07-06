@@ -90,7 +90,7 @@ export class SourceDescriptionWritingMaterialsComponent {
      * @returns {string} The retrieved locus string.
      */
     getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
-        if (!this.UTILS.isNotEmptyObject(locus)) {
+        if (this.UTILS.isEmptyObject(locus)) {
             return '';
         }
 
@@ -129,7 +129,7 @@ export class SourceDescriptionWritingMaterialsComponent {
         const { orientation, height, width, unit } = dimensions;
 
         const getDimension = (dimension: SourceDescriptionWritingMaterialDimension) => {
-            if (!this.UTILS.isNotEmptyObject(dimension)) {
+            if (this.UTILS.isEmptyObject(dimension)) {
                 return '';
             }
             return dimension.uncertainty ? `${dimension.uncertainty} ${dimension.value}` : dimension.value;

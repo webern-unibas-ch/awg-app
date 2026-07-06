@@ -82,7 +82,9 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
             const id: string = params.get('complexId') || '';
             const complex = EditionComplexesService.getEditionComplexById(id);
 
-            if (this._utils.isNotEmptyObject(complex)) {
+            if (this._utils.isEmptyObject(complex)) {
+                this.selectedEditionComplex$ = EMPTY;
+            } else {
                 const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
                 const section = EditionOutlineService.getEditionSectionById(
                     complex.pubStatement.series.route,
@@ -94,8 +96,6 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
                 this._editionStateService.updateSelectedEditionComplex(complex);
 
                 this.selectedEditionComplex$ = this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
-            } else {
-                this.selectedEditionComplex$ = EMPTY;
             }
         });
     }

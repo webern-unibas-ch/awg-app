@@ -44,10 +44,7 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'commentary'" />:
                                 </p>
-                                @if (
-                                    UTILS.isEmptyObject(textcritics.commentary) &&
-                                    UTILS.isEmptyArray(textcritics.commentary.comments)
-                                ) {
+                                @if (UTILS.isEmptyArray(textcritics.commentary?.comments)) {
                                     <ng-container *ngTemplateOutlet="noContent" />
                                 } @else {
                                     <awg-edition-tka-table

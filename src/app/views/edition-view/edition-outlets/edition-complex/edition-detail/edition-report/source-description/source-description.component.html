@@ -34,10 +34,10 @@
                         }
                     </div>
                     <!-- physDesc -->
-                    @if (UTILS.isNotEmptyObject(sourceDescription.physDesc)) {
+                    @if (!UTILS.isEmptyObject(sourceDescription.physDesc)) {
                         <div class="awg-source-description-phys-desc">
                             <!-- conditions -->
-                            @if (sourceDescription?.physDesc?.conditions?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.conditions)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.conditions"
                                     detailsLabel=""
@@ -47,10 +47,10 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- writingMaterials -->
-                            @if (
-                                sourceDescription?.physDesc?.writingMaterialStrings?.length &&
-                                !sourceDescription?.physDesc?.writingMaterials?.length
-                            ) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.writingMaterials)) {
+                                <awg-source-description-writing-materials
+                                    [writingMaterials]="sourceDescription.physDesc.writingMaterials" />
+                            } @else if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.writingMaterialStrings)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
@@ -58,12 +58,9 @@
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
-                            } @else if (sourceDescription?.physDesc?.writingMaterials?.length) {
-                                <awg-source-description-writing-materials
-                                    [writingMaterials]="sourceDescription.physDesc.writingMaterials" />
                             }
                             <!-- writingInstruments -->
-                            @if (UTILS.isNotEmptyObject(sourceDescription.physDesc.writingInstruments)) {
+                            @if (!UTILS.isEmptyObject(sourceDescription.physDesc.writingInstruments)) {
                                 @if (sourceDescription.physDesc.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="smallcaps">Schreibstoff:&nbsp;</span>
@@ -76,7 +73,7 @@
                                 }
                             }
                             <!-- title -->
-                            @if (sourceDescription?.physDesc?.titles?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.titles)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.titles"
                                     detailsLabel="Titel"
@@ -86,7 +83,7 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- date -->
-                            @if (sourceDescription?.physDesc?.dates?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.dates)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.dates"
                                     detailsLabel="Datierung"
@@ -96,7 +93,7 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- pagination -->
-                            @if (sourceDescription?.physDesc?.paginations?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.paginations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.paginations"
                                     detailsLabel="Paginierung"
@@ -106,7 +103,7 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- measureNumbers -->
-                            @if (sourceDescription?.physDesc?.measureNumbers?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.measureNumbers)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.measureNumbers"
                                     detailsLabel="Taktzahlen"
@@ -116,7 +113,7 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- instrumentation -->
-                            @if (sourceDescription?.physDesc?.instrumentations?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.instrumentations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
@@ -126,7 +123,7 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- annotations -->
-                            @if (sourceDescription?.physDesc?.annotations?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.annotations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.annotations"
                                     detailsLabel="Eintragungen"
@@ -136,14 +133,14 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
                             <!-- contents -->
-                            @if (sourceDescription?.physDesc?.contents?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.contents)) {
                                 <awg-source-description-contents
                                     [contents]="sourceDescription.physDesc.contents"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)" />
                             }
 
                             <!-- corrections -->
-                            @if (sourceDescription?.physDesc?.corrections?.length) {
+                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.corrections)) {
                                 <awg-source-description-corrections
                                     [corrections]="sourceDescription.physDesc.corrections"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"

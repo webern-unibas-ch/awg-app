@@ -490,10 +490,7 @@ export class EditionSheetsComponent implements OnInit {
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);
 
-        if (
-            this._utils.isNotEmptyObject(this.selectedTextcritics) &&
-            this._utils.isNotEmptyObject(this.selectedTextcritics.commentary)
-        ) {
+        if (!this._utils.isEmptyObject(this.selectedTextcritics?.commentary)) {
             this.selectedTextcriticalCommentary = this.selectedTextcritics.commentary;
         }
     }
