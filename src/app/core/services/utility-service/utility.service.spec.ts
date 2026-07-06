@@ -22,109 +22,176 @@ describe('UtilityService (DONE)', () => {
         expect(utils).toBeTruthy();
     });
 
-    describe('#isNotEmptyArray()', () => {
-        it('... should have a method `isNotEmptyArray`', () => {
-            expect(utils.isNotEmptyArray).toBeDefined();
-        });
-
-        it('... should return true if a given array is not empty', () => {
-            const checkArray = [1];
-            expectToBe(utils.isNotEmptyArray(checkArray), true);
-        });
-
-        it('... should return false if a given array is empty', () => {
-            const checkArray = [];
-            expectToBe(utils.isNotEmptyArray(checkArray), false);
-        });
-
-        it('... should return false if a given array is null', () => {
-            const checkArray = null;
-            expectToBe(utils.isNotEmptyArray(checkArray), false);
-        });
-
-        it('... should return false if a given array is undefined', () => {
-            const checkArray = undefined;
-            expectToBe(utils.isNotEmptyArray(checkArray), false);
-        });
-    });
-
-    describe('#isNotEmptyObject()', () => {
-        it('... should have a method `isNotEmptyObject`', () => {
-            expect(utils.isNotEmptyObject).toBeDefined();
-        });
-
-        it('... should return true if a given object is not empty', () => {
-            const checkObj = { a: 1 };
-            expectToBe(utils.isNotEmptyObject(checkObj), true);
-        });
-
-        it('... should return false if a given object is empty', () => {
-            const checkObj = {};
-            expectToBe(utils.isNotEmptyObject(checkObj), false);
-        });
-
-        it('... should return false if a given object is an Array', () => {
-            const checkObj = [1, 2, 3];
-            expectToBe(utils.isNotEmptyObject(checkObj), false);
-        });
-
-        it('... should return false if a given object is an empty Array', () => {
-            const checkObj = [];
-            expectToBe(utils.isNotEmptyObject(checkObj), false);
-        });
-
-        it('... should return false if a given object is undefined', () => {
-            const checkObj = undefined;
-            expectToBe(utils.isNotEmptyObject(checkObj), false);
-        });
-
-        it('... should return false if a given object is null', () => {
-            const checkObj = null;
-            expectToBe(utils.isNotEmptyObject(checkObj), false);
-        });
-    });
-
-    describe('#isSketchId()', () => {
-        it('... should have a method `isSketchId`', () => {
-            expect(utils.isSketchId).toBeDefined();
-        });
-
-        describe('... should return false if', () => {
-            it('... id is undefined', () => {
-                const result = utils.isSketchId(undefined);
-
-                expectToBe(result, false);
+    describe('METHODS', () => {
+        describe('#isEmptyArray()', () => {
+            it('... should have a method `isEmptyArray`', () => {
+                expect(utils.isEmptyArray).toBeDefined();
             });
 
-            it('... id is null', () => {
-                const result = utils.isSketchId(null);
+            describe('... should return true if the array', () => {
+                it('... is undefined', () => {
+                    expectToBe(utils.isEmptyArray(undefined), true);
+                });
 
-                expectToBe(result, false);
+                it('... is null', () => {
+                    expectToBe(utils.isEmptyArray(null), true);
+                });
+
+                it('... is empty', () => {
+                    expectToBe(utils.isEmptyArray([]), true);
+                });
             });
 
-            it('... id does not include `_Sk`', () => {
-                const id = 'test-1';
+            describe('... should return false if the array', () => {
+                it('... contains elements', () => {
+                    expectToBe(utils.isEmptyArray(['test']), false);
+                    expectToBe(utils.isEmptyArray([1, 2, 3]), false);
+                });
 
-                const result = utils.isSketchId(id);
-
-                expectToBe(result, false);
+                it('... contains an empty object or null as an element', () => {
+                    expectToBe(utils.isEmptyArray([{}]), false);
+                    expectToBe(utils.isEmptyArray([null]), false);
+                });
             });
         });
 
-        it('... should return true if id includes `_Sk`', () => {
-            const id = 'test-1_Sk1';
+        describe('#isNotEmptyObject()', () => {
+            it('... should have a method `isNotEmptyObject`', () => {
+                expect(utils.isNotEmptyObject).toBeDefined();
+            });
 
-            const result = utils.isSketchId(id);
+            it('... should return true if a given object is not empty', () => {
+                const checkObj = { a: 1 };
+                expectToBe(utils.isNotEmptyObject(checkObj), true);
+            });
 
-            expectToBe(result, true);
+            it('... should return false if a given object is empty', () => {
+                const checkObj = {};
+                expectToBe(utils.isNotEmptyObject(checkObj), false);
+            });
+
+            it('... should return false if a given object is an Array', () => {
+                const checkObj = [1, 2, 3];
+                expectToBe(utils.isNotEmptyObject(checkObj), false);
+            });
+
+            it('... should return false if a given object is an empty Array', () => {
+                const checkObj = [];
+                expectToBe(utils.isNotEmptyObject(checkObj), false);
+            });
+
+            it('... should return false if a given object is undefined', () => {
+                const checkObj = undefined;
+                expectToBe(utils.isNotEmptyObject(checkObj), false);
+            });
+
+            it('... should return false if a given object is null', () => {
+                const checkObj = null;
+                expectToBe(utils.isNotEmptyObject(checkObj), false);
+            });
         });
 
-        it('... should return true if id includes `SkRT`', () => {
-            const id = 'SkRT';
+        describe('#isEmptyObject()', () => {
+            it('... should have a method `isEmptyObject`', () => {
+                expect(utils.isEmptyObject).toBeDefined();
+            });
 
-            const result = utils.isSketchId(id);
+            describe('... should return true if the object', () => {
+                it('... is undefined', () => {
+                    expectToBe(utils.isEmptyObject(undefined), true);
+                });
 
-            expectToBe(result, true);
+                it('... is null', () => {
+                    expectToBe(utils.isEmptyObject(null), true);
+                });
+
+                it('... is empty', () => {
+                    expectToBe(utils.isEmptyObject({}), true);
+                });
+
+                it('... is not an object (primitive types)', () => {
+                    expectToBe(utils.isEmptyObject('string'), true);
+                    expectToBe(utils.isEmptyObject(42), true);
+                    expectToBe(utils.isEmptyObject(true), true);
+                });
+
+                it('... is an array (arrays should be treated as empty/invalid objects)', () => {
+                    expectToBe(utils.isEmptyObject([]), true);
+                    expectToBe(utils.isEmptyObject(['test']), true);
+                });
+            });
+
+            describe('... should return false if the object', () => {
+                it('... contains properties', () => {
+                    expectToBe(utils.isEmptyObject({ id: 1 }), false);
+                    expectToBe(utils.isEmptyObject({ name: '' }), false); // Auch leere Strings sind gültige Keys!
+                });
+
+                it('... contains a nested empty object', () => {
+                    expectToBe(utils.isEmptyObject({ nested: {} }), false);
+                });
+            });
+        });
+
+        describe('#isSketchId()', () => {
+            it('... should have a method `isSketchId`', () => {
+                expect(utils.isSketchId).toBeDefined();
+            });
+
+            describe('... should return false if the ID ...', () => {
+                it('... is undefined', () => {
+                    const result = utils.isSketchId(undefined);
+
+                    expectToBe(result, false);
+                });
+
+                it('... is null', () => {
+                    const result = utils.isSketchId(null);
+
+                    expectToBe(result, false);
+                });
+
+                it('... is an empty string', () => {
+                    const result = utils.isSketchId('');
+
+                    expectToBe(result, false);
+                });
+
+                it('... does include sketch identifier in wrong case', () => {
+                    expectToBe(utils.isSketchId('id_sk_lowercase'), false);
+                    expectToBe(utils.isSketchId('id_sK_wrongcase'), false);
+
+                    expectToBe(utils.isSketchId('id_skrt_lowercase'), false);
+                    expectToBe(utils.isSketchId('id_SKRT_uppercase'), false);
+                    expectToBe(utils.isSketchId('id_sKrt_mixedcase'), false);
+                });
+
+                it('... does not include `_Sk`', () => {
+                    const id = 'test-1';
+
+                    const result = utils.isSketchId(id);
+
+                    expectToBe(result, false);
+                });
+            });
+
+            describe('... should return true if the ID ...', () => {
+                it('... includes `_Sk`', () => {
+                    const id = 'test-1_Sk1';
+
+                    const result = utils.isSketchId(id);
+
+                    expectToBe(result, true);
+                });
+
+                it('... includes `SkRT`', () => {
+                    const id = 'SkRT';
+
+                    const result = utils.isSketchId(id);
+
+                    expectToBe(result, true);
+                });
+            });
         });
     });
 });

@@ -12,19 +12,30 @@ import { Injectable } from '@angular/core';
 })
 export class UtilityService {
     /**
-     * Public method: isNotEmptyArray.
+     * Public method: isEmptyArray.
      *
-     * It checks if a given array input is not empty.
+     * It checks if aan array is null, undefined, or empty.
      *
-     * @param {any[]} checkArray The given array input.
-     *
-     * @returns {boolean} The boolean result of the check.
+     * @param value The array to check.
+     * @returns True if the array is null, undefined, or empty; false otherwise.
      */
-    isNotEmptyArray(checkArray: any[]): boolean {
-        if (checkArray && Array.isArray(checkArray)) {
-            return checkArray.length !== 0;
+    isEmptyArray<T>(value: T[] | null | undefined): value is null | undefined | [] {
+        return !value || !Array.isArray(value) || value.length === 0;
+    }
+
+    /**
+     * Public method: isEmptyObject.
+     *
+     * It checks if an object is null, undefined, or empty (no keys).
+     *
+     * @param value The object to check.
+     * @returns True if the object is null, undefined, or empty; false otherwise.
+     */
+    isEmptyObject(value: unknown): value is null | undefined | Record<string, never> {
+        if (!value || typeof value !== 'object' || Array.isArray(value)) {
+            return true;
         }
-        return false;
+        return Object.keys(value).length === 0;
     }
 
     /**
@@ -46,13 +57,15 @@ export class UtilityService {
     /**
      * Public method: isSketchId.
      *
-     * It checks if the given id refers to a sketch.
+     * It checks whether the given string ID represents a sketch ID.
      *
-     * @param {string} id The given id.
-     *
-     * @returns {boolean} The result of the check.
+     * @param {string} id The given string ID to check.
+     * @returns {boolean} True if the ID is a valid sketch ID, false otherwise.
      */
-    isSketchId(id: string): boolean {
-        return id?.includes('_Sk') || id?.includes('SkRT') || false;
+    isSketchId(id: string | null | undefined): id is string {
+        if (!id) {
+            return false;
+        }
+        return id.includes('_Sk') || id.includes('SkRT');
     }
 }
