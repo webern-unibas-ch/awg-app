@@ -322,78 +322,42 @@ describe('EditionIntroContentComponent (DONE)', () => {
             });
 
             describe('... notes section', () => {
-                it('... should be the last section', () => {
+                // Helper function to get the notes section debug element
+                const getNotesSectionDe = (): DebugElement => {
+                    const expectedLength = expectedIntroBlockContent.length + 1;
                     const sectionDes = getAndExpectDebugElementByCss(
                         compDe,
                         'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
+                        expectedLength,
+                        expectedLength
                     );
+                    return sectionDes.at(-1);
+                };
 
-                    const notesSectionDe = sectionDes.at(-1);
+                it('... should be the last section', () => {
+                    const notesSectionDe = getNotesSectionDe();
+
                     expectToBe(notesSectionDe.attributes['id'], 'notes');
                 });
 
-                it('... should contain one horizontal line', () => {
-                    const sectionDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
-                    );
-                    const notesSectionDe = sectionDes.at(-1);
-
-                    getAndExpectDebugElementByCss(notesSectionDe, 'hr', 1, 1);
-                });
-
-                it('... should contain one notes heading (h5)', () => {
-                    const sectionDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
-                    );
-                    const notesSectionDe = sectionDes.at(-1);
-
-                    getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
+                describe('... should contain', () => {
+                    it.each([
+                        { desc: 'one horizontal line', selector: 'hr' },
+                        { desc: 'one notes heading (h5)', selector: 'h5' },
+                        { desc: 'one div.awg-edition-intro-notes', selector: 'div.awg-edition-intro-notes' },
+                    ])('... $desc', ({ selector }) => {
+                        getAndExpectDebugElementByCss(getNotesSectionDe(), selector, 1, 1);
+                    });
                 });
 
                 it('... should display the notesLabel in the heading (h5)', () => {
-                    const sectionDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
-                    );
-                    const notesSectionDe = sectionDes.at(-1);
-
-                    const hDes = getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
+                    const hDes = getAndExpectDebugElementByCss(getNotesSectionDe(), 'h5', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     expectToBe(hEl.textContent, expectedNotesLabel);
                 });
 
-                it('... should contain one div.awg-edition-intro-notes', () => {
-                    const sectionDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
-                    );
-                    const notesSectionDe = sectionDes.at(-1);
-
-                    getAndExpectDebugElementByCss(notesSectionDe, 'div.awg-edition-intro-notes', 1, 1);
-                });
-
                 it('... should contain as many (small) div.awg-edition-intro-note as block notes in data', () => {
-                    const sectionDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
-                    );
-                    const notesSectionDe = sectionDes.at(-1);
-
                     // Count total block notes length by reducing block notes arrays
                     const totalBlockNotesLength = expectedIntroBlockContent.reduce(
                         (acc, block) => acc + block.blockNotes.length,
@@ -401,7 +365,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     );
 
                     getAndExpectDebugElementByCss(
-                        notesSectionDe,
+                        getNotesSectionDe(),
                         'small > div.awg-edition-intro-note',
                         totalBlockNotesLength,
                         totalBlockNotesLength

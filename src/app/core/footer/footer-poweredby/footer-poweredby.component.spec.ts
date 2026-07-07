@@ -125,35 +125,27 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         });
 
         describe('... should have computed signal `poweredByData` to hold null if ...', () => {
-            it('... pageMetaData is an empty object {}, null or undefined', () => {
-                fixture.componentRef.setInput('logosData', expectedLogosData);
-                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+            it.each([
+                { desc: 'pageMetaData is an empty object {}', logos: expectedLogosData, meta: {} as MetaPage },
+                { desc: 'pageMetaData is null', logos: expectedLogosData, meta: null as unknown as MetaPage },
+                { desc: 'pageMetaData is undefined', logos: expectedLogosData, meta: undefined as unknown as MetaPage },
+                { desc: 'logos is an empty object {}', logos: {} as Logos, meta: expectedPageMetaData },
+                { desc: 'logos is null', logos: null as unknown as Logos, meta: expectedPageMetaData },
+                { desc: 'logos is undefined', logos: undefined as unknown as Logos, meta: expectedPageMetaData },
+            ])('... $desc', ({ logos, meta }) => {
+                fixture.componentRef.setInput('logosData', logos);
+                fixture.componentRef.setInput('pageMetaData', meta);
 
-                expectToBe(component.poweredByData(), null);
-
-                fixture.componentRef.setInput('pageMetaData', null as unknown as MetaPage);
-                expectToBe(component.poweredByData(), null);
-
-                fixture.componentRef.setInput('pageMetaData', undefined as unknown as MetaPage);
                 expectToBe(component.poweredByData(), null);
             });
 
-            it('... logos is an empty object {}, null or undefined', () => {
-                fixture.componentRef.setInput('logosData', {} as Logos);
-                fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
-
-                expectToBe(component.poweredByData(), null);
-
-                fixture.componentRef.setInput('logosData', null as unknown as Logos);
-                expectToBe(component.poweredByData(), null);
-
-                fixture.componentRef.setInput('logosData', undefined as unknown as Logos);
-                expectToBe(component.poweredByData(), null);
-            });
-
-            it('... githubLogo is missing', () => {
+            it.each([
+                { desc: 'githubLogo is missing from logos', missingKey: 'github' },
+                { desc: 'angularLogo is missing from logos', missingKey: 'angular' },
+                { desc: 'bootstrapLogo is missing from logos', missingKey: 'bootstrap' },
+            ])('... $desc', ({ missingKey }) => {
                 const incompleteLogos = structuredClone(expectedLogosData);
-                incompleteLogos['github'] = undefined;
+                incompleteLogos[missingKey] = undefined;
 
                 fixture.componentRef.setInput('logosData', incompleteLogos);
                 fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
@@ -161,27 +153,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToBe(component.poweredByData(), null);
             });
 
-            it('... angularLogo is missing', () => {
-                const incompleteLogos = structuredClone(expectedLogosData);
-                incompleteLogos['angular'] = undefined;
-
-                fixture.componentRef.setInput('logosData', incompleteLogos);
-                fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
-
-                expectToBe(component.poweredByData(), null);
-            });
-
-            it('... bootstrapLogo is missing', () => {
-                const incompleteLogos = structuredClone(expectedLogosData);
-                incompleteLogos['bootstrap'] = undefined;
-
-                fixture.componentRef.setInput('logosData', incompleteLogos);
-                fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
-
-                expectToBe(component.poweredByData(), null);
-            });
-
-            it('... devUrl is missing', () => {
+            it('... devUrl is missing from meta', () => {
                 const incompletePageMetaData = structuredClone(expectedPageMetaData);
                 incompletePageMetaData.awgAppDevUrl = undefined;
 

@@ -186,25 +186,26 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
         });
 
-        describe('should return `undefined`', () => {
-            it('... if no queryString is given', () => {
-                const tripleStr =
-                    '@prefix ex: <http://example.org/> <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
-                const result = graphVisualizerService.checkNamespacesInQuery(undefined, tripleStr);
-
-                expect(result).toBeUndefined();
-            });
-
-            it('... if no tripleString is given', () => {
-                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.checkNamespacesInQuery(queryStr, undefined);
-
-                expect(result).toBeUndefined();
-            });
-
-            it('... if no queryString and tripleString is given', () => {
-                const result = graphVisualizerService.checkNamespacesInQuery(undefined, undefined);
+        describe('... should return `undefined if`', () => {
+            it.each([
+                {
+                    desc: 'no queryString is given',
+                    query: undefined,
+                    triples:
+                        '@prefix ex: <http://example.org/> <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>',
+                },
+                {
+                    desc: 'no tripleString is given',
+                    query: 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }',
+                    triples: undefined,
+                },
+                {
+                    desc: 'no queryString and tripleString is given',
+                    query: undefined,
+                    triples: undefined,
+                },
+            ])('... $desc', ({ query, triples }) => {
+                const result = graphVisualizerService.checkNamespacesInQuery(query, triples);
 
                 expect(result).toBeUndefined();
             });
@@ -221,7 +222,7 @@ describe('GraphVisualizerService', () => {
             expectToBe(result, expectedResult);
         });
 
-        describe('should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
+        describe('... should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
             describe('if the qName is not in the list of default namespaces', () => {
                 it('... error in the console ', () => {
                     const tripleStr =
@@ -620,69 +621,26 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.getQuerytype).toBeDefined();
         });
 
-        describe('should return correct querytpe', () => {
-            it('... if the query is a SELECT query (= `select`)', () => {
-                const query = 'SELECT * WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'select');
-            });
-
-            it('... if the query is a CONSTRUCT query (= `construct`)', () => {
-                const query = 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'construct');
-            });
-
-            it('... if the query is an ASK query (= `ask`)', () => {
-                const query = 'ASK WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'ask');
-            });
-
-            it('... if the query is a DESCRIBE query (= `describe`)', () => {
-                const query = 'DESCRIBE ?s WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'describe');
-            });
-
-            it('... if the query is a COUNT query (= `count`)', () => {
-                const query = 'COUNT ?s WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'count');
-            });
-
-            it('... if the query is a DELETE query (= `update`)', () => {
-                const query = 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'update');
-            });
-
-            it('... if the query is an INSERT query (= `update`)', () => {
-                const query = 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'update');
-            });
-
-            it('... if the query starts with prefixes', () => {
-                const query = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'select');
+        describe('... should return correct querytype', () => {
+            it.each([
+                { desc: 'is a SELECT query', query: 'SELECT * WHERE { ?s ?p ?o }', expected: 'select' },
+                {
+                    desc: 'is a CONSTRUCT query',
+                    query: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
+                    expected: 'construct',
+                },
+                { desc: 'is an ASK query', query: 'ASK WHERE { ?s ?p ?o }', expected: 'ask' },
+                { desc: 'is a DESCRIBE query', query: 'DESCRIBE ?s WHERE { ?s ?p ?o }', expected: 'describe' },
+                { desc: 'is a COUNT query', query: 'COUNT ?s WHERE { ?s ?p ?o }', expected: 'count' },
+                { desc: 'is a DELETE query', query: 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }', expected: 'update' },
+                { desc: 'is an INSERT query', query: 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ', expected: 'update' },
+                {
+                    desc: 'starts with prefixes',
+                    query: 'PREFIX ex: <http://example.org> SELECT * WHERE { ?s ?p ?o }',
+                    expected: 'select',
+                },
+            ])('...  if the query $desc', ({ query, expected }) => {
+                expectToBe(graphVisualizerService.getQuerytype(query), expected);
             });
         });
 
@@ -708,49 +666,38 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.limitTriples).toBeDefined();
         });
 
-        describe('should return an empty array', () => {
-            it('... if triples are undefined', () => {
+        describe('should return an empty array if', () => {
+            it.each([
+                { desc: 'triples are undefined', triples: undefined },
+                { desc: 'triples are null', triples: null },
+                { desc: 'triples are empty array', triples: [] },
+            ])('... $desc', ({ triples }) => {
                 const limit = 3;
 
-                const result = graphVisualizerService.limitTriples(undefined, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are null', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(null, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are empty array', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples([], limit);
+                const result = graphVisualizerService.limitTriples(triples, limit);
 
                 expectToEqual(result, []);
             });
         });
 
-        describe('should return the original Triple array', () => {
-            it('... if the Triple array length is smaller than the given limit', () => {
-                const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
-                const limit = 3;
+        describe('should return the original Triple array if', () => {
+            it.each([
+                {
+                    desc: 'the Triple array length is smaller than the given limit',
+                    count: 2,
+                    limit: 3,
+                },
+                {
+                    desc: 'the Triple array length is equal with the given limit',
+                    count: 3,
+                    limit: 3,
+                },
+            ])('... $desc', ({ count, limit }) => {
+                const triples = expectedTriples.slice(0, count);
 
-                const result = graphVisualizerService.limitTriples(inputWithTwoTriples, limit);
+                const result = graphVisualizerService.limitTriples(triples, limit);
 
-                expectToEqual(result, inputWithTwoTriples);
-            });
-
-            it('... if the Triple array length is equal with the given limit', () => {
-                const inputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithThreeTriples, limit);
-
-                expectToEqual(result, inputWithThreeTriples);
+                expectToEqual(result, triples);
             });
         });
 
@@ -845,157 +792,118 @@ describe('GraphVisualizerService', () => {
         });
 
         describe('... should return an abbreviated IRI if', () => {
-            it('... the given IRI matches a given namespace', () => {
-                const iri = 'http://example.org/subject';
-                const namespaces = { ex: 'http://example.org/' };
-                const expectedAbbreviation = 'ex:subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given IRI matches one of the provided namespaces', () => {
-                const iri = 'http://example2.org/subject';
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    ex2: 'http://example2.org/',
-                    ex3: 'http://example3.org/',
-                };
-                const expectedAbbreviation = 'ex2:subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given IRI matches multiple namespaces (using the first matching namespace)', () => {
-                const iri = 'http://example.com/subject';
-                const namespaces = {
-                    other: 'http://other.org/subject',
-                    ex1: 'http://example.com/',
-                    ex2: 'http://example.com/',
-                    ex3: 'http://example.com/',
-                };
-                const expectedAbbreviation = 'ex1:subject';
-
+            it.each([
+                {
+                    desc: 'the given IRI matches a given namespace',
+                    iri: 'http://example.org/subject',
+                    namespaces: { ex: 'http://example.org/' },
+                    expectedAbbreviation: 'ex:subject',
+                },
+                {
+                    desc: 'the given IRI matches one of the provided namespaces',
+                    iri: 'http://example2.org/subject',
+                    namespaces: {
+                        ex: 'http://example.org/',
+                        ex2: 'http://example2.org/',
+                        ex3: 'http://example3.org/',
+                    },
+                    expectedAbbreviation: 'ex2:subject',
+                },
+                {
+                    desc: 'the given IRI matches multiple namespaces (using the first matching namespace)',
+                    iri: 'http://example.com/subject',
+                    namespaces: {
+                        other: 'http://other.org/subject',
+                        ex1: 'http://example.com/',
+                        ex2: 'http://example.com/',
+                        ex3: 'http://example.com/',
+                    },
+                    expectedAbbreviation: 'ex1:subject',
+                },
+            ])('... $desc', ({ iri, namespaces, expectedAbbreviation }) => {
                 const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
 
                 expectToBe(result, expectedAbbreviation);
             });
         });
 
-        describe('... should return a partially (incorrect) abbreviated IRI if', () => {
-            it('... the namespace does not have a trailing slash', () => {
-                const iri = 'http://example.org/subject';
-                const namespaces = { ex: 'http://example.org' };
-                const expectedAbbreviation = 'ex:/subject';
-
+        describe('... should return a partially (incorrect) abbreviated IRI if the namespace ', () => {
+            it.each([
+                {
+                    desc: 'does not have a trailing slash',
+                    iri: 'http://example.org/subject',
+                    namespaces: { ex: 'http://example.org' },
+                    expected: 'ex:/subject',
+                },
+                {
+                    desc: 'does not have a trailing hash',
+                    iri: 'http://example.org#subject',
+                    namespaces: { ex: 'http://example.org' },
+                    expected: 'ex:#subject',
+                },
+                {
+                    desc: 'matches the IRI exactly',
+                    iri: 'http://example.org/',
+                    namespaces: { ex: 'http://example.org/' },
+                    expected: 'ex:',
+                },
+            ])('... $desc', ({ iri, namespaces, expected }) => {
                 const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
 
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the namespace does not have a trailing hash', () => {
-                const iri = 'http://example.org#subject';
-                const namespaces = { ex: 'http://example.org' };
-                const expectedAbbreviation = 'ex:#subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the namespace matches the IRI exactly', () => {
-                const iri = 'http://example.org/';
-                const namespaces = { ex: 'http://example.org/' };
-                const expectedAbbreviation = 'ex:';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
+                expectToBe(result, expected);
             });
         });
 
         describe('... should return the original IRI if', () => {
-            it('... the given IRI does not start with http', () => {
-                const notFullIri = 'ex:subject';
-                const namespaces = { ex: 'http://example.org/' };
-                const expectedAbbreviation = 'ex:subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(notFullIri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... no namespaces are provided', () => {
-                const iri = 'http://example.org/subject';
-                const namespaces = {};
-                const expectedAbbreviation = 'http://example.org/subject';
-
+            it.each([
+                {
+                    desc: 'the given IRI does not start with http',
+                    iri: 'ex:subject',
+                    namespaces: { ex: 'http://example.org/' },
+                },
+                {
+                    desc: 'no namespaces are provided',
+                    iri: 'http://example.org/subject',
+                    namespaces: {},
+                },
+                {
+                    desc: 'the given namespaces are undefined',
+                    iri: 'http://example.org/subject',
+                    namespaces: undefined,
+                },
+                {
+                    desc: 'the given namespaces are null',
+                    iri: 'http://example.org/subject',
+                    namespaces: null,
+                },
+                {
+                    desc: 'the given IRI does not match a given namespace',
+                    iri: 'http://other.org/subject',
+                    namespaces: { ex: 'http://example.org/' },
+                },
+                {
+                    desc: 'the given IRI does not match any of the provided namespaces',
+                    iri: 'http://other.org/subject',
+                    namespaces: {
+                        ex: 'http://example.org/',
+                        ex2: 'http://example2.org/',
+                        ex3: 'http://example3.org/',
+                    },
+                },
+                {
+                    desc: 'the given IRI does not match a given namespace respecting case sensitivity',
+                    iri: 'http://example.org/subject',
+                    namespaces: { ex: 'http://EXAMPLE.org/' },
+                },
+                {
+                    desc: 'the given IRI only partially matches a given namespace',
+                    iri: 'http://example.org#subject',
+                    namespaces: { ex: 'http://example.org/' },
+                },
+            ])('... $desc', ({ iri, namespaces }) => {
                 const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
 
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given namespaces are undefined or null', () => {
-                const iri = 'http://example.org/subject';
-                const namespaces = undefined;
-                const expectedAbbreviation = 'http://example.org/subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-
-                const namespaces2 = null;
-
-                const result2 = (graphVisualizerService as any)._abbreviate(iri, namespaces2);
-
-                expectToBe(result2, expectedAbbreviation);
-            });
-
-            it('... the given IRI does not match a given namespace', () => {
-                const notMatchingIri = 'http://other.org/subject';
-                const namespaces = { ex: 'http://example.org/' };
-                const expectedAbbreviation = 'http://other.org/subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(notMatchingIri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given IRI does not match any of the provided namespaces', () => {
-                const notMatchingIri = 'http://other.org/subject';
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    ex2: 'http://example2.org/',
-                    ex3: 'http://example3.org/',
-                };
-                const expectedAbbreviation = 'http://other.org/subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(notMatchingIri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given IRI does not match a given namespace respecting case sensitivity', () => {
-                const iri = 'http://example.org/subject';
-                const namespaces = { ex: 'http://EXAMPLE.org/' };
-                const expectedAbbreviation = 'http://example.org/subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
-            });
-
-            it('... the given IRI only partially matches a given namespace', () => {
-                const iri = 'http://example.org#subject';
-                const namespaces = { ex: 'http://example.org/' };
-                const expectedAbbreviation = 'http://example.org#subject';
-
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-                expectToBe(result, expectedAbbreviation);
+                expectToBe(result, iri);
             });
         });
 
@@ -1226,59 +1134,43 @@ describe('GraphVisualizerService', () => {
             expect((graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause).toBeDefined();
         });
 
-        it('... should return an empty array if no prefixes are in the where clause', () => {
-            const query = 'SELECT * WHERE { ?s ?p ?o . }';
-            const expectedPrefixes = [];
+        describe('... should return', () => {
+            it.each([
+                {
+                    desc: 'an empty Array if no prefixes are in the where clause',
+                    query: 'SELECT * WHERE { ?s ?p ?o . }',
+                    expected: [],
+                },
+                {
+                    desc: 'an array of prefixes from the where clause',
+                    query: 'SELECT * WHERE { ex:s ex1:p ex2:o .}',
+                    expected: ['ex', 'ex1', 'ex2'],
+                },
+                {
+                    desc: 'an array of unique prefixes from the where clause',
+                    query: 'SELECT * WHERE { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}',
+                    expected: ['ex', 'ex1', 'ex2'],
+                },
+                {
+                    desc: 'an array of unique prefixes from the where clause respecting case sensitivity',
+                    query: 'SELECT * WHERE { ex:s ex1:p ex2:o . Ex:s1 Ex1:p1 Ex2:o1 . EX:s2 EX1:p2 EX2:o2 . eX:s3 eX1:p3 eX2:o3 .}',
+                    expected: ['ex', 'ex1', 'ex2', 'Ex', 'Ex1', 'Ex2', 'EX', 'EX1', 'EX2', 'eX', 'eX1', 'eX2'],
+                },
+                {
+                    desc: 'an array of unique prefixes even if no WHERE keyword is given',
+                    query: 'SELECT * { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}',
+                    expected: ['ex', 'ex1', 'ex2'],
+                },
+                {
+                    desc: 'an array of prefixes starting with underscore, small letter or capital letter',
+                    query: 'SELECT * WHERE { _:s Ex1:p EX2:o . ex:s1 ex1:p1 ex2:o1 .}',
+                    expected: ['_', 'Ex1', 'EX2', 'ex', 'ex1', 'ex2'],
+                },
+            ])('... $desc', ({ query, expected }) => {
+                const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
 
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
-        });
-
-        it('... should return an array of prefixes from the where clause', () => {
-            const query = 'SELECT * WHERE { ex:s ex1:p ex2:o .}';
-            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
-
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
-        });
-
-        it('... should return an array of unique prefixes from the where clause', () => {
-            const query = 'SELECT * WHERE { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}';
-            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
-
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
-        });
-
-        it('... should return an array of unique prefixes from the where clause respecting case sensitivity', () => {
-            const query =
-                'SELECT * WHERE { ex:s ex1:p ex2:o . Ex:s1 Ex1:p1 Ex2:o1 . EX:s2 EX1:p2 EX2:o2 . eX:s3 eX1:p3 eX2:o3 .}';
-            const expectedPrefixes = ['ex', 'ex1', 'ex2', 'Ex', 'Ex1', 'Ex2', 'EX', 'EX1', 'EX2', 'eX', 'eX1', 'eX2'];
-
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
-        });
-
-        it('... should find prefixes when no where keyword is given', () => {
-            const query = 'SELECT * { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}';
-            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
-
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
-        });
-
-        it('... should find prefixes starting with underscore, small letter or capital letter', () => {
-            const query = 'SELECT * WHERE { _:s Ex1:p EX2:o . ex:s1 ex1:p1 ex2:o1 .}';
-            const expectedPrefixes = ['_', 'Ex1', 'EX2', 'ex', 'ex1', 'ex2'];
-
-            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
-
-            expectToEqual(result, expectedPrefixes);
+                expectToEqual(result, expected);
+            });
         });
     });
 
@@ -1293,90 +1185,50 @@ describe('GraphVisualizerService', () => {
             expect((graphVisualizerService as any)._loadTriplesInStore).toBeDefined();
         });
 
-        it('... should load a single triple into the rdfstore', async () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-            const expectedSize = 1;
+        describe('... should load triples into the rdfstore', () => {
+            it.each([
+                { desc: 'a single triple', expectedSize: 1 },
+                { desc: 'multiple triples', expectedSize: 3 },
+                { desc: 'a huge number of triples', expectedSize: 100 },
+            ])('... $desc', async ({ expectedSize }) => {
+                const base = 'http://example.org';
+                const tripleStr = Array.from(
+                    { length: expectedSize },
+                    (_, i) => `<${base}/subject${i}> <${base}/predicate${i}> <${base}/object${i}>.`
+                ).join(' ');
 
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+                const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
-            expectToBe(size, expectedSize);
+                expectToBe(size, expectedSize);
+            });
         });
 
-        it('... should load multiple triples into the rdfstore', async () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>. ' +
-                '<http://example.org/subject2> <http://example.org/predicate2> <http://example.org/object2>;' +
-                '<http://example.org/subject3> <http://example.org/predicate3> <http://example.org/object3>.';
-            const expectedSize = 3;
+        describe('... should load different serializations of triples into the rdfstore', () => {
+            it.each([
+                {
+                    desc: 'triples without prefixes or URIs',
+                    tripleStr: '<subject> <predicate> <object>.',
+                },
+                {
+                    desc: 'triples with prefix and default mimetype `text/turtle` (no mimetype given)',
+                    tripleStr: '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.',
+                },
+                {
+                    desc: 'triples with given mimetype `text/turtle`',
+                    tripleStr: '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.',
+                    mimeType: 'text/turtle',
+                },
+                {
+                    desc: 'triples with given mimetype `application/ld+json`',
+                    tripleStr:
+                        '[{"@id":"http://example.org/object"},{"@id":"http://example.org/subject","http://example.org/predicate":[{"@id":"http://example.org/object"}]}]',
+                    mimeType: 'application/ld+json',
+                },
+            ])('... $desc', async ({ tripleStr, mimeType }) => {
+                const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
 
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load a huge number of triples into the rdfstore', async () => {
-            let tripleStr = '@prefix ex: <http://example.org/>. ';
-            const expectedSize = 100;
-
-            for (let i = 0; i < expectedSize; i++) {
-                tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
-            }
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load prefixed triples into the rdfstore', async () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. ' +
-                'ex:subject ex:predicate ex:object. ' +
-                'ex:subject2 ex:predicate2 ex:object2.';
-            const expectedSize = 2;
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load triples without prefixes or URIs into the rdfstore', async () => {
-            const tripleStr = '<subject> <predicate> <object>.';
-            const expectedSize = 1;
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load triples with mimetype `text/turtle` by default (no mimetype given)', async () => {
-            const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
-            const expectedSize = 1;
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load triples with mimetype `text/turtle` if given', async () => {
-            const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
-            const mimeType = 'text/turtle';
-            const expectedSize = 1;
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
-
-            expectToBe(size, expectedSize);
-        });
-
-        it('... should load triples with mimetype `application/ld+json` if given', async () => {
-            const tripleStr =
-                '[{"@id":"http://example.org/object"},{"@id":"http://example.org/subject","http://example.org/predicate":[{"@id":"http://example.org/object"}]}]';
-            const mimeType = 'application/ld+json';
-            const expectedSize = 1;
-
-            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
-
-            expectToBe(size, expectedSize);
+                expectToBe(size, 1);
+            });
         });
 
         it('... should reject and throw/log an error if no parser is found for the provided mimeType', async () => {

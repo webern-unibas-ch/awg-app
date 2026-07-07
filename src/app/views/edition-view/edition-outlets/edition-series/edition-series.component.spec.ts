@@ -116,72 +116,65 @@ describe('EditionSeriesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getSeriesDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+            const getSeriesTextDes = () =>
+                getAndExpectDebugElementByCss(getSeriesDes()[0], 'div.awg-edition-series-text', 1, 1);
+            const getSeriesGridDes = () =>
+                getAndExpectDebugElementByCss(getSeriesDes()[0], 'div.awg-edition-series-grid', 1, 1);
+            const getGridColDes = (expectedLength: number) =>
+                getAndExpectDebugElementByCss(getSeriesGridDes()[0], 'div.col', expectedLength, expectedLength);
+            const getSeriesCardDes = (expectedLength: number) =>
+                getAndExpectDebugElementByCss(
+                    getSeriesGridDes()[0],
+                    'div.awg-edition-series-card',
+                    expectedLength,
+                    expectedLength
+                );
+
             it('... should contain one `div.awg-edition-series`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                getSeriesDes();
             });
 
             it('... should contain one `div.awg-edition-series-text` in `div.awg-edition-series`', () => {
-                const seriesDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
-                getAndExpectDebugElementByCss(seriesDes[0], 'div.awg-edition-series-text', 1, 1);
+                getSeriesTextDes();
             });
 
             it('... should contain two paragraphs in `div.awg-edition-series-text`', () => {
-                const textDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-text', 1, 1);
-                getAndExpectDebugElementByCss(textDes[0], 'p', 2, 2);
+                getAndExpectDebugElementByCss(getSeriesTextDes()[0], 'p', 2, 2);
             });
 
             it('... should contain one `div.awg-edition-series-grid` in `div.awg-edition-series`', () => {
-                const seriesDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
-                getAndExpectDebugElementByCss(seriesDes[0], 'div.awg-edition-series-grid', 1, 1);
+                getSeriesGridDes();
             });
 
             it('... should contain as many div.col in `div.awg-edition-series-grid` as there are series', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const gridDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 1, 1);
-
-                getAndExpectDebugElementByCss(gridDes[0], 'div.col', expectedSeriesLength, expectedSeriesLength);
+                getGridColDes(expectedEditionOutline.length);
             });
 
             it('... should contain a div.awg-edition-series-card in each div.col', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const colDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
+                const colDes = getGridColDes(expectedEditionOutline.length);
 
                 colDes.forEach(colDe => {
                     getAndExpectDebugElementByCss(colDe, 'div.awg-edition-series-card', 1, 1);
                 });
             });
 
-            it('... should contain a h5.card-header in each div.awg-edition-series-card', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
+            describe('... should contain card layout elements in each series card', () => {
+                it.each([
+                    { desc: 'a h5.card-header', selector: 'h5.card-header' },
+                    { desc: 'a div.card-body', selector: 'div.card-body' },
+                    { desc: 'a div.card-footer', selector: 'div.card-footer' },
+                ])('... should contain $desc in each div.awg-edition-series-card', ({ selector }) => {
+                    const cardDes = getSeriesCardDes(expectedEditionOutline.length);
 
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-series-card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardDes.forEach(cardDe => {
-                    getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
+                    cardDes.forEach(cardDe => {
+                        getAndExpectDebugElementByCss(cardDe, selector, 1, 1);
+                    });
                 });
             });
 
             it('... should display series name in each h5.card-header', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-series-card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
+                const cardDes = getSeriesCardDes(expectedEditionOutline.length);
 
                 cardDes.forEach((cardDe, index) => {
                     const expectedSeries = expectedEditionOutline[index].series;
@@ -189,36 +182,6 @@ describe('EditionSeriesComponent (DONE)', () => {
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     expectToBe(hEl.textContent.trim(), expectedSeries.full);
-                });
-            });
-
-            it('... should contain a div.card-body in each div.awg-edition-series-card', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-series-card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardDes.forEach(cardDe => {
-                    getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
-                });
-            });
-
-            it('... should contain a div.card-footer in each div.awg-edition-series-card', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-series-card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardDes.forEach(cardDe => {
-                    getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                 });
             });
 

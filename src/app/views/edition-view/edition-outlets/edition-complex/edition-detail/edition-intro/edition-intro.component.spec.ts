@@ -1488,7 +1488,7 @@ describe('IntroComponent (DONE)', () => {
 
                 const result = (component as any)._extractUrlSegments(url);
 
-                expectToEqual(result, { seriesNumber: '1', sectionNumber: '2' });
+                expectToEqual(result, { seriesId: '1', sectionId: '2' });
             });
 
             it('... should extract series and section numbers with optional letters from a valid URL', () => {
@@ -1496,13 +1496,13 @@ describe('IntroComponent (DONE)', () => {
 
                 const result = (component as any)._extractUrlSegments(url);
 
-                expectToEqual(result, { seriesNumber: '1', sectionNumber: '2a' });
+                expectToEqual(result, { seriesId: '1', sectionId: '2a' });
 
                 const url2 = '/edition/series/1/section/2b/intro';
 
                 const result2 = (component as any)._extractUrlSegments(url2);
 
-                expectToEqual(result2, { seriesNumber: '1', sectionNumber: '2b' });
+                expectToEqual(result2, { seriesId: '1', sectionId: '2b' });
             });
 
             it('... should handle URLs with missing series or section correctly', () => {
@@ -1510,13 +1510,13 @@ describe('IntroComponent (DONE)', () => {
 
                 const result = (component as any)._extractUrlSegments(url);
 
-                expectToEqual(result, { seriesNumber: '3', sectionNumber: undefined });
+                expectToEqual(result, { seriesId: '3', sectionId: undefined });
 
                 const url2 = '/edition/section/4/intro';
 
                 const result2 = (component as any)._extractUrlSegments(url2);
 
-                expectToEqual(result2, { seriesNumber: undefined, sectionNumber: '4' });
+                expectToEqual(result2, { seriesId: undefined, sectionId: '4' });
             });
 
             it('... should handle URLs with additional segments correctly', () => {
@@ -1524,76 +1524,65 @@ describe('IntroComponent (DONE)', () => {
 
                 const result = (component as any)._extractUrlSegments(url);
 
-                expectToEqual(result, { seriesNumber: '3', sectionNumber: '4' });
+                expectToEqual(result, { seriesId: '3', sectionId: '4' });
             });
 
-            describe('... should return undefined if', () => {
-                it('... URL does contain series numbers other than 1-3', () => {
-                    const url = '/edition/series/0/section/5/intro';
-
+            describe('... should return partial undefined if URL', () => {
+                it.each([
+                    {
+                        desc: 'contains a series number below range (0)',
+                        url: '/edition/series/0/section/5/intro',
+                        expected: { seriesId: undefined, sectionId: '5' },
+                    },
+                    {
+                        desc: 'contains a series number above range (4)',
+                        url: '/edition/series/4/section/5/intro',
+                        expected: { seriesId: undefined, sectionId: '5' },
+                    },
+                    {
+                        desc: 'contains a section number below range (0)',
+                        url: '/edition/series/1/section/0/intro',
+                        expected: { seriesId: '1', sectionId: undefined },
+                    },
+                    {
+                        desc: 'contains a section number above range (6)',
+                        url: '/edition/series/1/section/6/intro',
+                        expected: { seriesId: '1', sectionId: undefined },
+                    },
+                ])('... $desc', ({ url, expected }) => {
                     const result = (component as any)._extractUrlSegments(url);
 
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: '5' });
-
-                    const url2 = '/edition/series/4/section/5/intro';
-
-                    const result2 = (component as any)._extractUrlSegments(url2);
-
-                    expectToEqual(result2, { seriesNumber: undefined, sectionNumber: '5' });
+                    expectToEqual(result, expected);
                 });
+            });
 
-                it('... URL does contain section numbers other than 1-5', () => {
-                    const url = '/edition/series/1/section/0/intro';
-
+            describe('... should return total undefined if URL', () => {
+                it.each([
+                    {
+                        desc: 'contains series and section numbers with optional letters other than a or b',
+                        url: '/edition/series/1c/section/2d/intro',
+                    },
+                    {
+                        desc: 'contains no series or section numbers',
+                        url: '/edition/series/section/intro',
+                    },
+                    {
+                        desc: 'contains no series or section segments',
+                        url: '/edition/2/1/intro',
+                    },
+                    {
+                        desc: 'is empty',
+                        url: '',
+                    },
+                    {
+                        desc: 'is undefined',
+                        url: undefined,
+                    },
+                ])('... $desc', ({ url }) => {
                     const result = (component as any)._extractUrlSegments(url);
+                    const expected = { seriesId: undefined, sectionId: undefined };
 
-                    expectToEqual(result, { seriesNumber: '1', sectionNumber: undefined });
-
-                    const url2 = '/edition/series/1/section/6/intro';
-
-                    const result2 = (component as any)._extractUrlSegments(url2);
-
-                    expectToEqual(result2, { seriesNumber: '1', sectionNumber: undefined });
-                });
-
-                it('... URL does contain series and section numbers with optional letters other than a or b', () => {
-                    const url = '/edition/series/1c/section/2d/intro';
-
-                    const result = (component as any)._extractUrlSegments(url);
-
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
-                });
-
-                it('... URL does not contain series and section numbers', () => {
-                    const url = '/edition/series/section/intro';
-
-                    const result = (component as any)._extractUrlSegments(url);
-
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
-                });
-
-                it('... URL does not contain series and section segments', () => {
-                    const url = '/edition/2/1/intro';
-
-                    const result = (component as any)._extractUrlSegments(url);
-
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
-                });
-
-                it('... URL is empty', () => {
-                    const url = '';
-
-                    const result = (component as any)._extractUrlSegments(url);
-
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
-                });
-
-                it('... URL is undefined', () => {
-                    const url = undefined;
-
-                    const result = (component as any)._extractUrlSegments(url);
-
-                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                    expectToEqual(result, expected);
                 });
             });
         });

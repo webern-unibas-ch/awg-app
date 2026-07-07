@@ -400,26 +400,21 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(divIconBarDes[0], 'div.awg-edition-svg-zoom-slider-container', 1, 1);
                 });
 
-                it('... should contain 1 span.input-group-text in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
-                        1,
-                        1
-                    );
+                describe('... should contain', () => {
+                    it.each([
+                        { desc: 'one span.input-group-text', selector: 'span.input-group-text' },
+                        { desc: 'one input', selector: 'input#awg-edition-svg-zoom-slider' },
+                        { desc: 'one button', selector: 'button' },
+                    ])('... $desc in zoom slider container', ({ selector }) => {
+                        const divZoomSliderDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-svg-zoom-slider-container',
+                            1,
+                            1
+                        );
 
-                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'span.input-group-text', 1, 1);
-                });
-
-                it('... should contain 1 input#awg-edition-svg-zoom-slider in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
-                        1,
-                        1
-                    );
-
-                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'input#awg-edition-svg-zoom-slider', 1, 1);
+                        getAndExpectDebugElementByCss(divZoomSliderDes[0], selector, 1, 1);
+                    });
                 });
 
                 it('... should have correct attributes in input', () => {
@@ -442,17 +437,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     expectToBe(inputEl.getAttribute('min'), expectedSliderConfig.min.toString());
                     expectToBe(inputEl.getAttribute('max'), expectedSliderConfig.max.toString());
                     expectToBe(inputEl.getAttribute('step'), expectedSliderConfig.stepSize.toString());
-                });
-
-                it('... should contain 1 button in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
-                        1,
-                        1
-                    );
-
-                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
                 });
 
                 it('... should have correct attributes in button', () => {
