@@ -1,4 +1,4 @@
-import { Logos } from '../models/logos.model';
+import { Logos } from './logos.model';
 
 /**
  * Object constant with a set of logos.

@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { LOGOS_DATA } from '../data/logos.data';
-import { Logo } from '../models/logos.model';
+import { LOGOS_DATA } from './logos.data';
+import { Logo } from './logos.model';
 
 /**
- * The LogoLink component.
+ * The Logo component.
  *
- * It contains a logo link used in the navbar and footer.
+ * It contains a logo used in the navbar and footer.
  */
 @Component({
-    selector: 'awg-logo-link',
-    templateUrl: './logo-link.component.html',
-    styleUrl: './logo-link.component.scss',
+    selector: 'awg-logo',
+    templateUrl: './logo.component.html',
+    styleUrl: './logo.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LogoLinkComponent {
+export class LogoComponent {
     /**
      * Readonly input signal: logoData.
      *
