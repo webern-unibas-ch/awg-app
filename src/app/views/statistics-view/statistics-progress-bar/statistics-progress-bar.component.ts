@@ -122,7 +122,7 @@ export class StatisticsProgressBarComponent {
         }
 
         // Ensure width is between 0 and 100 and not NaN
-        return isNaN(width) ? 0 : Math.max(0, Math.min(100, width));
+        return Number.isNaN(width) ? 0 : Math.max(0, Math.min(100, width));
     });
 
     /**

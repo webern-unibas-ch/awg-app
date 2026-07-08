@@ -41,13 +41,14 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSectionDetailIntroCardComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
         expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSectionDetailIntroCardComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -88,60 +89,49 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getCardDes = () => getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
+            const getCardBodyDes = () => getAndExpectDebugElementByCss(getCardDes()[0], 'div.card-body', 1, 1);
+            const getCardFooterDes = () => getAndExpectDebugElementByCss(getCardDes()[0], 'div.card-footer', 1, 1);
+            const getTextEndParaDes = () => getAndExpectDebugElementByCss(getCardFooterDes()[0], 'p.text-end', 1, 1);
+
             it('... should contain one div.card.awg-edition-card', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
+                getCardDes();
             });
 
-            it('... should contain one h5.card-header in div.card', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                getAndExpectDebugElementByCss(cardDes[0], 'h5.card-header', 1, 1);
+            describe('... should contain card layout elements', () => {
+                it.each([
+                    { desc: 'one h5.card-header', selector: 'h5.card-header' },
+                    { desc: 'one div.card-body', selector: 'div.card-body' },
+                    { desc: 'one div.card-footer', selector: 'div.card-footer' },
+                ])('... should contain $desc in div.card', ({ selector }) => {
+                    getAndExpectDebugElementByCss(getCardDes()[0], selector, 1, 1);
+                });
             });
 
             it('... should render intro title in h5.card-header', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                const hDes = getAndExpectDebugElementByCss(cardDes[0], 'h5.card-header', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(getCardDes()[0], 'h5.card-header', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                 expectToBe(hEl.textContent.trim(), 'Einleitung');
             });
 
-            it('... should contain one div.card-body in div.card', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                getAndExpectDebugElementByCss(cardDes[0], 'div.card-body', 1, 1);
-            });
-
             it('... should contain one p.card-text in div.card-body', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                const bodyDes = getAndExpectDebugElementByCss(cardDes[0], 'div.card-body', 1, 1);
-
-                getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
+                getAndExpectDebugElementByCss(getCardBodyDes()[0], 'p.card-text', 1, 1);
             });
 
             it('... should render intro preview in p.card-text', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                const bodyDes = getAndExpectDebugElementByCss(cardDes[0], 'div.card-body', 1, 1);
-                const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(getCardBodyDes()[0], 'p.card-text', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.textContent.trim(), expectedSelectedSection.content.intro.preview + ' …');
             });
 
-            it('... should contain one div.card-footer in div.card', () => {
-                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-
-                getAndExpectDebugElementByCss(cardDes[0], 'div.card-footer', 1, 1);
-            });
-
             it('... should have text-end paragraph in div.card-footer', () => {
-                const cardFooterDes = getAndExpectDebugElementByCss(compDe, 'div.card-footer', 1, 1);
-
-                getAndExpectDebugElementByCss(cardFooterDes[0], 'p.text-end', 1, 1);
+                getTextEndParaDes();
             });
 
             it('... should have a link to intro in text-end paragraph', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.text-end', 1, 1);
-
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(getTextEndParaDes()[0], 'a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 const expectedLinkText = 'Mehr ...';
@@ -150,9 +140,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
             });
 
             it('... should disable links only for disabled intros', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.text-end', 1, 1);
-
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(getTextEndParaDes()[0], 'a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 if (expectedSelectedSection.content.intro.disabled) {
@@ -165,10 +153,8 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
 
-                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 

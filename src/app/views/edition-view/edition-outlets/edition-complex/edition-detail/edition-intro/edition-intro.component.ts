@@ -158,10 +158,10 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     listenToRouteChanges(): void {
         this._router.events.pipe(takeUntil(this._destroyed$)).subscribe(events => {
             if (this._isNavigationEndToIntro(events)) {
-                const { seriesNumber, sectionNumber } = this._extractUrlSegments(events.urlAfterRedirects);
+                const { seriesId, sectionId } = this._extractUrlSegments(events.urlAfterRedirects);
 
-                if (seriesNumber && sectionNumber) {
-                    this._updateEditionState(seriesNumber, sectionNumber);
+                if (seriesId && sectionId) {
+                    this._updateEditionState(seriesId, sectionId);
                 } else {
                     console.error('Invalid URL segments:', events.urlAfterRedirects);
                 }
@@ -284,31 +284,30 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Private method: _extractUrlSegments.
      *
-     * It extracts the series and section number from a given URL.
+     * It extracts the series and section IDs from a given URL.
      *
      * @param {string} url The given URL.
-     * @returns {{ seriesNumber: string | undefined; sectionNumber: string | undefined }} The extracted series and section number.
+     * @returns {{ seriesId: string | undefined; sectionId: string | undefined }} The extracted series and section ID.
      */
-    private _extractUrlSegments(url: string): { seriesNumber: string | undefined; sectionNumber: string | undefined } {
+    private _extractUrlSegments(url: string): { seriesId: string | undefined; sectionId: string | undefined } {
         if (!url) {
-            return { seriesNumber: undefined, sectionNumber: undefined };
+            return { seriesId: undefined, sectionId: undefined };
         }
         const urlSegments = url.split('/');
         const seriesIndex = urlSegments.indexOf('series') + 1;
         const sectionIndex = urlSegments.indexOf('section') + 1;
 
-        const seriesNumber = urlSegments[seriesIndex];
-        const sectionNumber = urlSegments[sectionIndex];
+        const seriesId = urlSegments[seriesIndex];
+        const sectionId = urlSegments[sectionIndex];
 
-        const isValidSeriesNumber = (value: string | undefined): boolean =>
-            value !== undefined && /^[1-3]$/.test(value);
+        const isValidSeriesId = (value: string | undefined): boolean => value !== undefined && /^[1-3]$/.test(value);
 
-        const isValidSectionNumber = (value: string | undefined): boolean =>
+        const isValidSectionId = (value: string | undefined): boolean =>
             value !== undefined && /^[1-5]+[ab]?$/.test(value);
 
         return {
-            seriesNumber: isValidSeriesNumber(seriesNumber) ? seriesNumber : undefined,
-            sectionNumber: isValidSectionNumber(sectionNumber) ? sectionNumber : undefined,
+            seriesId: isValidSeriesId(seriesId) ? seriesId : undefined,
+            sectionId: isValidSectionId(sectionId) ? sectionId : undefined,
         };
     }
 
@@ -449,13 +448,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It updates the selected edition series and section
      * and the introView in the EditionStateService.
      *
-     * @param {string} seriesNumber The given series number.
-     * @param {string} sectionNumber The given section number.
+     * @param {string} seriesId The given series ID.
+     * @param {string} sectionId The given section ID.
      * @returns {void} Updates the selected edition series, section, and introView.
      */
-    private _updateEditionState(seriesNumber: string, sectionNumber: string): void {
-        const series: EditionOutlineSeries = EditionOutlineService.getEditionSeriesById(seriesNumber);
-        const section: EditionOutlineSection = EditionOutlineService.getEditionSectionById(seriesNumber, sectionNumber);
+    private _updateEditionState(seriesId: string, sectionId: string): void {
+        const series: EditionOutlineSeries = EditionOutlineService.getEditionSeriesById(seriesId);
+        const section: EditionOutlineSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
 
         this._editionStateService.updateSelectedEditionSeries(series);
         this._editionStateService.updateSelectedEditionSection(section);

@@ -193,44 +193,32 @@ describe('AppComponent (DONE)', () => {
             expectToBe(location.path(), '');
         });
 
-        it("... should redirect to /test1 from '' redirect", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test1');
-        });
+        describe('... should navigate to', () => {
+            it.each([
+                { desc: "/test1 from '' redirect", commands: [''], expectedPath: '/test1' },
+                { desc: '`test1` from /test1', commands: ['/test1'], expectedPath: '/test1' },
+                { desc: '`test2` from /test2', commands: ['/test2'], expectedPath: '/test2' },
+                {
+                    desc: '`/test2/test3` from /test2/test3',
+                    commands: ['/test2/test3'],
+                    expectedPath: '/test2/test3',
+                },
+                {
+                    desc: '`test2` with outlet from /test2',
+                    commands: [{ outlets: { primary: 'test2', side: 'test2' } }],
+                    expectedPath: '/test2(side:test2)',
+                },
+                {
+                    desc: '`/test2/test3` with outlet from /test2/test3',
+                    commands: [{ outlets: { primary: 'test2/test3', side: 'test2' } }],
+                    expectedPath: '/test2/test3(side:test2)',
+                },
+            ])('... $desc', async ({ commands, expectedPath }) => {
+                const success = await fixture.ngZone.run(() => router.navigate(commands));
 
-        it("... should navigate to 'test1' from /test1", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test1']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test1');
-        });
-
-        it("... should navigate to 'test2' from /test2", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test2']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2');
-        });
-
-        it("... should navigate to 'test2' with outlet from /test2", async () => {
-            const success = await fixture.ngZone.run(() =>
-                router.navigate([{ outlets: { primary: 'test2', side: 'test2' } }])
-            );
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2(side:test2)');
-        });
-
-        it("... should navigate to '/test2/test3' from /test2/test3", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2/test3');
-        });
-
-        it("... should navigate to '/test2/test3' with outlet from /test2/test3", async () => {
-            const success = await fixture.ngZone.run(() =>
-                router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
-            );
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2/test3(side:test2)');
+                expect(success).toBeTruthy();
+                expectToBe(location.path(), expectedPath);
+            });
         });
     });
 

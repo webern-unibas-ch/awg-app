@@ -207,33 +207,28 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getEditionViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+
             it('... should contain one `div.awg-edition-view`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getEditionViewDes();
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-edition-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], ScrollToTopStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getEditionViewDes()[0], ScrollToTopStubComponent, 1, 1);
             });
 
-            it('... should contain no `div.awg-edition-row-tables` in `div.awg-edition-view` yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
-            });
-
-            it('... should contain no `div.awg-edition-complex` in `div.awg-edition-view` yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
-            });
-
-            it('... should contain no `div.awg-edition-series` in `div.awg-edition-view` yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 0, 0);
+            describe('... should contain no sub-components yet', () => {
+                it.each([
+                    { desc: '`div.awg-edition-row-tables`', selector: 'div.awg-edition-row-tables' },
+                    { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
+                    { desc: '`div.awg-edition-series`', selector: 'div.awg-edition-series' },
+                ])('... should contain no $desc in `div.awg-edition-view` yet', ({ selector }) => {
+                    getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
+                });
             });
 
             it('... should contain one router outlet (stubbed) in `div.awg-edition-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], RouterOutletStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getEditionViewDes()[0], RouterOutletStubComponent, 1, 1);
             });
         });
 
@@ -292,6 +287,16 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getEditionViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+            const getPrefaceDes = () =>
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-preface', 1, 1);
+            const getRowtableDes = () =>
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-row-tables', 1, 1);
+            const getComplexDes = () =>
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-complex', 1, 1);
+            const getSeriesDes = () =>
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-series', 1, 1);
+
             describe('... if isPrefaceView$ is given', () => {
                 beforeEach(async () => {
                     component.isPrefaceView$ = observableOf(true).pipe(delay(0));
@@ -303,16 +308,14 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 1, 1);
+                    getPrefaceDes();
                 });
 
                 it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
+                    const prefaceDes = getPrefaceDes();
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
-
-                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
+                    getAndExpectDebugElementByCss(prefaceDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByDirective(prefaceDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
@@ -323,17 +326,14 @@ describe('EditionViewComponent (DONE)', () => {
                         1
                     );
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
-
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.PREFACE.short}`;
 
                     expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
-                    // Get debug and native element of JumbotronComponent
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
-                        divDes[0],
+                        getPrefaceDes()[0],
                         EditionJumbotronStubComponent,
                         1,
                         1
@@ -358,16 +358,15 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should have one `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 1, 1);
+                    getRowtableDes();
                 });
 
                 it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-row-tables`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
+                    const rowtableDes = getRowtableDes();
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByCss(rowtableDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
 
-                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(rowtableDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
@@ -378,17 +377,14 @@ describe('EditionViewComponent (DONE)', () => {
                         1
                     );
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
-
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.ROWTABLES.full}`;
 
                     expectToBe(hEl.textContent?.replace(/\s+/g, ' ').trim(), expectedBreadCrumb);
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
-                    // Get debug and native element of JumbotronComponent
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
-                        divDes[0],
+                        getRowtableDes()[0],
                         EditionJumbotronStubComponent,
                         1,
                         1
@@ -415,18 +411,17 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', async () => {
                     await renderSelectedEditionComplex(expectedSelectedEditionComplex);
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 1, 1);
+                    getComplexDes();
                 });
 
                 it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', async () => {
                     await renderSelectedEditionComplex(expectedSelectedEditionComplex);
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
+                    const complexDes = getComplexDes();
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-responsibility', 1, 1);
+                    getAndExpectDebugElementByCss(complexDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByDirective(complexDes[0], EditionJumbotronStubComponent, 1, 1);
+                    getAndExpectDebugElementByCss(complexDes[0], 'div.awg-edition-responsibility', 1, 1);
                 });
 
                 it('... should display edition complex in breadcrumb header (h6)', async () => {
@@ -459,9 +454,8 @@ describe('EditionViewComponent (DONE)', () => {
                     await renderSelectedEditionComplex(expectedSelectedEditionComplex);
 
                     // Get debug and native element of JumbotronComponent
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
-                        divDes[0],
+                        getComplexDes()[0],
                         EditionJumbotronStubComponent,
                         1,
                         1
@@ -585,39 +579,31 @@ describe('EditionViewComponent (DONE)', () => {
                     await Promise.resolve();
                 });
 
-                it('... should not have a `div.awg-edition-preface` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 0, 0);
-                });
-
-                it('... should not have a `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
-                });
-
-                it('... should not have a `div.awg-edition-complex` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
+                describe('... should contain no view-specific-components', () => {
+                    it.each([
+                        { desc: '`div.awg-edition-preface`', selector: 'div.awg-edition-preface' },
+                        { desc: '`div.awg-edition-row-tables`', selector: 'div.awg-edition-row-tables' },
+                        { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
+                    ])('... should contain no $desc in `div.awg-edition-view`', ({ selector }) => {
+                        getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
+                    });
                 });
 
                 it('... should have one `div.awg-edition-series` in `div.awg-edition-view`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 1, 1);
+                    getSeriesDes();
                 });
 
                 it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                    const seriesDes = getSeriesDes();
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
-
-                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
+                    getAndExpectDebugElementByCss(seriesDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByDirective(seriesDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
                 it('... should pass down `editionViewId` and `editionViewTitle` to JumbotronComponent (stubbed)', () => {
                     // Get debug and native element of JumbotronComponent
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
-                        divDes[0],
+                        getSeriesDes()[0],
                         EditionJumbotronStubComponent,
                         1,
                         1
@@ -639,9 +625,8 @@ describe('EditionViewComponent (DONE)', () => {
                     await Promise.resolve();
 
                     // Get debug and native element of JumbotronComponent
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
-                        divDes[0],
+                        getSeriesDes()[0],
                         EditionJumbotronStubComponent,
                         1,
                         1
