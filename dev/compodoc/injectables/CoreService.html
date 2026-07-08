@@ -164,9 +164,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getLogos" >getLogos</a>
-                            </li>
-                            <li>
                                 <a href="#getMetaData" >getMetaData</a>
                             </li>
                             <li>
@@ -194,50 +191,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getLogos"></a>
-                    <span class="name">
-                        <span ><b>getLogos</b></span>
-                        <a href="#getLogos"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getLogos()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/core/services/core-service/core.service.ts:50</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getLogos.</p>
-<p>It provides the app-wide logos object.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/Logos.html" target="_self" >Logos</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The app-wide logos object.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getMetaData"></a>
                     <span class="name">
                         <span ><b>getMetaData</b></span>
@@ -254,8 +207,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/app/core/services/core-service/core.service.ts:39</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/core/services/core-service/core.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -298,8 +251,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/core/services/core-service/core.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/core/services/core-service/core.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -365,9 +318,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { LOGOS_DATA } from &#x27;../../data/logos.data&#x27;;
 import { META_DATA } from &#x27;../../data/meta.data&#x27;;
-import { Logos } from &#x27;../../models/logos.model&#x27;;
 import { Meta, MetaSectionTypes } from &#x27;../../models/meta.model&#x27;;
 
 /**
@@ -403,17 +354,6 @@ export class CoreService {
      */
     getMetaData(): Meta {
         return META_DATA;
-    }
-
-    /**
-     * Public method: getLogos.
-     *
-     * It provides the app-wide logos object.
-     *
-     * @returns {Logos} The app-wide logos object.
-     */
-    getLogos(): Logos {
-        return LOGOS_DATA;
     }
 }
 </code></pre>
