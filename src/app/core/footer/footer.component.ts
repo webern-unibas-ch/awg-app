@@ -29,7 +29,7 @@ export class FooterComponent {
     /**
      * Readonly variable: logosData.
      *
-     * It kepps the logos data for the footer.
+     * It keeps the logos data for the footer.
      */
     readonly logosData = LOGOS_DATA;
 

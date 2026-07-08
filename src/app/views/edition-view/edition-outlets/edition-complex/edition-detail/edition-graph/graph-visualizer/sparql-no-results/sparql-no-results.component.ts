@@ -4,7 +4,7 @@ import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
 /**
- * The ForceGraphNoResult component.
+ * The SparqlNoResult component.
  *
  * It contains the view for the no result message
  * if a SPARQL query in the graph visualizer editor
@@ -21,7 +21,7 @@ export class SparqlNoResultsComponent {
     /**
      * Readonly variable: logosData.
      *
-     * It kepps the logos data for the footer.
+     * It keeps the logos data for the component.
      */
     readonly logosData = LOGOS_DATA;
 }

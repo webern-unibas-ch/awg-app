@@ -31,18 +31,7 @@ export interface Logo {
  * It defines the valid keys for the logos used in the app.
  */
 export type LogoKeys =
-    | 'angular'
-    | 'awg'
-    | 'bootstrap'
-    | 'github'
-    | 'gnd'
-    | 'github'
-    | 'orcid'
-    | 'sagw'
-    | 'snf'
-    | 'sparql'
-    | 'unibas'
-    | 'viaf';
+    'angular' | 'awg' | 'bootstrap' | 'github' | 'gnd' | 'orcid' | 'sagw' | 'snf' | 'sparql' | 'unibas' | 'viaf';
 
 /**
  * The Logos type.

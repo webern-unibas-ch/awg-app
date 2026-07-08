@@ -63,7 +63,7 @@ export class NavbarComponent {
     /**
      * Readonly variable: logosData.
      *
-     * It keeps the logos data for the footer.
+     * It keeps the logos data for the navbar.
      */
     readonly logosData = LOGOS_DATA;
 
