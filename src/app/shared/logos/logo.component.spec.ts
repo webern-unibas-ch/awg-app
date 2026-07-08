@@ -10,7 +10,7 @@ import { LogoComponent } from './logo.component';
 import { LOGOS_DATA } from './logos.data';
 import { Logo } from './logos.model';
 
-describe('LogoComponent', () => {
+describe('LogoComponent (DONE)', () => {
     let component: LogoComponent;
     let fixture: ComponentFixture<LogoComponent>;
     let compDe: DebugElement;
