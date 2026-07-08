@@ -3,12 +3,10 @@
     <p>Möglicherweise können Sie Ihre Anfrage anpassen.</p>
     <p>
         Ausführliche Informationen zu SPARQL finden Sie unter:
-        <a [href]="logos?.['sparql'].href">{{ logos?.['sparql'].href }}</a
+        <a [href]="logosData?.['sparql'].href">{{ logosData?.['sparql'].href }}</a
         >.
     </p>
     <p>
-        <a [href]="logos?.['sparql'].href">
-            <img width="33%" [src]="logos?.['sparql'].src" [alt]="logos?.['sparql'].alt" />
-        </a>
+        <awg-logo [logoData]="logosData?.['sparql']" class="sparql-logo-small" />
     </p>
 </div>

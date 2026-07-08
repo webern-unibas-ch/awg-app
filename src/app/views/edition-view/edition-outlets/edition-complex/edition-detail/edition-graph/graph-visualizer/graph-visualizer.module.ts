@@ -23,7 +23,7 @@ import { PrefixPipe } from './prefix-pipe';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule],
+    imports: [SharedModule, SparqlNoResultsComponent],
     declarations: [
         ConstructResultsComponent,
         ForceGraphComponent,
@@ -31,7 +31,6 @@ import { PrefixPipe } from './prefix-pipe';
         PrefixPipe,
         SelectResultsComponent,
         SparqlEditorComponent,
-        SparqlNoResultsComponent,
         SparqlTableComponent,
         TriplesEditorComponent,
         UnsupportedTypeResultsComponent,
