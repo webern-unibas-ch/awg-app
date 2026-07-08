@@ -5,9 +5,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '@awg-core/data/logos.data';
 import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges.component';
 
@@ -16,46 +15,34 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
     let fixture: ComponentFixture<MetaIdentifierBadgesComponent>;
     let compDe: DebugElement;
 
-    let mockCoreService: Partial<CoreService>;
-
     let expectedIdentifiers: MetaIdentifiers;
     let expectedActiveIdentifierBadges: MetaIdentifierBadge[];
 
     beforeEach(async () => {
-        mockCoreService = {
-            getLogos: () => LOGOS_DATA,
-        };
-
         await TestBed.configureTestingModule({
             imports: [MetaIdentifierBadgesComponent],
-            providers: [
-                {
-                    provide: CoreService,
-                    useValue: mockCoreService,
-                },
-            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        const logosData = TestBed.inject(CoreService).getLogos();
-
         // Test data
         expectedIdentifiers = { gnd: '129772429', viaf: '74941235' };
+
+        const gndLogo = LOGOS_DATA['gnd'];
+        const viafLogo = LOGOS_DATA['viaf'];
         expectedActiveIdentifierBadges = [
             {
                 key: 'gnd',
-                fullUrl: logosData['gnd'].href + '129772429',
-                src: logosData['gnd'].src,
-                label: logosData['gnd'].alt,
+                fullUrl: gndLogo.href + '129772429',
+                src: gndLogo.src,
+                label: gndLogo.alt,
                 titleText: 'GND: 129772429',
             },
             {
                 key: 'viaf',
-                fullUrl: logosData['viaf'].href + '74941235',
-                src: logosData['viaf'].src,
-                label: logosData['viaf'].alt,
+                fullUrl: viafLogo.href + '74941235',
+                src: viafLogo.src,
+                label: viafLogo.alt,
                 titleText: 'VIAF: 74941235',
             },
         ];
@@ -68,11 +55,6 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
     it('... should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {

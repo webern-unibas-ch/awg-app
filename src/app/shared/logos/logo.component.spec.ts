@@ -3,16 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { LOGOS_DATA } from '../data/logos.data';
-import { Logo } from '../models/logos.model';
-import { LogoLinkComponent } from './logo-link.component';
+import { LogoComponent } from './logo.component';
+import { LOGOS_DATA } from './logos.data';
+import { Logo } from './logos.model';
 
-describe('LogoLinkComponent', () => {
-    let component: LogoLinkComponent;
-    let fixture: ComponentFixture<LogoLinkComponent>;
+describe('LogoComponent (DONE)', () => {
+    let component: LogoComponent;
+    let fixture: ComponentFixture<LogoComponent>;
     let compDe: DebugElement;
 
     let expectedUnibasLogoData: Logo;
@@ -24,7 +24,7 @@ describe('LogoLinkComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [LogoLinkComponent],
+            imports: [LogoComponent],
         }).compileComponents();
 
         // Test data
@@ -33,7 +33,7 @@ describe('LogoLinkComponent', () => {
         expectedAngularLogoData = LOGOS_DATA['angular'];
 
         // Create component fixture
-        fixture = TestBed.createComponent(LogoLinkComponent);
+        fixture = TestBed.createComponent(LogoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });

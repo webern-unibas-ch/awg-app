@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Logos } from '@awg-core/models/logos.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
 /**
- * The ForceGraphNoResult component.
+ * The SparqlNoResult component.
  *
  * It contains the view for the no result message
  * if a SPARQL query in the graph visualizer editor
@@ -15,42 +15,13 @@ import { CoreService } from '@awg-core/services/core-service/core.service';
     templateUrl: './sparql-no-results.component.html',
     styleUrls: ['./sparql-no-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [LogoComponent],
 })
-export class SparqlNoResultsComponent implements OnInit {
+export class SparqlNoResultsComponent {
     /**
-     * Public variable: logos.
+     * Readonly variable: logosData.
      *
-     * It keeps the logos for the result message.
+     * It keeps the logos data for the component.
      */
-    logos: Logos;
-
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the logos for the noResult message.
-     *
-     * @returns {void} Sets the logos variables.
-     */
-    provideMetaData(): void {
-        this.logos = this._coreService.getLogos();
-    }
+    readonly logosData = LOGOS_DATA;
 }

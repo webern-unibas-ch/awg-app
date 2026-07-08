@@ -1,9 +1,9 @@
 @if (poweredByData(); as data) {
     <div class="awg-powered-by text-lowercase">
-        Built on <awg-logo-link [logoData]="data.githubLogo" class="icon" />
+        Built on <awg-logo [logoData]="data.githubLogo" class="icon" />
         <br class="d-md-none" />
-        with <awg-logo-link [logoData]="data.angularLogo" class="icon" /> and
-        <awg-logo-link [logoData]="data.bootstrapLogo" class="icon" />
+        with <awg-logo [logoData]="data.angularLogo" class="icon" /> and
+        <awg-logo [logoData]="data.bootstrapLogo" class="icon" />
         <span>
             |
             <a id="dev-preview-link" [href]="data.devUrl"

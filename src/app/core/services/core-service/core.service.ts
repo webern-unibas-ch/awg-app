@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LOGOS_DATA } from '../../data/logos.data';
 import { META_DATA } from '../../data/meta.data';
-import { Logos } from '../../models/logos.model';
 import { Meta, MetaSectionTypes } from '../../models/meta.model';
 
 /**
@@ -38,16 +36,5 @@ export class CoreService {
      */
     getMetaData(): Meta {
         return META_DATA;
-    }
-
-    /**
-     * Public method: getLogos.
-     *
-     * It provides the app-wide logos object.
-     *
-     * @returns {Logos} The app-wide logos object.
-     */
-    getLogos(): Logos {
-        return LOGOS_DATA;
     }
 }

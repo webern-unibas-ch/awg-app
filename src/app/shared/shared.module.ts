@@ -21,6 +21,7 @@ import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { LicenseComponent } from './license/license.component';
+import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
@@ -59,6 +60,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AlertInfoComponent,
         FullscreenToggleComponent,
         HeadingComponent,
+        LogoComponent,
         MetaIdentifierBadgesComponent,
     ],
     declarations: [
@@ -97,6 +99,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         JsonViewerComponent,
         LanguageSwitcherComponent,
         LicenseComponent,
+        LogoComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,

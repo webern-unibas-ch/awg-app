@@ -4,9 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToEqual } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '../../data/logos.data';
 import { META_DATA } from '../../data/meta.data';
-import { Logos } from '../../models/logos.model';
 import { Meta, MetaSectionTypes } from '../../models/meta.model';
 
 import { CoreService } from './core.service';
@@ -15,7 +13,6 @@ describe('CoreService (DONE)', () => {
     let coreService: CoreService;
 
     let expectedMetaData: Meta;
-    let expectedLogosData: Logos;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -27,7 +24,6 @@ describe('CoreService (DONE)', () => {
 
         // Test data
         expectedMetaData = META_DATA;
-        expectedLogosData = LOGOS_DATA;
     });
 
     it('... should inject', () => {
@@ -72,18 +68,6 @@ describe('CoreService (DONE)', () => {
             const actualMetaData = coreService.getMetaDataSection(contactMetaSection);
 
             expectToEqual(actualMetaData, expectedMetaData[contactMetaSection]);
-        });
-    });
-
-    describe('#getLogos()', () => {
-        it('... should have a method `getLogos`', () => {
-            expect(coreService.getLogos).toBeDefined();
-        });
-
-        it('... should return LOGOS', () => {
-            const actualLogosData = coreService.getLogos();
-
-            expectToEqual(actualLogosData, expectedLogosData);
         });
     });
 });
