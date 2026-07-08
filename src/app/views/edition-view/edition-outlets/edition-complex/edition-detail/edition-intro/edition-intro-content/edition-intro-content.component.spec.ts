@@ -331,7 +331,15 @@ describe('EditionIntroContentComponent (DONE)', () => {
                         expectedLength,
                         expectedLength
                     );
-                    return sectionDes.at(-1);
+                    const lastSection = sectionDes.at(-1);
+
+                    expect(lastSection).toBeDefined();
+
+                    if (!lastSection) {
+                        return {} as DebugElement;
+                    }
+
+                    return lastSection;
                 };
 
                 it('... should be the last section', () => {

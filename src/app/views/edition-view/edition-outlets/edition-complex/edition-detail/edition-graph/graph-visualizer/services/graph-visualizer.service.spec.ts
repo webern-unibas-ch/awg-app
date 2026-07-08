@@ -186,7 +186,7 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
         });
 
-        describe('... should return `undefined if`', () => {
+        describe('... should return `undefined` if', () => {
             it.each([
                 {
                     desc: 'no queryString is given',

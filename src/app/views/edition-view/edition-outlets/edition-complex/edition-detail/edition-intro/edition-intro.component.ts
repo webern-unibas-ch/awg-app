@@ -287,7 +287,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It extracts the series and section IDs from a given URL.
      *
      * @param {string} url The given URL.
-     * @returns {{ seriesId: string | undefined; sectionId: string | undefined }} The extracted series and section number.
+     * @returns {{ seriesId: string | undefined; sectionId: string | undefined }} The extracted series and section ID.
      */
     private _extractUrlSegments(url: string): { seriesId: string | undefined; sectionId: string | undefined } {
         if (!url) {

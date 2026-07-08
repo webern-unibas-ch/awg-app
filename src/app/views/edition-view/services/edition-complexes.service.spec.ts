@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-core/data/persons.data';
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionComplexJsonPersonRef } from '@awg-views/edition-view/models';
 
 import { EditionComplexesService } from './edition-complexes.service';
 
@@ -165,10 +165,14 @@ describe('EditionComplexesService (DONE)', () => {
         };
         const setupAndGetComplexList = (
             titleStmt: { title: string; catalogueType: string; catalogueNumber: string },
-            respStmt: any,
+            respStmt: Partial<{ editors: EditionComplexJsonPersonRef[]; lastModified: string }> | null,
             complexId: string
         ) => {
-            const testComplex = new EditionComplex(titleStmt, respStmt, { series: '1', section: '5' });
+            const testComplex = new EditionComplex(
+                titleStmt,
+                respStmt as { editors: EditionComplexJsonPersonRef[]; lastModified: string },
+                { series: '1', section: '5' }
+            );
             const expectedList = { [complexId]: testComplex };
 
             EditionComplexesService.setEditionComplexesList(expectedList);
