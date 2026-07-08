@@ -4,13 +4,11 @@ import { isActive, Router } from '@angular/router';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
-
-import { LogoLinkComponent } from '../logo-link/logo-link.component';
-import { Logos } from '../models/logos.model';
-import { CoreService } from '../services/core-service/core.service';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
@@ -31,16 +29,9 @@ import {
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [LogoLinkComponent, NavbarItemComponent, NavbarDropdownLinkComponent, NgbCollapse, NgbDropdownModule],
+    imports: [LogoComponent, NavbarItemComponent, NavbarDropdownLinkComponent, NgbCollapse, NgbDropdownModule],
 })
 export class NavbarComponent {
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
     /**
      * Private readonly injection variable: _router.
      *
@@ -70,18 +61,18 @@ export class NavbarComponent {
     readonly sectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
 
     /**
+     * Readonly variable: logosData.
+     *
+     * It keeps the logos data for the footer.
+     */
+    readonly logosData = LOGOS_DATA;
+
+    /**
      * Readonly signal: isCollapsed.
      *
      * It holds the boolean value if the header menu is collapsed or not.
      */
     readonly isCollapsed = signal(true);
-
-    /**
-     * Readonly signal: logosData.
-     *
-     * It holds the logos data for the footer.
-     */
-    readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
 
     /**
      * Readonly signal: sectionLinksData.

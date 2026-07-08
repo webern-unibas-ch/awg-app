@@ -1,4 +1,4 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -11,12 +11,12 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '../data/logos.data';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+import { Logo, Logos } from '@awg-shared/logos/logos.model';
+
 import { META_DATA } from '../data/meta.data';
-import { LogoLinkComponent } from '../logo-link/logo-link.component';
-import { Logo, Logos } from '../models/logos.model';
 import { MetaPage, MetaSectionTypes } from '../models/meta.model';
-import { CoreService } from '../services/core-service/core.service';
 
 import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
 import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';
@@ -42,10 +42,10 @@ class FooterDeclarationStubComponent {
 }
 
 @Component({
-    selector: 'awg-logo-link',
+    selector: 'awg-logo',
     template: '',
 })
-class LogoLinkStubComponent {
+class LogoStubComponent {
     logoData = input.required<Logo>();
 }
 
@@ -63,26 +63,17 @@ describe('FooterComponent (DONE)', () => {
     let fixture: ComponentFixture<FooterComponent>;
     let compDe: DebugElement;
 
-    let mockCoreService: Partial<CoreService>;
-
     let expectedPageMetaData: MetaPage;
     let expectedLogosData: Logos;
 
     beforeEach(async () => {
-        // Mock service for test purposes
-        mockCoreService = {
-            getMetaDataSection: sectionType => META_DATA[sectionType],
-            getLogos: () => LOGOS_DATA,
-        };
-
         await TestBed.configureTestingModule({
             imports: [FooterComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
         })
             .overrideComponent(FooterComponent, {
                 remove: {
                     imports: [
-                        LogoLinkComponent,
+                        LogoComponent,
                         FooterDeclarationComponent,
                         FooterCopyrightComponent,
                         FooterPoweredbyComponent,
@@ -90,7 +81,7 @@ describe('FooterComponent (DONE)', () => {
                 },
                 add: {
                     imports: [
-                        LogoLinkStubComponent,
+                        LogoStubComponent,
                         FooterDeclarationStubComponent,
                         FooterCopyrightStubComponent,
                         FooterPoweredbyStubComponent,
@@ -119,22 +110,13 @@ describe('FooterComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
-        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.pageMetaData), true);
-
-            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
         });
 
-        it('... should have signal `logosData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.logosData), true);
-
-            expectToEqual(component.logosData(), expectedLogosData);
+        it('... should have `logosData`', () => {
+            expectToEqual(component.logosData, expectedLogosData);
         });
 
         describe('VIEW', () => {
@@ -169,16 +151,16 @@ describe('FooterComponent (DONE)', () => {
                     expect(() => footerDeclarationCmp.pageMetaData()).toThrow();
                 });
 
-                it('... should contain no logo link components (stubbed) in second inner div yet', () => {
+                it('... should contain no logo components (stubbed) in second inner div yet', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[1], LogoStubComponent, 0, 0);
                 });
 
-                it('... should contain no logo link components in third inner div yet', () => {
+                it('... should contain no logo components in third inner div yet', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[2], LogoStubComponent, 0, 0);
                 });
             });
 
@@ -233,34 +215,32 @@ describe('FooterComponent (DONE)', () => {
                     expectToEqual(footerDeclarationCmp.pageMetaData(), expectedPageMetaData);
                 });
 
-                it('... should contain 3 logo link components (stubbed)', () => {
+                it('... should contain 3 logo components (stubbed)', () => {
                     const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main', 1, 1);
 
-                    getAndExpectDebugElementByDirective(footerTopDes[0], LogoLinkStubComponent, 3, 3);
+                    getAndExpectDebugElementByDirective(footerTopDes[0], LogoStubComponent, 3, 3);
                 });
 
-                it('... should contain one logo link component in second inner div', () => {
+                it('... should contain one logo component in second inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[1], LogoLinkStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], LogoStubComponent, 1, 1);
                 });
 
-                it('... should contain two logo link components in third inner div', () => {
+                it('... should contain two logo components in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[2], LogoLinkStubComponent, 2, 2);
+                    getAndExpectDebugElementByDirective(divDes[2], LogoStubComponent, 2, 2);
                 });
 
-                it('... should pass down logoData to logo link components', () => {
-                    const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
-                    const logoLinkCmps = logoLinkDes.map(
-                        de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
-                    );
+                it('... should pass down logoData to logo components', () => {
+                    const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+                    const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
 
-                    expectToBe(logoLinkCmps.length, 3);
-                    expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['unibas']);
-                    expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['sagw']);
-                    expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['snf']);
+                    expectToBe(logoCmps.length, 3);
+                    expectToEqual(logoCmps[0].logoData(), expectedLogosData['unibas']);
+                    expectToEqual(logoCmps[1].logoData(), expectedLogosData['sagw']);
+                    expectToEqual(logoCmps[2].logoData(), expectedLogosData['snf']);
                 });
             });
 

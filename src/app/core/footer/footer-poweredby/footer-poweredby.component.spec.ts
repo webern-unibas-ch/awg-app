@@ -12,20 +12,21 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOS_DATA } from '../../data/logos.data';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+import { Logo, Logos } from '@awg-shared/logos/logos.model';
+
 import { META_DATA } from '../../data/meta.data';
-import { LogoLinkComponent } from '../../logo-link/logo-link.component';
-import { Logo, Logos } from '../../models/logos.model';
 import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
 // Mock components
 @Component({
-    selector: 'awg-logo-link',
+    selector: 'awg-logo',
     template: '',
 })
-class LogoLinkStubComponent {
+class LogoStubComponent {
     logoData = input.required<Logo>();
 }
 
@@ -44,8 +45,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             imports: [FooterPoweredbyComponent],
         })
             .overrideComponent(FooterPoweredbyComponent, {
-                remove: { imports: [LogoLinkComponent] },
-                add: { imports: [LogoLinkStubComponent] },
+                remove: { imports: [LogoComponent] },
+                add: { imports: [LogoStubComponent] },
             })
             .compileComponents();
     });
@@ -169,20 +170,18 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
             });
 
-            it('... should contain 3 logo link components (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
+            it('... should contain 3 logo components (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
             });
 
             it('... should pass down logos to logo link components', () => {
-                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 3, 3);
-                const logoLinkCmps = logoLinkDes.map(
-                    de => de.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent
-                );
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+                const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
 
-                expectToBe(logoLinkCmps.length, 3);
-                expectToEqual(logoLinkCmps[0].logoData(), expectedLogosData['github']);
-                expectToEqual(logoLinkCmps[1].logoData(), expectedLogosData['angular']);
-                expectToEqual(logoLinkCmps[2].logoData(), expectedLogosData['bootstrap']);
+                expectToBe(logoCmps.length, 3);
+                expectToEqual(logoCmps[0].logoData(), expectedLogosData['github']);
+                expectToEqual(logoCmps[1].logoData(), expectedLogosData['angular']);
+                expectToEqual(logoCmps[2].logoData(), expectedLogosData['bootstrap']);
             });
 
             it('... should contain one anchor #dev-preview-link with faIcon', () => {

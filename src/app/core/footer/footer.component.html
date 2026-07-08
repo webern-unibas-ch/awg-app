@@ -1,24 +1,21 @@
 <footer class="container-fluid text-center">
-    @let logos = logosData();
-    @let page = pageMetaData();
-
     <!-- main top footer -->
     <div class="row awg-footer-main mb-3">
         <div class="col-md-6">
-            <awg-footer-declaration [pageMetaData]="page" />
+            <awg-footer-declaration [pageMetaData]="pageMetaData" />
         </div>
 
         <div class="col-6 col-md-2 order-md-first m-auto">
-            @if (logos?.['unibas']; as unibasLogo) {
-                <awg-logo-link [logoData]="unibasLogo" />
+            @if (logosData?.['unibas']; as unibasLogo) {
+                <awg-logo [logoData]="unibasLogo" />
             }
         </div>
         <div class="col-6 col-md-3 m-auto">
-            @if (logos?.['sagw']; as sagwLogo) {
-                <awg-logo-link [logoData]="sagwLogo" />
+            @if (logosData?.['sagw']; as sagwLogo) {
+                <awg-logo [logoData]="sagwLogo" />
             }
-            @if (logos?.['snf']; as snfLogo) {
-                <awg-logo-link [logoData]="snfLogo" />
+            @if (logosData?.['snf']; as snfLogo) {
+                <awg-logo [logoData]="snfLogo" />
             }
         </div>
     </div>
@@ -26,10 +23,10 @@
     <!-- secondary bottom footer -->
     <div class="row awg-footer-secondary text-muted">
         <div class="col-6 col-sm-8 text-start">
-            <awg-footer-copyright [pageMetaData]="page" />
+            <awg-footer-copyright [pageMetaData]="pageMetaData" />
         </div>
         <div class="col-6 col-sm-4 text-end my-auto">
-            <awg-footer-poweredby [logosData]="logos" [pageMetaData]="page" />
+            <awg-footer-poweredby [logosData]="logosData" [pageMetaData]="pageMetaData" />
         </div>
         <div class="col-12 gtrans" id="google_translate_element"></div>
     </div>

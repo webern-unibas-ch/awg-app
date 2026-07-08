@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
 /**
  * The MetaIdentifierBadges component.
@@ -16,13 +16,6 @@ import { CoreService } from '@awg-core/services/core-service/core.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetaIdentifierBadgesComponent {
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
     /**
      * Readonly input signal: identifiers.
      *
@@ -40,19 +33,20 @@ export class MetaIdentifierBadgesComponent {
         if (!currentIds) {
             return [];
         }
-        const logosData = this._coreService.getLogos();
+        const validKeys: (keyof MetaIdentifiers)[] = ['gnd', 'viaf', 'orcid'];
 
-        // Filter out keys that are not present or have empty values in the current identifiers
+        // Filter out invalid or empty keys
         // Map the remaining keys to MetaIdentifierBadge objects
-        return (['gnd', 'viaf', 'orcid'] as (keyof MetaIdentifiers)[])
-            .filter(key => !!currentIds[key]?.trim())
+        return validKeys
+            .filter(key => !!currentIds[key]?.trim() && !!LOGOS_DATA[key])
             .map(key => {
                 const idValue = currentIds[key];
+                const logo = LOGOS_DATA[key];
                 return {
                     key,
-                    fullUrl: logosData[key].href + idValue,
-                    src: logosData[key].src,
-                    label: logosData[key].alt,
+                    fullUrl: logo.href + idValue,
+                    src: logo.src,
+                    label: logo.alt,
                     titleText: `${key.toUpperCase()}: ${idValue}`,
                 };
             });

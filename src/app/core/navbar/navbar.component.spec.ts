@@ -21,10 +21,9 @@ import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-
 import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
-import { LOGOS_DATA } from '../data/logos.data';
-import { LogoLinkComponent } from '../logo-link/logo-link.component';
-import { Logo, Logos } from '../models/logos.model';
-import { CoreService } from '../services/core-service/core.service';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+import { Logo, Logos } from '@awg-shared/logos/logos.model';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
@@ -38,10 +37,10 @@ import { NavbarDropdownLink, NavbarItem, NavbarItems } from './navbar.model';
 
 // Mock components
 @Component({
-    selector: 'awg-logo-link',
+    selector: 'awg-logo',
     template: '',
 })
-class LogoLinkStubComponent {
+class LogoStubComponent {
     logoData = input.required<Logo>();
 }
 
@@ -70,7 +69,6 @@ describe('NavbarComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let router: Router;
-    let mockCoreService: Partial<CoreService>;
 
     let toggleNavSpy: Spy;
 
@@ -85,11 +83,6 @@ describe('NavbarComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock service for test purposes
-        mockCoreService = {
-            getLogos: () => LOGOS_DATA,
-        };
-
         await TestBed.configureTestingModule({
             imports: [NavbarComponent],
             providers: [
@@ -97,12 +90,11 @@ describe('NavbarComponent (DONE)', () => {
                     { path: 'home', component: NavbarComponent },
                     { path: 'edition', component: NavbarComponent },
                 ]),
-                { provide: CoreService, useValue: mockCoreService },
             ],
         })
             .overrideComponent(NavbarComponent, {
-                remove: { imports: [LogoLinkComponent, NavbarDropdownLinkComponent, NavbarItemComponent] },
-                add: { imports: [LogoLinkStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent] },
+                remove: { imports: [LogoComponent, NavbarDropdownLinkComponent, NavbarItemComponent] },
+                add: { imports: [LogoStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent] },
             })
             .compileComponents();
 
@@ -142,11 +134,6 @@ describe('NavbarComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
         it('... should have `navbarItems`', () => {
             expectToEqual(component.navbarItems, expectedNavbarItems);
@@ -160,16 +147,14 @@ describe('NavbarComponent (DONE)', () => {
             expectToEqual(component.sectionEditionLinks, expectedSectionEditionLinks);
         });
 
+        it('... should have `logosData`', () => {
+            expectToEqual(component.logosData, expectedLogosData);
+        });
+
         it('... should have signal `isCollapsed` to hold true', () => {
             expectToBe(isSignal(component.isCollapsed), true);
 
             expectToBe(component.isCollapsed(), true);
-        });
-
-        it('... should have signal `logosData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.logosData), true);
-
-            expectToEqual(component.logosData(), expectedLogosData);
         });
 
         it('... should have signal `sectionLinksData` to hold the provided data', () => {
@@ -205,23 +190,23 @@ describe('NavbarComponent (DONE)', () => {
                 expectToContain(brandContainerEl2.classList, 'd-md-none');
             });
 
-            it('... should contain one logo link components in each of the two navbar-brand-containers', () => {
+            it('... should contain one logo components in each of the two navbar-brand-containers', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 const brandContainerDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
                 brandContainerDes.forEach(brandContainerDe => {
-                    getAndExpectDebugElementByDirective(brandContainerDe, LogoLinkStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(brandContainerDe, LogoStubComponent, 1, 1);
                 });
             });
 
-            it('... should throw due to missing required values for logo link component', () => {
-                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 2, 2);
+            it('... should throw due to missing required values for logo component', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
 
-                logoLinkDes.forEach(logoLinkDe => {
-                    const logoLinkCmp = logoLinkDe.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent;
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
 
                     // Expect the required inputs to throw if not provided
-                    expect(() => logoLinkCmp.logoData()).toThrow();
+                    expect(() => logoCmp.logoData()).toThrow();
                 });
             });
 
@@ -296,13 +281,13 @@ describe('NavbarComponent (DONE)', () => {
                 navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
             });
 
-            it('... should pass down logoData to logo link components', () => {
-                const logoLinkDes = getAndExpectDebugElementByDirective(compDe, LogoLinkStubComponent, 2, 2);
+            it('... should pass down logoData to logo components', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
 
-                logoLinkDes.forEach(logoLinkDe => {
-                    const logoLinkCmp = logoLinkDe.injector.get(LogoLinkStubComponent) as LogoLinkStubComponent;
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
 
-                    expectToEqual(logoLinkCmp.logoData(), expectedLogosData['awg']);
+                    expectToEqual(logoCmp.logoData(), expectedLogosData['awg']);
                 });
             });
 

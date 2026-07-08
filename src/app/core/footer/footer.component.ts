@@ -1,9 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { LogoLinkComponent } from '../logo-link/logo-link.component';
-import { Logos } from '../models/logos.model';
-import { MetaPage, MetaSectionTypes } from '../models/meta.model';
-import { CoreService } from '../services/core-service/core.service';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+
+import { META_DATA } from '../data/meta.data';
+import { MetaSectionTypes } from '../models/meta.model';
 
 import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
 import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';
@@ -16,33 +17,26 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
  * with the {@link FooterDeclarationComponent},
  * {@link FooterCopyrightComponent},
  * {@link FooterPoweredbyComponent}
- * and {@link LogoLinkComponent}.
+ * and {@link LogoComponent}.
  */
 @Component({
     selector: 'awg-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
-    imports: [LogoLinkComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
+    imports: [LogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })
 export class FooterComponent {
     /**
-     * Private readonly injection variable: _coreService.
+     * Readonly variable: logosData.
      *
-     * It keeps the instance of the injected CoreService.
+     * It kepps the logos data for the footer.
      */
-    private readonly _coreService = inject(CoreService);
+    readonly logosData = LOGOS_DATA;
 
     /**
-     * Readonly signal: logosData.
+     * Readonly variable: pageMetaData.
      *
-     * It holds the logos data for the footer.
+     * It keeps the page metadata for the footer.
      */
-    readonly logosData = signal<Logos>(this._coreService.getLogos()).asReadonly();
-
-    /**
-     * Readonly signal: pageMetaData.
-     *
-     * It holds the page metadata for the footer via the injected CoreService.
-     */
-    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 }
