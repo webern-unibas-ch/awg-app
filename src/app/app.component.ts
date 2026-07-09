@@ -6,8 +6,8 @@ import { filter, map } from 'rxjs/operators';
 
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { AnalyticsService } from '@awg-core/services/analytics-sercvice/analytics.service';
-import { EditionInitService } from '@awg-core/services/edition-init-service/edition-init.service';
+import { AnalyticsService } from '@awg-core/services/analytics.service';
+import { EditionInitService } from '@awg-core/services/edition-init.service';
 
 /**
  * The main component of the AWG App.
