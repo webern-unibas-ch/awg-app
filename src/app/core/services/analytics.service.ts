@@ -30,6 +30,13 @@ export type AnalyticsConfigEvent = [string, string, { page_path: string; send_pa
 })
 export class AnalyticsService {
     /**
+     * Private readonly injection variable: _doc.
+     *
+     * It stores the Angular DOCUMENT.
+     */
+    private readonly _doc = inject(DOCUMENT);
+
+    /**
      * Private variable: _isInitialized.
      *
      * It stores a boolean flag for successful initialization.
@@ -60,13 +67,6 @@ export class AnalyticsService {
      * PRODUCTION: TRUE
      */
     private readonly _sendPageView = environment.GA_SEND_PAGE_VIEW;
-
-    /**
-     * Private readonly injection variable: _doc.
-     *
-     * It stores the Angular DOCUMENT.
-     */
-    private readonly _doc = inject(DOCUMENT);
 
     /**
      * Public method: initializeAnalytics.

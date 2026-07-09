@@ -10,8 +10,8 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService } from '@awg-core/services/analytics-sercvice/analytics.service';
-import { EditionInitService } from '@awg-core/services/edition-init-service/edition-init.service';
+import { AnalyticsService } from '@awg-core/services/analytics.service';
+import { EditionInitService } from '@awg-core/services/edition-init.service';
 
 import { AppComponent } from './app.component';
 
@@ -195,21 +195,21 @@ describe('AppComponent (DONE)', () => {
 
         describe('... should navigate to', () => {
             it.each([
-                { desc: "/test1 from '' redirect", commands: [''], expectedPath: '/test1' },
-                { desc: '`test1` from /test1', commands: ['/test1'], expectedPath: '/test1' },
-                { desc: '`test2` from /test2', commands: ['/test2'], expectedPath: '/test2' },
+                { desc: '`/test1` from empty redirect', commands: [''], expectedPath: '/test1' },
+                { desc: '`test1` from `/test1`', commands: ['/test1'], expectedPath: '/test1' },
+                { desc: '`test2` from `/test2`', commands: ['/test2'], expectedPath: '/test2' },
                 {
-                    desc: '`/test2/test3` from /test2/test3',
+                    desc: '`/test2/test3` from `/test2/test3`',
                     commands: ['/test2/test3'],
                     expectedPath: '/test2/test3',
                 },
                 {
-                    desc: '`test2` with outlet from /test2',
+                    desc: '`test2` with outlet from `/test2`',
                     commands: [{ outlets: { primary: 'test2', side: 'test2' } }],
                     expectedPath: '/test2(side:test2)',
                 },
                 {
-                    desc: '`/test2/test3` with outlet from /test2/test3',
+                    desc: '`/test2/test3` with outlet from `/test2/test3`',
                     commands: [{ outlets: { primary: 'test2/test3', side: 'test2' } }],
                     expectedPath: '/test2/test3(side:test2)',
                 },
