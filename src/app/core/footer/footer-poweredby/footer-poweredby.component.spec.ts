@@ -15,9 +15,8 @@ import {
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { Logo, Logos } from '@awg-shared/logos/logos.model';
-
-import { META_DATA } from '../../data/meta.data';
-import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 

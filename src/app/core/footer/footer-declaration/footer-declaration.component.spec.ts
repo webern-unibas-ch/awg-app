@@ -15,8 +15,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { META_DATA } from '../../data/meta.data';
-import { MetaPage, MetaSectionTypes } from '../../models/meta.model';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
 

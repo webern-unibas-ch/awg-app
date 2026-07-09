@@ -17,7 +17,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { MetaIdentifiers } from '@awg-core/models/meta.model';
+import { MetaIdentifiers } from '@awg-shared/meta/meta.model';
 
 import { EDITION_ROUTE_CONSTANTS } from './edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from './models';

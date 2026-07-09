@@ -5,8 +5,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { META_DATA } from '@awg-core/data/meta.data';
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { ContactAddressComponent } from './contact-address.component';
 

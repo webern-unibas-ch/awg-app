@@ -13,10 +13,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { META_DATA } from '@awg-core/data/meta.data';
-import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
-import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { ContactViewComponent } from './contact-view.component';
 
