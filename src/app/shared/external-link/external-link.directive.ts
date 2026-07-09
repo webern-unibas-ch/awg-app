@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
+import { computed, Directive, effect, ElementRef, inject, input, PLATFORM_ID } from '@angular/core';
 
 /**
  * The external link directive.
@@ -12,7 +12,6 @@ import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
     host: {
         '[attr.href]': 'href()',
         '[attr.target]': 'isExternal() ? "_blank" : null',
-        '[attr.rel]': 'isExternal() ? "noopener noreferrer" : null',
         '[class.awg-external-link]': 'isExternal()',
     },
 })
@@ -23,6 +22,8 @@ export class ExternalLinkDirective {
      * It keeps the instance of the injected Angular PLATFORM_ID.
      */
     private readonly _platformId = inject(PLATFORM_ID);
+
+    private readonly _elementRef = inject(ElementRef);
 
     /**
      * Readonly input signal: href.
@@ -38,11 +39,36 @@ export class ExternalLinkDirective {
      *
      * @returns {boolean} True if href is an external link, false otherwise.
      */
-    protected isExternal = computed((): boolean => {
-        const url = this.href();
+    protected isExternal = computed<boolean>(() => {
+        const url = this.href()?.trim();
         if (!url || !isPlatformBrowser(this._platformId)) {
             return false;
         }
-        return !url.includes(location.hostname);
+
+        try {
+            const currentOrigin = location.origin;
+            const linkUrl = new URL(url, currentOrigin);
+            const isHttp = linkUrl.protocol === 'http:' || linkUrl.protocol === 'https:';
+
+            return isHttp && linkUrl.origin !== currentOrigin;
+        } catch {
+            return false;
+        }
     });
+
+    constructor() {
+        effect(() => {
+            if (isPlatformBrowser(this._platformId)) {
+                const link = this._elementRef.nativeElement as HTMLAnchorElement;
+
+                if (this.isExternal()) {
+                    link.relList.add('noopener', 'noreferrer');
+                } else {
+                    link.relList.remove('noopener', 'noreferrer');
+                }
+
+                console.log(link.relList);
+            }
+        });
+    }
 }
