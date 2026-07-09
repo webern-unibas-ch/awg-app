@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+
 import { LOGOS_DATA } from './logos.data';
 import { Logo } from './logos.model';
 
@@ -13,6 +15,7 @@ import { Logo } from './logos.model';
     templateUrl: './logo.component.html',
     styleUrl: './logo.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ExternalLinkDirective],
 })
 export class LogoComponent {
     /**

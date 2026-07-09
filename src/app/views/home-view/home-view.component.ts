@@ -2,9 +2,11 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
+
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionSectionLink } from '@awg-views/edition-view/models';
@@ -24,7 +26,7 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
     templateUrl: './home-view.component.html',
     styleUrls: ['./home-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, RouterLink],
+    imports: [AlertInfoComponent, ExternalLinkDirective, HeadingComponent, HomeViewCardComponent, RouterLink],
 })
 export class HomeViewComponent {
     /**

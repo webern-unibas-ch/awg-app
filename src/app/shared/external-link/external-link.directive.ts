@@ -13,6 +13,7 @@ import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
         '[attr.href]': 'href()',
         '[attr.target]': 'isExternal() ? "_blank" : null',
         '[attr.rel]': 'isExternal() ? "noopener noreferrer" : null',
+        '[class.awg-external-link]': 'isExternal()',
     },
 })
 export class ExternalLinkDirective {

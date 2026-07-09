@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { MetaContact, MetaPage } from '@awg-shared/meta/meta.model';
 
 /**
@@ -13,6 +14,7 @@ import { MetaContact, MetaPage } from '@awg-shared/meta/meta.model';
     templateUrl: './contact-address.component.html',
     styleUrls: ['./contact-address.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ExternalLinkDirective],
 })
 export class ContactAddressComponent {
     /**

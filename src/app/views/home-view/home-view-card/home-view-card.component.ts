@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+
 import { HomeViewCard } from './home-view-card.model';
 
 /**
@@ -18,7 +20,7 @@ import { HomeViewCard } from './home-view-card.model';
     templateUrl: './home-view-card.component.html',
     styleUrls: ['./home-view-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FaIconComponent, NgTemplateOutlet, RouterLink],
+    imports: [FaIconComponent, ExternalLinkDirective, NgTemplateOutlet, RouterLink],
 })
 export class HomeViewCardComponent {
     /**

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+
 /**
  * The ContactMap component.
  *
@@ -11,6 +13,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
     templateUrl: './contact-map.component.html',
     styleUrls: ['./contact-map.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ExternalLinkDirective],
 })
 export class ContactMapComponent {
     /**

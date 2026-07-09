@@ -5,7 +5,13 @@ import { beforeEach, describe, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
-import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToNotContain,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { ExternalLinkDirective } from './external-link.directive';
 
 // Test external link component
@@ -46,6 +52,7 @@ describe('ExternalLinkDirective (DONE)', () => {
     const expectedInternalLink = `${location.hostname}#anchor`;
     const expectedRelAttr = 'noopener noreferrer';
     const expectedTargetAttr = '_blank';
+    const expectedClassAttr = 'awg-external-link';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -75,6 +82,7 @@ describe('ExternalLinkDirective (DONE)', () => {
                 href: expectedExternalLink,
                 target: expectedTargetAttr,
                 rel: expectedRelAttr,
+                shouldHaveClass: true,
             },
             {
                 index: 1,
@@ -82,16 +90,25 @@ describe('ExternalLinkDirective (DONE)', () => {
                 href: expectedExternalLink,
                 target: expectedTargetAttr,
                 rel: expectedRelAttr,
+                shouldHaveClass: true,
             },
-            { index: 2, label: 'Internal Link', href: expectedBaseURI + expectedInternalLink, target: '', rel: '' },
+            {
+                index: 2,
+                label: 'Internal Link',
+                href: expectedBaseURI + expectedInternalLink,
+                target: '',
+                rel: '',
+                shouldHaveClass: false,
+            },
             {
                 index: 3,
                 label: 'Dynamic Internal Link',
                 href: expectedBaseURI + expectedInternalLink,
                 target: '',
                 rel: '',
+                shouldHaveClass: false,
             },
-        ])('... $label', ({ index, label, href, target, rel }) => {
+        ])('... $label', ({ index, label, href, target, rel, shouldHaveClass }) => {
             const aDes = getAnchorDes();
             const aEl = aDes[index].nativeElement as HTMLAnchorElement;
 
@@ -99,6 +116,12 @@ describe('ExternalLinkDirective (DONE)', () => {
             expectToBe(aEl.href, href);
             expectToBe(aEl.target, target);
             expectToBe(aEl.rel, rel);
+
+            if (shouldHaveClass) {
+                expectToContain(aEl.classList, expectedClassAttr);
+            } else {
+                expectToNotContain(aEl.classList, expectedClassAttr);
+            }
         });
     });
 
@@ -114,6 +137,7 @@ describe('ExternalLinkDirective (DONE)', () => {
         expectToBe(aEl.rel, expectedRelAttr);
         expectToBe(aEl.target, expectedTargetAttr);
         expectToBe(aEl.textContent, 'Dynamic External Link');
+        expectToContain(aEl.classList, expectedClassAttr);
     });
 
     it('... should detect anchor elements without href attributes', () => {
@@ -129,6 +153,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             expectToBe(bareAEl.target, '');
             expectToBe(bareAEl.rel, '');
             expectToBe(bareAEl.textContent?.trim(), 'Link without href');
+            expectToNotContain(bareAEl.classList, expectedClassAttr);
         });
 
         it('... if href is an empty string', async () => {
@@ -141,6 +166,7 @@ describe('ExternalLinkDirective (DONE)', () => {
 
             expectToBe(aEl.target, '');
             expectToBe(aEl.rel, '');
+            expectToNotContain(aEl.classList, expectedClassAttr);
         });
 
         it('... if running on the server (SSR)', () => {
@@ -160,6 +186,7 @@ describe('ExternalLinkDirective (DONE)', () => {
 
             expectToBe(ssrAEl.target, '');
             expectToBe(ssrAEl.rel, '');
+            expectToNotContain(ssrAEl.classList, expectedClassAttr);
         });
     });
 });

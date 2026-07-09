@@ -225,11 +225,12 @@ describe('HomeViewCardComponent (DONE)', () => {
 
                 expectToBe(aEl.getAttribute('href'), externalLink?.href);
 
-                expectToBe(aEl.classList.length, 4);
+                expectToBe(aEl.classList.length, 5);
                 expectToContain(aEl.classList, 'btn');
                 expectToContain(aEl.classList, 'btn-info');
                 expectToContain(aEl.classList, 'text-light');
                 expectToContain(aEl.classList, 'stretched-link');
+                expectToContain(aEl.classList, 'awg-external-link'); // Automatically added by the ExternalLinkDirective
             });
 
             it('... should render the correct link type and path for internal and external links`', () => {
