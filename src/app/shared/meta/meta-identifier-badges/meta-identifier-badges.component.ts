@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+
+import { MetaIdentifiers } from '../meta.model';
+import { MetaIdentifierBadge } from './meta-identifier-badges.model';
 
 /**
  * The MetaIdentifierBadges component.

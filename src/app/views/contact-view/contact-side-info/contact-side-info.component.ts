@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
-import { META_DATA } from '@awg-core/data/meta.data';
-import { MetaSectionTypes } from '@awg-core/models/meta.model';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { ContactAddressComponent } from '../contact-address/contact-address.component';
 import { ContactMapComponent } from '../contact-map/contact-map.component';

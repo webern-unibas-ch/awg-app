@@ -10,38 +10,6 @@ export enum MetaSectionTypes {
 }
 
 /**
- * The MetaIdentifierBadge interface.
- *
- * It defines the structure of an authority identifier badge.
- */
-export interface MetaIdentifierBadge {
-    /**
-     * The key of the badge, which corresponds to the authority identifier type (e.g., 'gnd', 'viaf', 'orcid').
-     */
-    key: keyof MetaIdentifiers;
-
-    /**
-     * The full URL for the badge.
-     */
-    fullUrl: string;
-
-    /**
-     * The source URL for the badge icon.
-     */
-    src: string;
-
-    /**
-     * The label for the badge.
-     */
-    label: string;
-
-    /**
-     * The title text for the badge.
-     */
-    titleText: string;
-}
-
-/**
  * The MetaIdentifiers interface.
  *
  * It defines the structure of the authority identifiers for a person.

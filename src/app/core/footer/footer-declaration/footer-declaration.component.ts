@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MetaPage } from '../../models/meta.model';
+import { MetaPage } from '@awg-shared/meta/meta.model';
 
 /**
  * The FooterDeclaration component.
