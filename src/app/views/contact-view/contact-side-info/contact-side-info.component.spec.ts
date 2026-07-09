@@ -1,4 +1,4 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -14,7 +14,6 @@ import {
 import { AppConfig } from '@awg-app/app.config';
 import { META_DATA } from '@awg-core/data/meta.data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
 
 import { ContactAddressComponent } from '../contact-address/contact-address.component';
 import { ContactMapComponent } from '../contact-map/contact-map.component';
@@ -47,8 +46,6 @@ describe('ContactSideInfoComponent (DONE)', () => {
 
     let domSanitizer: DomSanitizer;
 
-    let mockCoreService: Partial<CoreService>;
-
     let expectedPageMetaData: MetaPage;
     let expectedContactMetaData: MetaContact;
 
@@ -59,12 +56,8 @@ describe('ContactSideInfoComponent (DONE)', () => {
     const expectedContactSideInfoHeader = 'Kontakt';
 
     beforeEach(async () => {
-        // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
-
         await TestBed.configureTestingModule({
             imports: [ContactSideInfoComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
         })
             .overrideComponent(ContactSideInfoComponent, {
                 remove: { imports: [ContactAddressComponent, ContactMapComponent] },
@@ -98,38 +91,25 @@ describe('ContactSideInfoComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
         it('... should have `CONTACT_SIDE_INFO_HEADER`', () => {
             expectToBe(component.CONTACT_SIDE_INFO_HEADER, expectedContactSideInfoHeader);
         });
 
-        it('... should have signal `contactMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.contactMetaData), true);
-
-            expectToEqual(component.contactMetaData(), expectedContactMetaData);
+        it('... should have `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData, expectedContactMetaData);
         });
 
-        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.pageMetaData), true);
-
-            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
         });
 
-        it('... should have signal `mapEmbedUrl` to hold the provided URL', () => {
-            expectToBe(isSignal(component.mapEmbedUrl), true);
-
-            expectToEqual(component.mapEmbedUrl(), expectedEmbedUrl);
+        it('... should have `mapEmbedUrl`', () => {
+            expectToEqual(component.mapEmbedUrl, expectedEmbedUrl);
         });
 
-        it('... should have signal `mapLinkUrl` to hold the provided URL', () => {
-            expectToBe(isSignal(component.mapLinkUrl), true);
-
-            expectToBe(component.mapLinkUrl(), expectedLinkUrl);
+        it('... should have `mapLinkUrl`', () => {
+            expectToBe(component.mapLinkUrl, expectedLinkUrl);
         });
 
         describe('VIEW', () => {

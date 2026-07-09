@@ -15,7 +15,6 @@ import {
 
 import { META_DATA } from '@awg-core/data/meta.data';
 import { MetaIdentifiers, MetaSectionTypes, MetaStructure } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 
 import { StructureSideInfoComponent } from './structure-side-info.component';
@@ -36,21 +35,13 @@ describe('StructureSideInfoComponent (DONE)', () => {
     let fixture: ComponentFixture<StructureSideInfoComponent>;
     let compDe: DebugElement;
 
-    let mockCoreService: Partial<CoreService>;
-
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureSideInfoHeader = 'Strukturmodell';
 
     beforeEach(async () => {
-        // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
-
         await TestBed.configureTestingModule({
             imports: [StructureSideInfoComponent],
-            providers: [
-                { provide: LOCALE_ID, useValue: 'de-DE' },
-                { provide: CoreService, useValue: mockCoreService },
-            ],
+            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(StructureSideInfoComponent, {
                 remove: { imports: [MetaIdentifierBadgesComponent] },
@@ -77,18 +68,13 @@ describe('StructureSideInfoComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
         it('... should have structureSideInfoHeader', () => {
             expectToBe(component.STRUCTURE_SIDE_INFO_HEADER, expectedStructureSideInfoHeader);
         });
 
-        it('... should have signal `structureMetaData` to hold the provided data (via service)', () => {
-            expectToEqual(component.structureMetaData(), expectedStructureMetaData);
+        it('... should have `structureMetaData`', () => {
+            expectToEqual(component.structureMetaData, expectedStructureMetaData);
         });
 
         describe('VIEW', () => {

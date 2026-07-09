@@ -1,7 +1,5 @@
 <!-- content: home -->
 <div class="awg-home-view p-5 border rounded-3">
-    @let page = this.pageMetaData();
-
     <!-- heading -->
     <awg-heading [title]="HOME_VIEW_TITLE" [id]="HOME_VIEW_ID" />
 
@@ -10,7 +8,7 @@
         <awg-alert-info [infoMessage]="DISCLAIMER_MESSAGE" />
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">
-            @for (cardData of homeViewCardData(); track $index) {
+            @for (cardData of homeViewCardData; track $index) {
                 <div class="col">
                     <awg-home-view-card [cardData]="cardData" />
                 </div>
@@ -44,24 +42,25 @@
             <p>
                 Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
                 diese Webapplikation präsentiert und über das Software-Framework
-                <a id="dsp-link" href="{{ page?.daschUrl + 'services/data-deposit/dsp' }}"
+                <a id="dsp-link" [href]="pageMetaData?.daschUrl + 'services/data-deposit/dsp'"
                     >DaSCH Service Platform (DSP)</a
                 >
                 des
-                <a id="dasch-link" href="{{ page?.daschUrl }}"
+                <a id="dasch-link" [href]="pageMetaData?.daschUrl"
                     >Swiss National Data & Service Center for the Humanities (DaSCH)</a
                 >
                 aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
                 der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
                 Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
-                <a id="dasch-mission-link" href="{{ page?.daschUrl + 'about-us/mission' }}">Mission Statement DaSCH</a
+                <a id="dasch-mission-link" [href]="pageMetaData?.daschUrl + 'about-us/mission'"
+                    >Mission Statement DaSCH</a
                 >).
             </p>
 
             <p>
                 Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf
-                <a id="github-link" href="{{ page?.awgAppGithubUrl }}">GitHub</a> sowie
-                <a id="zenodo-link" href="{{ page?.awgAppZenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich
+                <a id="github-link" [href]="pageMetaData?.awgAppGithubUrl">GitHub</a> sowie
+                <a id="zenodo-link" [href]="pageMetaData?.awgAppZenodoUrl">Zenodo</a> abgelegt und vollumfänglich
                 <a [routerLink]="['/contact']" fragment="awg-documentation">dokumentiert</a>.
             </p>
         </div>

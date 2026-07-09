@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { META_DATA } from '@awg-core/data/meta.data';
+import { MetaSectionTypes } from '@awg-core/models/meta.model';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 
@@ -21,13 +21,6 @@ import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badge
     imports: [DatePipe, HeadingComponent, MetaIdentifierBadgesComponent],
 })
 export class ContactViewComponent {
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
     /**
      * Readonly variable: CITATION_ID.
      *
@@ -71,20 +64,18 @@ export class ContactViewComponent {
     readonly DOCUMENTATION_TITLE = 'Dokumentation';
 
     /**
-     * Readonly signal: contactMetaData.
+     * Readonly variable: contactMetaData.
      *
-     * It holds the contact metadata for the contact view via the injected CoreService.
+     * It keeps the contact metadata for the contact view.
      */
-    readonly contactMetaData = signal<MetaContact>(
-        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
-    ).asReadonly();
+    readonly contactMetaData = META_DATA[MetaSectionTypes.contact];
 
     /**
-     * Readonly signal: pageMetaData.
+     * Readonly variable: pageMetaData.
      *
-     * It holds the page metadata for the contact view via the injected CoreService.
+     * It keeps the page metadata for the contact view.
      */
-    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 
     /**
      * Readonly signal: today.

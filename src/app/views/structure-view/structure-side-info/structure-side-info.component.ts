@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { MetaSectionTypes, MetaStructure } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { META_DATA } from '@awg-core/data/meta.data';
+import { MetaSectionTypes } from '@awg-core/models/meta.model';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
 
 /**
@@ -20,25 +20,16 @@ import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badge
 })
 export class StructureSideInfoComponent {
     /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Public readonly variable: STRUCTURE_SIDE_INFO_HEADER.
+     * Readonly variable: STRUCTURE_SIDE_INFO_HEADER.
      *
      * It keeps the header for the structure side info.
      */
     readonly STRUCTURE_SIDE_INFO_HEADER = 'Strukturmodell';
 
     /**
-     * Readonly signal: structureMetaData.
+     * Readonly variable: structureMetaData.
      *
-     * It holds the metadata for the structure side info via the injected CoreService.
+     * It keeps the metadata for the structure side info.
      */
-    readonly structureMetaData = signal<MetaStructure>(
-        this._coreService.getMetaDataSection(MetaSectionTypes.structure)
-    ).asReadonly();
+    readonly structureMetaData = META_DATA[MetaSectionTypes.structure];
 }

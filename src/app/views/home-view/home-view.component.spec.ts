@@ -157,22 +157,18 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(component.DISCLAIMER_MESSAGE, expectedDisclaimerMessage);
         });
 
+        it('... should have `homeViewCardData`', () => {
+            expectToEqual(component.homeViewCardData, expectedHomeViewCardData);
+        });
+
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
+        });
+
         it('... should have signal `sectionLinksData` to hold the provided data (via service)', () => {
             expectToBe(isSignal(component.sectionLinksData), true);
 
             expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
-        });
-
-        it('... should have signal `homeViewCardData` to hold the provided data', () => {
-            expectToBe(isSignal(component.homeViewCardData), true);
-
-            expectToEqual(component.homeViewCardData(), expectedHomeViewCardData);
-        });
-
-        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.pageMetaData), true);
-
-            expectToEqual(component.pageMetaData(), expectedPageMetaData);
         });
 
         it('... should have signal `rowtablesRoute` to hold the provided route', () => {
