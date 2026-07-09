@@ -11,19 +11,19 @@
         <p class="italic">Website:</p>
         <p class="awg-citation-text">
             {{ pageMetaData.awgProjectName }}. Projekt-Website:
-            <a [href]="pageMetaData?.awgProjectUrl"> {{ pageMetaData?.awgProjectUrl }} </a>, abgerufen am
+            <a [href]="pageMetaData.awgProjectUrl"> {{ pageMetaData.awgProjectUrl }} </a>, abgerufen am
             <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
             >.
         </p>
 
         <p class="italic">Online-Edition:</p>
         <p class="awg-citation-text">
-            {{ pageMetaData?.awgProjectName }}. Online-Edition (Version
-            <span class="awg-citation-version">{{ pageMetaData?.awgAppVersion }}</span> vom
+            {{ pageMetaData.awgProjectName }}. Online-Edition (Version
+            <span class="awg-citation-version">{{ pageMetaData.awgAppVersion }}</span> vom
             <span class="awg-citation-version-release">{{
-                pageMetaData?.awgAppVersionReleaseDate | date: 'longDate'
+                pageMetaData.awgAppVersionReleaseDate | date: 'longDate'
             }}</span
-            >): <a [href]="pageMetaData?.awgAppUrl"> {{ pageMetaData?.awgAppUrl }} </a>, abgerufen am
+            >): <a [href]="pageMetaData.awgAppUrl"> {{ pageMetaData.awgAppUrl }} </a>, abgerufen am
             <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
             >.
         </p>
@@ -38,18 +38,18 @@
         <p class="awg-documentation-text">
             <span class="smallcaps">GitHub:</span><br />
             Repository unter:
-            <a [href]="pageMetaData?.awgAppGithubUrl">
-                {{ pageMetaData?.awgAppGithubUrl }}
+            <a [href]="pageMetaData.awgAppGithubUrl">
+                {{ pageMetaData.awgAppGithubUrl }}
             </a>
         </p>
 
         <p class="awg-documentation-text">
             <span class="smallcaps">Compodoc:</span><br />
             Dokumentation von Struktur und Funktionalitäten der Angular App:
-            <a id="awg-compodoc" [href]="pageMetaData?.compodocUrl"> Compodoc documentation </a> <br />
+            <a id="awg-compodoc" [href]="pageMetaData.compodocUrl"> Compodoc documentation </a> <br />
             <span class="smallcaps">DeepWiki:</span><br />
             Interaktive (KI-basierte) Dokumentation der Angular App:
-            <a id="awg-deepwiki" [href]="pageMetaData?.deepWikiUrl"> DeepWiki documentation </a> <br />
+            <a id="awg-deepwiki" [href]="pageMetaData.deepWikiUrl"> DeepWiki documentation </a> <br />
         </p>
     </div>
 
@@ -61,33 +61,33 @@
     <div class="awg-imprint-description">
         <p>
             <span class="smallcaps">Herausgeber:</span><br />
-            {{ pageMetaData?.awgProjectName }}<br />
-            {{ contactMetaData?.address.institution }}<br />
-            {{ contactMetaData?.address.street }}<br />
-            {{ contactMetaData?.address.postalCode }}&nbsp;{{ contactMetaData?.address.city }}<br />
-            {{ contactMetaData?.address.country }}<br /><br />
+            {{ pageMetaData.awgProjectName }}<br />
+            {{ contactMetaData.address.institution }}<br />
+            {{ contactMetaData.address.street }}<br />
+            {{ contactMetaData.address.postalCode }}&nbsp;{{ contactMetaData.address.city }}<br />
+            {{ contactMetaData.address.country }}<br /><br />
         </p>
 
         <p>
             <span class="smallcaps">Konzept:</span><br />
-            {{ pageMetaData?.awgProjectName }}<br /><br />
+            {{ pageMetaData.awgProjectName }}<br /><br />
         </p>
         <p>
             <span class="smallcaps">Texte/Inhalte:</span><br />
-            Die Verantwortung für die Inhalte der Website liegt bei der {{ pageMetaData?.awgProjectName }}. Bei
+            Die Verantwortung für die Inhalte der Website liegt bei der {{ pageMetaData.awgProjectName }}. Bei
             inhaltlichen Fragen wenden Sie sich bitte an die unter Kontakt angegebene Adresse.<br /><br />
         </p>
         <p>
             <span class="smallcaps">Materialien, Notentexte und Bilder (vgl. Lizenzierung):</span><br />
-            Digitales Archiv der {{ pageMetaData?.awgProjectName }}<br />
-            Online-Edition der {{ pageMetaData?.awgProjectName }}<br /><br />
+            Digitales Archiv der {{ pageMetaData.awgProjectName }}<br />
+            Online-Edition der {{ pageMetaData.awgProjectName }}<br /><br />
         </p>
         <p>
             <span class="smallcaps">Programmierung &amp; Webdesign:</span><br />
-            @for (developer of contactMetaData?.developers; track developer.name) {
+            @for (developer of contactMetaData.developers; track developer.name) {
                 {{ developer.name }}<awg-meta-identifier-badges [identifiers]="developer.identifiers" /><br />
             }
-            Wissenschaftlicher Mitarbeiter der {{ pageMetaData?.awgProjectName }}, Basel<br /><a
+            Wissenschaftlicher Mitarbeiter der {{ pageMetaData.awgProjectName }}, Basel<br /><a
                 href="mailto:stefan.muennich@unibas.ch"
                 >stefan.muennich [at] unibas [dot] ch</a
             ><br /><br />
@@ -99,7 +99,7 @@
         <p><span class="smallcaps">Disclaimer/Haftungserklärung:</span><br /></p>
         <p class="italic">Urheberrecht und Lizenzierung:</p>
         <p>
-            Sämtliche im Rahmen der {{ pageMetaData?.awgProjectName }} erarbeiteten und auf ihrer Website oder ihrer
+            Sämtliche im Rahmen der {{ pageMetaData.awgProjectName }} erarbeiteten und auf ihrer Website oder ihrer
             Online-Edition veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition
             der Anton Webern Gesamtausgabe aus auf der DaSCH Service Platform (DSP)/SALSAH (Projektbereich der Anton
             Webern Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern
@@ -108,35 +108,35 @@
                 >CC BY-SA-4.0</a
             >) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung
             durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die
-            {{ pageMetaData?.awgProjectName }} zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen
+            {{ pageMetaData.awgProjectName }} zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen
             Bildinhalten verbleiben bei den Privateigentümern bzw. den archivierenden Institutionen, bei denen die
             Rechte für eine allfällige Weiterverwendung einzuholen sind.
         </p>
 
         <p>
             Der Software-Code der Online-Edition wird auf
-            <a [href]="pageMetaData?.awgAppGithubUrl">GitHub</a> unter einer
+            <a [href]="pageMetaData.awgAppGithubUrl">GitHub</a> unter einer
             <a href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur Verfügung gestellt.
         </p>
 
         <p class="italic">Externe Links:</p>
         <p>
-            Die {{ pageMetaData?.awgProjectName }} hat keinen Einfluss auf und übernimmt keine Verantwortung für die
+            Die {{ pageMetaData.awgProjectName }} hat keinen Einfluss auf und übernimmt keine Verantwortung für die
             Inhalte der von ihrer Website, von ihrer Online-Edition oder von der DaSCH Service Platform (DSP)/SALSAH
-            (Projektbereich der {{ pageMetaData?.awgProjectName }}) aus verlinkten externen Internetseiten. Eine Prüfung
+            (Projektbereich der {{ pageMetaData.awgProjectName }}) aus verlinkten externen Internetseiten. Eine Prüfung
             bei der Verlinkung ergab keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben sind ohne Gewähr.
             Seitenaufrufe externer Seiten über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf der
-            Website und der Online-Edition der {{ pageMetaData?.awgProjectName }} sowie auf der DaSCH Service Platform
+            Website und der Online-Edition der {{ pageMetaData.awgProjectName }} sowie auf der DaSCH Service Platform
             (DSP)/SALSAH (Projektbereich der Anton Webern Gesamtausgabe).
         </p>
 
         <p class="italic">Haftungserklärung:</p>
         <p>
-            Die {{ pageMetaData?.awgProjectName }} bemüht sich um richtige und aktualisierte Informationen auf ihrer
+            Die {{ pageMetaData.awgProjectName }} bemüht sich um richtige und aktualisierte Informationen auf ihrer
             Website und ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der
             Vollständigkeit der auf dieser enthaltenen bzw. referenzierten Informationen. Prinzipiell erfolgen Zugang,
             Benutzung und Inanspruchnahme der Dienstleistungen der Website der
-            {{ pageMetaData?.awgProjectName }} ausschließlich auf eigenes Risiko des Nutzers. Weder die Gesamtausgabe
+            {{ pageMetaData.awgProjectName }} ausschließlich auf eigenes Risiko des Nutzers. Weder die Gesamtausgabe
             noch eine von ihr beigezogene, in Herstellung, Informationseingabe und Informationsvermittlung der Website
             involvierte Hilfsperson sind in irgendeiner Form haftbar für etwaige Schäden, die im Zusammenhang mit
             Zugang, Benutzung oder möglichen Störungen beim Gebrauch der Website auftreten könnten.
@@ -144,7 +144,7 @@
 
         <p class="italic">Google Analytics:</p>
         <p>
-            Die {{ pageMetaData?.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an
+            Die {{ pageMetaData.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an
             der Analyse und Optimierung unseres Onlineangebotes im Sinne des Art.
             <a href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f. DSGVO) Google Analytics, einen
             Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die durch das Cookie erzeugten
@@ -169,7 +169,7 @@
         </p>
 
         <p>
-            Die {{ pageMetaData?.awgProjectName }} setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das
+            Die {{ pageMetaData.awgProjectName }} setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das
             bedeutet, die IP-Adresse der Nutzer wird von Google innerhalb von Mitgliedstaaten der Europäischen Union
             oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt. Nur in
             Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.

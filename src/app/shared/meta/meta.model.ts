@@ -133,7 +133,7 @@ export interface MetaPage {
 /**
  * The MetaStructure interface.
  *
- * It defines the structure used to store the metadata the structure view.
+ * It defines the structure used to store the metadata for the structure view.
  */
 export interface MetaStructure {
     /**

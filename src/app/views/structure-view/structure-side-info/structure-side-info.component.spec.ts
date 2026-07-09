@@ -95,31 +95,12 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 expectToBe(hEl.textContent, '');
             });
 
-            it('... should not render author information yet', () => {
-                const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
-                const authorEl: HTMLAnchorElement = authorDes[0].nativeElement;
-
-                expectToBe(authorEl.href, '');
-                expectToBe(authorEl.innerHTML, '');
+            it('... should contain no author information yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 0, 0);
             });
 
-            it('... should contain one `MetaIdentifierBadgesComponent`', () => {
-                const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
-
-                getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
-            });
-
-            it('... should throw when accessing MetaIdentifierBadgesComponent inputs (`identifiers`) due to missing initial data binding', () => {
-                const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
-                const badgeDes = getAndExpectDebugElementByDirective(
-                    authorDes[0],
-                    MetaIdentifierBadgesStubComponent,
-                    1,
-                    1
-                );
-                const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
-
-                expect(() => badgeCmp.identifiers()).toThrow();
+            it('... should contain no `MetaIdentifierBadgesComponent` yet', () => {
+                getAndExpectDebugElementByDirective(compDe, MetaIdentifierBadgesStubComponent, 0, 0);
             });
 
             it('... should not render last modification date yet', () => {
@@ -145,14 +126,24 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 expectToBe(hEl.textContent, expectedStructureSideInfoHeader);
             });
 
+            it('... should contain span with author information', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
+            });
+
             it('... should render author link', () => {
                 const expectedAuthor = expectedStructureMetaData.authors[0];
 
-                const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
-                const authorEl: HTMLAnchorElement = authorDes[0].nativeElement;
+                const authorLinkDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
+                const authorLinkEl: HTMLAnchorElement = authorLinkDes[0].nativeElement;
 
-                expectToBe(authorEl.href, expectedAuthor.homepage);
-                expectToBe(authorEl.innerHTML, expectedAuthor.name);
+                expectToBe(authorLinkEl.href, expectedAuthor.homepage);
+                expectToBe(authorLinkEl.innerHTML, expectedAuthor.name);
+            });
+
+            it('... should contain one `MetaIdentifierBadgesComponent`', () => {
+                const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
+
+                getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
             });
 
             it('... should pass down correct values to MetaIdentifierBadgesComponent (`identifiers`)', () => {

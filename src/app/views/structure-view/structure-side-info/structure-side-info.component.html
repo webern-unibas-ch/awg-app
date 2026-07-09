@@ -5,10 +5,12 @@
         <p>&#9671;</p>
         <p>
             Konzept/Grafik:
-            <span class="awg-structure-info-author">
-                <a [href]="structureMetaData.authors[0].homepage">{{ structureMetaData.authors[0].name }}</a>
-                <awg-meta-identifier-badges [identifiers]="structureMetaData.authors[0].identifiers" />
-            </span>
+            @if (structureMetaData?.authors?.[0]; as author) {
+                <span class="awg-structure-info-author">
+                    <a [href]="author.homepage">{{ author.name }}</a>
+                    <awg-meta-identifier-badges [identifiers]="author.identifiers" />
+                </span>
+            }
         </p>
         <p>&#9671;</p>
         <p>
