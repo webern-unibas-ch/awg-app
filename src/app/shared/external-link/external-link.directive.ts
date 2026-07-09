@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { computed, Directive, effect, ElementRef, inject, input, PLATFORM_ID } from '@angular/core';
+import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
 
 /**
  * The external link directive.
@@ -12,6 +12,7 @@ import { computed, Directive, effect, ElementRef, inject, input, PLATFORM_ID } f
     host: {
         '[attr.href]': 'href()',
         '[attr.target]': 'isExternal() ? "_blank" : null',
+        '[attr.rel]': 'isExternal() ? "noopener noreferrer" : null',
         '[class.awg-external-link]': 'isExternal()',
     },
 })
@@ -22,8 +23,6 @@ export class ExternalLinkDirective {
      * It keeps the instance of the injected Angular PLATFORM_ID.
      */
     private readonly _platformId = inject(PLATFORM_ID);
-
-    private readonly _elementRef = inject(ElementRef);
 
     /**
      * Readonly input signal: href.
@@ -55,20 +54,4 @@ export class ExternalLinkDirective {
             return false;
         }
     });
-
-    constructor() {
-        effect(() => {
-            if (isPlatformBrowser(this._platformId)) {
-                const link = this._elementRef.nativeElement as HTMLAnchorElement;
-
-                if (this.isExternal()) {
-                    link.relList.add('noopener', 'noreferrer');
-                } else {
-                    link.relList.remove('noopener', 'noreferrer');
-                }
-
-                console.log(link.relList);
-            }
-        });
-    }
 }
