@@ -32,4 +32,4 @@ export const PERSONS_DATA: Record<string, MetaPerson> = {
             viaf: '314885087',
         },
     },
-};
+} as const;

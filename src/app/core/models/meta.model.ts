@@ -1,7 +1,7 @@
 /**
  * The MetaSectionTypes enumeration.
  *
- * It stores the possible metadata section types.
+ * It defines the available categories for metadata sections.
  */
 export enum MetaSectionTypes {
     page = 'page',
@@ -42,11 +42,11 @@ export interface MetaIdentifierBadge {
 }
 
 /**
- * The MetaIdentifiers class.
+ * The MetaIdentifiers interface.
  *
- * It is used to store authority identifiers for a person.
+ * It defines the structure of the authority identifiers for a person.
  */
-export class MetaIdentifiers {
+export interface MetaIdentifiers {
     /**
      * The GND (Gemeinsame Normdatei) identifier of a person.
      */
@@ -64,11 +64,11 @@ export class MetaIdentifiers {
 }
 
 /**
- * The MetaPerson class.
+ * The MetaPerson interface.
  *
- * It is used to store the metadata about a Person.
+ * It defines the structure used to store the metadata about a Person.
  */
-export class MetaPerson {
+export interface MetaPerson {
     /**
      * The (FOAF) name of the person.
      */
@@ -86,12 +86,11 @@ export class MetaPerson {
 }
 
 /**
- * The MetaPage class.
+ * The MetaPage interface.
  *
- * It is used in the context of the app framework
- * to store the metadata for the main framework.
+ * It defines the structure used to store the metadata for the main framework.
  */
-export class MetaPage {
+export interface MetaPage {
     /**
      * The start year for the copyright information.
      */
@@ -164,12 +163,11 @@ export class MetaPage {
 }
 
 /**
- * The MetaStructure class.
+ * The MetaStructure interface.
  *
- * It is used in the context of the structure view
- * to store the metadata about the structure overview.
+ * It defines the structure used to store the metadata the structure view.
  */
-export class MetaStructure {
+export interface MetaStructure {
     /**
      * The authors of the structure overview.
      */
@@ -182,12 +180,11 @@ export class MetaStructure {
 }
 
 /**
- * The MetaContact class.
+ * The MetaContact interface.
  *
- * It is used in the context of the contact view
- * to store the metadata about contact information.
+ * It defines the structure used to store the metadata for the contact view.
  */
-export class MetaContact {
+export interface MetaContact {
     /**
      * The developers of the app.
      */
@@ -264,12 +261,11 @@ export class MetaContact {
 }
 
 /**
- * The Meta class.
+ * The Meta interface.
  *
- * It is used in the context of the app framework
- * to store the metadata for different parts of the app.
+ * It defines the structure used to store the metadata for different parts of the app.
  */
-export class Meta {
+export interface Meta {
     /**
      * The metadata for the main app framework.
      */
