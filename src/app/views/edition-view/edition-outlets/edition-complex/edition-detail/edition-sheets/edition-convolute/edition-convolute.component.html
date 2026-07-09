@@ -25,8 +25,8 @@
                     <!-- convolute legend -->
                     <div class="awg-convolute-legend col-12">
                         Legende:&nbsp;
-                        @for (legend of folioLegends; track legend) {
-                            <span class="{{ legend.color }}">
+                        @for (legend of folioLegends; track legend.colorClass) {
+                            <span [class]="legend.colorClass">
                                 <fa-icon [icon]="faSquare" />
                                 {{ legend.label }}
                             </span>

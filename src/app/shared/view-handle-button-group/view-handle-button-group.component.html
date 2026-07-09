@@ -8,12 +8,12 @@
                     class="btn-check"
                     [id]="viewHandle.type + '-view-button'"
                     [formControl]="viewHandleControl"
-                    value="{{ viewHandle.type }}"
+                    [value]="viewHandle.type"
                     autocomplete="off" />
                 <label
                     class="btn btn-sm btn-outline-info"
                     [for]="viewHandle.type + '-view-button'"
-                    ngbTooltip="{{ viewHandle.type }} view"
+                    [ngbTooltip]="viewHandle.type + ' view'"
                     ><fa-icon [icon]="viewHandle.icon" />
                     <span class="visually-hidden">{{ viewHandle.type }} view</span>
                 </label>

@@ -25,7 +25,7 @@ import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models'
 import { EditionConvoluteComponent } from './edition-convolute.component';
 
 interface IFolioLegend {
-    color: string;
+    colorClass: string;
     label: string;
 }
 
@@ -104,15 +104,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
         expectedFolioLegends = [
             {
-                color: 'olivedrab',
+                colorClass: 'olivedrab',
                 label: 'aktuell ausgewählt',
             },
             {
-                color: 'orange',
+                colorClass: 'orange',
                 label: 'auswählbar',
             },
             {
-                color: 'grey',
+                colorClass: 'grey',
                 label: '(momentan noch) nicht auswählbar',
             },
         ];
@@ -275,7 +275,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                    expectToBe(spanEl.className, expectedFolioLegends[index].color);
+                    expectToBe(spanEl.className, expectedFolioLegends[index].colorClass);
                     expectToBe(spanEl.textContent.trim(), expectedFolioLegends[index].label);
                 });
             });

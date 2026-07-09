@@ -4,7 +4,7 @@
 
     <p id="awg-contact-address-header" class="smallcaps">
         <strong>
-            <a href="{{ page?.awgProjectUrl }}">{{ page?.awgProjectName }}</a>
+            <a [href]="page?.awgProjectUrl">{{ page?.awgProjectName }}</a>
         </strong>
     </p>
     <p class="awg-contact-address-content">
@@ -22,7 +22,7 @@
         <span id="awg-contact-address-phone">{{ contact?.phone?.label }}&nbsp;{{ contact?.phone?.number }}</span>
         <br />
         <span id="awg-contact-address-email"
-            >{{ contact?.email?.label }}&nbsp;<a href="{{ contact?.email?.mailto }}">{{
+            >{{ contact?.email?.label }}&nbsp;<a [href]="contact?.email?.mailto">{{
                 contact?.email?.safeString
             }}</a></span
         >

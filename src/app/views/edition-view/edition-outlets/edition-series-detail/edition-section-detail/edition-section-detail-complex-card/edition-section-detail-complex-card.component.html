@@ -18,7 +18,7 @@
                                     let isLast = $last
                                 ) {
                                     <span class="editor">
-                                        <a href="{{ editor.homepage }}">{{ editor.name }}</a>
+                                        <a [href]="editor.homepage">{{ editor.name }}</a>
                                         @if (!isLast) {
                                             <span>&nbsp;&&nbsp;</span>
                                         }
