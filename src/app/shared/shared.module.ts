@@ -62,6 +62,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         HeadingComponent,
         LogoComponent,
         MetaIdentifierBadgesComponent,
+        ExternalLinkDirective,
     ],
     declarations: [
         AlertErrorComponent,
@@ -78,7 +79,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         AbbrDirective,
-        ExternalLinkDirective,
         OrderByPipe,
     ],
     exports: [

@@ -130,6 +130,11 @@ export default defineConfig(
                     leadingUnderscore: 'allow',
                     trailingUnderscore: 'allow',
                 },
+                {
+                    selector: 'objectLiteralProperty',
+                    modifiers: ['requiresQuotes'],
+                    format: null,
+                },
             ],
             '@typescript-eslint/no-deprecated': 'warn',
             '@typescript-eslint/no-empty-function': 'off',
