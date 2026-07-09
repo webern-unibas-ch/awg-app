@@ -1,7 +1,7 @@
 /**
  * The Logo interface.
  *
- * It describes the structure of a single logo object.
+ * It defines the structure of a single logo object.
  */
 export interface Logo {
     /**

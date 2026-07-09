@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { ContactAddressComponent } from '../contact-address/contact-address.component';
 import { ContactMapComponent } from '../contact-map/contact-map.component';
@@ -23,13 +23,6 @@ import { ContactMapComponent } from '../contact-map/contact-map.component';
 })
 export class ContactSideInfoComponent {
     /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
      * Private readonly injection variable: _sanitizer.
      *
      * It keeps the instance of the injected Angular DomSanitizer.
@@ -44,34 +37,32 @@ export class ContactSideInfoComponent {
     readonly CONTACT_SIDE_INFO_HEADER = 'Kontakt';
 
     /**
-     * Readonly signal: contactMetaData.
+     * Readonly variable: contactMetaData.
      *
-     * It holds the contact metadata for the contact view via the injected CoreService.
+     * It keeps the contact metadata for the contact side info.
      */
-    readonly contactMetaData = signal<MetaContact>(
-        this._coreService.getMetaDataSection(MetaSectionTypes.contact)
-    ).asReadonly();
+    readonly contactMetaData = META_DATA[MetaSectionTypes.contact];
 
     /**
-     * Readonly signal: pageMetaData.
+     * Readonly variable: pageMetaData.
      *
-     * It holds the page metadata for the contact view via the injected CoreService.
+     * It holds the page metadata for the contact side info.
      */
-    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 
     /**
-     * Readonly signal: mapEmbedUrl.
+     * Readonly variable: mapEmbedUrl.
      *
-     * It holds the sanitized link to embed the map.
+     * It keeps the sanitized link to embed the map.
      */
-    readonly mapEmbedUrl = signal<SafeResourceUrl>(
-        this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL) // NOSONAR: URL is a static, trusted source
-    ).asReadonly();
+    readonly mapEmbedUrl: SafeResourceUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
+        AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL
+    ); // NOSONAR: URL is a static, trusted source
 
     /**
-     * Readonly signal: mapLinkUrl.
+     * Readonly variable: mapLinkUrl.
      *
-     * It holds the link to the external map page.
+     * It keeps the link to the external map page.
      */
-    readonly mapLinkUrl = signal<string>(AppConfig.CONTACT_MAP_LINK_URL).asReadonly();
+    readonly mapLinkUrl = AppConfig.CONTACT_MAP_LINK_URL;
 }

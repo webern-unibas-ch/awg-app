@@ -5,7 +5,7 @@ import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { Logos } from '@awg-shared/logos/logos.model';
-import { MetaPage } from '../../models/meta.model';
+import { MetaPage } from '@awg-shared/meta/meta.model';
 
 /**
  * The FooterPoweredBy component.

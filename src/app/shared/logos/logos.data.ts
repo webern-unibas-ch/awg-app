@@ -72,4 +72,4 @@ export const LOGOS_DATA: Logos = {
         alt: 'Logo VIAF',
         href: 'https://viaf.org/viaf/',
     },
-};
+} as const;

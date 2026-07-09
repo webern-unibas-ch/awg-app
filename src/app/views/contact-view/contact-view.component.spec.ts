@@ -13,11 +13,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { META_DATA } from '@awg-core/data/meta.data';
-import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
-import { MetaIdentifierBadgesComponent } from '@awg-shared/meta-identifier-badges/meta-identifier-badges.component';
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { ContactViewComponent } from './contact-view.component';
 
@@ -46,12 +45,6 @@ describe('ContactViewComponent (DONE)', () => {
     let fixture: ComponentFixture<ContactViewComponent>;
     let compDe: DebugElement;
 
-    let mockCoreService: Partial<CoreService>;
-
-    let expectedContactMetaData: MetaContact;
-    let expectedPageMetaData: MetaPage;
-    let expectedToday: number;
-
     const expectedCitationId = 'awg-citation';
     const expectedCitationTitle = 'Zitation';
     const expectedDocumentationId = 'awg-documentation';
@@ -59,16 +52,14 @@ describe('ContactViewComponent (DONE)', () => {
     const expectedImprintId = 'awg-imprint';
     const expectedImprintTitle = 'Impressum';
 
-    beforeEach(async () => {
-        // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
+    let expectedContactMetaData: MetaContact;
+    let expectedPageMetaData: MetaPage;
+    let expectedToday: number;
 
+    beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ContactViewComponent],
-            providers: [
-                { provide: LOCALE_ID, useValue: 'de-DE' },
-                { provide: CoreService, useValue: mockCoreService },
-            ],
+            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ContactViewComponent, {
                 remove: { imports: [HeadingComponent, MetaIdentifierBadgesComponent] },
@@ -102,11 +93,6 @@ describe('ContactViewComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const coreService = TestBed.inject(CoreService);
-        expectToBe(mockCoreService === coreService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
         it('... should have citation title and id', () => {
             expectToBe(component.CITATION_ID, expectedCitationId);
@@ -123,16 +109,12 @@ describe('ContactViewComponent (DONE)', () => {
             expectToBe(component.IMPRINT_TITLE, expectedImprintTitle);
         });
 
-        it('... should have signal `contactMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.contactMetaData), true);
-
-            expectToEqual(component.contactMetaData(), expectedContactMetaData);
+        it('... should have `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData, expectedContactMetaData);
         });
 
-        it('... should have signal `pageMetaData` to hold the provided data (via service)', () => {
-            expectToBe(isSignal(component.pageMetaData), true);
-
-            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
         });
 
         it('... should have signal `today` to hold the expected date', () => {
@@ -142,18 +124,23 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getContactViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+
             it('... should contain one `div.awg-contact-view`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getContactViewDes();
             });
 
             it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
+                getAndExpectDebugElementByDirective(getContactViewDes()[0], HeadingStubComponent, 3, 3);
             });
 
             it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
+                const headingDes = getAndExpectDebugElementByDirective(
+                    getContactViewDes()[0],
+                    HeadingStubComponent,
+                    3,
+                    3
+                );
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 headingCmps.forEach(headingCmp => {
@@ -162,43 +149,28 @@ describe('ContactViewComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description > p', 5, 5);
-            });
-
-            it('... should contain one `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description > p', 2, 2);
-            });
-
-            it('... should contain one `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description > p', 5, 5);
-            });
-
-            it('... should contain one `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer > p', 17, 17);
+            describe('... should contain divs with expected number of paragraphs in `div.awg-contact-view`', () => {
+                it.each([
+                    { selector: 'div.awg-citation-description', expectedParagraphs: 5 },
+                    { selector: 'div.awg-documentation-description', expectedParagraphs: 2 },
+                    { selector: 'div.awg-imprint-description', expectedParagraphs: 5 },
+                    { selector: 'div#awg-disclaimer', expectedParagraphs: 17 },
+                ])('... one $selector with $expectedParagraphs `p` elements', ({ selector, expectedParagraphs }) => {
+                    const divDes = getAndExpectDebugElementByCss(getContactViewDes()[0], selector, 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'p', expectedParagraphs, expectedParagraphs);
+                });
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
-                // Debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
                 const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                // Native elements
                 const versionEl: HTMLElement = versionDes[0].nativeElement;
                 const releaseEl: HTMLElement = releaseDes[0].nativeElement;
                 const dateEl0: HTMLElement = dateDes[0].nativeElement;
                 const dateEl1: HTMLElement = dateDes[1].nativeElement;
 
-                // Check output
                 expectToBe(versionEl.textContent, '');
                 expectToBe(releaseEl.textContent, '');
                 expectToBe(dateEl0.textContent, '');
@@ -215,9 +187,7 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down correct values to heading components (`id` and `title`)', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
-
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expectToBe(headingCmps[0].id(), expectedCitationId);
@@ -231,23 +201,19 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
-                // Debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
                 const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                // Native elements
                 const versionEl: HTMLElement = versionDes[0].nativeElement;
                 const releaseEl: HTMLElement = releaseDes[0].nativeElement;
                 const dateEl0: HTMLElement = dateDes[0].nativeElement;
                 const dateEl1: HTMLElement = dateDes[1].nativeElement;
 
-                // Pipe
                 const datePipe = new DatePipe('de-DE');
                 const pipedToday = datePipe.transform(expectedToday, 'longDate');
                 const pipedReleaseDate = datePipe.transform(expectedPageMetaData.awgAppVersionReleaseDate, 'longDate');
 
-                // Check output
                 expectToContain(versionEl.textContent, expectedPageMetaData.awgAppVersion);
                 expectToContain(releaseEl.textContent, pipedReleaseDate);
                 expectToContain(dateEl0.textContent, pipedToday);

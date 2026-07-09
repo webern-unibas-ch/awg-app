@@ -5,10 +5,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaIdentifierBadge, MetaIdentifiers } from '@awg-core/models/meta.model';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
+import { MetaIdentifiers } from '../meta.model';
 import { MetaIdentifierBadgesComponent } from './meta-identifier-badges.component';
+import { MetaIdentifierBadge } from './meta-identifier-badges.model';
 
 describe('MetaIdentifierBadgesComponent (DONE)', () => {
     let component: MetaIdentifierBadgesComponent;

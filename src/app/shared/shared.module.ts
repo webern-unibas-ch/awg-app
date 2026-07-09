@@ -22,7 +22,7 @@ import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { LicenseComponent } from './license/license.component';
 import { LogoComponent } from './logos/logo.component';
-import { MetaIdentifierBadgesComponent } from './meta-identifier-badges/meta-identifier-badges.component';
+import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';

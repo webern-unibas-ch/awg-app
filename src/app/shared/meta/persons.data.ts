@@ -1,5 +1,5 @@
 import { AppConfig } from '@awg-app/app.config';
-import { MetaPerson } from '../models/meta.model';
+import { MetaPerson } from './meta.model';
 
 /**
  * Object constant with a set of persons.
@@ -32,4 +32,4 @@ export const PERSONS_DATA: Record<string, MetaPerson> = {
             viaf: '314885087',
         },
     },
-};
+} as const;

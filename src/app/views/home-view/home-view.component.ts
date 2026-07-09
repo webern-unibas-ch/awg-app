@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { MetaPage, MetaSectionTypes } from '@awg-core/models/meta.model';
-import { CoreService } from '@awg-core/services/core-service/core.service';
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionSectionLink } from '@awg-views/edition-view/models';
@@ -12,7 +12,6 @@ import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
 import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
-import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 /**
  * The HomeView component.
@@ -28,13 +27,6 @@ import { HomeViewCard } from './home-view-card/home-view-card.model';
     imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, RouterLink],
 })
 export class HomeViewComponent {
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
     /**
      * Readonly variable: HOME_VIEW_ID.
      *
@@ -60,9 +52,23 @@ export class HomeViewComponent {
         'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
 
     /**
+     * Readonly variable: homeViewCardData.
+     *
+     * It keeps the data for the home view cards.
+     */
+    readonly homeViewCardData = HOME_VIEW_CARD_DATA;
+
+    /**
+     * Readonly variable: pageMetaData.
+     *
+     * It keeps the page metadata for the home view.
+     */
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
+
+    /**
      * Readonly signal: sectionLinksData.
      *
-     * It keeps the array of displayed edition sections as a read-only signal.
+     * It holds the array of displayed edition sections as a read-only signal.
      */
     readonly sectionLinksData = signal<EditionSectionLink[]>(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
@@ -70,20 +76,6 @@ export class HomeViewComponent {
             return new EditionSectionLink(section, index, array.length);
         })
     ).asReadonly();
-
-    /**
-     * Readonly signal: homeViewCardData.
-     *
-     * It holds the data for the home view cards.
-     */
-    readonly homeViewCardData = signal<HomeViewCard[]>(HOME_VIEW_CARD_DATA).asReadonly();
-
-    /**
-     * Readonly signal: pageMetaData.
-     *
-     * It holds the page metadata for the home view via the injected CoreService.
-     */
-    readonly pageMetaData = signal<MetaPage>(this._coreService.getMetaDataSection(MetaSectionTypes.page)).asReadonly();
 
     /**
      * Readonly signal: rowtablesRoute.

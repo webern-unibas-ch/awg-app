@@ -1,6 +1,6 @@
 import { AppConfig } from '@awg-app/app.config';
-import { Meta, MetaContact, MetaPage, MetaStructure } from '../models/meta.model';
 
+import { Meta, MetaContact, MetaPage, MetaStructure } from './meta.model';
 import { PERSONS_DATA } from './persons.data';
 
 /**
@@ -23,7 +23,7 @@ const META_PAGE: MetaPage = {
     daschUrl: AppConfig.DASCH_URL,
     deepWikiUrl: AppConfig.DEEP_WIKI_URL,
     dhlabUrl: AppConfig.DHLAB_URL,
-};
+} as const;
 
 /**
  * Object constant for edition metadata.
@@ -33,7 +33,7 @@ const META_PAGE: MetaPage = {
 const META_STRUCTURE: MetaStructure = {
     authors: [PERSONS_DATA['stefan_muennich']],
     lastModified: '2016-01-29',
-};
+} as const;
 
 /**
  * Object constant for contact metadata.
@@ -58,7 +58,7 @@ const META_CONTACT: MetaContact = {
         label: 'Telefon:',
         number: '+41 (0)61 207 28 21',
     },
-};
+} as const;
 
 /**
  * Object constant for metadata.
@@ -71,4 +71,4 @@ export const META_DATA: Meta = {
     page: META_PAGE,
     structure: META_STRUCTURE,
     contact: META_CONTACT,
-};
+} as const;

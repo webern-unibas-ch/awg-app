@@ -5,7 +5,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { PERSONS_DATA } from '@awg-core/data/persons.data';
+import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { EditionComplex, EditionComplexJsonPersonRef } from '@awg-views/edition-view/models';
 
 import { EditionComplexesService } from './edition-complexes.service';
