@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
@@ -18,7 +19,7 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, HeadingComponent, MetaIdentifierBadgesComponent],
+    imports: [DatePipe, ExternalLinkDirective, HeadingComponent, MetaIdentifierBadgesComponent],
 })
 export class ContactViewComponent {
     /**

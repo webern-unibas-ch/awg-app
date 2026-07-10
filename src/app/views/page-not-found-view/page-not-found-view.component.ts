@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AppConfig } from '@awg-app/app.config';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 /**
@@ -15,7 +16,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
     templateUrl: './page-not-found-view.component.html',
     styleUrls: ['./page-not-found-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [HeadingComponent, RouterLink, RouterLinkActive],
+    imports: [HeadingComponent, ExternalLinkDirective, RouterLink, RouterLinkActive],
 })
 export class PageNotFoundViewComponent {
     /**

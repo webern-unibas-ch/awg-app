@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 /**
@@ -13,7 +14,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [HeadingComponent],
+    imports: [ExternalLinkDirective, HeadingComponent],
 })
 export class StructureViewComponent {
     /**

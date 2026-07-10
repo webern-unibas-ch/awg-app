@@ -12,9 +12,9 @@ import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models'
  */
 interface IFolioLegend {
     /**
-     * The color of the folio legend.
+     * The color class of the folio legend.
      */
-    color: string;
+    colorClass: string;
 
     /**
      * The label of the folio legend.
@@ -84,15 +84,15 @@ export class EditionConvoluteComponent {
      */
     folioLegends: IFolioLegend[] = [
         {
-            color: 'olivedrab',
+            colorClass: 'olivedrab',
             label: 'aktuell ausgewählt',
         },
         {
-            color: 'orange',
+            colorClass: 'orange',
             label: 'auswählbar',
         },
         {
-            color: 'grey',
+            colorClass: 'grey',
             label: '(momentan noch) nicht auswählbar',
         },
     ];

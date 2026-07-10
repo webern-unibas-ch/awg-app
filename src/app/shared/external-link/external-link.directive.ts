@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
+import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
 
 /**
  * The external link directive.
@@ -9,37 +9,14 @@ import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from '@
  */
 @Directive({
     selector: 'a[href]',
-    standalone: false,
+    host: {
+        '[attr.href]': 'href()',
+        '[attr.target]': 'isExternal() ? "_blank" : null',
+        '[attr.rel]': 'resolvedRel()',
+        '[class.awg-external-link]': 'isExternal()',
+    },
 })
-export class ExternalLinkDirective implements OnChanges {
-    /**
-     * HostBinding: hrefAttr.
-     *
-     * It binds to a link's href attribute.
-     */
-    @HostBinding('attr.href') hrefAttr = '';
-
-    /**
-     * HostBinding: targetAttr.
-     *
-     * It binds to a link's target attribute.
-     */
-    @HostBinding('attr.target') targetAttr = '';
-
-    /**
-     * HostBinding: relAttr.
-     *
-     * It binds to a link's rel  attribute.
-     */
-    @HostBinding('attr.rel') relAttr = '';
-
-    /**
-     * Input variable: href.
-     *
-     * It keeps the href value of a link.
-     */
-    @Input() href: string;
-
+export class ExternalLinkDirective {
     /**
      * Private readonly injection variable: _platformId.
      *
@@ -48,28 +25,63 @@ export class ExternalLinkDirective implements OnChanges {
     private readonly _platformId = inject(PLATFORM_ID);
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Readonly input signal: href.
      *
-     * It checks for changes of the given input.
+     * It holds the href value of a link.
      */
-    ngOnChanges() {
-        this.hrefAttr = this.href;
-
-        if (this._isExternalLink()) {
-            this.targetAttr = '_blank';
-            this.relAttr = 'noopener noreferrer';
-        }
-    }
+    readonly href = input.required<string>();
 
     /**
-     * Private method: _isExternalLink.
+     * Readonly input signal: rel.
      *
-     * It detects if the app is running in the browser
-     * and if value of href attribute is included in location.hostname.
-     *
-     * @returns {boolean} Sets the _isExternalLink flag.
+     * It holds the (optional) existing rel value of a link.
+     * @default ''
      */
-    private _isExternalLink(): boolean {
-        return isPlatformBrowser(this._platformId) && !this.href.includes(location.hostname);
-    }
+    readonly rel = input<string>('');
+
+    /**
+     * Protected computed signal: isExternal.
+     *
+     * It checks if the href value is an external link.
+     *
+     * @returns {boolean} True if href is an external link, false otherwise.
+     */
+    protected isExternal = computed<boolean>(() => {
+        const url = this.href()?.trim();
+        if (!url || !isPlatformBrowser(this._platformId)) {
+            return false;
+        }
+
+        try {
+            const currentOrigin = location.origin;
+            const linkUrl = new URL(url, currentOrigin);
+            const isHttp = linkUrl.protocol === 'http:' || linkUrl.protocol === 'https:';
+
+            return isHttp && linkUrl.origin !== currentOrigin;
+        } catch {
+            return false;
+        }
+    });
+
+    /**
+     * Protected computed signal: resolvedRel.
+     *
+     * It merges existing rel inputs with security attributes ('noopener noreferrer')
+     * for external links, or returns the original rel value for internal links.
+     *
+     * @returns {string | null} The resolved rel value or null if not applicable.
+     */
+    protected resolvedRel = computed<string | null>(() => {
+        const baseRel = this.rel();
+
+        if (!this.isExternal()) {
+            return baseRel || null;
+        }
+
+        const relParts = new Set(baseRel.split(/\s+/).filter(Boolean));
+        relParts.add('noopener');
+        relParts.add('noreferrer');
+
+        return Array.from(relParts).join(' ');
+    });
 }

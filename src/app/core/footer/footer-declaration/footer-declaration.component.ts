@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { MetaPage } from '@awg-shared/meta/meta.model';
 
 /**
@@ -15,7 +16,7 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
     templateUrl: './footer-declaration.component.html',
     styleUrls: ['./footer-declaration.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, RouterLink],
+    imports: [DatePipe, ExternalLinkDirective, RouterLink],
 })
 export class FooterDeclarationComponent {
     /**

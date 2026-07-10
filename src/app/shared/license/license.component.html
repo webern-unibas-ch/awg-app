@@ -1,16 +1,12 @@
 <div class="awg-license">
     <p class="small text-center">
         Die Online-Edition der AWG ist lizenziert unter einer
-        <a class="awg-license-link" href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license"
-            >Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz
+        <a class="awg-license-link" [href]="LICENSE_LINK" rel="license"
+            >{{ LICENSE_TEXT }}
             <span class="awg-license-icon">
-                <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="License: CC icon" />
-                <img
-                    src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-                    alt="License: CC Attribution icon" />
-                <img
-                    src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
-                    alt="License: CC ShareAlike icon" /></span></a
+                @for (icon of LICENSE_ICONS; track icon.alt) {
+                    <img [src]="icon.src" [alt]="icon.alt" />
+                }</span></a
         >.
     </p>
 </div>
