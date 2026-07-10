@@ -186,6 +186,7 @@ for the home view of the app.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>FaIconComponent</code>
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
                                 <code><a href="https://angular.io/api/common/NgTemplateOutlet" target="_blank" >NgTemplateOutlet</a></code>
                                 <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
                 </td>
@@ -281,7 +282,7 @@ for the home view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:31</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -328,7 +329,7 @@ for the home view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/home-view/home-view-card/home-view-card.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -355,6 +356,8 @@ import { RouterLink } from &#x27;@angular/router&#x27;;
 import { FaIconComponent } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import { faArrowRight } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
+
 import { HomeViewCard } from &#x27;./home-view-card.model&#x27;;
 
 /**
@@ -368,7 +371,7 @@ import { HomeViewCard } from &#x27;./home-view-card.model&#x27;;
     templateUrl: &#x27;./home-view-card.component.html&#x27;,
     styleUrls: [&#x27;./home-view-card.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FaIconComponent, NgTemplateOutlet, RouterLink],
+    imports: [FaIconComponent, ExternalLinkDirective, NgTemplateOutlet, RouterLink],
 })
 export class HomeViewCardComponent {
     /**

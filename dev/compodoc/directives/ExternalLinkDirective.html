@@ -148,12 +148,6 @@ adds specific attributes if href has an external target.</p>
             </p>
 
 
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                            <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
-            </p>
 
 
         <section data-compodoc="block-metadata">
@@ -191,39 +185,17 @@ adds specific attributes if href has an external target.</p>
                                 <a href="#_platformId" >_platformId</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                <a href="#hrefAttr" >hrefAttr</a>
+                                    <span class="modifier">Protected</span>
+                                <a href="#isExternal" >isExternal</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                <a href="#relAttr" >relAttr</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#targetAttr" >targetAttr</a>
+                                    <span class="modifier">Protected</span>
+                                <a href="#resolvedRel" >resolvedRel</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_isExternalLink" >_isExternalLink</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnChanges" >ngOnChanges</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -236,31 +208,14 @@ adds specific attributes if href has an external target.</p>
                             <li>
                                 <a href="#href" >href</a>
                             </li>
+                            <li>
+                                <a href="#rel" >rel</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>HostBindings</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#attr.href" >attr.href</a>
-                            </li>
-                            <li>
-                                <a href="#attr.rel" >attr.rel</a>
-                            </li>
-                            <li>
-                                <a href="#attr.target" >attr.target</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
         </tbody>
@@ -284,15 +239,53 @@ adds specific attributes if href has an external target.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:32</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: href.</p>
-<p>It keeps the href value of a link.</p>
+                        <div class="io-description"><p>Readonly input signal: href.</p>
+<p>It holds the href value of a link.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rel"></a>
+                        <b>rel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: rel.</p>
+<p>It holds the (optional) existing rel value of a link.</p>
 </div>
                     </td>
                 </tr>
@@ -300,217 +293,9 @@ adds specific attributes if href has an external target.</p>
         </table>
 </section>
 
-            <section data-compodoc="block-properties">
-    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="attr.href"></a>
-                    <span class="name">
-                        <span ><b>attr.href</b></span>
-                        <a href="#attr.href"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:20</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: hrefAttr.</p>
-<p>It binds to a link&#39;s href attribute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="attr.rel"></a>
-                    <span class="name">
-                        <span ><b>attr.rel</b></span>
-                        <a href="#attr.rel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:34</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: relAttr.</p>
-<p>It binds to a link&#39;s rel  attribute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="attr.target"></a>
-                    <span class="name">
-                        <span ><b>attr.target</b></span>
-                        <a href="#attr.target"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:27</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: targetAttr.</p>
-<p>It binds to a link&#39;s target attribute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
 
-            <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_isExternalLink"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_isExternalLink</b></span>
-                        <a href="#_isExternalLink"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_isExternalLink()</code>
-                </td>
-            </tr>
 
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:72</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _isExternalLink.</p>
-<p>It detects if the app is running in the browser
-and if value of href attribute is included in location.hostname.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Sets the _isExternalLink flag.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnChanges"></a>
-                    <span class="name">
-                        <span ><b>ngOnChanges</b></span>
-                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnChanges()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:55</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnChanges.</p>
-<p>It checks for changes of the given input.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -542,7 +327,7 @@ and if value of href attribute is included in location.hostname.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -560,44 +345,50 @@ and if value of href attribute is included in location.hostname.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="hrefAttr"></a>
+                    <a name="isExternal"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>hrefAttr</b></span>
-                        <a href="#hrefAttr"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Protected</span>
+                        <span ><b>isExternal</b></span>
+                        <a href="#isExternal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @HostBinding(&#x27;attr.href&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>computed&lt;boolean&gt;(() &#x3D;&gt; {
+        const url &#x3D; this.href()?.trim();
+        if (!url || !isPlatformBrowser(this._platformId)) {
+            return false;
+        }
+
+        try {
+            const currentOrigin &#x3D; location.origin;
+            const linkUrl &#x3D; new URL(url, currentOrigin);
+            const isHttp &#x3D; linkUrl.protocol &#x3D;&#x3D;&#x3D; &#x27;http:&#x27; || linkUrl.protocol &#x3D;&#x3D;&#x3D; &#x27;https:&#x27;;
+
+            return isHttp &amp;&amp; linkUrl.origin !&#x3D;&#x3D; currentOrigin;
+        } catch {
+            return false;
+        }
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:49</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: hrefAttr.</p>
-<p>It binds to a link&#39;s href attribute.</p>
+                    <div class="io-description"><p>Protected computed signal: isExternal.</p>
+<p>It checks if the href value is an external link.</p>
 </div>
                 </td>
             </tr>
@@ -608,92 +399,48 @@ and if value of href attribute is included in location.hostname.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="relAttr"></a>
+                    <a name="resolvedRel"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>relAttr</b></span>
-                        <a href="#relAttr"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Protected</span>
+                        <span ><b>resolvedRel</b></span>
+                        <a href="#resolvedRel"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @HostBinding(&#x27;attr.rel&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>computed&lt;string | null&gt;(() &#x3D;&gt; {
+        const baseRel &#x3D; this.rel();
+
+        if (!this.isExternal()) {
+            return baseRel || null;
+        }
+
+        const relParts &#x3D; new Set(baseRel.split(/\s+/).filter(Boolean));
+        relParts.add(&#x27;noopener&#x27;);
+        relParts.add(&#x27;noreferrer&#x27;);
+
+        return Array.from(relParts).join(&#x27; &#x27;);
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:74</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: relAttr.</p>
-<p>It binds to a link&#39;s rel  attribute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="targetAttr"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>targetAttr</b></span>
-                        <a href="#targetAttr"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @HostBinding(&#x27;attr.target&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:27</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>HostBinding: targetAttr.</p>
-<p>It binds to a link&#39;s target attribute.</p>
+                    <div class="io-description"><p>Protected computed signal: resolvedRel.</p>
+<p>It merges existing rel inputs with security attributes (&#39;noopener noreferrer&#39;)
+for external links, or returns the original rel value for internal links.</p>
 </div>
                 </td>
             </tr>
@@ -708,7 +455,7 @@ and if value of href attribute is included in location.hostname.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { isPlatformBrowser } from &#x27;@angular/common&#x27;;
-import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from &#x27;@angular/core&#x27;;
+import { computed, Directive, inject, input, PLATFORM_ID } from &#x27;@angular/core&#x27;;
 
 /**
  * The external link directive.
@@ -718,37 +465,14 @@ import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from &#
  */
 @Directive({
     selector: &#x27;a[href]&#x27;,
-    standalone: false,
+    host: {
+        &#x27;[attr.href]&#x27;: &#x27;href()&#x27;,
+        &#x27;[attr.target]&#x27;: &#x27;isExternal() ? &quot;_blank&quot; : null&#x27;,
+        &#x27;[attr.rel]&#x27;: &#x27;resolvedRel()&#x27;,
+        &#x27;[class.awg-external-link]&#x27;: &#x27;isExternal()&#x27;,
+    },
 })
-export class ExternalLinkDirective implements OnChanges {
-    /**
-     * HostBinding: hrefAttr.
-     *
-     * It binds to a link&#x27;s href attribute.
-     */
-    @HostBinding(&#x27;attr.href&#x27;) hrefAttr &#x3D; &#x27;&#x27;;
-
-    /**
-     * HostBinding: targetAttr.
-     *
-     * It binds to a link&#x27;s target attribute.
-     */
-    @HostBinding(&#x27;attr.target&#x27;) targetAttr &#x3D; &#x27;&#x27;;
-
-    /**
-     * HostBinding: relAttr.
-     *
-     * It binds to a link&#x27;s rel  attribute.
-     */
-    @HostBinding(&#x27;attr.rel&#x27;) relAttr &#x3D; &#x27;&#x27;;
-
-    /**
-     * Input variable: href.
-     *
-     * It keeps the href value of a link.
-     */
-    @Input() href: string;
-
+export class ExternalLinkDirective {
     /**
      * Private readonly injection variable: _platformId.
      *
@@ -757,30 +481,65 @@ export class ExternalLinkDirective implements OnChanges {
     private readonly _platformId &#x3D; inject(PLATFORM_ID);
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Readonly input signal: href.
      *
-     * It checks for changes of the given input.
+     * It holds the href value of a link.
      */
-    ngOnChanges() {
-        this.hrefAttr &#x3D; this.href;
-
-        if (this._isExternalLink()) {
-            this.targetAttr &#x3D; &#x27;_blank&#x27;;
-            this.relAttr &#x3D; &#x27;noopener noreferrer&#x27;;
-        }
-    }
+    readonly href &#x3D; input.required&lt;string&gt;();
 
     /**
-     * Private method: _isExternalLink.
+     * Readonly input signal: rel.
      *
-     * It detects if the app is running in the browser
-     * and if value of href attribute is included in location.hostname.
-     *
-     * @returns {boolean} Sets the _isExternalLink flag.
+     * It holds the (optional) existing rel value of a link.
+     * @default &#x27;&#x27;
      */
-    private _isExternalLink(): boolean {
-        return isPlatformBrowser(this._platformId) &amp;&amp; !this.href.includes(location.hostname);
-    }
+    readonly rel &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+    /**
+     * Protected computed signal: isExternal.
+     *
+     * It checks if the href value is an external link.
+     *
+     * @returns {boolean} True if href is an external link, false otherwise.
+     */
+    protected isExternal &#x3D; computed&lt;boolean&gt;(() &#x3D;&gt; {
+        const url &#x3D; this.href()?.trim();
+        if (!url || !isPlatformBrowser(this._platformId)) {
+            return false;
+        }
+
+        try {
+            const currentOrigin &#x3D; location.origin;
+            const linkUrl &#x3D; new URL(url, currentOrigin);
+            const isHttp &#x3D; linkUrl.protocol &#x3D;&#x3D;&#x3D; &#x27;http:&#x27; || linkUrl.protocol &#x3D;&#x3D;&#x3D; &#x27;https:&#x27;;
+
+            return isHttp &amp;&amp; linkUrl.origin !&#x3D;&#x3D; currentOrigin;
+        } catch {
+            return false;
+        }
+    });
+
+    /**
+     * Protected computed signal: resolvedRel.
+     *
+     * It merges existing rel inputs with security attributes (&#x27;noopener noreferrer&#x27;)
+     * for external links, or returns the original rel value for internal links.
+     *
+     * @returns {string | null} The resolved rel value or null if not applicable.
+     */
+    protected resolvedRel &#x3D; computed&lt;string | null&gt;(() &#x3D;&gt; {
+        const baseRel &#x3D; this.rel();
+
+        if (!this.isExternal()) {
+            return baseRel || null;
+        }
+
+        const relParts &#x3D; new Set(baseRel.split(/\s+/).filter(Boolean));
+        relParts.add(&#x27;noopener&#x27;);
+        relParts.add(&#x27;noreferrer&#x27;);
+
+        return Array.from(relParts).join(&#x27; &#x27;);
+    });
 }
 </code></pre>
     </div>

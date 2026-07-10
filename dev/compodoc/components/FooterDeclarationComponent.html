@@ -186,6 +186,7 @@ with version number, release date and imprint.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
                                 <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
                 </td>
             </tr>
@@ -280,7 +281,7 @@ with version number, release date and imprint.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:27</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -341,7 +342,7 @@ with version number, release date and imprint.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/core/footer/footer-declaration/footer-declaration.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -365,6 +366,7 @@ with version number, release date and imprint.</p>
 import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 import { RouterLink } from &#x27;@angular/router&#x27;;
 
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { MetaPage } from &#x27;@awg-shared/meta/meta.model&#x27;;
 
 /**
@@ -378,7 +380,7 @@ import { MetaPage } from &#x27;@awg-shared/meta/meta.model&#x27;;
     templateUrl: &#x27;./footer-declaration.component.html&#x27;,
     styleUrls: [&#x27;./footer-declaration.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, RouterLink],
+    imports: [DatePipe, ExternalLinkDirective, RouterLink],
 })
 export class FooterDeclarationComponent {
     /**

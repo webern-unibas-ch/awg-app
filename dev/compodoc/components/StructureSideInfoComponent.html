@@ -186,6 +186,7 @@ showing author and last modification date information.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
                                 <code><a href="../components/MetaIdentifierBadgesComponent.html" target="_self" >MetaIdentifierBadgesComponent</a></code>
                 </td>
             </tr>
@@ -282,7 +283,7 @@ showing author and last modification date information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/structure-view/structure-side-info/structure-side-info.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/structure-view/structure-side-info/structure-side-info.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -321,7 +322,7 @@ showing author and last modification date information.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/structure-view/structure-side-info/structure-side-info.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/structure-view/structure-side-info/structure-side-info.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -344,6 +345,7 @@ showing author and last modification date information.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { MetaIdentifierBadgesComponent } from &#x27;@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component&#x27;;
 import { META_DATA } from &#x27;@awg-shared/meta/meta.data&#x27;;
 import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
@@ -359,7 +361,7 @@ import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
     templateUrl: &#x27;./structure-side-info.component.html&#x27;,
     styleUrls: [&#x27;./structure-side-info.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, MetaIdentifierBadgesComponent],
+    imports: [DatePipe, ExternalLinkDirective, MetaIdentifierBadgesComponent],
 })
 export class StructureSideInfoComponent {
     /**

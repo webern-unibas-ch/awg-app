@@ -186,6 +186,7 @@ with redirects to the AWG contact pages.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="../components/HeadingComponent.html" target="_self" >HeadingComponent</a></code>
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
                                 <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
                                 <code><a href="https://angular.io/api/router/RouterLinkActive" target="_blank" >RouterLinkActive</a></code>
                 </td>
@@ -295,7 +296,7 @@ with redirects to the AWG contact pages.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -334,7 +335,7 @@ with redirects to the AWG contact pages.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -374,7 +375,7 @@ of the page not found view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -413,7 +414,7 @@ of the page not found view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -452,7 +453,7 @@ of the page not found view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/page-not-found-view/page-not-found-view.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -477,6 +478,7 @@ of the page not found view.</p>
 import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
 
 import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x27;;
 
 /**
@@ -490,7 +492,7 @@ import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x2
     templateUrl: &#x27;./page-not-found-view.component.html&#x27;,
     styleUrls: [&#x27;./page-not-found-view.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [HeadingComponent, RouterLink, RouterLinkActive],
+    imports: [HeadingComponent, ExternalLinkDirective, RouterLink, RouterLinkActive],
 })
 export class PageNotFoundViewComponent {
     /**

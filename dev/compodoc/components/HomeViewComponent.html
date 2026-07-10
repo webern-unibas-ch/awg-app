@@ -186,6 +186,7 @@ with the landing page.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="../components/AlertInfoComponent.html" target="_self" >AlertInfoComponent</a></code>
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
                                 <code><a href="../components/HeadingComponent.html" target="_self" >HeadingComponent</a></code>
                                 <code><a href="../components/HomeViewCardComponent.html" target="_self" >HomeViewCardComponent</a></code>
                                 <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
@@ -304,7 +305,7 @@ with the landing page.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/home-view/home-view.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/home-view/home-view.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -343,7 +344,7 @@ with the landing page.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/home-view/home-view.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/home-view/home-view.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -383,7 +384,7 @@ of the home view section.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/home-view/home-view.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/home-view/home-view.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -423,7 +424,7 @@ of the home view section.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/views/home-view/home-view.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/home-view/home-view.component.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -462,7 +463,7 @@ of the home view section.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/home-view/home-view.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/home-view/home-view.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +505,7 @@ of the home view section.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/home-view/home-view.component.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/views/home-view/home-view.component.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -548,7 +549,7 @@ of the home view section.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/home-view/home-view.component.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/home-view/home-view.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -572,9 +573,11 @@ of the home view section.</p>
 import { RouterLink } from &#x27;@angular/router&#x27;;
 
 import { AlertInfoComponent } from &#x27;@awg-shared/alert-info/alert-info.component&#x27;;
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x27;;
 import { META_DATA } from &#x27;@awg-shared/meta/meta.data&#x27;;
 import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
+
 import { ACTIVE_EDITION_SECTION_IDS } from &#x27;@awg-views/edition-view/data/active-edition-sections.data&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionSectionLink } from &#x27;@awg-views/edition-view/models&#x27;;
@@ -594,7 +597,7 @@ import { HOME_VIEW_CARD_DATA } from &#x27;./home-view-card/home-view-card.data&#
     templateUrl: &#x27;./home-view.component.html&#x27;,
     styleUrls: [&#x27;./home-view.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, RouterLink],
+    imports: [AlertInfoComponent, ExternalLinkDirective, HeadingComponent, HomeViewCardComponent, RouterLink],
 })
 export class HomeViewComponent {
     /**

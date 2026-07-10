@@ -169,9 +169,9 @@ of an edition convolute folio.</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#color" 
+                                        <a href="#colorClass" 
 >
-                                            color
+                                            colorClass
                                         </a>
                                 </li>
                                 <li>
@@ -195,9 +195,9 @@ of an edition convolute folio.</p>
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="color"></a>
-                                        <span class="name "><b>color</b>
-                                            <a href="#color">
+                                        <a name="colorClass"></a>
+                                        <span class="name "><b>colorClass</b>
+                                            <a href="#colorClass">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -205,7 +205,7 @@ of an edition convolute folio.</p>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>color:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>colorClass:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -224,7 +224,7 @@ of an edition convolute folio.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The color of the folio legend.</p>
+                                    <div class="io-description"><p>The color class of the folio legend.</p>
 </div>
                                 </td>
                             </tr>
@@ -288,9 +288,9 @@ import { EditionSvgSheet, FolioConvolute } from &#x27;@awg-views/edition-view/mo
  */
 interface IFolioLegend {
     /**
-     * The color of the folio legend.
+     * The color class of the folio legend.
      */
-    color: string;
+    colorClass: string;
 
     /**
      * The label of the folio legend.
@@ -360,15 +360,15 @@ export class EditionConvoluteComponent {
      */
     folioLegends: IFolioLegend[] &#x3D; [
         {
-            color: &#x27;olivedrab&#x27;,
+            colorClass: &#x27;olivedrab&#x27;,
             label: &#x27;aktuell ausgewählt&#x27;,
         },
         {
-            color: &#x27;orange&#x27;,
+            colorClass: &#x27;orange&#x27;,
             label: &#x27;auswählbar&#x27;,
         },
         {
-            color: &#x27;grey&#x27;,
+            colorClass: &#x27;grey&#x27;,
             label: &#x27;(momentan noch) nicht auswählbar&#x27;,
         },
     ];

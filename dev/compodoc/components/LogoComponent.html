@@ -177,6 +177,12 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../directives/ExternalLinkDirective.html" target="_self" >ExternalLinkDirective</a></code>
+                </td>
+            </tr>
 
 
 
@@ -271,7 +277,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/logos/logo.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/logos/logo.component.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -304,7 +310,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/logos/logo.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/logos/logo.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -366,7 +372,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/shared/logos/logo.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/logos/logo.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -388,6 +394,8 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 
+import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
+
 import { LOGOS_DATA } from &#x27;./logos.data&#x27;;
 import { Logo } from &#x27;./logos.model&#x27;;
 
@@ -401,6 +409,7 @@ import { Logo } from &#x27;./logos.model&#x27;;
     templateUrl: &#x27;./logo.component.html&#x27;,
     styleUrl: &#x27;./logo.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ExternalLinkDirective],
 })
 export class LogoComponent {
     /**
