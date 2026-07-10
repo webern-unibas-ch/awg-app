@@ -31,9 +31,15 @@ describe('LicenseComponent', () => {
         expectedLicenseText =
             'Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz';
         expectedLicenseIcons = [
-            { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'CC' },
-            { src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg', alt: 'BY' },
-            { src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg', alt: 'SA' },
+            { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'Creative Commons icon' },
+            {
+                src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg',
+                alt: 'Creative Commons Attribution icon',
+            },
+            {
+                src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg',
+                alt: 'Creative Commons ShareAlike icon',
+            },
         ];
 
         // Create component fixture
@@ -99,7 +105,7 @@ describe('LicenseComponent', () => {
                 getAndExpectDebugElementByCss(aDes[0], 'span.awg-license-icon', 1, 1);
             });
 
-            it('... should contain no img elements in icon pan yet', () => {
+            it('... should contain no img elements in icon span yet', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-license-icon', 1, 1);
                 getAndExpectDebugElementByCss(spanDes[0], 'img', 0, 0);
             });

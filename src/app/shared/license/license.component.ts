@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ExternalLinkDirective } from '../external-link/external-link.directive';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 
 /**
  * The License component.
@@ -36,8 +36,8 @@ export class LicenseComponent {
      * It contains the icons of the license.
      */
     readonly LICENSE_ICONS = [
-        { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'CC' },
-        { src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg', alt: 'BY' },
-        { src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg', alt: 'SA' },
+        { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'Creative Commons icon' },
+        { src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg', alt: 'Creative Commons Attribution icon' },
+        { src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg', alt: 'Creative Commons ShareAlike icon' },
     ];
 }
