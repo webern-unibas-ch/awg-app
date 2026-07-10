@@ -55,9 +55,8 @@ export class ContactSideInfoComponent {
      *
      * It keeps the sanitized link to embed the map.
      */
-    readonly mapEmbedUrl: SafeResourceUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL
-    ); // NOSONAR: URL is a static, trusted source
+    // Prettier-ignore
+    readonly mapEmbedUrl: SafeResourceUrl = this._sanitizer.bypassSecurityTrustResourceUrl( AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL); // NOSONAR: URL is a static, trusted source
 
     /**
      * Readonly variable: mapLinkUrl.
