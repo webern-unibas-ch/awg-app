@@ -39,6 +39,15 @@ import { ExternalLinkDirective } from './external-link.directive';
         <a [href]="'mailto:test@example.com'">Mailto Link</a>
 
         <br /><br />
+        <a [href]="'https://coryrylan.com/blog/'" rel="nofollow">External Link with static rel</a>
+
+        <br /><br />
+        <a [href]="'https://coryrylan.com/blog/'" rel="noopener nofollow">External Link with duplicate rel</a>
+
+        <br /><br />
+        <a [href]="'/about'" rel="help">Internal Link with static rel</a>,
+
+        <br /><br />
         <a (click)="doSomething()" (keyup.enter)="doSomething()" role="link" tabindex="0">Link without href</a>`,
     imports: [ExternalLinkDirective],
 })
@@ -57,7 +66,7 @@ describe('ExternalLinkDirective (DONE)', () => {
     let fixture: ComponentFixture<TestExternalLinkComponent>;
     let compDe: DebugElement;
 
-    const expectedHrefCount = 7;
+    const expectedHrefCount = 10;
     const expectedExternalLink = 'https://coryrylan.com/blog/managing-external-links-safely-in-angular';
     const expectedNewExternalLink = 'https://anton-webern.ch/';
     const expectedBaseURI = `${location.origin}/`;
@@ -107,14 +116,51 @@ describe('ExternalLinkDirective (DONE)', () => {
                 href: evilDomain,
             },
         ])('... $label', ({ index, label, href }) => {
-            const aDes = getAnchorDes();
-            const aEl = aDes[index].nativeElement as HTMLAnchorElement;
+            const anchorDes = getAnchorDes();
+            const anchorEl = anchorDes[index].nativeElement as HTMLAnchorElement;
 
-            expectToBe(aEl.textContent?.trim(), label);
-            expectToBe(aEl.href, href);
-            expectToBe(aEl.target, expectedTargetAttr);
-            expectToBe(aEl.rel, expectedRelAttr);
-            expectToContain(aEl.classList, expectedClassAttr);
+            expectToBe(anchorEl.textContent?.trim(), label);
+            expectToBe(anchorEl.href, href);
+            expectToBe(anchorEl.target, expectedTargetAttr);
+            expectToBe(anchorEl.rel, expectedRelAttr);
+            expectToContain(anchorEl.classList, expectedClassAttr);
+        });
+    });
+
+    describe('... should correctly handle existing rel attributes', () => {
+        it('... should merge existing rel attributes for external links', () => {
+            const anchorDes = getAnchorDes();
+            const anchorWithRelEl = anchorDes[7].nativeElement as HTMLAnchorElement;
+
+            expectToBe(anchorWithRelEl.target, expectedTargetAttr);
+            expectToContain(anchorWithRelEl.rel, 'nofollow');
+            expectToContain(anchorWithRelEl.rel, 'noopener');
+            expectToContain(anchorWithRelEl.rel, 'noreferrer');
+        });
+
+        it('... should avoid duplicates for external links', () => {
+            const anchorDes = getAnchorDes();
+            const anchorWithDuplicateRelEl = anchorDes[8].nativeElement as HTMLAnchorElement;
+
+            const relParts = anchorWithDuplicateRelEl.rel.split(/\s+/);
+            const noopenerCount = relParts.filter(p => p === 'noopener').length;
+
+            expectToBe(anchorWithDuplicateRelEl.target, expectedTargetAttr);
+            expectToContain(anchorWithDuplicateRelEl.rel, 'nofollow');
+            expectToContain(anchorWithDuplicateRelEl.rel, 'noopener');
+            expectToContain(anchorWithDuplicateRelEl.rel, 'noreferrer');
+            expectToBe(noopenerCount, 1);
+        });
+
+        it('... should keep existing rel attributes untouched for internal links', () => {
+            const anchorDes = getAnchorDes();
+            const anchorWithRelEl = anchorDes[9].nativeElement as HTMLAnchorElement;
+
+            expectToBe(anchorWithRelEl.target, '');
+            expectToBe(anchorWithRelEl.rel, 'help');
+            expectToNotContain(anchorWithRelEl.rel, 'noopener');
+            expectToNotContain(anchorWithRelEl.rel, 'noreferrer');
+            expectToNotContain(anchorWithRelEl.classList, expectedClassAttr);
         });
     });
 
@@ -123,14 +169,14 @@ describe('ExternalLinkDirective (DONE)', () => {
 
         await detectChangesOnPush(fixture);
 
-        const aDes = getAnchorDes();
-        const aEl: HTMLAnchorElement = aDes[1].nativeElement;
+        const anchorDes = getAnchorDes();
+        const anchorEl: HTMLAnchorElement = anchorDes[1].nativeElement;
 
-        expectToBe(aEl.textContent, 'Dynamic External Link');
-        expectToBe(aEl.href, expectedNewExternalLink);
-        expectToBe(aEl.rel, expectedRelAttr);
-        expectToBe(aEl.target, expectedTargetAttr);
-        expectToContain(aEl.classList, expectedClassAttr);
+        expectToBe(anchorEl.textContent, 'Dynamic External Link');
+        expectToBe(anchorEl.href, expectedNewExternalLink);
+        expectToBe(anchorEl.rel, expectedRelAttr);
+        expectToBe(anchorEl.target, expectedTargetAttr);
+        expectToContain(anchorEl.classList, expectedClassAttr);
     });
 
     it('... should detect anchor elements without href attributes', () => {
@@ -144,25 +190,25 @@ describe('ExternalLinkDirective (DONE)', () => {
             { index: 5, label: 'Relative URL Link', href: expectedBaseURI + 'about' },
             { index: 6, label: 'Mailto Link', href: 'mailto:test@example.com' },
         ])('... for $label', ({ index, label, href }) => {
-            const aDes = getAnchorDes();
-            const aEl = aDes[index].nativeElement as HTMLAnchorElement;
+            const anchorDes = getAnchorDes();
+            const anchorEl = anchorDes[index].nativeElement as HTMLAnchorElement;
 
-            expectToBe(aEl.textContent?.trim(), label);
-            expectToBe(aEl.href, href);
-            expectToBe(aEl.target, '');
-            expectToBe(aEl.rel, '');
-            expectToNotContain(aEl.classList, expectedClassAttr);
+            expectToBe(anchorEl.textContent?.trim(), label);
+            expectToBe(anchorEl.href, href);
+            expectToBe(anchorEl.target, '');
+            expectToBe(anchorEl.rel, '');
+            expectToNotContain(anchorEl.classList, expectedClassAttr);
         });
 
         it('... for bare anchors (without href)', () => {
-            const bareADes = getAndExpectDebugElementByCss(compDe, 'a:not([href])', 1, 1);
-            const bareAEl: HTMLAnchorElement = bareADes[0].nativeElement;
+            const bareAnchorDes = getAndExpectDebugElementByCss(compDe, 'a:not([href])', 1, 1);
+            const bareAnchorEl: HTMLAnchorElement = bareAnchorDes[0].nativeElement;
 
-            expectToBe(bareAEl.textContent?.trim(), 'Link without href');
-            expectToBe(bareAEl.href, '');
-            expectToBe(bareAEl.target, '');
-            expectToBe(bareAEl.rel, '');
-            expectToNotContain(bareAEl.classList, expectedClassAttr);
+            expectToBe(bareAnchorEl.textContent?.trim(), 'Link without href');
+            expectToBe(bareAnchorEl.href, '');
+            expectToBe(bareAnchorEl.target, '');
+            expectToBe(bareAnchorEl.rel, '');
+            expectToNotContain(bareAnchorEl.classList, expectedClassAttr);
         });
 
         it('... if href is an empty string', async () => {
@@ -170,12 +216,12 @@ describe('ExternalLinkDirective (DONE)', () => {
 
             await detectChangesOnPush(fixture);
 
-            const aDes = getAnchorDes();
-            const aEl = aDes[1].nativeElement as HTMLAnchorElement;
+            const anchorDes = getAnchorDes();
+            const anchorEl = anchorDes[1].nativeElement as HTMLAnchorElement;
 
-            expectToBe(aEl.target, '');
-            expectToBe(aEl.rel, '');
-            expectToNotContain(aEl.classList, expectedClassAttr);
+            expectToBe(anchorEl.target, '');
+            expectToBe(anchorEl.rel, '');
+            expectToNotContain(anchorEl.classList, expectedClassAttr);
         });
 
         it('... if href is a malformed URL (catch error)', async () => {
@@ -183,12 +229,12 @@ describe('ExternalLinkDirective (DONE)', () => {
 
             await detectChangesOnPush(fixture);
 
-            const aDes = getAnchorDes();
-            const aEl = aDes[1].nativeElement as HTMLAnchorElement;
+            const anchorDes = getAnchorDes();
+            const anchorEl = anchorDes[1].nativeElement as HTMLAnchorElement;
 
-            expectToBe(aEl.target, '');
-            expectToBe(aEl.rel, '');
-            expectToNotContain(aEl.classList, expectedClassAttr);
+            expectToBe(anchorEl.target, '');
+            expectToBe(anchorEl.rel, '');
+            expectToNotContain(anchorEl.classList, expectedClassAttr);
         });
 
         it('... if running on the server (SSR)', () => {
@@ -203,17 +249,17 @@ describe('ExternalLinkDirective (DONE)', () => {
 
             ssrFixture.detectChanges();
 
-            const ssrADes = getAndExpectDebugElementByDirective(
+            const ssrAnchorDes = getAndExpectDebugElementByDirective(
                 ssrCompDe,
                 ExternalLinkDirective,
                 expectedHrefCount,
                 expectedHrefCount
             );
-            const ssrAEl = ssrADes[0].nativeElement as HTMLAnchorElement;
+            const ssrAnchorEl = ssrAnchorDes[0].nativeElement as HTMLAnchorElement;
 
-            expectToBe(ssrAEl.target, '');
-            expectToBe(ssrAEl.rel, '');
-            expectToNotContain(ssrAEl.classList, expectedClassAttr);
+            expectToBe(ssrAnchorEl.target, '');
+            expectToBe(ssrAnchorEl.rel, '');
+            expectToNotContain(ssrAnchorEl.classList, expectedClassAttr);
         });
     });
 });

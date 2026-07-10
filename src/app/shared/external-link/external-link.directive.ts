@@ -12,7 +12,7 @@ import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
     host: {
         '[attr.href]': 'href()',
         '[attr.target]': 'isExternal() ? "_blank" : null',
-        '[attr.rel]': 'isExternal() ? "noopener noreferrer" : null',
+        '[attr.rel]': 'resolvedRel()',
         '[class.awg-external-link]': 'isExternal()',
     },
 })
@@ -30,6 +30,14 @@ export class ExternalLinkDirective {
      * It holds the href value of a link.
      */
     readonly href = input.required<string>();
+
+    /**
+     * Readonly input signal: rel.
+     *
+     * It holds the (optional) existing rel value of a link.
+     * @default ''
+     */
+    readonly rel = input<string>('');
 
     /**
      * Protected computed signal: isExternal.
@@ -53,5 +61,27 @@ export class ExternalLinkDirective {
         } catch {
             return false;
         }
+    });
+
+    /**
+     * Protected computed signal: resolvedRel.
+     *
+     * It merges existing rel inputs with security attributes ('noopener noreferrer')
+     * for external links, or returns the original rel value for internal links.
+     *
+     * @returns {string | null} The resolved rel value or null if not applicable.
+     */
+    protected resolvedRel = computed<string | null>(() => {
+        const baseRel = this.rel();
+
+        if (!this.isExternal()) {
+            return baseRel || null;
+        }
+
+        const relParts = new Set(baseRel.split(/\s+/).filter(Boolean));
+        relParts.add('noopener');
+        relParts.add('noreferrer');
+
+        return Array.from(relParts).join(' ');
     });
 }
