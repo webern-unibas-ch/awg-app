@@ -100,7 +100,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should contain one button.awg-scroll-to-top if isScrolled is true', () => {
+                it('... should contain one button.awg-scroll-to-top', () => {
                     getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 1, 1);
                 });
 

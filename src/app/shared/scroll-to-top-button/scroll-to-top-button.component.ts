@@ -27,7 +27,7 @@ export class ScrollToTopButtonComponent {
     private readonly _document = inject(DOCUMENT);
 
     /**
-     * Readonly signal: isScrolled.
+     * Readonly signal: showScrollButton.
      *
      * It holds the visibility state of the scroll-to-top button.
      */
