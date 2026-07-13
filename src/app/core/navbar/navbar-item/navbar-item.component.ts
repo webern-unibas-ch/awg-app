@@ -16,7 +16,7 @@ import { NavbarItem } from '../navbar.model';
     templateUrl: './navbar-item.component.html',
     styleUrl: './navbar-item.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgbDropdownToggle, RouterLink, RouterLinkActive, FaIconComponent],
+    imports: [FaIconComponent, NgbDropdownToggle, RouterLink, RouterLinkActive],
 })
 export class NavbarItemComponent {
     /**

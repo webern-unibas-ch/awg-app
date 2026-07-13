@@ -41,11 +41,10 @@ class EditionJumbotronStubComponent {
 }
 
 @Component({
-    selector: 'awg-scroll-to-top',
+    selector: 'awg-scroll-to-top-button',
     template: '',
-    standalone: false,
 })
-class ScrollToTopStubComponent {}
+class ScrollToTopButtonStubComponent {}
 
 @Component({
     selector: 'awg-meta-identifier-badges',
@@ -117,9 +116,8 @@ describe('EditionViewComponent (DONE)', () => {
                 MetaIdentifierBadgesStubComponent,
                 RouterOutletStubComponent,
                 RouterLinkStubDirective,
-                ScrollToTopStubComponent,
             ],
-            imports: [DatePipe],
+            imports: [DatePipe, ScrollToTopButtonStubComponent],
             providers: [
                 { provide: LOCALE_ID, useValue: 'de-DE' },
                 { provide: EditionStateService, useValue: mockEditionStateService },
@@ -214,7 +212,7 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-edition-view`', () => {
-                getAndExpectDebugElementByDirective(getEditionViewDes()[0], ScrollToTopStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getEditionViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
             });
 
             describe('... should contain no sub-components yet', () => {

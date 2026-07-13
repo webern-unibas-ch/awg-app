@@ -17,6 +17,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { ContactViewComponent } from './contact-view.component';
 
@@ -40,6 +41,12 @@ class MetaIdentifierBadgesStubComponent {
     identifiers = input.required<MetaIdentifiers>();
 }
 
+@Component({
+    selector: 'awg-scroll-to-top-button',
+    template: '',
+})
+class ScrollToTopButtonStubComponent {}
+
 describe('ContactViewComponent (DONE)', () => {
     let component: ContactViewComponent;
     let fixture: ComponentFixture<ContactViewComponent>;
@@ -62,8 +69,10 @@ describe('ContactViewComponent (DONE)', () => {
             providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ContactViewComponent, {
-                remove: { imports: [HeadingComponent, MetaIdentifierBadgesComponent] },
-                add: { imports: [HeadingStubComponent, MetaIdentifierBadgesStubComponent] },
+                remove: { imports: [HeadingComponent, MetaIdentifierBadgesComponent, ScrollToTopButtonComponent] },
+                add: {
+                    imports: [HeadingStubComponent, MetaIdentifierBadgesStubComponent, ScrollToTopButtonStubComponent],
+                },
             })
             .compileComponents();
     });
@@ -128,6 +137,10 @@ describe('ContactViewComponent (DONE)', () => {
 
             it('... should contain one `div.awg-contact-view`', () => {
                 getContactViewDes();
+            });
+
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-contact-view`', () => {
+                getAndExpectDebugElementByDirective(getContactViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
             });
 
             it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {

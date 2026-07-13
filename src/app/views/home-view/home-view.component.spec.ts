@@ -16,6 +16,7 @@ import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component'
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
@@ -52,6 +53,12 @@ class HeadingStubComponent {
 class HomeViewCardStubComponent {
     cardData = input.required<HomeViewCard>();
 }
+
+@Component({
+    selector: 'awg-scroll-to-top-button',
+    template: '',
+})
+class ScrollToTopButtonStubComponent {}
 
 /** Helper function */
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
@@ -97,8 +104,17 @@ describe('HomeViewComponent (DONE)', () => {
             providers: [provideRouter([])],
         })
             .overrideComponent(HomeViewComponent, {
-                remove: { imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent] },
-                add: { imports: [AlertInfoStubComponent, HeadingStubComponent, HomeViewCardStubComponent] },
+                remove: {
+                    imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, ScrollToTopButtonComponent],
+                },
+                add: {
+                    imports: [
+                        AlertInfoStubComponent,
+                        HeadingStubComponent,
+                        HomeViewCardStubComponent,
+                        ScrollToTopButtonStubComponent,
+                    ],
+                },
             })
             .compileComponents();
     });
@@ -178,18 +194,24 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getHomeViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+            const getHomeViewContentDes = () =>
+                getAndExpectDebugElementByCss(getHomeViewDes()[0], 'div.awg-home-view-content', 1, 1);
+
             it('... should contain one `div.awg-home-view`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getHomeViewDes();
+            });
+
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-home-view`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
             });
 
             it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(() => headingCmp.title()).toThrow();
@@ -197,26 +219,27 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
+                getHomeViewContentDes();
             });
 
             it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoStubComponent, 1, 1);
             });
 
             it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(
+                    getHomeViewContentDes()[0],
+                    AlertInfoStubComponent,
+                    1,
+                    1
+                );
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
                 expect(() => alertInfoCmp.infoMessage()).toThrow();
             });
 
             it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+                getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-grid', 1, 1);
             });
 
             it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
@@ -225,54 +248,23 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
+                getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-text', 1, 1);
             });
 
-            describe('... should not render links in `div.awg-home-view-text` yet for ...', () => {
-                it('... DSP', () => {
+            describe('... should not render links in `div.awg-home-view-text` yet for', () => {
+                it.each([
+                    { name: 'DSP', id: 'a#dsp-link' },
+                    { name: 'DaSCH', id: 'a#dasch-link' },
+                    { name: 'DaSCH mission', id: 'a#dasch-mission-link' },
+                    { name: 'GitHub', id: 'a#github-link' },
+                    { name: 'Zenodo', id: 'a#zenodo-link' },
+                ])('... $name', ({ id }) => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
-                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
+                    const linkDes = getAndExpectDebugElementByCss(divDes[0], id, 1, 1);
+                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
 
-                    expect(dspEl).toBeDefined();
-                    expectToBe(dspEl.href, '');
-                });
-
-                it('... DaSCH', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
-                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
-
-                    expect(daschEl).toBeDefined();
-                    expectToBe(daschEl.href, '');
-                });
-
-                it('... DaSCH mission', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
-
-                    expect(daschMissionEl).toBeDefined();
-                    expectToBe(daschMissionEl.href, '');
-                });
-
-                it('... GitHub', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
-                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
-
-                    expect(githubEl).toBeDefined();
-                    expectToBe(githubEl.href, '');
-                });
-
-                it('... Zenodo', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
-                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
-
-                    expect(zenodoEl).toBeDefined();
-                    expectToBe(zenodoEl.href, '');
+                    expect(linkEl).toBeDefined();
+                    expectToBe(linkEl.href, '');
                 });
             });
         });
@@ -285,13 +277,18 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getHomeViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+            const getHomeViewContentDes = () =>
+                getAndExpectDebugElementByCss(getHomeViewDes()[0], 'div.awg-home-view-content', 1, 1);
+            const getHomeViewGridDes = () =>
+                getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-grid', 1, 1);
+
             it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should pass down correct values to heading component (`id` and `title`)', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expectToBe(headingCmp.id(), expectedHomeViewId);
@@ -299,33 +296,32 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
+                getHomeViewContentDes();
             });
 
             it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoStubComponent, 1, 1);
             });
 
             it('... should pass down correct values to AlertInfoComponent (`infoMessage `)', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(
+                    getHomeViewContentDes()[0],
+                    AlertInfoStubComponent,
+                    1,
+                    1
+                );
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
                 expectToBe(alertInfoCmp.infoMessage(), expectedDisclaimerMessage);
             });
 
             it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+                getHomeViewGridDes();
             });
 
             it('... should contain as many `div.col` in `div.awg-home-view-grid` as entries in `homeViewCardData`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
-
                 getAndExpectDebugElementByCss(
-                    divDes[0],
+                    getHomeViewGridDes()[0],
                     'div.col',
                     expectedHomeViewCardData.length,
                     expectedHomeViewCardData.length
@@ -334,8 +330,8 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
                 const colDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-home-view-grid > div.col',
+                    getHomeViewGridDes()[0],
+                    'div.col',
                     expectedHomeViewCardData.length,
                     expectedHomeViewCardData.length
                 );
@@ -347,8 +343,8 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... should pass down `cardData` to HomeViewCardComponents', () => {
                 const colDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-home-view-grid > div.col',
+                    getHomeViewGridDes()[0],
+                    'div.col',
                     expectedHomeViewCardData.length,
                     expectedHomeViewCardData.length
                 );
@@ -362,63 +358,49 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
+                getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-text', 1, 1);
             });
 
             describe('... should render links to', () => {
-                it('... DSP', () => {
+                it.each([
+                    {
+                        name: 'DSP',
+                        id: 'a#dsp-link',
+                        url: () => expectedPageMetaData.daschUrl + 'services/data-deposit/dsp',
+                        text: 'DaSCH Service Platform (DSP)',
+                    },
+                    {
+                        name: 'DaSCH',
+                        id: 'a#dasch-link',
+                        url: () => expectedPageMetaData.daschUrl,
+                        text: 'Swiss National Data & Service Center for the Humanities (DaSCH)',
+                    },
+                    {
+                        name: 'DaSCH mission',
+                        id: 'a#dasch-mission-link',
+                        url: () => expectedPageMetaData.daschUrl + 'about-us/mission',
+                        text: 'Mission Statement DaSCH',
+                    },
+                    {
+                        name: 'GitHub',
+                        id: 'a#github-link',
+                        url: () => expectedPageMetaData.awgAppGithubUrl,
+                        text: 'GitHub',
+                    },
+                    {
+                        name: 'Zenodo',
+                        id: 'a#zenodo-link',
+                        url: () => expectedPageMetaData.awgAppZenodoUrl,
+                        text: 'Zenodo',
+                    },
+                ])('... $name', ({ id, url, text }) => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
-                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
+                    const linkDes = getAndExpectDebugElementByCss(divDes[0], id, 1, 1);
+                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
 
-                    const dspRoute = 'services/data-deposit/dsp';
-
-                    expect(dspEl).toBeDefined();
-                    expectToBe(dspEl.href, expectedPageMetaData.daschUrl + dspRoute);
-                    expectToBe(dspEl.textContent, 'DaSCH Service Platform (DSP)');
-                });
-
-                it('... DaSCH', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
-                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
-
-                    expect(daschEl).toBeDefined();
-                    expectToBe(daschEl.href, expectedPageMetaData.daschUrl);
-                    expectToBe(daschEl.textContent, 'Swiss National Data & Service Center for the Humanities (DaSCH)');
-                });
-
-                it('... DaSCH mission', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
-
-                    const missionRoute = 'about-us/mission';
-
-                    expect(daschMissionEl).toBeDefined();
-                    expectToBe(daschMissionEl.href, expectedPageMetaData.daschUrl + missionRoute);
-                    expectToBe(daschMissionEl.textContent, 'Mission Statement DaSCH');
-                });
-
-                it('... GitHub', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
-                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
-
-                    expect(githubEl).toBeDefined();
-                    expectToBe(githubEl.href, expectedPageMetaData.awgAppGithubUrl);
-                    expectToBe(githubEl.textContent, 'GitHub');
-                });
-
-                it('... Zenodo', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
-                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
-
-                    expect(zenodoEl).toBeDefined();
-                    expectToBe(zenodoEl.href, expectedPageMetaData.awgAppZenodoUrl);
-                    expectToBe(zenodoEl.textContent, 'Zenodo');
+                    expect(linkEl).toBeDefined();
+                    expectToBe(linkEl.href, url());
+                    expectToBe(linkEl.textContent, text);
                 });
             });
         });

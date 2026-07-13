@@ -11,6 +11,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
+
 import {
     Statistics,
     StatisticsComplexBreakdownData,
@@ -59,6 +61,12 @@ class StatisticsSummaryStubComponent {
     summaryData = input.required<StatisticsSummaryData>();
 }
 
+@Component({
+    selector: 'awg-scroll-to-top-button',
+    template: '',
+})
+class ScrollToTopButtonStubComponent {}
+
 describe('StatisticsViewComponent', () => {
     let component: StatisticsViewComponent;
     let fixture: ComponentFixture<StatisticsViewComponent>;
@@ -88,6 +96,7 @@ describe('StatisticsViewComponent', () => {
                         StatisticsOverallProgressComponent,
                         StatisticsSeriesBreakdownComponent,
                         StatisticsSummaryComponent,
+                        ScrollToTopButtonComponent,
                     ],
                 },
                 add: {
@@ -96,6 +105,7 @@ describe('StatisticsViewComponent', () => {
                         StatisticsOverallProgressStubComponent,
                         StatisticsSeriesBreakdownStubComponent,
                         StatisticsSummaryStubComponent,
+                        ScrollToTopButtonStubComponent,
                     ],
                 },
             })
@@ -261,6 +271,12 @@ describe('StatisticsViewComponent', () => {
         });
 
         describe('VIEW', () => {
+            const getStatisticsViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
+            const getStatisticsViewMainDes = () =>
+                getAndExpectDebugElementByCss(getStatisticsViewDes()[0], 'div.row main', 1, 1);
+            const getStatisticsViewHeaderDes = () =>
+                getAndExpectDebugElementByCss(getStatisticsViewMainDes()[0], 'header.awg-statistics-view-header', 1, 1);
+
             it('... should contain one paragraph info about about missing data if statisticsData is null', () => {
                 component.statisticsData.set(null);
                 fixture.detectChanges();
@@ -272,70 +288,51 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one outer div if statisticsData is available', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
+                getStatisticsViewDes();
+            });
+
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-statistics-view`', () => {
+                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
             });
 
             it('... should contain a container and row div in outer div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
-                const containerDes = getAndExpectDebugElementByCss(divDes[0], 'div.container-fluid', 1, 1);
+                const containerDes = getAndExpectDebugElementByCss(
+                    getStatisticsViewDes()[0],
+                    'div.container-fluid',
+                    1,
+                    1
+                );
 
                 getAndExpectDebugElementByCss(containerDes[0], 'div.row', 1, 1);
             });
 
             it('... should contain one main element in row div', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(getStatisticsViewDes()[0], 'div.row', 1, 1);
 
                 getAndExpectDebugElementByCss(rowDes[0], 'main', 1, 1);
             });
 
             it('... should contain one header in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByCss(mainDes[0], 'header.awg-statistics-view-header', 1, 1);
+                getStatisticsViewHeaderDes();
             });
 
             it('... should contain one h2 in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-
-                getAndExpectDebugElementByCss(headerDes[0], 'h2', 1, 1);
+                getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'h2', 1, 1);
             });
 
             it('... should display correct header in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                const hDes = getAndExpectDebugElementByCss(headerDes[0], 'h2', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'h2', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                 expectToBe(hEl.textContent.trim(), 'Statistics');
             });
 
             it('... should contain one lead p in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(headerDes[0], 'p.lead', 1, 1);
+                getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'p.lead', 1, 1);
             });
 
             it('... should display correct lead text (muted) in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                const pDes = getAndExpectDebugElementByCss(headerDes[0], 'p.lead', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'p.lead', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToContain(pEl.classList, 'text-muted');
@@ -346,15 +343,17 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one statistics summary component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsSummaryStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsSummaryStubComponent,
+                    1,
+                    1
+                );
             });
 
             it('... should pass down correct summaryData to statistics summary component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
                 const summaryDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
+                    getStatisticsViewMainDes()[0],
                     StatisticsSummaryStubComponent,
                     1,
                     1
@@ -365,15 +364,17 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one statistics overall progress component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsOverallProgressStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsOverallProgressStubComponent,
+                    1,
+                    1
+                );
             });
 
             it('... should pass down correct overallProgressData to statistics overall progress component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
                 const overallProgressDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
+                    getStatisticsViewMainDes()[0],
                     StatisticsOverallProgressStubComponent,
                     1,
                     1
@@ -384,15 +385,17 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one statistics complex breakdown component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsComplexBreakdownStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsComplexBreakdownStubComponent,
+                    1,
+                    1
+                );
             });
 
             it('... should pass down correct complexBreakdownData to statistics complex breakdown component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
                 const complexBreakdownDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
+                    getStatisticsViewMainDes()[0],
                     StatisticsComplexBreakdownStubComponent,
                     1,
                     1
@@ -405,15 +408,17 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one statistics series breakdown component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsSeriesBreakdownStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsSeriesBreakdownStubComponent,
+                    1,
+                    1
+                );
             });
 
             it('... should pass down correct seriesBreakdownData to statistics series breakdown component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
                 const seriesBreakdownDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
+                    getStatisticsViewMainDes()[0],
                     StatisticsSeriesBreakdownStubComponent,
                     1,
                     1

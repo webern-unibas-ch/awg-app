@@ -25,7 +25,7 @@ import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
-import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { ScrollToTopButtonComponent } from './scroll-to-top-button/scroll-to-top-button.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -64,6 +64,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LogoComponent,
         MetaIdentifierBadgesComponent,
         ExternalLinkDirective,
+        ScrollToTopButtonComponent,
     ],
     declarations: [
         AlertErrorComponent,
@@ -72,7 +73,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LanguageSwitcherComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
-        ScrollToTopComponent,
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
@@ -103,7 +103,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         MetaIdentifierBadgesComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
-        ScrollToTopComponent,
+        ScrollToTopButtonComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,

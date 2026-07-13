@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { StructureViewComponent } from './structure-view.component';
 
@@ -18,6 +19,12 @@ class HeadingStubComponent {
     title = input.required<string>();
     id = input.required<string>();
 }
+
+@Component({
+    selector: 'awg-scroll-to-top-button',
+    template: '',
+})
+class ScrollToTopButtonStubComponent {}
 
 describe('StructureViewComponent (DONE)', () => {
     let component: StructureViewComponent;
@@ -35,8 +42,8 @@ describe('StructureViewComponent (DONE)', () => {
             declarations: [],
         })
             .overrideComponent(StructureViewComponent, {
-                remove: { imports: [HeadingComponent] },
-                add: { imports: [HeadingStubComponent] },
+                remove: { imports: [HeadingComponent, ScrollToTopButtonComponent] },
+                add: { imports: [HeadingStubComponent, ScrollToTopButtonStubComponent] },
             })
             .compileComponents();
     });
@@ -70,18 +77,27 @@ describe('StructureViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getStructureViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+
             it('... should contain one `div.awg-structure-view`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+                getStructureViewDes();
+            });
+
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
             });
 
             it('... should contain one heading component (stubbed) in `div.awg-structure-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(
+                    getStructureViewDes()[0],
+                    HeadingStubComponent,
+                    1,
+                    1
+                );
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(() => headingCmp.title()).toThrow();
@@ -89,12 +105,12 @@ describe('StructureViewComponent (DONE)', () => {
             });
 
             it('... should contain one `div.awg-structure-view-content` in `div.awg-structure-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-structure-view-content', 1, 1);
+                getAndExpectDebugElementByCss(getStructureViewDes()[0], 'div.awg-structure-view-content', 1, 1);
             });
 
             it('... should contain three `p` & one `svg` element in div.awg-structure-view-content', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view-content', 1, 1);
+                const divDes = getStructureViewDes();
+
                 getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
                 getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
             });
