@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import {
@@ -30,6 +31,7 @@ import { StatisticsSummaryComponent } from './statistics-summary/statistics-summ
         StatisticsOverallProgressComponent,
         StatisticsSeriesBreakdownComponent,
         StatisticsSummaryComponent,
+        ScrollToTopButtonComponent,
     ],
 })
 export class StatisticsViewComponent {

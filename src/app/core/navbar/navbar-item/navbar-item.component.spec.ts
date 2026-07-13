@@ -22,7 +22,6 @@ import { NavbarItemComponent } from './navbar-item.component';
 
 // Test Host Component to test NavbarItemComponent with correct dropdown context
 @Component({
-    standalone: true,
     imports: [NavbarItemComponent, NgbDropdown],
     template: `
         <div ngbDropdown>

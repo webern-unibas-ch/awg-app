@@ -6,6 +6,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 /**
  * The ContactView component.
@@ -19,7 +20,13 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, ExternalLinkDirective, HeadingComponent, MetaIdentifierBadgesComponent],
+    imports: [
+        DatePipe,
+        ExternalLinkDirective,
+        HeadingComponent,
+        MetaIdentifierBadgesComponent,
+        ScrollToTopButtonComponent,
+    ],
 })
 export class ContactViewComponent {
     /**
