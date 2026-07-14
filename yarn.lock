@@ -2325,9 +2325,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/git-client@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@conventional-changelog/git-client@npm:3.0.2"
+"@conventional-changelog/git-client@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@conventional-changelog/git-client@npm:3.1.0"
   dependencies:
     "@simple-libs/child-process-utils": "npm:^2.0.0"
     "@simple-libs/stream-utils": "npm:^2.0.0"
@@ -2340,7 +2340,7 @@ __metadata:
       optional: true
     conventional-commits-parser:
       optional: true
-  checksum: 10c0/c3e9d0ccbb8dce3cf1e74f383b5769a84baf9318a9afde5fc1ccbe27125e53e45ecf37ff76d91b92abbcd27403e1851eae696edb46d7c673068faa7c7300e527
+  checksum: 10c0/ab554a247f834457e2c3c8aec1311ddac3607645a13d4ca46ba66575718e4cb7448ec25f842cc12268fad3f4085525b28ed35fd80b028c7c5d553251b287a491
   languageName: node
   linkType: hard
 
@@ -5597,6 +5597,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"argue-cli@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "argue-cli@npm:3.1.0"
+  checksum: 10c0/589f7f3cc6093264b7a6d5f2acb32fffadf5947c411e92e8c656cd90f178e24924bc405665cceb37510273debcf7611b89aa3dbbf9782474d4d8add912bc6325
+  languageName: node
+  linkType: hard
+
 "aria-query@npm:5.3.2":
   version: 5.3.2
   resolution: "aria-query@npm:5.3.2"
@@ -5789,7 +5796,7 @@ __metadata:
     bootstrap: "npm:^5.3.8"
     codemirror: "npm:^6.0.2"
     commit-and-tag-version: "npm:^12.7.3"
-    conventional-recommended-bump: "npm:^12.0.1"
+    conventional-recommended-bump: "npm:^12.1.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
     d3-force: "npm:^3.0.0"
@@ -6813,15 +6820,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-commits-parser@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "conventional-commits-parser@npm:7.0.1"
+"conventional-commits-parser@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "conventional-commits-parser@npm:7.1.0"
   dependencies:
     "@simple-libs/stream-utils": "npm:^2.0.0"
-    meow: "npm:^14.0.0"
+    argue-cli: "npm:^3.1.0"
   bin:
     conventional-commits-parser: ./dist/cli/index.js
-  checksum: 10c0/00571c75a57a888748646871362a2e666092a3f126fa5dc91bd910cf6d7754d332aa30829787104625a51e603c78ddcb8a76adc5a0151c9492d92396cdca28fa
+  checksum: 10c0/7056dbe22c844561675dc08b9a3062da07d56e93fa4360fa1cb72dc5df5811b165cc5b2a317a6e05803cc3399ddcb641d701ed456443cffb36c407b2a17d1f97
   languageName: node
   linkType: hard
 
@@ -6842,18 +6849,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-recommended-bump@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "conventional-recommended-bump@npm:12.0.1"
+"conventional-recommended-bump@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "conventional-recommended-bump@npm:12.1.0"
   dependencies:
-    "@conventional-changelog/git-client": "npm:^3.0.2"
+    "@conventional-changelog/git-client": "npm:^3.1.0"
+    argue-cli: "npm:^3.1.0"
     conventional-changelog-preset-loader: "npm:^6.0.1"
     conventional-commits-filter: "npm:^6.0.1"
-    conventional-commits-parser: "npm:^7.0.1"
-    meow: "npm:^14.0.0"
+    conventional-commits-parser: "npm:^7.1.0"
   bin:
     conventional-recommended-bump: ./dist/cli/index.js
-  checksum: 10c0/0b3b3e6c3681e6eeef1dccaa5ebd6f28e29d0b42305e78e6129b484a02fd3788c67beedbbab284e655ba3c6f449653d0e921b56037dd0c7d9f94f7f63ebc148b
+  checksum: 10c0/1d559ac3054c26a1dba7097eb4b3779ce159f71cc9098c627ff934c2e2c91e52731fb343928812e5bab390353ecd82ac26d2ab18c6064be4625f6ac5b00aa5de
   languageName: node
   linkType: hard
 
