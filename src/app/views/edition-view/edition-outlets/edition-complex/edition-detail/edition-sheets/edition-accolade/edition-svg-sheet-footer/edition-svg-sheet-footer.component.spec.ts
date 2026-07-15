@@ -135,7 +135,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
@@ -332,7 +332,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
-                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
+                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
@@ -363,7 +363,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 it('... evaluations array is empty', async () => {
                     component.showEvaluation = true;
-                    component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsData.textcritics[0]);
+                    component.selectedTextcritics = structuredClone(
+                        mockEditionData.mockTextcriticsListData.textcritics[0]
+                    );
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(

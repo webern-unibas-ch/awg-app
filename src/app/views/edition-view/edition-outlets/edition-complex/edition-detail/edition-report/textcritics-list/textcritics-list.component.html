@@ -1,6 +1,6 @@
-@if (textcriticsData) {
+@if (textcriticsListData) {
     <div ngbAccordion>
-        @for (textcritics of textcriticsData.textcritics; track textcritics.id) {
+        @for (textcritics of textcriticsListData.textcritics; track textcritics.id) {
             <div [ngbAccordionItem]="textcritics.id" [collapsed]="true">
                 <div
                     ngbAccordionHeader

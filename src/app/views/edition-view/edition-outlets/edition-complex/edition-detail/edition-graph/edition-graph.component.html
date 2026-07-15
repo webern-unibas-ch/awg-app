@@ -4,7 +4,7 @@
     <awg-modal #modal />
 
     <!-- graph -->
-    @if (editionGraphData$ | async; as editionGraphData) {
+    @if (editionGraphData(); as editionGraphData) {
         <div class="awg-graph-view p-5 border rounded-3">
             @for (graph of editionGraphData.graph; track graph.id) {
                 <div>

@@ -120,7 +120,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
-        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].commentary);
+        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1].commentary);
 
         const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
         expectedTotalCommentRows = expectedCommentary.comments.reduce(

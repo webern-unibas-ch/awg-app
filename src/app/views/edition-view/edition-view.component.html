@@ -2,14 +2,18 @@
 <div class="awg-edition-view p-3 border rounded-3">
     <awg-scroll-to-top-button />
 
-    @let isIntroView = isIntroView$ | async;
-    @let isPrefaceView = isPrefaceView$ | async;
-    @let isRowTableView = isRowTableView$ | async;
-    @let selectedEditionComplex = selectedEditionComplex$ | async;
-    @let selectedEditionSeries = selectedEditionSeries$ | async;
-    @let selectedEditionSection = selectedEditionSection$ | async;
+    @let introView = isIntroView();
+    @let prefaceView = isPrefaceView();
+    @let rowTableView = isRowTableView();
+    @let editionComplex = selectedEditionComplex();
+    @let editionSection = selectedEditionSection();
+    @let editionSeries = selectedEditionSeries();
 
-    @if (isPrefaceView) {
+    <p>isIntroView: {{ introView | json }}</p>
+    <p>isPrefaceView: {{ prefaceView | json }}</p>
+    <p>isRowTableView: {{ rowTableView | json }}</p>
+
+    @if (prefaceView) {
         <div class="awg-edition-preface para">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
@@ -20,12 +24,12 @@
             </h6>
             <!-- Jumbotron -->
             <awg-edition-jumbotron
-                [jumbotronId]="editionViewId"
+                [jumbotronId]="EDITION_VIEW_ID"
                 [jumbotronTitle]="editionRouteConstants.PREFACE.full" />
         </div>
     }
 
-    @if (isRowTableView) {
+    @if (rowTableView) {
         <div class="awg-edition-row-tables para">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
@@ -35,46 +39,40 @@
                 <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
             </h6>
             <!-- Jumbotron -->
-            <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="'Übersicht'" />
         </div>
     }
 
-    @if (selectedEditionComplex) {
+    @if (editionComplex) {
         <div class="awg-edition-complex">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
                     {{ editionRouteConstants.EDITION?.short }}
                 </a>
                 /
-                <a
-                    [routerLink]="[
-                        editionRouteConstants.SERIES.route,
-                        selectedEditionComplex.pubStatement.series.route,
-                    ]">
-                    {{ selectedEditionComplex.pubStatement.series.full }}
+                <a [routerLink]="[editionRouteConstants.SERIES.route, editionComplex.pubStatement.series.route]">
+                    {{ editionComplex.pubStatement.series.full }}
                 </a>
                 /
                 <a
                     [routerLink]="[
                         editionRouteConstants.SERIES.route,
-                        selectedEditionComplex.pubStatement.series.route,
+                        editionComplex.pubStatement.series.route,
                         'section',
-                        selectedEditionComplex.pubStatement.section.route,
+                        editionComplex.pubStatement.section.route,
                     ]">
-                    {{ selectedEditionComplex.pubStatement.section.full }}
+                    {{ editionComplex.pubStatement.section.full }}
                 </a>
                 /
-                <span [innerHTML]="selectedEditionComplex.complexId.short"></span>
+                <span [innerHTML]="editionComplex.complexId.short"></span>
             </h6>
-            <awg-edition-jumbotron
-                [jumbotronId]="editionViewId"
-                [jumbotronTitle]="selectedEditionComplex.complexId.full" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="editionComplex.complexId.full" />
 
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
                 <p>
                     Ediert von
-                    @for (editor of selectedEditionComplex.respStatement.editors; track $index; let isLast = $last) {
+                    @for (editor of editionComplex.respStatement.editors; track $index; let isLast = $last) {
                         <span class="editor">
                             <a [href]="editor.homepage">{{ editor.name }}</a>
                             <awg-meta-identifier-badges [identifiers]="editor.identifiers" />
@@ -86,47 +84,47 @@
                     <br />
                     Versionsdatum:
                     <span class="version">{{
-                        selectedEditionComplex.respStatement.lastModified === '---'
+                        editionComplex.respStatement.lastModified === '---'
                             ? '---'
-                            : (selectedEditionComplex.respStatement.lastModified | date: 'longDate')
+                            : (editionComplex.respStatement.lastModified | date: 'longDate')
                     }}</span>
                 </p>
             </div>
         </div>
     }
 
-    @if (selectedEditionComplex === null && isRowTableView !== true && isPrefaceView !== true) {
+    @if (editionComplex === null && rowTableView !== true && prefaceView !== true) {
         <div class="awg-edition-series para">
             <h6 class="awg-edition-info-breadcrumb">
                 <ng-template #breadCrumbEdition>
                     {{ editionRouteConstants.EDITION?.short }}
                 </ng-template>
 
-                @if (selectedEditionSeries) {
+                @if (editionSeries) {
                     <ng-template #breadCrumbSeries>
-                        {{ selectedEditionSeries?.series.full }}
+                        {{ editionSeries?.series.full }}
                     </ng-template>
 
                     <a [routerLink]="[editionRouteConstants.SERIES.route]">
                         <ng-container *ngTemplateOutlet="breadCrumbEdition" />
                     </a>
                     /
-                    @if (selectedEditionSection) {
+                    @if (editionSection) {
                         <ng-template #breadCrumbSection>
-                            {{ selectedEditionSection?.section.full }}
+                            {{ editionSection?.section.full }}
                         </ng-template>
 
-                        <a [routerLink]="['./series', selectedEditionSeries.series.route]">
+                        <a [routerLink]="['./series', editionSeries.series.route]">
                             <ng-container *ngTemplateOutlet="breadCrumbSeries" />
                         </a>
                         /
-                        @if (isIntroView) {
+                        @if (introView) {
                             <a
                                 [routerLink]="[
                                     './series',
-                                    selectedEditionSeries.series.route,
+                                    editionSeries.series.route,
                                     'section',
-                                    selectedEditionSection.section.route,
+                                    editionSection.section.route,
                                 ]">
                                 <ng-container *ngTemplateOutlet="breadCrumbSection" />
                             </a>
@@ -148,8 +146,8 @@
             </h6>
             <!-- Jumbotron -->
             <awg-edition-jumbotron
-                [jumbotronId]="editionViewId"
-                [jumbotronTitle]="isIntroView ? editionRouteConstants.EDITION_INTRO.full : editionViewTitle" />
+                [jumbotronId]="EDITION_VIEW_ID"
+                [jumbotronTitle]="introView ? editionRouteConstants.EDITION_INTRO.full : EDITION_VIEW_TITLE" />
         </div>
     }
 

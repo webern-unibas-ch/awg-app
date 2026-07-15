@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -23,7 +24,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionGraphComponent implements OnInit {
+export class EditionGraphComponent {
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -46,20 +47,6 @@ export class EditionGraphComponent implements OnInit {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
-     * Public variable: editionGraphData$.
-     *
-     * It keeps the observable of the edition graph data.
-     */
-    editionGraphData$: Observable<GraphList | never>;
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
@@ -70,6 +57,21 @@ export class EditionGraphComponent implements OnInit {
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
+
+    /**
+     * Readonly signal: editionGraphData.
+     *
+     * It holds the graph data for the selected edition complex.
+     */
+    readonly editionGraphData = toSignal(
+        toObservable(this._editionStateService.selectedEditionComplex).pipe(
+            switchMap((complex: EditionComplex) => this._editionDataService.getEditionGraphData(complex)),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        )
+    );
 
     /**
      * Readonly signal: isFullscreen.
@@ -112,37 +114,5 @@ export class EditionGraphComponent implements OnInit {
      **/
     get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
         return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.getEditionGraphData();
-    }
-
-    /**
-     * Public method: getEditionGraphData.
-     *
-     * It gets the current edition complex from the EditionStateService
-     * and the observable of the corresponding graph data
-     * from the EditionDataService.
-     *
-     * @returns {void} Gets the current edition complex and the corresponding graph data.
-     */
-    getEditionGraphData(): void {
-        this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
-            switchMap((complex: EditionComplex) => {
-                this.editionComplex = complex;
-                return this._editionDataService.getEditionGraphData(this.editionComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
     }
 }

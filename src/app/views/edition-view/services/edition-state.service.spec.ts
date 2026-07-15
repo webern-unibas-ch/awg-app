@@ -359,36 +359,8 @@ describe('EditionStateService (DONE)', () => {
     });
 
     describe('IntroView', () => {
-        describe('#getIsIntroView()', () => {
-            it('... should have a method `getIsIntroView`', () => {
-                expect(editionStateService.getIsIntroView).toBeDefined();
-            });
-
-            it('... should return isIntroView', () => {
-                editionStateService.getIsIntroView().subscribe({
-                    next: (isIntroView: boolean) => {
-                        expectToBe(isIntroView, expectedIsIntroView);
-                    },
-                });
-
-                // Set isIntroView (with default value)
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-            });
-
-            it('... should return updated isIntroView', () => {
-                editionStateService.getIsIntroView().subscribe({
-                    next: (isIntroView: boolean) => {
-                        expectToBe(isIntroView, expectedIsIntroView);
-                    },
-                });
-
-                // Set isIntroView (with default value)
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-
-                // Update isIntroView
-                expectedIsIntroView = false;
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-            });
+        it('... should initialize isIntroView to hold false', () => {
+            expectToBe(editionStateService.isIntroView(), false);
         });
 
         describe('#updateIsIntroView()', () => {
@@ -396,87 +368,31 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateIsIntroView).toBeDefined();
             });
 
-            it('... should emit updated isIntroView', () => {
-                editionStateService.getIsIntroView().subscribe({
-                    next: (isIntroView: boolean) => {
-                        expectToBe(isIntroView, expectedIsIntroView);
-                    },
-                });
+            it('... should update isIntroView to hold true', () => {
+                editionStateService.updateIsIntroView(true);
 
-                // Set isIntroView (with default value)
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-
-                // Update isIntroView
-                expectedIsIntroView = false;
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-            });
-        });
-
-        describe('#clearIsIntroView()', () => {
-            it('... should have a method `clearIsIntroView`', () => {
-                expect(editionStateService.clearIsIntroView).toBeDefined();
+                expectToBe(editionStateService.isIntroView(), true);
             });
 
-            it('... should update isIntroView with null value', () => {
-                editionStateService.getIsIntroView().subscribe({
-                    next: (isIntroView: boolean) => {
-                        expectToBe(isIntroView, expectedIsIntroView);
-                    },
-                });
+            it('... should update isIntroView to hold false', () => {
+                editionStateService.updateIsIntroView(false);
 
-                // Clear isIntroView
-                expectedIsIntroView = null;
-                editionStateService.clearIsIntroView();
+                expectToBe(editionStateService.isIntroView(), false);
             });
 
-            it('... should overwrite existing values', () => {
-                editionStateService.getIsIntroView().subscribe({
-                    next: (isIntroView: boolean) => {
-                        expectToBe(isIntroView, expectedIsIntroView);
-                    },
-                });
+            it('... should not change value when updating with the same boolean', () => {
+                editionStateService.updateIsIntroView(true);
+                expectToBe(editionStateService.isIntroView(), true);
 
-                // Update isIntroView
-                editionStateService.updateIsIntroView(expectedIsIntroView);
-
-                // Clear isIntroView
-                expectedIsIntroView = null;
-                editionStateService.clearIsIntroView();
+                editionStateService.updateIsIntroView(true);
+                expectToBe(editionStateService.isIntroView(), true);
             });
         });
     });
 
     describe('PrefaceView', () => {
-        describe('#getIsPrefaceView()', () => {
-            it('... should have a method `getIsPrefaceView`', () => {
-                expect(editionStateService.getIsPrefaceView).toBeDefined();
-            });
-
-            it('... should return isPrefaceView', () => {
-                editionStateService.getIsPrefaceView().subscribe({
-                    next: (isPrefaceView: boolean) => {
-                        expectToBe(isPrefaceView, expectedIsPrefaceView);
-                    },
-                });
-
-                // Set isPrefaceView (with default value)
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-            });
-
-            it('... should return updated isPrefaceView', () => {
-                editionStateService.getIsPrefaceView().subscribe({
-                    next: (isPrefaceView: boolean) => {
-                        expectToBe(isPrefaceView, expectedIsPrefaceView);
-                    },
-                });
-
-                // Set isPrefaceView (with default value)
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-
-                // Update isPrefaceView
-                expectedIsPrefaceView = false;
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-            });
+        it('... should initialize isPrefaceView to hold false', () => {
+            expectToBe(editionStateService.isPrefaceView(), false);
         });
 
         describe('#updateIsPrefaceView()', () => {
@@ -484,140 +400,55 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateIsPrefaceView).toBeDefined();
             });
 
-            it('... should emit updated isPrefaceView', () => {
-                editionStateService.getIsPrefaceView().subscribe({
-                    next: (isPrefaceView: boolean) => {
-                        expectToBe(isPrefaceView, expectedIsPrefaceView);
-                    },
-                });
+            it('... should update isPrefaceView to hold true', () => {
+                editionStateService.updateIsPrefaceView(true);
 
-                // Set isPrefaceView (with default value)
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-
-                // Update isPrefaceView
-                expectedIsPrefaceView = false;
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-            });
-        });
-
-        describe('#clearIsPrefaceView()', () => {
-            it('... should have a method `clearIsPrefaceView`', () => {
-                expect(editionStateService.clearIsPrefaceView).toBeDefined();
+                expectToBe(editionStateService.isPrefaceView(), true);
             });
 
-            it('... should update isPrefaceView with null value', () => {
-                editionStateService.getIsPrefaceView().subscribe({
-                    next: (isPrefaceView: boolean) => {
-                        expectToBe(isPrefaceView, expectedIsPrefaceView);
-                    },
-                });
+            it('... should update isPrefaceView to hold false', () => {
+                editionStateService.updateIsPrefaceView(false);
 
-                // Clear isPrefaceView
-                expectedIsPrefaceView = null;
-                editionStateService.clearIsPrefaceView();
+                expectToBe(editionStateService.isPrefaceView(), false);
             });
 
-            it('... should overwrite existing values', () => {
-                editionStateService.getIsPrefaceView().subscribe({
-                    next: (isPrefaceView: boolean) => {
-                        expectToBe(isPrefaceView, expectedIsPrefaceView);
-                    },
-                });
+            it('... should not change value when updating with the same boolean', () => {
+                editionStateService.updateIsPrefaceView(true);
+                expectToBe(editionStateService.isPrefaceView(), true);
 
-                // Update isPrefaceView
-                editionStateService.updateIsPrefaceView(expectedIsPrefaceView);
-
-                // Clear isPrefaceView
-                expectedIsPrefaceView = null;
-                editionStateService.clearIsPrefaceView();
+                editionStateService.updateIsPrefaceView(true);
+                expectToBe(editionStateService.isPrefaceView(), true);
             });
         });
     });
 
     describe('RowTableView', () => {
-        describe('#getIsRowTableView()', () => {
-            it('... should have a method `getIsRowTableView`', () => {
-                expect(editionStateService.getIsRowTableView).toBeDefined();
-            });
-
-            it('... should return isRowTableView', () => {
-                editionStateService.getIsRowTableView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsRowTableView);
-                    },
-                });
-
-                // Set isRowTableView (with default value)
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-            });
-
-            it('... should return updated isRowTableView', () => {
-                editionStateService.getIsRowTableView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsRowTableView);
-                    },
-                });
-
-                // Set isRowTableView (with default value)
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-
-                // Update isRowTableView
-                expectedIsRowTableView = false;
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-            });
+        it('... should initialize isRowTableView to hold false', () => {
+            expectToBe(editionStateService.isRowTableView(), false);
         });
-
         describe('#updateIsRowTableView()', () => {
             it('... should have a method `updateIsRowTableView`', () => {
                 expect(editionStateService.updateIsRowTableView).toBeDefined();
             });
 
-            it('... should emit updated isRowTableView', () => {
-                editionStateService.getIsRowTableView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsRowTableView);
-                    },
-                });
+            it('... should update isRowTableView to hold true', () => {
+                editionStateService.updateIsRowTableView(true);
 
-                // Set isRowTableView (with default value)
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-
-                // Update isRowTableView
-                expectedIsRowTableView = false;
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-            });
-        });
-
-        describe('#clearIsRowTableView()', () => {
-            it('... should have a method `clearIsRowTableView`', () => {
-                expect(editionStateService.clearIsRowTableView).toBeDefined();
+                expectToBe(editionStateService.isRowTableView(), true);
             });
 
-            it('... should update isRowTableView with null value', () => {
-                editionStateService.getIsRowTableView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsRowTableView);
-                    },
-                });
+            it('... should update isRowTableView to hold false', () => {
+                editionStateService.updateIsRowTableView(false);
 
-                // Clear isRowTableView
-                expectedIsRowTableView = null;
-                editionStateService.clearIsRowTableView();
+                expectToBe(editionStateService.isRowTableView(), false);
             });
 
-            it('... should overwrite existing values', () => {
-                editionStateService.getIsRowTableView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsRowTableView);
-                    },
-                });
+            it('... should not change value when updating with the same boolean', () => {
+                editionStateService.updateIsRowTableView(true);
+                expectToBe(editionStateService.isRowTableView(), true);
 
-                // Update isRowTableView
-                editionStateService.updateIsRowTableView(expectedIsRowTableView);
-
-                // Clear isRowTableView
-                expectedIsRowTableView = null;
-                editionStateService.clearIsRowTableView();
+                editionStateService.updateIsRowTableView(true);
+                expectToBe(editionStateService.isRowTableView(), true);
             });
         });
     });

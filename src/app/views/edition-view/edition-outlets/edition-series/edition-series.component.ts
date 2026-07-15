@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -15,14 +14,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     styleUrls: ['./edition-series.component.scss'],
     standalone: false,
 })
-export class EditionSeriesComponent implements OnInit {
-    /**
-     * Public variable: editionOutline.
-     *
-     * It keeps the outline of the edition as an array of routes.
-     */
-    editionOutline: EditionOutlineSeries[];
-
+export class EditionSeriesComponent {
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -31,36 +23,18 @@ export class EditionSeriesComponent implements OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Public variable: editionOutline.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It keeps the outline of the edition as an array of routes.
      */
-    ngOnInit() {
-        this.clearSelections();
-        this.getEditionOutline();
-    }
+    readonly editionOutline = EditionOutlineService.getEditionOutline();
 
     /**
-     * Public method: clearSelectedSeries.
+     * Constructor of the EditionSeriesComponent.
      *
-     * It clears the selected series from the EditionStateService.
-     *
-     * @returns {void} Clears the edition series.
+     * It clears the selected edition series in the EditionStateService.
      */
-    clearSelections(): void {
-        this._editionStateService.clearSelectedEditionSeries();
-        this._editionStateService.clearSelectedEditionSection();
-    }
-
-    /**
-     * Public method: getEditionOutline.
-     *
-     * It gets the outline with array of series from the EditionStateService.
-     *
-     * @returns {void} Gets the edition outline.
-     */
-    getEditionOutline(): void {
-        this.editionOutline = EditionOutlineService.getEditionOutline();
+    constructor() {
+        this._editionStateService.updateSelectedEditionSeries(null);
     }
 }

@@ -1,8 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -17,14 +14,7 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     styleUrls: ['./edition-sections.component.scss'],
     standalone: false,
 })
-export class EditionSectionsComponent implements OnInit {
-    /**
-     * Public variable: selectedSeries$.
-     *
-     * It keeps the selected series of the edition as an Observable of EditionOutlineSeries.
-     */
-    selectedSeries$: Observable<EditionOutlineSeries>;
-
+export class EditionSectionsComponent {
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -33,35 +23,9 @@ export class EditionSectionsComponent implements OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly signal: selectedSeries.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the state of the selected edition series.
      */
-    ngOnInit() {
-        this.clearSelectedSection();
-        this.getSeries();
-    }
-
-    /**
-     * Public method: clearSelectedSection.
-     *
-     * It clears the selected section from the EditionStateService.
-     *
-     * @returns {void} Clears the edition section.
-     */
-    clearSelectedSection(): void {
-        this._editionStateService.clearSelectedEditionSection();
-    }
-
-    /**
-     * Public method: getSeries.
-     *
-     * It gets the selected series from the EditionStateService.
-     *
-     * @returns {void} Gets the edition series.
-     */
-    getSeries(): void {
-        this.selectedSeries$ = this._editionStateService.getSelectedEditionSeries();
-    }
+    readonly selectedSeries = this._editionStateService.selectedEditionSeries;
 }

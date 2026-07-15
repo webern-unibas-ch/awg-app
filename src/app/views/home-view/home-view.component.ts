@@ -78,7 +78,7 @@ export class HomeViewComponent {
     /**
      * Readonly signal: sectionLinksData.
      *
-     * It holds the array of displayed edition sections as a read-only signal.
+     * It holds the array of displayed edition sections based on active IDs.
      */
     readonly sectionLinksData = signal<EditionSectionLink[]>(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {

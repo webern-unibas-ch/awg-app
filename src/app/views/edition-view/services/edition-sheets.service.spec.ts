@@ -42,7 +42,7 @@ describe('EditionSheetsService (DONE)', () => {
         expectedFolioConvolutes = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes);
         expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets);
-        expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsData.textcritics);
+        expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsListData.textcritics);
         expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[1].commentary);
 
         // Spies on service functions

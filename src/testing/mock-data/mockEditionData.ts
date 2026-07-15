@@ -1184,11 +1184,11 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockTextcriticsData.
+     * Test helper data constant: mocktextcriticsListData.
      *
-     * It provides a mocked textcriticsData object.
+     * It provides a mocked textcriticsListData object.
      */
-    mockTextcriticsData: {
+    mockTextcriticsListData: {
         textcritics: [
             {
                 id: 'test-1',

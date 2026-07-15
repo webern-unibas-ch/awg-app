@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, ViewChild } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -29,46 +30,13 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionReportComponent implements OnInit {
+export class EditionReportComponent {
     /**
      * ViewChild variable: modal.
      *
      * It keeps the reference to the awg-modal.
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
-     * Public variable: editionReportData$.
-     *
-     * Observable that keeps the report data.
-     */
-    editionReportData$: Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]>;
-
-    /**
-     * Public variable: errorObject.
-     *
-     * It keeps an errorObject for the service calls.
-     */
-    errorObject = null;
-
-    /**
-     * Public variable: titles.
-     *
-     * It keeps an object for the titles of the report sections.
-     */
-    titles = {
-        sourceList: '1. Quellenübersicht',
-        sourceDescription: '2. Quellenbeschreibung',
-        sourceEvaluation: '3. Quellenbewertung',
-        tka: '4. Textkritische Anmerkungen',
-    };
 
     /**
      * Private readonly injection variable: _editionDataService.
@@ -92,43 +60,99 @@ export class EditionReportComponent implements OnInit {
     private readonly _router: any = inject(Router);
 
     /**
+     * Public variable: editionComplex.
+     *
+     * It keeps the information about the current edition complex.
+     */
+    editionComplex: EditionComplex;
+
+    /**
+     * Public variable: errorObject.
+     *
+     * It keeps an errorObject for the service calls.
+     */
+    errorObject = null;
+
+    /**
+     * Readonly signal: editionReportData.
+     *
+     * It holds the report data for the selected edition complex.
+     */
+    readonly editionReportData = toSignal(
+        toObservable(this._editionStateService.selectedEditionComplex).pipe(
+            switchMap((complex: EditionComplex | null) => {
+                if (!complex) {
+                    return EMPTY;
+                }
+                this.editionComplex = complex;
+                return this._editionDataService.getEditionReportData(complex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        )
+    );
+
+    /**
+     * Readonly signal: sourceListData.
+     *
+     * It computes the source list data from the complete report data.
+     */
+    readonly sourceListData = computed(() => {
+        const report = this.editionReportData();
+        return report && report[0] ? (report[0] as SourceList) : null;
+    });
+
+    /**
+     * Readonly signal: sourceDescriptionListData.
+     *
+     * It computes the source description list data from the complete report data.
+     */
+    readonly sourceDescriptionListData = computed(() => {
+        const report = this.editionReportData();
+        return report && report[1] ? (report[1] as SourceDescriptionList) : null;
+    });
+
+    /**
+     * Readonly signal: sourceEvaluationListData.
+     *
+     * It computes the source evaluation list data from the complete report data.
+     */
+    readonly sourceEvaluationListData = computed(() => {
+        const report = this.editionReportData();
+        return report && report[2] ? (report[2] as SourceEvaluationList) : null;
+    });
+
+    /**
+     * Readonly signal: textcriticsListData.
+     *
+     * It computes the textcritics list data from the complete report data.
+     */
+    readonly textcriticsListData = computed(() => {
+        const report = this.editionReportData();
+        return report && report[3] ? (report[3] as TextcriticsList) : null;
+    });
+
+    /**
+     * Readonly variable: titles.
+     *
+     * It keeps an object for the titles of the report sections.
+     */
+    readonly titles = {
+        sourceList: '1. Quellenübersicht',
+        sourceDescription: '2. Quellenbeschreibung',
+        sourceEvaluation: '3. Quellenbewertung',
+        tka: '4. Textkritische Anmerkungen',
+    };
+
+    /**
      * Getter variable: editionRouteConstants.
      *
      *  It returns the EDITION_ROUTE_CONSTANTS.
      **/
     get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
         return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.getEditionReportData();
-    }
-
-    /**
-     * Public method: getEditionReportData.
-     *
-     * It calls the EditionDataService to provide
-     * the data for the edition report.
-     *
-     * @returns {void} Sets the editionReportData observable.
-     */
-    getEditionReportData(): void {
-        this.editionReportData$ = this._editionStateService.getSelectedEditionComplex().pipe(
-            switchMap((complex: EditionComplex) => {
-                this.editionComplex = complex;
-                return this._editionDataService.getEditionReportData(this.editionComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
     }
 
     /**

@@ -1,6 +1,4 @@
-import { Injectable } from '@angular/core';
-
-import { Observable, ReplaySubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
@@ -9,284 +7,155 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
  *
  * It handles the provision of the current state
  * of an edition complex and other parts of the edition outline.
- *
- * Provided in: `root`.
- * @used in the {@link EditionSheetsComponent}.
  */
 @Injectable({
     providedIn: 'root',
 })
 export class EditionStateService {
     /**
-     * Private readonly variable for the replay subject´s buffer size.
+     * Private readonly signal holding the intro view state.
      */
-    private readonly _bufferSize = 1;
+    private readonly _isIntroViewSignal = signal<boolean>(false);
 
     /**
-     * Private readonly replay subject to flag intro view.
+     * Private readonly signal holding the preface view state.
      */
-    private readonly _isIntroViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _isPrefaceViewSignal = signal<boolean>(false);
 
     /**
-     * Private readonly isIntroView stream as observable (`ReplaySubject`).
+     * Private readonly signal holding the row table view state.
      */
-    private readonly _isIntroViewStream$ = this._isIntroViewSubject.asObservable();
+    private readonly _isRowTableViewSignal = signal<boolean>(false);
 
     /**
-     * Private readonly replay subject to flag preface view.
+     * Private readonly signal holding the selected edition complex.
      */
-    private readonly _isPrefaceViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _selectedEditionComplexSignal = signal<EditionComplex | null>(null);
 
     /**
-     * Private readonly isPrefaceView stream as observable (`ReplaySubject`).
+     * Private readonly signal holding the selected edition section.
      */
-    private readonly _isPrefaceViewStream$ = this._isPrefaceViewSubject.asObservable();
+    private readonly _selectedEditionSectionSignal = signal<EditionOutlineSection | null>(null);
 
     /**
-     * Private readonly replay subject to flag row table view.
+     * Private readonly signal holding the selected edition series.
      */
-    private readonly _isRowTableViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _selectedEditionSeriesSignal = signal<EditionOutlineSeries | null>(null);
 
     /**
-     * Private readonly isRowTableView stream as observable (`ReplaySubject`).
+     * Readonly signal: isIntroView.
+     *
+     * It holds the state of the intro view.
      */
-    private readonly _isRowTableViewStream$ = this._isRowTableViewSubject.asObservable();
+    readonly isIntroView = this._isIntroViewSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition complex.
+     * Readonly signal: isPrefaceView.
+     *
+     * It holds the state of the preface view.
      */
-    private readonly _selectedEditionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
+    readonly isPrefaceView = this._isPrefaceViewSignal.asReadonly();
 
     /**
-     * Private readonly edition complex stream as observable (`ReplaySubject`).
+     * Readonly signal: isRowTableView.
+     *
+     * It holds the state of the row table view.
      */
-    private readonly _selectedEditionComplexStream$ = this._selectedEditionComplexSubject.asObservable();
+    readonly isRowTableView = this._isRowTableViewSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition series.
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
      */
-    private readonly _selectedEditionSeriesSubject = new ReplaySubject<EditionOutlineSeries>(this._bufferSize);
+    readonly selectedEditionComplex = this._selectedEditionComplexSignal.asReadonly();
 
     /**
-     * Private readonly selected edition series stream as observable (`ReplaySubject`).
+     * Readonly signal: selectedEditionSection.
+     *
+     * It holds the state of the selected edition section.
      */
-    private readonly _selectedEditionSeriesStream$ = this._selectedEditionSeriesSubject.asObservable();
+    readonly selectedEditionSection = this._selectedEditionSectionSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition section.
+     * Readonly signal: selectedEditionSeries.
+     *
+     * It holds the state of the selected edition series.
      */
-    private readonly _selectedEditionSectionSubject = new ReplaySubject<EditionOutlineSection>(this._bufferSize);
-
-    /**
-     * Private readonly selected edition series stream as observable (`ReplaySubject`).
-     */
-    private readonly _selectedEditionSectionStream$ = this._selectedEditionSectionSubject.asObservable();
-
-    /**
-     * Public method: getSelectedEditionComplex.
-     *
-     * It provides the latest selected edition complex from the edition complex stream.
-     *
-     * @returns {Observable<EditionComplex>} The edition complex stream as observable.
-     */
-    getSelectedEditionComplex(): Observable<EditionComplex> {
-        return this._selectedEditionComplexStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionComplex.
-     *
-     * It updates the selected edition complex stream with the given edition complex.
-     *
-     * @param {EditionComplex} editionComplex The given edition complex.
-     *
-     * @returns {void} Sets the next edition complex to the stream.
-     */
-    updateSelectedEditionComplex(editionComplex: EditionComplex): void {
-        this._selectedEditionComplexSubject.next(editionComplex);
-    }
-
-    /**
-     * Public method: clearSelectedEditionComplex.
-     *
-     * It clears the selected edition complex stream.
-     *
-     * @returns {void} Clears the edition complex stream.
-     */
-    clearSelectedEditionComplex(): void {
-        this._selectedEditionComplexSubject.next(null);
-    }
-
-    /**
-     * Public method: getSelectedEditionSeries.
-     *
-     * It provides the latest selected series from the edition series stream.
-     *
-     * @returns {Observable<EditionOutlineSeries>} The edition series stream as observable.
-     */
-    getSelectedEditionSeries(): Observable<EditionOutlineSeries> {
-        return this._selectedEditionSeriesStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionSeries.
-     *
-     * It updates the selected edition series stream with the given series.
-     *
-     * @returns {void} Sets the next edition series to the stream.
-     */
-    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries): void {
-        this._selectedEditionSeriesSubject.next(editionSeries);
-    }
-
-    /**
-     * Public method: clearSelectedEditionSeries.
-     *
-     * It clears the selected edition series stream.
-     *
-     * @returns {void} Clears the edition series stream.
-     */
-    clearSelectedEditionSeries(): void {
-        this._selectedEditionSeriesSubject.next(null);
-    }
-
-    /**
-     * Public method: getSelectedEditionSection.
-     *
-     * It provides the latest selected section from the edition section stream.
-     *
-     * @returns {Observable<EditionOutlineSection>} The edition section stream as observable.
-     */
-    getSelectedEditionSection(): Observable<EditionOutlineSection> {
-        return this._selectedEditionSectionStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionSection.
-     *
-     * It updates the selected edition section stream with the given section.
-     *
-     * @param {EditionOutlineSection} editionSection The given edition section.
-     *
-     * @returns {void} Sets the next edition section to the stream.
-     */
-    updateSelectedEditionSection(editionSection: EditionOutlineSection): void {
-        this._selectedEditionSectionSubject.next(editionSection);
-    }
-
-    /**
-     * Public method: clearSelectedEditionSection.
-     *
-     * It clears the selected edition section stream.
-     *
-     * @returns {void} Clears the edition section stream.
-     */
-    clearSelectedEditionSection(): void {
-        this._selectedEditionSectionSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsIntroView.
-     *
-     * It provides the latest isIntroView flag from the isIntroView stream.
-     *
-     * @returns {Observable<boolean>} The isIntroView stream as observable.
-     */
-    getIsIntroView(): Observable<boolean> {
-        return this._isIntroViewStream$;
-    }
+    readonly selectedEditionSeries = this._selectedEditionSeriesSignal.asReadonly();
 
     /**
      * Public method: updateIsIntroView.
      *
-     * It updates the isIntroView stream with the given boolean value.
+     * It updates the isIntroView signal with the given boolean value.
      *
      * @param {boolean} isView The given isIntroView flag.
-     *
-     * @returns {void} Sets the next isIntroView flag to the stream.
+     * @returns {void} Sets the next state to the isIntroView signal.
      */
     updateIsIntroView(isView: boolean): void {
-        this._isIntroViewSubject.next(isView);
-    }
-
-    /**
-     * Public method: clearIsIntroView.
-     *
-     * It clears the isIntroView stream.
-     *
-     * @returns {void} Clears the isIntroView stream.
-     */
-    clearIsIntroView(): void {
-        this._isIntroViewSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsPrefaceView.
-     *
-     * It provides the latest isPrefaceView flag from the isPrefaceView stream.
-     *
-     * @returns {Observable<boolean>} The isPrefaceView stream as observable.
-     */
-    getIsPrefaceView(): Observable<boolean> {
-        return this._isPrefaceViewStream$;
+        this._isIntroViewSignal.set(isView);
     }
 
     /**
      * Public method: updateIsPrefaceView.
      *
-     * It updates the isPrefaceView stream with the given boolean value.
+     * It updates the isPrefaceView signal with the given boolean value.
      *
      * @param {boolean} isView The given isPrefaceView flag.
-     *
-     * @returns {void} Sets the next isPrefaceView flag to the stream.
+     * @returns {void} Sets the next state to the isPrefaceView signal.
      */
     updateIsPrefaceView(isView: boolean): void {
-        this._isPrefaceViewSubject.next(isView);
-    }
-
-    /**
-     * Public method: clearIsPrefaceView.
-     *
-     * It clears the isPrefaceView stream.
-     *
-     * @returns {void} Clears the isPrefaceView stream.
-     */
-    clearIsPrefaceView(): void {
-        this._isPrefaceViewSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsRowTableView.
-     *
-     * It provides the latest isRowTableView flag from the isRowTableView stream.
-     *
-     * @returns {Observable<boolean>} The isRowTableView stream as observable.
-     */
-    getIsRowTableView(): Observable<boolean> {
-        return this._isRowTableViewStream$;
+        this._isPrefaceViewSignal.set(isView);
     }
 
     /**
      * Public method: updateIsRowTableView.
      *
-     * It updates the isRowTableView stream with the given boolean value.
+     * It updates the isRowTableView signal with the given boolean value.
      *
      * @param {boolean} isView The given isRowTableView flag.
-     *
-     * @returns {void} Sets the next isRowTableView flag to the stream.
+     * @returns {void} Sets the next state to the isRowTableView signal.
      */
     updateIsRowTableView(isView: boolean): void {
-        this._isRowTableViewSubject.next(isView);
+        this._isRowTableViewSignal.set(isView);
     }
 
     /**
-     * Public method: clearIsRowTableView.
+     * Public method: updateSelectedEditionComplex.
      *
-     * It clears the isRowTableView stream.
+     * It updates the selectedEditionComplex signal with the given edition complex.
      *
-     * @returns {void} Clears the isRowTableView stream.
+     * @param {EditionComplex} complex The given edition complex.
+     * @returns {void} Sets the next complex to the signal.
      */
-    clearIsRowTableView(): void {
-        this._isRowTableViewSubject.next(null);
+    updateSelectedEditionComplex(complex: EditionComplex | null): void {
+        this._selectedEditionComplexSignal.set(complex);
+    }
+
+    /**
+     * Public method: updateSelectedEditionSection.
+     *
+     * It updates the selectedEditionSection signal with the given section.
+     *
+     * @param {EditionOutlineSection} editionSection The given edition section.
+     * @returns {void} Sets the next section to the signal.
+     */
+    updateSelectedEditionSection(editionSection: EditionOutlineSection | null): void {
+        this.updateSelectedEditionComplex(null);
+        this._selectedEditionSectionSignal.set(editionSection);
+    }
+
+    /**
+     * Public method: updateSelectedEditionSeries.
+     *
+     * It updates the selectedEditionSeries signal with the given series
+     * and resets the selectedEditionSection signal to null.
+     *
+     * @param {EditionOutlineSeries} editionSeries The given edition series.
+     * @returns {void} Sets the next series to the signal.
+     */
+    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries | null): void {
+        this.updateSelectedEditionSection(null);
+        this._selectedEditionSeriesSignal.set(editionSeries);
     }
 }

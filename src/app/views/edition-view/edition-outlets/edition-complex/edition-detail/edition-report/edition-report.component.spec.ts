@@ -259,7 +259,7 @@ describe('EditionReportComponent', () => {
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
         expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
+        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsListData);
 
         expectedEditionReportData = [
             expectedSourceListData,

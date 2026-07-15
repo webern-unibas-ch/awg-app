@@ -274,7 +274,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
+        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsListData);
         expectedSelectedTextcritics = expectedTextcriticsData.textcritics[1];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 

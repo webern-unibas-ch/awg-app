@@ -1,7 +1,7 @@
 <!-- sideinfo: edition -->
 <div class="card">
     <div class="card-body bg-light">
-        <h5 id="awg-edition-info-header">{{ editionInfoHeader }}</h5>
+        <h5 id="awg-edition-info-header">{{ EDITION_INFO_HEADER }}</h5>
         <p>&#9671;</p>
         <div ngbAccordion>
             <!-- Allgemein -->
@@ -53,8 +53,8 @@
                 </div>
             </div>
             <!-- Displayed Sections -->
-            @for (section of DISPLAYED_SECTIONS; track $index) {
-                <div ngbAccordionItem [collapsed]="selectedEditionSection !== section">
+            @for (section of sectionsData(); track $index) {
+                <div ngbAccordionItem [collapsed]="selectedEditionSection() !== section">
                     <div ngbAccordionHeader>
                         <button ngbAccordionButton>
                             {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{

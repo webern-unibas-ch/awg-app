@@ -58,6 +58,6 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this._editionStateService.clearIsRowTableView();
+        this._editionStateService.updateIsRowTableView(false);
     }
 }

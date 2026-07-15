@@ -1,5 +1,5 @@
-import { Component, DestroyRef, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, inject, Injector, OnInit, signal, ViewChild } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
 import { combineLatest, EMPTY, Observable } from 'rxjs';
@@ -73,6 +73,13 @@ export class EditionSheetsComponent implements OnInit {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _injector.
+     *
+     * It keeps the instance of the injected Injector.
+     */
+    private readonly _injector = inject(Injector);
 
     /**
      * Private readonly injection variable: _loadingService.
@@ -379,7 +386,7 @@ export class EditionSheetsComponent implements OnInit {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return this._editionStateService.getSelectedEditionComplex().pipe(
+        return toObservable(this._editionStateService.selectedEditionComplex, { injector: this._injector }).pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData

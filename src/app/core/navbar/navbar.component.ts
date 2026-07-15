@@ -77,7 +77,7 @@ export class NavbarComponent {
     /**
      * Readonly signal: sectionLinksData.
      *
-     * It keeps the array of displayed edition sections as a read-only signal.
+     * It holds the array of displayed edition sections based on active IDs.
      */
     readonly sectionLinksData = signal(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {

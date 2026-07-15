@@ -20,12 +20,12 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
 })
 export class TextcriticsListComponent {
     /**
-     * Input variable: textcriticsData.
+     * Input variable: textcriticsListData.
      *
-     * It keeps the textcritics data.
+     * It keeps the textcritics list data.
      */
     @Input()
-    textcriticsData: TextcriticsList;
+    textcriticsListData: TextcriticsList;
 
     /**
      * Output variable: navigateToReportFragment.

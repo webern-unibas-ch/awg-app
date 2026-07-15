@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
-import { combineLatest, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
-import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
+import { fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
+import { catchError, map, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
@@ -77,18 +78,48 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     editionComplex: EditionComplex;
 
     /**
-     * Public variable: editionIntroData$.
-     *
-     * It keeps the observable of the edition intro data.
-     */
-    editionIntroData$: Observable<IntroList | null | undefined>;
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
      */
     errorObject = null;
+
+    /**
+     * Readonly signal: editionIntroData.
+     *
+     * It holds the introductory data, reactively computed and fetched
+     * based on the selected series, section, and complex.
+     */
+    readonly editionIntroData = toSignal(
+        toObservable(
+            computed(() => ({
+                series: this._editionStateService.selectedEditionSeries(),
+                section: this._editionStateService.selectedEditionSection(),
+                complex: this._editionStateService.selectedEditionComplex(),
+            }))
+        ).pipe(
+            switchMap(({ series, section, complex }) => {
+                if (!series || !section) {
+                    return observableOf(null);
+                }
+
+                // Check if the complex belongs to the current series and section
+                const isComplexValidForSection =
+                    complex &&
+                    complex.pubStatement?.series?.route === series.series.route &&
+                    complex.pubStatement?.section?.route === section.section.route;
+
+                const activeComplex = isComplexValidForSection ? complex : null;
+
+                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return observableOf(undefined);
+            })
+        ),
+        { initialValue: null }
+    );
 
     /**
      * Protected readonly variable: UTILS.
@@ -127,9 +158,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.listenToRouteChanges();
+        this._editionStateService.updateIsIntroView(true);
 
-        this.getEditionIntroData();
+        this.listenToRouteChanges();
     }
 
     /**
@@ -144,8 +175,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         this._destroyed$.next(true);
         this._destroyed$.complete();
 
-        this._editionStateService.clearIsIntroView();
-        this.editionIntroData$ = undefined;
+        this._editionStateService.updateIsIntroView(false);
     }
 
     /**
@@ -167,41 +197,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
                 }
             }
         });
-    }
-
-    /**
-     * Public method: getEditionIntroData.
-     *
-     * It gets the current edition intro data from the EditionDataService.
-     *
-     * @returns {void} Gets the current edition intro data.
-     */
-    getEditionIntroData(): void {
-        this.editionIntroData$ = combineLatest([
-            this._editionStateService.getSelectedEditionSeries(),
-            this._editionStateService.getSelectedEditionSection(),
-            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
-        ]).pipe(
-            switchMap(([series, section, complex]) => {
-                if (!series || !section) {
-                    return observableOf(null);
-                }
-                const isComplexValidForSection =
-                    complex &&
-                    complex.pubStatement?.series?.route === series.series.route &&
-                    complex.pubStatement?.section?.route === section.section.route;
-
-                const activeComplex = isComplexValidForSection ? complex : null;
-
-                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex).pipe(
-                    startWith(null) // Emit null to show the loading spinner while fetching data
-                );
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return observableOf(undefined);
-            })
-        );
     }
 
     /**
@@ -458,6 +453,5 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
 
         this._editionStateService.updateSelectedEditionSeries(series);
         this._editionStateService.updateSelectedEditionSection(section);
-        this._editionStateService.updateIsIntroView(true);
     }
 }

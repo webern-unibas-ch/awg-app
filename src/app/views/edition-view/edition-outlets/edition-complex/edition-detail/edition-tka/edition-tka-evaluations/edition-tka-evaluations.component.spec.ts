@@ -82,7 +82,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
-        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsData.textcritics[1].evaluations);
+        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1].evaluations);
 
         // Spies on functions
         getGlyphSpy = vi.spyOn(component, 'getGlyph');
