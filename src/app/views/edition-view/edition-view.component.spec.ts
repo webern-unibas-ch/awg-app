@@ -19,7 +19,7 @@ import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/rou
 
 import { MetaIdentifiers } from '@awg-shared/meta/meta.model';
 
-import { EDITION_ROUTE_CONSTANTS } from './edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from './models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from './services';
 

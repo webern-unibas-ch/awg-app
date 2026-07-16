@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**

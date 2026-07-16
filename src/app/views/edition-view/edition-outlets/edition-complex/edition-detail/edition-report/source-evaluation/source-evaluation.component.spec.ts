@@ -17,7 +17,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 

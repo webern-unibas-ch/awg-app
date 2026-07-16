@@ -20,7 +20,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
 import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionRowTablesList,

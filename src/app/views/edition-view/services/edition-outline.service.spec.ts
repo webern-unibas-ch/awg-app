@@ -5,7 +5,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 import { EditionOutlineService } from './edition-outline.service';

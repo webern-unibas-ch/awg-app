@@ -21,7 +21,7 @@ import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { LoadingService } from '@awg-shared/loading/loading.service';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionSvgOverlay,

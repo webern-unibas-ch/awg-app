@@ -7,7 +7,7 @@ import { catchError, map, switchMap, takeUntil, throttleTime } from 'rxjs/operat
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 

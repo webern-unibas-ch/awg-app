@@ -17,23 +17,21 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
-import { EditionSectionLink } from '@awg-views/edition-view/models';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
-
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { Logo, Logos } from '@awg-shared/logos/logos.model';
+import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
+
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
+import { EditionSectionLink } from '@awg-views/edition-view/models';
+import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import { NavbarComponent } from './navbar.component';
-import {
-    NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
-    NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
-    NAVBAR_ITEMS,
-} from './navbar.data';
-import { NavbarDropdownLink, NavbarItem, NavbarItems } from './navbar.model';
+import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.data';
+import { NavbarItem, NavbarItems } from './navbar.model';
 
 // Mock components
 @Component({
@@ -75,8 +73,8 @@ describe('NavbarComponent (DONE)', () => {
     let expectedLogosData: Logos;
     let expectedSectionLinksData: EditionSectionLink[];
     let expectedNavbarItems: NavbarItems;
-    let expectedGeneralEditionLinks: NavbarDropdownLink[];
-    let expectedSectionEditionLinks: NavbarDropdownLink[];
+    let expectedGeneralEditionLinks: LabeledRoute[];
+    let expectedSectionEditionLinks: LabeledRoute[];
 
     beforeAll(() => {
         EditionOutlineService.initializeEditionOutline();
@@ -109,7 +107,7 @@ describe('NavbarComponent (DONE)', () => {
 
         // Test data
         expectedNavbarItems = NAVBAR_ITEMS;
-        expectedGeneralEditionLinks = NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS;
+        expectedGeneralEditionLinks = EDITION_GENERAL_LINKS;
         expectedSectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
         expectedSectionLinksData = ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
             const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);

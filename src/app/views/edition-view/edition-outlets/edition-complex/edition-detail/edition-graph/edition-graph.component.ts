@@ -7,7 +7,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 

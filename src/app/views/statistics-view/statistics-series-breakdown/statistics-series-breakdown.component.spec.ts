@@ -16,7 +16,7 @@ import {
 } from '@testing/expect-helper';
 import { mockStatisticsData } from '@testing/mock-data';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 
 import {
     StatisticsComplexBreakdown,

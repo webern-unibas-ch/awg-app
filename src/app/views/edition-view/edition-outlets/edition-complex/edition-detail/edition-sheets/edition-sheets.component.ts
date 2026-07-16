@@ -9,7 +9,7 @@ import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionSvgOverlay,

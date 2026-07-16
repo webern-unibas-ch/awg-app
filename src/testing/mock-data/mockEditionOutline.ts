@@ -1,4 +1,4 @@
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 

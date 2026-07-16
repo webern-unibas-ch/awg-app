@@ -11,7 +11,7 @@ import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } fro
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 

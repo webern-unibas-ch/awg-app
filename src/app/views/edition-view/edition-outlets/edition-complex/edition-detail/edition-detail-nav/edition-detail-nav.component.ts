@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -46,8 +46,10 @@ export class EditionDetailNavComponent {
         }
 
         const route = EDITION_ROUTE_CONSTANTS;
-        const buttonConfigs = [route.EDITION_INTRO, route.EDITION_SHEETS, route.EDITION_REPORT, route.EDITION_GRAPH];
+        const routerLinks = [route.EDITION_INTRO, route.EDITION_SHEETS, route.EDITION_REPORT, route.EDITION_GRAPH];
 
-        return buttonConfigs.map(config => new RouterLinkButton(complex.baseRoute, config.route, config.short, false));
+        return routerLinks.map(
+            routerLink => new RouterLinkButton(complex.baseRoute, routerLink.route, routerLink.short, false)
+        );
     });
 }

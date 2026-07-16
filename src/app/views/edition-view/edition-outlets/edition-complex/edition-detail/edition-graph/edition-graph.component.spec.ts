@@ -30,7 +30,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
